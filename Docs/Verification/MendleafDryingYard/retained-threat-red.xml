@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.5185445">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24650" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.518545" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30334" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24650" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.509611" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30335" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24650" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.504684" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30336" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24650" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.500600" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="18023" name="MendleafDryingYardTests" fullname="CavesOfOoo.Tests.MendleafDryingYardTests" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.492837" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="18026" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:36Z" duration="2.491102" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18024" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="262593436" result="Failed" start-time="2026-10-04 05:48:34Z" end-time="2026-10-04 05:48:35Z" duration="1.266523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual north generation must realize the new source, not merely retain the old alembic. Viper 4470 at (75, 20) sight=10 arrival-distance=35 border-distances=(0, 14):75,(79, 13):7,(13, 0):62,(39, 24):36; Viper 4471 at (43, 16) sight=10 arrival-distance=4 border-distances=(0, 14):43,(79, 13):36,(13, 0):30,(39, 24):8
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount (System.Int32 seed) [0x0028f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18025" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="477416741" result="Failed" start-time="2026-10-04 05:48:35Z" end-time="2026-10-04 05:48:36Z" duration="1.218893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual north generation must realize the new source, not merely retain the old alembic. MarlbackScrabbler 4496 at (32, 10) sight=10 arrival-distance=8 border-distances=(0, 13):32,(79, 10):47,(33, 0):10,(62, 24):30; MarlbackScrabbler 4499 at (15, 0) sight=10 arrival-distance=25 border-distances=(0, 13):15,(79, 10):64,(33, 0):18,(62, 24):47
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount (System.Int32 seed) [0x0028f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:123
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -6,7 +6,7 @@ using CavesOfOoo.Skills;
 namespace CavesOfOoo.Core
 {
  /// <summary>Three cold-generation worksites. Stock is moved with its exact existing contents;
- /// only a complete two-owner ordinary hostile roll can become a mixed pair. No saved replay.</summary>
+ /// ordinary hostile receipts authorize count-preserving replacements. No saved replay.</summary>
  public static class SpreadExplorationWorksites
  {
   /// <summary>Presentation/debug identity on new site owners; never authority to acquire a source.</summary>
@@ -15,6 +15,10 @@ namespace CavesOfOoo.Core
   const int MaxTrials=256;
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
+   out Entity[] owners,out Func<bool> final)
+   =>TryPlaceCore(zone,factory,terrain,population,containers,family,authority,true,out owners,out final);
+  static bool TryPlaceCore(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
+   PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,bool allowDrying,
    out Entity[] owners,out Func<bool> final)
   {
    owners=null;final=null;
@@ -28,8 +32,12 @@ namespace CavesOfOoo.Core
     &&actors.Owners.Select(e=>e.BlueprintName).Distinct().Count()==1&&actors.Owners.All(e=>OrdinaryActor(zone,e))&&(!store||stock.IsCurrent);
    if(!Sources()||!authority()||!Sources()||zone.GetReadOnlyEntities().Any(e=>e.Properties.ContainsKey(RoleKey)))return false;
    var cache=store?stock.Owners.FirstOrDefault(e=>Cache(zone,e)):null;if(store&&cache==null)return false;
+   // Optional enrichment is confined to the ungenerated northern alembic.
+   // Missing content keeps its earlier service before any factory or receipt is used.
+   bool drying=allowDrying&&alembic&&zone.ZoneID=="Overworld.11.9.0"&&LoadoutPart.Factory==factory
+    &&new[]{"MarlbackPatchbearer","HealingTonic","MendleafPlant","MendleafSprig","AlchemyShelf","BrewedTonic"}.All(factory.Blueprints.ContainsKey);
    bool pair=!alembic&&actors.Owners.Count==2;
-   var replaced=pair?actors.Owners.ToArray():Array.Empty<Entity>();var selected=new HashSet<Entity>(replaced);if(cache!=null)selected.Add(cache);
+   var replaced=drying?actors.Owners.OrderBy(e=>Distance(zone.GetEntityPosition(e),Arrival)).Take(1).ToArray():pair?actors.Owners.ToArray():Array.Empty<Entity>();var selected=new HashSet<Entity>(replaced);if(cache!=null)selected.Add(cache);
    string caster=forge?"MarlbackCindercaller":"MarlbackSoursprayer";
    var specs=new List<(string bp,string role,int x,int y)>();
    if(alembic){specs.Add(("AlchemyStill","still",0,0));specs.Add(("StoneburrPatch","binding-forage",-2,1));specs.Add(("FrostLichenPatch","cold-forage",2,1));}
@@ -41,29 +49,43 @@ namespace CavesOfOoo.Core
      if((Math.Abs(x)==3||Math.Abs(y)==2)&&!(y==0&&Math.Abs(x)==3))specs.Add(("StoneWall","broken-wall",x,y));
    }
    if(!store)foreach(var p in new[]{(-2,-2),(-1,-2),(2,-2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2));
+   if(drying)
+   {
+    specs.Add(("MendleafPlant","medicine-forage",-7,2));
+    specs.Add(("AlchemyShelf","drying-shelf",4,-1));specs.Add(("AlchemyShelf","drying-shelf",4,1));
+    specs.Add(("MarlbackPatchbearer","patchbearer",6,0));
+    foreach(int side in new[]{-1,1})foreach(var p in new[]{(3,3),(4,3),(5,3),(5,2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2*side));
+   }
    if(pair){specs.Add((caster,"ranged",store?1:2,-1));specs.Add(("MarlbackScrabbler","melee",-1,1));}
    if(specs.Any(s=>!factory.Blueprints.ContainsKey(s.bp))||(pair&&LoadoutPart.Factory!=factory))return false;
    var all=new HashSet<Entity>(zone.GetReadOnlyEntities());var initial=SpreadGenerationReceipt.CaptureFinalState(zone,all);
    var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)));
    var before=new SpreadWildernessSituationBuilder.Geometry(zone,selected);
-   var anchor=zone.GetEntityPosition(cache??actors.Owners[0]);
+   var retainedThreats=drying?actors.Owners.Where(e=>!selected.Contains(e)).ToArray():Array.Empty<Entity>();
+   var anchor=zone.GetEntityPosition(cache??(drying?replaced[0]:actors.Owners[0]));
    var offsets=specs.Select(s=>(s.x,s.y)).Concat(cache==null?Array.Empty<(int,int)>():new[]{(0,0)}).ToArray();
    var positions=Array.Empty<(int x,int y)>();(int x,int y) origin=default;int rotation=0,trials=0;
    foreach(var at in from y in Enumerable.Range(4,Zone.Height-8) from x in Enumerable.Range(4,Zone.Width-8) orderby Distance(anchor,(x,y)),y,x select(x,y))
    {
-    for(int turn=0;turn<2;turn++)
+    for(int turn=0;turn<(drying?4:2);turn++)
     {
      var candidate=offsets.Select(p=>At(at,p,turn)).ToArray();
      if(candidate.Any(p=>Distance(p,Arrival)<=6||!before.Place(p.x,p.y)))continue;
-     if(++trials>MaxTrials)return false;
-     if(!Fits(zone,before,before,candidate,specs,pair,store,at,turn,plan))continue;
+     if(drying&&!DryingBounds(before,at,turn))continue;
+     if(++trials>MaxTrials)break;
+     if(!Fits(zone,before,before,candidate,specs,pair,store,drying,retainedThreats,at,turn,plan))continue;
      positions=candidate;origin=at;rotation=turn;break;
     }
-    if(positions.Length>0)break;
+    if(positions.Length>0||trials>MaxTrials)break;
    }
-   if(positions.Length==0||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+   if(positions.Length==0&&!drying)return false;
+   if(!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+   // No enriched shape fits. Only this pre-staging branch can retry the old packet;
+   // failed factory/ownership transactions below never consume another attempt.
+   if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
    bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
+   bool DryingShape()=>!drying||(staged.Count==specs.Count&&staged.Select((e,i)=>DryingOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
    var oldPositions=selected.ToDictionary(e=>e,zone.GetEntityPosition);
    bool Provenance()=>Identity();
    bool Others()=>unchanged()&&all.Except(removed).Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
@@ -83,6 +105,7 @@ namespace CavesOfOoo.Core
      if((spec.role=="still"&&!e.HasPart<AlchemyStillPart>())||(spec.role=="forge"&&!e.HasPart<ForgePart>())||(spec.role=="trap"&&(!e.HasPart<SpikeTrapTriggerPart>()||!e.HasPart<TrapJammingPart>()))
       ||(spec.role=="broken-wall"&&e.GetPart<PhysicsPart>()?.Solid!=true)||((spec.role=="binding-forage"||spec.role=="cold-forage")&&!e.HasPart<HarvestablePart>()))return false;
      if(store&&!StoreOwner(e,spec.bp,spec.role))return false;
+     if(drying&&!DryingOwner(e,spec.bp,spec.role))return false;
      if(e.HasPart<HarvestablePart>()){var h=e.GetPart<HarvestablePart>();if(h.Harvested||h.YieldChance!=100||h.YieldMin<1||h.YieldMax<h.YieldMin||h.YieldMax>2||!factory.Blueprints.ContainsKey(h.YieldBlueprint))return false;}
      string cue=spec.role=="still"?"The field alembic still works. Single flasks can be brewed in the field; this still also prepares batches. Stoneburr carries the binding used in stoneskin brews; frost lichen carries cold for a freezing coating."
       :spec.role=="forge"?"The roadside forge still works. Carried weapon components can be forged or used to re-forge a weapon. A brewed coating can quench a weapon here; frost lichen supplies the cold for freezing coatings."
@@ -90,12 +113,14 @@ namespace CavesOfOoo.Core
       :spec.role=="haul-bypass"?"A fallen roof beam blocks the dispatch yard's service opening. There is room outside to haul it back, turn aside, and release it clear of the entrance. A heavy load slows its hauler; the supply cache remains inside."
       :spec.role=="binding-forage"?"A small, finite stand of stoneburr. Gather its seeds and brew one flask anywhere for a stoneskin tonic. A still can prepare batches."
       :spec.role=="cold-forage"?"A small, finite stand of frost lichen. Brew its cold into a freezing coating, then quench a melee weapon beside a forge. Drinking the coating freezes the drinker.":null;
+     if(spec.role=="medicine-forage")cue="A small, finite stand of mendleaf at the drying yard's outer margin. Gather its sprigs and brew one at a time anywhere for a weak mending tonic. A patchbearer works the deeper yard; its bottle harness shows what stronger medicine remains.";
+     if(spec.role=="drying-shelf")cue="A broad drying shelf divides the working bay, blocking passage and sight through its frame. Broken stone windbreaks shelter the bays; the central aisle and rear remain open.";
      if(cue!=null){var examine=e.GetPart<ExaminablePart>();if(examine==null){examine=new ExaminablePart();e.AddPart(examine);}examine.Text=cue;}
      staged.Add(e);
     }
    }
    catch(Exception){return false;}
-   if(!StoreShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+   if(!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -115,9 +140,9 @@ namespace CavesOfOoo.Core
      if(!authority()||!Owned()||!Others()||!AddedState())return false;
     }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
-    bool Final()=>authority()&&Provenance()&&StoreShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
+    bool Final()=>authority()&&Provenance()&&StoreShape()&&DryingShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||stock.MatchesOwnedState())&&finalPacket()&&detached.Values.All(p=>p())
-     &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,origin,rotation,plan);
+     &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
    }
    finally
@@ -153,6 +178,28 @@ namespace CavesOfOoo.Core
    return !physical.Solid&&!e.HasTag("Solid")&&TrapJammingPart.IsSupported(e)&&!TrapJammingPart.IsJammed(e)
     &&e.GetPart<SpikeTrapTriggerPart>()?.ConsumeOnTrigger==true;
   }
+  static bool DryingOwner(Entity e,string blueprint,string role)
+  {
+   if(e==null||e.BlueprintName!=blueprint||e.GetProperty(RoleKey)!=role||e.HasPart<SpatialFootprintPart>()
+    ||e.Parts.Any(p=>p==null||p.ParentEntity!=e))return false;
+   var physical=e.GetPart<PhysicsPart>();
+   if(physical?.ParentEntity!=e||physical.InInventory!=null||physical.Equipped!=null)return false;
+   if(role=="patchbearer")
+   {
+    var medicine=e.GetPart<FieldMedicinePart>();var tonic=medicine?.FindCarriedMedicine();var inventory=e.GetPart<InventoryPart>();
+    return e.HasTag("Creature")&&e.GetStatValue("Hitpoints")==20&&e.GetStat("Hitpoints")?.Max==20
+     &&e.GetPart<BrainPart>()?.SightRadius==10&&(e.GetPart<CombatTacticsPart>()?.AssistRadius??0)<=10
+     &&medicine!=null&&medicine.UseAtOrBelowPercent==40&&medicine.TonicBlueprint=="HealingTonic"&&tonic?.GetPart<TonicPart>()?.Healing=="4d6+4"
+     &&inventory!=null&&inventory.Objects.Where(item=>item?.BlueprintName=="HealingTonic").Sum(item=>item.GetPart<StackerPart>()?.StackCount??1)==1;
+   }
+   if(role=="drying-shelf")return !e.HasTag("Creature")&&physical.Solid&&!physical.Takeable&&e.HasTag("Solid")
+    &&e.GetPart<ContainerPart>() is ContainerPart container&&!container.IsLocked&&container.Contents.Count==0;
+   if(role=="medicine-forage")return !e.HasTag("Creature")&&!physical.Solid&&!physical.Takeable&&!e.HasPart<CropPart>()
+    &&e.GetPart<HarvestablePart>() is HarvestablePart harvest&&!harvest.Harvested&&harvest.YieldBlueprint=="MendleafSprig"
+    &&harvest.YieldChance==100&&harvest.YieldMin==1&&harvest.YieldMax==2;
+   if(role=="broken-wall")return physical.Solid&&e.HasTag("Solid");
+   return true;
+  }
   static bool OrdinaryActor(Zone z,Entity e)=>e!=null&&(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")
    &&e.SpatialZone==z&&z.GetEntityCell(e)!=null&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0
    &&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.InInventory==null&&p.Equipped==null&&!e.HasPart<SpatialFootprintPart>()
@@ -180,28 +227,55 @@ namespace CavesOfOoo.Core
    return true;
   }
   static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
-  static (int x,int y) At((int x,int y)at,(int x,int y)p,int turn)=>turn==0?(at.x+p.x,at.y+p.y):(at.x-p.y,at.y+p.x);
+  static (int x,int y) At((int x,int y)at,(int x,int y)p,int turn)=>turn==0?(at.x+p.x,at.y+p.y)
+   :turn==1?(at.x-p.y,at.y+p.x):turn==2?(at.x-p.x,at.y-p.y):(at.x+p.y,at.y-p.x);
   static bool Fits(Zone z,SpreadWildernessSituationBuilder.Geometry g,SpreadWildernessSituationBuilder.Geometry before,(int x,int y)[] positions,
-   List<(string bp,string role,int x,int y)> specs,bool pair,bool store,(int x,int y)origin,int rotation,SpreadCompositionPlan plan)
+   List<(string bp,string role,int x,int y)> specs,bool pair,bool store,bool drying,Entity[] retainedThreats,(int x,int y)origin,int rotation,SpreadCompositionPlan plan)
   {
    if(positions.Any(p=>Distance(p,Arrival)<=6||!g.Place(p.x,p.y))||!g.PreservesAgainst(before,positions))return false;
    var blocked=new HashSet<(int x,int y)>(positions);
-   var threat=specs.Select((s,i)=>(s.role,at:positions[i])).Where(s=>s.role=="ranged"||s.role=="melee").ToArray();
-   bool Avoid(int x,int y)=>threat.Any(t=>Distance((x,y),t.at)<=(t.role=="ranged"?6:10));
+   var threat=specs.Select((s,i)=>(s.role,at:positions[i])).Where(s=>s.role=="ranged"||s.role=="melee"||s.role=="patchbearer").ToArray();
+   bool Avoid(int x,int y)=>threat.Any(t=>Distance((x,y),t.at)<=(t.role=="ranged"?6:10))
+    ||retainedThreats.Any(e=>Distance((x,y),z.GetEntityPosition(e))<=Math.Max(e.GetPart<BrainPart>().SightRadius,e.GetPart<CombatTacticsPart>()?.AssistRadius??0));
    var safe=g.Flood(blocked,Arrival,int.MaxValue,Avoid);
    var reachable=g.Flood(blocked,Arrival,int.MaxValue,null);
    if(!safe[Arrival.x,Arrival.y])return false;
-   foreach(var p in new[]{(x:0,y:plan.WestY),(x:Zone.Width-1,y:plan.EastY),(x:plan.NorthX,y:0),(x:plan.SouthX,y:Zone.Height-1)})
-    if(before.BorderReach[p.x,p.y]&&!safe[p.x,p.y])return false;
+   var exits=new[]{(x:0,y:plan.WestY),(x:Zone.Width-1,y:plan.EastY),(x:plan.NorthX,y:0),(x:plan.SouthX,y:Zone.Height-1)};
+   // The original critical routes stay physically connected above. A retained
+   // hostile may already watch a border; the shallow outcome needs one safe
+   // withdrawal, not a promise to make every ordinary border peaceful.
+   if(drying){if(!exits.Any(p=>before.BorderReach[p.x,p.y]&&safe[p.x,p.y]))return false;}
+   else foreach(var p in exits)if(before.BorderReach[p.x,p.y]&&!safe[p.x,p.y])return false;
    if(store)return FitsStore(g,positions,specs,origin,rotation);
+   if(drying&&!FitsDrying(g,blocked,safe,reachable,origin,rotation))return false;
    // Every functional owner retains two physical approaches; neither harvesting
    // nor opening the actual cache forces the player onto the visible trap.
    for(int i=0;i<positions.Length;i++)
    {
-    if(i<specs.Count&&(specs[i].role=="broken-wall"||specs[i].role=="melee"||specs[i].role=="ranged"||specs[i].role=="trap"))continue;
+    if(i<specs.Count&&(specs[i].role=="broken-wall"||specs[i].role=="melee"||specs[i].role=="ranged"||specs[i].role=="patchbearer"||specs[i].role=="trap"))continue;
     var p=positions[i];if(new[]{(p.x-1,p.y),(p.x+1,p.y),(p.x,p.y-1),(p.x,p.y+1)}.Count(n=>g.Walk(n.Item1,n.Item2,blocked)&&reachable[n.Item1,n.Item2])<2)return false;
    }
    return true;
+  }
+  static bool DryingBounds(SpreadWildernessSituationBuilder.Geometry g,(int x,int y)origin,int rotation)
+  {
+   // This bounds the work area; scenery outside the actual owners/approaches
+   // is left alone and need not be empty.
+   foreach(var corner in new[]{(-8,-4),(-8,4),(8,-4),(8,4)})
+   {var p=At(origin,corner,rotation);if(!g.In(p.x,p.y))return false;}
+   return true;
+  }
+  static bool FitsDrying(SpreadWildernessSituationBuilder.Geometry g,HashSet<(int x,int y)> blocked,bool[,] safe,bool[,] reachable,(int x,int y)origin,int rotation)
+  {
+   if(!DryingBounds(g,origin,rotation))return false;
+   foreach(var local in new[]{(3,0),(4,0),(5,0),(6,-1),(6,1),(7,0),(3,-1),(5,-1),(3,1),(5,1),(4,-4),(4,-2)})
+   {var p=At(origin,local,rotation);if(!g.Walk(p.x,p.y,blocked)||!reachable[p.x,p.y])return false;}
+   var herb=At(origin,(-7,2),rotation);
+   if(new[]{(herb.x-1,herb.y),(herb.x+1,herb.y),(herb.x,herb.y-1),(herb.x,herb.y+1)}.Count(p=>g.In(p.Item1,p.Item2)&&safe[p.Item1,p.Item2])<2)return false;
+   // The aisle is one route; closing its midpoint must still leave a normal
+   // cardinal approach to the rear working space and a way out again.
+   var alternate=new HashSet<(int x,int y)>(blocked){At(origin,(4,0),rotation)};
+   var rear=At(origin,(7,0),rotation);return g.Flood(alternate,Arrival,int.MaxValue,null)[rear.x,rear.y];
   }
   // Store access has two priced alternatives, rather than the other worksites'
   // free two-approach contract. Read-only generation proofs include diagonal

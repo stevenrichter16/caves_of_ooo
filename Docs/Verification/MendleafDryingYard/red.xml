@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="93" result="Failed(Child)" total="93" passed="73" failed="20" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:45Z" duration="41.9055455">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24639" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:45Z" duration="41.905546" total="93" passed="73" failed="20" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30318" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24639" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:45Z" duration="41.896580" total="93" passed="73" failed="20" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30319" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24639" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:45Z" duration="41.890272" total="93" passed="73" failed="20" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30320" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24639" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:45Z" duration="41.886189" total="93" passed="73" failed="20" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="18018" name="MendleafDryingYardTests" fullname="CavesOfOoo.Tests.MendleafDryingYardTests" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:12Z" duration="9.391353" total="14" passed="5" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="18038" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:04Z" duration="0.962578" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18036" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(False)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(False)" methodname="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1551764224" result="Failed" start-time="2026-10-04 05:08:03Z" end-time="2026-10-04 05:08:04Z" duration="0.561504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The north drying yard must contain its real MarlbackPatchbearer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests+Fixture.Owner (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:63
+at CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome (System.Boolean used) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18037" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(True)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(True)" methodname="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1994344024" result="Failed" start-time="2026-10-04 05:08:04Z" end-time="2026-10-04 05:08:04Z" duration="0.397983" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The north drying yard must contain its real MarlbackPatchbearer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests+Fixture.Owner (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:63
+at CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome (System.Boolean used) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18021" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:08:04Z" end-time="2026-10-04 05:08:06Z" duration="2.291385" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18019" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="174697664" result="Failed" start-time="2026-10-04 05:08:04Z" end-time="2026-10-04 05:08:05Z" duration="1.113320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual north generation must realize the new source, not merely retain the old alembic.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount (System.Int32 seed) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18020" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="629259909" result="Failed" start-time="2026-10-04 05:08:05Z" end-time="2026-10-04 05:08:06Z" duration="1.174938" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual north generation must realize the new source, not merely retain the old alembic.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount (System.Int32 seed) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="18035" name="ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" methodname="ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1787582826" result="Failed" start-time="2026-10-04 05:08:06Z" end-time="2026-10-04 05:08:07Z" duration="0.387108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The north drying yard must contain its real MendleafPlant.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests+Fixture.Owner (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:63
+at CavesOfOoo.Tests.MendleafDryingYardTests.ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill () [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:198
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="18034" name="EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:08:07Z" end-time="2026-10-04 05:08:08Z" duration="0.912184" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18032" name="EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(0)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(0)" methodname="EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1031675522" result="Failed" start-time="2026-10-04 05:08:07Z" end-time="2026-10-04 05:08:07Z" duration="0.473154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The north drying yard must contain its real MarlbackPatchbearer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests+Fixture.Owner (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:63
+at CavesOfOoo.Tests.MendleafDryingYardTests.EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays (System.Int32 rotation) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:174
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18033" name="EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(1)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(1)" methodname="EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="246062762" result="Failed" start-time="2026-10-04 05:08:07Z" end-time="2026-10-04 05:08:08Z" duration="0.435166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The north drying yard must contain its real MarlbackPatchbearer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests+Fixture.Owner (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:63
+at CavesOfOoo.Tests.MendleafDryingYardTests.EitherRotationHasAnIndependentShallowWithdrawalAndPhysicalDryingBays (System.Int32 rotation) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:174
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18024" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:08:08Z" end-time="2026-10-04 05:08:09Z" duration="0.926290" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18022" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(1)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(1)" methodname="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="980349635" result="Failed" start-time="2026-10-04 05:08:08Z" end-time="2026-10-04 05:08:08Z" duration="0.501658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched (System.Int32 count) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:136
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18023" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(2)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(2)" methodname="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1022845748" result="Failed" start-time="2026-10-04 05:08:08Z" end-time="2026-10-04 05:08:09Z" duration="0.421300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched (System.Int32 count) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/MendleafDryingYardTests.cs:136
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18031" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 05:08:09Z" end-time="2026-10-04 05:08:12Z" duration="3.036786" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="18028" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MarlbackPatchbearer&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MarlbackPatchbearer&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="298121063" result="Passed" start-time="2026-10-04 05:08:09Z" end-time="2026-10-04 05:08:10Z" duration="1.365267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18029" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MendleafPlant&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MendleafPlant&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1800007835" result="Passed" start-time="2026-10-04 05:08:10Z" end-time="2026-10-04 05:08:11Z" duration="0.975722" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18030" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;AlchemyShelf&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;AlchemyShelf&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="2125633073" result="Passed" start-time="2026-10-04 05:08:11Z" end-time="2026-10-04 05:08:12Z" duration="0.692904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18027" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 05:08:12Z" end-time="2026-10-04 05:08:12Z" duration="0.871245" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="18025" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.10.9.0&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.10.9.0&quot;)" methodname="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="650018906" result="Passed" start-time="2026-10-04 05:08:12Z" end-time="2026-10-04 05:08:12Z" duration="0.407661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18026" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.12.9.0&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.12.9.0&quot;)" methodname="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="443679070" result="Passed" start-time="2026-10-04 05:08:12Z" end-time="2026-10-04 05:08:12Z" duration="0.460734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25784" name="SpawnRing3DIntegrationTests" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-04 05:08:12Z" end-time="2026-10-04 05:08:34Z" duration="21.269802" total="30" passed="27" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25796" name="ActorMemoryAndRenderVisibilityHideWithoutTurningNativeActorsIntoStaticGhosts" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ActorMemoryAndRenderVisibilityHideWithoutTurningNativeActorsIntoStaticGhosts" methodname="ActorMemoryAndRenderVisibilityHideWithoutTurningNativeActorsIntoStaticGhosts" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="400034089" result="Passed" start-time="2026-10-04 05:08:13Z" end-time="2026-10-04 05:08:14Z" duration="1.159517" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25805" name="ActualBipedEquipUnequipChangesTheAttachmentWithoutRebuildingGround" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ActualBipedEquipUnequipChangesTheAttachmentWithoutRebuildingGround" methodname="ActualBipedEquipUnequipChangesTheAttachmentWithoutRebuildingGround" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="906343990" result="Passed" start-time="2026-10-04 05:08:14Z" end-time="2026-10-04 05:08:14Z" duration="0.716247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25795" name="ActualForcedMovementUpdatesOnlyTheExactActorAndLeavesOtherActorRootStable" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ActualForcedMovementUpdatesOnlyTheExactActorAndLeavesOtherActorRootStable" methodname="ActualForcedMovementUpdatesOnlyTheExactActorAndLeavesOtherActorRootStable" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="722339290" result="Passed" start-time="2026-10-04 05:08:14Z" end-time="2026-10-04 05:08:15Z" duration="0.753477" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25789" name="ActualGraphBindsWithoutChangingNativeEntitiesPositionsTilesOrEquipment" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ActualGraphBindsWithoutChangingNativeEntitiesPositionsTilesOrEquipment" methodname="ActualGraphBindsWithoutChangingNativeEntitiesPositionsTilesOrEquipment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1722820154" result="Passed" start-time="2026-10-04 05:08:15Z" end-time="2026-10-04 05:08:16Z" duration="0.809523" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25794" name="ActualPickupDisposesTakeableViewAndKeepsNativeInventoryOwnership" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ActualPickupDisposesTakeableViewAndKeepsNativeInventoryOwnership" methodname="ActualPickupDisposesTakeableViewAndKeepsNativeInventoryOwnership" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="519703630" result="Passed" start-time="2026-10-04 05:08:16Z" end-time="2026-10-04 05:08:17Z" duration="0.787399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25801" name="AllFellingComponentsHaveIndependentExactNativeOwnerRoots" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllFellingComponentsHaveIndependentExactNativeOwnerRoots" methodname="AllFellingComponentsHaveIndependentExactNativeOwnerRoots" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="262414249" result="Passed" start-time="2026-10-04 05:08:17Z" end-time="2026-10-04 05:08:17Z" duration="0.107593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25788" name="AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 05:08:17Z" end-time="2026-10-04 05:08:22Z" duration="4.721406" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25786" name="AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance(False)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance(False)" methodname="AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="125220151" result="Failed" start-time="2026-10-04 05:08:20Z" end-time="2026-10-04 05:08:21Z" duration="0.759856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual generated notice must own an imported model contribution.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NoticeView (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f, CavesOfOoo.Core.Entity notice) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:173
+at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance (System.Boolean hidden) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25787" name="AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance(True)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance(True)" methodname="AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1954445426" result="Failed" start-time="2026-10-04 05:08:21Z" end-time="2026-10-04 05:08:22Z" duration="0.757229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual generated notice must own an imported model contribution.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NoticeView (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f, CavesOfOoo.Core.Entity notice) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:173
+at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance (System.Boolean hidden) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="25785" name="AllotmentNoticeSubmitsRealGeometryAndObeysNativeFogAndRemoval" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeSubmitsRealGeometryAndObeysNativeFogAndRemoval" methodname="AllotmentNoticeSubmitsRealGeometryAndObeysNativeFogAndRemoval" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="354584230" result="Failed" start-time="2026-10-04 05:08:22Z" end-time="2026-10-04 05:08:22Z" duration="0.674555" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The actual generated notice must own an imported model contribution.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NoticeView (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f, CavesOfOoo.Core.Entity notice) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:173
+at CavesOfOoo.Tests.SpawnRing3DIntegrationTests.AllotmentNoticeSubmitsRealGeometryAndObeysNativeFogAndRemoval () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:183
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25792" name="BatchedNeighborsShareAPatchRootWhileActorsAndTakeablesOwnTheirRoots" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.BatchedNeighborsShareAPatchRootWhileActorsAndTakeablesOwnTheirRoots" methodname="BatchedNeighborsShareAPatchRootWhileActorsAndTakeablesOwnTheirRoots" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="211740350" result="Passed" start-time="2026-10-04 05:08:22Z" end-time="2026-10-04 05:08:23Z" duration="0.762720" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25791" name="DirtyStaticVisibilityRebuildsOnlyItsTenByFivePatchWithoutMembershipChange" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.DirtyStaticVisibilityRebuildsOnlyItsTenByFivePatchWithoutMembershipChange" methodname="DirtyStaticVisibilityRebuildsOnlyItsTenByFivePatchWithoutMembershipChange" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="2060697915" result="Passed" start-time="2026-10-04 05:08:23Z" end-time="2026-10-04 05:08:24Z" duration="0.790231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25803" name="FixedFellingClearRefusalRetainsExactViewAndNativeLandmarks" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.FixedFellingClearRefusalRetainsExactViewAndNativeLandmarks" methodname="FixedFellingClearRefusalRetainsExactViewAndNativeLandmarks" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1158601810" result="Passed" start-time="2026-10-04 05:08:24Z" end-time="2026-10-04 05:08:24Z" duration="0.101761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25804" name="FullFellingReloadPreservesClearedAbsenceAndRebindsFreshSurvivingAliases" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.FullFellingReloadPreservesClearedAbsenceAndRebindsFreshSurvivingAliases" methodname="FullFellingReloadPreservesClearedAbsenceAndRebindsFreshSurvivingAliases" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="25485965" result="Passed" start-time="2026-10-04 05:08:24Z" end-time="2026-10-04 05:08:24Z" duration="0.226880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25800" name="FullSessionReloadUsesChangedSavedWaterWithoutRestoringTheGenerationMask" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.FullSessionReloadUsesChangedSavedWaterWithoutRestoringTheGenerationMask" methodname="FullSessionReloadUsesChangedSavedWaterWithoutRestoringTheGenerationMask" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="335912860" result="Passed" start-time="2026-10-04 05:08:24Z" end-time="2026-10-04 05:08:24Z" duration="0.262322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25815" name="LowDetailAndModeTogglesKeepNativeOwnersAndRecoverRealCameraReadiness" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.LowDetailAndModeTogglesKeepNativeOwnersAndRecoverRealCameraReadiness" methodname="LowDetailAndModeTogglesKeepNativeOwnersAndRecoverRealCameraReadiness" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="440968457" result="Passed" start-time="2026-10-04 05:08:24Z" end-time="2026-10-04 05:08:25Z" duration="0.952963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25802" name="NativeFellingClearRemovesOnlyOneOwnerViewAndPreservesOtherOwnerAliases" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NativeFellingClearRemovesOnlyOneOwnerViewAndPreservesOtherOwnerAliases" methodname="NativeFellingClearRemovesOnlyOneOwnerViewAndPreservesOtherOwnerAliases" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="757348475" result="Passed" start-time="2026-10-04 05:08:25Z" end-time="2026-10-04 05:08:25Z" duration="0.108496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25793" name="NativeHarvestRemovesItsBatchedContributionWithoutRegrowingTheOwner" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NativeHarvestRemovesItsBatchedContributionWithoutRegrowingTheOwner" methodname="NativeHarvestRemovesItsBatchedContributionWithoutRegrowingTheOwner" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="2005900026" result="Passed" start-time="2026-10-04 05:08:25Z" end-time="2026-10-04 05:08:26Z" duration="0.783197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25814" name="NativePickingStopsWithHiddenPresentationAndRejectsRemovedActor" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NativePickingStopsWithHiddenPresentationAndRejectsRemovedActor" methodname="NativePickingStopsWithHiddenPresentationAndRejectsRemovedActor" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="921860379" result="Passed" start-time="2026-10-04 05:08:26Z" end-time="2026-10-04 05:08:27Z" duration="0.799681" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25797" name="NativeVisibilityRefreshDoesNotRebuildUnchangedGroundGeometry" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NativeVisibilityRefreshDoesNotRebuildUnchangedGroundGeometry" methodname="NativeVisibilityRefreshDoesNotRebuildUnchangedGroundGeometry" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="184835283" result="Passed" start-time="2026-10-04 05:08:27Z" end-time="2026-10-04 05:08:28Z" duration="0.721960" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25811" name="NonHumanoidActualNativeGearGetsOneFallbackWithoutInventedHandsOrUnequip" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.NonHumanoidActualNativeGearGetsOneFallbackWithoutInventedHandsOrUnequip" methodname="NonHumanoidActualNativeGearGetsOneFallbackWithoutInventedHandsOrUnequip" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="949490328" result="Passed" start-time="2026-10-04 05:08:28Z" end-time="2026-10-04 05:08:29Z" duration="0.773658" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25798" name="RealFenCoatingWithoutPoolIsRepresentedAndDirtyErasureRebuildsOnlyThatPatch" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.RealFenCoatingWithoutPoolIsRepresentedAndDirtyErasureRebuildsOnlyThatPatch" methodname="RealFenCoatingWithoutPoolIsRepresentedAndDirtyErasureRebuildsOnlyThatPatch" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="701930223" result="Passed" start-time="2026-10-04 05:08:29Z" end-time="2026-10-04 05:08:29Z" duration="0.108921" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25816" name="RebindingAnUnrelatedZoneDropsClaimsRootsAndOnlyOwnedCameraResources" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.RebindingAnUnrelatedZoneDropsClaimsRootsAndOnlyOwnedCameraResources" methodname="RebindingAnUnrelatedZoneDropsClaimsRootsAndOnlyOwnedCameraResources" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1594581593" result="Passed" start-time="2026-10-04 05:08:29Z" end-time="2026-10-04 05:08:29Z" duration="0.761024" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25812" name="ReloadedEquippedPlayerUsesLoadedItemRefsAndDisposesOldAttachments" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.ReloadedEquippedPlayerUsesLoadedItemRefsAndDisposesOldAttachments" methodname="ReloadedEquippedPlayerUsesLoadedItemRefsAndDisposesOldAttachments" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="117988375" result="Passed" start-time="2026-10-04 05:08:29Z" end-time="2026-10-04 05:08:30Z" duration="0.967201" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25790" name="SameGraphBindAndEmptyDirtyRefreshReuseCameraTargetAndIndependentActorRoot" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.SameGraphBindAndEmptyDirtyRefreshReuseCameraTargetAndIndependentActorRoot" methodname="SameGraphBindAndEmptyDirtyRefreshReuseCameraTargetAndIndependentActorRoot" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="2107547480" result="Passed" start-time="2026-10-04 05:08:30Z" end-time="2026-10-04 05:08:31Z" duration="0.764809" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25799" name="TemporaryWaterAndOtherNativeMarksAreNotClaimedAsPermanentRingWater" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TemporaryWaterAndOtherNativeMarksAreNotClaimedAsPermanentRingWater" methodname="TemporaryWaterAndOtherNativeMarksAreNotClaimedAsPermanentRingWater" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="662981760" result="Passed" start-time="2026-10-04 05:08:31Z" end-time="2026-10-04 05:08:32Z" duration="0.715864" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25810" name="TwoHandedItemMakesOneRealSharedBladeAttachment" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 05:08:32Z" end-time="2026-10-04 05:08:33Z" duration="1.168852" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25806" name="TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.2.6.0&quot;,True)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.2.6.0&quot;,True)" methodname="TwoHandedItemMakesOneRealSharedBladeAttachment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="206229489" result="Passed" start-time="2026-10-04 05:08:32Z" end-time="2026-10-04 05:08:33Z" duration="0.767666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25807" name="TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.2.7.0&quot;,True)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.2.7.0&quot;,True)" methodname="TwoHandedItemMakesOneRealSharedBladeAttachment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1760929555" result="Passed" start-time="2026-10-04 05:08:33Z" end-time="2026-10-04 05:08:33Z" duration="0.148519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25808" name="TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.4.6.0&quot;,True)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.4.6.0&quot;,True)" methodname="TwoHandedItemMakesOneRealSharedBladeAttachment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="1840095094" result="Passed" start-time="2026-10-04 05:08:33Z" end-time="2026-10-04 05:08:33Z" duration="0.146905" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25809" name="TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.3.5.0&quot;,False)" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(&quot;Overworld.3.5.0&quot;,False)" methodname="TwoHandedItemMakesOneRealSharedBladeAttachment" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="977664826" result="Passed" start-time="2026-10-04 05:08:33Z" end-time="2026-10-04 05:08:33Z" duration="0.095690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25813" name="UnknownDroppedItemRemainsInNativeStateAndIsNeverClaimedAsRingArt" fullname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests.UnknownDroppedItemRemainsInNativeStateAndIsNeverClaimedAsRingArt" methodname="UnknownDroppedItemRemainsInNativeStateAndIsNeverClaimedAsRingArt" classname="CavesOfOoo.Tests.SpawnRing3DIntegrationTests" runstate="Runnable" seed="39579395" result="Passed" start-time="2026-10-04 05:08:33Z" end-time="2026-10-04 05:08:34Z" duration="0.761144" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25844" name="SpawnRing3DRecipeTests" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-10-04 05:08:34Z" end-time="2026-10-04 05:08:45Z" duration="11.209800" total="49" passed="41" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25891" name="ActualGeneratedAllotmentNoticeReusesOriginalArtWithoutChangingItsSource" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.ActualGeneratedAllotmentNoticeReusesOriginalArtWithoutChangingItsSource" methodname="ActualGeneratedAllotmentNoticeReusesOriginalArtWithoutChangingItsSource" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="98505823" result="Failed" start-time="2026-10-04 05:08:34Z" end-time="2026-10-04 05:08:35Z" duration="0.777196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The actual allotment notice must borrow the existing original sign model.
+  Expected: "ring-grove-sign"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.NoticeModel (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity notice) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:187
+at CavesOfOoo.Tests.SpawnRing3DRecipeTests.ActualGeneratedAllotmentNoticeReusesOriginalArtWithoutChangingItsSource () [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:204
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25897" name="AllotmentAliasPreservesExistingSpreadSignpostAndGroveSignRecipes" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentAliasPreservesExistingSpreadSignpostAndGroveSignRecipes" methodname="AllotmentAliasPreservesExistingSpreadSignpostAndGroveSignRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1577457405" result="Passed" start-time="2026-10-04 05:08:35Z" end-time="2026-10-04 05:08:36Z" duration="1.138085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25896" name="AllotmentNoticeCannotBorrowAuthorityFromTheAddressOrAnotherOwner" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeCannotBorrowAuthorityFromTheAddressOrAnotherOwner" methodname="AllotmentNoticeCannotBorrowAuthorityFromTheAddressOrAnotherOwner" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="799548097" result="Failed" start-time="2026-10-04 05:08:36Z" end-time="2026-10-04 05:08:36Z" duration="0.677322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The actual allotment notice must borrow the existing original sign model.
+  Expected: "ring-grove-sign"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.NoticeModel (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity notice) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:187
+at CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeCannotBorrowAuthorityFromTheAddressOrAnotherOwner () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:230
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25895" name="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 05:08:36Z" end-time="2026-10-04 05:08:39Z" duration="2.170507" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25892" name="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;hidden&quot;)" methodname="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="2085028482" result="Failed" start-time="2026-10-04 05:08:36Z" end-time="2026-10-04 05:08:37Z" duration="0.753244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual allotment notice must borrow the existing original sign model.
+  Expected: "ring-grove-sign"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.NoticeModel (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity notice) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:187
+at CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid (System.String change) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25893" name="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;custom-look&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;custom-look&quot;)" methodname="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="964893064" result="Failed" start-time="2026-10-04 05:08:37Z" end-time="2026-10-04 05:08:38Z" duration="0.740967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual allotment notice must borrow the existing original sign model.
+  Expected: "ring-grove-sign"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.NoticeModel (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity notice) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:187
+at CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid (System.String change) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25894" name="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(&quot;carried&quot;)" methodname="AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1640771558" result="Failed" start-time="2026-10-04 05:08:38Z" end-time="2026-10-04 05:08:39Z" duration="0.672394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual allotment notice must borrow the existing original sign model.
+  Expected: "ring-grove-sign"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.NoticeModel (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity notice) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:187
+at CavesOfOoo.Tests.SpawnRing3DRecipeTests.AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid (System.String change) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25869" name="CurrentNativeGroundGraphResolvesWithoutMutation" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-10-04 05:08:39Z" end-time="2026-10-04 05:08:44Z" duration="5.510497" total="24" passed="21" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25845" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="992833552" result="Passed" start-time="2026-10-04 05:08:39Z" end-time="2026-10-04 05:08:39Z" duration="0.156713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25846" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.3.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1883564277" result="Passed" start-time="2026-10-04 05:08:39Z" end-time="2026-10-04 05:08:39Z" duration="0.184888" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25847" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="111688422" result="Passed" start-time="2026-10-04 05:08:39Z" end-time="2026-10-04 05:08:39Z" duration="0.130213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25848" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="765124696" result="Failed" start-time="2026-10-04 05:08:39Z" end-time="2026-10-04 05:08:40Z" duration="0.709253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.6.0 Signpost: unmodeled-native-blueprint
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation (System.Int32 seed, System.String id) [0x000bc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25849" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="943825" result="Passed" start-time="2026-10-04 05:08:40Z" end-time="2026-10-04 05:08:40Z" duration="0.200086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25850" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.2.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="753704087" result="Passed" start-time="2026-10-04 05:08:40Z" end-time="2026-10-04 05:08:40Z" duration="0.123247" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25851" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.3.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.3.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1212745083" result="Passed" start-time="2026-10-04 05:08:40Z" end-time="2026-10-04 05:08:40Z" duration="0.116891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25852" name="CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,&quot;Overworld.4.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1401621724" result="Passed" start-time="2026-10-04 05:08:40Z" end-time="2026-10-04 05:08:40Z" duration="0.140537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25853" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="697287033" result="Passed" start-time="2026-10-04 05:08:40Z" end-time="2026-10-04 05:08:41Z" duration="0.441857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25854" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.3.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1544796847" result="Passed" start-time="2026-10-04 05:08:41Z" end-time="2026-10-04 05:08:41Z" duration="0.107829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25855" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="154015077" result="Passed" start-time="2026-10-04 05:08:41Z" end-time="2026-10-04 05:08:41Z" duration="0.121828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25856" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1445375225" result="Failed" start-time="2026-10-04 05:08:41Z" end-time="2026-10-04 05:08:42Z" duration="0.801620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.6.0 Signpost: unmodeled-native-blueprint
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation (System.Int32 seed, System.String id) [0x000bc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25857" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="959343923" result="Passed" start-time="2026-10-04 05:08:42Z" end-time="2026-10-04 05:08:42Z" duration="0.129443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25858" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.2.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="401125066" result="Passed" start-time="2026-10-04 05:08:42Z" end-time="2026-10-04 05:08:42Z" duration="0.115861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25859" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.3.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.3.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1176882542" result="Passed" start-time="2026-10-04 05:08:42Z" end-time="2026-10-04 05:08:42Z" duration="0.108149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25860" name="CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,&quot;Overworld.4.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1858862091" result="Passed" start-time="2026-10-04 05:08:42Z" end-time="2026-10-04 05:08:42Z" duration="0.230655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25861" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="121254631" result="Passed" start-time="2026-10-04 05:08:42Z" end-time="2026-10-04 05:08:43Z" duration="0.147387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25862" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.3.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="636343788" result="Passed" start-time="2026-10-04 05:08:43Z" end-time="2026-10-04 05:08:43Z" duration="0.111875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25863" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.5.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.5.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="2146110939" result="Passed" start-time="2026-10-04 05:08:43Z" end-time="2026-10-04 05:08:43Z" duration="0.123750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25864" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="900608649" result="Failed" start-time="2026-10-04 05:08:43Z" end-time="2026-10-04 05:08:43Z" duration="0.712246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.6.0 Signpost: unmodeled-native-blueprint
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation (System.Int32 seed, System.String id) [0x000bc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25865" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.6.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="533267677" result="Passed" start-time="2026-10-04 05:08:43Z" end-time="2026-10-04 05:08:44Z" duration="0.132100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25866" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.2.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="2005568759" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.119300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25867" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.3.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.3.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="95980922" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.107661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25868" name="CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.7.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,&quot;Overworld.4.7.0&quot;)" methodname="CurrentNativeGroundGraphResolvesWithoutMutation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1964085369" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.231139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25883" name="FellingNeedsItsRealSceneContractAndExactCurrentOwner" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.FellingNeedsItsRealSceneContractAndExactCurrentOwner" methodname="FellingNeedsItsRealSceneContractAndExactCurrentOwner" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="611975717" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.050773" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25886" name="FellingSacredScarUsesCleanGroundVariantAndLeavesPeripheralVariation" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.FellingSacredScarUsesCleanGroundVariantAndLeavesPeripheralVariation" methodname="FellingSacredScarUsesCleanGroundVariantAndLeavesPeripheralVariation" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="451467662" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.067006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25884" name="NativeMovementAndMembershipSetRecipePositionWithoutInventedEntityIds" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.NativeMovementAndMembershipSetRecipePositionWithoutInventedEntityIds" methodname="NativeMovementAndMembershipSetRecipePositionWithoutInventedEntityIds" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="70399927" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.030203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25889" name="PermanentFenWaterUsesCurrentTileStateAndSavedErasureNotPoolPresence" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.PermanentFenWaterUsesCurrentTileStateAndSavedErasureNotPoolPresence" methodname="PermanentFenWaterUsesCurrentTileStateAndSavedErasureNotPoolPresence" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="2109229364" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.049375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25871" name="PlayerAndConditionalSpeciesResolveWithoutNeedingTheReferenceSpawn" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.PlayerAndConditionalSpeciesResolveWithoutNeedingTheReferenceSpawn" methodname="PlayerAndConditionalSpeciesResolveWithoutNeedingTheReferenceSpawn" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="937225860" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.029421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25887" name="ReskinnedActorsKeepTheirNativeIdentityInsteadOfBorrowingASpeciesModel" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.ReskinnedActorsKeepTheirNativeIdentityInsteadOfBorrowingASpeciesModel" methodname="ReskinnedActorsKeepTheirNativeIdentityInsteadOfBorrowingASpeciesModel" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="94678565" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.031864" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25890" name="SprayPoolPresentationReadsItsNativeWaterWithoutChangingTheProjection" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.SprayPoolPresentationReadsItsNativeWaterWithoutChangingTheProjection" methodname="SprayPoolPresentationReadsItsNativeWaterWithoutChangingTheProjection" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="558149" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.063217" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25888" name="TakeableItemUsesVisibleOnlyFogWhileSceneryCanRemainRemembered" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.TakeableItemUsesVisibleOnlyFogWhileSceneryCanRemainRemembered" methodname="TakeableItemUsesVisibleOnlyFogWhileSceneryCanRemainRemembered" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1743316026" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.030465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25885" name="TakeableNativePropsStayIndependentWhileRepeatedSceneryCanBatch" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.TakeableNativePropsStayIndependentWhileRepeatedSceneryCanBatch" methodname="TakeableNativePropsStayIndependentWhileRepeatedSceneryCanBatch" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="58707595" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.029087" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25882" name="UnrelatedZonesAreNeverClaimedByRingRecipes" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrelatedZonesAreNeverClaimedByRingRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:45Z" duration="0.118396" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25878" name="UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.3.6.0&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.3.6.0&quot;)" methodname="UnrelatedZonesAreNeverClaimedByRingRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="773115551" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.029392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25879" name="UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.4.6.3&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.4.6.3&quot;)" methodname="UnrelatedZonesAreNeverClaimedByRingRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="821537919" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:44Z" duration="0.028731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25880" name="UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.18.18.1&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;Overworld.18.18.1&quot;)" methodname="UnrelatedZonesAreNeverClaimedByRingRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1788935247" result="Passed" start-time="2026-10-04 05:08:44Z" end-time="2026-10-04 05:08:45Z" duration="0.028480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25881" name="UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;WorldMap&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrelatedZonesAreNeverClaimedByRingRecipes(&quot;WorldMap&quot;)" methodname="UnrelatedZonesAreNeverClaimedByRingRecipes" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1869242525" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.028162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25877" name="UnrepresentedNativeEntityHasAnExplicitFallback" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.312651" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25872" name="UnrepresentedNativeEntityHasAnExplicitFallback(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback(&quot;unknown&quot;)" methodname="UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="213148521" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.029382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25873" name="UnrepresentedNativeEntityHasAnExplicitFallback(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback(&quot;detached&quot;)" methodname="UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="90700379" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.027931" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25874" name="UnrepresentedNativeEntityHasAnExplicitFallback(&quot;wrong-zone&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback(&quot;wrong-zone&quot;)" methodname="UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1719834667" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.089434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25875" name="UnrepresentedNativeEntityHasAnExplicitFallback(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback(&quot;invisible&quot;)" methodname="UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1466976171" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.080096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25876" name="UnrepresentedNativeEntityHasAnExplicitFallback(&quot;missing-render&quot;)" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.UnrepresentedNativeEntityHasAnExplicitFallback(&quot;missing-render&quot;)" methodname="UnrepresentedNativeEntityHasAnExplicitFallback" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="1047963652" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.083294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25870" name="VariantsFollowCurrentCoordinatesAndRemainStableAcrossFreshEquivalentGraphs" fullname="CavesOfOoo.Tests.SpawnRing3DRecipeTests.VariantsFollowCurrentCoordinatesAndRemainStableAcrossFreshEquivalentGraphs" methodname="VariantsFollowCurrentCoordinatesAndRemainStableAcrossFreshEquivalentGraphs" classname="CavesOfOoo.Tests.SpawnRing3DRecipeTests" runstate="Runnable" seed="83363291" result="Passed" start-time="2026-10-04 05:08:45Z" end-time="2026-10-04 05:08:45Z" duration="0.117322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
