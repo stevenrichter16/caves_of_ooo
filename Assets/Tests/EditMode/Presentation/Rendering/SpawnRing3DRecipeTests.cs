@@ -178,5 +178,71 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(Supported(Resolve(z,e)));
             Assert.IsTrue((bool)Call("HasPermanentWater",z,p.x,p.y));Assert.AreEqual(before,z.TileState.ToSaveString());
         }
+
+        const string AllotmentNoticeId="repair-cultivation:allotment-notice";
+        static Entity AllotmentNotice(Zone zone)=>zone.GetReadOnlyEntities().Single(e=>e.ID==AllotmentNoticeId);
+        void NoticeModel(Zone zone,Entity notice)
+        {
+            var recipe=Resolve(zone,notice);
+            Assert.AreEqual("ring-grove-sign",Value<string>(recipe,"ModelId"),"The actual allotment notice must borrow the existing original sign model.");
+            Assert.AreSame(notice,Value<Entity>(recipe,"Owner"));Assert.IsNull(Value<string>(recipe,"Failure"));
+            Assert.True(Value<bool>(recipe,"Batched"));Assert.False(Value<bool>(recipe,"Transient"));
+            var at=zone.GetEntityPosition(notice);
+            Assert.AreEqual(Village3DProjection.CellCentre(at.x,at.y),Value<Vector3>(recipe,"Position"));
+            Assert.NotNull(catalog.FindModel(Value<string>(recipe,"ModelId")));
+        }
+
+        [Test]
+        public void ActualGeneratedAllotmentNoticeReusesOriginalArtWithoutChangingItsSource()
+        {
+            var manager=new OverworldZoneManager(scope.Factory,64);var zone=manager.GetZone(RepairCultivationSite.ZoneID);
+            var notice=AllotmentNotice(zone);var render=notice.GetPart<RenderPart>();var physics=notice.GetPart<PhysicsPart>();
+            Assert.AreEqual("Signpost",notice.BlueprintName);Assert.AreEqual("notice",notice.GetProperty(RepairCultivationSite.RoleKey));
+            Assert.AreEqual(BiomeType.Grovelands,manager.WorldMap.GetBiome(2,6));Assert.False(SpreadPresentationScope.IsActive(zone));
+            string text=notice.GetPart<ExaminablePart>().Text,tiles=zone.TileState.ToSaveString(),name=render.DisplayName;
+            int version=zone.EntityVersion;var members=zone.GetReadOnlyEntities().ToArray();var parts=notice.Parts.ToArray();var at=zone.GetEntityPosition(notice);
+            NoticeModel(zone,notice);NoticeModel(zone,notice);
+            Assert.AreEqual(version,zone.EntityVersion);Assert.AreEqual(tiles,zone.TileState.ToSaveString());
+            CollectionAssert.AreEquivalent(members,zone.GetReadOnlyEntities());CollectionAssert.AreEqual(parts,notice.Parts);
+            Assert.AreEqual(at,zone.GetEntityPosition(notice));Assert.AreEqual(AllotmentNoticeId,notice.ID);
+            Assert.AreEqual(text,notice.GetPart<ExaminablePart>().Text);Assert.AreEqual(name,render.DisplayName);
+            Assert.True(physics.Solid);Assert.False(physics.Takeable);Assert.Null(physics.InInventory);Assert.Null(physics.Equipped);
+        }
+
+        [TestCase("hidden")][TestCase("custom-look")][TestCase("carried")]
+        public void AllotmentNoticeLosesOnlyItsNewAliasWhenCurrentSourceIsInvalid(string change)
+        {
+            var manager=new OverworldZoneManager(scope.Factory,64);var zone=manager.GetZone(RepairCultivationSite.ZoneID);
+            var notice=AllotmentNotice(zone);var render=notice.GetPart<RenderPart>();var physics=notice.GetPart<PhysicsPart>();
+            NoticeModel(zone,notice);Action restore=null;
+            if(change=="hidden"){render.Visible=false;restore=()=>render.Visible=true;}
+            else if(change=="custom-look"){render.VisualID="custom-sign";restore=()=>render.VisualID=null;}
+            else if(change=="carried"){physics.InInventory=new Entity();restore=()=>physics.InInventory=null;}
+            try{Refused(Resolve(zone,notice));}
+            finally{restore?.Invoke();}
+            NoticeModel(zone,notice);
+        }
+
+        [Test]
+        public void AllotmentNoticeCannotBorrowAuthorityFromTheAddressOrAnotherOwner()
+        {
+            var manager=new OverworldZoneManager(scope.Factory,64);var zone=manager.GetZone(RepairCultivationSite.ZoneID);
+            var notice=AllotmentNotice(zone);NoticeModel(zone,notice);
+            Refused(Resolve(new Zone(zone.ZoneID),notice));
+            var detached=scope.Factory.CreateEntity("Signpost");detached.ID=notice.ID;detached.Properties[RepairCultivationSite.RoleKey]="notice";
+            Refused(Resolve(zone,detached));
+            var unrelated=manager.GetZone("Overworld.2.5.0");Assert.True(unrelated.AddEntity(detached,12,7));
+            Refused(Resolve(unrelated,detached));NoticeModel(zone,notice);
+        }
+
+        [Test]
+        public void AllotmentAliasPreservesExistingSpreadSignpostAndGroveSignRecipes()
+        {
+            var manager=new OverworldZoneManager(scope.Factory,64);var spread=manager.GetZone("Overworld.12.10.0");
+            var sign=scope.Factory.CreateEntity("Signpost");Assert.True(spread.AddEntity(sign,12,7));
+            Assert.That(Value<string>(Resolve(spread,sign),"ModelId"),Does.StartWith("spread-scenery-signpost-"));
+            var grove=manager.GetZone(RepairCultivationSite.ZoneID);var native=scope.Factory.CreateEntity("GroveSign");Assert.True(grove.AddEntity(native,12,7));
+            Assert.AreEqual("ring-grove-sign",Value<string>(Resolve(grove,native),"ModelId"));
+        }
     }
 }

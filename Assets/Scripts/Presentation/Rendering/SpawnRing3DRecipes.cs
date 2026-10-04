@@ -559,6 +559,21 @@ namespace CavesOfOoo.Rendering
                     }
                 }
                 var binding = catalog.FindBlueprint(entity.HasTag("Player") ? "Player" : entity.BlueprintName);
+                // This native allotment notice borrows the shipped wooden sign;
+                // its owner, guidance and existing Signpost admission stay intact.
+                if (binding == null && zone.ZoneID == RepairCultivationSite.ZoneID
+                    && entity.BlueprintName == "Signpost" && entity.ID == "repair-cultivation:allotment-notice"
+                    && entity.GetProperty(RepairCultivationSite.RoleKey) == "notice"
+                    && entity.SpatialZone == zone && cell.ParentZone == zone
+                    && SpreadSceneryRecipes.TryModel(entity, 0, out _))
+                {
+                    var manager = WorldLocationContext.For(zone);
+                    if (manager?.WorldMap?.GetBiome(2, 6) == BiomeType.Grovelands
+                        && manager.WorldMap.GetPOI(2, 6) == null
+                        && manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                        && ReferenceEquals(current, zone))
+                        binding = catalog.FindBlueprint("GroveSign");
+                }
                 // Ordinary native caves already own depth-specific stone. Share
                 // the shipped stone geometry without replacing their entity,
                 // material properties, collision or depth generation.

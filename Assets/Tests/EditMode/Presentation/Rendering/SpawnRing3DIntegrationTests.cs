@@ -8,6 +8,8 @@ using CavesOfOoo.Data;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Object=UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
@@ -165,6 +167,88 @@ namespace CavesOfOoo.Tests
     public sealed class SpawnRing3DIntegrationTests
     {
         static void Near(Vector3 expected,Vector3 actual)=>Assert.Less(Vector3.Distance(expected,actual),.001f);
+        const string AllotmentNoticeId="repair-cultivation:allotment-notice";
+        static Entity AllotmentNotice(SpawnRing3DIntegrationFixture f)=>f.Zone.GetReadOnlyEntities().Single(e=>e.ID==AllotmentNoticeId);
+        static int PatchVertices(GameObject root)=>root.GetComponentsInChildren<MeshFilter>(true).Sum(filter=>filter.sharedMesh?.vertexCount??0);
+        static GameObject NoticeView(SpawnRing3DIntegrationFixture f,Entity notice)
+        {
+            Assert.True(f.Authored(notice),"The actual generated notice must own an imported model contribution.");
+            Assert.True(f.Rendered(notice));Assert.True(f.Find(notice,out var root,out string model));
+            Assert.AreEqual("ring-grove-sign",model);Assert.NotNull(f.Library.FindModel(model));
+            Assert.True(SpawnRing3DIntegrationFixture.Drawn(root));Assert.Greater(PatchVertices(root),0);return root;
+        }
+        static Color32[] CaptureAllotmentNotice(SpawnRing3DIntegrationFixture f,string name)
+        {
+            // Controlled native-camera pixels of the actual generated graph;
+            // this is an art inspection, not an ordinary player journey.
+            var camera=f.Get<Camera>("WorldCamera");var oldTarget=camera.targetTexture;var oldActive=RenderTexture.active;
+            RenderTexture target=null;Texture2D pixels=null;
+            try
+            {
+                target=new RenderTexture(960,640,24,RenderTextureFormat.ARGB32,RenderTextureReadWrite.sRGB){antiAliasing=1};
+                Assert.True(target.Create());camera.targetTexture=target;
+                var request=new UniversalRenderPipeline.SingleCameraRequest{destination=target};
+                Assert.True(RenderPipeline.SupportsRenderRequest(camera,request));RenderPipeline.SubmitRenderRequest(camera,request);
+                RenderTexture.active=target;pixels=new Texture2D(960,640,TextureFormat.RGBA32,false,false);
+                pixels.ReadPixels(new Rect(0,0,960,640),0,0);pixels.Apply();var colors=pixels.GetPixels32();
+                Assert.Greater(colors.Average(c=>(c.r+c.g+c.b)/765f),.01f,"A black frame is not visual evidence.");
+                string directory=Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/AllotmentNotice/ControlledRender"));
+                Directory.CreateDirectory(directory);File.WriteAllBytes(Path.Combine(directory,name+".png"),pixels.EncodeToPNG());
+                return colors;
+            }
+            finally
+            {
+                camera.targetTexture=oldTarget;RenderTexture.active=oldActive;
+                if(pixels!=null)Object.DestroyImmediate(pixels);
+                if(target!=null){target.Release();Object.DestroyImmediate(target);}
+            }
+        }
+        [Test]
+        public void AllotmentNoticeSubmitsRealGeometryAndObeysNativeFogAndRemoval()
+        {
+            using(var f=new SpawnRing3DIntegrationFixture())
+            {
+                var notice=AllotmentNotice(f);var cell=f.Zone.GetEntityCell(notice);var root=NoticeView(f,notice);
+                int vertices=PatchVertices(root),revision=f.Revision(cell.X,cell.Y);string text=notice.GetPart<ExaminablePart>().Text;
+                var centre=Village3DProjection.CellCentre(cell.X,cell.Y);
+                f.Source.transform.position=new Vector3(centre.x,centre.z,-10);f.Source.orthographicSize=3.2f;
+                f.Source.rect=new Rect(0,0,1,1);f.Source.aspect=1.5f;f.Refresh(new HashSet<int>());
+                var visiblePixels=CaptureAllotmentNotice(f,"notice-visible");
+                cell.IsVisible=false;cell.Explored=true;f.Refresh(new HashSet<int>());
+                Assert.True(f.Rendered(notice),"Ordinary static scenery can remain remembered.");
+                cell.Explored=false;f.Refresh(new HashSet<int>());Assert.False(f.Rendered(notice));
+                Assert.AreEqual(revision,f.Revision(cell.X,cell.Y),"Fog alone does not rebuild geometry.");
+                cell.Explored=cell.IsVisible=true;f.Refresh(new HashSet<int>());NoticeView(f,notice);
+                notice.GetPart<RenderPart>().Visible=false;f.Refresh(f.Dirty(notice));
+                Assert.False(f.Authored(notice));Assert.False(f.Rendered(notice));Assert.False(f.Find(notice,out _,out _));
+                Assert.Less(PatchVertices(root),vertices,"Removing this owner actually removes its mesh contribution.");
+                var hiddenPixels=CaptureAllotmentNotice(f,"notice-hidden-control");
+                Assert.Greater(visiblePixels.Where((color,index)=>!color.Equals(hiddenPixels[index])).Count(),16,
+                    "The actual notice must contribute visible pixels at its current generated cell.");
+                notice.GetPart<RenderPart>().Visible=true;f.Refresh(f.Dirty(notice));
+                Assert.AreEqual(vertices,PatchVertices(NoticeView(f,notice)));
+                Assert.True(f.Zone.RemoveEntity(notice));f.Refresh(SpawnRing3DIntegrationFixture.Dirty(cell.X,cell.Y));
+                Assert.False(f.Authored(notice));Assert.False(f.Find(notice,out _,out _));Assert.Less(PatchVertices(root),vertices);
+                Assert.AreEqual(text,notice.GetPart<ExaminablePart>().Text);
+            }
+        }
+        [TestCase(false)][TestCase(true)]
+        public void AllotmentNoticeReloadUsesReplacementOwnerAndSavedAppearance(bool hidden)
+        {
+            using(var f=new SpawnRing3DIntegrationFixture())
+            {
+                var before=AllotmentNotice(f);NoticeView(f,before);var oldZone=f.Zone;var position=f.Zone.GetEntityPosition(before);
+                before.GetPart<ExaminablePart>().Text+=" Saved inspection mark.";
+                string text=before.GetPart<ExaminablePart>().Text;before.GetPart<RenderPart>().Visible=!hidden;
+                var loaded=f.RoundTrip();f.BindLoaded(loaded);var current=AllotmentNotice(f);
+                Assert.AreNotSame(oldZone,f.Zone);Assert.AreNotSame(before,current);Assert.AreEqual(position,f.Zone.GetEntityPosition(current));
+                Assert.AreEqual(text,current.GetPart<ExaminablePart>().Text);Assert.AreEqual(!hidden,current.GetPart<RenderPart>().Visible);
+                Assert.False(f.Authored(before));Assert.False(f.Find(before,out _,out _));
+                Assert.AreEqual(!hidden,f.Authored(current));Assert.AreEqual(!hidden,f.Rendered(current));
+                if(!hidden)NoticeView(f,current);
+                else{Assert.False(f.Find(current,out _,out _));current.GetPart<RenderPart>().Visible=true;f.Refresh(f.Dirty(current));NoticeView(f,current);}
+            }
+        }
         [Test] public void ActualGraphBindsWithoutChangingNativeEntitiesPositionsTilesOrEquipment()
         {
             using(var f=new SpawnRing3DIntegrationFixture())
