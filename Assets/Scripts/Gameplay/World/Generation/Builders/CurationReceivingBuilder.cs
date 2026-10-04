@@ -37,14 +37,32 @@ namespace CavesOfOoo.Core
                 ("CurationToolCabinet",supply.X+5,supply.Y+2),("CurationSaltBench",supply.X+8,supply.Y+3),
                 ("CurationIntakeFiler",hall.X+3,hall.Y+4),("CurationJuniorIndexer",hall.X+hall.Width-7,hall.Y+4)
             };
-            for(int y=disused.Y+1;y<=disused.Y+4;y++)for(int x=disused.X+13;x<=disused.X+17;x++)
-                if(x==disused.X+13||x==disused.X+17||y==disused.Y+1||y==disused.Y+4)
-                    specs.Add((x==disused.X+13&&y==disused.Y+2?"CurationQuarantineGate":"CurationQuarantineRail",x,y));
-            specs.Add(("CurationHalfSet",disused.X+15,disused.Y+2));
+            specs.AddRange(new[]
+            {
+                ("CurationQuarantineGate",disused.X+9,disused.Y+2),
+                ("CurationTransferGate",disused.X+20,disused.Y+3),
+                ("CurationGalleryGate",disused.X+15,disused.Y+6),
+                ("CurationServiceGate",disused.X+23,disused.Y+6),
+                ("CurationHalfSet",disused.X+14,disused.Y+3),
+                ("CurationRecoveryCabinet",disused.X+12,disused.Y+1),
+                ("CurationInspectionSlab",disused.X+17,disused.Y+2),
+                ("CurationQuarantineRail",disused.X+18,disused.Y+4),
+                ("CurationMaintenanceRack",disused.X+3,disused.Y+5),
+                ("CurationAnnexPlacard",disused.X+7,disused.Y+1)
+            });
             if(connected)specs.Add(("BotanicalInkDesk",hall.X+hall.Width-8,hall.Y+4));
             var goods=new[]{"CurationCounterfoil","CurationSaltRake","CurationInspectionKey","CurationTransferDocket","CurationDiscrepancyReport"};
             if(connected)goods=goods.Concat(new[]{"ShatteredRimeGrimoire"}).ToArray();
-            if(specs.Select(s=>s.bp).Concat(goods).Any(bp=>!factory.Blueprints.ContainsKey(bp)) || specs.Select(s=>(s.x,s.y)).Distinct().Count()!=specs.Count
+            var annexStock=new[]
+            {
+                (container:"CurationMaintenanceRack",bp:"SalvagedTimber",count:2),
+                (container:"CurationRecoveryCabinet",bp:"SootrootPulp",count:2),
+                (container:"CurationRecoveryCabinet",bp:"PitchpodResin",count:1),
+                (container:"CurationRecoveryCabinet",bp:"FireClay",count:2),
+                (container:"CurationRecoveryCabinet",bp:"SoddenFieldDressing",count:1),
+                (container:"CurationRecoveryCabinet",bp:"LeatherGloves",count:1)
+            };
+            if(specs.Select(s=>s.bp).Concat(goods).Concat(annexStock.Select(s=>s.bp)).Any(bp=>!factory.Blueprints.ContainsKey(bp)) || specs.Select(s=>(s.x,s.y)).Distinct().Count()!=specs.Count
                 || specs.Any(s=>!Bare(zone,s.x,s.y)))return Reject(zone,"required-content-or-slot");
             var originalProof=SpreadGenerationReceipt.CaptureFinalState(zone,original);
             var added=new HashSet<Entity>(); var placed=new Dictionary<Entity,Func<bool>>(); var staged=new List<Entity>();
@@ -63,7 +81,7 @@ namespace CavesOfOoo.Core
                     if(!Source())return Reject(zone,"changed-original-source");
                     var e=factory.CreateEntity(spec.bp);
                     if(!Fresh(e,spec.bp) || !Valid(e,spec.bp) || !Source())return Reject(zone,"malformed-new-owner:"+spec.bp);
-                    if(spec.bp=="CurationQuarantineGate")e.GetPart<DoorPart>().QuarterTurns=1;
+                    if(spec.bp=="CurationQuarantineGate"||spec.bp=="CurationTransferGate")e.GetPart<DoorPart>().QuarterTurns=1;
                     staged.Add(e);
                 }
                 var stock=new List<Entity>();
@@ -78,6 +96,16 @@ namespace CavesOfOoo.Core
                 if(stock[0].GetPart<KeyPart>()?.KeyId!="marrowstye-intake-tools" || stock[2].GetPart<KeyPart>()?.KeyId!="marrowstye-quarantine")return Reject(zone,"wrong-keys");
                 if(!index.GetPart<InventoryPart>().AddObject(stock[0]))return Reject(zone,"index-stock");
                 foreach(var item in stock.Skip(1).Take(4))if(!cabinet.GetPart<ContainerPart>().AddItem(item))return Reject(zone,"cabinet-stock");
+                foreach(var provision in annexStock)
+                {
+                    if(!Source())return Reject(zone,"changed-annex-stock-source");
+                    var item=factory.CreateEntity(provision.bp);var stack=item?.GetPart<StackerPart>();
+                    if(!Fresh(item,provision.bp)||item.GetPart<PhysicsPart>().Takeable!=true||item.HasTag("Creature")
+                        ||(stack==null?provision.count!=1:stack.StackCount!=1||stack.MaxStack<provision.count)||!Source())return Reject(zone,"malformed-annex-stock:"+provision.bp);
+                    if(stack!=null)stack.StackCount=provision.count;
+                    var holder=staged.Single(e=>e.BlueprintName==provision.container);
+                    if(!holder.GetPart<ContainerPart>().AddItem(item)||item.GetPart<PhysicsPart>().InInventory!=holder)return Reject(zone,"annex-stock-refused");
+                }
                 if(connected)
                 {
                     var book=stock[5];
@@ -91,10 +119,10 @@ namespace CavesOfOoo.Core
                 if(!Source())return Reject(zone,"invalid-new-source");
                 if(!UniqueNewGraphs(original,staged))return Reject(zone,"invalid-new-graph");
                 var blocked=new HashSet<(int,int)>();
-                for(int i=0;i<staged.Count;i++)if(!staged[i].HasTag("Creature") && staged[i].GetPart<PhysicsPart>().Solid)blocked.Add((specs[i].x,specs[i].y));
+                for(int i=0;i<staged.Count;i++)if(!staged[i].HasTag("Creature") && (staged[i].GetPart<PhysicsPart>().Solid||staged[i].GetPart<DoorPart>()?.IsClosed==true))blocked.Add((specs[i].x,specs[i].y));
                 var after=Flood(zone,blocked);
                 for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
-                    if(before[x,y] && !after[x,y] && !blocked.Contains((x,y)) && !(x>disused.X+13&&x<disused.X+17&&y>disused.Y+1&&y<disused.Y+4))return Reject(zone,"public-route:"+x+","+y+" disused="+disused.X+","+disused.Y);
+                    if(before[x,y] && !after[x,y] && !blocked.Contains((x,y)) && !(x>disused.X+9&&x<disused.X+20&&y>disused.Y&&y<disused.Y+6))return Reject(zone,"public-route:"+x+","+y+" disused="+disused.X+","+disused.Y);
                 for(int i=0;i<staged.Count;i++)
                 {
                     if(!Source() || !Bare(zone,specs[i].x,specs[i].y))return Reject(zone,"changed-before-publication");
@@ -160,6 +188,15 @@ namespace CavesOfOoo.Core
         static bool Valid(Entity e,string bp)
         {
             var p=e.GetPart<PhysicsPart>();if(p.Takeable)return false;
+            if(bp=="CurationTransferGate"||bp=="CurationGalleryGate"||bp=="CurationServiceGate")
+            {
+                var annexDoor=e.GetPart<DoorPart>();
+                if(p.Solid||e.HasTag("Solid")||e.HasTag("Creature")||e.HasPart<BrainPart>()||e.HasPart<LockPart>()
+                    ||annexDoor==null||!string.IsNullOrEmpty(annexDoor.OwnerId)||e.HasPart<DestructiblePart>())return false;
+                if(bp!="CurationServiceGate")return !annexDoor.IsOpen&&!e.HasPart<RepairablePart>();
+                var fault=e.GetPart<RepairablePart>();
+                return annexDoor.IsOpen&&fault!=null&&!fault.Repaired&&fault.RecipeId=="timber-gate-frame"&&e.GetPart<CompositionPart>()?.Contains("Wood")==true;
+            }
             if(bp=="CurationReceivingBay")return !p.Solid && !e.HasTag("Solid") && !e.HasTag("Creature");
             if(bp=="CurationIntakeFiler"||bp=="CurationJuniorIndexer"||bp=="CurationHalfSet")
             {
@@ -176,7 +213,12 @@ namespace CavesOfOoo.Core
             if(bp=="CurationQuarantineGate")return e.GetPart<DoorPart>() is DoorPart door && !door.IsOpen && string.IsNullOrEmpty(door.OwnerId)
                 && e.GetPart<LockPart>() is LockPart gateLock && gateLock.IsLocked && gateLock.KeyId=="marrowstye-quarantine" && !e.HasPart<DestructiblePart>();
             if(bp=="CurationQuarantineRail")return !e.HasPart<DoorPart>() && !e.HasPart<DestructiblePart>() && !e.HasPart<HandlingPart>();
-            return bp=="CurationSaltBench" || (bp=="BotanicalInkDesk" && e.HasPart<BotanicalInkDeskPart>());
+            if(bp=="CurationMaintenanceRack"||bp=="CurationRecoveryCabinet")
+            {
+                var container=e.GetPart<ContainerPart>();int capacity=bp=="CurationMaintenanceRack"?1:5;
+                return container!=null&&!container.IsLocked&&container.Contents.Count==0&&(container.MaxItems<0||container.MaxItems>=capacity);
+            }
+            return bp=="CurationSaltBench"||bp=="CurationInspectionSlab"||bp=="CurationAnnexPlacard" || (bp=="BotanicalInkDesk" && e.HasPart<BotanicalInkDeskPart>());
         }
         static IEnumerable<Entity> Children(Entity e)=>(e.GetPart<InventoryPart>()?.Objects??Enumerable.Empty<Entity>())
             .Concat(e.GetPart<ContainerPart>()?.Contents??Enumerable.Empty<Entity>())

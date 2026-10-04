@@ -1659,42 +1659,84 @@
               "Text": "[Deliver] One intake, sealed, from the Drowned Ledger.",
               "Target": "Delivered",
               "Predicates": [
-                { "Key": "IfQuestActive", "Value": "BogBodyCourier" },
-                { "Key": "IfHaveItem", "Value": "SealedBogTakenBody" }
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "BogBodyCourier"
+                },
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "SealedBogTakenBody"
+                }
               ],
               "Actions": [
-                { "Key": "TakeItem", "Value": "SealedBogTakenBody" },
-                { "Key": "SetFact", "Value": "bog_body_reached_marrowstye:1" },
-                { "Key": "GiveDrams", "Value": "25" },
-                { "Key": "ChangeFactionFeeling", "Value": "PaleCuration:Player:10" },
-                { "Key": "CompleteQuest", "Value": "BogBodyCourier" }
+                {
+                  "Key": "TakeItem",
+                  "Value": "SealedBogTakenBody"
+                },
+                {
+                  "Key": "SetFact",
+                  "Value": "bog_body_reached_marrowstye:1"
+                },
+                {
+                  "Key": "GiveDrams",
+                  "Value": "25"
+                },
+                {
+                  "Key": "ChangeFactionFeeling",
+                  "Value": "PaleCuration:Player:10"
+                },
+                {
+                  "Key": "CompleteQuest",
+                  "Value": "BogBodyCourier"
+                }
               ]
             },
-            { "Text": "What is this receiving hall?", "Target": "ReceivingHall" },
-            { "Text": "Nothing on paper.", "Target": "NoPaper" },
-            { "Text": "Farewell.", "Target": "End" }
+            {
+              "Text": "What is this receiving hall?",
+              "Target": "ReceivingHall"
+            },
+            {
+              "Text": "Nothing on paper.",
+              "Target": "NoPaper"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "Delivered",
           "Text": "Seal whole. Stamp true. Received: one entry, in continuation. Your fee is counted -- take it without counting it back at me, please, the window has a queue even when you cannot see one. Status: continuing.",
           "Choices": [
-            { "Text": "Continuing.", "Target": "End" }
+            {
+              "Text": "Continuing.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "ReceivingHall",
-          "Text": "Marrowstye receives the Curation's regional intakes. Doreth tends the salt; Ivrin keeps the index. Their two subjects have exchanged positions. The low bay labels and wrist labels give the proper arrangement. You may help without a courier docket. The locked old wing holds a separate, incomplete cure. Keep that gate closed.",
+          "Text": "Marrowstye receives the Curation's regional intakes. Doreth tends the salt; Ivrin keeps the index. Two subjects arrived with their receiving slips transposed. Their wrist labels and the low bay labels identify the arrangement; the receiving index records its certification. You may help without a courier docket. The old wing is a separate matter: inspection gallery, holding chamber, incomplete cure. Read the maintenance placard before touching its gates.",
           "Choices": [
-            { "Text": "Back to the window.", "Target": "Start" },
-            { "Text": "I will look around.", "Target": "End" }
+            {
+              "Text": "Back to the window.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will look around.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "NoPaper",
-          "Text": "No delivery, then. The receiving hall is open. Doreth tends the subjects; Ivrin keeps their final remarks. There is a discrepancy in their positions, if you have the strength to help. The barred wing is a separate matter: incomplete cure, keep closed.",
+          "Text": "No delivery, then. The receiving hall is open. Doreth tends the subjects; Ivrin keeps their final remarks. The index records whether the transposed receiving positions have been corrected. The old wing's service passage can be approached without a courier paper. That is access, not clearance. Read its placard.",
           "Choices": [
-            { "Text": "Good day.", "Target": "End" }
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
           ]
         }
       ]
@@ -1796,7 +1838,7 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Condition: sound. Position: incorrect. Meret and Osren arrived together; their receiving slips did not. The salt has held. We must now attend to the part that has moved.",
+          "Text": "Condition: sound. The salt has held. Meret and Osren arrived together; their receiving slips did not. The receiving index keeps the correction. In the old wing we are still attending to something that has not held.",
           "Choices": [
             {
               "Text": "What has been put in the wrong place?",
@@ -1805,6 +1847,10 @@
             {
               "Text": "Why keep them like this?",
               "Target": "Preservation"
+            },
+            {
+              "Text": "Can I inspect the old wing without destroying the subject?",
+              "Target": "Annex"
             },
             {
               "Text": "What is in the barred wing?",
@@ -1868,7 +1914,7 @@
         },
         {
           "ID": "Quarantine",
-          "Text": "Condition: incomplete. Method: enclosure. The Bloom entered before the salt set. We have recorded movement; we have not recorded a return of the person. The inspection key is in the supply cabinet. You are not required to use it. Opening the gate brings the growth into the yard.",
+          "Text": "Condition: incomplete. Method: enclosure. The Bloom entered before the salt set. We have recorded movement; we have not recorded a return of the person. The inspection key is in the supply cabinet. The gallery service gate has no lock. The holding chamber's escape gate was left broken; inspect its condition before releasing anything. Keep the gallery's doors to the outside closed while using the service passage. You are not required to go in.",
           "Choices": [
             {
               "Text": "Another question.",
@@ -1893,6 +1939,64 @@
               "Target": "End"
             }
           ]
+        },
+        {
+          "ID": "Annex",
+          "Text": "The old wing has an inspection gallery, a separate holding chamber, and a masonry service passage around the occupied floor. The gallery holds our interrupted work. The chamber can hold the growth, if you get it there and close both its gates. It follows movement. It does not follow instructions. The passage gives you another approach; it does not make either room safe.",
+          "Choices": [
+            {
+              "Text": "What should I prepare first?",
+              "Target": "AnnexPreparation"
+            },
+            {
+              "Text": "What if I destroy it instead?",
+              "Target": "AnnexLoss"
+            },
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will look at the placard.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AnnexPreparation",
+          "Text": "The vestibule maintenance rack was stocked with two sound timber lengths. Those, or other sound lengths you carry, can brace the holding escape gate. Inspect the service passage before opening quarantine. Repair the broken holding escape gate with both lengths, then make sure you can operate it. Keep the gallery doors to the outside shut while circling through the passage. Draw the growth fully across the transfer threshold, then close that gate before leaving the chamber by the repaired service gate. Close the service gate behind yourself. You will have to judge its movement. Do not wait in a threshold you mean to shut.",
+          "Choices": [
+            {
+              "Text": "What if I destroy it instead?",
+              "Target": "AnnexLoss"
+            },
+            {
+              "Text": "Back to the wing.",
+              "Target": "Annex"
+            },
+            {
+              "Text": "I will leave the gates alone.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AnnexLoss",
+          "Text": "Then the growth and the vessel are both lost. I will not tell you that an empty room is the same as a successful treatment. I will not tell you to let it into the yard, either. Enclosure leaves us a dangerous subject to tend. Destruction leaves us none. The difference is yours to consider; the people outside those doors are not a test material.",
+          "Choices": [
+            {
+              "Text": "Back to the wing.",
+              "Target": "Annex"
+            },
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
         }
       ]
     },
@@ -1901,7 +2005,7 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Two names, two positions, two exact final remarks. All the totals reconcile. The arrangement does not. I have left room in the margin for the correction.",
+          "Text": "Two names, two positions, two exact final remarks. Matching totals did not prevent the subjects arriving under each other's labels. That is why we check the arrangement. The receiving index keeps the certification; I have kept the space beside it clear.",
           "Choices": [
             {
               "Text": "Tell me about Meret and Osren.",
@@ -1910,6 +2014,10 @@
             {
               "Text": "Could you change the bay labels?",
               "Target": "Labels"
+            },
+            {
+              "Text": "What work was interrupted in the old wing?",
+              "Target": "Annex"
             },
             {
               "Text": "What does \"continuing\" mean?",
@@ -1977,6 +2085,82 @@
             },
             {
               "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Annex",
+          "Text": "The inspection gallery was a place for work. The holding chamber was a place for unresolved intakes. The service passage was to keep those two uses apart. The broken escape gate made the separation unreliable; the gallery's outer doors now do the work of the whole wing. Please keep them closed while you look around. The placard records the repairs and the two gates a holding chamber requires.",
+          "Choices": [
+            {
+              "Text": "Who was the incomplete subject?",
+              "Target": "AnnexSubject"
+            },
+            {
+              "Text": "What can be recovered from the gallery?",
+              "Target": "AnnexSupplies"
+            },
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will read the placard.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AnnexSubject",
+          "Text": "Reth Ansel. Cartwright. Last words witnessed: \"Leave that piece; it will mend.\" Received after life had ended. The intake description mentions a cuff repaired first in red thread, then in blue. Damp interrupted the cure; Bloom entered the vessel. Later movement is filed separately from the last words. Otherwise the entry would never end, and we would be crediting Reth with things the growth has done.",
+          "Choices": [
+            {
+              "Text": "Does enclosure complete the treatment?",
+              "Target": "AnnexContinuing"
+            },
+            {
+              "Text": "Back to the wing.",
+              "Target": "Annex"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AnnexContinuing",
+          "Text": "No. A closed door is not a cure. If the growth remains inside the holding chamber, the gallery can be entered without sharing its floor. The subject is still incomplete. If the vessel is destroyed, that must be entered instead. Neither condition gives us permission to write that Reth has returned.",
+          "Choices": [
+            {
+              "Text": "Back to the wing.",
+              "Target": "Annex"
+            },
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AnnexSupplies",
+          "Text": "The last inventory lists two sootroot pulps and pitchpod resin, fire clay, a sumpsieve dressing and protective gloves in the recovery cabinet. Check what remains; an inventory is not a replenishment. The pulp and resin can be prepared at my public ink desk. Clay repairs suitable masonry. The dressing treats ordinary poison and bleeding; it does not treat the Bloom. Those are work supplies to recover, not something I can issue from a promise. A dangerous floor remains dangerous when it has useful things on it.",
+          "Choices": [
+            {
+              "Text": "Who was the incomplete subject?",
+              "Target": "AnnexSubject"
+            },
+            {
+              "Text": "Back to the wing.",
+              "Target": "Annex"
+            },
+            {
+              "Text": "Good day.",
               "Target": "End"
             }
           ]

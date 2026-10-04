@@ -39102,6 +39102,421 @@
       ]
     },
     {
+      "Name": "CurationTransferGate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "holding-room transfer gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A pale gate separates the inspection gallery from the empty holding room. Its latch works from either side. Close this gate and the holding room's service gate to enclose an occupant; first get yourself and every loose object clear of the thresholds."
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationGalleryGate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "gallery service gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Salt-white bars interrupt the masonry screen along the south passage. This unlocked maintenance entrance bypasses the keyed inspection door. Opening it gives the half-set a path into the service passage. Close it behind you; an occupied threshold cannot be closed."
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationServiceGate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sagging holding-room service gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The wooden gate has dropped off its lower brace. An open gap connects the holding room to the southern service passage. Two sound lengths from the vestibule maintenance rack can brace the frame. Repair permits ordinary opening and closing; it does not close the gate for you or contain anything by itself."
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood,Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "timber-gate-frame"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationRecoveryCabinet",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "inspection recovery cabinet"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Dry supplies survive behind a buckled salt hood: ink-making botanicals, fire clay, work gloves and an imported sumpsieve dressing. The emergency label says: FOR THE PERSON CONDUCTING THE INSPECTION. The stock is finite; the empty cabinet will remain empty."
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationMaintenanceRack",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "annex bracing rack"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two sound lengths were measured for the holding-room service gate. The sign reads: REPAIR AUTHORISED. ENTRY PENDING REPAIR. This rack is on the safe side of the masonry. Take its timber and examine the sagging gate from the southern passage."
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationInspectionSlab",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "interrupted inspection slab"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A stone slab has shallow drainage grooves and a single buckle polished brighter than the others. Older holes show where a second set of restraints was removed. A note in Doreth's hand reads: NO SUBJECT RECEIVED BEFORE DEATH. Beneath it, in a different hand: THIS ALSO APPLIES TO REPLACEMENT SUBJECTS. The remaining straps secure vessels during inspection; they cannot restrain a moving creature for you."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationAnnexPlacard",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "continuing inspection notice"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A salt-spotted board carries a maintenance sketch, a supply list and an incomplete intake record. Read it for the service approach, the two holding-room gates and the reason the gallery remains closed."
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "curation-annex-maintenance"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "CurationSaltBench",
       "Inherits": "PhysicalObject",
       "Parts": [

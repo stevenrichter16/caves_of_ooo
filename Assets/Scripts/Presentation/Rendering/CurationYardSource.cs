@@ -9,7 +9,7 @@ namespace CavesOfOoo.Rendering
   public int schemaVersion;public string id;public string[] palette;public Model[] models;
   [Serializable]public sealed class Model{public string id;public Box[] boxes;}
   [Serializable]public sealed class Box{public string name;public Vector3 center,size;public int color;}
-  public static readonly string[] ModelIds={"curation-yard-salt-cured-body-1","curation-yard-salt-cured-body-2","curation-yard-receiving-bay-1","curation-yard-receiving-bay-2","curation-yard-intake-index","curation-yard-tool-cabinet","curation-yard-salt-bench","curation-yard-quarantine-rail","curation-yard-quarantine-gate-closed","curation-yard-quarantine-gate-open","curation-yard-salt-rake","curation-yard-counterfoil","curation-yard-inspection-key","curation-yard-transfer-docket","curation-yard-discrepancy-report"};
+  public static readonly string[] ModelIds={"curation-yard-salt-cured-body-1","curation-yard-salt-cured-body-2","curation-yard-receiving-bay-1","curation-yard-receiving-bay-2","curation-yard-intake-index","curation-yard-tool-cabinet","curation-yard-salt-bench","curation-yard-quarantine-rail","curation-yard-quarantine-gate-closed","curation-yard-quarantine-gate-open","curation-yard-salt-rake","curation-yard-counterfoil","curation-yard-inspection-key","curation-yard-transfer-docket","curation-yard-discrepancy-report","curation-yard-service-gate-broken","curation-yard-recovery-cabinet","curation-yard-maintenance-rack","curation-yard-inspection-slab","curation-yard-annex-placard"};
   static readonly HashSet<string> Known=new HashSet<string>(ModelIds,StringComparer.Ordinal);
   public static bool IsModelId(string id)=>id!=null&&Known.Contains(id);
   public void Validate()

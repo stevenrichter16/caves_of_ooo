@@ -10,12 +10,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace CavesOfOoo.Editor
 {
-    /// <summary>Exact15-form original Curation adoption. Completes source and all output
+    /// <summary>Original Curation receiving and annex kit adoption. Completes source and all output
     /// preflights before writes, borrows the glade material and edits no scene.</summary>
     public static class CurationYard3DBuilder
     {
         private const string Source = "ArtSource/CurationYard3D/kit.json";
-        public static void Run()=>Build("Docs/Verification/CurationReceivingYard/Art/static-import.json");
+        [MenuItem("Caves Of Ooo/Art/Build Curation Annex Models")]
+        public static void Run()=>Build("Docs/Verification/CurationAnnex/Art/native-import.json");
         public static void Build(string reportPath)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)

@@ -172,7 +172,8 @@ namespace CavesOfOoo.Tests
         public void Adversarial_MissingOrMalformedCatalogReportsIssuesWithoutStaleEntries(string json)
         {
             var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
-            var local = new[] { "CurationTransferDocket", "CurationDiscrepancyReport" };
+            var local = new[] { "CurationTransferDocket", "CurationDiscrepancyReport", "CurationAnnexPlacard" };
+            var localIds = ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint)).Select(entry => entry.Id).ToArray();
             CollectionAssert.AreEquivalent(canonical.Concat(local), ReadableDocumentCatalog.All.Select(entry => entry.Blueprint));
             foreach (var entry in ReadableDocumentCatalog.All.Where(entry => canonical.Contains(entry.Blueprint)))
                 StringAssert.StartsWith("Lore/Codex/", entry.Source);
@@ -181,7 +182,7 @@ namespace CavesOfOoo.Tests
             Load(json);
             Assert.IsEmpty(ReadableDocumentCatalog.All); Assert.IsNotEmpty(ReadableDocumentCatalog.Validate());
             Assert.IsNull(ReadableDocumentCatalog.Get("codex-01"));
-            foreach (string id in local) Assert.IsNull(ReadableDocumentCatalog.Get(id), "Malformed replacement must also clear authored local records.");
+            foreach (string id in localIds) Assert.IsNull(ReadableDocumentCatalog.Get(id), "Malformed replacement must also clear authored local records.");
         }
         [TestCase("Id")] [TestCase("Blueprint")] [TestCase("Title")] [TestCase("Text")] [TestCase("Source")]
         public void Adversarial_MissingFieldSkipsOnlyThatRow(string field)

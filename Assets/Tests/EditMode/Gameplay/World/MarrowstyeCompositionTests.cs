@@ -82,7 +82,7 @@ namespace CavesOfOoo.Tests
                 if(!reach[x,y]){unreachable++;Assert.IsTrue(enclosed.Contains((x,y)),"Public walkable cell disconnected: "+x+","+y);}
                 if(enclosed.Contains((x,y)))Assert.IsFalse(reach[x,y],"The closed quarantine must stay physically enclosed.");
             }
-            Assert.AreEqual(6,unreachable,"Only six walkable cage cells are isolated; original rubble is passable terrain.");
+            Assert.AreEqual(enclosed.Count,unreachable,"Only the actual walkable inspection gallery is isolated; the service passage and empty holding room remain publicly reachable.");
             foreach(var c in services)Assert.IsTrue(new[]{(-1,0),(1,0),(0,-1),(0,1)}.Any(d=>z.InBounds(c.x+d.Item1,c.y+d.Item2)&&reach[c.x+d.Item1,c.y+d.Item2]),"Service frontage "+c);
         }
         [TestCase(64)] [TestCase(1729)] [TestCase(729490642)]
@@ -131,7 +131,7 @@ namespace CavesOfOoo.Tests
         {
             var z=new OverworldZoneManager(GrovelandsCompositionTests.Factory(),seed).GetZone(Id);var p=MarrowstyeCompositionPlan.Create(Id,seed);var r=p.Rooms.Single(a=>a.Role=="DisusedWing");
             var enclosed=ClosedQuarantineInterior(z,p);var threat=z.GetAllEntities().Single(e=>e.BlueprintName=="CurationHalfSet");
-            Assert.AreEqual((r.X+15,r.Y+2),z.GetEntityPosition(threat));Assert.IsTrue(enclosed.Contains(z.GetEntityPosition(threat)));
+            Assert.AreEqual((r.X+14,r.Y+3),z.GetEntityPosition(threat));Assert.IsTrue(enclosed.Contains(z.GetEntityPosition(threat)));
             Assert.IsNotNull(threat.GetPart<BrainPart>());Assert.IsFalse(threat.HasTag("CanOpenDoors"));
             int actors=0;
             for(int y=r.Y+1;y<r.Y+r.Height-1;y++)for(int x=r.X+1;x<r.X+r.Width-1;x++)
@@ -145,18 +145,17 @@ namespace CavesOfOoo.Tests
         static System.Collections.Generic.HashSet<(int x,int y)> ClosedQuarantineInterior(Zone z,MarrowstyeCompositionPlan plan)
         {
             var room=plan.Rooms.Single(r=>r.Role=="DisusedWing");var gate=z.GetAllEntities().Single(e=>e.BlueprintName=="CurationQuarantineGate");
-            var at=z.GetEntityPosition(gate);Assert.AreEqual((room.X+13,room.Y+2),at);Assert.AreEqual(1,gate.GetPart<DoorPart>().QuarterTurns);
+            var at=z.GetEntityPosition(gate);Assert.AreEqual((room.X+9,room.Y+2),at);Assert.AreEqual(1,gate.GetPart<DoorPart>().QuarterTurns);
             Assert.IsTrue(gate.GetPart<DoorPart>().IsClosed);Assert.IsTrue(gate.GetPart<LockPart>().IsLocked);
-            var interior=new System.Collections.Generic.HashSet<(int x,int y)>();int rails=0;
-            for(int y=at.y-1;y<=at.y+2;y++)for(int x=at.x;x<=at.x+4;x++)
+            var interior=new System.Collections.Generic.HashSet<(int x,int y)>();
+            for(int y=room.Y;y<=room.Y+6;y++)for(int x=room.X+9;x<=room.X+20;x++)
             {
-                if(x>at.x&&x<at.x+4&&y>at.y-1&&y<at.y+2){interior.Add((x,y));continue;}
-                var owners=z.GetCell(x,y).Objects.Where(e=>e.BlueprintName=="CurationQuarantineGate"||e.BlueprintName=="CurationQuarantineRail").ToArray();
-                Assert.AreEqual(1,owners.Length,"An excluded interior requires its actual closed boundary: "+x+","+y);
-                Assert.IsTrue(owners[0].GetPart<PhysicsPart>().Solid);Assert.IsTrue(z.GetCell(x,y).BlocksMovement());
-                if(owners[0]!=gate){rails++;Assert.AreEqual("CurationQuarantineRail",owners[0].BlueprintName);}
+                if(x>room.X+9&&x<room.X+20&&y>room.Y&&y<room.Y+6)
+                {if(FormationReachability.IsOpenGround(z,x,y)||z.GetCell(x,y).Objects.Any(e=>e.BlueprintName=="CurationHalfSet"))interior.Add((x,y));continue;}
+                Assert.IsTrue(z.GetCell(x,y).BlocksMovement(),"An excluded gallery needs its actual closed boundary: "+x+","+y);
+                Assert.IsTrue(z.GetCell(x,y).IsSolid(),"Masonry and closed doors must also screen the gallery: "+x+","+y);
             }
-            Assert.AreEqual(13,rails);Assert.AreEqual(6,interior.Count);return interior;
+            Assert.Greater(interior.Count,30);return interior;
         }
     }
 }

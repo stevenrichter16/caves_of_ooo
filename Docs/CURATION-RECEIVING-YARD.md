@@ -1,5 +1,7 @@
 # Marrowstye: the misplaced last words
 
+The disused wing is expanded by [The continuing inspection](CURATION-ANNEX.md). That document supersedes the original six-cell quarantine layout below; the receiving/courier work remains intact. New generation includes a gallery, holding room, screened service passage, repairable escape gate and finite recovery stock.
+
 Status: implemented and reviewed on the published Spread residents base `decd297dd`. Final affected native tests passed200/200; final Play visit passed all gameplay checks and20/21 total checks, with one unresolved attack-pose capture limitation recorded below. The user requested a lore-grounded Curation area near spawn, with preserved bodies, distinctive models, tools, people and danger. This expands an existing canonical place, with original local cases and dialogue.
 
 **Visit:** from the starting glade, travel one chunk east and two south to **Marrowstye, 12.12**. Speak to Doreth or Ivrin in the receiving hall, examine the subjects and quoted bays, haul each subject to its matching bay, release it, then interact with the receiving index. The counterfoil opens the supply-wing cabinet. Its separate inspection key allows an optional visit inside quarantine. Requires a new game or an unvisited Marrowstye chunk; already-cached saved chunks remain unchanged.

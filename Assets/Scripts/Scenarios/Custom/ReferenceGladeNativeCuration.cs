@@ -14,7 +14,7 @@ namespace CavesOfOoo.Scenarios.Custom
 {
     public sealed partial class ReferenceGladeNativePlayer
     {
-        private bool _curationOnly, _curationQuarantine;
+        private bool _curationOnly, _curationQuarantine, _curationAnnex;
         private static readonly string[] CurationPublicChecks = {
             "curation_generated_receiving", "curation_public_conversation", "curation_swapped_refusal",
             "curation_first_haul", "curation_second_haul", "curation_certification", "curation_repeat_refusal",
@@ -26,9 +26,10 @@ namespace CavesOfOoo.Scenarios.Custom
         private bool CurationPublicComplete => CurationPublicChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1)
             && _biomeShortcuts == 1 && _screenshots.Count >= 7;
         private bool CurationComplete => CurationPublicComplete && (!_curationQuarantine
-            || CurationCombatChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1));
+            || CurationCombatChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1))
+            && (!_curationAnnex || CurationAnnexChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1));
         private const string CurationCanVerify = "Isolated seed64 ordinary player in real generated Marrowstye. Native local dialogue/reading, two exact bodies hauled to their bound bays, physical one-time certification, key/cabinet/finite supplies, earned rake equipment and F5/F6 graph replacement. Closed quarantine is observed during actual NPC turns. Optional mode separately opens the real gate and records exact player/target combat and animation.";
-        private const string CurationCannotVerify = "One disclosed player travel shortcut; all local movement and actions use native keys with NPC scheduling active. No cargo placement, item grants, strength/HP/time/RNG changes or direct success calls. Public completion is reported separately from optional combat. After opening quarantine, at most eight ordinary wait inputs observe an actual hostile attempt before the player attacks. Optional fight may use at most two original starter tonics and one ready original Rime Grip after that observed hostile attempt. Scripted route does not prove natural discovery, universal balance or subjective readability; screenshots need inspection. Existing cached Marrowstye is not rebuilt.";
+        private const string CurationCannotVerify = "One disclosed player travel shortcut; all local movement and actions use native keys with NPC scheduling active. No cargo placement, item grants, strength/HP/time/RNG changes or direct success calls. Public completion is reported separately from optional combat. After opening quarantine, at most twelve ordinary approach steps and eight wait inputs observe an actual hostile attempt before the player attacks. Optional fight may use at most two original starter tonics and one ready original Rime Grip after that observed hostile attempt. Scripted route does not prove natural discovery, universal balance or subjective readability; screenshots need inspection. Existing cached Marrowstye is not rebuilt.";
         private Entity CurationOwner(string blueprint)
         {
             var rows = _input.CurrentZone.GetReadOnlyEntities().Where(e => e.BlueprintName == blueprint).ToArray();
@@ -42,8 +43,14 @@ namespace CavesOfOoo.Scenarios.Custom
         private static Entity CurationBound(Part authority, string name) => (Entity)Field(authority, name);
         private IEnumerator CurationApproach(Entity owner)
         {
-            var approach = SpecialistApproach(_input.CurrentZone, owner); Require(approach != null, "actual open Curation frontage " + owner.BlueprintName);
-            yield return WalkTo(approach.X, approach.Y);
+            var zone = _input.CurrentZone; var at = zone.GetEntityCell(owner);
+            Require(at != null, "actual current Curation owner");
+            var approach = new[] { (1,0), (-1,0), (0,1), (0,-1) }
+                .Select(d => zone.GetCell(at.X + d.Item1, at.Y + d.Item2))
+                .FirstOrDefault(c => BiomeSafe(zone, c, 0) && (Cell() == c
+                    || FindPath.Search(zone, Cell().X, Cell().Y, c.X, c.Y).Usable));
+            Require(approach != null, "open Curation frontage without opening a door " + owner.BlueprintName);
+            yield return AnnexWalkTo(approach.X, approach.Y);
         }
         private IEnumerator CurationExamine(Entity owner, string filename)
         {
@@ -136,6 +143,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && PlayerReputation.Get("PaleCuration") == startingRep && !DevMode.Enabled && !actor.HasPart<BitLockerPart>());
             WriteReport();
             if (_curationQuarantine) { Require(CurationPublicComplete, "public route independently complete before voluntary release"); yield return RunCurationQuarantine(); }
+            if (_curationAnnex) { Require(CurationPublicComplete, "public filing independently complete before annex exploration"); yield return RunCurationAnnex(); }
         }
         private IEnumerator CurationHaul(Entity body, Entity bay, string check)
         {
@@ -189,10 +197,13 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             var gate = CurationOwner("CurationQuarantineGate"); var enemy = CurationOwner("CurationHalfSet");
             yield return CurationExamine(gate, "curation-12-quarantine-warning");
-            var cage = _input.CurrentZone.GetReadOnlyEntities().Where(e => e.BlueprintName == "CurationQuarantineRail" || e == gate)
-                .Select(e => _input.CurrentZone.GetEntityCell(e)).ToArray();
-            Require(cage.Length >= 4 && cage.All(c => c != null), "actual closed physical cage owners");
-            int left = cage.Min(c => c.X), right = cage.Max(c => c.X), top = cage.Min(c => c.Y), bottom = cage.Max(c => c.Y);
+            var transfer = CurationOwner("CurationTransferGate"); var service = CurationOwner("CurationGalleryGate");
+            var gateCell = _input.CurrentZone.GetEntityCell(gate); var transferCell = _input.CurrentZone.GetEntityCell(transfer);
+            var serviceCell = _input.CurrentZone.GetEntityCell(service);
+            Require(gateCell != null && transferCell != null && serviceCell != null, "real authored gallery apertures");
+            int left = gateCell.X, right = transferCell.X, top = gateCell.Y - 2, bottom = serviceCell.Y;
+            Require(right - left == 11 && bottom - top == 6, "expanded gallery bounds derived from actual authored apertures");
+            var boundaryDoors = new[] { gate, transfer, service };
             var staff = _input.CurrentZone.GetReadOnlyEntities().Where(e => e.BlueprintName == "FilerClerk"
                 || e.BlueprintName == "CurationIntakeFiler" || e.BlueprintName == "CurationJuniorIndexer").ToArray();
             Require(staff.Length == 3 && _input.TurnManager.IsRegistered(enemy) && enemy.GetPart<BrainPart>().CurrentZone == _input.CurrentZone,
@@ -211,7 +222,7 @@ namespace CavesOfOoo.Scenarios.Custom
                     yield return Tap(Key.Period); yield return CombatWaitForFx();
                     var cell = _input.CurrentZone.GetEntityCell(enemy);
                     contained &= cell != null && cell.X > left && cell.X < right && cell.Y > top && cell.Y < bottom
-                        && gate.GetPart<LockPart>().IsLocked && gate.GetPart<DoorPart>().IsClosed
+                        && gate.GetPart<LockPart>().IsLocked && boundaryDoors.All(e => e.GetPart<DoorPart>().IsClosed)
                         && staff.All(e => _input.CurrentZone.GetEntityCell(e) != null && e.GetStatValue("Hitpoints") == health[e.ID]);
                 }
                 var records = Diag.Snapshot(Diag.BufferCapacity); bool markerRetained = records.Any(r => r.TraceId == marker.TraceId);
@@ -239,6 +250,14 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("curation_voluntary_open", !gate.GetPart<LockPart>().IsLocked && gate.GetPart<DoorPart>().IsOpen
                 && !gate.GetPart<DoorPart>().IsClosed && (!unobstructed || !gateCell.BlocksMovement(actor)));
             yield return Capture("curation-14-voluntarily-opened-quarantine");
+            // The expanded gallery lets its occupant roam beyond the entrance's
+            // sight line. Walk toward it instead of expecting distant attraction.
+            int approachSteps = 0;
+            while (!_combatResponse && SpatialQuery.Distance(_stagedZone, actor, _combatTarget) > 2 && approachSteps++ < 12)
+            {
+                var path = CombatRoute(); Require(path != null && path.Count > 0, "actual approach into the occupied gallery");
+                var from = Cell(); yield return CombatKey(Direction(path[0].X - from.X, path[0].Y - from.Y), false); _combatMoves++;
+            }
             int waits = 0;
             for (; waits < 8 && !_combatResponse; waits++)
             {

@@ -12,7 +12,7 @@ namespace CavesOfOoo.Core
         {
             public readonly string Role;public readonly int X,Y,Width,Height,DoorX,DoorY;
             internal Room(string role,int x,int y,int w,int h,bool south)
-            {Role=role;X=x;Y=y;Width=w;Height=h;DoorX=x+w/2;DoorY=south?y+h-1:y;}
+            {Role=role;X=x;Y=y;Width=w;Height=h;DoorX=x+(role=="DisusedWing"?5:w/2);DoorY=south?y+h-1:y;}
         }
         public readonly struct ProfilePlacement
         {
@@ -31,7 +31,7 @@ namespace CavesOfOoo.Core
             AddRoom("IntakeHall",10+rng.Next(3),1,32+rng.Next(3),10,true);
             AddRoom("SupplyWing",53+rng.Next(3),2,15,7,true);
             AddRoom("DomesticWing",54+rng.Next(3),17,13,7,false);
-            AddRoom("DisusedWing",9+rng.Next(3),17,19,6,false);
+            AddRoom("DisusedWing",9+rng.Next(3),15,27,9,false);
             var hall=rooms[0];
             profile.Add(new ProfilePlacement("StoneCoffer",hall.X+7,hall.Y+2));
             profile.Add(new ProfilePlacement("StoneCoffer",hall.X+17,hall.Y+2));
@@ -74,7 +74,21 @@ namespace CavesOfOoo.Core
             }
             if(role=="IntakeHall")return;
             objects[x+2,y+2]=role=="DomesticWing"?"Bed":role=="DisusedWing"?"Bones":"Crate";reserved[x+2,y+2]=true;
-            objects[x+w-3,y+h-3]=role=="DisusedWing"?"Rubble":"Chair";reserved[x+w-3,y+h-3]=true;
+            if(role=="DisusedWing")
+            {
+                objects[x+24,y+4]="Rubble";
+                // A public vestibule, occupied inspection gallery, and separate
+                // holding room. Real masonry screens the south service passage;
+                // the late receiving builder owns all four door apertures.
+                for(int yy=1;yy<=6;yy++)
+                {
+                    if(yy!=2)objects[x+9,y+yy]="SandstoneWall";
+                    if(yy!=3)objects[x+20,y+yy]="SandstoneWall";
+                }
+                for(int xx=9;xx<=25;xx++)
+                    if(xx!=15&&xx!=23)objects[x+xx,y+6]="SandstoneWall";
+            }
+            else {objects[x+w-3,y+h-3]="Chair";reserved[x+w-3,y+h-3]=true;}
         }
         private void AddBorderColonies(Random rng)
         {

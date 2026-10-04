@@ -56,14 +56,14 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(properties, actor.Properties.Count);
         }
 
-        [Test] public void Catalog_HasThirteenCanonicalCopiesAndTwoDistinctLocalRecords()
+        [Test] public void Catalog_HasThirteenCanonicalCopiesAndThreeDistinctLocalRecords()
         {
-            Assert.AreEqual(15, ReadableDocumentCatalog.All.Count);
+            Assert.AreEqual(16, ReadableDocumentCatalog.All.Count);
             CollectionAssert.IsEmpty(ReadableDocumentCatalog.Validate());
-            Assert.AreEqual(15, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
-            Assert.AreEqual(15, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
+            Assert.AreEqual(16, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
+            Assert.AreEqual(16, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
             var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
-            CollectionAssert.AreEquivalent(canonical.Concat(new[] { "CurationTransferDocket", "CurationDiscrepancyReport" }),
+            CollectionAssert.AreEquivalent(canonical.Concat(new[] { "CurationTransferDocket", "CurationDiscrepancyReport", "CurationAnnexPlacard" }),
                 ReadableDocumentCatalog.All.Select(x => x.Blueprint));
             foreach (var entry in ReadableDocumentCatalog.All)
             {

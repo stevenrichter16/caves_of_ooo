@@ -211,7 +211,7 @@ namespace CavesOfOoo.Tests
                     for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
                     { var n = (x:p.x + dx,y:p.y + dy); if (f.Zone.InBounds(n.x,n.y) && !f.Zone.GetCell(n.x,n.y).BlocksMovement() && reached.Add(n)) pending.Enqueue(n); }
                 }
-                Assert.That(reached.Count, Is.InRange(2, 6)); Assert.True(reached.All(p => p.x > room.X + 13 && p.x < room.X + 17 && p.y > room.Y + 1 && p.y < room.Y + 4));
+                Assert.That(reached.Count, Is.InRange(30, 50)); Assert.True(reached.All(p => p.x > room.X + 9 && p.x < room.X + 20 && p.y > room.Y && p.y < room.Y + 6));
                 Assert.False(f.Zone.GetCell(room.DoorX, room.DoorY).BlocksMovement());
             }
         }

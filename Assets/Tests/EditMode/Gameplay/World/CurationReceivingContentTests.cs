@@ -226,6 +226,45 @@ namespace CavesOfOoo.Tests
             Assert.False(player.HasPart<BitLockerPart>());
         }
 
+        [TestCase("CurationIntakeFiler")]
+        [TestCase("CurationJuniorIndexer")]
+        public void OrdinaryVisitorCanAskWorkersAboutActualAnnexRoutesWithoutAcceptingWork(string blueprint)
+        {
+            var worker = Place(blueprint);
+            int purse = TradeSystem.GetDrams(player), reputation = PlayerReputation.Get("PaleCuration");
+            Act(worker, "Chat"); Assert.True(ConversationManager.IsActive);
+            int choice = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Target == "Annex");
+            Assert.GreaterOrEqual(choice, 0, "The expanded wing must be discoverable through an ordinary public conversation.");
+            var offer = ConversationManager.VisibleChoices[choice];
+            Assert.IsTrue(offer.Actions == null || offer.Actions.Count == 0, "Information must not complete or accept a job.");
+            ConversationManager.SelectChoice(choice);
+            StringAssert.Contains("gallery", ConversationManager.CurrentText);
+            StringAssert.Contains("holding", ConversationManager.CurrentText);
+            StringAssert.Contains("service", ConversationManager.CurrentText);
+            Assert.AreEqual(purse, TradeSystem.GetDrams(player));
+            Assert.AreEqual(reputation, PlayerReputation.Get("PaleCuration"));
+            Assert.False(StoryletPart.Current.IsQuestActive("BogBodyCourier"));
+        }
+
+        [Test]
+        public void AnnexMaintenancePlacardReadsThroughActualWorldActionWithoutBeingPortable()
+        {
+            var placard = Place("CurationAnnexPlacard");
+            Assert.False(placard.GetPart<PhysicsPart>().Takeable);
+            var part = placard.GetPart<ReadableDocumentPart>(); Assert.NotNull(part);
+            Assert.AreEqual("curation-annex-maintenance", part.DocumentId);
+            var entry = ReadableDocumentCatalog.Get(part.DocumentId); Assert.NotNull(entry);
+            Assert.AreEqual(placard.BlueprintName, entry.Blueprint);
+            StringAssert.Contains("original Marrowstye", entry.Source);
+            Act(placard, "ReadDocument");
+            Assert.AreEqual(entry.Title + "\n\n" + entry.Text, MessageLog.ConsumeAnnouncement());
+            StringAssert.Contains("service gate", entry.Text);
+            StringAssert.Contains("holding chamber", entry.Text);
+            Assert.True(zone.MoveEntity(placard, 20, 20));
+            Assert.False(part.TryRead(player, zone));
+            Assert.False(MessageLog.HasPendingAnnouncement);
+        }
+
         [Test]
         public void HalfSetIsOriginalBloomHostileWithPlainTendrilAndNoDiseasePayload()
         {

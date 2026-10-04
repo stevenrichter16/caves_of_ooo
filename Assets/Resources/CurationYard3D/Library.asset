@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924ef9b9e2c24a12bbe40b4077f4b479, type: 3}
   m_Name: Library
   m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.CurationYard3DLibrary
-  SourceSha256: 702fe2bc69e3e90c9c8a6e9ad75ed843df3eb28963f403425a17d61516ac6dd9
+  SourceSha256: d70059d55a1a491e42bf7e2eb51f65e5bbc495c22659fe611f5f75479f2126ea
   Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
   Entries:
   - Id: curation-yard-salt-cured-body-1
@@ -253,5 +253,85 @@ MonoBehaviour:
       boundsCenter: {x: 0, y: 0.03275, z: 0}
       boundsSize: {x: 0.43, y: 0.0655, z: 0.51}
       triangles: 72
+      clips: []
+      sockets: []
+  - Id: curation-yard-service-gate-broken
+    Mesh: {fileID: 4300000, guid: f69d4d7a83b67404c81b066e56ce5ebc, type: 2}
+    Prefab: {fileID: 4052816020513385157, guid: b191c76a714f1405b8ac32cd570b64eb, type: 3}
+    Spec:
+      id: curation-yard-service-gate-broken
+      path: Assets/Resources/CurationYard3D/curation-yard-service-gate-broken.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: -0.00500001, y: 0.66249996, z: 0}
+      boundsSize: {x: 0.98, y: 1.3249999, z: 0.87}
+      triangles: 168
+      clips: []
+      sockets: []
+  - Id: curation-yard-recovery-cabinet
+    Mesh: {fileID: 4300000, guid: 51da18051be7845f9923f2a501523c43, type: 2}
+    Prefab: {fileID: 4977482349248064061, guid: f849589b64cad49f8bb1ec632d3a01a0, type: 3}
+    Spec:
+      id: curation-yard-recovery-cabinet
+      path: Assets/Resources/CurationYard3D/curation-yard-recovery-cabinet.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.66249996, z: 0.010000005}
+      boundsSize: {x: 0.89, y: 1.3249999, z: 0.69000006}
+      triangles: 168
+      clips: []
+      sockets: []
+  - Id: curation-yard-maintenance-rack
+    Mesh: {fileID: 4300000, guid: f0ed0476e4fee417f9fd11efc6abedcb, type: 2}
+    Prefab: {fileID: 3358461622269717637, guid: 15f50250efdfe432bae5757218112be0, type: 3}
+    Spec:
+      id: curation-yard-maintenance-rack
+      path: Assets/Resources/CurationYard3D/curation-yard-maintenance-rack.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.5975, z: 0.040000007}
+      boundsSize: {x: 0.92, y: 1.195, z: 0.78}
+      triangles: 156
+      clips: []
+      sockets: []
+  - Id: curation-yard-inspection-slab
+    Mesh: {fileID: 4300000, guid: 192e1cffbedb9422b81ad7cfb504d059, type: 2}
+    Prefab: {fileID: 2786115930144694521, guid: 7159fc59487634f3abd51c146b5ad712, type: 3}
+    Spec:
+      id: curation-yard-inspection-slab
+      path: Assets/Resources/CurationYard3D/curation-yard-inspection-slab.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.41, z: 0.0055000037}
+      boundsSize: {x: 0.81, y: 0.82, z: 0.97099996}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: curation-yard-annex-placard
+    Mesh: {fileID: 4300000, guid: 52f51769e356f4764a53191d39aebff6, type: 2}
+    Prefab: {fileID: 7910793117331777810, guid: 6e274a5b4f17747eb94c9b323c03b819, type: 3}
+    Spec:
+      id: curation-yard-annex-placard
+      path: Assets/Resources/CurationYard3D/curation-yard-annex-placard.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.67125, z: 0}
+      boundsSize: {x: 0.87, y: 1.3425, z: 0.34}
+      triangles: 156
       clips: []
       sockets: []
