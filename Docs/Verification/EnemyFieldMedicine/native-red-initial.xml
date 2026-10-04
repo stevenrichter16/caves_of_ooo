@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="86" result="Failed(Child)" total="86" passed="6" failed="80" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:29Z" duration="10.4928077">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24352" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:29Z" duration="10.492808" total="86" passed="6" failed="80" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29971" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24352" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:29Z" duration="10.487555" total="86" passed="6" failed="80" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29972" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24352" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:29Z" duration="10.485757" total="86" passed="6" failed="80" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29973" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24352" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:29Z" duration="10.484602" total="86" passed="6" failed="80" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1730" name="FieldMedicineAdversarialTests" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:20Z" duration="0.888077" total="37" passed="0" failed="37" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1766" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.223909" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1756" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;floor&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;floor&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="166183179" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.033694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1757" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;backlink-only&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;backlink-only&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="976474196" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.019645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1758" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;foreign-owner&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1439693051" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.019985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1759" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;equipped&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1518556666" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1760" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;zero&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="565412853" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1761" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;negative&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1925987424" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1762" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;wrong-blueprint&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1536598669" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1763" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;missing-payload&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;missing-payload&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1141738780" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.019861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1764" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;empty-healing&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;empty-healing&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="17080941" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.019738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1765" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;spatial-alias&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;spatial-alias&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="89239336" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.027219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1772" name="DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" methodname="DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1178049637" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.069006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:121
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1744" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:20Z" duration="0.273576" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1731" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;player&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;player&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1972381547" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1732" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;dead&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="915742903" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1733" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;not-creature&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;not-creature&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1717435664" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.025666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1734" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;missing-hp&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;missing-hp&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="283159520" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1735" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;invalid-max&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;invalid-max&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1999095482" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1736" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;removed&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1351027212" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1737" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;wrong-brain-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;wrong-brain-zone&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="975131678" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1738" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;conversation&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="68926626" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1739" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;calm&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1747918518" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1740" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-follower&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-follower&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="421327555" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:19Z" duration="0.020572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1741" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-target&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-target&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="604452566" result="Failed" start-time="2026-10-04 01:09:19Z" end-time="2026-10-04 01:09:20Z" duration="0.020399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1742" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;stun&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;stun&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1887575513" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.020129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1743" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;sleep&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="477963255" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.020943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:19
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1771" name="InvalidAuthoredThresholdDoesNotSpendMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.059452" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1768" name="InvalidAuthoredThresholdDoesNotSpendMedicine(0)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(0)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="998914862" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine (System.Int32 percent) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:112
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1769" name="InvalidAuthoredThresholdDoesNotSpendMedicine(-1)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(-1)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1103375071" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine (System.Int32 percent) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:112
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1770" name="InvalidAuthoredThresholdDoesNotSpendMedicine(101)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(101)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="281854245" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine (System.Int32 percent) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:112
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1750" name="InvalidThreatNeverTriggersMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.155819" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1745" name="InvalidThreatNeverTriggersMedicine(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;dead&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="2048241319" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1746" name="InvalidThreatNeverTriggersMedicine(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;removed&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="238429472" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1747" name="InvalidThreatNeverTriggersMedicine(&quot;self&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;self&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1665733207" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.018934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1748" name="InvalidThreatNeverTriggersMedicine(&quot;not-creature&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;not-creature&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1596446656" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.026762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1749" name="InvalidThreatNeverTriggersMedicine(&quot;nonhostile&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;nonhostile&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1371716469" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.070576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1755" name="MissingContextDoesNotUseAmbientState" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.082843" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1751" name="MissingContextDoesNotUseAmbientState(&quot;null-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-zone&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1501749444" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.020884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1752" name="MissingContextDoesNotUseAmbientState(&quot;null-rng&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-rng&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="289782752" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.020737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1753" name="MissingContextDoesNotUseAmbientState(&quot;null-target&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-target&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1097833038" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.020484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1754" name="MissingContextDoesNotUseAmbientState(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;foreign-zone&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="777889321" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1767" name="UnusableFirstEntryDoesNotHideLaterActualMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.UnusableFirstEntryDoesNotHideLaterActualMedicine" methodname="UnusableFirstEntryDoesNotHideLaterActualMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1034286414" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.019919" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineAdversarialTests.UnusableFirstEntryDoesNotHideLaterActualMedicine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineAdversarialTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="16873" name="FieldMedicineSourceTests" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:21Z" duration="1.077898" total="18" passed="5" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16891" name="ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" methodname="ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1748949124" result="Failed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.051206" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:125
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16889" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.162798" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16886" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Village)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Village)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="878410944" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.059588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16887" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Lair)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Lair)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1355681123" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.050406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16888" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(MerchantCamp)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(MerchantCamp)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="2112638817" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.050522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="16890" name="AuthoredSpreadColumnsRemainExcluded" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.AuthoredSpreadColumnsRemainExcluded" methodname="AuthoredSpreadColumnsRemainExcluded" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="324311139" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:20Z" duration="0.095895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16884" name="DefaultAndNameOnlyTablesNeverGainFieldMedicine" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.DefaultAndNameOnlyTablesNeverGainFieldMedicine" methodname="DefaultAndNameOnlyTablesNeverGainFieldMedicine" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1866998596" result="Passed" start-time="2026-10-04 01:09:20Z" end-time="2026-10-04 01:09:21Z" duration="0.631923" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16885" name="ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" methodname="ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="844411009" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.129141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  depth 3
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:87
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16883" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.003067" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16878" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(0)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(0)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="898137062" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand (System.Int32 depth) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16879" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(1)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(1)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="2124054166" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand (System.Int32 depth) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16880" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(2)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(2)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="894311737" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand (System.Int32 depth) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16881" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(6)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(6)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1542320577" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand (System.Int32 depth) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16882" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(9)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(9)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1735950068" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand (System.Int32 depth) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16895" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.001831" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16892" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(64)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(64)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1535998000" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16893" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="872882602" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16894" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1729)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1729)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1285314426" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16877" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000816" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16874" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(3)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(3)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1264760278" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream (System.Int32 depth) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16875" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(4)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(4)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="540271114" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream (System.Int32 depth) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16876" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(5)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(5)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1058554792" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.000081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary cave caller must explicitly opt into field medicine.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.Table (System.Int32 depth, System.Boolean enabled) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:20
+at CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream (System.Int32 depth) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1773" name="FieldMedicineTests" fullname="CavesOfOoo.Tests.FieldMedicineTests" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.377817" total="18" passed="1" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1778" name="ActualTonicReplacesOneFightOrRetreatAction" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.082678" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1774" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="605017111" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.021104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction (System.String goal, System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1775" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,8)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,8)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1697580596" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction (System.String goal, System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1776" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;flee&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;flee&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="869129024" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction (System.String goal, System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1777" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;bored&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;bored&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1305055175" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction (System.String goal, System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1794" name="CalmKeepsBottleUntilItsOverrideIsRemoved" fullname="CavesOfOoo.Tests.FieldMedicineTests.CalmKeepsBottleUntilItsOverrideIsRemoved" methodname="CalmKeepsBottleUntilItsOverrideIsRemoved" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="978517344" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.CalmKeepsBottleUntilItsOverrideIsRemoved () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:196
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1793" name="DeathDropsOnlyUnusedActualTonic" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.040228" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1791" name="DeathDropsOnlyUnusedActualTonic(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic(False)" methodname="DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1349207605" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.019788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic (System.Boolean used) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:186
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1792" name="DeathDropsOnlyUnusedActualTonic(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic(True)" methodname="DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="974520994" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.019839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic (System.Boolean used) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:186
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1786" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.040775" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1784" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(9)" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(9)" methodname="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1095034173" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement (System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1785" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(20)" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(20)" methodname="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="109965506" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement (System.Int32 hp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1789" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.046108" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1787" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat(False)" methodname="NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="54935677" result="Passed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.025121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1788" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat(True)" methodname="NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="627449443" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat (System.Boolean optIn) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:165
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1790" name="OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" fullname="CavesOfOoo.Tests.FieldMedicineTests.OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" methodname="OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="2020477860" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.025489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:174
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1797" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.040718" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1795" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(False)" methodname="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1159435230" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.020411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle (System.Boolean used) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1796" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(True)" methodname="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1205544197" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.019459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle (System.Boolean used) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1783" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.057684" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1780" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;stun&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;stun&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="351658242" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.019065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal (System.String blocker) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1781" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;sleep&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="340350791" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.019386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal (System.String blocker) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1782" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;custom-veto&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;custom-veto&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1245024202" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.018728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal (System.String blocker) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1779" name="SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" fullname="CavesOfOoo.Tests.FieldMedicineTests.SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" methodname="SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1105354615" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:21Z" duration="0.023276" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The opt-in field medicine decision has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineFixture.AttachMedicine (CavesOfOoo.Core.Entity actor) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:64
+at CavesOfOoo.Tests.FieldMedicineFixture.Actor (System.Int32 hp, System.Boolean medicine, System.Int32 x, System.Int32 y) [0x001ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:43
+at CavesOfOoo.Tests.FieldMedicineTests.SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FieldMedicineTests.cs:131
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24686" name="PatchbearerArtTests" fullname="CavesOfOoo.Tests.PatchbearerArtTests" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:29Z" duration="8.126732" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24688" name="ActualMedicineShowsOneFullHarnessAndRemovingItShowsEmptyWithoutChangingTheActor" fullname="CavesOfOoo.Tests.PatchbearerArtTests.ActualMedicineShowsOneFullHarnessAndRemovingItShowsEmptyWithoutChangingTheActor" methodname="ActualMedicineShowsOneFullHarnessAndRemovingItShowsEmptyWithoutChangingTheActor" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1884393184" result="Failed" start-time="2026-10-04 01:09:21Z" end-time="2026-10-04 01:09:24Z" duration="2.305341" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.ActualMedicineShowsOneFullHarnessAndRemovingItShowsEmptyWithoutChangingTheActor () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:51
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24702" name="ActualPatchbearerCorpseKeepsSpeciesFormWithoutACarriedMedicinePromise" fullname="CavesOfOoo.Tests.PatchbearerArtTests.ActualPatchbearerCorpseKeepsSpeciesFormWithoutACarriedMedicinePromise" methodname="ActualPatchbearerCorpseKeepsSpeciesFormWithoutACarriedMedicinePromise" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="29545555" result="Failed" start-time="2026-10-04 01:09:24Z" end-time="2026-10-04 01:09:24Z" duration="0.034937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.ActualPatchbearerCorpseKeepsSpeciesFormWithoutACarriedMedicinePromise () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:147
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24692" name="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask" fullname="CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:24Z" end-time="2026-10-04 01:09:26Z" duration="2.018308" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24689" name="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;foreign-owner&quot;)" methodname="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="39246436" result="Failed" start-time="2026-10-04 01:09:24Z" end-time="2026-10-04 01:09:24Z" duration="0.670574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24690" name="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;depleted&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;depleted&quot;)" methodname="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1667831725" result="Failed" start-time="2026-10-04 01:09:24Z" end-time="2026-10-04 01:09:25Z" duration="0.656981" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24691" name="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;different-tonic&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask(&quot;different-tonic&quot;)" methodname="AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="591295079" result="Failed" start-time="2026-10-04 01:09:25Z" end-time="2026-10-04 01:09:26Z" duration="0.657747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.AFalseOrSpentInventoryEntryCannotDisplayAUsableFlask (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24700" name="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity" fullname="CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:09:26Z" end-time="2026-10-04 01:09:28Z" duration="2.689222" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24697" name="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;glyph&quot;)" methodname="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1539963097" result="Failed" start-time="2026-10-04 01:09:26Z" end-time="2026-10-04 01:09:27Z" duration="1.286840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24698" name="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;appearance&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;appearance&quot;)" methodname="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="2144527055" result="Failed" start-time="2026-10-04 01:09:27Z" end-time="2026-10-04 01:09:28Z" duration="0.657966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24699" name="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;foreign-brain&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity(&quot;foreign-brain&quot;)" methodname="DifferentOrMalformedActorCannotBorrowPatchbearerIdentity" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1339410741" result="Failed" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:28Z" duration="0.658786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.DifferentOrMalformedActorCannotBorrowPatchbearerIdentity (System.String mutation) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24696" name="EmptyHarnessRetainsItsActualCradleButHasNoBottleGeometry" fullname="CavesOfOoo.Tests.PatchbearerArtTests.EmptyHarnessRetainsItsActualCradleButHasNoBottleGeometry" methodname="EmptyHarnessRetainsItsActualCradleButHasNoBottleGeometry" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="904835441" result="Failed" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:28Z" duration="0.000307" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.EmptyHarnessRetainsItsActualCradleButHasNoBottleGeometry () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24695" name="HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips" fullname="CavesOfOoo.Tests.PatchbearerArtTests.HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:28Z" duration="0.005113" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24693" name="HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips(&quot;patchbearer-full&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips(&quot;patchbearer-full&quot;)" methodname="HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1178706720" result="Failed" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:28Z" duration="0.001393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Persistent original adopted art required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24694" name="HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips(&quot;patchbearer-empty&quot;)" fullname="CavesOfOoo.Tests.PatchbearerArtTests.HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips(&quot;patchbearer-empty&quot;)" methodname="HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="473496416" result="Failed" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:28Z" duration="0.000130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Persistent original adopted art required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.HarnessAddsRealRigidGeometryWhilePreservingTheOriginalBodyAndFiveClips (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24687" name="OrdinarySpreadCaveShowsAdoptedFullAndEmptyArtThroughTheRealPresenter" fullname="CavesOfOoo.Tests.PatchbearerArtTests.OrdinarySpreadCaveShowsAdoptedFullAndEmptyArtThroughTheRealPresenter" methodname="OrdinarySpreadCaveShowsAdoptedFullAndEmptyArtThroughTheRealPresenter" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="1516967691" result="Failed" start-time="2026-10-04 01:09:28Z" end-time="2026-10-04 01:09:29Z" duration="0.405098" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual child must exist before native art acceptance.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.Actor (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:20
+at CavesOfOoo.Tests.PatchbearerArtTests.OrdinarySpreadCaveShowsAdoptedFullAndEmptyArtThroughTheRealPresenter () [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24701" name="OriginalGleanerAndScrabblerDoNotAcquireAnInventedMedicineHarness" fullname="CavesOfOoo.Tests.PatchbearerArtTests.OriginalGleanerAndScrabblerDoNotAcquireAnInventedMedicineHarness" methodname="OriginalGleanerAndScrabblerDoNotAcquireAnInventedMedicineHarness" classname="CavesOfOoo.Tests.PatchbearerArtTests" runstate="Runnable" seed="397329536" result="Failed" start-time="2026-10-04 01:09:29Z" end-time="2026-10-04 01:09:29Z" duration="0.666942" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 12 but was 21. Strings differ at index 5.
+  Expected: "ring-snapjaw"
+  But was:  "ring-marlback-gleaner"
+  ----------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PatchbearerArtTests.OriginalGleanerAndScrabblerDoNotAcquireAnInventedMedicineHarness () [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/PatchbearerArtTests.cs:137
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

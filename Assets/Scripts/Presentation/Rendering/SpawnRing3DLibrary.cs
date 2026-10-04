@@ -75,6 +75,7 @@ namespace CavesOfOoo.Rendering
             ?? (ConnectedSpreadSource.IsModelId(modelId) ? LoadExtension<ConnectedSpread3DLibrary>(load, ConnectedSpread3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (PatchbearerArtLibrary.IsModelId(modelId) ? LoadExtension<PatchbearerArtLibrary>(load, PatchbearerArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadCollectorArtLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadCollectorArtLibrary>(load, SpreadCollectorArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (FurrowstalkerLibrary.Blueprint(modelId)!=null ? LoadExtension<FurrowstalkerLibrary>(load, FurrowstalkerLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

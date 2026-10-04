@@ -1,0 +1,51 @@
+{
+  "runId": "c99f8b020d4243269af1990667be4daf",
+  "complete": false,
+  "failures": 4,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 6.7823978999999994,
+  "checks": [
+    "PASS ordinary_start",
+    "PASS generated_owned_supply",
+    "PASS native_full_harness",
+    "FAIL one_paid_medicine_action",
+    "FAIL native_use_log",
+    "FAIL native_empty_harness",
+    "PASS native_quicksave",
+    "FAIL native_saved_depletion"
+  ],
+  "notes": [
+    "Inspected Overworld.12.10.3",
+    "Inspected Overworld.12.10.4",
+    "FIXTURES: one player approach transfer; generated target damaged to 8/20HP. No tonic, hostility, goal, RNG or energy grant."
+  ],
+  "observations": [
+    {
+      "targetId": "21405",
+      "bottle": "21408",
+      "used": [],
+      "hp": 8,
+      "begins": 0,
+      "ends": 0,
+      "messages": [
+        "Save detected. Press [C] to continue, [N] for new game.",
+        "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+        "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+        "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+        "Villagers have work for you — press [Q] for your quest log.",
+        "Starting a new game. Initial checkpoint saved.",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/c99f8b020d4243269af1990667be4daf/01-carried-medicine.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/c99f8b020d4243269af1990667be4daf/02-spent-medicine.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/c99f8b020d4243269af1990667be4daf/03-restored-empty-harness.png"
+  ],
+  "source": "Overworld.12.10.4",
+  "canVerify": "Generated owned inventory, controlled-injury native wait action, actual full/empty rendered body, log and F5/F6 saved depletion.",
+  "cannotVerify": "Not an ordinary walking route or naturally earned injury. Player approach and injury are declared fixtures. One encounter does not establish balance, rarity, visual readability or fun; screenshots require independent inspection."
+}

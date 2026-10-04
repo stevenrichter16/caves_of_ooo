@@ -35,6 +35,12 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (entity.BlueprintName == PatchbearerArtLibrary.ActorBlueprint)
+            {
+                string model = PatchbearerArtLibrary.ResolveModel(zone, entity);
+                return model == null ? Refused(entity, "unsupported-current-patchbearer")
+                    : new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
+            }
             if (EquipmentDiscoveryRecipes.Handles(entity))
             {
                 var physics = entity.GetPart<PhysicsPart>();

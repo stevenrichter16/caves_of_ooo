@@ -37,6 +37,11 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
+            // BoredGoal can enter Flee directly on first hostile acquisition,
+            // so retreat must share the same finite treatment decision as Kill.
+            if (ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(FleeFrom, CurrentZone, Rng) == true)
+                return;
+
             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
             var threatPos = CurrentZone.GetEntityPosition(FleeFrom);
 

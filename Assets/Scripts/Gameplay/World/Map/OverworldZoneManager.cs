@@ -602,7 +602,12 @@ namespace CavesOfOoo.Core
                 undergroundTier, StampCatalog.Underground(depth,
                     layout?.SurfaceBiome ?? BiomeType.Cave, layout?.IsOrdinaryColumn ?? false)));
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
+            // The uncommon gleaner pack keeps its count; one member carries
+            // real medicine only in ordinary Spread limestone caves. Missing
+            // optional content retains the complete original encounter.
+            bool fieldMedicine = layout?.IsOrdinaryColumn == true && layout.SurfaceBiome == BiomeType.Spread
+                && Factory.Blueprints.ContainsKey("MarlbackPatchbearer");
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth, fieldMedicine)));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, undergroundTier,
                 ContainerPlacementService.ZoneKind.Underground));
             return pipeline;

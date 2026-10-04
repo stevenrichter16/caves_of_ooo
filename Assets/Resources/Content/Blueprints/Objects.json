@@ -1861,6 +1861,42 @@
       ]
     },
     {
+      "Name": "MarlbackPatchbearer",
+      "Inherits": "MarlbackGleaner",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "marlback patchbearer" },
+            { "Key": "RenderString", "Value": "s" },
+            { "Key": "ColorString", "Value": "&w" }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            { "Key": "Carry", "Value": "HealingTonic" }
+          ]
+        },
+        {
+          "Name": "FieldMedicine",
+          "Params": [
+            { "Key": "TonicBlueprint", "Value": "HealingTonic" },
+            { "Key": "UseAtOrBelowPercent", "Value": "40" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Pale straps cross this marlback's shale plates. A little open cradle sits within reach of its grasping claws, padded with old cloth; its cutting tools are kept farther back. The harness has been patched far more carefully than its owner's scars."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "MarlbackTunnelguard",
       "Inherits": "MarlbackScrabbler",
       "Parts": [

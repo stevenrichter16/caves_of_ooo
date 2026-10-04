@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sourceModel": "ring-snapjaw",
+  "sourcePaint": "ReferenceGlade3D/Library:ActorPaints:ring-snapjaw",
+  "blueprint": "MarlbackPatchbearer",
+  "palette": "ReferenceGlade3D/Library.Material (unchanged24swatches)",
+  "preserve": ["all original body vertices", "bone weights", "bindposes", "five native animation clips", "four equipment sockets", "borrowed source bytes"],
+  "variants": [
+    {"id":"patchbearer-empty", "forms":"Pale upper-shoulder harness and shoulder patch, three-sided open cradle following Spine. No bottle."},
+    {"id":"patchbearer-full", "forms":"Identical harness plus one pale-cased flask, amber label, green neck and pale stopper. Full geometry appends to empty geometry. Both states use the full form's framing to keep original body stature constant."}
+  ],
+  "state": "FieldMedicinePart.FindCarriedMedicine supplies the real current carried HealingTonic; no copied stock, creation, charges, passive healing or item-state mutation by art.",
+  "sourceRecipe": "Assets/Editor/Art/PatchbearerArtBuilder.cs:Prepare",
+  "honesty": "The original native Interact clip illustrates committed self-use. No bespoke hand-to-mouth clip is claimed. Geometry and imported clip captures require visual review. Legacy internal sourceModel identity is retained for frozen asset compatibility; the creature is an original Marlback."
+}

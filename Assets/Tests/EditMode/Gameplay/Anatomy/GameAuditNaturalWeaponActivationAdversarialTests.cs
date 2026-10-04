@@ -14,9 +14,9 @@ namespace CavesOfOoo.Tests
     public class GameAuditNaturalWeaponActivationAdversarialTests
     {
         // Literal actor/recipe baseline, including the two independent quest creatures.
-        // Original-enemy migration, authored field variants and the half-set intake (51 total).
+        // Original-enemy migration, authored field variants, half-set intake and patchbearer (52 total).
         static readonly string[] Declared = {
-            "MarlbackScrabbler|MarlbackRake", "MarlbackGleaner|MarlbackRake", "MarlbackTunnelguard|MarlbackGuardRake",
+            "MarlbackScrabbler|MarlbackRake", "MarlbackGleaner|MarlbackRake", "MarlbackPatchbearer|MarlbackRake", "MarlbackTunnelguard|MarlbackGuardRake",
             "ChoirTendril|ChoirLash", "CaveBat|BatBite", "CaveSlime|SlimePseudopod", "CaveBear|CaveBearClaw",
             "Glowmaw|GlowmawBite", "Scorpion|ScorpionSting", "DesertBandit|BanditBlade", "SandWurm|WurmBite",
             "GiantSpider|SpiderBite", "Viper|ViperBite", "JungleApe|ApeFist", "RuinScavenger|ScavengerClaw",
@@ -72,7 +72,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(51, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(52, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);

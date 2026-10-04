@@ -44,6 +44,11 @@ namespace CavesOfOoo.Core
             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
             var targetPos = CurrentZone.GetEntityPosition(Target);
 
+            // A finite carried treatment replaces this whole action, including
+            // low-health retreat. Do not grant a second move or attack after use.
+            if (ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(Target, CurrentZone, Rng) == true)
+                return;
+
             // Check if we should flee instead
             if (ShouldFlee())
             {

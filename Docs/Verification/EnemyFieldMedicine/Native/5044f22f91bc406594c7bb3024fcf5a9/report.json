@@ -1,0 +1,84 @@
+{
+  "runId": "5044f22f91bc406594c7bb3024fcf5a9",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 10.774004399999999,
+  "checks": [
+    "PASS ordinary_start",
+    "PASS generated_owned_supply",
+    "PASS native_full_harness",
+    "PASS one_paid_medicine_action",
+    "PASS native_use_log",
+    "PASS native_empty_harness",
+    "PASS native_quicksave",
+    "PASS native_saved_depletion"
+  ],
+  "notes": [
+    "Inspected Overworld.12.10.3",
+    "Inspected Overworld.12.10.4",
+    "FIXTURES: one player approach transfer; generated target damaged to 8/20HP. No tonic, hostility, goal, RNG or energy grant."
+  ],
+  "observations": [
+    {
+      "wait": 1,
+      "tickBefore": 10,
+      "tickAfter": 20,
+      "energyBefore": 0,
+      "energyAfter": 1000,
+      "actorBegins": 0,
+      "actorEnds": 0
+    },
+    {
+      "wait": 2,
+      "tickBefore": 20,
+      "tickAfter": 30,
+      "energyBefore": 1000,
+      "energyAfter": 1000,
+      "actorBegins": 1,
+      "actorEnds": 1
+    },
+    {
+      "targetId": "21409",
+      "bottle": "21413",
+      "used": [
+        {
+          "TraceId": "0c8ae9ac",
+          "Category": "ai",
+          "Kind": "FieldMedicineUsed",
+          "TimestampUnixMs": 1791078065780,
+          "Turn": 20,
+          "ActorId": "21409",
+          "TargetId": "21413",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"threatId\":\"2717\",\"hpBefore\":8,\"hpAfter\":20,\"thresholdPercent\":40,\"remainingUnits\":0}"
+        }
+      ],
+      "hp": 20,
+      "begins": 1,
+      "ends": 1,
+      "messages": [
+        "Save detected. Press [C] to continue, [N] for new game.",
+        "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+        "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+        "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+        "Villagers have work for you — press [Q] for your quest log.",
+        "Starting a new game. Initial checkpoint saved.",
+        "Autosaved.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback patchbearer heals 12 HP.",
+        "marlback patchbearer drinks healing tonic.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/5044f22f91bc406594c7bb3024fcf5a9/01-carried-medicine.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/5044f22f91bc406594c7bb3024fcf5a9/02-spent-medicine.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/EnemyFieldMedicine/Native/5044f22f91bc406594c7bb3024fcf5a9/03-restored-empty-harness.png"
+  ],
+  "source": "Overworld.12.10.4",
+  "canVerify": "Generated owned inventory, controlled-injury native wait action, actual full/empty rendered body, log and F5/F6 saved depletion.",
+  "cannotVerify": "Not an ordinary walking route or naturally earned injury. Player approach and injury are declared fixtures. One encounter does not establish balance, rarity, visual readability or fun; screenshots require independent inspection."
+}

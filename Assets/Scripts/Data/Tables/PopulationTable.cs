@@ -68,6 +68,7 @@ namespace CavesOfOoo.Data
     {
         public string Name;
         public List<PopulationEntry> Entries = new List<PopulationEntry>();
+        private bool includeFieldMedicine;
 
         /// <summary>
         /// Roll independent ambient entries and each named encounter group.
@@ -98,6 +99,7 @@ namespace CavesOfOoo.Data
             }
 
             var rolledGroups = new HashSet<string>();
+            int fieldMedicineIndex = -1;
             for (int i = 0; i < Entries.Count; i++)
             {
                 if (!eligible[i]) continue;
@@ -125,6 +127,11 @@ namespace CavesOfOoo.Data
                         var candidate = Entries[j];
                         if (!eligible[j] || candidate.EncounterGroup != entry.EncounterGroup) continue;
                         int count = j == selected ? RollCount(rng, candidate.MinCount, candidate.MaxCount) : 0;
+                        // Authority is the actual selected depth-encounter row,
+                        // never a matching ambient actor or a table-name convention.
+                        if (includeFieldMedicine && fieldMedicineIndex < 0 && count > 0
+                            && candidate.EncounterGroup == "DepthEncounter" && candidate.BlueprintName == "MarlbackGleaner")
+                            fieldMedicineIndex = result.Count;
                         for (int n = 0; n < count; n++) result.Add(candidate.BlueprintName);
                         double selectionStart = (double)cumulative / total;
                         cumulative += candidate.Weight;
@@ -149,6 +156,16 @@ namespace CavesOfOoo.Data
                     optionalRoll < 0 ? (double?)null : chance,
                     ambientCount > 0 ? "selected" : "roll_missed",
                     optionalRoll < 0 ? "fixed_count" : "chance");
+            }
+            if (fieldMedicineIndex >= 0)
+            {
+                result[fieldMedicineIndex] = "MarlbackPatchbearer";
+                if (Diag.IsChannelEnabled("worldgen"))
+                    Diag.Record("worldgen", "PopulationVariantApplied", payload: new
+                    {
+                        table = Name, zone = zoneID, source = "MarlbackGleaner", replacement = "MarlbackPatchbearer",
+                        group = "DepthEncounter", index = fieldMedicineIndex, count = 1
+                    });
             }
             return result;
         }
@@ -1077,8 +1094,12 @@ namespace CavesOfOoo.Data
         /// <summary>
         /// Underground population scaled by depth.
         /// Deeper = more and tougher enemies, fewer friendlies.
+        /// The manager may opt an ordinary Spread column into a single
+        /// field-medicine substitution at depths 3–5. It replaces the first
+        /// actually rolled gleaner, preserving group count and all RNG draws.
+        /// Other callers retain their existing populations by default.
         /// </summary>
-        public static PopulationTable UndergroundTier(int depth)
+        public static PopulationTable UndergroundTier(int depth, bool includeFieldMedicine = false)
         {
             int tier = depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8);
 
@@ -1093,6 +1114,7 @@ namespace CavesOfOoo.Data
             var table = new PopulationTable
             {
                 Name = $"Underground_Depth{depth}",
+                includeFieldMedicine = includeFieldMedicine && depth >= 3 && depth <= 5,
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = tier == 1 ? 5 : 2, MinCount = snapMin, MaxCount = snapMax, EncounterGroup = "DepthEncounter" },

@@ -132,6 +132,9 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(carriedReward))
                 baseLine += "\n" + carriedReward;
 
+            var medicine = ParentEntity?.GetPart<FieldMedicinePart>()?.Describe();
+            if (!string.IsNullOrEmpty(medicine)) baseLine += "\n" + medicine;
+
             var directions = ParentEntity?.GetPart<RegionalSignpostPart>()?.GetDirectionsText();
             if (!string.IsNullOrWhiteSpace(directions))
                 baseLine += "\n" + directions;

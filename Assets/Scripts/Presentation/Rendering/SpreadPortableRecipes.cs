@@ -199,6 +199,7 @@ namespace CavesOfOoo.Rendering
             { "SpreadDitchMate", "marlback" },
             { "Player", "humanoid" },
             { "MarlbackGleaner", "marlback" },
+            { "MarlbackPatchbearer", "marlback" },
             { "MarlbackTunnelguard", "marlback" },
             { "Elder", "humanoid" },
             { "Villager", "humanoid" },

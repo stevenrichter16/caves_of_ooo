@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="109" result="Failed(Child)" total="109" passed="108" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:15:17Z" duration="27.9601958">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24363" result="Failed" site="Child" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:15:17Z" duration="27.960196" total="109" passed="108" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29984" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24363" result="Failed" site="Child" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:15:17Z" duration="27.954654" total="109" passed="108" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29985" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24363" result="Failed" site="Child" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:15:17Z" duration="27.952737" total="109" passed="108" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29986" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24363" result="Failed" site="Child" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:15:17Z" duration="27.951479" total="109" passed="108" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1730" name="FieldMedicineAdversarialTests" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="37" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:50Z" duration="0.902538" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1766" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.219237" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1756" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;floor&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;floor&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1118026270" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.033145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1757" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;backlink-only&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;backlink-only&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="16507164" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1758" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;foreign-owner&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1265006489" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020636" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1759" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;equipped&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1405164103" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1760" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;zero&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1338699045" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1761" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;negative&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1947581765" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1762" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;wrong-blueprint&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="138953977" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1763" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;missing-payload&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;missing-payload&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="70442909" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1764" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;empty-healing&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;empty-healing&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1751898883" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1765" name="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;spatial-alias&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners(&quot;spatial-alias&quot;)" methodname="AvailabilityRequiresExactUsableCarriedMedicineWithoutScanningOtherOwners" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1357456431" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1772" name="DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" methodname="DescribeReadsRealStockAndThresholdWithoutConsumingOrDrawingRandomness" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="396481089" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.028548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1744" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.331648" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1731" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;player&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;player&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="58602880" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.035810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1732" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;dead&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="96372347" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.065635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1733" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;not-creature&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;not-creature&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1349298076" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1734" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;missing-hp&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;missing-hp&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="2022617947" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1735" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;invalid-max&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;invalid-max&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="750058645" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1736" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;removed&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1076539226" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.021064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1737" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;wrong-brain-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;wrong-brain-zone&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="914891132" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1738" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;conversation&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="990196857" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1739" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;calm&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="740971836" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1740" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-follower&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-follower&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="478675258" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1741" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-target&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;party-target&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1488506966" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020231" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1742" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;stun&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;stun&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="902760721" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.022243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1743" name="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.IneligibleActorCannotSpendOrHealEvenThroughDirectDecision(&quot;sleep&quot;)" methodname="IneligibleActorCannotSpendOrHealEvenThroughDirectDecision" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="823795403" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1771" name="InvalidAuthoredThresholdDoesNotSpendMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.062188" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1768" name="InvalidAuthoredThresholdDoesNotSpendMedicine(0)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(0)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="887117263" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1769" name="InvalidAuthoredThresholdDoesNotSpendMedicine(-1)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(-1)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="521212234" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1770" name="InvalidAuthoredThresholdDoesNotSpendMedicine(101)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidAuthoredThresholdDoesNotSpendMedicine(101)" methodname="InvalidAuthoredThresholdDoesNotSpendMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1001759246" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:49Z" duration="0.020347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1750" name="InvalidThreatNeverTriggersMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:50Z" duration="0.158943" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1745" name="InvalidThreatNeverTriggersMedicine(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;dead&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="107747316" result="Passed" start-time="2026-10-04 01:14:49Z" end-time="2026-10-04 01:14:50Z" duration="0.020487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1746" name="InvalidThreatNeverTriggersMedicine(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;removed&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="684781048" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019978" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1747" name="InvalidThreatNeverTriggersMedicine(&quot;self&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;self&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="765264418" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.031665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1748" name="InvalidThreatNeverTriggersMedicine(&quot;not-creature&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;not-creature&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1711638720" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.065716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1749" name="InvalidThreatNeverTriggersMedicine(&quot;nonhostile&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.InvalidThreatNeverTriggersMedicine(&quot;nonhostile&quot;)" methodname="InvalidThreatNeverTriggersMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="921797517" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.020241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1755" name="MissingContextDoesNotUseAmbientState" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.078867" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1751" name="MissingContextDoesNotUseAmbientState(&quot;null-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-zone&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1135659148" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1752" name="MissingContextDoesNotUseAmbientState(&quot;null-rng&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-rng&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="485171248" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1753" name="MissingContextDoesNotUseAmbientState(&quot;null-target&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;null-target&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1314328214" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1754" name="MissingContextDoesNotUseAmbientState(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.MissingContextDoesNotUseAmbientState(&quot;foreign-zone&quot;)" methodname="MissingContextDoesNotUseAmbientState" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="238699080" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1767" name="UnusableFirstEntryDoesNotHideLaterActualMedicine" fullname="CavesOfOoo.Tests.FieldMedicineAdversarialTests.UnusableFirstEntryDoesNotHideLaterActualMedicine" methodname="UnusableFirstEntryDoesNotHideLaterActualMedicine" classname="CavesOfOoo.Tests.FieldMedicineAdversarialTests" runstate="Runnable" seed="1876774978" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.019587" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="16883" name="FieldMedicineSourceTests" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:15:15Z" duration="25.097755" total="20" passed="19" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16903" name="ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" methodname="ActualPatchbearerOwnsExactlyOneHealingTonicAndOrdinaryGleanersRemainUnchanged" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="592399012" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.059225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16895" name="AnAmbientGleanerCannotStandInForTheSelectedDepthEncounter" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.AnAmbientGleanerCannotStandInForTheSelectedDepthEncounter" methodname="AnAmbientGleanerCannotStandInForTheSelectedDepthEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1471181724" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.020358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16901" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.157340" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16898" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Village)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Village)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1831062043" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.055476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16899" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Lair)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(Lair)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="507450352" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.050087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16900" name="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(MerchantCamp)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ARealSurfacePointOfInterestRefusesTheVariantInItsColumn(MerchantCamp)" methodname="ARealSurfacePointOfInterestRefusesTheVariantInItsColumn" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1287912307" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.049612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="16902" name="AuthoredSpreadColumnsRemainExcluded" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.AuthoredSpreadColumnsRemainExcluded" methodname="AuthoredSpreadColumnsRemainExcluded" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1525871031" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:50Z" duration="0.153380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16894" name="DefaultAndNameOnlyTablesNeverGainFieldMedicine" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.DefaultAndNameOnlyTablesNeverGainFieldMedicine" methodname="DefaultAndNameOnlyTablesNeverGainFieldMedicine" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1517347206" result="Passed" start-time="2026-10-04 01:14:50Z" end-time="2026-10-04 01:14:51Z" duration="0.610112" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16896" name="ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" methodname="ManagedOrdinarySpreadDepthsOptInWhileSurfaceShallowDeepAndOtherBiomesDoNot" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="299528618" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.122782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16897" name="MissingOptionalBlueprintPreservesTheOrdinaryGleanerEncounter" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.MissingOptionalBlueprintPreservesTheOrdinaryGleanerEncounter" methodname="MissingOptionalBlueprintPreservesTheOrdinaryGleanerEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="500448407" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.070196" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16893" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.085789" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16888" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(0)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(0)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1204977256" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.010053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16889" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(1)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(1)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="297710095" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.009657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16890" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(2)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(2)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="945887493" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.009544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16891" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(6)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(6)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1307114073" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.025163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16892" name="OptInCannotAddMedicineOutsideTheAuthoredDepthBand(9)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.OptInCannotAddMedicineOutsideTheAuthoredDepthBand(9)" methodname="OptInCannotAddMedicineOutsideTheAuthoredDepthBand" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1299381918" result="Passed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:14:51Z" duration="0.029167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16907" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:15:15Z" duration="23.594789" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16904" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(64)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(64)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="1713790591" result="Failed" start-time="2026-10-04 01:14:51Z" end-time="2026-10-04 01:15:05Z" duration="13.725362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No medicine source in the predeclared nearest32 candidate pool for seed 64; report this absence rather than silently rerolling the world.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter (System.Int32 seed) [0x003a2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/FieldMedicineSourceTests.cs:207
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[FieldMedicine candidates seed=64: Overworld.11.9.0,Overworld.12.10.0,Overworld.11.11.0,Overworld.11.8.0,Overworld.10.9.0,Overworld.12.9.0,Overworld.9.10.0,Overworld.13.10.0,Overworld.10.11.0,Overworld.12.11.0,Overworld.11.12.0,Overworld.11.7.0,Overworld.10.8.0,Overworld.12.8.0,Overworld.9.9.0,Overworld.13.9.0,Overworld.8.10.0,Overworld.14.10.0,Overworld.9.11.0,Overworld.13.11.0,Overworld.10.12.0,Overworld.11.13.0,Overworld.11.6.0,Overworld.10.7.0,Overworld.12.7.0,Overworld.9.8.0,Overworld.13.8.0,Overworld.8.9.0,Overworld.7.10.0,Overworld.15.10.0,Overworld.8.11.0,Overworld.14.11.0
+]]></output>
+              </test-case>
+              <test-case id="16905" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="253476899" result="Passed" start-time="2026-10-04 01:15:05Z" end-time="2026-10-04 01:15:13Z" duration="8.643356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[FieldMedicine candidates seed=1: Overworld.11.9.0,Overworld.12.10.0,Overworld.11.11.0,Overworld.11.8.0,Overworld.10.9.0,Overworld.12.9.0,Overworld.9.10.0,Overworld.13.10.0,Overworld.10.11.0,Overworld.12.11.0,Overworld.11.12.0,Overworld.11.7.0,Overworld.10.8.0,Overworld.12.8.0,Overworld.9.9.0,Overworld.13.9.0,Overworld.8.10.0,Overworld.14.10.0,Overworld.9.11.0,Overworld.13.11.0,Overworld.10.12.0,Overworld.11.13.0,Overworld.11.6.0,Overworld.10.7.0,Overworld.12.7.0,Overworld.9.8.0,Overworld.13.8.0,Overworld.8.9.0,Overworld.7.10.0,Overworld.15.10.0,Overworld.8.11.0,Overworld.14.11.0
+FieldMedicine witness seed=1 inspected=Overworld.11.9.0,Overworld.12.10.0,Overworld.11.11.0,Overworld.11.8.0,Overworld.10.9.0,Overworld.12.9.0,Overworld.9.10.0,Overworld.13.10.0,Overworld.10.11.0,Overworld.12.11.0,Overworld.11.12.0,Overworld.11.7.0,Overworld.10.8.0,Overworld.12.8.0,Overworld.9.9.0,Overworld.13.9.0,Overworld.8.10.0,Overworld.14.10.0,Overworld.9.11.0,Overworld.13.11.0,Overworld.10.12.0,Overworld.11.13.0,Overworld.11.6.0,Overworld.10.7.0,Overworld.12.7.0,Overworld.9.8.0,Overworld.13.8.0,Overworld.8.9.0,Overworld.7.10.0,Overworld.15.10.0,Overworld.8.11.0,Overworld.14.11.0 route=Overworld.14.11.0 -> Overworld.14.11.1 up=44,13 -> Overworld.14.11.2 up=41,13 -> Overworld.14.11.3 up=40,12 -> Overworld.14.11.4 up=39,12 actor=(63, 11)
+]]></output>
+              </test-case>
+              <test-case id="16906" name="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1729)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter(1729)" methodname="PredeterminedWorldsHaveARealCaveRouteToAnOwnedMedicineEncounter" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="812060793" result="Passed" start-time="2026-10-04 01:15:13Z" end-time="2026-10-04 01:15:15Z" duration="1.224549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[FieldMedicine candidates seed=1729: Overworld.11.9.0,Overworld.12.10.0,Overworld.11.11.0,Overworld.11.8.0,Overworld.10.9.0,Overworld.12.9.0,Overworld.9.10.0,Overworld.13.10.0,Overworld.10.11.0,Overworld.12.11.0,Overworld.11.12.0,Overworld.11.7.0,Overworld.10.8.0,Overworld.12.8.0,Overworld.9.9.0,Overworld.13.9.0,Overworld.8.10.0,Overworld.14.10.0,Overworld.9.11.0,Overworld.13.11.0,Overworld.10.12.0,Overworld.11.13.0,Overworld.11.6.0,Overworld.10.7.0,Overworld.12.7.0,Overworld.9.8.0,Overworld.13.8.0,Overworld.8.9.0,Overworld.7.10.0,Overworld.15.10.0,Overworld.14.11.0,Overworld.9.12.0
+FieldMedicine witness seed=1729 inspected=Overworld.11.9.0,Overworld.12.10.0 route=Overworld.12.10.0 -> Overworld.12.10.1 up=34,18 -> Overworld.12.10.2 up=40,12 -> Overworld.12.10.3 up=40,11 -> Overworld.12.10.4 up=40,12 actor=(14, 4)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16887" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.222188" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16884" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(3)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(3)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="847326309" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.074163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16885" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(4)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(4)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="539843932" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.071423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16886" name="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(5)" fullname="CavesOfOoo.Tests.FieldMedicineSourceTests.TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream(5)" methodname="TierTwoVariantReplacesExactlyOneRolledGleanerWithoutChangingCountsOrRandomStream" classname="CavesOfOoo.Tests.FieldMedicineSourceTests" runstate="Runnable" seed="347525131" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.072485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1773" name="FieldMedicineTests" fullname="CavesOfOoo.Tests.FieldMedicineTests" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.502711" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1778" name="ActualTonicReplacesOneFightOrRetreatAction" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.088222" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1774" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="102933393" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.022611" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1775" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,8)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;kill&quot;,8)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="135718414" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.021261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1776" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;flee&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;flee&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="2069320220" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.021765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1777" name="ActualTonicReplacesOneFightOrRetreatAction(&quot;bored&quot;,7)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ActualTonicReplacesOneFightOrRetreatAction(&quot;bored&quot;,7)" methodname="ActualTonicReplacesOneFightOrRetreatAction" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="482325017" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.021980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1794" name="CalmKeepsBottleUntilItsOverrideIsRemoved" fullname="CavesOfOoo.Tests.FieldMedicineTests.CalmKeepsBottleUntilItsOverrideIsRemoved" methodname="CalmKeepsBottleUntilItsOverrideIsRemoved" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1135468684" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.024528" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1793" name="DeathDropsOnlyUnusedActualTonic" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.075246" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1791" name="DeathDropsOnlyUnusedActualTonic(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic(False)" methodname="DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="664367120" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.047194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1792" name="DeathDropsOnlyUnusedActualTonic(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.DeathDropsOnlyUnusedActualTonic(True)" methodname="DeathDropsOnlyUnusedActualTonic" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1989229502" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.027369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1786" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.123302" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1784" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(9)" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(9)" methodname="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1209480189" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.055754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1785" name="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(20)" fullname="CavesOfOoo.Tests.FieldMedicineTests.HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement(20)" methodname="HealthyCreatureKeepsMedicineAndPerformsOrdinaryMovement" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1144628300" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.066666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1789" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.040769" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1787" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat(False)" methodname="NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="90689039" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1788" name="NoMedicineOrNoOptInKeepsOrdinaryRetreat(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.NoMedicineOrNoOptInKeepsOrdinaryRetreat(True)" methodname="NoMedicineOrNoOptInKeepsOrdinaryRetreat" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="761664888" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1790" name="OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" fullname="CavesOfOoo.Tests.FieldMedicineTests.OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" methodname="OneUnitFromStackIsConsumedAndInjuryAgainUsesOnlyActualRemainingSupply" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="631492066" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.021215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1797" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.045133" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1795" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(False)" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(False)" methodname="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1401813537" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.024335" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1796" name="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(True)" fullname="CavesOfOoo.Tests.FieldMedicineTests.SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle(True)" methodname="SaveRestoresActualAvailabilityWithoutManufacturingAnotherBottle" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="202071043" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1783" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.061984" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1780" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;stun&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;stun&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="522710895" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.021646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1781" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;sleep&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="506386254" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.019992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1782" name="ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;custom-veto&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineTests.ScheduledActionBlockPreservesBottleAndDoesNotHeal(&quot;custom-veto&quot;)" methodname="ScheduledActionBlockPreservesBottleAndDoesNotHeal" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="1191627921" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.019776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1779" name="SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" fullname="CavesOfOoo.Tests.FieldMedicineTests.SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" methodname="SchedulerChargesOneActionAndDoesNotRepeatPreActionEvents" classname="CavesOfOoo.Tests.FieldMedicineTests" runstate="Runnable" seed="431767668" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.019458" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1798" name="FieldMedicineVisualHookTests" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:16Z" duration="0.162850" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1806" name="MedicineGestureFiresAfterConsumptionAndHealingOnlyOnce" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.MedicineGestureFiresAfterConsumptionAndHealingOnlyOnce" methodname="MedicineGestureFiresAfterConsumptionAndHealingOnlyOnce" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="766175982" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1805" name="NonCurrentActorCannotPublishSelfUse" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.100612" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1800" name="NonCurrentActorCannotPublishSelfUse(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse(&quot;removed&quot;)" methodname="NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="877368647" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020234" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1801" name="NonCurrentActorCannotPublishSelfUse(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse(&quot;foreign-zone&quot;)" methodname="NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="1486059200" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1802" name="NonCurrentActorCannotPublishSelfUse(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse(&quot;dead&quot;)" methodname="NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="1198270787" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.019615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1803" name="NonCurrentActorCannotPublishSelfUse(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse(&quot;carried&quot;)" methodname="NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="249496013" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.019654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1804" name="NonCurrentActorCannotPublishSelfUse(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.NonCurrentActorCannotPublishSelfUse(&quot;equipped&quot;)" methodname="NonCurrentActorCannotPublishSelfUse" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="1784024799" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1807" name="ResetRemovesSelfUseListenerAndHeadlessUseRemainsSafe" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.ResetRemovesSelfUseListenerAndHeadlessUseRemainsSafe" methodname="ResetRemovesSelfUseListenerAndHeadlessUseRemainsSafe" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="1237232620" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:15Z" duration="0.020078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1799" name="ResolvedSelfUsePreservesFacingWithoutFakeCastTargetOrAttack" fullname="CavesOfOoo.Tests.FieldMedicineVisualHookTests.ResolvedSelfUsePreservesFacingWithoutFakeCastTargetOrAttack" methodname="ResolvedSelfUsePreservesFacingWithoutFakeCastTargetOrAttack" classname="CavesOfOoo.Tests.FieldMedicineVisualHookTests" runstate="Runnable" seed="251737865" result="Passed" start-time="2026-10-04 01:15:15Z" end-time="2026-10-04 01:15:16Z" duration="0.020508" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="3751" name="GameAuditNaturalWeaponActivationAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:17Z" duration="1.268504" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="3775" name="CompleteSaveKeepsDistinctSameLookingNaturalObjectsAndDifferentCustomPayloads" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.CompleteSaveKeepsDistinctSameLookingNaturalObjectsAndDifferentCustomPayloads" methodname="CompleteSaveKeepsDistinctSameLookingNaturalObjectsAndDifferentCustomPayloads" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1865231203" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.065382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3771" name="DismemberVetoKeepsExactNaturalAndPersonalEquipment" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.DismemberVetoKeepsExactNaturalAndPersonalEquipment" methodname="DismemberVetoKeepsExactNaturalAndPersonalEquipment" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="489783476" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.029918" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3777" name="EmptyDeclaredMissingDefaultsRemainEmptyAcrossLoadWithoutChangingFlags" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.EmptyDeclaredMissingDefaultsRemainEmptyAcrossLoadWithoutChangingFlags" methodname="EmptyDeclaredMissingDefaultsRemainEmptyAcrossLoadWithoutChangingFlags" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1759355147" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.036513" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3752" name="EveryResolvedAuthoredRecipeIsMaterializedBeforeAnyMaintenanceCall" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.EveryResolvedAuthoredRecipeIsMaterializedBeforeAnyMaintenanceCall" methodname="EveryResolvedAuthoredRecipeIsMaterializedBeforeAnyMaintenanceCall" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="628432827" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.034645" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3778" name="ExistingCustomDefaultKeepsEverySavedFlagBitInsteadOfBlanketRecalculation" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.ExistingCustomDefaultKeepsEverySavedFlagBitInsteadOfBlanketRecalculation" methodname="ExistingCustomDefaultKeepsEverySavedFlagBitInsteadOfBlanketRecalculation" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="500954776" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.035700" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3762" name="FreshActualEffectRecipesReachNaturalPayloadAndParser" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.183464" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3756" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Viper&quot;,&quot;Poisoned,75,1d2,4,0&quot;,&quot;Poisoned&quot;,75,&quot;1d2&quot;,4,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Viper&quot;,&quot;Poisoned,75,1d2,4,0&quot;,&quot;Poisoned&quot;,75,&quot;1d2&quot;,4,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="989248513" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.030316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3757" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Scorpion&quot;,&quot;Poisoned,50,1d4,6,0&quot;,&quot;Poisoned&quot;,50,&quot;1d4&quot;,6,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Scorpion&quot;,&quot;Poisoned,50,1d4,6,0&quot;,&quot;Poisoned&quot;,50,&quot;1d4&quot;,6,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1581433309" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.032222" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3758" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;GiantSpider&quot;,&quot;Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0&quot;,&quot;Poisoned&quot;,35,&quot;1d4&quot;,6,2)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;GiantSpider&quot;,&quot;Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0&quot;,&quot;Poisoned&quot;,35,&quot;1d4&quot;,6,2)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1851460511" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.031235" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3759" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrassHusk&quot;,&quot;Electrified,20,,3,1.0&quot;,&quot;Electrified&quot;,20,&quot;&quot;,3,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrassHusk&quot;,&quot;Electrified,20,,3,1.0&quot;,&quot;Electrified&quot;,20,&quot;&quot;,3,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="2140489488" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.029239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3760" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrittleHound&quot;,&quot;Bleeding,25,1d2,10,0&quot;,&quot;Bleeding&quot;,25,&quot;1d2&quot;,10,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrittleHound&quot;,&quot;Bleeding,25,1d2,10,0&quot;,&quot;Bleeding&quot;,25,&quot;1d2&quot;,10,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="616592762" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.029468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3761" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Rotling&quot;,&quot;Poisoned,10,1d2,4,0&quot;,&quot;Poisoned&quot;,10,&quot;1d2&quot;,4,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Rotling&quot;,&quot;Poisoned,10,1d2,4,0&quot;,&quot;Poisoned&quot;,10,&quot;1d2&quot;,4,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="619709139" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.028668" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3763" name="FreshSporeShamblerCarriesItsLiteralGasRecipeAndDefaults" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshSporeShamblerCarriesItsLiteralGasRecipeAndDefaults" methodname="FreshSporeShamblerCarriesItsLiteralGasRecipeAndDefaults" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="2115803675" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.028819" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3755" name="MaterializedNaturalsAreNotCarriedItemsEquipmentOrGroundLoot" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.MaterializedNaturalsAreNotCarriedItemsEquipmentOrGroundLoot" methodname="MaterializedNaturalsAreNotCarriedItemsEquipmentOrGroundLoot" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1689202651" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.029301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3766" name="NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" methodname="NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="427717125" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.028853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3776" name="NoBodyWithNaturalPropertyKeepsSupportedCreationAndCarriedLoadoutFallback" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.NoBodyWithNaturalPropertyKeepsSupportedCreationAndCarriedLoadoutFallback" methodname="NoBodyWithNaturalPropertyKeepsSupportedCreationAndCarriedLoadoutFallback" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="903532181" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.080201" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3765" name="ObjectCreatedAndBeforeEquipSeeFinalOverrideAndSameNaturalObjects" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.ObjectCreatedAndBeforeEquipSeeFinalOverrideAndSameNaturalObjects" methodname="ObjectCreatedAndBeforeEquipSeeFinalOverrideAndSameNaturalObjects" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="163449506" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.069873" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3770" name="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.225598" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3767" name="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Dagger&quot;,2,1,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Dagger&quot;,2,1,1)" methodname="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1590338367" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.074611" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3768" name="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Greatsword&quot;,1,1,0)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Greatsword&quot;,1,1,0)" methodname="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="689924946" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.074110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3769" name="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Buckler&quot;,2,0,2)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains(&quot;Buckler&quot;,2,0,2)" methodname="OccupiedWeaponSupportHandCannotAddNaturalButShieldFallbackRemains" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="766030224" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.074416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3754" name="OrdinaryPlayerWithNoExplicitNaturalOverrideGetsTwoFists" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.OrdinaryPlayerWithNoExplicitNaturalOverrideGetsTwoFists" methodname="OrdinaryPlayerWithNoExplicitNaturalOverrideGetsTwoFists" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="610613568" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.064951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3764" name="PlainBoneBladeCountercheckDoesNotAcquireOtherRecipesEffectsOrGas" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.PlainBoneBladeCountercheckDoesNotAcquireOtherRecipesEffectsOrGas" methodname="PlainBoneBladeCountercheckDoesNotAcquireOtherRecipesEffectsOrGas" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1135513326" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:16Z" duration="0.062938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3772" name="RealSeverAndRegrowKeepExactNaturalWhileOnlyPersonalWeaponDrops" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.RealSeverAndRegrowKeepExactNaturalWhileOnlyPersonalWeaponDrops" methodname="RealSeverAndRegrowKeepExactNaturalWhileOnlyPersonalWeaponDrops" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="35592658" result="Passed" start-time="2026-10-04 01:15:16Z" end-time="2026-10-04 01:15:17Z" duration="0.067637" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3773" name="RepeatedBodyLoadHookFillsMissingOnceAndDoesNotRegrantOrAnnounceGear" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.RepeatedBodyLoadHookFillsMissingOnceAndDoesNotRegrantOrAnnounceGear" methodname="RepeatedBodyLoadHookFillsMissingOnceAndDoesNotRegrantOrAnnounceGear" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="171309568" result="Passed" start-time="2026-10-04 01:15:17Z" end-time="2026-10-04 01:15:17Z" duration="0.064404" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3774" name="RepeatedCompleteSavesRepairOldNaturalsWithoutAddingNewPersonalKit" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.RepeatedCompleteSavesRepairOldNaturalsWithoutAddingNewPersonalKit" methodname="RepeatedCompleteSavesRepairOldNaturalsWithoutAddingNewPersonalKit" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1568319234" result="Passed" start-time="2026-10-04 01:15:17Z" end-time="2026-10-04 01:15:17Z" duration="0.098757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3753" name="SameRecipeActorsAndHandsOwnIndependentNaturalPayloads" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.SameRecipeActorsAndHandsOwnIndependentNaturalPayloads" methodname="SameRecipeActorsAndHandsOwnIndependentNaturalPayloads" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="644055500" result="Passed" start-time="2026-10-04 01:15:17Z" end-time="2026-10-04 01:15:17Z" duration="0.030016" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3779" name="UnsupportedMissingRecipeUsesExistingFactoryFallbackWithoutCreatingPersonalGear" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.UnsupportedMissingRecipeUsesExistingFactoryFallbackWithoutCreatingPersonalGear" methodname="UnsupportedMissingRecipeUsesExistingFactoryFallbackWithoutCreatingPersonalGear" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1410158084" result="Passed" start-time="2026-10-04 01:15:17Z" end-time="2026-10-04 01:15:17Z" duration="0.028770" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

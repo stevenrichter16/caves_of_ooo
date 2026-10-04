@@ -12,6 +12,7 @@ namespace CavesOfOoo.Core
         bool forced);
 
     public delegate void EntityInteractionVisualHandler(Entity actor, Entity target, Zone zone);
+    public delegate void EntitySelfUseVisualHandler(Entity actor, Zone zone);
     public delegate void EntityAttackVisualHandler(Entity attacker, Entity defender, Zone zone);
     public delegate void EntityCastVisualHandler(
         Entity caster, Zone zone, string spellID,
@@ -28,6 +29,7 @@ namespace CavesOfOoo.Core
     {
         public static EntityMovedVisualHandler MovedCallback { get; set; }
         public static EntityInteractionVisualHandler InteractionCallback { get; set; }
+        public static EntitySelfUseVisualHandler SelfUseCallback { get; set; }
         public static EntityAttackVisualHandler AttackCallback { get; set; }
         public static EntityCastVisualHandler CastCallback { get; set; }
         public static EntityDamageVisualHandler DamageCallback { get; set; }
@@ -68,6 +70,25 @@ namespace CavesOfOoo.Core
             return a != null && b != null && a.Objects.Contains(actor) && b.Objects.Contains(target)
                 && ap != null && ap.ParentEntity == actor && ap.InInventory == null && ap.Equipped == null
                 && bp != null && bp.ParentEntity == target && bp.InInventory == null && bp.Equipped == null;
+        }
+
+        /// <summary>
+        /// Presentation-only gesture after a self-directed use commits. The living
+        /// actor must still be physically present; no world target, spell, facing
+        /// change or additional simulation action is manufactured.
+        /// </summary>
+        public static void EmitSelfUse(Entity actor, Zone zone)
+        {
+            if (IsCurrentSelfUse(actor, zone)) SelfUseCallback?.Invoke(actor, zone);
+        }
+
+        internal static bool IsCurrentSelfUse(Entity actor, Zone zone)
+        {
+            if (actor == null || zone == null || actor.GetStatValue("Hitpoints") <= 0
+                || CombatSystem.IsDeathHandled(actor)) return false;
+            var cell = zone.GetEntityCell(actor); var physical = actor.GetPart<PhysicsPart>();
+            return actor.SpatialZone == zone && cell != null && cell.Objects.Contains(actor)
+                && physical?.ParentEntity == actor && physical.InInventory == null && physical.Equipped == null;
         }
 
         public static void EmitAttack(Entity attacker, Entity defender, Zone zone)
@@ -119,6 +140,7 @@ namespace CavesOfOoo.Core
             MovedCallback = null;
             AttackCallback = null;
             InteractionCallback = null;
+            SelfUseCallback = null;
             CastCallback = null;
             DamageCallback = null;
             DeathCallback = null;
