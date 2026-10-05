@@ -98,14 +98,8 @@ namespace CavesOfOoo.Skills
             // water stayed water, because the ground pass ran after an
             // early return on a position that no longer resolved).
             var groundPos = ctx.Zone.GetEntityPosition(target);
-
-            var dmg = new Damage(GRIP_DAMAGE);
-            dmg.AddAttribute("Cold");
-            // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
-                // DestructiblePart, and ApplyDamage deliberately early-returns
-                // on anything with no Hitpoints stat — so elemental damage aimed
-                // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+            // The shared helper also routes scenery through structural HP.
+            SpellDamageHelpers.ApplySpellDamage(target, GRIP_DAMAGE, "Cold", actor, ctx.Zone);
 
             if (target.GetStatValue("Hitpoints") <= 0)
             {

@@ -183,7 +183,7 @@ namespace CavesOfOoo.Core
                 ColorCode   = "&M",
                 Flavor      = "A word that unclenches the fist.",
                 Mechanics   = "Pacifies 50 turns \u2022 Range 6 \u2022 CD 20",
-                Signature   = "No damage \u2022 does not stack on the peaceful"
+                Signature   = "No damage \u2022 harm breaks peace \u2022 does not stack"
             } },
 
             // \u2500\u2500 Rites (SM7-SM9) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
@@ -211,14 +211,14 @@ namespace CavesOfOoo.Core
                 DisplayName = "Rendered Steam",
                 ColorCode   = "&W",
                 Flavor      = "Water and fire, made to agree at last.",
-                Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 30",
-                Signature   = "Wants Wet AND Burning together \u2022 blinds"
+                Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 35",
+                Signature   = "Wants Wet AND Burning together \u2022 confuses"
             } },
             { "Rites_ScaldingVeil", new GrimoireTooltip {
                 DisplayName = "Scalding Veil",
                 ColorCode   = "&W",
                 Flavor      = "You wear your own drenching as armour.",
-                Mechanics   = "Self \u2022 spends YOUR Wet \u2022 CD 35",
+                Mechanics   = "Self \u2022 spends YOUR Wet \u2022 CD 30",
                 Signature   = "Retaliation aura \u2022 scalds and confuses attackers"
             } },
             { "Rites_Fulmination", new GrimoireTooltip {

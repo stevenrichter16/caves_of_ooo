@@ -87,22 +87,22 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void HeartFlame_BuffConsumesChargePerCast()
+        public void HeartFlame_ModifierQueries_DoNotSpendCharges()
         {
             var actor = MakeBodied();
             var skill = new Pyromancy_HeartFlame();
             actor.GetPart<SkillsPart>().AddSkill(skill, source: "test");
             skill.OnCommand(new SkillEventContext { Attacker = actor, Defender = actor, Rng = new Random(0) });
 
-            // Three Heat casts consume all 3 charges.
+            // Repeated modifier reads never stand in for actual casts.
             for (int i = 0; i < Pyromancy_HeartFlame.BUFF_CHARGES; i++)
             {
                 int bonus = skill.OnGetSpellDamageModifier(actor, actor, "Heat", baseDamage: 10);
                 Assert.Greater(bonus, 0, "Charge " + i + " must yield a bonus.");
             }
-            Assert.AreEqual(0, skill.ChargesRemaining, "All charges should be spent.");
+            Assert.AreEqual(Pyromancy_HeartFlame.BUFF_CHARGES, skill.ChargesRemaining, "Readouts preserve all charges.");
             int afterAllSpent = skill.OnGetSpellDamageModifier(actor, actor, "Heat", baseDamage: 10);
-            Assert.AreEqual(0, afterAllSpent, "After charges spent, no bonus.");
+            Assert.AreEqual(10, afterAllSpent, "A later read still sees the live bonus.");
         }
 
         [Test]

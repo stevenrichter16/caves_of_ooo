@@ -211,7 +211,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void FlameJet_EmptyCone_EmitsNoTargetDiag()
+        public void FlameJet_EmptyCone_WithTracedTerrain_IsAPaidCast()
         {
             var atk = MakeBodied("atk");
             var skill = Fix<Pyromancy_FlameJet>(atk);
@@ -219,9 +219,10 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(atk, 10, 10);
             Diag.ResetAll();
 
-            skill.OnCommand(Ctx(atk, zone, 1, 0));
-
-            StringAssert.Contains("no_target", Reasons());
+            var context = Ctx(atk, zone, 1, 0);
+            Assert.IsTrue(skill.OnCommand(context));
+            Assert.IsTrue(context.BlocksTurnAdvance);
+            StringAssert.DoesNotContain("no_target", Reasons());
         }
 
         [Test]
@@ -461,7 +462,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void AllThree_AreRegisteredAndFitTheSkillsScreen()
+        public void AllThree_AreRegisteredAndFullyDiscoverableInTheDetailsReader()
         {
             var json = System.IO.File.ReadAllText(System.IO.Path.Combine(
                 UnityEngine.Application.dataPath,
@@ -475,9 +476,10 @@ namespace CavesOfOoo.Tests
                 Assert.IsTrue(SkillRegistry.TryGetPowerByClass(cls, out var power),
                     cls + " must be purchasable or it does not exist for the player");
                 Assert.Greater(power.Cost, 0);
-                Assert.LessOrEqual(power.Description.Length, 55,
-                    cls + " is truncated by SkillsScreenUI (cut at 55), "
-                    + "hiding the mechanic at the moment of purchase");
+                Assert.IsNotEmpty(power.Description);
+                StringAssert.Contains(power.Description,
+                    CavesOfOoo.Rendering.AbilityDetailsBuilder.BuildForSkill(MakeBodied("reader"), cls),
+                    cls + " must expose its exact full description before purchase.");
             }
         }
 

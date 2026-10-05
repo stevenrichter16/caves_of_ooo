@@ -14,6 +14,13 @@ namespace CavesOfOoo.Core
         {
             switch (effect)
             {
+                case LeyTapEffect ley:
+                    return "Ley Tap - 1 damaging cast: +" + ley.BonusDamage
+                        + " damage per target; " + ley.Duration + " of your turns left.";
+                case HeartFlameEffect heart:
+                    return "Heart Flame - " + heart.ChargesRemaining
+                        + " Fire/Heat damage casts at +100% base damage; "
+                        + heart.Duration + " of your turns left.";
                 case PoisonedEffect p:
                     return "Poisoned - " + p.DamageDice + " damage a turn for "
                         + p.Duration + " turns.";
@@ -81,7 +88,7 @@ namespace CavesOfOoo.Core
                 case RootedEffect rt:
                     return "Rooted - held in place" + ForTurns(rt.Duration) + ".";
                 case HobbledEffect hb:
-                    return "Hobbled - slowed" + ForTurns(hb.Duration) + ".";
+                    return "Hobbled - -3 DV (easier to hit)" + ForTurns(hb.Duration) + ".";
                 case WeakenedEffect wk:
                     return "Weakened - -" + wk.StrPenalty + " Strength" + ForTurns(wk.Duration) + ".";
                 case HookedEffect hk:

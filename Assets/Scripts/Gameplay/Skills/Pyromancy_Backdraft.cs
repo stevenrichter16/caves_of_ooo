@@ -69,17 +69,15 @@ namespace CavesOfOoo.Skills
             // goes on the GROUND along the spray, not only into bodies —
             // the same gap that made FlamingHands unable to ignite tile
             // oil (reported from play).
-            ZoneTileStateSystem.ApplyFireToTiles(
-                ctx.Zone,
-                SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, DRAFT_LENGTH),
-                actor, Name);
-
+            var ground = SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, DRAFT_LENGTH);
+            if (targets.Count == 0 && ground.Count == 0)
+            { EmitSkillRejectedDiag(ctx, "no_path"); return false; }
+            ZoneTileStateSystem.ApplyFireToTiles(ctx.Zone, ground, actor, Name);
 
             if (targets.Count == 0)
             {
-                EmitSkillRejectedDiag(ctx, "no_target");
-                MessageLog.Add(actor.GetDisplayName() + "'s backdraft finds nothing to push.");
-                return false;
+                MessageLog.Add(actor.GetDisplayName() + "'s backdraft burns across bare ground.");
+                return true; // terrain ignition is a paid action
             }
 
             int lit = 0, survivors = 0;
@@ -88,11 +86,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
-
-                var dmg = new Damage(DRAFT_DAMAGE);
-                dmg.AddAttribute("Fire");
-                dmg.AddAttribute("Heat");
-                CombatSystem.ApplyDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, DRAFT_DAMAGE, "Heat", actor, ctx.Zone, "Fire");
 
                 if (target.GetStatValue("Hitpoints") <= 0) continue;
                 survivors++;
@@ -124,7 +118,7 @@ namespace CavesOfOoo.Skills
                 + targets.Count + " target" + (targets.Count == 1 ? "" : "s")
                 + (lit > 0 ? ", " + lit + " alight" : "")
                 + (shoved > 0 ? " and driven back!" : "!"));
-        
+
             return true;
         }
     }

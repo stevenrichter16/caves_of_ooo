@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 03:35:23Z" end-time="2026-10-05 03:35:24Z" duration="1.824311">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24860" result="Failed" site="Child" start-time="2026-10-05 03:35:23Z" end-time="2026-10-05 03:35:24Z" duration="1.824311" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30583" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24860" result="Failed" site="Child" start-time="2026-10-05 03:35:23Z" end-time="2026-10-05 03:35:24Z" duration="1.723579" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30584" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24860" result="Failed" site="Child" start-time="2026-10-05 03:35:23Z" end-time="2026-10-05 03:35:24Z" duration="1.522467" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30585" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24860" result="Failed" site="Child" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.658082" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="12702" name="SpellTerrainCastContractTests" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.625503" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="12707" name="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.260347" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12703" name="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_FlameJet,False)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_FlameJet,False)" methodname="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="1698776360" result="Failed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.049616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fired terrain cast must report success to the paid input path.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites (System.Type power, System.Boolean oil) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/SpellTerrainCastContractTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12704" name="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_FlameJet,True)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_FlameJet,True)" methodname="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="961110384" result="Failed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.004927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fired terrain cast must report success to the paid input path.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites (System.Type power, System.Boolean oil) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/SpellTerrainCastContractTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12705" name="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_Backdraft,False)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_Backdraft,False)" methodname="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="291009301" result="Failed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.003368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fired terrain cast must report success to the paid input path.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites (System.Type power, System.Boolean oil) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/SpellTerrainCastContractTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12706" name="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_Backdraft,True)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites(CavesOfOoo.Skills.Pyromancy_Backdraft,True)" methodname="ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="857898028" result="Failed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.002213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fired terrain cast must report success to the paid input path.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpellTerrainCastContractTests.ARealEmptyTerrainCastIsPaidAndOilActuallyIgnites (System.Type power, System.Boolean oil) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/SpellTerrainCastContractTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12710" name="AZeroCellPathRefusesWithoutCooldownOrStateChange" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.AZeroCellPathRefusesWithoutCooldownOrStateChange" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.161998" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12708" name="AZeroCellPathRefusesWithoutCooldownOrStateChange(CavesOfOoo.Skills.Pyromancy_FlameJet)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.AZeroCellPathRefusesWithoutCooldownOrStateChange(CavesOfOoo.Skills.Pyromancy_FlameJet)" methodname="AZeroCellPathRefusesWithoutCooldownOrStateChange" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="1028636562" result="Passed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.019653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12709" name="AZeroCellPathRefusesWithoutCooldownOrStateChange(CavesOfOoo.Skills.Pyromancy_Backdraft)" fullname="CavesOfOoo.Tests.SpellTerrainCastContractTests.AZeroCellPathRefusesWithoutCooldownOrStateChange(CavesOfOoo.Skills.Pyromancy_Backdraft)" methodname="AZeroCellPathRefusesWithoutCooldownOrStateChange" classname="CavesOfOoo.Tests.SpellTerrainCastContractTests" runstate="Runnable" seed="1583758829" result="Passed" start-time="2026-10-05 03:35:24Z" end-time="2026-10-05 03:35:24Z" duration="0.005367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

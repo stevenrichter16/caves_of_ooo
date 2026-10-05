@@ -146,6 +146,8 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone(); var caster = StarterSpell3DCaptureFixture.Actor(zone, "caster", 10, 10);
             var crop = StarterSpell3DCaptureFixture.Prop(zone, "crop", 6, 10, body ? "1,0;2,0;3,0" : null);
+            crop.Tags["Crop"] = "";
+            crop.GetPart<PhysicsPart>().Takeable = false;
             crop.AddPart(new CropPart());
             var bystander = StarterSpell3DCaptureFixture.Actor(zone, "bystander", 11, 10);
             Assert.IsTrue(new Hydromancy_ConjureRain().OnCommand(StarterSpell3DCaptureFixture.Context(zone, caster)));

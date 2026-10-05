@@ -60,10 +60,11 @@ namespace CavesOfOoo.Skills
                 int damage = DiceRoller.Roll("2d6", rng);
                 if (damage > 0)
                 {
+                    int landed = SpellDamageHelpers.ApplySpellDamage(target, damage, "Heat", actor, zone);
                     MessageLog.Add(
                         actor.GetDisplayName() + " engulfs " +
-                        target.GetDisplayName() + " in flames for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, "Heat", actor, zone);
+                        target.GetDisplayName() + " in flames for " + landed + " damage!");
+
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)

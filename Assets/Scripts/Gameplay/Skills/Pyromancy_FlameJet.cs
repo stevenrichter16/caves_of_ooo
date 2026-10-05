@@ -72,32 +72,26 @@ namespace CavesOfOoo.Skills
             // goes on the GROUND along the spray, not only into bodies —
             // the same gap that made FlamingHands unable to ignite tile
             // oil (reported from play).
-            ZoneTileStateSystem.ApplyFireToTiles(
-                ctx.Zone,
-                SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, JET_LENGTH),
-                actor, Name);
-
+            var ground = SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, JET_LENGTH);
+            if (targets.Count == 0 && ground.Count == 0)
+            { EmitSkillRejectedDiag(ctx, "no_path"); return false; }
+            ZoneTileStateSystem.ApplyFireToTiles(ctx.Zone, ground, actor, Name);
 
             if (targets.Count == 0)
             {
-                EmitSkillRejectedDiag(ctx, "no_target");
-                MessageLog.Add(actor.GetDisplayName() + "'s flame jet roars into empty air.");
-                return false;
+                MessageLog.Add(actor.GetDisplayName() + "'s flame jet burns across bare ground.");
+                return true; // a real fired terrain cast, even without a creature
             }
 
             int lit = 0, doused = 0;
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
-
-                var dmg = new Damage(JET_DAMAGE);
-                dmg.AddAttribute("Fire");
-                dmg.AddAttribute("Heat");
                 // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
                 // DestructiblePart, and ApplyDamage deliberately early-returns
                 // on anything with no Hitpoints stat — so elemental damage aimed
                 // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, JET_DAMAGE, "Heat", actor, ctx.Zone, "Fire");
 
                 // Only the living catch fire.
                 if (target.GetStatValue("Hitpoints") <= 0) continue;
@@ -118,7 +112,7 @@ namespace CavesOfOoo.Skills
             MessageLog.Add(actor.GetDisplayName() + "'s flame jet engulfs "
                 + targets.Count + " target" + (targets.Count == 1 ? "" : "s")
                 + (lit > 0 ? ", setting " + lit + " alight!" : "!"));
-        
+
             return true;
         }
     }

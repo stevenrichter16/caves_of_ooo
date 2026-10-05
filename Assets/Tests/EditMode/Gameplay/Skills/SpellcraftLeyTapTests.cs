@@ -73,7 +73,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void LeyTap_BuffIsSingleCharge_SecondCallReturnsZero()
+        public void LeyTap_ModifierQueries_DoNotSpendTheCharge()
         {
             var actor = MakeBodied();
             var skill = new Spellcraft_LeyTap();
@@ -83,8 +83,9 @@ namespace CavesOfOoo.Tests
             int firstBonus = skill.OnGetSpellDamageModifier(actor, actor, "Fire", 5);
             Assert.Greater(firstBonus, 0);
             int secondBonus = skill.OnGetSpellDamageModifier(actor, actor, "Fire", 5);
-            Assert.AreEqual(0, secondBonus,
-                "LeyTap is single-charge — second call returns 0 (buff consumed).");
+            Assert.AreEqual(firstBonus, secondBonus,
+                "A damage readout is not a successful cast and cannot consume the charge.");
+            Assert.AreEqual(firstBonus, skill.PendingBonus);
         }
 
         [Test]

@@ -56,7 +56,6 @@ namespace CavesOfOoo.Skills
 
             ctx.BlocksTurnAdvance = true;
 
-
             // 1. Damage the creatures the beam passed through.
             for (int i = 0; i < trace.HitEntities.Count; i++)
             {
@@ -65,10 +64,11 @@ namespace CavesOfOoo.Skills
                 if (damage <= 0)
                     continue;
 
+                int landed = SpellDamageHelpers.ApplySpellDamage(target, damage, "Heat", actor, zone);
                 MessageLog.Add(
                     actor.GetDisplayName() + " scorches " +
-                    target.GetDisplayName() + " for " + damage + " damage!");
-                CombatSystem.ApplyDamage(target, damage, "Heat", actor, zone);
+                    target.GetDisplayName() + " for " + landed + " damage!");
+
             }
 
             // 2. One heat dose per owner in this cast, including scenery

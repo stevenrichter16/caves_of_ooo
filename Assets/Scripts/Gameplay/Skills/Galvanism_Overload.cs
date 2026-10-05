@@ -130,10 +130,8 @@ namespace CavesOfOoo.Skills
             foreach (var target in targets)
             {
                 if (ctx.Zone.GetEntityCell(target) == null) continue;
-                var elecDmg = new Damage(OVERLOAD_DAMAGE);
-                elecDmg.AddAttribute("Electric");
-                elecDmg.AddAttribute("Lightning");
-                DestructionSystem.RouteDamage(target, elecDmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, OVERLOAD_DAMAGE,
+                    "Electric", actor, ctx.Zone, "Lightning");
                 hits++;
             }
 

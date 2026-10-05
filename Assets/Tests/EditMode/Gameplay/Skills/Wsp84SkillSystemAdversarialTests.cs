@@ -625,38 +625,22 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Adversarial_HeartFlame_Charges_ExpireAfterDurationEvenIfUnused()
+        public void Adversarial_HeartFlame_Charges_ExpireAfterOwnerActionsEvenIfUnused()
         {
-            // HeartFlame has a charge counter AND an expiry turn.
-            // If the player charges but doesn't cast for BUFF_DURATION
-            // turns, charges should be 0 on the next OnGetSpellDamageModifier
-            // call. Adversarial: simulate by manually advancing the
-            // TurnManager's TickCount past the expiry, then call the
-            // hook — should return 0.
-            var actor = MakeBodied("actor");
-            var skill = new Pyromancy_HeartFlame();
-            actor.GetPart<SkillsPart>().AddSkill(skill, source: "test");
-
-            // The TurnManager constructor sets Active = this, so the
-            // TickCount used by HeartFlame's expiry resolution comes
-            // from this instance.
-            var turn = new TurnManager();
-            // No turns ticked yet (TickCount = 0 at construction).
-            skill.OnCommand(new SkillEventContext
-            { Attacker = actor, Defender = actor, Rng = new Random(0) });
-            Assert.AreEqual(Pyromancy_HeartFlame.BUFF_CHARGES, skill.ChargesRemaining);
-
-            // Manually advance TickCount past expiry. (Tick() advances
-            // it; we don't have direct setter access.) We use the
-            // public Tick API to push TickCount above the expiry turn.
-            for (int i = 0; i < Pyromancy_HeartFlame.BUFF_DURATION + 5; i++)
-                turn.Tick();
-
-            int bonus = skill.OnGetSpellDamageModifier(actor, actor, "Heat", 10);
-            Assert.AreEqual(0, bonus,
-                "Expired HeartFlame charges must NOT yield bonus.");
-            Assert.AreEqual(0, skill.ChargesRemaining,
-                "Expired charges should be drained on access.");
+            SpellCastFixture.Reset();
+            try
+            {
+                var f = new SpellCastFixture(); var skill = f.Learn<Pyromancy_HeartFlame>();
+                Assert.IsTrue(f.Cast(skill)); f.Advance();
+                f.Turns.AdvanceClock(10000);
+                Assert.AreEqual(10, skill.OnGetSpellDamageModifier(f.Actor, f.Actor, "Heat", 10),
+                    "Global ticks are not owner actions and must not expire the buff.");
+                for (int i = 0; i < Pyromancy_HeartFlame.BUFF_DURATION; i++) f.Advance();
+                Assert.AreEqual(0, skill.OnGetSpellDamageModifier(f.Actor, f.Actor, "Heat", 10));
+                Assert.AreEqual(0, skill.ChargesRemaining, "Unused charges expire at the owner-action boundary.");
+                Assert.IsNull(f.Actor.GetEffect<HeartFlameEffect>());
+            }
+            finally { ResonanceSystem.ResetForTests(); SpellCastFixture.RestoreRuntime(); }
         }
 
         // ════════════════════════════════════════════════════════════════
@@ -973,31 +957,25 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_HeartFlame_ReFireDuringBuffWindow_ResetsCharges()
         {
-            // What happens if the cooldown gate is bypassed and HeartFlame
-            // fires during its own active buff window? My implementation
-            // resets _chargesRemaining = BUFF_CHARGES (3), not adds. So
-            // re-firing OVERWRITES rather than accumulating.
-            //
-            // Adversarial: verify this is the (intentional) behavior.
-            // A buggy "+= BUFF_CHARGES" would compound to 6+ charges
-            // on rapid re-fire, breaking the design tradeoff.
-            var actor = MakeBodied("actor", hp: 200);
-            var skill = new Pyromancy_HeartFlame();
-            actor.GetPart<SkillsPart>().AddSkill(skill, source: "test");
-
-            skill.OnCommand(new SkillEventContext { Attacker = actor, Defender = actor, Rng = new Random(0) });
-            Assert.AreEqual(Pyromancy_HeartFlame.BUFF_CHARGES, skill.ChargesRemaining,
-                "Setup: first cast charges to 3.");
-            // Consume one charge.
-            skill.OnGetSpellDamageModifier(actor, actor, "Heat", baseDamage: 10);
-            Assert.AreEqual(Pyromancy_HeartFlame.BUFF_CHARGES - 1, skill.ChargesRemaining,
-                "After one cast: 2 remaining.");
-
-            // Re-fire (bypassing cooldown).
-            skill.OnCommand(new SkillEventContext { Attacker = actor, Defender = actor, Rng = new Random(0) });
-            Assert.AreEqual(Pyromancy_HeartFlame.BUFF_CHARGES, skill.ChargesRemaining,
-                "Re-fire RESETS to 3 (overwrite, not stack). If this fails, "
-                + "rapid HeartFlame spam could compound charges.");
+            SpellCastFixture.Reset();
+            try
+            {
+                var f = new SpellCastFixture(); var skill = f.Learn<Pyromancy_HeartFlame>();
+                var jet = f.Learn<Pyromancy_FlameJet>(); f.Creature("target", 6, 5);
+                Assert.IsTrue(f.Cast(skill)); f.Advance();
+                var original = f.Actor.GetEffect<HeartFlameEffect>();
+                Assert.IsTrue(f.Cast(jet)); f.Advance();
+                Assert.AreEqual(2, skill.ChargesRemaining, "A real direct-damage cast spends one charge.");
+                // Deliberately bypass the cooldown to probe effect reapplication,
+                // while retaining the actual skill command and paid owner turn.
+                f.Actor.GetPart<ActivatedAbilitiesPart>().GetAbility(skill.ActivatedAbilityID).CooldownRemaining = 0;
+                Assert.IsTrue(f.Cast(skill)); f.Advance();
+                Assert.AreSame(original, f.Actor.GetEffect<HeartFlameEffect>(), "Refresh must not add a second buff.");
+                Assert.AreEqual(3, skill.ChargesRemaining, "Refresh overwrites; it cannot accumulate charges.");
+                Assert.AreEqual(5, skill.TurnsRemaining, "Refresh starts a new full owner-action window.");
+                Assert.AreEqual(50, f.Actor.GetStatValue("Hitpoints"), "Both activations pay the real health sacrifice.");
+            }
+            finally { ResonanceSystem.ResetForTests(); SpellCastFixture.RestoreRuntime(); }
         }
 
         [Test]

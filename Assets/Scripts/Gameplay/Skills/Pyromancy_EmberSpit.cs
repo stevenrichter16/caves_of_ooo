@@ -88,15 +88,8 @@ namespace CavesOfOoo.Skills
             if (mark.x >= 0)
                 ZoneTileStateSystem.WriteResidue(ctx.Zone, mark.x, mark.y,
                     EmberResidue, EmberTurns, actor, Name);
-
-            var dmg = new Damage(SPIT_DAMAGE);
-            dmg.AddAttribute("Fire");
-            dmg.AddAttribute("Heat");
-            // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
-                // DestructiblePart, and ApplyDamage deliberately early-returns
-                // on anything with no Hitpoints stat — so elemental damage aimed
-                // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+            // The shared helper also routes scenery through structural HP.
+            SpellDamageHelpers.ApplySpellDamage(target, SPIT_DAMAGE, "Heat", actor, ctx.Zone, "Fire");
 
             if (target.GetStatValue("Hitpoints") <= 0)
             {

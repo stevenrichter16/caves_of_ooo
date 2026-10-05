@@ -90,15 +90,11 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
-
-                var dmg = new Damage(SPIKE_DAMAGE);
-                dmg.AddAttribute("Electric");
-                dmg.AddAttribute("Lightning");
                 // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
                 // DestructiblePart, and ApplyDamage deliberately early-returns
                 // on anything with no Hitpoints stat — so elemental damage aimed
                 // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, SPIKE_DAMAGE, "Electric", actor, ctx.Zone, "Lightning");
             }
 
             // "bodies", not "bodys" — the siblings dodge this by stem

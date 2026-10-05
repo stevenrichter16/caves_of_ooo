@@ -37,6 +37,10 @@ namespace CavesOfOoo.Core
         /// <summary>When true, wanders randomly while pacified. When false, idles in place.</summary>
         public bool Wander;
 
+        /// <summary>Only fragile magical peace ends on actual HP damage.
+        /// Quest/dialogue truces default to false. Public for goal save persistence.</summary>
+        public bool BreakOnDamage;
+
         public NoFightGoal(int duration = 0, bool wander = false)
         {
             Duration = duration;

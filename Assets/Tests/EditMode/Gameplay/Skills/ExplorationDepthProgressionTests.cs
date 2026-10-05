@@ -22,7 +22,6 @@ namespace CavesOfOoo.Tests
         [TestCase("AcrobaticsSkill", "Acrobatics_EvasiveRoll")]
         [TestCase("AcrobaticsSkill", "Acrobatics_Vault")]
         [TestCase("PersuasionSkill", "Persuasion_Recruit")]
-        [TestCase("PersuasionSkill", "Persuasion_Dismiss")]
         public void TwoActualLevelAwardsBuyRootThenOnePower(string tree, string power)
         {
             var player = harness.Factory.CreateEntity("Player");
@@ -39,6 +38,34 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, player.GetStatValue("SP"));
             Assert.AreEqual(SkillsScreenRowState.Owned, Row(player, power).State);
             Assert.IsFalse(BuySkillAction.Execute(player, power).Succeeded, "No duplicate purchase.");
+        }
+
+        [Test]
+        public void TwoActualLevelAwardsBuyRecruitThenUnlockDismissAtZeroPoints()
+        {
+            var player = harness.Factory.CreateEntity("Player");
+            Assert.AreEqual(0, player.GetStatValue("SP"));
+            Level(player);
+            Assert.AreEqual(1, player.GetStatValue("SP"));
+            Assert.IsTrue(BuySkillAction.Execute(player, "PersuasionSkill").Succeeded);
+            Assert.AreEqual(0, player.GetStatValue("SP"));
+            Assert.AreEqual(BuySkillAction.FailureReason.MissingPrereq,
+                BuySkillAction.Execute(player, "Persuasion_Dismiss").Reason);
+            Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet, Row(player, "Persuasion_Dismiss").State);
+            Assert.IsFalse(BuySkillAction.Execute(player, "Persuasion_Recruit").Succeeded);
+
+            Level(player);
+            Assert.AreEqual(1, player.GetStatValue("SP"));
+            Assert.AreEqual(SkillsScreenRowState.Buyable, Row(player, "Persuasion_Recruit").State);
+            Assert.IsTrue(BuySkillAction.Execute(player, "Persuasion_Recruit").Succeeded);
+            Assert.AreEqual(0, player.GetStatValue("SP"));
+            Assert.AreEqual(SkillsScreenRowState.Buyable, Row(player, "Persuasion_Dismiss").State);
+            Assert.IsTrue(BuySkillAction.Execute(player, "Persuasion_Dismiss").Succeeded);
+            Assert.AreEqual(0, player.GetStatValue("SP"), "Managing the earned companion needs no third level award.");
+            Assert.AreEqual(SkillsScreenRowState.Owned, Row(player, "Persuasion_Dismiss").State);
+            Assert.AreEqual(BuySkillAction.FailureReason.AlreadyOwned,
+                BuySkillAction.Execute(player, "Persuasion_Dismiss").Reason);
+            Assert.AreEqual(0, player.GetStatValue("SP"));
         }
 
         [TestCase("ShortBladesSkill", "ShortBlades_Disengage")]

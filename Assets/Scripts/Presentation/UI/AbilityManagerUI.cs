@@ -31,7 +31,7 @@ namespace CavesOfOoo.Rendering
     ///   ├──────────────────────────────────────────────────────────┤
     ///   │ Knock back an adjacent enemy.                            │
     ///   └──────────────────────────────────────────────────────────┘
-    ///   [Enter]use [0-9]bind [R]unbind [M/Esc]close
+    ///   [Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close
     /// </code>
     /// </para>
     ///
@@ -90,6 +90,31 @@ namespace CavesOfOoo.Rendering
         public bool IsOpen => _isOpen;
         public int RowCount => _snapshot.RowCount;
         public int CursorIndex => _cursorIndex;
+        public System.Guid SelectedAbilityID => _isOpen && _cursorIndex >= 0 && _cursorIndex < _snapshot.RowCount
+            ? _snapshot.Rows[_cursorIndex].AbilityID : System.Guid.Empty;
+        private System.Guid _readerSelection = System.Guid.Empty;
+
+        /// <summary>Temporarily remove the menu footprint without closing or losing its cursor/callback.</summary>
+        public void HideForReader()
+        {
+            if (!_isOpen) return;
+            _readerSelection = SelectedAbilityID;
+            if (Tilemap != null) ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
+        }
+
+        /// <summary>Revalidate rows after a free reader and retain the selected identity when still present.</summary>
+        public void RestoreAfterReader()
+        {
+            if (!_isOpen || PlayerEntity == null) return;
+            _snapshot = AbilityManagerStateBuilder.Build(PlayerEntity);
+            for (int i = 0; i < _snapshot.RowCount; i++)
+                if (_snapshot.Rows[i].AbilityID == _readerSelection) { _cursorIndex = i; break; }
+            _cursorIndex = System.Math.Max(0, System.Math.Min(_cursorIndex, _snapshot.RowCount - 1));
+            ScrollIntoView();
+            Render();
+        }
+
 
         /// <summary>Open the manager for the given actor. Builds snapshot,
         /// resets cursor to 0. Safe to call when already open (re-snapshots).</summary>
@@ -369,7 +394,7 @@ namespace CavesOfOoo.Rendering
 
             // Footer hint.
             int hintY = borderH;
-            DrawText(0, hintY, "[Enter]use [0-9]bind [R]unbind [M/Esc]close",
+            DrawText(0, hintY, "[Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close",
                 QudColorParser.DarkGray);
         }
 

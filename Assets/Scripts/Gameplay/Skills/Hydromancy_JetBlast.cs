@@ -95,15 +95,13 @@ namespace CavesOfOoo.Skills
                 var target = targets[i];
                 SpellFxCapture.TargetInAffectedCells(ctx.Zone, target);
 
-                var dmg = new Damage(BLAST_DAMAGE);
                 // NOTE: "Water" is a descriptive tag only — it maps to
                 // DamageAttributeFlags.None (Damage.cs:144-173), so this
                 // damage is untyped and no elemental resistance reduces
                 // it. That is intended: water is not an element you
                 // resist here, it is a setup. Pinned by
                 // HydromancyJetBlastTests.WaterDamage_IsUntyped.
-                dmg.AddAttribute("Water");
-                CombatSystem.ApplyDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, BLAST_DAMAGE, "Water", actor, ctx.Zone);
 
                 if (target.GetStatValue("Hitpoints") <= 0) continue;
                 survivors++;

@@ -323,8 +323,10 @@ namespace CavesOfOoo.Tests
             Learn<Hydromancy_ConjureRain>(caster);
             var cropEntity = new Entity { ID = "crop", BlueprintName = "TestCrop" };
             var crop = new CropPart();
+            cropEntity.Tags["Crop"] = "";
+            cropEntity.AddPart(new PhysicsPart { Solid = false, Takeable = false });
             cropEntity.AddPart(crop);
-            zone.AddEntity(cropEntity, 12, 10);
+            Assert.IsTrue(zone.AddEntity(cropEntity, 12, 10));
 
             var (handled, _) = Cast(caster, zone, "CommandConjureRain");
 

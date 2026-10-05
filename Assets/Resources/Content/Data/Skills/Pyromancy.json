@@ -12,7 +12,7 @@
           "Name": "Cinder",
           "Class": "Pyromancy_Cinder",
           "Cost": 1,
-          "Description": "+33% Heat damage to Charred targets. Charred is the post-Burning residue — a target who survived a fire is more fragile to the next one. Stacks additively with Pyromancy's on-Burning bonus when both states are present.",
+          "Description": "+33% direct Fire/Heat spell damage to Charred targets. Applies to matching damaging rites too, after consumed marks are removed. Charred can come from burnt material or certain preparations; ordinary Burning expiry does not leave it automatically.",
           "Foreground": "R",
           "Detail": "Y"
         },
@@ -36,7 +36,7 @@
           "Name": "Pyroclasm",
           "Class": "Pyromancy_Pyroclasm",
           "Cost": 1,
-          "Description": "Active ability: detonate an adjacent burning target. Their Burning is consumed, and every creature in the 3×3 radius takes (3 × consumed Burning duration) Heat damage. 40-turn cooldown.",
+          "Description": "Detonate the burning creature or object in the chosen adjacent cell. Consumes its Burning; every creature within radius 1 of it takes 3 times the consumed duration in Heat damage. Companions can be caught; you are spared. Cooldown 40.",
           "Foreground": "R",
           "Detail": "Y"
         },
@@ -44,7 +44,7 @@
           "Name": "Heart Flame",
           "Class": "Pyromancy_HeartFlame",
           "Cost": 1,
-          "Description": "Active ability: sacrifice 50% of your current HP. Your next 3 Fire/Heat spells within 5 turns deal +100% bonus damage. 100-turn cooldown.",
+          "Description": "Spend half your current HP. Your next 3 Fire/Heat damage spells within 5 of your turns gain +100% base direct damage on every target. One charge per cast; fully resisted hits still spend it. Utility and empty casts keep charges but use the time window. Cooldown 100.",
           "Foreground": "R",
           "Detail": "Y"
         },
@@ -52,7 +52,7 @@
           "Name": "Flame Jet",
           "Class": "Pyromancy_FlameJet",
           "Cost": 1,
-          "Description": "Cone 3: heavy Burning on all. Wet targets resist.",
+          "Description": "Cone 3: direct Heat damage and heavy Burning on creatures, plus fire on the ground. Wet targets resist ignition. Can hit companions. Firing into empty terrain still costs a turn and cooldown.",
           "Foreground": "R",
           "Detail": "W"
         },
@@ -68,7 +68,7 @@
           "Name": "Backdraft",
           "Class": "Pyromancy_Backdraft",
           "Cost": 1,
-          "Description": "Cone 2: Burning plus a shove. The fire that shoves.",
+          "Description": "Cone 2: Heat damage, Burning and a shove, with fire on the ground. Can hit companions. Firing into empty terrain still costs a turn and cooldown.",
           "Foreground": "R",
           "Detail": "W"
         },

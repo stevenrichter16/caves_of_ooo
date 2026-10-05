@@ -4,18 +4,9 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Skills
 {
     /// <summary>
-    /// Cryomancy active: a sudden plunge in temperature that stiffens
-    /// every creature nearby.
-    ///
-    /// <para>SPELLCRAFT SM6 (Docs/SPELLCRAFT-STATUS-SYNERGY.md §6.4) —
-    /// the family's tempo tool. It deals no damage at all; what it buys
-    /// is TURNS. A prime-then-detonate plan needs a pack to still be
-    /// standing where you left it when the payoff lands, and Cold Snap
-    /// is how you arrange that.</para>
-    ///
-    /// <para>Self-centred, so it needs no aiming — and it deliberately
-    /// spares its caster, because a slow that also slowed you would be
-    /// strictly bad to cast.</para>
+    /// Damage-free vulnerability setup: nearby creatures lose 3 DV through
+    /// Hobbled. This does not slow their actions or freeze their movement.
+    /// Spares the caster; companions inside the radius are affected.
     /// </summary>
     public class Cryomancy_ColdSnap : SpellSkillPart
     {

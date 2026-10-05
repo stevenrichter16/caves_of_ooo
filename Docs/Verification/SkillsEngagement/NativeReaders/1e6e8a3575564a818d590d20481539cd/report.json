@@ -1,0 +1,64 @@
+{
+  "runId": "1e6e8a3575564a818d590d20481539cd",
+  "complete": true,
+  "failures": 0,
+  "readerFailures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 18.6502998,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS finite_visible_mark_fixture",
+    "PASS full_purchase_prose",
+    "PASS purchase_reader_restores_selection",
+    "PASS owned_details_live_spec_and_ink",
+    "PASS ability_reader_restores_selection",
+    "PASS actual_visible_marks_previewed",
+    "PASS preview_is_read_only",
+    "PASS preview_returns_to_manager",
+    "PASS fast_cast_path_has_no_new_confirmation"
+  ],
+  "observations": [
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "Heart Flame\n\nSpend half your current HP. Your next 3 Fire/Heat\ndamage spells within 5 of your turns gain +100%\nbase direct damage on every target. One charge per\ncast; fully resisted hits still spend it. Utility\nand empty casts keep charges but use the time\nwindow. Cooldown 100.\n\nRange: 0 cells.\nTargeting: centered on you; area and effects as\ndescribed above.\nCooldown: 100 turns after successful use.\n\nLearning: Requires Pyromancy.\nPurchase: 1 SP. Available: 0.\nRequired tree: Pyromancy.",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"sp\":0,\"targetHp\":20,\"ink\":10,\"wet\":1.0,\"abilities\":[{\"ID\":\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"CooldownRemaining\":0},{\"ID\":\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"CooldownRemaining\":0},{\"ID\":\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"CooldownRemaining\":0},{\"ID\":\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"CooldownRemaining\":0},{\"ID\":\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"CooldownRemaining\":0},{\"ID\":\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"CooldownRemaining\":0},{\"ID\":\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"CooldownRemaining\":0}],\"slots\":[\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\"],\"skills\":[\"Pyromancy_EmberSpit\",\"Pyromancy_FlamingHands\",\"Hydromancy_JetBlast\",\"Galvanism_GroundSurge\",\"Cryomancy_RimeGrip\",\"Spellcraft_Calm\",\"Rites_HangingBolt\"]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "Rite of the Hanging Bolt\n\nPin one creature (range 6) under a suspended bolt:\n2 flat electric damage, and 2 turns of paralysis\nper mark consumed. Cooldown 30. Requires grimoire\nink.\n\nRange: 6 cells.\nTargeting: first creature along one of eight\ndirections; solid cover stops the line.\nCost: 1 ink from a carried charged grimoire per\ncast.\nSpends up to 2 marks per target.\nCollateral: creatures in its shape include\ncompanions and neutral creatures.\nNext carried book: 10 ink remaining.\nCooldown: 30 turns after successful use.\n\nLearning: Already learned.\nPurchase: 1 SP. Available: 0.\nRequired tree: Rites.\n\nReady: off cooldown.\nShortcut: 7",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"sp\":0,\"targetHp\":20,\"ink\":10,\"wet\":1.0,\"abilities\":[{\"ID\":\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"CooldownRemaining\":0},{\"ID\":\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"CooldownRemaining\":0},{\"ID\":\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"CooldownRemaining\":0},{\"ID\":\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"CooldownRemaining\":0},{\"ID\":\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"CooldownRemaining\":0},{\"ID\":\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"CooldownRemaining\":0},{\"ID\":\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"CooldownRemaining\":0}],\"slots\":[\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\"],\"skills\":[\"Pyromancy_EmberSpit\",\"Pyromancy_FlamingHands\",\"Hydromancy_JetBlast\",\"Galvanism_GroundSurge\",\"Cryomancy_RimeGrip\",\"Spellcraft_Calm\",\"Rites_HangingBolt\"]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 2,
+      "text": "Rite of the Hanging Bolt - reading only\n\nVisible candidates only. Unseen interception or\nlater changes may alter a cast. Reading spends no\nink or turn.\n\nmarlback gleaner\nSpend: Wet\nKeep: none\nMarks: 1/2; pin: 2 turns of paralysis on a\nsusceptible survivor.\n\nRite of the Hanging Bolt\n\nPin one creature (range 6) under a suspended bolt:\n2 flat electric damage, and 2 turns of paralysis\nper mark consumed. Cooldown 30. Requires grimoire\nink.\n\nRange: 6 cells.\nTargeting: first creature along one of eight\ndirections; solid cover stops the line.\nCost: 1 ink from a carried charged grimoire per\ncast.\nSpends up to 2 marks per target.\nCollateral: creatures in its shape include\ncompanions and neutral creatures.\nNext carried book: 10 ink remaining.\nCooldown: 30 turns after successful use.\n\nLearning: Already learned.\nPurchase: 1 SP. Available: 0.\nRequired tree: Rites.\n\nReady: off cooldown.\nShortcut: 7",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"sp\":0,\"targetHp\":20,\"ink\":10,\"wet\":1.0,\"abilities\":[{\"ID\":\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"CooldownRemaining\":0},{\"ID\":\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"CooldownRemaining\":0},{\"ID\":\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"CooldownRemaining\":0},{\"ID\":\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"CooldownRemaining\":0},{\"ID\":\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"CooldownRemaining\":0},{\"ID\":\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"CooldownRemaining\":0},{\"ID\":\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"CooldownRemaining\":0}],\"slots\":[\"bce2c041-e209-4e92-bbc0-e8796bd601aa\",\"781d02e9-a62e-4fe4-be0f-2d0527cd63e3\",\"ec76a4b2-5f04-40b1-a89b-33f9ffc03a08\",\"f5e80cf6-739c-47cd-be01-11567d8e5027\",\"c3e2e23e-baaf-46d8-bf41-d0f752d5931b\",\"9b66a04c-79b9-4e44-8105-e3c324ddebb7\",\"4ed785a5-813f-49e3-8d03-1a9a0bbbcaf9\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\",\"00000000-0000-0000-0000-000000000000\"],\"skills\":[\"Pyromancy_EmberSpit\",\"Pyromancy_FlamingHands\",\"Hydromancy_JetBlast\",\"Galvanism_GroundSurge\",\"Cryomancy_RimeGrip\",\"Spellcraft_Calm\",\"Rites_HangingBolt\"]}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/SkillsEngagement/NativeReaders/1e6e8a3575564a818d590d20481539cd/01-purchase-details.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SkillsEngagement/NativeReaders/1e6e8a3575564a818d590d20481539cd/02-ability-details.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SkillsEngagement/NativeReaders/1e6e8a3575564a818d590d20481539cd/03-visible-rite-preview.png"
+  ],
+  "spellBenchmark": {
+    "runId": "c3283ca6128b4dc2b623d57d6e3b95a6",
+    "cases": 6,
+    "failures": 0,
+    "complete": true,
+    "checks": [
+      "PASS ley_paid_followup",
+      "PASS heart_paid_followup",
+      "PASS readouts_keep_charges",
+      "PASS replacement_graph_preserves_both_buffs",
+      "PASS area_spends_one_charge_for_both_targets",
+      "PASS next_cast_uses_one_remaining_fire_charge"
+    ],
+    "readerContextPreserved": true
+  },
+  "fixture": "Ordinary N/Classic start with original stats. Isolated starting zone flattened to floor, player repositioned; stationary actual factory target at east2 with Wet, one granted Hanging Bolt skill and original finite charged grimoire, bounded visibility set. All reader/open/close/navigation/preview/activation inputs use native keyboard; copied text inspection uses public reader paging.",
+  "canVerify": "Actual X/M/D/P/direction/Escape/Enter input, complete prose, actual range/cooldown/ink and visible mark text, row+scroll restoration, no turn/energy/HP/SP/ink/cooldown/effect/binding changes, unchanged quick-cast direction flow.",
+  "cannotVerify": "Controlled UI fixture does not prove ordinary rite discovery, enemy choices, balance, novice understanding or visual readability without independent screenshot inspection. Final spell damage is deliberately not predicted. The separate six-case spell benchmark uses direct command/scheduler/save fixtures, not native player input."
+}

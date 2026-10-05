@@ -125,7 +125,7 @@ namespace CavesOfOoo.Skills
             var actor = ctx.Attacker;
 
             // Veto #2 — no adjacent target.
-            var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
             if (target == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");

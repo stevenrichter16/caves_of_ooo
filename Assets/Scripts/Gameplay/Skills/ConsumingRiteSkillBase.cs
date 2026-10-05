@@ -175,11 +175,11 @@ namespace CavesOfOoo.Skills
                 int amount = ComputeDamage(res);
                 if (amount > 0)
                 {
-                    var dmg = new Damage(amount);
-                    var attrs = DamageAttributes;
-                    for (int a = 0; a < attrs.Length; a++)
-                        dmg.AddAttribute(attrs[a]);
-                    CombatSystem.ApplyDamage(target, dmg, caster, zone);
+                    // The resonance school is not necessarily the damage type:
+                    // Shattered Rime remains untyped. Conditional mastery sees
+                    // only marks left AFTER this rite spent its chosen statuses.
+                    SpellDamageHelpers.ApplySpellDamageWithAttributes(
+                        target, amount, Element, caster, zone, DamageAttributes);
                 }
 
                 OnTargetResolved(target, res, zone);
@@ -211,8 +211,20 @@ namespace CavesOfOoo.Skills
             return true;
         }
 
+        /// <summary>Visible candidates for an explicit player reading. Uses the cast's shape
+        /// with no FX recording and no access through unknown cells or invisible occupants.
+        /// A real cast may meet unseen interception; this never predicts final damage.</summary>
+        public List<Entity> GetVisiblePreviewTargets(Zone zone, Entity caster, int dx, int dy)
+        {
+            if (!CombatIntentReadout.IsVisibleActor(caster, zone)) return new List<Entity>();
+            if ((Shape == RiteShape.SingleTarget || Shape == RiteShape.Cone)
+                && (dx < -1 || dx > 1 || dy < -1 || dy > 1 || (dx == 0 && dy == 0))) return new List<Entity>();
+            var at = zone.GetEntityPosition(caster);
+            return GatherTargets(zone, caster, at.x, at.y, dx, dy, false, true);
+        }
+
         private List<Entity> GatherTargets(
-            Zone zone, Entity caster, int x, int y, int dx, int dy)
+            Zone zone, Entity caster, int x, int y, int dx, int dy, bool recordFx = true, bool visibleOnly = false)
         {
             switch (Shape)
             {
@@ -221,16 +233,16 @@ namespace CavesOfOoo.Skills
 
                 case RiteShape.Radius:
                     return SpellTargeting.GetCreaturesInRadius(
-                        zone, x, y, Range, exclude: caster);
+                        zone, x, y, Range, exclude: caster, recordFx: recordFx, visibleOnly: visibleOnly);
 
                 case RiteShape.Cone:
                     return SpellTargeting.GetCreaturesInCone(
-                        zone, caster, x, y, dx, dy, Range);
+                        zone, caster, x, y, dx, dy, Range, recordFx, visibleOnly);
 
                 default:
                     var one = new List<Entity>(1);
                     var t = RiteTargeting.FirstCreatureInLine(
-                        zone, caster, x, y, dx, dy, Range);
+                        zone, caster, x, y, dx, dy, Range, recordFx, visibleOnly);
                     if (t != null) one.Add(t);
                     return one;
             }

@@ -83,10 +83,8 @@ namespace CavesOfOoo.Skills
                     if (totalDamage > 0)
                     {
                         string targetName = target.GetDisplayName();
-                        var heatDmg = new Damage(totalDamage);
-                        heatDmg.AddAttribute("Heat");
-                        int landed = DestructionSystem.RouteDamage(
-                            target, heatDmg, actor, zone);
+                        int landed = SpellDamageHelpers.ApplySpellDamage(
+                            target, totalDamage, "Heat", actor, zone);
                         MessageLog.Add($"{attackerName} blasts {targetName} with flames for {landed} damage!");
 
                         var heatEvent = GameEvent.New("ApplyHeat");

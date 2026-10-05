@@ -7,11 +7,13 @@ namespace CavesOfOoo.Skills
     {
         public sealed override bool OnCommand(SkillEventContext ctx)
         {
+            using (var damageCast = SpellDamageHelpers.BeginCast(ctx?.Attacker))
             using (var capture = new SpellFxCapture(GetType().Name, ctx?.Zone, ctx?.Attacker))
             {
                 bool cast = ResolveSpell(ctx);
                 if (cast)
                 {
+                    damageCast.Commit();
                     capture.Commit();
                     if (ctx != null) ctx.BlocksTurnAdvance = true;
                 }

@@ -12,7 +12,7 @@
           "Name": "Cleave",
           "Class": "Axe_Cleave",
           "Cost": 1,
-          "Description": "Axe-class hits have a chance to swing through to one adjacent enemy, dealing half damage.",
+          "Description": "Axe-class hits have a 30% chance to swing through to one creature adjacent to the struck target, dealing half damage. Allies can be caught in the follow-through.",
           "Foreground": "r",
           "Detail": "R"
         },
@@ -46,7 +46,8 @@
           "Cost": 1,
           "Description": "Marker skill that opens up vital anatomy (head, heart) to your Dismember procs. Without this skill your axe spares the head; with it, an unlucky enemy may lose theirs. Requires Dismember to actually fire.",
           "Foreground": "r",
-          "Detail": "R"
+          "Detail": "R",
+          "Requires": "Axe_Dismember"
         },
         {
           "Name": "Hook and Drag",

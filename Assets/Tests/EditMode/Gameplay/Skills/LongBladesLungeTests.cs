@@ -38,15 +38,24 @@ namespace CavesOfOoo.Tests
     /// </summary>
     public class LongBladesLungeTests
     {
+        private TurnManager _previousTurns;
+
         [SetUp]
         public void Setup()
         {
+            _previousTurns = TurnManager.Active;
             MessageLog.Clear();
             SkillRegistry.ResetForTests();
             Diag.ResetAll();
         }
 
         // ── Fixture helpers (mirror CudgelSlamTests exactly) ─────────────
+
+        [TearDown]
+        public void RestoreActiveTurns()
+        {
+            typeof(TurnManager).GetProperty("Active").SetValue(null, _previousTurns);
+        }
 
         private static Entity MakeBodiedCreature(string name = "creature",
             int strength = 16, int hp = 50)
@@ -130,6 +139,42 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════════
         // Spec shape — DeclareActivatedAbility returns the expected spec
         // ════════════════════════════════════════════════════════════════
+
+        [Test]
+        public void Lunge_CanBeUsedAgainAfterTenOwnerTurns_ButNotBefore()
+        {
+            var (attacker, defender, zone, lunge) = MakeLungeFixture(defenderHp: 500);
+            attacker.Tags["Player"] = "";
+            zone.AddEntity(attacker, 5, 5); zone.AddEntity(defender, 7, 5);
+            var turns = new TurnManager(); turns.AddEntity(attacker);
+            Assert.AreSame(attacker, turns.ProcessUntilPlayerTurn());
+            Func<bool> cast = () =>
+            {
+                var command = GameEvent.New("CommandLunge");
+                command.SetParameter("Zone", (object)zone);
+                command.SetParameter("RNG", (object)new Random(42));
+                command.SetParameter("DirectionX", 1); command.SetParameter("DirectionY", 0);
+                attacker.FireEvent(command); bool handled = command.Handled; command.Release();
+                return handled;
+            };
+            Assert.IsTrue(cast());
+            var ability = attacker.GetPart<ActivatedAbilitiesPart>().GetAbility(lunge.ActivatedAbilityID);
+            Assert.AreEqual(10, ability.CooldownRemaining);
+            for (int i = 0; i < 9; i++)
+            {
+                turns.EndTurn(attacker, zone);
+                Assert.AreSame(attacker, turns.ProcessUntilPlayerTurn());
+            }
+            Assert.AreEqual(1, ability.CooldownRemaining);
+            int hpBeforeRefusal = defender.GetStatValue("Hitpoints");
+            Assert.IsFalse(cast());
+            Assert.AreEqual(hpBeforeRefusal, defender.GetStatValue("Hitpoints"));
+            turns.EndTurn(attacker, zone); turns.ProcessUntilPlayerTurn();
+            Assert.AreEqual(0, ability.CooldownRemaining);
+            Assert.IsTrue(cast());
+            Assert.Less(defender.GetStatValue("Hitpoints"), hpBeforeRefusal);
+            Assert.AreEqual(5, zone.GetEntityPosition(attacker).x, "Both strikes leave the duelist planted");
+        }
 
         [Test]
         public void Lunge_DeclareActivatedAbility_ReturnsExpectedSpec()

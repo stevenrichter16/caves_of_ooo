@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
         /// <summary>Nearest creature along a direction, stopping at
         /// stone and at the zone edge. Null when the line is empty.</summary>
         internal static Entity FirstCreatureInLine(
-            Zone zone, Entity caster, int startX, int startY, int dx, int dy, int range)
+            Zone zone, Entity caster, int startX, int startY, int dx, int dy, int range, bool recordFx = true, bool visibleOnly = false)
         {
             if (zone == null || range <= 0 || (dx == 0 && dy == 0)) return null;
 
@@ -25,13 +25,14 @@ namespace CavesOfOoo.Core
                 x += dx; y += dy;
                 if (!zone.InBounds(x, y)) break;
                 var cell = zone.GetCell(x, y);
-                if (cell == null || cell.IsSolid()) break;
+                if (cell == null || (visibleOnly && !SpellTargeting.IsVisiblePreviewCell(cell))) break;
+                if (visibleOnly ? SpellTargeting.HasVisiblePreviewSolid(cell, caster, true) : cell.IsSolid()) break;
 
-                SpellFxCapture.PathCell(zone, x, y);
+                if (recordFx) SpellFxCapture.PathCell(zone, x, y);
                 for (int i = 0; i < cell.Occupants.Count; i++)
                 {
                     var e = cell.Occupants[i];
-                    if (e == null || e == caster) continue;
+                    if (e == null || e == caster || (visibleOnly && !CombatIntentReadout.IsVisibleActor(e, zone))) continue;
                     if (e.Tags.ContainsKey("Creature")) return e;
                 }
             }

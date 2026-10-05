@@ -113,7 +113,7 @@ namespace CavesOfOoo.Skills
                 if (zone.GetEntityCell(entity) == null) continue;
                 if (entity == puddle)
                     continue;
-                entity.ApplyEffect(new WetEffect(0.5f), actor, zone);
+                entity.ApplyEffect(new WetEffect(HydromancySkill.ApplyMoistureBonus(actor, 0.5f)), actor, zone);
                 if (entity.HasEffect<BurningEffect>())
                     MaterialReactionResolver.EvaluateReactions(entity, zone, entity.GetEffect<BurningEffect>());
             }

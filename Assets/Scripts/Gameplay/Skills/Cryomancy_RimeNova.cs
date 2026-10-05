@@ -60,10 +60,11 @@ namespace CavesOfOoo.Skills
                 int damage = DiceRoller.Roll("1d6", rng);
                 if (damage > 0)
                 {
+                    int landed = SpellDamageHelpers.ApplySpellDamage(target, damage, "Cold", actor, zone);
                     MessageLog.Add(
                         actor.GetDisplayName() + " rimes " +
-                        target.GetDisplayName() + " for " + damage + " damage!");
-                    CombatSystem.ApplyDamage(target, damage, "Cold", actor, zone);
+                        target.GetDisplayName() + " for " + landed + " damage!");
+
                 }
 
                 if (target.GetStatValue("Hitpoints", 0) > 0)

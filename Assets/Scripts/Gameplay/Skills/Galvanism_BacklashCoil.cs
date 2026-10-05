@@ -79,11 +79,7 @@ namespace CavesOfOoo.Skills
             {
                 var target = ring[i];
                 if (ctx.Zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints") <= 0) continue;
-
-                var dmg = new Damage(COIL_DAMAGE);
-                dmg.AddAttribute("Electric");
-                dmg.AddAttribute("Lightning");
-                CombatSystem.ApplyDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, COIL_DAMAGE, "Electric", actor, ctx.Zone, "Lightning");
 
                 if (target.GetStatValue("Hitpoints") <= 0) continue;
                 survivors++;

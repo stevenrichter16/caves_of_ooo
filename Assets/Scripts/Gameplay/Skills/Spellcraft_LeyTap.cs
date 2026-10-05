@@ -2,28 +2,10 @@ using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
 {
-    /// <summary>
-    /// Spellcraft active ability: trade
-    /// <see cref="HP_DRAIN_PERCENT"/>% of current HP for a SINGLE
-    /// universal spell-damage buff. The next spell cast within
-    /// <see cref="BUFF_DURATION"/> turns deals
-    /// <see cref="DAMAGE_BONUS_MULTIPLIER"/>× the HP cost as bonus
-    /// damage. Distinct from HeartFlame (fire-specific, multi-charge)
-    /// — LeyTap is UNIVERSAL and SINGLE-CHARGE.
-    ///
-    /// <para><b>Mechanic:</b> SelfCentered, no targeting, no weapon
-    /// gate. Drains HP, stores the (cost × multiplier) bonus + an
-    /// expiry turn on this instance. The next time
-    /// <see cref="BaseSkillPart.OnGetSpellDamageModifier"/> fires
-    /// while the buff is live (any element), the bonus is returned
-    /// and the buff is consumed. Charge expires after BUFF_DURATION
-    /// turns even if unused.</para>
-    ///
-    /// <para>Per the WSP8.2 brainstorm
-    /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Spellcraft_LeyTap</c>):
-    /// "the only ability that trades own HP for buff. HeartFlame
-    /// also trades HP but for fire-specific bonus; LeyTap is
-    /// universal."</para>
+    /// <summary>Trades current HP for one saved universal damage-cast charge.
+    /// Its positive effect lasts three owner actions after activation; every
+    /// direct hit in the next qualifying cast receives the same bonus.
+    /// Modifier queries are pure; SpellSkillPart commits charge spending.
     /// </summary>
     public class Spellcraft_LeyTap : SpellSkillPart
     {
@@ -34,13 +16,8 @@ namespace CavesOfOoo.Skills
         public const int BUFF_DURATION = 3;
         public const int DAMAGE_BONUS_MULTIPLIER = 2;
 
-        [System.NonSerialized]
-        private int _pendingBonus = 0;
-        [System.NonSerialized]
-        private int _expiresAtTurn = -1;
-
-        public int PendingBonus => _pendingBonus;
-        public int ExpiresAtTurn => _expiresAtTurn;
+        public int PendingBonus => ParentEntity?.GetEffect<LeyTapEffect>()?.BonusDamage ?? 0;
+        public int TurnsRemaining => ParentEntity?.GetEffect<LeyTapEffect>()?.Duration ?? 0;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
@@ -70,33 +47,27 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "insufficient_hp");
                 return false;
             }
+            int bonus = drain * DAMAGE_BONUS_MULTIPLIER;
+            if (!actor.ApplyEffect(new LeyTapEffect(bonus, BUFF_DURATION), actor, ctx.Zone))
+            { EmitSkillRejectedDiag(ctx, "buff_refused"); return false; }
             SpellFxCapture.Target(ctx.Zone, actor);
             hp.BaseValue -= drain;
             SpellFxCapture.RecordDamage(ctx.Zone, actor, drain, resisted: false);
 
-            _pendingBonus = drain * DAMAGE_BONUS_MULTIPLIER;
-            _expiresAtTurn = (TurnManager.Active?.TickCount ?? 0) + BUFF_DURATION;
-
             MessageLog.Add(actor.GetDisplayName() + " taps the leylines! "
-                + drain + " HP drained; next spell deals +" + _pendingBonus + " bonus damage.");
-        
+                + drain + " HP drained; next damaging cast deals +" + bonus
+                + " per target within " + BUFF_DURATION + " of your turns.");
+
             return true;
         }
 
         public override int OnGetSpellDamageModifier(Entity attacker, Entity defender,
             string elementAttribute, int baseDamage)
         {
-            if (_pendingBonus <= 0) return 0;
-            int currentTurn = TurnManager.Active?.TickCount ?? 0;
-            if (currentTurn > _expiresAtTurn)
-            {
-                _pendingBonus = 0;
-                return 0;
-            }
-            // Consume the buff (single-charge) + return the stored bonus.
-            int bonus = _pendingBonus;
-            _pendingBonus = 0;
-            return bonus;
+            // This hook is also safe to query for a readout. Only the enclosing
+            // successful direct-damage cast can consume the saved charge.
+            return SpellDamageHelpers.LeyTapBonus(ParentEntity,
+                TurnsRemaining > 0 ? PendingBonus : 0);
         }
     }
 }

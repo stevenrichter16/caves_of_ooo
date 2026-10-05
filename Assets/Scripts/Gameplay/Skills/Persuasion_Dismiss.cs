@@ -9,8 +9,9 @@ namespace CavesOfOoo.Skills
     /// follower that the actor recruited and releases them.
     ///
     /// <para><b>Mechanic:</b> activated ability, NO cooldown, adjacent-
-    /// cell targeting. The actor picks the first adjacent Creature in
-    /// 8-dir order. The target must (a) have a <see cref="RecruitedEffect"/>
+    /// cell targeting. The selected physical cell identifies the follower;
+    /// callers without a selection retain first-adjacent order.
+    /// The target must (a) have a <see cref="RecruitedEffect"/>
     /// AND (b) that effect's <c>Recruiter</c> must be the actor (you
     /// can only dismiss YOUR followers — Veto #2 covers stranger-side
     /// dismiss attempts). On success, calls
@@ -43,7 +44,7 @@ namespace CavesOfOoo.Skills
                 Class = "Persuasion",
                 TargetingMode = AbilityTargetingMode.AdjacentCell,
                 Range = 1,
-                Cooldown = 0, // No cooldown — dismiss is a free action
+                Cooldown = 0, // No cooldown; successful commands still take an action.
             };
         }
 
@@ -56,7 +57,7 @@ namespace CavesOfOoo.Skills
             }
             var actor = ctx.Attacker;
 
-            var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
             if (target == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");

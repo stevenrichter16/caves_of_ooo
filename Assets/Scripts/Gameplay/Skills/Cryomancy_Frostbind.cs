@@ -11,7 +11,7 @@ namespace CavesOfOoo.Skills
     /// LOCKS MOVEMENT BUT NOT ACTIONS.
     ///
     /// <para><b>Mechanic:</b> no weapon class required (it's a spell,
-    /// not a swing). Finds an adjacent creature, applies
+    /// not a swing). Uses the selected adjacent creature, applies
     /// <see cref="RootedEffect"/>(<see cref="FROSTBIND_DURATION"/>).
     /// The effect overrides AllowMovement => false so the target's
     /// BeforeMove events are rejected; AllowAction stays true so the
@@ -50,7 +50,7 @@ namespace CavesOfOoo.Skills
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has no target to frostbind.");

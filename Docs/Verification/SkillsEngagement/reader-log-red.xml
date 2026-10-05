@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 04:07:20Z" end-time="2026-10-05 04:07:21Z" duration="0.9569139">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24873" result="Failed" site="Child" start-time="2026-10-05 04:07:20Z" end-time="2026-10-05 04:07:21Z" duration="0.956914" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30599" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24873" result="Failed" site="Child" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.751160" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30600" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24873" result="Failed" site="Child" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.662635" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30601" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24873" result="Failed" site="Child" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.562596" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21938" name="AbilityReadersInputTests" fullname="CavesOfOoo.Tests.AbilityReadersInputTests" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.461927" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="21951" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.260102" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21945" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;skills&quot;,False)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;skills&quot;,False)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="1888044556" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.048236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Reading must not append its prose to the combat log.
+  Expected is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 1 elements, actual is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 2 elements
+  Values differ at index [1]
+  Extra:    < CavesOfOoo.Core.MessageLog+Entry >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001e2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21946" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;skills&quot;,True)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;skills&quot;,True)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="1555348371" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.002013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected details, not a pre-existing notice, must be opened.
+  Expected: String containing "DETAIL_READER_SENTINEL"
+  But was:  "Queued world announcement."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:139
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21947" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;ability&quot;,False)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;ability&quot;,False)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="150740118" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.003694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Reading must not append its prose to the combat log.
+  Expected is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 1 elements, actual is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 2 elements
+  Values differ at index [1]
+  Extra:    < CavesOfOoo.Core.MessageLog+Entry >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001e2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21948" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;ability&quot;,True)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;ability&quot;,True)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="822605500" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.001361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected details, not a pre-existing notice, must be opened.
+  Expected: String containing "DETAIL_READER_SENTINEL"
+  But was:  "Queued world announcement."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:139
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21949" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;rite&quot;,False)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;rite&quot;,False)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="286611992" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.002349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Reading must not append its prose to the combat log.
+  Expected is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 1 elements, actual is <System.Collections.Generic.List`1[CavesOfOoo.Core.MessageLog+Entry]> with 2 elements
+  Values differ at index [1]
+  Extra:    < CavesOfOoo.Core.MessageLog+Entry >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001e2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21950" name="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;rite&quot;,True)" fullname="CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements(&quot;rite&quot;,True)" methodname="OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements" classname="CavesOfOoo.Tests.AbilityReadersInputTests" runstate="Runnable" seed="1724299767" result="Failed" start-time="2026-10-05 04:07:21Z" end-time="2026-10-05 04:07:21Z" duration="0.001204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected details, not a pre-existing notice, must be opened.
+  Expected: String containing "DETAIL_READER_SENTINEL"
+  But was:  "Queued world announcement."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.AbilityReadersInputTests.OptionalReadersDoNotPolluteCombatLogOrConsumePendingWorldAnnouncements (System.String kind, System.Boolean pending) [0x001c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/AbilityReadersInputTests.cs:139
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

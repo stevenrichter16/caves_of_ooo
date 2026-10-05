@@ -21,8 +21,8 @@ namespace CavesOfOoo.Skills
     /// <c>"(Shank)"</c>). Walls and other solids stop the trace —
     /// creatures behind walls are unhit. Cooldown is applied by
     /// <see cref="SkillsPart.TryRouteSkillCommand"/> after this returns,
-    /// regardless of whether a target was struck (a missed lunge still
-    /// costs the cooldown — same convention as Slam).</para>
+    /// only when an attack was attempted. A swing that misses pays;
+    /// an empty or blocked line refuses without cost.</para>
     ///
     /// <para>Per the WSP8.2 active-ability brainstorm
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md</c> §LongBlades_Lunge):
@@ -36,14 +36,14 @@ namespace CavesOfOoo.Skills
     /// CoO v1 simplifies to "have a LongBlades weapon equipped" since
     /// CoO doesn't have a stance system yet (LongBlades_EnGarde is
     /// deferred to Tier 2 of the brainstorm). Magnitude
-    /// (<see cref="LUNGE_RANGE"/> = 2 cells, 25T cooldown) lifted from
-    /// the brainstorm tuning, not Qud's specific values.</para>
+    /// (<see cref="LUNGE_RANGE"/> = 2 cells, 10T cooldown) is CoO encounter tuning,
+    /// not Qud's specific values.</para>
     /// </summary>
     public class LongBlades_Lunge : BaseSkillPart
     {
         public override string Name => nameof(LongBlades_Lunge);
 
-        public const int COOLDOWN = 25;
+        public const int COOLDOWN = 10;
         public const int LUNGE_RANGE = 2;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
@@ -125,9 +125,8 @@ namespace CavesOfOoo.Skills
             {
                 // Either the line is clear (no creature within range) or
                 // the line was blocked by a wall / non-creature object.
-                // The cooldown is still spent (applied by
-                // SkillsPart.TryRouteSkillCommand after we return) — a
-                // missed lunge is a missed lunge, no refund. Diag reason
+                // No attack was attempted, so refusal costs no cooldown.
+                // Diag reason
                 // distinguishes the two: "line_blocked" if a non-creature
                 // stopped the trace, "no_target" if the line was empty.
                 MessageLog.Add(actor.GetDisplayName() + "'s lunge finds nothing.");

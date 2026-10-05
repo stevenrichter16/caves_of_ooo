@@ -11,9 +11,9 @@ namespace CavesOfOoo.Skills
     /// §5):</b> the pacify duration is a flat 50 turns (was
     /// BaseDuration 40 + Level×10).</para>
     ///
-    /// <para>Everything else verbatim: range 6, cooldown 20, no damage
+    /// <para>Range 6, cooldown 20, no damage
     /// (dice "0"), pushes <see cref="NoFightGoal"/> (no wandering) on the
-    /// struck creature's brain. Re-calming an already-peaceful creature
+    /// struck creature's brain. Actual HP harm ends this magical peace. Re-calming an already-peaceful creature
     /// reports "is already at peace" and does not stack — but the bolt
     /// flew, so the cast is still consumed, exactly like the
     /// mutation.</para>
@@ -55,7 +55,7 @@ namespace CavesOfOoo.Skills
                 return;
             }
 
-            brain.PushGoal(new NoFightGoal(CALM_DURATION, wander: false));
+            brain.PushGoal(new NoFightGoal(CALM_DURATION, wander: false) { BreakOnDamage = true });
             SpellFxCapture.RecordEffect(zone, target, "Pacified", applied: true);
             MessageLog.Add(target.GetDisplayName() + " becomes peaceful.");
         }

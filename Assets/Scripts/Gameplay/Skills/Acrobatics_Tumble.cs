@@ -13,16 +13,13 @@ namespace CavesOfOoo.Skills
     ///
     /// <para><b>Mechanic (CoO):</b> no weapon class required — Acrobatics
     /// is martial-arts-y by design (Dodge already shipped with no weapon
-    /// gate). Adjacent target lookup mirrors Slam's 8-dir scan. The swap
+    /// gate). The chosen adjacent physical cell identifies the target. The swap
     /// validates and exchanges both complete bodies atomically, then runs
     /// each participant's landing events through <see cref="MovementSystem.TrySwap"/>.</para>
     ///
-    /// <para>The "is the target hostile" heuristic uses the absence of
-    /// the <c>"Ally"</c> tag — same pattern ChainLightning's friendly-
-    /// fire check uses. CoO doesn't have a robust faction system in the
-    /// active code path yet (the SocialReputationPart is consultative,
-    /// not authoritative for "is this a friend"), so the tag heuristic
-    /// is the v1 answer.</para>
+    /// <para>Only actual hostility applies confusion. FactionManager
+    /// includes party alignment, personal grudges and temporary truces;
+    /// a neutral creature or recruited companion trades places cleanly.</para>
     ///
     /// <para>Per the WSP8.2 active-ability brainstorm
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md</c> §Acrobatics_Tumble): "the
@@ -77,24 +74,7 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent creature (mirrors Slam's 8-dir lookup).
-            // Remember which direction we found them in so we know where
-            // the actor is moving to (= target's current cell).
-            Entity target = null;
-            foreach(var source in ctx.Zone.GetOccupiedCells(actor))
-            {
-                if(source==null || target!=null) continue;
-                for (int dir = 0; dir < 8 && target == null; dir++)
-                {
-                    var cell=ctx.Zone.GetCellInDirection(source.X,source.Y,dir);
-                    if(cell==null) continue;
-                    foreach(var candidate in cell.Occupants)
-                    {
-                        if(candidate==null || candidate==actor || !candidate.HasTag("Creature")) continue;
-                        target=candidate;break;
-                    }
-                }
-            }
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
 
             if (target == null)
             {
@@ -123,10 +103,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Hostile target → Confused 1T (per brainstorm). Allies get
-            // a clean swap. The "Ally" tag is the v1 hostility flag —
-            // mirrors ChainLightning's friendly-fire check.
-            if (!target.Tags.ContainsKey("Ally") && ctx.Zone.GetEntityCell(target) != null
+            // Use the same actual relationship as combat, including companions.
+            if (FactionManager.IsHostile(target, actor) && ctx.Zone.GetEntityCell(target) != null
                 && target.GetStatValue("Hitpoints", 1) > 0)
             {
                 target.ApplyEffect(new ConfusedEffect(CONFUSED_DURATION),

@@ -526,7 +526,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void AllThree_AreRegisteredAndFitTheSkillsScreen()
+        public void AllThree_AreRegisteredAndFullyDiscoverableInTheDetailsReader()
         {
             var json = File.ReadAllText(Path.Combine(
                 Application.dataPath, "Resources/Content/Data/Skills/Cryomancy.json"));
@@ -538,8 +538,10 @@ namespace CavesOfOoo.Tests
             {
                 Assert.IsTrue(SkillRegistry.TryGetPowerByClass(cls, out var power), cls);
                 Assert.Greater(power.Cost, 0);
-                Assert.LessOrEqual(power.Description.Length, 55,
-                    cls + " is truncated by SkillsScreenUI, hiding the mechanic");
+                Assert.IsNotEmpty(power.Description);
+                StringAssert.Contains(power.Description,
+                    CavesOfOoo.Rendering.AbilityDetailsBuilder.BuildForSkill(MakeBodied("reader"), cls),
+                    cls + " must expose its exact full description before purchase.");
             }
         }
 

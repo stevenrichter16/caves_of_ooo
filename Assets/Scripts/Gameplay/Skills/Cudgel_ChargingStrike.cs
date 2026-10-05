@@ -19,7 +19,9 @@ namespace CavesOfOoo.Skills
     /// open cells were traversed (no creature found), the actor ends
     /// up at the max-distance cell and the cooldown is consumed
     /// without a strike. If a wall blocks the path, the actor stops
-    /// at the last open cell and the cooldown is consumed.</para>
+    /// at the last open cell and pays if it moved. No movement and no
+    /// strike is a free refusal. Entry reactions cannot refund a
+    /// committed move by removing or relocating the actor.</para>
     ///
     /// <para>Per the WSP8.2 brainstorm
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Cudgel_ChargingStrike</c>):
@@ -90,6 +92,7 @@ namespace CavesOfOoo.Skills
             int x = actorPos.x;
             int y = actorPos.y;
             Entity hitTarget = null;
+            bool moved = false;
             for (int step = 0; step < CHARGE_DISTANCE; step++)
             {
                 int nx = x + dx, ny = y + dy;
@@ -105,6 +108,9 @@ namespace CavesOfOoo.Skills
 
                 // Open cell — advance.
                 if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny) || !MovementSystem.ForceMoveTo(actor, ctx.Zone, nx, ny)) break;
+                // Entry reactions can remove, kill or return the actor to its
+                // origin. The committed move still costs this action.
+                moved = true;
                 x = nx; y = ny;
                 // A trap, portal or slip can end the original charge trajectory.
                 if (ctx.Zone.GetEntityPosition(actor) != (nx, ny)
@@ -114,8 +120,8 @@ namespace CavesOfOoo.Skills
             if (hitTarget == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " charges into empty space.");
-                EmitSkillRejectedDiag(ctx, "no_target");
-                return false;
+                if (!moved) EmitSkillRejectedDiag(ctx, "no_target");
+                return moved;
             }
 
             // Swing with bonus damage. Snapshot HP, fire normal attack,

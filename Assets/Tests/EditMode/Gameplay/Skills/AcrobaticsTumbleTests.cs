@@ -48,6 +48,7 @@ namespace CavesOfOoo.Tests
             e.AddPart(new ArmorPart());
             e.AddPart(new InventoryPart { MaxWeight = 150 });
             e.AddPart(new StatusEffectsPart());
+            e.AddPart(new BrainPart());
             e.AddPart(new ActivatedAbilitiesPart());
             e.AddPart(new SkillsPart());
             var body = new Body();
@@ -93,7 +94,7 @@ namespace CavesOfOoo.Tests
         {
             var (actor, zone, tumble) = MakeTumbleFixture();
             var hostile = MakeBodiedCreature("hostile");
-            // No "Ally" tag → hostile by Tumble's heuristic.
+            hostile.GetPart<BrainPart>().PersonalEnemies.Add(actor);
             zone.AddEntity(actor, 5, 5);
             zone.AddEntity(hostile, 6, 5);
 
@@ -122,7 +123,7 @@ namespace CavesOfOoo.Tests
         {
             var (actor, zone, tumble) = MakeTumbleFixture();
             var ally = MakeBodiedCreature("ally");
-            ally.Tags["Ally"] = ""; // marked as ally
+            Assert.IsTrue(ally.GetPart<BrainPart>().SetPartyLeader(actor));
             zone.AddEntity(actor, 5, 5);
             zone.AddEntity(ally, 6, 5);
 

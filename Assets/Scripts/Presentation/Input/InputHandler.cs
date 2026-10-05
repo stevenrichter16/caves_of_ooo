@@ -112,6 +112,7 @@ namespace CavesOfOoo.Rendering
             ThrowTargeting,
             ThrowPopupOpen,
             AwaitingDirection,
+            AwaitingRitePreviewDirection,
             WaitingForFxResolution,
             InventoryOpen,
             PickupOpen,
@@ -156,6 +157,9 @@ namespace CavesOfOoo.Rendering
         // where it was instead of snapping to the world.
         private InputState _stateBeforeAnnouncement = InputState.Normal;
         private ActivatedAbility _pendingAbility;
+        private System.Guid _previewRiteId;
+        private Entity _abilityReaderActor;
+        private Zone _ritePreviewZone;
         private Entity _pendingAttackTarget;
         private int _selectedHotbarSlot = -1;
         private readonly WorldCursorState _worldCursorState = new WorldCursorState();
@@ -624,6 +628,12 @@ namespace CavesOfOoo.Rendering
                     _lastMoveTime = Time.time;
                     return;
                 }
+            }
+
+            if (_inputState == InputState.AwaitingRitePreviewDirection)
+            {
+                HandleRitePreviewDirection();
+                return;
             }
 
             if (_inputState == InputState.AwaitingDirection)
@@ -1870,6 +1880,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.D)) { OpenSkillsDetailsReader(); return; }
             SkillsScreenUI.HandleInput();
 
             if (!SkillsScreenUI.IsOpen)
@@ -1918,10 +1929,93 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.D)) { OpenAbilityDetailsReader(); return; }
+            if (InputHelper.GetKeyDown(KeyCode.P)) { BeginSelectedRitePreview(); return; }
             AbilityManagerUI.HandleInput();
 
             if (!AbilityManagerUI.IsOpen)
                 CloseAbilityManager();
+        }
+
+        // Optional readers never enter the normal cast dispatcher. The menus stay
+        // logically open, preserving their selected row, scroll and activation callback.
+        private void OpenSkillsDetailsReader()
+        {
+            if (_inputState != InputState.SkillsScreenOpen || SkillsScreenUI?.PlayerEntity != PlayerEntity) return;
+            OpenAbilityReader(AbilityDetailsBuilder.BuildForSkill(PlayerEntity, SkillsScreenUI.SelectedClass), false);
+        }
+
+        private void OpenAbilityDetailsReader()
+        {
+            if (_inputState != InputState.AbilityManagerOpen || AbilityManagerUI?.PlayerEntity != PlayerEntity) return;
+            OpenAbilityReader(AbilityDetailsBuilder.BuildForAbility(PlayerEntity, AbilityManagerUI.SelectedAbilityID), true);
+        }
+
+        private void OpenAbilityReader(string text, bool manager)
+        {
+            if (AnnouncementUI == null || string.IsNullOrEmpty(text)) return;
+            _abilityReaderActor = PlayerEntity;
+            if (manager) AbilityManagerUI.HideForReader(); else SkillsScreenUI.HideForReader();
+            _stateBeforeAnnouncement = manager ? InputState.AbilityManagerOpen : InputState.SkillsScreenOpen;
+            // Optional reading is not a world announcement: keep the combat log,
+            // flash stamp and pending world-notice queue untouched.
+            EnterCenteredPopupOverlayView();
+            AnnouncementUI.Open(text);
+            _inputState = InputState.AnnouncementOpen;
+        }
+
+        private void BeginSelectedRitePreview()
+        {
+            if (_inputState != InputState.AbilityManagerOpen || AbilityManagerUI?.PlayerEntity != PlayerEntity
+                || AnnouncementUI == null) return;
+            var id = AbilityManagerUI.SelectedAbilityID;
+            var rite = RitePreviewBuilder.OwnedRite(PlayerEntity, id);
+            if (rite == null) { MessageLog.Add("Select a consuming rite to read its marks."); return; }
+            _previewRiteId = id; _abilityReaderActor = PlayerEntity; _ritePreviewZone = CurrentZone;
+            if (rite.Shape == CavesOfOoo.Skills.ConsumingRiteSkillBase.RiteShape.Self
+                || rite.Shape == CavesOfOoo.Skills.ConsumingRiteSkillBase.RiteShape.Radius)
+            {
+                ShowRitePreviewDirection(0, 0);
+                return;
+            }
+            AbilityManagerUI.HideForReader();
+            _inputState = InputState.AwaitingRitePreviewDirection;
+            ExitCenteredPopupOverlayViewToGameplay();
+            MessageLog.Add(rite.DisplayName + " - read which direction? [Esc] return. This does not cast.");
+        }
+
+        private void HandleRitePreviewDirection()
+        {
+            if (InputHelper.GetKeyDown(KeyCode.Escape)) { CancelRitePreview(); return; }
+            if (GetDirectionKeyDown(out int dx, out int dy)) ShowRitePreviewDirection(dx, dy);
+        }
+
+        private void ShowRitePreviewDirection(int dx, int dy)
+        {
+            if (_inputState != InputState.AwaitingRitePreviewDirection && _inputState != InputState.AbilityManagerOpen) return;
+            string text = PlayerEntity == _abilityReaderActor && CurrentZone == _ritePreviewZone
+                ? RitePreviewBuilder.Build(PlayerEntity, CurrentZone, _previewRiteId, dx, dy) : null;
+            _previewRiteId = System.Guid.Empty; _ritePreviewZone = null;
+            if (string.IsNullOrEmpty(text)) { CancelRitePreview(); return; }
+            OpenAbilityReader(text, true);
+        }
+
+        private void CancelRitePreview()
+        {
+            _previewRiteId = System.Guid.Empty; _ritePreviewZone = null;
+            RestoreAbilityReader(true);
+        }
+
+        private void RestoreAbilityReader(bool manager)
+        {
+            bool sameActor = PlayerEntity != null && PlayerEntity == _abilityReaderActor;
+            _abilityReaderActor = null;
+            if (manager && sameActor && AbilityManagerUI?.IsOpen == true && AbilityManagerUI.PlayerEntity == PlayerEntity)
+            { _inputState = InputState.AbilityManagerOpen; EnterCenteredPopupOverlayView(); AbilityManagerUI.RestoreAfterReader(); return; }
+            if (!manager && sameActor && SkillsScreenUI?.IsOpen == true && SkillsScreenUI.PlayerEntity == PlayerEntity)
+            { _inputState = InputState.SkillsScreenOpen; EnterCenteredPopupOverlayView(); SkillsScreenUI.RestoreAfterReader(); return; }
+            AbilityManagerUI?.Close(); SkillsScreenUI?.Close();
+            _inputState = InputState.Normal; ExitCenteredPopupOverlayViewToGameplay();
         }
 
         private void CloseAbilityManager()
@@ -4423,6 +4517,12 @@ namespace CavesOfOoo.Rendering
             var prior = _stateBeforeAnnouncement;
             _stateBeforeAnnouncement = InputState.Normal;
             _inputState = prior;
+
+            if (_abilityReaderActor != null && (prior == InputState.SkillsScreenOpen || prior == InputState.AbilityManagerOpen))
+            {
+                RestoreAbilityReader(prior == InputState.AbilityManagerOpen);
+                return;
+            }
 
             if (prior == InputState.WorldActionMenuOpen && _worldActionReader != null)
             {

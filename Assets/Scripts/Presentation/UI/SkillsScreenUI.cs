@@ -77,6 +77,31 @@ namespace CavesOfOoo.Rendering
         public bool IsOpen => _isOpen;
         public int RowCount => _snapshot.RowCount;
         public int CursorIndex => _cursorIndex;
+        public string SelectedClass => _isOpen && _cursorIndex >= 0 && _cursorIndex < _snapshot.RowCount
+            ? _snapshot.Rows[_cursorIndex].Class : null;
+        private string _readerSelection = null;
+
+        /// <summary>Temporarily remove the menu footprint without closing or losing its cursor/callback.</summary>
+        public void HideForReader()
+        {
+            if (!_isOpen) return;
+            _readerSelection = SelectedClass;
+            if (Tilemap != null) ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearBgRegion();
+        }
+
+        /// <summary>Revalidate rows after a free reader and retain the selected identity when still present.</summary>
+        public void RestoreAfterReader()
+        {
+            if (!_isOpen || PlayerEntity == null) return;
+            _snapshot = SkillsScreenStateBuilder.Build(PlayerEntity);
+            for (int i = 0; i < _snapshot.RowCount; i++)
+                if (_snapshot.Rows[i].Class == _readerSelection) { _cursorIndex = i; break; }
+            _cursorIndex = System.Math.Max(0, System.Math.Min(_cursorIndex, _snapshot.RowCount - 1));
+            ScrollIntoView();
+            Render();
+        }
+
 
         /// <summary>
         /// Opens the skills screen for the given actor. Builds the snapshot
@@ -343,7 +368,7 @@ namespace CavesOfOoo.Rendering
 
             // Hint below the border
             int hintY = borderH;
-            DrawText(0, hintY, "[Enter]buy [^v]nav [X/Esc]close", QudColorParser.DarkGray);
+            DrawText(0, hintY, "[Enter]buy [D]details [^v]nav [X/Esc]close", QudColorParser.DarkGray);
         }
 
         private static Color NameColor(SkillsScreenRowState state, bool selected)

@@ -78,19 +78,17 @@ namespace CavesOfOoo.Skills
             {
                 var target = targets[i];
 
-                var dmg = new Damage(UNDERTOW_DAMAGE);
                 // NOTE: "Water" is a descriptive tag only — it maps to
                 // DamageAttributeFlags.None (Damage.cs:144-173), so this
                 // damage is untyped and no elemental resistance reduces
                 // it. That is intended: water is not an element you
                 // resist here, it is a setup. Pinned by
                 // HydromancyJetBlastTests.WaterDamage_IsUntyped.
-                dmg.AddAttribute("Water");
                 // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
                 // DestructiblePart, and ApplyDamage deliberately early-returns
                 // on anything with no Hitpoints stat — so elemental damage aimed
                 // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, UNDERTOW_DAMAGE, "Water", actor, ctx.Zone);
 
                 if (target.GetStatValue("Hitpoints") <= 0) continue;
                 survivors++;

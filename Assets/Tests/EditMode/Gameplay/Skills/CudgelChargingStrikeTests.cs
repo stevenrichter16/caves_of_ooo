@@ -104,17 +104,16 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(atk, 5, 5);
             // No defender in path.
 
-            skill.OnCommand(new SkillEventContext
+            Assert.IsTrue(skill.OnCommand(new SkillEventContext
             {
                 Attacker = atk, Defender = atk, Zone = zone, Rng = new Random(42),
                 DirectionX = 1, DirectionY = 0,
-            });
+            }), "Committed empty-lane movement is a successful paid ability.");
 
             var atkPos = zone.GetEntityPosition(atk);
             Assert.AreEqual(8, atkPos.x, "With no target, actor walks the full charge distance.");
             var recs = DiagQuery.Apply(new DiagQuery.Filter { Category = "skill", Kind = "SkillRejected", Limit = 5 }).Records;
-            Assert.GreaterOrEqual(recs.Count, 1);
-            StringAssert.Contains("no_target", recs[0].PayloadJson);
+            Assert.AreEqual(0, recs.Count, "A successful movement must not claim a free rejection.");
         }
 
         [Test]

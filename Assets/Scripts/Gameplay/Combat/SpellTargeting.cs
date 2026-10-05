@@ -82,7 +82,9 @@ namespace CavesOfOoo.Core
             int centerX,
             int centerY,
             int radius,
-            Entity exclude = null)
+            Entity exclude = null,
+            bool recordFx = true,
+            bool visibleOnly = false)
         {
             var result = new List<Entity>();
             if (zone == null || radius < 0)
@@ -103,14 +105,15 @@ namespace CavesOfOoo.Core
                         continue;
 
                     Cell cell = zone.GetCell(x, y);
-                    if (cell == null)
+                    if (cell == null || (visibleOnly && !IsVisiblePreviewCell(cell)))
                         continue;
 
-                    SpellFxCapture.AffectCell(zone, x, y);
+                    if (recordFx) SpellFxCapture.AffectCell(zone, x, y);
                     for (int i = 0; i < cell.Occupants.Count; i++)
                     {
                         Entity entity = cell.Occupants[i];
-                        if (entity == exclude || !entity.HasTag("Creature") || !seen.Add(entity))
+                        if (entity == null || entity == exclude || !entity.HasTag("Creature")
+                            || (visibleOnly && !CombatIntentReadout.IsVisibleActor(entity, zone)) || !seen.Add(entity))
                             continue;
 
                         result.Add(entity);
@@ -259,7 +262,9 @@ namespace CavesOfOoo.Core
             int startY,
             int dx,
             int dy,
-            int length)
+            int length,
+            bool recordFx = true,
+            bool visibleOnly = false)
         {
             var hits = new List<Entity>();
             if (zone == null || length <= 0 || (dx == 0 && dy == 0))
@@ -296,18 +301,19 @@ namespace CavesOfOoo.Core
                     if (!zone.InBounds(x, y)) continue;
 
                     Cell cell = zone.GetCell(x, y);
-                    if (cell == null) continue;
+                    if (cell == null || (visibleOnly && !IsVisiblePreviewCell(cell))) continue;
 
                     // A solid cell is hit-tested for nothing and stops
                     // the spread past it on this ray.
-                    if (HasBlockingSolid(cell, caster)) continue;
+                    if (visibleOnly ? HasVisiblePreviewSolid(cell, caster, false) : HasBlockingSolid(cell, caster)) continue;
                     openNow.Add(off);
-                    SpellFxCapture.AffectCell(zone, x, y);
+                    if (recordFx) SpellFxCapture.AffectCell(zone, x, y);
 
                     for (int i = 0; i < cell.Occupants.Count; i++)
                     {
                         Entity entity = cell.Occupants[i];
-                        if (entity == caster || !entity.HasTag("Creature"))
+                        if (entity == null || entity == caster || !entity.HasTag("Creature")
+                            || (visibleOnly && !CombatIntentReadout.IsVisibleActor(entity, zone)))
                             continue;
                         if (!seen.Add(entity)) continue;
                         hits.Add(entity);
@@ -319,6 +325,47 @@ namespace CavesOfOoo.Core
             }
 
             return hits;
+        }
+
+        // Reading a selected rite is bounded by current perception. These opt-ins
+        // do not change any ordinary cast's geometry or FX recording defaults.
+        internal static bool IsVisiblePreviewCell(Cell cell) => cell != null && cell.IsVisible && cell.Explored
+            && cell.ParentZone != null && ReferenceEquals(cell.ParentZone.GetCell(cell.X, cell.Y), cell);
+
+        internal static bool HasVisiblePreviewSolid(Cell cell, Entity caster, bool includeDoors)
+        {
+            // Single-target rites use Cell.IsSolid, including this authored scene's
+            // off-anchor collision. Inspect the current owner, without disclosing
+            // a render-hidden/carried/foreign owner through the preview result.
+            if (includeDoors)
+            {
+                var footprint = MorrowfastSceneRuntime.BlockingOwner(cell, caster);
+                if (CanReadPreviewSolidOwner(footprint, cell)) return true;
+            }
+            foreach (var entity in cell.Occupants)
+            {
+                if (entity == null || entity == caster || entity.SpatialZone != cell.ParentZone) continue;
+                var render = entity.GetPart<RenderPart>();
+                if (render != null && (!render.Visible || render.ParentEntity != entity)) continue;
+                var physics = entity.GetPart<PhysicsPart>();
+                if (physics != null && (physics.ParentEntity != entity || physics.InInventory != null || physics.Equipped != null)) continue;
+                if (!includeDoors && entity.HasTag("Creature")) continue;
+                if (entity.HasTag("Creature") && !CombatIntentReadout.IsVisibleActor(entity, cell.ParentZone)) continue;
+                if (entity.HasTag("Solid") || (includeDoors && (entity.GetPart<DoorPart>()?.IsClosed == true
+                    || entity.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true))) return true;
+            }
+            return false;
+        }
+
+        private static bool CanReadPreviewSolidOwner(Entity owner, Cell cell)
+        {
+            if (owner == null || owner.SpatialZone != cell.ParentZone) return false;
+            var anchor = cell.ParentZone.GetEntityCell(owner);
+            if (anchor == null || !anchor.Objects.Contains(owner)) return false;
+            var render = owner.GetPart<RenderPart>();
+            if (render != null && (!render.Visible || render.ParentEntity != owner)) return false;
+            var physics = owner.GetPart<PhysicsPart>();
+            return physics == null || (physics.ParentEntity == owner && physics.InInventory == null && physics.Equipped == null);
         }
 
         private static bool HasBlockingSolid(Cell cell, Entity caster)

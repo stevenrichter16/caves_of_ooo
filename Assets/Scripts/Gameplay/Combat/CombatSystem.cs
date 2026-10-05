@@ -1060,6 +1060,8 @@ namespace CavesOfOoo.Core
                 // negative number on an overkill hit instead of a floored
                 // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
                 hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
+                if (hpStat.BaseValue < hpBefore)
+                    target.GetPart<BrainPart>()?.BreakDamageSensitivePeace();
                 SpellFxCapture.RecordDamage(zone, target, Math.Max(0, hpBefore - hpStat.BaseValue),
                     resisted: damage.Amount < amountBeforeResistance);
 

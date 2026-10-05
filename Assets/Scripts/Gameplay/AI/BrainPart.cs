@@ -529,6 +529,23 @@ namespace CavesOfOoo.Core
                 goal.OnPop();
         }
 
+        /// <summary>Called after positive HP damage lands. Ends only explicitly
+        /// fragile truces; misses, resisted hits and quest pacifism are unaffected.</summary>
+        public void BreakDamageSensitivePeace()
+        {
+            bool broken = false;
+            for (int i = _goals.Count - 1; i >= 0; i--)
+            {
+                if (_goals[i] is NoFightGoal peace && peace.BreakOnDamage)
+                {
+                    RemoveGoal(peace);
+                    broken = true;
+                }
+            }
+            if (broken)
+                MessageLog.Add(ParentEntity.GetDisplayName() + "'s calm breaks under the pain.");
+        }
+
         /// <summary>Clear all goals from the stack.</summary>
         public void ClearGoals()
         {

@@ -747,129 +747,103 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        // ====================================================================
-        // WS.6b cold-eye 🟡 #2 — stacking integration: verify that calling
-        // OnHitClassEffects.Apply AND the WSP3 SkillEventDispatcher in
-        // sequence (the order CombatSystem.PerformSingleAttack uses) on the
-        // SAME hit can produce a Stunned effect with summed duration. The
-        // plan claimed this stacks via StunnedEffect.OnStack += Duration;
-        // this test pins the claim end-to-end.
-        // ====================================================================
-
+        // Preserve the real class -> passive -> critical dispatch order. The
+        // passive creates an opening but never adds duration to an existing stun.
         [Test]
-        public void Stacking_ClassHookPlusSkillHook_OnSameMaceHit_CanSumDurations()
+        public void ClassHookPlusBludgeon_OnSameMaceHit_DoesNotBankStun()
         {
-            // Mace = "Bludgeoning Cudgel" (both attributes). Class hook fires
-            // on Bludgeoning at 15% for 2T; skill hook fires on Cudgel at
-            // 50% for 3-4T. StunnedEffect.OnStack does Duration += incoming.Duration,
-            // so both rolls landing on the same hit produces Duration = 5-6.
-            //
-            // Across many seeds, observe at least one case where final
-            // Stunned.Duration > 4. That's only achievable when BOTH hooks
-            // fired (skill alone caps at 4, class alone caps at 2).
-            int maxObservedDuration = 0;
-            int observedBothFiredCount = 0;
+            int classStuns = 0;
+            int passiveOnlyStuns = 0;
             for (int seed = 0; seed < 500; seed++)
             {
                 var defender = MakeFighter();
                 var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
                 var damage = new Damage(10);
-                damage.AddAttribute("Bludgeoning");  // class hook gate
-                damage.AddAttribute("Cudgel");       // skill hook gate
-
-                // Same RNG instance threaded through both Apply calls,
-                // mirroring how CombatSystem.PerformSingleAttack does it.
+                damage.AddAttribute("Bludgeoning");
+                damage.AddAttribute("Cudgel");
                 var rng = new Random(seed);
                 OnHitClassEffects.Apply(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
+                var classStun = defender.GetEffect<StunnedEffect>();
+                int classDuration = classStun?.Duration ?? 0;
+                int classSave = classStun?.SaveTarget ?? 0;
                 DispatchAttack(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
 
-                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
-                if (stun != null)
+                var finalStun = defender.GetEffect<StunnedEffect>();
+                if (classStun != null)
                 {
-                    if (stun.Duration > maxObservedDuration)
-                        maxObservedDuration = stun.Duration;
-                    // Skill alone caps at 4 (Cudgel_Bludgeon's 3-4T max);
-                    // class alone caps at 2. Duration > 4 is the
-                    // unambiguous "both fired" tracer.
-                    if (stun.Duration > 4) observedBothFiredCount++;
+                    classStuns++;
+                    Assert.AreSame(classStun, finalStun);
+                    Assert.AreEqual(classDuration, finalStun.Duration,
+                        "Bludgeon must not add time to a real class-hook stun.");
+                    Assert.AreEqual(classSave, finalStun.SaveTarget);
                 }
+                else if (finalStun != null)
+                {
+                    passiveOnlyStuns++;
+                    Assert.AreEqual(2, finalStun.Duration);
+                    Assert.AreEqual(16, finalStun.SaveTarget);
+                }
+                if (finalStun != null) Assert.LessOrEqual(finalStun.Duration, 2);
             }
-
-            Assert.Greater(maxObservedDuration, 4,
-                $"Across 500 seeds, expected at least one case where both class " +
-                $"AND skill hooks fired on the same Mace hit (final Duration > 4). " +
-                $"Highest Duration observed: {maxObservedDuration}. If this stays " +
-                $"≤ 4, either OnHitClassEffects or OnHitSkillEffects didn't fire " +
-                $"its branch — stacking is broken.");
-            Assert.Greater(observedBothFiredCount, 0,
-                $"Observed {observedBothFiredCount} 'both fired' events; expected " +
-                $"at least 1 across 500 seeds. P(both fire) ≈ 7.5% per seed.");
+            Assert.Greater(classStuns, 0, "The real class hook fired.");
+            Assert.Greater(passiveOnlyStuns, 0, "The passive still works when the class hook misses.");
         }
 
-        // ====================================================================
-        // WSP.4b cold-eye 🧪 #5 — 3-hook stacking integration: Mace crit
-        // by an actor owning CudgelSkill (tree-root) + Cudgel_Bludgeon
-        // (gated power) runs THREE Stun rolls on the same swing —
-        // OnHitClassEffects (15% / 2T), OnHitSkillEffects Cudgel_Bludgeon
-        // (50% / 3-4T), OnHitSkillEffects CudgelSkill crit (100% / 1-4T).
-        // Worst case: 2 + 4 + 4 = 10T. Plan flagged this as a design risk
-        // ("watch worst-case Stun feel"). This test pins the upper bound.
-        // ====================================================================
-
         [Test]
-        public void Stacking_AllThreeHooks_OnMaceCrit_ProducesUpToTenTurnStun()
+        public void ClassPassiveAndRoot_OnMaceCrit_KeepRootStackingWithoutPassiveBanking()
         {
-            int maxObservedDuration = 0;
-            int observedAllThreeFiredCount = 0;
+            int classStuns = 0;
+            int passiveOnlyStuns = 0;
+            int maxDuration = 0;
             for (int seed = 0; seed < 500; seed++)
             {
                 var defender = MakeFighter();
                 var attacker = MakeAttackerWithSkill(nameof(Cudgel_Bludgeon));
-                attacker.GetPart<SkillsPart>().AddSkill(nameof(CudgelSkill), source: "test");
-
+                Assert.IsTrue(attacker.GetPart<SkillsPart>().AddSkill(nameof(CudgelSkill), source: "test"));
                 var damage = new Damage(10);
-                damage.AddAttribute("Bludgeoning");  // class hook gate
-                damage.AddAttribute("Cudgel");       // skill hook gate
-                damage.AddAttribute("Critical");     // tree-root crit gate
-
+                damage.AddAttribute("Bludgeoning");
+                damage.AddAttribute("Cudgel");
+                damage.AddAttribute("Critical");
                 var rng = new Random(seed);
                 OnHitClassEffects.Apply(damage, actualDamage: 10,
                     defender, attacker, zone: null, rng);
-                DispatchAttack(damage, actualDamage: 10,
-                    defender, attacker, zone: null, rng);
-
-                var stun = defender.GetPart<StatusEffectsPart>().GetEffect<StunnedEffect>();
-                if (stun != null)
+                var classStun = defender.GetEffect<StunnedEffect>();
+                int classDuration = classStun?.Duration ?? 0;
+                var ctx = new SkillEventContext { Attacker = attacker, Defender = defender,
+                    Damage = damage, ActualDamage = 10, Rng = rng };
+                SkillEventDispatcher.AttackerAfterAttack(attacker, ctx);
+                var opening = defender.GetEffect<StunnedEffect>();
+                int beforeRoot = opening?.Duration ?? 0;
+                if (classStun != null)
                 {
-                    if (stun.Duration > maxObservedDuration)
-                        maxObservedDuration = stun.Duration;
-                    // Tree-root crit always fires (100% on Critical).
-                    // Cudgel_Bludgeon at 50%, class at 15%. P(all 3) ≈ 7.5%.
-                    // Skill+crit alone caps at 4+4=8; class+crit caps at 2+4=6.
-                    // All three caps at 2+4+4=10 — Duration > 8 means all 3 fired.
-                    if (stun.Duration > 8) observedAllThreeFiredCount++;
+                    classStuns++;
+                    Assert.AreSame(classStun, opening);
+                    Assert.AreEqual(classDuration, beforeRoot,
+                        "Passive cannot extend the class hook before the crit hook runs.");
                 }
-            }
+                else if (opening != null)
+                {
+                    passiveOnlyStuns++;
+                    Assert.AreEqual(2, beforeRoot);
+                    Assert.AreEqual(16, opening.SaveTarget);
+                }
 
-            // Always at least the crit Stun (1-4T). At minimum we observe
-            // a Stun every seed since Critical → CudgelSkill always fires.
-            Assert.GreaterOrEqual(maxObservedDuration, 4,
-                $"Critical CudgelSkill must always apply Stun. " +
-                $"Max observed: {maxObservedDuration}.");
-            // 3-hook upper bound: across 500 seeds, P(all 3 fire) ≈ 7.5% so
-            // ~37 cases expected. Asserting ≥ 1 is conservative.
-            Assert.Greater(observedAllThreeFiredCount, 0,
-                $"Across 500 seeds, expected at least one all-3-hooks-fire " +
-                $"event (Duration > 8). Observed: {observedAllThreeFiredCount}. " +
-                $"If 0, OnHitClassEffects/Bludgeon/CudgelSkill-crit aren't all wired.");
-            // Hard upper bound: theoretical max is 2+4+4 = 10T. Anything
-            // above that means an extra effect snuck in (or OnStack is bugged).
-            Assert.LessOrEqual(maxObservedDuration, 10,
-                $"Worst-case 3-hook Stun must be ≤ 10T " +
-                $"(2T class + 4T Bludgeon-max + 4T crit-max). " +
-                $"Observed max: {maxObservedDuration}.");
+                SkillEventDispatcher.WeaponMadeCriticalHit(attacker, ctx);
+                var finalStun = defender.GetEffect<StunnedEffect>();
+                Assert.IsNotNull(finalStun, "Every damaging Cudgel crit still stuns.");
+                Assert.That(finalStun.Duration - beforeRoot, Is.InRange(1, 4),
+                    "The root still contributes its actual 1–4 turn stun.");
+                Assert.AreEqual(0, finalStun.SaveTarget,
+                    "The deterministic root stun keeps its no-save contract when merged.");
+                Assert.LessOrEqual(finalStun.Duration, 6,
+                    "At most a 2-turn class/passive opening plus the 4-turn root crit.");
+                maxDuration = Math.Max(maxDuration, finalStun.Duration);
+            }
+            Assert.Greater(classStuns, 0, "Class + root stacking was exercised.");
+            Assert.Greater(passiveOnlyStuns, 0, "Passive + root stacking was exercised.");
+            Assert.AreEqual(6, maxDuration, "The retained class/root ceiling is actually reachable.");
         }
 
         // ====================================================================

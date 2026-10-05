@@ -32,7 +32,7 @@ namespace CavesOfOoo.Skills
 
         protected override void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng)
         {
-            ObjectStatusMatrix.TryApply(new WetEffect(moisture: 0.8f),
+            ObjectStatusMatrix.TryApply(new WetEffect(HydromancySkill.ApplyMoistureBonus(ParentEntity, 0.8f)),
                 target, ParentEntity, zone);
 
             var coolEvent = GameEvent.New("ApplyHeat");

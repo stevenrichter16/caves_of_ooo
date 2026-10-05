@@ -119,15 +119,11 @@ namespace CavesOfOoo.Skills
             {
                 var target = targets[i];
                 SpellFxCapture.TargetOnPath(ctx.Zone, target);
-
-                var dmg = new Damage(SURGE_DAMAGE);
-                dmg.AddAttribute("Electric");
-                dmg.AddAttribute("Lightning");
                 // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
                 // DestructiblePart, and ApplyDamage deliberately early-returns
                 // on anything with no Hitpoints stat — so elemental damage aimed
                 // at a tree or a barrel was silently discarded.
-                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
+                SpellDamageHelpers.ApplySpellDamage(target, SURGE_DAMAGE, "Electric", actor, ctx.Zone, "Lightning");
 
                 // Effects only land on the living. A corpse cannot be
                 // primed — there is nothing left to detonate.
