@@ -160,7 +160,7 @@ namespace CavesOfOoo.Core
             });
             return true;
         }
-        private void RemoveBrokenWithUndo(InventoryTransaction tx)
+        internal void RemoveBrokenWithUndo(InventoryTransaction tx)
         {
             var owner = ParentEntity;
             var effects = owner.GetPart<StatusEffectsPart>();

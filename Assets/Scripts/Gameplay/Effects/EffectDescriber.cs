@@ -14,6 +14,12 @@ namespace CavesOfOoo.Core
         {
             switch (effect)
             {
+                case EnGardeEffect guard:
+                    return "En Garde - " + (guard.Spent ? "spent." : "halve one adjacent melee blow while a long blade stays equipped; "
+                        + guard.Duration + " of your turns left. Spells and environmental harm bypass it.");
+                case VaultPoiseEffect poise:
+                    return "Vault poise - +2 accuracy on " + poise.Charges
+                        + " adjacent melee hit roll, spent even on a miss; " + poise.Duration + " of your turns left.";
                 case TonicStatSurgeEffect surge:
                     return surge.StatName + " surge: +" + surge.Amount + " for " + surge.Duration + " turns; repeat doses refresh, not stack.";
                 case BrokenEffect broken:

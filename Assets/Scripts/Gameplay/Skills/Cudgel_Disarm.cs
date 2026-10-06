@@ -114,6 +114,10 @@ namespace CavesOfOoo.Skills
             if (targetPos.x >= 0)
                 ctx.Zone.AddEntity(weaponEntity, targetPos.x, targetPos.y);
 
+            var disarmed = GameEvent.New("WeaponDisarmed");
+            disarmed.SetParameter("Weapon", (object)weaponEntity);
+            target.FireEventAndRelease(disarmed);
+
             MessageLog.Add(actor.GetDisplayName() + " disarms " + target.GetDisplayName()
                 + "! The " + weaponEntity.GetDisplayName() + " clatters to the ground.");
         

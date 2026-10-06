@@ -125,6 +125,9 @@ namespace CavesOfOoo.Core
                 || ParentEntity.GetPart<SpreadGrazerPart>() != this) return true;
             if (brain.PartyLeader != null) return false;
             if (TryHuntFlight(brain, zone)) return true;
+            // A real closed pen preserves this authored animal's finite forage trip.
+            if (ParentEntity.GetPart<GrazerPenPart>()?.Closed(zone) == true)
+            { brain.CurrentState = AIState.Idle; return true; }
             var threat = SpreadActorContext.Nearest(ParentEntity, zone, 3,
                 e => !BrainPart.ArePartyAligned(ParentEntity, e)
                     && (e.HasTag("Player") || FactionManager.IsHostile(ParentEntity, e)));

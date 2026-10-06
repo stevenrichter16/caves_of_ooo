@@ -49,6 +49,8 @@ namespace CavesOfOoo.Core
             if (ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(Target, CurrentZone, Rng) == true)
                 return;
 
+            if (ParentEntity.GetPart<WeaponRecoveryPart>()?.TryRecover(CurrentZone) == true) return;
+
             // Check if we should flee instead
             if (ShouldFlee())
             {
@@ -64,6 +66,7 @@ namespace CavesOfOoo.Core
 
             var tactics = ParentEntity.GetPart<CombatTacticsPart>();
             if (tactics != null && tactics.TryUseAbility(Target, CurrentZone, Rng)) return;
+            if (tactics != null && tactics.TryPositionForShot(Target, CurrentZone)) return;
 
             if (SpatialQuery.Distance(CurrentZone,ParentEntity,Target) == 1)
             {

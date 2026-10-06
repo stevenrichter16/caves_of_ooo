@@ -1443,6 +1443,8 @@ namespace CavesOfOoo.Core
 
                     string bp = marker.StartsWith("spawn:") ? marker.Substring(6) : marker;
                     var entity = factory.CreateEntity(bp);
+                    if (entity != null && stamp.Name == "AbandonedCounter")
+                        entity.Properties["SecondExploration.Stamp"] = stamp.Name;
                     if (entity != null)
                         zone.AddEntity(entity, wx, wy);
                 }

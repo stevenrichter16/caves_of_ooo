@@ -3135,7 +3135,9 @@ namespace CavesOfOoo.Rendering
                 || action.Command == SoddenPreparationPart.PrepareCommand
                 || action.Command == KitchenBatchPart.StartCommand
                 || CropWateringService.IsCommand(action.Command)
-                || WorldResourceActions.IsCommand(action.Command))
+                || WorldResourceActions.IsCommand(action.Command)
+                || PreparationActions.IsCommand(action.Command)
+                || SecondExplorationActions.IsCommand(action.Command))
             {
                 var harvest = InventorySystem.ExecuteCommand(
                     new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);

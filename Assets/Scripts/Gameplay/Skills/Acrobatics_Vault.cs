@@ -15,7 +15,8 @@ namespace CavesOfOoo.Skills
     /// 2 — if it's open + non-creature, the actor moves there
     /// regardless of what's at distance 1 (open or wall, they're
     /// jumped over). If the cell at distance 2 is solid or occupied,
-    /// the leap fails and the cooldown is consumed.</para>
+    /// the leap refuses without consuming a turn or cooldown. A successful
+    /// landing grants one brief adjacent melee accuracy opportunity.</para>
     ///
     /// <para>Per the WSP8.2 brainstorm
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Acrobatics_Vault</c>):
@@ -101,7 +102,9 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "landing_blocked");
                 return false;
             }
-            MessageLog.Add(actor.GetDisplayName() + " vaults forward!");
+            if (actor.SpatialZone == ctx.Zone && actor.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(actor))
+                actor.ApplyEffect(new VaultPoiseEffect(), actor, ctx.Zone);
+            MessageLog.Add(actor.GetDisplayName() + " vaults forward and finds an attacking opening!");
         
             return true;
         }

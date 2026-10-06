@@ -31,6 +31,23 @@
           "Description": "A gout of acid: 1d4 acid damage in a line, range 4, etching the target (Acidic). Cooldown 10. Also taught by the Acid Spray grimoire.",
           "Foreground": "g",
           "Detail": "G"
+        },
+        {
+          "Name": "Caustic Trail",
+          "Class": "Corrosion_CausticTrail",
+          "Cost": 1,
+          "Description": "Lay a visible acid film along 3 reachable cells. It lasts 4 turns, coating creatures that occupy or enter it with Acidic (0.35 corrosion), including allies. No immediate damage or collectible liquid. Cooldown 16; a wholly blocked lane is free.",
+          "Foreground": "g",
+          "Detail": "G"
+        },
+        {
+          "Name": "Caustic Draw",
+          "Class": "Corrosion_CausticDraw",
+          "Cost": 1,
+          "Description": "Spend the Acidic coating on the first target in a line, range 4, for base Acid damage of 4 plus up to 8 from its corrosion. Trades away continued corrosion and Etch setup. Spell bonuses and resistance apply. Cooldown 20; a dry or empty first target is free. Requires Acid Spray.",
+          "Foreground": "g",
+          "Detail": "G",
+          "Requires": "Corrosion_AcidSpray"
         }
       ]
     }

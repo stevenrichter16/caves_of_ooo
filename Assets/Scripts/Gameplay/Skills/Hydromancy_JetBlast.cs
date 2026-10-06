@@ -155,7 +155,7 @@ namespace CavesOfOoo.Skills
         private void WetTheGround(SkillEventContext ctx, Entity actor,
             int fromX, int fromY, int dx, int dy)
         {
-            var cells = SkillLine.CollectCells(
+            var cells = SpellTargeting.GetConeCells(
                 ctx.Zone, actor, fromX, fromY, dx, dy, BLAST_LENGTH);
             for (int i = 0; i < cells.Count; i++)
                 ZoneTileStateSystem.WriteCoating(ctx.Zone, cells[i].X, cells[i].Y,

@@ -1,6 +1,1773 @@
 {
   "Objects": [
     {
+      "Name": "WellmeetGuestLocker",
+      "Inherits": "Chest",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "guest locker"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "20"
+            },
+            {
+              "Key": "Locked",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "GuestLocker",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A guest locker beneath the cloth. Claim it while your guest-right holds; afterward the same chest remains available when the oath expires."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "QuillholdLoanShelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "loan shelf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Inventory",
+          "Params": [
+            {
+              "Key": "MaxWeight",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "LoanShelf",
+          "Params": []
+        },
+        {
+          "Name": "RentalDesk",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two utility volumes are lent for Ink. Study grants their ordinary permanent knowledge. Return one book for the stated partial Ink refund, or buy out your exact loan in drams."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdLoanWardGleam",
+      "Inherits": "WardGleamGrimoire",
+      "Parts": [
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Rentable",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdLoanDryingBreeze",
+      "Inherits": "DryingBreezeGrimoire",
+      "Parts": [
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Rentable",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "FrontierClothScreen",
+      "Inherits": "TentWall",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "abandoned cloth screen"
+            }
+          ]
+        },
+        {
+          "Name": "ReclaimCloth",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An abandoned screen still interrupts the view. Strip it for two lengths of knotflax cord and the cover is gone."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenPassagePost",
+      "Inherits": "SoddenRouteNotice",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cutbank passage post"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short dry crossing is watched from this post. Four drams buy one local passage. The longer dry boardwalks and the wet crossing remain open."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenPassageGuard",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cutbank watcher"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "Staying",
+              "Value": "true"
+            },
+            {
+              "Key": "Passive",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "SpreadTerritory",
+          "Params": []
+        },
+        {
+          "Name": "LocalPassagePermit",
+          "Params": []
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "This watcher guards only the marked cutbank. Pay before entering, take the longer boards, or wade. A passage does not excuse a personal attack."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "Villagers"
+        },
+        {
+          "Key": "AllowIdleBehavior",
+          "Value": ""
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 22,
+          "Min": 0,
+          "Max": 22
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "Speed",
+          "Value": 100
+        },
+        {
+          "Name": "XPValue",
+          "Value": 0
+        }
+      ]
+    },
+    {
+      "Name": "FrontierPenGate",
+      "Inherits": "SpreadFieldGate",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "grazer pen gate"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An ordinary gate keeps the grazer from the outside forage row. Open it and the animal can follow the real path out."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "CounterStoreChest",
+      "Inherits": "Chest",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "abandoned counter store"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "SecondCounterStore"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Old counter stock remains behind a keyed lock. A key, a nearby locksmith, or breaking the box will expose the same finite goods."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "CounterStoreKey",
+      "Inherits": "IronKey",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "counter store key"
+            }
+          ]
+        },
+        {
+          "Name": "Key",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "SecondCounterStore"
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "CausticFilm",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "caustic film"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Lifespan",
+          "Params": [
+            {
+              "Key": "TurnsRemaining",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "CausticFilm",
+          "Params": [
+            {
+              "Key": "Corrosion",
+              "Value": "0.35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A thin conjured acid film. Anything crossing it is coated in acid. It fades after four turns and cannot be gathered."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "CausticFilm",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "MarlbackStormbinder",
+      "Inherits": "MarlbackScrabbler",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "marlback stormbinder"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "s"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "1"
+            },
+            {
+              "Key": "DV",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Cudgel"
+            },
+            {
+              "Key": "Carry",
+              "Value": "SparkRoot"
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Hydromancy_Quench;Galvanism_ArcBolt"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "100"
+            },
+            {
+              "Key": "PreferredRange",
+              "Value": "3"
+            },
+            {
+              "Key": "RepositionForShot",
+              "Value": "true"
+            },
+            {
+              "Key": "PreferElementalSetup",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "WeaponRecovery",
+          "Params": []
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "MarlbackStormbinderCorpse"
+            },
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "This marlback carries a spark root in a dry pouch beneath blue-stained shale plates. It soaks a clear target, then sends lightning along the same line. Break its sight, dry off, or close while its spells recover. It keeps a little distance, steps around blocked shots, and will spend time recovering its own dropped cudgel."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 20,
+          "Min": 0,
+          "Max": 20
+        },
+        {
+          "Name": "Strength",
+          "Value": 14
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Speed",
+          "Value": 100
+        },
+        {
+          "Name": "XPValue",
+          "Value": 35
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
+    },
+    {
+      "Name": "MarlbackStormbinderCorpse",
+      "Inherits": "MarlbackCorpse",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "stormbinder remains"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Blue-stained shale plates are folded over the still claws of a stormbinder. The dry pouch and any unspent supplies fell with their owner."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "FieldHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "rough field haft"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shaped length of salvaged timber. Strength modifier cap 1; no hit or penetration bonus."
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Haft"
+            },
+            {
+              "Key": "MaxStrengthBonus",
+              "Value": "1"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "field-hafted"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "PlainCordBindingComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "plain knotflax binding"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A plain knotflax lashing. Fits a forged weapon; no hit or penetration bonus."
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Binding"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "cord-bound"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "TepuiboneHeadComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tepuibone striking head"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Sandstone patiently cut from tepuibone into a small striking head. Cudgel family; 1d3 damage and -1 penetration. No reach bonus."
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Blade"
+            },
+            {
+              "Key": "BaseDamage",
+              "Value": "1d3"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "-1"
+            },
+            {
+              "Key": "Attributes",
+              "Value": "Bludgeoning Cudgel"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "stone mallet"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BracedHaftComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "braced haft"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Bracing carries a strong wielder's force at the cost of precision. Strength modifier cap 5; -1 hit."
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Haft"
+            },
+            {
+              "Key": "MaxStrengthBonus",
+              "Value": "5"
+            },
+            {
+              "Key": "HitBonus",
+              "Value": "-1"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "braced"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GuardLashingComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "guard lashing"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A close balanced lashing. +2 hit, -1 penetration; no extra armor or reach."
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Binding"
+            },
+            {
+              "Key": "HitBonus",
+              "Value": "2"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "-1"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "guard-lashed"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FilterHood",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "filter hood"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "["
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wear on your head instead of a helmet. Filters 50 points of respiratory intake and reduces typed gas damage by 10%. It is not gas immunity, armor, or a cure for existing poison. Its leather fastening seams can be repaired with one leather binding when damaged."
+            }
+          ]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Head"
+            },
+            {
+              "Key": "UsesSlots",
+              "Value": "Head"
+            },
+            {
+              "Key": "EquipBonuses",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "0"
+            },
+            {
+              "Key": "DV",
+              "Value": "0"
+            },
+            {
+              "Key": "SpeedPenalty",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "leather-equipment-stitch"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "GasMask",
+          "Params": [
+            {
+              "Key": "Power",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Leather"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Leather"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.4"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "0.6"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Cloth"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "380"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.0"
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 10,
+          "Min": 0,
+          "Max": 10
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "AcidworkerApron",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "acidworker apron"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "["
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&r"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A sealed work apron. Body AV 1, DV -1, speed -5; +50 acid resistance while worn. Other damage is unchanged, and one-point acid hits still hurt. Its leather fastening seams can be repaired with one leather binding when damaged."
+            }
+          ]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Body"
+            },
+            {
+              "Key": "UsesSlots",
+              "Value": "Body"
+            },
+            {
+              "Key": "EquipBonuses",
+              "Value": "AcidResistance:50"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "1"
+            },
+            {
+              "Key": "DV",
+              "Value": "-1"
+            },
+            {
+              "Key": "SpeedPenalty",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "leather-equipment-stitch"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Leather"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Leather"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.4"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "0.6"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Cloth"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "380"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.0"
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 15,
+          "Min": 0,
+          "Max": 15
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "ColdwardCloak",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "coldward cloak"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "("
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&b"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A heavy-folded coldward cloak. Back AV 0, DV -1; +50 cold resistance while worn. Replaces your other back garment; no immunity. Its leather fastening seams can be repaired with one leather binding when damaged."
+            }
+          ]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Back"
+            },
+            {
+              "Key": "UsesSlots",
+              "Value": "Back"
+            },
+            {
+              "Key": "EquipBonuses",
+              "Value": "ColdResistance:50"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "0"
+            },
+            {
+              "Key": "DV",
+              "Value": "-1"
+            },
+            {
+              "Key": "SpeedPenalty",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "leather-equipment-stitch"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Leather,Fiber"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Cloth"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.4"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "0.6"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Cloth"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "380"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.0"
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 15,
+          "Min": 0,
+          "Max": 15
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "KnotflaxBandage",
+      "Inherits": "TonicItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "knotflax bandage"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "!"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Apply one bandage to stop ordinary bleeding. No healing, poison cure or lasting protection. Application spends the bandage even when no bleeding is present."
+            }
+          ]
+        },
+        {
+          "Name": "Tonic",
+          "Params": [
+            {
+              "Key": "Drink",
+              "Value": "false"
+            },
+            {
+              "Key": "Message",
+              "Value": "You bind the wound with knotflax."
+            }
+          ]
+        },
+        {
+          "Name": "CureTonic",
+          "Params": [
+            {
+              "Key": "CureEffect",
+              "Value": "BleedingEffect"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ConcentratedMendleaf",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "concentrated mendleaf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two sprigs reduced to one portable measure. Brew into one 2d4 healing draught instead of two separate 1d4 draughts."
+            }
+          ]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [
+            {
+              "Key": "PropertiesRaw",
+              "Value": "vital:2"
+            },
+            {
+              "Key": "FlavorText",
+              "Value": "Two sprigs reduced to one measure at an alchemy still. Vitality is concentrated: vital 2. Brew it for 2d4 healing."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CleansedGrovePulp",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cleansed grove pulp"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Processed grove-red: toxic character removed, original vital potency reduced to 2. Brew for 2d4 healing."
+            }
+          ]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [
+            {
+              "Key": "PropertiesRaw",
+              "Value": "vital:2"
+            },
+            {
+              "Key": "FlavorText",
+              "Value": "The bitter toxic fraction has been discarded at a still. Vital 2; no toxic property. This process does not mend the grove."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SoddenDressingBench",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -1897,14 +3664,15 @@
         {
           "Name": "Loadout",
           "Params": [
-            { "Key": "Carry", "Value": "HealingTonic" }
+            { "Key": "Carry", "Value": "HealingTonic;Antidote" }
           ]
         },
         {
           "Name": "FieldMedicine",
           "Params": [
             { "Key": "TonicBlueprint", "Value": "HealingTonic" },
-            { "Key": "UseAtOrBelowPercent", "Value": "40" }
+            { "Key": "UseAtOrBelowPercent", "Value": "40" },
+            {"Key": "CureBlueprints", "Value": "Antidote"}
           ]
         },
         {
@@ -2008,10 +3776,11 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "This short-faced marlback braces a salvaged pole across the passage. Pale shale plates overlap its broad back; hooked digging claws grip the wet bank beneath it."
+              "Value": "This short-faced marlback braces a salvaged pole across the passage. Pale shale plates overlap its broad back; hooked digging claws grip the wet bank beneath it. If disarmed, it spends separate actions retrieving and re-equipping its own weapon; taking that weapon away denies the recovery."
             }
           ]
-        }
+        },
+        {"Name": "WeaponRecovery", "Params": []}
       ],
       "Stats": [
         {
@@ -2519,6 +4288,10 @@
               "Value": "false"
             }
           ]
+        },
+        {
+          "Name": "WeaponSalvage",
+          "Params": []
         }
       ],
       "Stats": [
@@ -3597,6 +5370,10 @@
               "Value": "Slow, greasy, eager to burn. (combustible, viscous)"
             }
           ]
+        },
+        {
+          "Name": "TorchRefuel",
+          "Params": []
         }
       ],
       "Stats": [],
@@ -3901,6 +5678,15 @@
             {
               "Key": "FlavorText",
               "Value": "Bruised leaves knit themselves closed. (vital)"
+            }
+          ]
+        },
+        {
+          "Name": "PreparationRecipe",
+          "Params": [
+            {
+              "Key": "RecipeIds",
+              "Value": "concentrate_mendleaf"
             }
           ]
         }
@@ -26386,6 +28172,10 @@
               "Value": "12"
             }
           ]
+        },
+        {
+          "Name": "MineralPreparation",
+          "Params": []
         }
       ],
       "Stats": [],
@@ -26446,6 +28236,10 @@
               "Value": "18"
             }
           ]
+        },
+        {
+          "Name": "MineralPreparation",
+          "Params": []
         }
       ],
       "Stats": [],
@@ -26958,6 +28752,10 @@
               "Value": "15"
             }
           ]
+        },
+        {
+          "Name": "MineralPreparation",
+          "Params": []
         }
       ],
       "Stats": [],
@@ -28188,7 +29986,9 @@
             {
               "Key": "TurnsRemaining",
               "Value": "8"
-            }
+            },
+            {"Key": "ExpiryCoating", "Value": "water"},
+            {"Key": "ExpiryCoatingTurns", "Value": "4"}
           ]
         },
         {
@@ -33335,7 +35135,16 @@
             { "Key": "FlavorText", "Value": "A fruit of astonishing health, grown from everyone the grove has ever loved. The red is thinking." }
           ]
         },
-        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "18" } ] }
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "18" } ] },
+        {
+          "Name": "PreparationRecipe",
+          "Params": [
+            {
+              "Key": "RecipeIds",
+              "Value": "detox_grove_red"
+            }
+          ]
+        }
       ],
       "Stats": [],
       "Tags": []
@@ -33787,7 +35596,16 @@
         { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "30" } ] },
         { "Name": "Examinable", "Params": [
           { "Key": "Description", "Value": "Sandstone cut from the Root. It weighs more than its size promises, pale grain closed tightly around the memory of wood. Name-holders work it patiently; the stone has never been in a hurry." }
-        ] }
+        ] },
+        {
+          "Name": "PreparationRecipe",
+          "Params": [
+            {
+              "Key": "RecipeIds",
+              "Value": "shape_head"
+            }
+          ]
+        }
       ],
       "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
     },
@@ -38791,7 +40609,9 @@
             {
               "Key": "AssistRadius",
               "Value": "6"
-            }
+            },
+            {"Key": "PreferredRange", "Value": "3"},
+            {"Key": "RepositionForShot", "Value": "true"}
           ]
         },
         {
@@ -38816,7 +40636,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A hooded marlback with a stained throat-wrap and a sealed pouch of glimmer brine. Its short acid spray leaves a pause before the next shot. A nearby partner answers attacks, but stone blocks the spray."
+              "Value": "A hooded marlback with a stained throat-wrap and a sealed pouch of glimmer brine. It tries to keep three paces while its short acid spray recovers, and steps sideways to clear an ally from its shot. A nearby partner answers attacks, but stone blocks the spray."
             }
           ]
         }
@@ -40563,6 +42383,15 @@
               "Value": "Sound lengths sorted out of a fallen frame. Two lengths can brace a jammed wooden gate."
             }
           ]
+        },
+        {
+          "Name": "PreparationRecipe",
+          "Params": [
+            {
+              "Key": "RecipeIds",
+              "Value": "shape_haft"
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -40634,6 +42463,15 @@
             {
               "Key": "Description",
               "Value": "Tough knotflax stems stripped and twisted into cord as they are gathered. One coil can replace a snapped well line."
+            }
+          ]
+        },
+        {
+          "Name": "PreparationRecipe",
+          "Params": [
+            {
+              "Key": "RecipeIds",
+              "Value": "braid_binding,bandage"
             }
           ]
         }

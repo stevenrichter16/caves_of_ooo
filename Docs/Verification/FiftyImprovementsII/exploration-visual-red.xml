@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="85" result="Failed(Child)" total="85" passed="10" failed="75" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:56Z" duration="18.5505528">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25409" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:56Z" duration="18.550553" total="85" passed="10" failed="75" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31277" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25409" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:56Z" duration="18.434464" total="85" passed="10" failed="75" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31278" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25409" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:56Z" duration="18.355286" total="85" passed="10" failed="75" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31279" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25409" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:56Z" duration="18.254469" total="85" passed="10" failed="75" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24311" name="FiftySecondVisualTests" fullname="CavesOfOoo.Tests.FiftySecondVisualTests" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="33" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:51Z" duration="12.984107" total="33" passed="6" failed="27" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24347" name="ActualBodyEquipAndFloorDropBothSubmitGeometry" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-06 09:49:38Z" end-time="2026-10-06 09:49:41Z" duration="2.803091" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24344" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;FilterHood&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;FilterHood&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="631545688" result="Failed" start-time="2026-10-06 09:49:39Z" end-time="2026-10-06 09:49:40Z" duration="1.057802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:143
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FilterHood'
+]]></output>
+              </test-case>
+              <test-case id="24345" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;AcidworkerApron&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;AcidworkerApron&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2072626938" result="Failed" start-time="2026-10-06 09:49:40Z" end-time="2026-10-06 09:49:40Z" duration="0.771283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:143
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'AcidworkerApron'
+]]></output>
+              </test-case>
+              <test-case id="24346" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;ColdwardCloak&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;ColdwardCloak&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1012699078" result="Failed" start-time="2026-10-06 09:49:40Z" end-time="2026-10-06 09:49:41Z" duration="0.773410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:143
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ColdwardCloak'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24322" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-06 09:49:41Z" end-time="2026-10-06 09:49:49Z" duration="7.442987" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24312" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;WellmeetGuestLocker&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;WellmeetGuestLocker&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1191145188" result="Failed" start-time="2026-10-06 09:49:41Z" end-time="2026-10-06 09:49:42Z" duration="0.674845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'WellmeetGuestLocker'
+]]></output>
+              </test-case>
+              <test-case id="24313" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanShelf&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanShelf&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="231151929" result="Failed" start-time="2026-10-06 09:49:42Z" end-time="2026-10-06 09:49:43Z" duration="0.767435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'QuillholdLoanShelf'
+]]></output>
+              </test-case>
+              <test-case id="24314" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanWardGleam&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanWardGleam&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2142883131" result="Failed" start-time="2026-10-06 09:49:43Z" end-time="2026-10-06 09:49:43Z" duration="0.648607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'QuillholdLoanWardGleam'
+]]></output>
+              </test-case>
+              <test-case id="24315" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanDryingBreeze&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;QuillholdLoanDryingBreeze&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1055315182" result="Failed" start-time="2026-10-06 09:49:43Z" end-time="2026-10-06 09:49:44Z" duration="0.778917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'QuillholdLoanDryingBreeze'
+]]></output>
+              </test-case>
+              <test-case id="24316" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;FrontierClothScreen&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;FrontierClothScreen&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1182494287" result="Failed" start-time="2026-10-06 09:49:44Z" end-time="2026-10-06 09:49:45Z" duration="0.841777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FrontierClothScreen'
+]]></output>
+              </test-case>
+              <test-case id="24317" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;SoddenPassagePost&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;SoddenPassagePost&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1647844610" result="Failed" start-time="2026-10-06 09:49:45Z" end-time="2026-10-06 09:49:46Z" duration="0.791250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SoddenPassagePost'
+]]></output>
+              </test-case>
+              <test-case id="24318" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;SoddenPassageGuard&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;SoddenPassageGuard&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2089735736" result="Failed" start-time="2026-10-06 09:49:46Z" end-time="2026-10-06 09:49:47Z" duration="0.775560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'SoddenPassageGuard'
+]]></output>
+              </test-case>
+              <test-case id="24319" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CounterStoreChest&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CounterStoreChest&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2002180363" result="Failed" start-time="2026-10-06 09:49:47Z" end-time="2026-10-06 09:49:47Z" duration="0.652612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'CounterStoreChest'
+]]></output>
+              </test-case>
+              <test-case id="24320" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CounterStoreKey&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CounterStoreKey&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="955492087" result="Failed" start-time="2026-10-06 09:49:47Z" end-time="2026-10-06 09:49:48Z" duration="0.777613" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'CounterStoreKey'
+]]></output>
+              </test-case>
+              <test-case id="24321" name="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CausticFilm&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm(&quot;CausticFilm&quot;)" methodname="ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="108971845" result="Failed" start-time="2026-10-06 09:49:48Z" end-time="2026-10-06 09:49:49Z" duration="0.638251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored owner exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.ExplorationOwnersKeepTheirIdentityAndVisiblePhysicalForm (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:25
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'CausticFilm'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24343" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.537965" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24337" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;SteelBladeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;SteelBladeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="496132046" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.343377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24338" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;IronSpikeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;IronSpikeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="575481337" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.028525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24339" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;PeatMalletHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;PeatMalletHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="226818379" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.028318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24340" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CinderhookAxeHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CinderhookAxeHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="710930330" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.027878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24341" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CounterweightLongBladeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CounterweightLongBladeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1770883294" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.026683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24342" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;TepuiboneHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;TepuiboneHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="473709871" result="Passed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:49Z" duration="0.027095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24323" name="PenGateGeometryFollowsItsRealDoorState" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PenGateGeometryFollowsItsRealDoorState" methodname="PenGateGeometryFollowsItsRealDoorState" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2080297737" result="Failed" start-time="2026-10-06 09:49:49Z" end-time="2026-10-06 09:49:50Z" duration="0.664453" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PenGateGeometryFollowsItsRealDoorState () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:48
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'FrontierPenGate'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24336" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.546741" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24325" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FieldHaftComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FieldHaftComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="488134266" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.027239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FieldHaftComponent'
+]]></output>
+              </test-case>
+              <test-case id="24326" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;PlainCordBindingComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;PlainCordBindingComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1951306085" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.037067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'PlainCordBindingComponent'
+]]></output>
+              </test-case>
+              <test-case id="24327" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;TepuiboneHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;TepuiboneHeadComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1590387273" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.048926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'TepuiboneHeadComponent'
+]]></output>
+              </test-case>
+              <test-case id="24328" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;BracedHaftComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;BracedHaftComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="408226706" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.116444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'BracedHaftComponent'
+]]></output>
+              </test-case>
+              <test-case id="24329" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;GuardLashingComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;GuardLashingComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="205484466" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.027600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'GuardLashingComponent'
+]]></output>
+              </test-case>
+              <test-case id="24330" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FilterHood&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FilterHood&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1818489741" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.027665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FilterHood'
+]]></output>
+              </test-case>
+              <test-case id="24331" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;AcidworkerApron&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;AcidworkerApron&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1667425271" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.027207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'AcidworkerApron'
+]]></output>
+              </test-case>
+              <test-case id="24332" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ColdwardCloak&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ColdwardCloak&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1786641788" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.026471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ColdwardCloak'
+]]></output>
+              </test-case>
+              <test-case id="24333" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;KnotflaxBandage&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;KnotflaxBandage&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1657983934" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.028726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxBandage'
+]]></output>
+              </test-case>
+              <test-case id="24334" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ConcentratedMendleaf&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ConcentratedMendleaf&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="741112857" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.028943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ConcentratedMendleaf'
+]]></output>
+              </test-case>
+              <test-case id="24335" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;CleansedGrovePulp&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;CleansedGrovePulp&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1217167286" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:50Z" duration="0.028373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:94
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'CleansedGrovePulp'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24348" name="StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" methodname="StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1875422641" result="Failed" start-time="2026-10-06 09:49:50Z" end-time="2026-10-06 09:49:51Z" duration="0.840407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  MarlbackStormbinder
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Add (System.String blueprint, System.Int32 x, System.Int32 y) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:116
+at CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:164
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'MarlbackStormbinder'
+]]></output>
+            </test-case>
+            <test-case id="24324" name="StormbinderRemainsKeepMarlbackCorpseShapeWithActualSourceIdentity" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderRemainsKeepMarlbackCorpseShapeWithActualSourceIdentity" methodname="StormbinderRemainsKeepMarlbackCorpseShapeWithActualSourceIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="272033858" result="Failed" start-time="2026-10-06 09:49:51Z" end-time="2026-10-06 09:49:51Z" duration="0.044654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderRemainsKeepMarlbackCorpseShapeWithActualSourceIdentity () [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:71
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="19479" name="SecondExplorationServicesTests" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-06 09:49:51Z" end-time="2026-10-06 09:49:53Z" duration="1.776040" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="19485" name="ArtisanSuppliesRealMaterialsOrRefusesEmptyStock" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ArtisanSuppliesRealMaterialsOrRefusesEmptyStock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:51Z" end-time="2026-10-06 09:49:52Z" duration="0.360993" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19483" name="ArtisanSuppliesRealMaterialsOrRefusesEmptyStock(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ArtisanSuppliesRealMaterialsOrRefusesEmptyStock(False)" methodname="ArtisanSuppliesRealMaterialsOrRefusesEmptyStock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1172087711" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.141881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ArtisanRepairServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ArtisanSuppliesRealMaterialsOrRefusesEmptyStock (System.Boolean emptyStock) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19484" name="ArtisanSuppliesRealMaterialsOrRefusesEmptyStock(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ArtisanSuppliesRealMaterialsOrRefusesEmptyStock(True)" methodname="ArtisanSuppliesRealMaterialsOrRefusesEmptyStock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="322426512" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.020911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ArtisanRepairServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ArtisanSuppliesRealMaterialsOrRefusesEmptyStock (System.Boolean emptyStock) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19509" name="BurialMovesExactCorpseIntoActualGraveyardUnlessLocked" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BurialMovesExactCorpseIntoActualGraveyardUnlessLocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.079716" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19507" name="BurialMovesExactCorpseIntoActualGraveyardUnlessLocked(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BurialMovesExactCorpseIntoActualGraveyardUnlessLocked(False)" methodname="BurialMovesExactCorpseIntoActualGraveyardUnlessLocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="855417328" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.021390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior BurialPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationServicesTests.BurialMovesExactCorpseIntoActualGraveyardUnlessLocked (System.Boolean locked) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19508" name="BurialMovesExactCorpseIntoActualGraveyardUnlessLocked(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BurialMovesExactCorpseIntoActualGraveyardUnlessLocked(True)" methodname="BurialMovesExactCorpseIntoActualGraveyardUnlessLocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="687257504" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.020150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior BurialPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationServicesTests.BurialMovesExactCorpseIntoActualGraveyardUnlessLocked (System.Boolean locked) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19491" name="BuyOutExactWornLoanPreservesEquipmentAndInk" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BuyOutExactWornLoanPreservesEquipmentAndInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.199159" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19489" name="BuyOutExactWornLoanPreservesEquipmentAndInk(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BuyOutExactWornLoanPreservesEquipmentAndInk(False)" methodname="BuyOutExactWornLoanPreservesEquipmentAndInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1004792019" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.021523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RentalDeskPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.BuyOutExactWornLoanPreservesEquipmentAndInk (System.Boolean insufficient) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19490" name="BuyOutExactWornLoanPreservesEquipmentAndInk(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.BuyOutExactWornLoanPreservesEquipmentAndInk(True)" methodname="BuyOutExactWornLoanPreservesEquipmentAndInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="624843120" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.020962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RentalDeskPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.BuyOutExactWornLoanPreservesEquipmentAndInk (System.Boolean insufficient) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19494" name="ClaimGuestLockerOnlyWithUnexpiredCloth" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ClaimGuestLockerOnlyWithUnexpiredCloth" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.100289" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19492" name="ClaimGuestLockerOnlyWithUnexpiredCloth(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ClaimGuestLockerOnlyWithUnexpiredCloth(False)" methodname="ClaimGuestLockerOnlyWithUnexpiredCloth" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="981681177" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.021433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior GuestLockerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ClaimGuestLockerOnlyWithUnexpiredCloth (System.Boolean expired) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19493" name="ClaimGuestLockerOnlyWithUnexpiredCloth(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ClaimGuestLockerOnlyWithUnexpiredCloth(True)" methodname="ClaimGuestLockerOnlyWithUnexpiredCloth" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1900400223" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.020864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior GuestLockerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ClaimGuestLockerOnlyWithUnexpiredCloth (System.Boolean expired) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:110
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19482" name="CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.100225" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19480" name="CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk(False)" methodname="CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="941127986" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.021479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ScribeCopyServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk (System.Boolean noInk) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19481" name="CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk(True)" methodname="CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="664441443" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.020854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ScribeCopyServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.CopyTheSelectedSecondVolumeOrRefuseWithoutItsInk (System.Boolean noInk) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19500" name="CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.205307" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19498" name="CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked(False)" methodname="CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="693114966" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.026608" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianCourtesyPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked (System.Boolean enclosed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:129
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19499" name="CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked(True)" methodname="CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="340610840" result="Failed" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:52Z" duration="0.021197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianCourtesyPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.CourteousNpcMovesOneRealStepUnlessAllDestinationsAreBlocked (System.Boolean enclosed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:129
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19506" name="EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:52Z" end-time="2026-10-06 09:49:53Z" duration="0.215502" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19504" name="EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented(False)" methodname="EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1737682193" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.042403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianEquipmentGiftPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented (System.Boolean rented) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19505" name="EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented(True)" methodname="EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="7341759" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianEquipmentGiftPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.EquipmentGiftActuallyBindsTheSameItemUnlessItIsRented (System.Boolean rented) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19511" name="FailedOuterCopyRestoresExactInkPurseAndPack" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.FailedOuterCopyRestoresExactInkPurseAndPack" methodname="FailedOuterCopyRestoresExactInkPurseAndPack" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="2048305024" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020612" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing exploration behavior ScribeCopyServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.FailedOuterCopyRestoresExactInkPurseAndPack () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:177
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19497" name="LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.055077" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19495" name="LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock(False)" methodname="LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1674956674" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior LocksmithServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock (System.Boolean unique) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:119
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19496" name="LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock(True)" methodname="LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="249304320" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.018940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior LocksmithServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.LocksmithOpensOneNearbyOrdinaryChestButNotUniqueLock (System.Boolean unique) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:119
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19503" name="OwnHealingTonicTreatsOnlyInjuredWillingPatient" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.OwnHealingTonicTreatsOnlyInjuredWillingPatient" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.101855" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19501" name="OwnHealingTonicTreatsOnlyInjuredWillingPatient(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.OwnHealingTonicTreatsOnlyInjuredWillingPatient(False)" methodname="OwnHealingTonicTreatsOnlyInjuredWillingPatient" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="691719756" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.021061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianAidPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.OwnHealingTonicTreatsOnlyInjuredWillingPatient (System.Boolean healthy) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19502" name="OwnHealingTonicTreatsOnlyInjuredWillingPatient(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.OwnHealingTonicTreatsOnlyInjuredWillingPatient(True)" methodname="OwnHealingTonicTreatsOnlyInjuredWillingPatient" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="749440111" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.019429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CivilianAidPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.OwnHealingTonicTreatsOnlyInjuredWillingPatient (System.Boolean healthy) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19488" name="ReturnOneRentalKeepsOtherLoanAndItsBodyBinding" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ReturnOneRentalKeepsOtherLoanAndItsBodyBinding" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.199850" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19486" name="ReturnOneRentalKeepsOtherLoanAndItsBodyBinding(False)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ReturnOneRentalKeepsOtherLoanAndItsBodyBinding(False)" methodname="ReturnOneRentalKeepsOtherLoanAndItsBodyBinding" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1232638224" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RentalDeskPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ReturnOneRentalKeepsOtherLoanAndItsBodyBinding (System.Boolean wrongLessor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19487" name="ReturnOneRentalKeepsOtherLoanAndItsBodyBinding(True)" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.ReturnOneRentalKeepsOtherLoanAndItsBodyBinding(True)" methodname="ReturnOneRentalKeepsOtherLoanAndItsBodyBinding" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="2061342661" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RentalDeskPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.ReturnOneRentalKeepsOtherLoanAndItsBodyBinding (System.Boolean wrongLessor) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19510" name="SuccessfulServiceMenuNamesExactBookAndPriceWithoutMutation" fullname="CavesOfOoo.Tests.SecondExplorationServicesTests.SuccessfulServiceMenuNamesExactBookAndPriceWithoutMutation" methodname="SuccessfulServiceMenuNamesExactBookAndPriceWithoutMutation" classname="CavesOfOoo.Tests.SecondExplorationServicesTests" runstate="Runnable" seed="1293132589" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.020348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing exploration behavior ScribeCopyServicePart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationServicesTests.SuccessfulServiceMenuNamesExactBookAndPriceWithoutMutation () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:169
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="19512" name="SecondExplorationSitesTests" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:54Z" duration="1.017906" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="19521" name="ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.164793" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19519" name="ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses(False)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses(False)" methodname="ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="2069722123" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.040361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ReclaimClothPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses (System.Boolean refuse) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19520" name="ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses(True)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses(True)" methodname="ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="801620438" result="Failed" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:53Z" duration="0.021184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior ReclaimClothPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.ClothDismantlingActuallyRemovesCoverUnlessOuterActionRefuses (System.Boolean refuse) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19525" name="CollectorBarterTransfersItsExactCarriedFindOnlyWithFood" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.CollectorBarterTransfersItsExactCarriedFindOnlyWithFood" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:53Z" end-time="2026-10-06 09:49:54Z" duration="0.210967" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19523" name="CollectorBarterTransfersItsExactCarriedFindOnlyWithFood(False)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.CollectorBarterTransfersItsExactCarriedFindOnlyWithFood(False)" methodname="CollectorBarterTransfersItsExactCarriedFindOnlyWithFood" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="363561215" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.041089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CollectorBarterPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationSitesTests.CollectorBarterTransfersItsExactCarriedFindOnlyWithFood (System.Boolean withoutFood) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19524" name="CollectorBarterTransfersItsExactCarriedFindOnlyWithFood(True)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.CollectorBarterTransfersItsExactCarriedFindOnlyWithFood(True)" methodname="CollectorBarterTransfersItsExactCarriedFindOnlyWithFood" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1237918084" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.031388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior CollectorBarterPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationSitesTests.CollectorBarterTransfersItsExactCarriedFindOnlyWithFood (System.Boolean withoutFood) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19528" name="FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.286590" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19526" name="FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk(False)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk(False)" methodname="FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="849055170" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.063689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior LoanShelfPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk (System.Boolean broke) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19527" name="FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk(True)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk(True)" methodname="FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1809003776" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.098440" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior LoanShelfPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.FiniteLibraryLoanMovesExactSingletonOrRefusesMissingInk (System.Boolean broke) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19522" name="LoadedContainerHaulWeightTracksRealRemainingContents" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.LoadedContainerHaulWeightTracksRealRemainingContents" methodname="LoadedContainerHaulWeightTracksRealRemainingContents" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1930154940" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.021066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing exploration behavior ContainerLoadPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.LoadedContainerHaulWeightTracksRealRemainingContents () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:39
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19515" name="RecoverExactJarCreatesHandLightOrRefusesFullPack" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.RecoverExactJarCreatesHandLightOrRefusesFullPack" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.057495" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19513" name="RecoverExactJarCreatesHandLightOrRefusesFullPack(False)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.RecoverExactJarCreatesHandLightOrRefusesFullPack(False)" methodname="RecoverExactJarCreatesHandLightOrRefusesFullPack" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="216255046" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.020944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RecoverableLampPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.RecoverExactJarCreatesHandLightOrRefusesFullPack (System.Boolean full) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:14
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19514" name="RecoverExactJarCreatesHandLightOrRefusesFullPack(True)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.RecoverExactJarCreatesHandLightOrRefusesFullPack(True)" methodname="RecoverExactJarCreatesHandLightOrRefusesFullPack" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1357697246" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.019912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior RecoverableLampPart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.RecoverExactJarCreatesHandLightOrRefusesFullPack (System.Boolean full) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:14
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19518" name="SalvageOnlyJammedSpikeMechanismOnce" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.SalvageOnlyJammedSpikeMechanismOnce" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.100014" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19516" name="SalvageOnlyJammedSpikeMechanismOnce(False)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.SalvageOnlyJammedSpikeMechanismOnce(False)" methodname="SalvageOnlyJammedSpikeMechanismOnce" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1993643725" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.020644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior TrapSalvagePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.SalvageOnlyJammedSpikeMechanismOnce (System.Boolean armed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19517" name="SalvageOnlyJammedSpikeMechanismOnce(True)" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.SalvageOnlyJammedSpikeMechanismOnce(True)" methodname="SalvageOnlyJammedSpikeMechanismOnce" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="758336571" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.020230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing exploration behavior TrapSalvagePart
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.SalvageOnlyJammedSpikeMechanismOnce (System.Boolean armed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19530" name="UnboundPassageCannotSellGlobalPeace" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.UnboundPassageCannotSellGlobalPeace" methodname="UnboundPassageCannotSellGlobalPeace" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="1936816442" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.019571" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing exploration behavior LocalPassagePermitPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationFixture.Provider (System.String part, System.String blueprint) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:35
+at CavesOfOoo.Tests.SecondExplorationSitesTests.UnboundPassageCannotSellGlobalPeace () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:82
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="19529" name="UnboundRopeCannotConsumeCordOrCreateCosmeticStairs" fullname="CavesOfOoo.Tests.SecondExplorationSitesTests.UnboundRopeCannotConsumeCordOrCreateCosmeticStairs" methodname="UnboundRopeCannotConsumeCordOrCreateCosmeticStairs" classname="CavesOfOoo.Tests.SecondExplorationSitesTests" runstate="Runnable" seed="973918358" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.018964" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing exploration behavior RopeShortcutPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationFixture.Add (CavesOfOoo.Core.Entity entity, System.String typeName) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationServicesTests.cs:25
+at CavesOfOoo.Tests.SecondExplorationSitesTests.UnboundRopeCannotConsumeCordOrCreateCosmeticStairs () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="19531" name="SecondExplorationSourceTests" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:56Z" duration="2.276587" total="17" passed="4" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="19550" name="CachedLiteralGraphIsNeverRetrofitted" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.CachedLiteralGraphIsNeverRetrofitted" methodname="CachedLiteralGraphIsNeverRetrofitted" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1798896794" result="Passed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.035515" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19543" name="FreshNativeDestinationActuallyContainsItsNewChoice" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:55Z" duration="1.195725" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19532" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.14.9.0&quot;,&quot;ScribeCopyServicePart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.14.9.0&quot;,&quot;ScribeCopyServicePart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1104670738" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.105931" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.14.9.0 must physically offer ScribeCopyServicePart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Conversation] Loaded 79 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+              </test-case>
+              <test-case id="19533" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.14.9.0&quot;,&quot;LoanShelfPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.14.9.0&quot;,&quot;LoanShelfPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1146890522" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:54Z" duration="0.057809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.14.9.0 must physically offer LoanShelfPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19534" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.6.6.0&quot;,&quot;ArtisanRepairServicePart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.6.6.0&quot;,&quot;ArtisanRepairServicePart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="832842462" result="Failed" start-time="2026-10-06 09:49:54Z" end-time="2026-10-06 09:49:55Z" duration="0.066872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.6.6.0 must physically offer ArtisanRepairServicePart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19535" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.10.14.0&quot;,&quot;RentalDeskPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.10.14.0&quot;,&quot;RentalDeskPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1411690745" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.063973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.10.14.0 must physically offer RentalDeskPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19536" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.8.16.0&quot;,&quot;GuestLockerPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.8.16.0&quot;,&quot;GuestLockerPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1930700121" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.063535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.8.16.0 must physically offer GuestLockerPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19537" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.4.6.1&quot;,&quot;RecoverableLampPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.4.6.1&quot;,&quot;RecoverableLampPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="726735354" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.104894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.4.6.1 must physically offer RecoverableLampPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19538" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.2.7.1&quot;,&quot;RopeShortcutPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.2.7.1&quot;,&quot;RopeShortcutPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="2081088213" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.089757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.7.1 must physically offer RopeShortcutPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19539" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.16.7.0&quot;,&quot;LocalPassagePermitPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.16.7.0&quot;,&quot;LocalPassagePermitPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1743525031" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.304618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.16.7.0 must physically offer LocalPassagePermitPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19540" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.17.7.0&quot;,&quot;ContainerLoadPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.17.7.0&quot;,&quot;ContainerLoadPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="895013266" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.146033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.17.7.0 must physically offer ContainerLoadPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19541" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.19.18.0&quot;,&quot;ReclaimClothPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.19.18.0&quot;,&quot;ReclaimClothPart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="284177000" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.068967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.19.18.0 must physically offer ReclaimClothPart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19542" name="FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.19.18.0&quot;,&quot;LocksmithServicePart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice(&quot;Overworld.19.18.0&quot;,&quot;LocksmithServicePart&quot;)" methodname="FreshNativeDestinationActuallyContainsItsNewChoice" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="712314507" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:55Z" duration="0.057768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.19.18.0 must physically offer LocksmithServicePart
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshNativeDestinationActuallyContainsItsNewChoice (System.String zoneId, System.String type) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19544" name="FreshPenHasRealClosedGateAndBoundFiniteGrazer" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.FreshPenHasRealClosedGateAndBoundFiniteGrazer" methodname="FreshPenHasRealClosedGateAndBoundFiniteGrazer" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1146221417" result="Failed" start-time="2026-10-06 09:49:55Z" end-time="2026-10-06 09:49:56Z" duration="0.421761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.FreshPenHasRealClosedGateAndBoundFiniteGrazer () [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19549" name="LiteralVersion14DoesNotAcquireNewDestinations" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.LiteralVersion14DoesNotAcquireNewDestinations" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-06 09:49:56Z" end-time="2026-10-06 09:49:56Z" duration="0.357486" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="19546" name="LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.14.9.0&quot;,&quot;LoanShelfPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.14.9.0&quot;,&quot;LoanShelfPart&quot;)" methodname="LiteralVersion14DoesNotAcquireNewDestinations" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="341683273" result="Passed" start-time="2026-10-06 09:49:56Z" end-time="2026-10-06 09:49:56Z" duration="0.097597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19547" name="LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.8.16.0&quot;,&quot;GuestLockerPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.8.16.0&quot;,&quot;GuestLockerPart&quot;)" methodname="LiteralVersion14DoesNotAcquireNewDestinations" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1401445390" result="Passed" start-time="2026-10-06 09:49:56Z" end-time="2026-10-06 09:49:56Z" duration="0.156183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19548" name="LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.19.18.0&quot;,&quot;ReclaimClothPart&quot;)" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.LiteralVersion14DoesNotAcquireNewDestinations(&quot;Overworld.19.18.0&quot;,&quot;ReclaimClothPart&quot;)" methodname="LiteralVersion14DoesNotAcquireNewDestinations" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="1227294512" result="Passed" start-time="2026-10-06 09:49:56Z" end-time="2026-10-06 09:49:56Z" duration="0.057095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="19545" name="WorksStockContainsOneOfEachPreparationGarmentWithoutSecondCache" fullname="CavesOfOoo.Tests.SecondExplorationSourceTests.WorksStockContainsOneOfEachPreparationGarmentWithoutSecondCache" methodname="WorksStockContainsOneOfEachPreparationGarmentWithoutSecondCache" classname="CavesOfOoo.Tests.SecondExplorationSourceTests" runstate="Runnable" seed="222583135" result="Failed" start-time="2026-10-06 09:49:56Z" end-time="2026-10-06 09:49:56Z" duration="0.144160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SecondExplorationSourceTests.WorksStockContainsOneOfEachPreparationGarmentWithoutSecondCache () [0x00090] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SecondExplorationSitesTests.cs:132
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

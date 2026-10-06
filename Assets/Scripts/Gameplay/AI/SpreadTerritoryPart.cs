@@ -48,7 +48,9 @@ namespace CavesOfOoo.Core
             }
             if (!CurrentPost(zone)) { ClearWarning(brain); brain.CurrentState = AIState.Idle; return true; }
             var target = SpreadActorContext.Nearest(ParentEntity, zone, Math.Min(brain.SightRadius, 20),
-                e => Intersects(zone, e) && FactionManager.IsHostile(ParentEntity, e));
+                e => Intersects(zone, e) && (ParentEntity.GetPart<LocalPassagePermitPart>() is LocalPassagePermitPart permit
+                    ? !permit.Allows(e, zone) && (permit.ClaimsEntry(e, zone) || FactionManager.IsHostile(ParentEntity, e))
+                    : FactionManager.IsHostile(ParentEntity, e)));
             if (target == null)
             {
                 ClearWarning(brain); brain.CurrentState = AIState.Idle;

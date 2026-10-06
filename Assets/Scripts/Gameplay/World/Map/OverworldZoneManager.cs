@@ -1196,14 +1196,16 @@ namespace CavesOfOoo.Core
                 StagedWayhouse=null;
                 lairAccepted=staged.FinalizeGenerated(zone)&&lairAccepted;
             }
-            return SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
+            bool accepted = SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
+            if (accepted) SecondExplorationSites.Install(this, zone);
+            return accepted;
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
             && !GleanersDistrict.Retain(zoneID)
             && !SoddenDistrict.Retain(zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
-            && !BiomeCropPlacement.Retain(this,zoneID);
+            && !BiomeCropPlacement.Retain(this,zoneID) && !SecondExplorationSites.Retain(this,zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {

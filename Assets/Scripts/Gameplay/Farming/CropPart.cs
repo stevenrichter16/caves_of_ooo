@@ -86,12 +86,15 @@ namespace CavesOfOoo.Core
         /// produce. Only the opt-in cultivated harvest uses these saved fields.</summary>
         public string SeedYieldBlueprint = "";
         public int SeedYieldCount;
+        /// <summary>Saved once-only preparation; compost changes stage length, never time or moisture.</summary>
+        public bool Composted;
 
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
             {
                 var queryingActor = e.GetParameter<Entity>("Actor");
+                CultivationPreparationService.AddActions(queryingActor, this, PreparationActions.ZoneFor(e, queryingActor), e.GetParameter<InventoryActionList>("Actions"));
                 CropWateringService.AddActions(queryingActor, ParentEntity,
                     e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone,
                     e.GetParameter<InventoryActionList>("Actions"));
@@ -108,6 +111,8 @@ namespace CavesOfOoo.Core
                 }
                 return true;
             }
+            if (e.ID == "InventoryAction" && CultivationPreparationService.Handle(e, this))
+            { e.Handled = true; return false; }
             if (e.ID == "InventoryAction" && CropWateringService.IsCommand(e.GetStringParameter("Command")))
             {
                 if (!CropWateringService.TryWater(e.GetParameter<Entity>("Actor"), ParentEntity,

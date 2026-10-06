@@ -57,9 +57,9 @@ namespace CavesOfOoo.Rendering
         private readonly Village3DLibrary library;
         private readonly Action<GameObject> prepareModel;
         private readonly bool spread;
-        private readonly SpreadPortable3DLibrary portable;
+        private SpreadPortable3DLibrary portable;
         private readonly CurationYard3DLibrary curation;
-        private readonly SpreadEquipment3DLibrary worn;
+        private SpreadEquipment3DLibrary worn;
         private readonly EquipmentDiscoveryArtLibrary discoveries;
         private readonly Dictionary<Entity, ActorView> actors = new Dictionary<Entity, ActorView>();
         private readonly HashSet<Entity> seenActors = new HashSet<Entity>();
@@ -136,7 +136,11 @@ namespace CavesOfOoo.Rendering
                         }
                         if (occupied == null) { Fail(state, item, view, "missing-native-body-slot"); continue; }
                     }
-                    if (spread || EquipmentDiscoveryRecipes.Handles(item)) { SyncSpread(state, item, view, occupied); continue; }
+                    if (spread || EquipmentDiscoveryRecipes.Handles(item) || FiftySecondVisualAliases.IsEquipment(item.BlueprintName))
+                    {
+                        if (FiftySecondVisualAliases.IsEquipment(item.BlueprintName)) EnsurePreparationLibraries();
+                        SyncSpread(state, item, view, occupied); continue;
+                    }
                     var equip = item.GetPart<EquippablePart>();
                     string slot = occupied?.Type ?? equip?.Slot;
                     if (equip == null || !TryModel(item, slot, out string modelId))
@@ -201,15 +205,16 @@ namespace CavesOfOoo.Rendering
             MaterialPropertyBlock scratch, List<Material> materials, out SpreadBiomeStyleEvidence evidence)
         {
             evidence = new SpreadBiomeStyleEvidence(null,"no-current-scoped-equipment",false);
-            if ((!spread && !EquipmentDiscoveryRecipes.Handles(item)) || surface == null || !TryGet(actor,item,out var root)
+            if ((!spread && !EquipmentDiscoveryRecipes.Handles(item) && !FiftySecondVisualAliases.IsEquipment(item?.BlueprintName)) || surface == null || !TryGet(actor,item,out var root)
                 || !actors.TryGetValue(actor,out var state) || state.Rig?.Supported != true
                 || !SpreadEquipmentRecipes.TryRecipe(actor,item,out var recipe)) return false;
             var view = state.Items[item];
             if (view.ModelId != recipe.ModelId || view.AttachmentKey != recipe.AttachmentKey || root == null || !root.transform.IsChildOf(state.Root.transform))
             { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-form",false); return false; }
             var yard=curation?.Find(recipe.ModelId); var discovery=discoveries?.Find(recipe.ModelId);
-            Material expectedMaterial=discovery!=null?discoveries.Material:yard!=null?curation.Material:portable?.Material;
-            Mesh expected = discovery?.Mesh ?? (recipe.Slot == "Hand" ? (yard?.Mesh??portable?.Find(recipe.ModelId)?.Mesh) : worn?.Find(recipe.ModelId)?.Mesh);
+            var lamp = item.BlueprintName == "BeetleJar" ? OlderdeepVoxelLibrary.Load()?.Find(recipe.ModelId) : null;
+            Material expectedMaterial=lamp != null ? lamp.Prefab.GetComponent<MeshRenderer>().sharedMaterial : discovery!=null?discoveries.Material:yard!=null?curation.Material:portable?.Material;
+            Mesh expected = lamp?.Mesh ?? discovery?.Mesh ?? (recipe.Slot == "Hand" ? (yard?.Mesh??portable?.Find(recipe.ModelId)?.Mesh) : worn?.Find(recipe.ModelId)?.Mesh);
             if (expected == null) { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"unmapped-equipped-form",false); return false; }
             int pieces = recipe.Pieces;
             if (recipe.Slot == "Handwear")
@@ -245,6 +250,13 @@ namespace CavesOfOoo.Rendering
             }
             evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,null,false,expected,expectedMaterial,expected,representative); return true;
         }
+        // Clothes can be worn at their Sodden/Counter sources as well as in the
+        // Spread. Borrow their shared forms once on first actual attachment.
+        private void EnsurePreparationLibraries()
+        {
+            if (portable == null) { portable = SpreadPortable3DLibrary.Load(); portable?.Validate(); }
+            if (worn == null) { worn = SpreadEquipment3DLibrary.Load(); worn?.Validate(); }
+        }
         private void SyncSpread(ActorView state, Entity item, ItemView view, BodyPart occupied)
         {
             if (!SpreadEquipmentRecipes.TryRecipe(state.Actor, item, out var recipe))
@@ -275,7 +287,8 @@ namespace CavesOfOoo.Rendering
             if (recipe.Slot == "Hand")
             {
                 var entry = portable?.Find(recipe.ModelId);var yard=curation?.Find(recipe.ModelId);var discovery=discoveries?.Find(recipe.ModelId);
-                var prefab=discovery?.Prefab??yard?.Prefab??entry?.Prefab;var mesh=discovery?.Mesh??yard?.Mesh??entry?.Mesh;
+                var lamp = item.BlueprintName == "BeetleJar" ? OlderdeepVoxelLibrary.Load()?.Find(recipe.ModelId) : null;
+                var prefab=lamp?.Prefab??discovery?.Prefab??yard?.Prefab??entry?.Prefab;var mesh=lamp?.Mesh??discovery?.Mesh??yard?.Mesh??entry?.Mesh;
                 if (prefab == null || mesh == null) { Fail(state,item,view,"missing-scoped-held-model"); return; }
                 view.Root = Object.Instantiate(prefab,targets[0],false);
                 var bounds = mesh.bounds;

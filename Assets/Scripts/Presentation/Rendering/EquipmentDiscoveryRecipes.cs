@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
         public static string HeadForm(string blueprint)
         {
             switch (blueprint) {
-                case "PeatMalletHeadComponent": return "peatmallet";
+                case "PeatMalletHeadComponent": case "TepuiboneHeadComponent": return "peatmallet";
                 case "CinderhookAxeHeadComponent": return "cinderhook";
                 case "CounterweightLongBladeComponent": return "counterweight";
                 default: return null;
@@ -37,8 +37,8 @@ namespace CavesOfOoo.Rendering
             if (owner.BlueprintName == "ForgedWeapon") {
                 var assembly = owner.GetPart<WeaponAssemblyPart>(); var weapon = owner.GetPart<MeleeWeaponPart>();
                 if (assembly == null || assembly.ParentEntity != owner || weapon == null || weapon.ParentEntity != owner) return false;
-                string haft = assembly.HaftBlueprint == "OakHaftComponent" ? "oak" : assembly.HaftBlueprint == "WillowHaftComponent" ? "willow" : null;
-                string binding = assembly.BindingBlueprint == "LeatherBindingComponent" ? "leather" : assembly.BindingBlueprint == "SerratedEdgeComponent" ? "serrated" : null;
+                string haft = FiftySecondVisualAliases.HaftForm(assembly.HaftBlueprint);
+                string binding = FiftySecondVisualAliases.BindingForm(assembly.BindingBlueprint);
                 head = HeadForm(assembly.BladeBlueprint);
                 if (head == null || haft == null || binding == null) return false;
                 model = Prefix + "forged-" + head + "-" + haft + "-" + binding; return true;

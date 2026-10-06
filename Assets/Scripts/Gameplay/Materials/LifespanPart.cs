@@ -14,6 +14,9 @@ namespace CavesOfOoo.Core
 
         /// <summary>Turns remaining before the host entity is removed from the zone.</summary>
         public int TurnsRemaining = 3;
+        /// <summary>Optional shallow aftermath on natural expiry only; never inventory liquid.</summary>
+        public string ExpiryCoating = "";
+        public int ExpiryCoatingTurns;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -35,8 +38,11 @@ namespace CavesOfOoo.Core
                 return true;
 
             var zone = e.GetParameter<Zone>("Zone");
-            if (zone != null)
-                zone.RemoveEntity(ParentEntity);
+            var cell = zone?.GetEntityCell(ParentEntity);
+            if (cell != null && zone.RemoveEntity(ParentEntity)
+                && !string.IsNullOrEmpty(ExpiryCoating) && ExpiryCoatingTurns > 0)
+                ZoneTileStateSystem.WriteCoating(zone, cell.X, cell.Y, ExpiryCoating,
+                    ExpiryCoatingTurns, ParentEntity, "natural-expiry");
 
             return true;
         }

@@ -267,64 +267,40 @@ namespace CavesOfOoo.Core
             bool visibleOnly = false)
         {
             var hits = new List<Entity>();
-            if (zone == null || length <= 0 || (dx == 0 && dy == 0))
-                return hits;
-
-            // Perpendicular to the facing, for the widening band.
-            int px = -dy;
-            int py = dx;
-
             var seen = new HashSet<Entity>();
-            // Which lateral offsets were still reachable on the previous
-            // step. A cell is reachable only if its inward neighbour was
-            // — that is what makes a wall occlude rather than merely
-            // skip one cell.
-            var openPrev = new HashSet<int> { 0 };
+            foreach (var point in GetConeCells(zone, caster, startX, startY, dx, dy, length, recordFx, visibleOnly))
+                foreach (var entity in zone.GetCell(point.X, point.Y).Occupants)
+                    if (entity != null && entity != caster && entity.HasTag("Creature")
+                        && (!visibleOnly || CombatIntentReadout.IsVisibleActor(entity, zone)) && seen.Add(entity))
+                        hits.Add(entity);
+            return hits;
+        }
 
+        /// <summary>The exact reachable fan shared by creature hits and elemental floor writes.</summary>
+        public static List<Point> GetConeCells(Zone zone, Entity caster, int startX, int startY,
+            int dx, int dy, int length, bool recordFx = false, bool visibleOnly = false)
+        {
+            var cells = new List<Point>();
+            if (zone == null || length <= 0 || (dx == 0 && dy == 0)) return cells;
+            int px = -dy, py = dx;
+            var openPrev = new HashSet<int> { 0 };
             for (int step = 1; step <= length; step++)
             {
                 var openNow = new HashSet<int>();
-                int halfWidth = step - 1;
-
-                for (int off = -halfWidth; off <= halfWidth; off++)
+                for (int off = -(step - 1); off <= step - 1; off++)
                 {
-                    // Reachable if the ray behind it was open. The
-                    // centre-line cell of step 1 seeds from offset 0.
-                    bool fedFromBehind =
-                        openPrev.Contains(off) ||
-                        openPrev.Contains(off - 1) ||
-                        openPrev.Contains(off + 1);
-                    if (!fedFromBehind) continue;
-
-                    int x = startX + dx * step + px * off;
-                    int y = startY + dy * step + py * off;
-                    if (!zone.InBounds(x, y)) continue;
-
-                    Cell cell = zone.GetCell(x, y);
+                    if (!openPrev.Contains(off) && !openPrev.Contains(off - 1) && !openPrev.Contains(off + 1)) continue;
+                    int x = startX + dx * step + px * off, y = startY + dy * step + py * off;
+                    var cell = zone.GetCell(x, y);
                     if (cell == null || (visibleOnly && !IsVisiblePreviewCell(cell))) continue;
-
-                    // A solid cell is hit-tested for nothing and stops
-                    // the spread past it on this ray.
                     if (visibleOnly ? HasVisiblePreviewSolid(cell, caster, false) : HasBlockingSolid(cell, caster)) continue;
-                    openNow.Add(off);
+                    openNow.Add(off); cells.Add(new Point(x, y));
                     if (recordFx) SpellFxCapture.AffectCell(zone, x, y);
-
-                    for (int i = 0; i < cell.Occupants.Count; i++)
-                    {
-                        Entity entity = cell.Occupants[i];
-                        if (entity == null || entity == caster || !entity.HasTag("Creature")
-                            || (visibleOnly && !CombatIntentReadout.IsVisibleActor(entity, zone)))
-                            continue;
-                        if (!seen.Add(entity)) continue;
-                        hits.Add(entity);
-                    }
                 }
-
-                if (openNow.Count == 0) break;   // fully walled off
+                if (openNow.Count == 0) break;
                 openPrev = openNow;
             }
-
-            return hits;
+            return cells;
         }
 
         // Reading a selected rite is bounded by current perception. These opt-ins

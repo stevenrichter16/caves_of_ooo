@@ -261,7 +261,7 @@ namespace CavesOfOoo.Core
             int hitRoll = DiceRoller.Roll(20, rng);
             int agilityMod = StatUtils.GetModifier(attacker, "Agility");
             int skillHitBonus = CavesOfOoo.Skills.SkillEventDispatcher
-                .GetSkillHitModifier(attacker, weapon);
+                .GetSkillHitModifier(attacker, weapon) + VaultPoiseEffect.ConsumeHitBonus(attacker, defender, zone);
             int totalHit = hitRoll + agilityMod + hitBonus + skillHitBonus;
             int dv = GetDV(defender);
 

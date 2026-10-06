@@ -1440,7 +1440,9 @@ namespace CavesOfOoo.Rendering
                 || action.Command == GrimoireChargePart.ReinkCommand
                 || action.Command == BotanicalProcessingPart.Command
                 || LiquidVesselService.IsLiquidCommand(action.Command)
-                || WorldResourceActions.IsCommand(action.Command)))
+                || WorldResourceActions.IsCommand(action.Command)
+                || PreparationActions.IsCommand(action.Command)
+                || SecondExplorationActions.IsCommand(action.Command)))
             {
                 _pendingEverydayTurn = true;
                 Close();

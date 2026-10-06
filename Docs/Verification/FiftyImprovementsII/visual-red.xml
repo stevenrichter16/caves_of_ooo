@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="5.1931874">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25198" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="5.193187" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31007" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25198" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="5.080736" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31008" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25198" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="4.898915" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31009" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25198" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="4.698969" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24054" name="FiftySecondVisualTests" fullname="CavesOfOoo.Tests.FiftySecondVisualTests" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:54Z" duration="4.598187" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24077" name="ActualBodyEquipAndFloorDropBothSubmitGeometry" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-06 09:36:49Z" end-time="2026-10-06 09:36:53Z" duration="3.105862" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24074" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;FilterHood&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;FilterHood&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="2057789968" result="Failed" start-time="2026-10-06 09:36:50Z" end-time="2026-10-06 09:36:51Z" duration="1.488821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FilterHood'
+]]></output>
+              </test-case>
+              <test-case id="24075" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;AcidworkerApron&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;AcidworkerApron&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1339443932" result="Failed" start-time="2026-10-06 09:36:51Z" end-time="2026-10-06 09:36:52Z" duration="0.645759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'AcidworkerApron'
+]]></output>
+              </test-case>
+              <test-case id="24076" name="ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;ColdwardCloak&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry(&quot;ColdwardCloak&quot;)" methodname="ActualBodyEquipAndFloorDropBothSubmitGeometry" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1595596201" result="Failed" start-time="2026-10-06 09:36:52Z" end-time="2026-10-06 09:36:53Z" duration="0.771245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Equip (CavesOfOoo.Core.Entity actor, System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:131
+at CavesOfOoo.Tests.FiftySecondVisualTests.ActualBodyEquipAndFloorDropBothSubmitGeometry (System.String blueprint) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ColdwardCloak'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24073" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.261989" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24067" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;SteelBladeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;SteelBladeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="669657722" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.031897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  SteelBladeComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24068" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;IronSpikeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;IronSpikeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1483386477" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.028645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  IronSpikeComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24069" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;PeatMalletHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;PeatMalletHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="561668596" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.028197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  PeatMalletHeadComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24070" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CinderhookAxeHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CinderhookAxeHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="715815340" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  CinderhookAxeHeadComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24071" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CounterweightLongBladeComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;CounterweightLongBladeComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1366531083" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  CounterweightLongBladeComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24072" name="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;TepuiboneHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible(&quot;TepuiboneHeadComponent&quot;)" methodname="NewHaftsAndBindingsKeepEveryAuthoredHeadVisible" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="506013066" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.026989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  TepuiboneHeadComponent/FieldHaftComponent/PlainCordBindingComponent
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.NewHaftsAndBindingsKeepEveryAuthoredHeadVisible (System.String head) [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24066" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.450173" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24055" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FieldHaftComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FieldHaftComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1722921847" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FieldHaftComponent'
+]]></output>
+              </test-case>
+              <test-case id="24056" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;PlainCordBindingComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;PlainCordBindingComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1108735027" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.026706" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'PlainCordBindingComponent'
+]]></output>
+              </test-case>
+              <test-case id="24057" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;TepuiboneHeadComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;TepuiboneHeadComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="684311183" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'TepuiboneHeadComponent'
+]]></output>
+              </test-case>
+              <test-case id="24058" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;BracedHaftComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;BracedHaftComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="786418796" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.034572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'BracedHaftComponent'
+]]></output>
+              </test-case>
+              <test-case id="24059" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;GuardLashingComponent&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;GuardLashingComponent&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="742258372" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.045788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'GuardLashingComponent'
+]]></output>
+              </test-case>
+              <test-case id="24060" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FilterHood&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;FilterHood&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="345318122" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.121022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'FilterHood'
+]]></output>
+              </test-case>
+              <test-case id="24061" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;AcidworkerApron&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;AcidworkerApron&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="319760749" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.028024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'AcidworkerApron'
+]]></output>
+              </test-case>
+              <test-case id="24062" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ColdwardCloak&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ColdwardCloak&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="1948425551" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.028622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ColdwardCloak'
+]]></output>
+              </test-case>
+              <test-case id="24063" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;KnotflaxBandage&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;KnotflaxBandage&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="591282212" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxBandage'
+]]></output>
+              </test-case>
+              <test-case id="24064" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ConcentratedMendleaf&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;ConcentratedMendleaf&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="341531791" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'ConcentratedMendleaf'
+]]></output>
+              </test-case>
+              <test-case id="24065" name="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;CleansedGrovePulp&quot;)" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity(&quot;CleansedGrovePulp&quot;)" methodname="PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="365505991" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:53Z" duration="0.027550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Authored item must exist before visual acceptance.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftySecondVisualTests.PreparationItemsResolveRegisteredPhysicalModelsWithoutChangingIdentity (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'CleansedGrovePulp'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24078" name="StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" fullname="CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" methodname="StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved" classname="CavesOfOoo.Tests.FiftySecondVisualTests" runstate="Runnable" seed="257443031" result="Failed" start-time="2026-10-06 09:36:53Z" end-time="2026-10-06 09:36:54Z" duration="0.677200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  MarlbackStormbinder
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Add (System.String blueprint, System.Int32 x, System.Int32 y) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:116
+at CavesOfOoo.Tests.FiftySecondVisualTests.StormbinderHasARealAnimatedBodyAndDisappearsWhenRemoved () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiftySecondVisualTests.cs:97
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'MarlbackStormbinder'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

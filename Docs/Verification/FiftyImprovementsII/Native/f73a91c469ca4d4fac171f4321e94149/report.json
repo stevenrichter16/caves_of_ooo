@@ -1,0 +1,637 @@
+{
+  "runId": "f73a91c469ca4d4fac171f4321e94149",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 5.1539477,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS native_field_recipe_spends_material_and_one_action",
+    "PASS native_scribe_copies_selected_book_and_pays_once",
+    "PASS native_guest_claim_opens_real_chest_once",
+    "PASS native_screen_reclamation_changes_cover_and_supply",
+    "PASS FiftySecondCombatBench",
+    "PASS FiftySecondCombatBench_preserves_campaign_context",
+    "PASS FiftySecondPreparationBench",
+    "PASS FiftySecondPreparationBench_preserves_campaign_context",
+    "PASS FiftySecondExplorationBench",
+    "PASS FiftySecondExplorationBench_preserves_campaign_context"
+  ],
+  "observations": [
+    {
+      "name": "01-controlled-exploration-owners",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "02-field-haft-recipe",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "03-selected-copy-service",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4521\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "04-guest-locker",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":30,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4521\",\"count\":1},{\"ID\":\"4522\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "05-cover-or-cord",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":40,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4521\",\"count\":1},{\"ID\":\"4522\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "06-worn-hood-and-open-space",
+      "state": "Normal",
+      "snapshot": "{\"tick\":50,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4521\",\"count\":1},{\"ID\":\"4522\",\"count\":1},{\"ID\":\"4523\",\"count\":2}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/01-controlled-exploration-owners.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/02-field-haft-recipe.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/03-selected-copy-service.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/04-guest-locker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/05-cover-or-cord.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/f73a91c469ca4d4fac171f4321e94149/06-worn-hood-and-open-space.png"
+  ],
+  "benchmarks": [
+    {
+      "name": "FiftySecondCombatBench",
+      "runId": "7708a2b2c95f4c5eb8d7baf62d4fe255",
+      "expected": 15,
+      "cases": 15,
+      "failed": 0,
+      "audit": [
+        "PASS 01_cone_floor_fan",
+        "PASS 02_drying_cuts_only_transient_water",
+        "PASS 03_crosswise_wall_slots",
+        "PASS 04_wall_expiry_finite_meltwater",
+        "PASS 05_trail_entry_and_finite_owners",
+        "PASS 06_draw_spends_real_primer",
+        "PASS 07_en_garde_one_melee_parry",
+        "PASS 08_follow_through_paid_trap_entry",
+        "PASS 09_slam_collision_partner_damage",
+        "PASS 10_vault_one_accuracy_opening",
+        "PASS 11_authored_caster_retreats_for_one_action",
+        "PASS 12_sidestep_then_separate_cast",
+        "PASS 13_exact_disarmed_weapon_recovered",
+        "PASS 14_medic_spends_actual_cure_keeps_healing",
+        "PASS 15_stormbinder_setup_save_and_depth_source"
+      ],
+      "observations": [
+        {
+          "name": "01_cone_floor_fan",
+          "passed": true,
+          "state": {
+            "fired": true,
+            "soaked": true,
+            "sideHeat": 1,
+            "sideWater": true
+          }
+        },
+        {
+          "name": "02_drying_cuts_only_transient_water",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "temporary": 0,
+            "permanent": 2147483647
+          }
+        },
+        {
+          "name": "03_crosswise_wall_slots",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "slots": [
+              "(12, 9)",
+              "(12, 10)",
+              "(12, 11)"
+            ],
+            "cooldown": 40
+          }
+        },
+        {
+          "name": "04_wall_expiry_finite_meltwater",
+          "passed": true,
+          "state": {
+            "removed": true,
+            "waterAfterExpiry": 4,
+            "waterAfterFour": 0
+          }
+        },
+        {
+          "name": "05_trail_entry_and_finite_owners",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "entered": true,
+            "filmCount": 3,
+            "corrosion": 0.35,
+            "hp": 1000
+          }
+        },
+        {
+          "name": "06_draw_spends_real_primer",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "hp": 992,
+            "marked": false,
+            "cooldown": 20
+          }
+        },
+        {
+          "name": "07_en_garde_one_melee_parry",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "first": 995,
+            "second": 986,
+            "guard": false
+          }
+        },
+        {
+          "name": "08_follow_through_paid_trap_entry",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "x": 11,
+            "hp": 988,
+            "victimDead": true,
+            "paidCooldown": 12,
+            "beforeTick": 10,
+            "afterTick": 20
+          }
+        },
+        {
+          "name": "09_slam_collision_partner_damage",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "obstacleHP": 997,
+            "targetHP": 997,
+            "cooldown": 50
+          }
+        },
+        {
+          "name": "10_vault_one_accuracy_opening",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "roll": "{\"weapon\":\"long sword\",\"hitRoll\":1,\"agilityMod\":42,\"weaponHitBonus\":0,\"skillHitBonus\":2,\"totalHit\":45,\"dv\":6,\"naturalTwenty\":false,\"landed\":true}",
+            "poise": false
+          }
+        },
+        {
+          "name": "11_authored_caster_retreats_for_one_action",
+          "passed": true,
+          "state": {
+            "x": 9,
+            "targetHP": 1000,
+            "range": 3
+          }
+        },
+        {
+          "name": "12_sidestep_then_separate_cast",
+          "passed": true,
+          "state": {
+            "moved": true,
+            "targetHP": 999,
+            "allyHP": 1000
+          }
+        },
+        {
+          "name": "13_exact_disarmed_weapon_recovered",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "dropped": true,
+            "picked": true,
+            "equipped": true,
+            "weapon": "4541"
+          }
+        },
+        {
+          "name": "14_medic_spends_actual_cure_keeps_healing",
+          "passed": true,
+          "state": {
+            "poison": false,
+            "cureCarried": false,
+            "healingCarried": true,
+            "beforeHp": 20,
+            "hp": 19,
+            "preActionPoisonDamage": 1
+          }
+        },
+        {
+          "name": "15_stormbinder_setup_save_and_depth_source",
+          "passed": true,
+          "state": {
+            "soaked": true,
+            "hp": 998,
+            "electrified": true,
+            "replaced": true,
+            "group": "DepthEncounter",
+            "weight": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "FiftySecondPreparationBench",
+      "runId": "1720cae3319c4413980a8c05936e2f34",
+      "expected": 18,
+      "cases": 18,
+      "failed": 0,
+      "audit": [
+        "PASS 17_materials_make_native_modest_assembly",
+        "PASS 16_salvage_recovers_only_recorded_head_and_haft",
+        "PASS 18_braced_haft_is_a_hit_for_strength_trade",
+        "PASS 19_guard_lashing_trades_penetration_for_hit",
+        "PASS 20_filter_hood_uses_real_body_and_removes_cleanly",
+        "PASS 21_acid_apron_typed_defense_has_dv_and_speed_cost",
+        "PASS 22_cold_cloak_typed_defense_has_dv_cost",
+        "PASS 23_refuel_pays_whole_oil_and_caps_without_lighting",
+        "PASS refill_full_torch_is_free",
+        "PASS 24_bandage_spends_one_and_cures_only_bleeding",
+        "PASS 25_concentrated_mendleaf_makes_one_two_die_brew",
+        "PASS 26_detox_sacrifices_toxic_and_makes_two_die_healing",
+        "PASS 27_compost_pays_sludge_without_free_water_or_growth",
+        "PASS 29_transplant_moves_exact_owner_and_keeps_compost",
+        "PASS 28_seed_choice_gives_triple_seed_no_cord",
+        "PASS 30_physical_infusion_has_finite_cost_without_bits",
+        "PASS duplicate_infusion_is_free",
+        "PASS replacement_save_keeps_payment_enhancement_and_harvest"
+      ],
+      "observations": [
+        {
+          "name": "17_materials_make_native_modest_assembly",
+          "passed": true,
+          "state": {
+            "weapon": "4560",
+            "damage": "1d3",
+            "strengthCap": 1
+          }
+        },
+        {
+          "name": "16_salvage_recovers_only_recorded_head_and_haft",
+          "passed": true,
+          "state": {
+            "head": 1,
+            "haft": 1,
+            "binding": 0
+          }
+        },
+        {
+          "name": "18_braced_haft_is_a_hit_for_strength_trade",
+          "passed": true,
+          "state": {
+            "normalCap": 3,
+            "bracedCap": 5,
+            "normalHit": 1,
+            "bracedHit": 0
+          }
+        },
+        {
+          "name": "19_guard_lashing_trades_penetration_for_hit",
+          "passed": true,
+          "state": {
+            "hit": 2,
+            "penetration": -1
+          }
+        },
+        {
+          "name": "20_filter_hood_uses_real_body_and_removes_cleanly",
+          "passed": true,
+          "state": {
+            "equippedIntake": 50,
+            "carriedIntake": 100
+          }
+        },
+        {
+          "name": "21_acid_apron_typed_defense_has_dv_and_speed_cost",
+          "passed": true,
+          "state": {
+            "acid": 5,
+            "heat": 10,
+            "dv": -1,
+            "speedPenalty": 5
+          }
+        },
+        {
+          "name": "22_cold_cloak_typed_defense_has_dv_cost",
+          "passed": true,
+          "state": {
+            "cold": 5,
+            "dv": -1
+          }
+        },
+        {
+          "name": "23_refuel_pays_whole_oil_and_caps_without_lighting",
+          "passed": true,
+          "state": {
+            "fuel": 50.0,
+            "oil": 1
+          }
+        },
+        {
+          "name": "refill_full_torch_is_free",
+          "passed": true,
+          "state": {
+            "tick": 70,
+            "oil": 1
+          }
+        },
+        {
+          "name": "24_bandage_spends_one_and_cures_only_bleeding",
+          "passed": true,
+          "state": {
+            "beforeHP": 95,
+            "afterHP": 95,
+            "count": 0
+          }
+        },
+        {
+          "name": "25_concentrated_mendleaf_makes_one_two_die_brew",
+          "passed": true,
+          "state": {
+            "healing": "2d4",
+            "source": 0
+          }
+        },
+        {
+          "name": "26_detox_sacrifices_toxic_and_makes_two_die_healing",
+          "passed": true,
+          "state": {
+            "properties": "vital:2",
+            "healing": "2d4"
+          }
+        },
+        {
+          "name": "27_compost_pays_sludge_without_free_water_or_growth",
+          "passed": true,
+          "state": {
+            "originalStage": 16,
+            "stage": 12,
+            "Composted": true,
+            "MoistureTicks": 0,
+            "TicksInStage": 0
+          }
+        },
+        {
+          "name": "29_transplant_moves_exact_owner_and_keeps_compost",
+          "passed": true,
+          "state": {
+            "ID": "4583",
+            "x": 10,
+            "y": 11,
+            "Composted": true
+          }
+        },
+        {
+          "name": "28_seed_choice_gives_triple_seed_no_cord",
+          "passed": true,
+          "state": {
+            "seeds": 3,
+            "produce": 0,
+            "controlledElapsedGrowth": true
+          }
+        },
+        {
+          "name": "30_physical_infusion_has_finite_cost_without_bits",
+          "passed": true,
+          "state": {
+            "ID": "4588",
+            "minerals": 1,
+            "enhancements": 1
+          }
+        },
+        {
+          "name": "duplicate_infusion_is_free",
+          "passed": true,
+          "state": {
+            "minerals": 1,
+            "enhancements": 1
+          }
+        },
+        {
+          "name": "replacement_save_keeps_payment_enhancement_and_harvest",
+          "passed": true,
+          "state": {
+            "replacementPlayer": true,
+            "replacementItem": true,
+            "restoredEnhancements": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "FiftySecondExplorationBench",
+      "runId": "ffceaef2003446cfaf87c093656d2bb9",
+      "expected": 21,
+      "cases": 21,
+      "failed": 0,
+      "audit": [
+        "PASS selected_copy",
+        "PASS smith_supplies_finite_repair",
+        "PASS selected_rental_return",
+        "PASS worn_rental_buyout",
+        "PASS guest_claim_outlasts_oath",
+        "PASS two_cell_locksmith",
+        "PASS courtesy_is_real_movement",
+        "PASS finite_medicine_benefits_patient",
+        "PASS gift_occupies_actual_npc_hand",
+        "PASS body_remains_in_graveyard",
+        "PASS same_descent_jar_becomes_hand_light",
+        "PASS reciprocal_rope_and_real_stair_roundtrip",
+        "PASS jammed_spike_salvage_once",
+        "PASS cloth_cover_exchanged_for_finite_cord",
+        "PASS loaded_locker_moves_with_exact_cargo",
+        "PASS paid_pass_ends_after_actual_entry_exit",
+        "PASS gate_controls_real_finite_grazer",
+        "PASS collector_trades_exact_carried_find",
+        "PASS finite_library_study_and_exact_return",
+        "PASS counter_key_opens_same_finite_cache",
+        "PASS replacement_save_keeps_service_and_depletion_graph"
+      ],
+      "observations": [
+        {
+          "name": "selected_copy",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "smith_supplies_finite_repair",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "selected_rental_return",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "worn_rental_buyout",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "guest_claim_outlasts_oath",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "two_cell_locksmith",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "courtesy_is_real_movement",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "finite_medicine_benefits_patient",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "gift_occupies_actual_npc_hand",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "body_remains_in_graveyard",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "same_descent_jar_becomes_hand_light",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "reciprocal_rope_and_real_stair_roundtrip",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "jammed_spike_salvage_once",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "cloth_cover_exchanged_for_finite_cord",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "loaded_locker_moves_with_exact_cargo",
+          "passed": true,
+          "ticks": 34,
+          "paidCommands": 2,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "paid_pass_ends_after_actual_entry_exit",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "gate_controls_real_finite_grazer",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "collector_trades_exact_carried_find",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "finite_library_study_and_exact_return",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "counter_key_opens_same_finite_cache",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "replacement_save_keeps_service_and_depletion_graph",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        }
+      ]
+    }
+  ],
+  "fixture": "Ordinary N/Classic start with original stats. Isolated zone flattened, player repositioned, finite timber/books/ink/hood and 10 drams supplied; local scribe, guest-right, locker, screen and model examples placed. Public or existing reflected host entries open exact-owner menus; navigation and confirmation use native keys. Hood uses ordinary equipment service, not native keys.",
+  "canVerify": "Four real native-key command selections, explicit material/payment consequences and one-action timing, six rendered captures, plus detached combat/preparation/exploration command, scheduler and save observations. Benchmarks must preserve the player context.",
+  "cannotVerify": "Controlled supplies do not prove ordinary source discovery, dialogue discovery, difficulty, long-term enjoyment or novice comprehension. Benchmarks are direct gameplay evidence, not keyboard combat. Pixel quality requires separate screenshot inspection."
+}

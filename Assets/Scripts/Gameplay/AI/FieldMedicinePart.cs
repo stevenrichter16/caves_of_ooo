@@ -19,6 +19,8 @@ namespace CavesOfOoo.Core
 
         /// <summary>Inclusive health percentage, 1–100. Invalid configuration disables use.</summary>
         public int UseAtOrBelowPercent = 40;
+        /// <summary>Opt-in exact Antidote/BurnSalve supplies; no independent stock or innate immunity.</summary>
+        public string CureBlueprints = "";
 
         /// <summary>
         /// Pure local-inventory query shared by decisions, Examine and presentation.
@@ -53,14 +55,37 @@ namespace CavesOfOoo.Core
                 && tonic?.ParentEntity == item && !string.IsNullOrWhiteSpace(tonic.Healing);
         }
 
-        private long CountCarriedMedicine()
+        private Entity FindCarriedCure(bool needsTreatment)
+        {
+            var inventory = OwnedInventory(); if (inventory == null) return null;
+            foreach (var raw in (CureBlueprints ?? "").Split(';'))
+            {
+                string name = raw.Trim();
+                if (name != "Antidote" && name != "BurnSalve") continue;
+                foreach (var item in inventory.Objects)
+                {
+                    if (item?.BlueprintName != name || !inventory.CanConsumeOne(item) || item.SpatialZone != null) continue;
+                    var physical = item.GetPart<PhysicsPart>(); var cure = item.GetPart<CureTonicPart>();
+                    if (physical?.ParentEntity != item || physical.InInventory != ParentEntity || physical.Equipped != null
+                        || item.GetPart<TonicPart>()?.ParentEntity != item || cure?.ParentEntity != item) continue;
+                    bool poison = name == "Antidote" && cure.CureEffect == nameof(PoisonedEffect);
+                    bool burn = name == "BurnSalve" && cure.CureEffect == nameof(BurningEffect);
+                    if ((poison && (!needsTreatment || ParentEntity.HasEffect<PoisonedEffect>() || ParentEntity.HasEffect<PoisonedByGasEffect>()))
+                        || (burn && (!needsTreatment || ParentEntity.HasEffect<BurningEffect>()))) return item;
+                }
+            }
+            return null;
+        }
+
+        private long CountCarriedMedicine(string blueprint)
         {
             var inventory = OwnedInventory();
             if (inventory == null) return 0;
             long count = 0;
             var counted = new HashSet<Entity>();
             foreach (var item in inventory.Objects)
-                if (IsCarriedMedicine(inventory, item) && counted.Add(item))
+                if (item?.BlueprintName == blueprint && inventory.CanConsumeOne(item) && item.SpatialZone == null
+                    && item.GetPart<PhysicsPart>()?.InInventory == ParentEntity && item.GetPart<PhysicsPart>()?.Equipped == null && counted.Add(item))
                     count += item.GetPart<StackerPart>()?.StackCount ?? 1;
             return count;
         }
@@ -95,11 +120,14 @@ namespace CavesOfOoo.Core
                 || threat.SpatialZone != zone || zone.GetEntityCell(threat) == null
                 || BrainPart.ArePartyAligned(actor, threat) || !FactionManager.IsHostile(actor, threat))
                 return Reject(threat, "invalid-threat");
-            if (UseAtOrBelowPercent < 1 || UseAtOrBelowPercent > 100 || hp.Value >= hp.Max
-                || (long)hp.Value * 100 > (long)hp.Max * UseAtOrBelowPercent)
-                return Reject(threat, "health-threshold");
-
-            var medicine = FindCarriedMedicine();
+            var medicine = FindCarriedCure(needsTreatment: true);
+            if (medicine == null)
+            {
+                if (UseAtOrBelowPercent < 1 || UseAtOrBelowPercent > 100 || hp.Value >= hp.Max
+                    || (long)hp.Value * 100 > (long)hp.Max * UseAtOrBelowPercent)
+                    return Reject(threat, "health-threshold");
+                medicine = FindCarriedMedicine();
+            }
             if (medicine == null) return Reject(threat, "no-carried-medicine");
             int before = hp.Value;
             if (!medicine.GetPart<TonicPart>().ApplyTo(actor, actor, zone, rng,
@@ -107,7 +135,7 @@ namespace CavesOfOoo.Core
 
             Diag.Record("ai", "FieldMedicineUsed", actor, medicine,
                 new { threatId = threat.ID, hpBefore = before, hpAfter = hp.Value,
-                    thresholdPercent = UseAtOrBelowPercent, remainingUnits = CountCarriedMedicine() });
+                    thresholdPercent = UseAtOrBelowPercent, medicineBlueprint = medicine.BlueprintName, remainingUnits = CountCarriedMedicine(medicine.BlueprintName) });
             ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(actor), "FieldMedicine.Used");
             EntityVisualHooks.EmitSelfUse(actor, zone);
             return true;
@@ -117,13 +145,17 @@ namespace CavesOfOoo.Core
         public string Describe()
         {
             var medicine = FindCarriedMedicine();
-            if (medicine == null) return "Field medicine: the bottle harness is empty.";
+            var cure = FindCarriedCure(needsTreatment: false);
+            string cureNote = cure == null ? "" : " Carries " + InventoryPart.GetUnitDisplayName(cure)
+                + "; uses one matching cure for its turn when afflicted, before healing.";
+            if (medicine == null) return cure == null ? "Field medicine: the bottle harness is empty."
+                : "Field medicine:" + cureNote + " Unused medicine can be recovered after its death.";
             string stock = "Field medicine: carries " + InventoryPart.GetUnitDisplayName(medicine) + ". ";
             if (UseAtOrBelowPercent < 1 || UseAtOrBelowPercent > 100)
                 return stock + "Its treatment threshold is invalid.";
             return stock + "In combat at " + UseAtOrBelowPercent.ToString(CultureInfo.InvariantCulture)
                 + "% health or below, uses one tonic for its turn instead of moving or attacking."
-                + " Unused medicine can be recovered after its death.";
+                + " Unused medicine can be recovered after its death." + cureNote;
         }
 
         private bool Reject(Entity threat, string reason)

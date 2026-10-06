@@ -1140,6 +1140,7 @@ namespace CavesOfOoo.Data
             // burned and the pale; quartzite brings golems and the brute.
             if (tier >= 2)
             {
+                table.Entries.Add(new PopulationEntry { BlueprintName = "MarlbackStormbinder", Weight = 1, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
                 table.Entries.Add(new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
                 table.Entries.Add(new PopulationEntry { BlueprintName = "IceWight", Weight = 2, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
                 table.Entries.Add(new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "DepthEncounter" });

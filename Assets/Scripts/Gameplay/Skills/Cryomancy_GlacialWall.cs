@@ -7,11 +7,8 @@ namespace CavesOfOoo.Skills
     /// Cryomancy active: raises a short wall of ice across a chosen
     /// direction. It melts on its own after a few turns.
     ///
-    /// <para>SPELLCRAFT SM6 (Docs/SPELLCRAFT-STATUS-SYNERGY.md §6.4) —
-    /// the only power in any tree that EDITS THE MAP. Everything else
-    /// damages, primes, or moves a creature; this one changes where
-    /// creatures can walk. That is its entire identity, and why it deals
-    /// no damage at all.</para>
+    /// <para>Three crosswise slots, centred two cells ahead, change where
+    /// creatures can walk without dealing damage. Occupied slots remain open.</para>
     ///
     /// <para><b>Why the ice melts.</b> A permanent wall would let a
     /// player brick a corridor and farm it forever. The power buys a few
@@ -47,7 +44,7 @@ namespace CavesOfOoo.Skills
                 Command = "CommandGlacialWall",
                 Class = "Skills",
                 TargetingMode = AbilityTargetingMode.DirectionLine,
-                Range = WALL_LENGTH,
+                Range = 2,
                 Cooldown = COOLDOWN,
             };
         }
@@ -73,16 +70,20 @@ namespace CavesOfOoo.Skills
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
-            int raised = 0, skipped = 0;
-            int x = actorPos.x, y = actorPos.y;
-
-            for (int step = 0; step < WALL_LENGTH; step++)
+            dx = System.Math.Sign(dx); dy = System.Math.Sign(dy);
+            for (int step = 1; step <= 2; step++)
             {
-                x += dx; y += dy;
-                if (!ctx.Zone.InBounds(x, y)) break;
-
+                var approach = ctx.Zone.GetCell(actorPos.x + dx * step, actorPos.y + dy * step);
+                if (approach == null || approach.IsSolid())
+                { EmitSkillRejectedDiag(ctx, "approach_blocked"); return false; }
+            }
+            int raised = 0, skipped = 0;
+            int anchorX = actorPos.x + dx * 2, anchorY = actorPos.y + dy * 2;
+            for (int offset = -1; offset <= 1; offset++)
+            {
+                int x = anchorX - dy * offset, y = anchorY + dx * offset;
                 var cell = ctx.Zone.GetCell(x, y);
-                if (cell == null) break;
+                if (cell == null) { skipped++; continue; }
 
                 // Already stone: nothing to add, and the wall continues
                 // past it rather than stopping — an ice wall butting
@@ -104,7 +105,7 @@ namespace CavesOfOoo.Skills
                 catch (System.Exception) { continue; }
                 if (ice == null) continue;
 
-                ctx.Zone.AddEntity(ice, x, y);
+                if (!ctx.Zone.AddEntity(ice, x, y)) continue;
                 SpellFxCapture.AffectCell(ctx.Zone, x, y);
                 raised++;
             }

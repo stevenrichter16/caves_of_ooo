@@ -31,6 +31,22 @@
           "Description": "Active ability: strike the first creature up to 2 cells along the chosen line with a normal long-blade attack, without moving. Walls and other solid objects block the reach. Cooldown 10; requires a LongBlades weapon.",
           "Foreground": "g",
           "Detail": "G"
+        },
+        {
+          "Name": "En Garde",
+          "Class": "LongBlades_EnGarde",
+          "Cost": 1,
+          "Description": "Raise your equipped long blade for 2 of your turns. Halve the next positive melee blow from an adjacent attacker, rounding the remaining damage up. One parry only; keep the sword equipped. Does not block spells, poison or environmental harm. Costs a turn; cooldown 12.",
+          "Foreground": "g",
+          "Detail": "G"
+        },
+        {
+          "Name": "Follow Through",
+          "Class": "LongBlades_FollowThrough",
+          "Cost": 1,
+          "Description": "Strike the selected adjacent creature with a normal long-blade attack. If it dies, attempt an ordinary step into its former cell. Roots, blockers and traps still apply; a missed strike or blocked advance still costs the turn. Cooldown 12; requires an equipped long blade.",
+          "Foreground": "g",
+          "Detail": "G"
         }
       ]
     }

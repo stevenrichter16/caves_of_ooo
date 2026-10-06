@@ -72,7 +72,7 @@ namespace CavesOfOoo.Skills
             // goes on the GROUND along the spray, not only into bodies —
             // the same gap that made FlamingHands unable to ignite tile
             // oil (reported from play).
-            var ground = SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, JET_LENGTH);
+            var ground = SpellTargeting.GetConeCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, JET_LENGTH);
             if (targets.Count == 0 && ground.Count == 0)
             { EmitSkillRejectedDiag(ctx, "no_path"); return false; }
             ZoneTileStateSystem.ApplyFireToTiles(ctx.Zone, ground, actor, Name);

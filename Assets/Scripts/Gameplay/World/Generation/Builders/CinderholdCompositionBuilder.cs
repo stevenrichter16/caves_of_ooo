@@ -97,7 +97,7 @@ namespace CavesOfOoo.Core
         {var d=e.GetPart<DestructiblePart>();return d!=null&&d.HP>0&&d.MaxHP>0&&!d.Gone&&!d.Indestructible;}
         // A finite regional opening shelf, separate from the ordinary renewable
         // WeaponsmithStock table. These actual owners are bought and saved normally.
-        internal static readonly string[] RegionalItems={"CinderhookAxeHeadComponent","KilnfeltApron","OakHaftComponent","LeatherBindingComponent"};
+        internal static readonly string[] RegionalItems={"CinderhookAxeHeadComponent","KilnfeltApron","OakHaftComponent","LeatherBindingComponent","BracedHaftComponent"};
         internal static bool RegionalPortable(Entity e,string blueprint)
         {
             var physics=e?.GetPart<PhysicsPart>();
@@ -107,6 +107,7 @@ namespace CavesOfOoo.Core
             var component=e.GetPart<WeaponComponentPart>();
             if(blueprint=="CinderhookAxeHeadComponent")return component?.Slot=="Blade"&&(" "+component.Attributes+" ").Contains(" Axe ");
             if(blueprint=="OakHaftComponent")return component?.Slot=="Haft";
+            if(blueprint=="BracedHaftComponent")return component?.Slot=="Haft"&&component.MaxStrengthBonus==5&&component.HitBonus==-1;
             if(blueprint=="LeatherBindingComponent")return component?.Slot=="Binding";
             return blueprint=="KilnfeltApron"&&e.GetPart<ArmorPart>()?.AV==1&&e.GetPart<ArmorPart>().SpeedPenalty==5
                 &&e.GetPart<EquippablePart>()?.GetEffectiveSlots()=="Body"&&e.GetPart<EquippablePart>().EquipBonuses=="HeatResistance:50";
@@ -118,7 +119,7 @@ namespace CavesOfOoo.Core
             {
                 var items=inventory.Objects.Where(e=>e.BlueprintName==id).ToArray();
                 if(items.Length==0||items.Any(e=>!RegionalPortable(e,id)||e.SpatialZone!=null||e.GetPart<PhysicsPart>().InInventory!=owner||e.GetPart<PhysicsPart>().Equipped!=null))return false;
-                if((id=="CinderhookAxeHeadComponent"||id=="KilnfeltApron")&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+                if((id=="CinderhookAxeHeadComponent"||id=="KilnfeltApron"||id=="BracedHaftComponent")&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
             }
             return inventory.Objects.Select(e=>e.ID).Distinct().Count()==inventory.Objects.Count;
         }

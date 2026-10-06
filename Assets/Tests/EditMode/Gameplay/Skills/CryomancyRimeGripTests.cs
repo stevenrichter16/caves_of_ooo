@@ -300,11 +300,11 @@ namespace CavesOfOoo.Tests
 
             skill.OnCommand(Ctx(atk, zone, 1, 0));
 
-            for (int i = 1; i <= Cryomancy_GlacialWall.WALL_LENGTH; i++)
+            for (int offset = -1; offset <= 1; offset++)
             {
-                var cell = zone.GetCell(5 + i, 5);
+                var cell = zone.GetCell(7, 5 + offset);
                 Assert.IsTrue(cell.IsSolid(),
-                    $"cell {5 + i},5 should be blocked by ice");
+                    $"cell 7,{5 + offset} should be blocked by ice");
             }
         }
 
@@ -320,7 +320,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(atk, 5, 5);
 
             skill.OnCommand(Ctx(atk, zone, 1, 0));
-            var ice = zone.GetCell(6, 5).Objects.Find(o => o.BlueprintName == "IceWall");
+            var ice = zone.GetCell(7, 5).Objects.Find(o => o.BlueprintName == "IceWall");
             Assert.IsNotNull(ice, "precondition: ice was raised");
 
             var lifespan = ice.GetPart<LifespanPart>();
@@ -340,13 +340,13 @@ namespace CavesOfOoo.Tests
             var zone = new Zone();
             var bystander = MakeBodied("bystander");
             zone.AddEntity(atk, 5, 5);
-            zone.AddEntity(bystander, 6, 5);
+            zone.AddEntity(bystander, 7, 6);
 
             skill.OnCommand(Ctx(atk, zone, 1, 0));
 
-            Assert.IsFalse(zone.GetCell(6, 5).IsSolid(),
+            Assert.IsFalse(zone.GetCell(7, 6).IsSolid(),
                 "an occupied cell is skipped, not sealed over");
-            Assert.AreEqual(6, zone.GetEntityPosition(bystander).x,
+            Assert.AreEqual(7, zone.GetEntityPosition(bystander).x,
                 "and the creature is still standing where it was");
         }
 
@@ -358,13 +358,15 @@ namespace CavesOfOoo.Tests
             var skill = Fix<Cryomancy_GlacialWall>(atk);
             var zone = new Zone();
             zone.AddEntity(atk, 5, 5);
-            MakeWall(zone, 6, 5);
+            MakeWall(zone, 7, 4);
 
             skill.OnCommand(Ctx(atk, zone, 1, 0));
 
-            int iceHere = zone.GetCell(6, 5).Objects.FindAll(
+            int iceHere = zone.GetCell(7, 4).Objects.FindAll(
                 o => o.BlueprintName == "IceWall").Count;
             Assert.AreEqual(0, iceHere, "no ice on a cell that is already stone");
+            Assert.True(zone.GetCell(7,5).IsSolid());
+            Assert.True(zone.GetCell(7,6).IsSolid());
         }
 
         [Test]

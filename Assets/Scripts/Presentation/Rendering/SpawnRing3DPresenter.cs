@@ -122,12 +122,11 @@ namespace CavesOfOoo.Rendering
                 var poured = PouredLiquid3DLibrary.Load();
                 if (poured == null) throw new InvalidOperationException("Poured liquid color library is unavailable.");
                 poured.Validate(); materials.AddRange(poured.Materials);
-                if (spreadStyle)
-                {
-                    var portable = SpreadPortable3DLibrary.Load();
-                    if (portable == null) throw new InvalidOperationException("Spread portable library is unavailable.");
-                    portable.Validate(); collectorPortables=portable; materials.Add(portable.Material);
-                }
+                // New clothing, loan books and carried finds can leave their source
+                // biome. The same shared palette must remain registered on arrival.
+                var portable = SpreadPortable3DLibrary.Load();
+                if (portable == null) throw new InvalidOperationException("Shared portable library is unavailable.");
+                portable.Validate(); collectorPortables = portable; materials.Add(portable.Material);
                 // New portable crops and structural repairs retain their palette
                 // in other supported biomes without changing regional lighting.
                 var botany=BiomeCrop3DLibrary.Load();
@@ -501,7 +500,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetApprovedEquipmentStyle(Entity actor, Entity item, out SpreadBiomeStyleEvidence evidence)
         {
             evidence = new SpreadBiomeStyleEvidence(null,"outside-current-equipment-scope",false);
-            if (!IsReady || ((!boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)) && !EquipmentDiscoveryRecipes.Handles(item))
+            if (!IsReady || ((!boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)) && !EquipmentDiscoveryRecipes.Handles(item) && !FiftySecondVisualAliases.IsEquipment(item?.BlueprintName))
                 || !GladeAuthorityMatches || equipment == null || actor == null || !IsRenderedEntity(actor)) return false;
             var current = SpawnRing3DRecipes.Resolve(CurrentZone,actor,definition,pilotLibrary?.Definition);
             if (current.ModelId == null || !ReferenceEquals(current.Owner,actor) || !recipes.TryGetValue(actor,out var committed)

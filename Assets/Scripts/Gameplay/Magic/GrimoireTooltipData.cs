@@ -162,7 +162,7 @@ namespace CavesOfOoo.Core
                 ColorCode   = "&b",
                 Flavor      = "A warm breath against the damp.",
                 Mechanics   = "Strips Wet \u2022 Radius 1 \u2022 CD 3",
-                Signature   = "Dries everything adjacent, yourself included"
+                Signature   = "Dries creatures and temporary floor water; pools remain"
             } },
             { "Cryomancy_ChillDraft", new GrimoireTooltip {
                 DisplayName = "Chill Draft",

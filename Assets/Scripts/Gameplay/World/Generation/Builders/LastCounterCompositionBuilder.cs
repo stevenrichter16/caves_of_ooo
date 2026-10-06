@@ -83,7 +83,7 @@ namespace CavesOfOoo.Core
                 case "Rubble":return ",";case "DryBrush":return "\"";
                 case "SaccharineEnvoy":return "@";case "LastCounterSign":return "I";case "Campfire":return "*";default:return null;}
         }
-        internal static readonly string[] RegionalItems={"CounterweightLongBladeComponent","OakHaftComponent","LeatherBindingComponent"};
+        internal static readonly string[] RegionalItems={"CounterweightLongBladeComponent","OakHaftComponent","LeatherBindingComponent","GuardLashingComponent","ColdwardCloak"};
         internal static bool RegionalPortable(Entity e,string blueprint)
         {
             var physics=e?.GetPart<PhysicsPart>();
@@ -91,6 +91,9 @@ namespace CavesOfOoo.Core
                 ||e.HasTag("Creature")||(e.GetPart<StackerPart>()?.StackCount??1)<1||e.Parts.Any(part=>part==null||part.ParentEntity!=e))return false;
             var component=e.GetPart<WeaponComponentPart>();
             if(blueprint=="CounterweightLongBladeComponent")return component?.Slot=="Blade"&&(" "+component.Attributes+" ").Contains(" LongBlades ");
+            if(blueprint=="GuardLashingComponent")return component?.Slot=="Binding"&&component.HitBonus==2&&component.PenBonus==-1;
+            if(blueprint=="ColdwardCloak")return e.GetPart<ArmorPart>()?.AV==0&&e.GetPart<ArmorPart>().DV==-1
+                &&e.GetPart<EquippablePart>()?.GetEffectiveSlots()=="Back"&&e.GetPart<EquippablePart>().EquipBonuses=="ColdResistance:50";
             return blueprint=="OakHaftComponent"?component?.Slot=="Haft":blueprint=="LeatherBindingComponent"&&component?.Slot=="Binding";
         }
         internal static bool RegionalStockValid(Entity owner)
@@ -100,7 +103,7 @@ namespace CavesOfOoo.Core
             {
                 var items=box.Contents.Where(e=>e.BlueprintName==id).ToArray();
                 if(items.Length==0||items.Any(e=>!RegionalPortable(e,id)||e.SpatialZone!=null||e.GetPart<PhysicsPart>().InInventory!=owner||e.GetPart<PhysicsPart>().Equipped!=null))return false;
-                if(id=="CounterweightLongBladeComponent"&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+                if((id=="CounterweightLongBladeComponent"||id=="GuardLashingComponent"||id=="ColdwardCloak")&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
             }
             return box.Contents.Select(e=>e.ID).Distinct().Count()==box.Contents.Count;
         }

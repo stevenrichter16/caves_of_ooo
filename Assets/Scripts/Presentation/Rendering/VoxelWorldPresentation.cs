@@ -35,6 +35,21 @@ namespace CavesOfOoo.Rendering
             // The portable field dressing may travel beyond its home district.
             var soddenDistrict = SoddenDistrictArtLibrary.Load();
             if (soddenDistrict != null) { soddenDistrict.Validate(); foreach (var entry in soddenDistrict.Entries) generated.Add(entry.Mesh); }
+            // New finite exploration owners borrow five existing voxel forms.
+            // Register those precise meshes once at bind; no per-frame lookups.
+            generated.Add(WellmeetVoxelLibrary.Load().Find(WellmeetVoxelLibrary.ModelId("tent", 0)).Mesh);
+            generated.Add(QuillholdVoxelKitLibrary.Load().Find(QuillholdVoxelKitLibrary.ModelId("shelf", 0)).Mesh);
+            generated.Add(SumpholdVoxelKitLibrary.Load().Find(SumpholdVoxelKitLibrary.ModelId("cutter", 0)).Mesh);
+            generated.Add(OlderdeepVoxelLibrary.Load().Find(OlderdeepVoxelLibrary.ModelId("jar", 0)).Mesh);
+            generated.Add(OlderdeepVoxelLibrary.Load().Find(OlderdeepVoxelLibrary.ModelId("plaque", 0)).Mesh);
+            // Portable and fitted equipment travels between supported regions.
+            // Its voxel provenance must follow the same scope as its palette.
+            var sharedPortable = SpreadPortable3DLibrary.Load();
+            if (sharedPortable == null) throw new InvalidOperationException("Shared portable voxel library missing.");
+            sharedPortable.Validate(); foreach (var entry in sharedPortable.Entries) generated.Add(entry.Mesh);
+            var sharedWorn = SpreadEquipment3DLibrary.Load();
+            if (sharedWorn == null) throw new InvalidOperationException("Shared worn voxel library missing.");
+            sharedWorn.Validate(); foreach (var entry in sharedWorn.Entries) generated.Add(entry.Mesh);
             if (SoddenDistrictPlan.IsSupportedZone(zoneId))
             {
                 var cutters = SumpholdVoxelKitLibrary.Load();
@@ -93,12 +108,6 @@ namespace CavesOfOoo.Rendering
                 creatures.Validate();foreach(var entry in creatures.Entries)generated.Add(entry.Mesh);
                 var people=SpreadBiomeHumanoidLibrary.Load();if(people==null)throw new InvalidOperationException("Scoped humanoid library missing.");
                 people.Validate();foreach(var entry in people.Entries)generated.Add(entry.Mesh);
-                var portable = SpreadPortable3DLibrary.Load();
-                if (portable == null) throw new InvalidOperationException("Spread portable voxel library missing.");
-                portable.Validate(); foreach (var entry in portable.Entries) generated.Add(entry.Mesh);
-                var worn = SpreadEquipment3DLibrary.Load();
-                if (worn == null) throw new InvalidOperationException("Spread fitted equipment library missing.");
-                worn.Validate(); foreach (var entry in worn.Entries) generated.Add(entry.Mesh);
                 var nativeStyles=SpreadNativeStyle3DLibrary.Load();if(nativeStyles==null)throw new InvalidOperationException("Native static style library missing.");
                 nativeStyles.EnsureReady();foreach(var entry in nativeStyles.Entries)generated.Add(entry.Mesh);
                 var environment = SpreadEnvironment3DLibrary.Load();if(environment==null)throw new InvalidOperationException("Approved environment library missing.");

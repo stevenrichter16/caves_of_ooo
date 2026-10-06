@@ -52,10 +52,8 @@ namespace CavesOfOoo.Core
 
             var handling = item.GetPart<HandlingPart>();
             var physics = item.GetPart<PhysicsPart>();
-            if (handling != null && handling.Weight > 0)
-                return handling.Weight;
-
-            return physics?.Weight ?? 0;
+            int shell = handling != null && handling.Weight > 0 ? handling.Weight : physics?.Weight ?? 0;
+            return item.GetPart<ContainerLoadPart>() is ContainerLoadPart cargo ? cargo.Weight(shell) : shell;
         }
 
         public static int GetLiftStrengthRequirement(Entity item)

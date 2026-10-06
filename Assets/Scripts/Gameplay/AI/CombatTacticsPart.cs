@@ -21,6 +21,11 @@ namespace CavesOfOoo.Core
         public bool AssistAllies;
         /// <summary>Maximum Chebyshev radius; also bounded by each receiver's sight.</summary>
         public int AssistRadius = 6;
+        /// <summary>Zero preserves ordinary closing. Positive values opt into bounded ranged spacing.</summary>
+        public int PreferredRange;
+        public bool RepositionForShot;
+        /// <summary>Only Quench then Arc Bolt: both are real owned abilities with ordinary cooldowns.</summary>
+        public bool PreferElementalSetup;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -72,6 +77,8 @@ namespace CavesOfOoo.Core
                 case nameof(Corrosion_AcidSpray): return new Corrosion_AcidSpray();
                 case nameof(Cryomancy_IceLance): return new Cryomancy_IceLance();
                 case nameof(Pyromancy_EmberSpit): return new Pyromancy_EmberSpit();
+                case nameof(Hydromancy_Quench): return new Hydromancy_Quench();
+                case nameof(Galvanism_ArcBolt): return new Galvanism_ArcBolt();
                 default: return null;
             }
         }
@@ -106,7 +113,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < skills.SkillList.Count; i++)
             {
                 var skill = skills.SkillList[i];
-                if (skill == null) continue;
+                if (skill == null || !SetupEligible(skill, target)) continue;
                 var ability = abilities.GetAbility(skill.ActivatedAbilityID);
                 if (ability == null) { Reject(target, null, "unregistered-skill"); continue; }
                 if (!ability.IsUsable) { Reject(target, ability, "cooldown"); continue; }
@@ -139,16 +146,16 @@ namespace CavesOfOoo.Core
             finally { command.Release(); }
         }
 
-        private Candidate Preview(BaseSkillPart skill, ActivatedAbility ability, Entity target, Zone zone, int range)
+        private Candidate Preview(BaseSkillPart skill, ActivatedAbility ability, Entity target, Zone zone, int range, Cell from = null)
         {
             var actor = ParentEntity;
             string weaponClass = skill is ShortBlades_Shank ? "Piercing"
                 : skill is LongBlades_Lunge ? "LongBlades" : skill is Axe_Berserk ? "Axe" : null;
-            bool projectile = skill is Corrosion_AcidSpray || skill is Cryomancy_IceLance || skill is Pyromancy_EmberSpit;
+            bool projectile = IsProjectile(skill);
             if (weaponClass == null && !projectile) { Reject(target, ability, "unsupported-skill"); return null; }
             if (weaponClass != null && SkillCombatHelpers.FindEquippedWeaponOfClass(actor, weaponClass) == null)
             { Reject(target, ability, "weapon-class"); return null; }
-            if (range < 1 || SpatialQuery.Distance(zone, actor, target) > range)
+            if (range < 1 || (from == null && SpatialQuery.Distance(zone, actor, target) > range))
             { Reject(target, ability, "range"); return null; }
             if (skill is Axe_Berserk)
             {
@@ -168,7 +175,7 @@ namespace CavesOfOoo.Core
             // Preview the actual power's first-impact policy, including targetable
             // scenery. Eight rays support footprint contacts without aiming at an
             // off-ray anchor or firing through a different creature.
-            var source = zone.GetEntityCell(actor);
+            var source = from ?? zone.GetEntityCell(actor);
             for (int dir = 0; dir < 8; dir++)
             {
                 var next = zone.GetCellInDirection(source.X, source.Y, dir);
@@ -185,6 +192,64 @@ namespace CavesOfOoo.Core
                 if (first == target) return new Candidate { Ability = ability, Dx = dx, Dy = dy };
             }
             Reject(target, ability, "no-clear-target-ray"); return null;
+        }
+
+        private static bool IsProjectile(BaseSkillPart skill) => skill is Corrosion_AcidSpray
+            || skill is Cryomancy_IceLance || skill is Pyromancy_EmberSpit || skill is Hydromancy_Quench || skill is Galvanism_ArcBolt;
+        private bool SetupEligible(BaseSkillPart skill, Entity target)
+        {
+            if (!PreferElementalSetup) return true;
+            bool soaked = target?.GetEffect<WetEffect>()?.Moisture > .2f;
+            return skill is Hydromancy_Quench ? !soaked : !(skill is Galvanism_ArcBolt) || soaked;
+        }
+
+        /// <summary>One ordinary step or a deliberate cooldown wait. Never moves and casts together.</summary>
+        public bool TryPositionForShot(Entity target, Zone zone)
+        {
+            var actor = ParentEntity; var brain = actor?.GetPart<BrainPart>();
+            if ((!RepositionForShot && PreferredRange <= 0) || actor == null || zone == null || target == null
+                || actor.HasTag("Player") || actor.SpatialZone != zone || target.SpatialZone != zone
+                || actor.GetStatValue("Hitpoints") <= 0 || target.GetStatValue("Hitpoints") <= 0
+                || CombatSystem.IsDeathHandled(actor) || CombatSystem.IsDeathHandled(target)
+                || brain?.CurrentZone != zone || brain.HasGoal<NoFightGoal>()
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !FactionManager.IsHostile(actor,target)) return false;
+            var source = zone.GetEntityCell(actor); var aim = zone.GetEntityCell(target);
+            int distance = SpatialQuery.Distance(zone, actor, target);
+            if (source == null || aim == null || distance > brain.SightRadius
+                || !AIHelpers.HasLineOfSight(zone, source.X, source.Y, aim.X, aim.Y)) return false;
+            var skills = actor.GetPart<SkillsPart>(); var abilities = actor.GetPart<ActivatedAbilitiesPart>();
+            if (skills == null || abilities == null) return false;
+            var shots = new List<BaseSkillPart>();
+            foreach (var skill in skills.SkillList)
+                if (IsProjectile(skill) && SetupEligible(skill,target) && skill.ParentEntity == actor
+                    && abilities.GetAbility(skill.ActivatedAbilityID) != null) shots.Add(skill);
+            if (shots.Count == 0) return false;
+            bool Clear(Cell at)
+            {
+                foreach (var skill in shots)
+                {
+                    var ability=abilities.GetAbility(skill.ActivatedAbilityID); var spec=skill.DeclareActivatedAbility(actor);
+                    if (ability.Command == spec.Command && Preview(skill,ability,target,zone,Math.Min(spec.Range,ability.Range),at) != null) return true;
+                }
+                return false;
+            }
+            int preferred = Math.Min(4, Math.Max(0, PreferredRange));
+            if (preferred > 0 && distance < preferred
+                && AIHelpers.TryStepAway(actor,zone,source.X,source.Y,aim.X,aim.Y))
+            { Record("TacticPositioned",target,"","backstep"); return true; }
+            bool clear = Clear(source);
+            if (preferred > 0 && distance == preferred && clear)
+            { Record("TacticPositioned",target,"","hold-range"); return true; }
+            if (!RepositionForShot || clear) return false;
+            for (int dir=0;dir<8;dir++)
+            {
+                var next=zone.GetCellInDirection(source.X,source.Y,dir);
+                if (next==null || !zone.CanPlaceFootprint(actor,next.X,next.Y)
+                    || MultiCellAbilityQueries.CreatureAtPlacement(zone,actor,next.X,next.Y)!=null || !Clear(next)) continue;
+                if (MovementSystem.TryMoveTo(actor,zone,next.X,next.Y))
+                { Record("TacticPositioned",target,"","clear-shot-step"); return true; }
+            }
+            return false;
         }
 
         /// <summary>

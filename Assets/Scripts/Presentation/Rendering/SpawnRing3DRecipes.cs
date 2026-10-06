@@ -41,6 +41,29 @@ namespace CavesOfOoo.Rendering
                 return model == null ? Refused(entity, "unsupported-current-patchbearer")
                     : new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
             }
+            if (entity.BlueprintName == "MarlbackStormbinder")
+            {
+                string model = FiftySecondVisualAliases.StormbinderModel(entity);
+                return model == null ? Refused(entity, "unsupported-current-stormbinder")
+                    : new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
+            }
+            if (FiftySecondVisualAliases.IsPortable(entity.BlueprintName)
+                && (entity.BlueprintName != "BeetleJar" || entity.GetPart<PhysicsPart>()?.Takeable == true))
+            {
+                var physics = entity.GetPart<PhysicsPart>();
+                if (physics == null || physics.InInventory != null || physics.Equipped != null
+                    || entity.HasPart<SpatialFootprintPart>() || entity.HasPart<MultiCellPilotPropPart>()
+                    || !FiftySecondVisualAliases.TryPortable(entity, out string model))
+                    return Refused(entity, "unsupported-current-preparation-item");
+                return new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
+            }
+            if (FiftySecondVisualAliases.IsWorldOwner(entity.BlueprintName))
+            {
+                string model = FiftySecondVisualAliases.WorldModel(entity, out int turn);
+                if (model == null) return Refused(entity, "unsupported-current-exploration-owner");
+                bool actor = entity.HasTag("Creature");
+                return new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), actor, false, quarterTurns: turn);
+            }
             if (EquipmentDiscoveryRecipes.Handles(entity))
             {
                 var physics = entity.GetPart<PhysicsPart>();

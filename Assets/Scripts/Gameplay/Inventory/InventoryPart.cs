@@ -586,8 +586,26 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Block movement when overburdened.
         /// </summary>
+        // Gas-mask gear forwards only its own two native events from canonical body slots.
+        // Recursive traversal avoids allocating equipment lists during damage/gas ticks.
+        private void ForwardEquippedGasMask(CavesOfOoo.Core.Anatomy.BodyPart slot, GameEvent e)
+        {
+            if (slot == null) return;
+            var item = slot._Equipped;
+            if (item != null && slot.FirstSlotForEquipped && !Objects.Contains(item) && EquippedItems.ContainsValue(item)
+                && item.SpatialZone == null && item.GetPart<PhysicsPart>() is PhysicsPart physics
+                && physics.ParentEntity == item && physics.Equipped == ParentEntity && physics.InInventory == null
+                && item.GetPart<GasMaskPart>() is GasMaskPart mask && mask.ParentEntity == item)
+                mask.HandleEvent(e);
+            if (slot.Parts != null) for (int i = 0; i < slot.Parts.Count; i++) ForwardEquippedGasMask(slot.Parts[i], e);
+        }
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "GetRespiratoryPerformance" || e.ID == "BeforeTakeDamage")
+            {
+                var body = ParentEntity?.GetPart<Body>();
+                if (body?.ParentEntity == ParentEntity) ForwardEquippedGasMask(body.GetBody(), e);
+            }
             if (e.ID == "EndTurn")
             {
                 // Only actual equipped torches tick; the snapshot also deduplicates

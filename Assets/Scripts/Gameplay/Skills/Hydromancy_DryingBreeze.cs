@@ -42,7 +42,13 @@ namespace CavesOfOoo.Skills
 
             var cells = MultiCellAbilityQueries.RadiusCells(zone, sourceCell.X, sourceCell.Y, RADIUS);
             var pulseTargets = MultiCellAbilityQueries.SnapshotOccupants(cells, null, reverse: true);
-            foreach (var cell in cells) SpellFxCapture.AffectCell(zone, cell.X, cell.Y);
+            foreach (var cell in cells)
+            {
+                SpellFxCapture.AffectCell(zone, cell.X, cell.Y);
+                int turns = zone.TileState.CoatingTurns(cell.X, cell.Y, "water");
+                if (turns > 0 && turns != ZoneTileState.Permanent)
+                    zone.TileState.RemoveCoating(cell.X, cell.Y, "water");
+            }
             foreach (var entity in pulseTargets)
             {
                 if (zone.GetEntityCell(entity) == null) continue;

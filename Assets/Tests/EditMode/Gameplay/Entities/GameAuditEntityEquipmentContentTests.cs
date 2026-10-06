@@ -79,6 +79,11 @@ namespace CavesOfOoo.Tests
             new EquipmentContentKit("SpreadHurdleCutter", "ShortSword;LeatherCap"),
             new EquipmentContentKit("SpreadDitchMate", "Cudgel"),
             new EquipmentContentKit("MarlbackGleaner", "LeatherGloves:50;LeatherArmor:25", pick: "1;Dagger;ShortSword"),
+            // Existing specialists and the new stormbinder keep literal, finite kits in this census.
+            new EquipmentContentKit("MarlbackPatchbearer", "LeatherGloves:50;LeatherArmor:25", carry: "HealingTonic;Antidote", pick: "1;Dagger;ShortSword"),
+            new EquipmentContentKit("MarlbackCindercaller", "Cudgel", carry: "FireMoss"),
+            new EquipmentContentKit("MarlbackSoursprayer", "Cudgel", carry: "GlimmerBrine"),
+            new EquipmentContentKit("MarlbackStormbinder", "Cudgel", carry: "SparkRoot"),
             new EquipmentContentKit("MarlbackTunnelguard", "Spear;LeatherBoots:50;LeatherCap:25"),
             new EquipmentContentKit("MarlbackWallkeeper", "LongSword;LeatherArmor;LeatherCap;LeatherBoots:35"),
             new EquipmentContentKit("MarlbackBreacher", "BreacherCleaver;LeatherArmor;IronHelmet;IronshodBoots"),

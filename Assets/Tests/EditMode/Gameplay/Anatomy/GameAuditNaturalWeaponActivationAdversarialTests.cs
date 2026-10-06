@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
     public class GameAuditNaturalWeaponActivationAdversarialTests
     {
         // Literal actor/recipe baseline, including the two independent quest creatures.
-        // Original-enemy migration, authored field variants, half-set intake and patchbearer (52 total).
+        // Original-enemy migration, authored field variants, half-set intake and patchbearer and stormbinder (53 total).
         static readonly string[] Declared = {
             "MarlbackScrabbler|MarlbackRake", "MarlbackGleaner|MarlbackRake", "MarlbackPatchbearer|MarlbackRake", "MarlbackTunnelguard|MarlbackGuardRake",
             "ChoirTendril|ChoirLash", "CaveBat|BatBite", "CaveSlime|SlimePseudopod", "CaveBear|CaveBearClaw",
@@ -29,7 +29,7 @@ namespace CavesOfOoo.Tests
             "RuneCultist|CultistKnife", "SunStriker|DefaultBite",
             "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril",
             "SootGremlin|ScavengerClaw", "DirtGnome|ScavengerClaw",
-            "SpreadHurdleCutter|MarlbackRake", "SpreadDitchMate|MarlbackRake", "SpreadLatchcoil|ViperBite", "MarlbackCindercaller|MarlbackRake", "MarlbackSoursprayer|MarlbackRake",
+            "SpreadHurdleCutter|MarlbackRake", "SpreadDitchMate|MarlbackRake", "SpreadLatchcoil|ViperBite", "MarlbackCindercaller|MarlbackRake", "MarlbackSoursprayer|MarlbackRake", "MarlbackStormbinder|MarlbackRake",
             "CurationHalfSet|DefaultTendril"
         };
         // Literal recipe dice baseline prevents a nonnull premature DefaultFist from passing.
@@ -72,7 +72,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(52, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(53, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);

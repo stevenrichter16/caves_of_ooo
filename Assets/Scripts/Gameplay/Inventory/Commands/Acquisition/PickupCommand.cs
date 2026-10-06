@@ -3,6 +3,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
     public sealed class PickupCommand : IInventoryCommand
     {
         private readonly Entity _item;
+        private readonly bool _autoEquip = true;
         private readonly bool _retainIdentity;
         private readonly int _expectedQuantity;
         private readonly Entity _retrievalRecipient;
@@ -22,9 +23,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public string Name => "Pickup";
 
-        public PickupCommand(Entity item)
+        public PickupCommand(Entity item) : this(item, autoEquip: true) { }
+
+        /// <summary>Ordinary pickup defaults to auto-equip. Recovery AI can reserve
+        /// equipping for its next action without bypassing the transfer transaction.</summary>
+        public PickupCommand(Entity item, bool autoEquip)
         {
             _item = item;
+            _autoEquip = autoEquip;
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -181,7 +187,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             // Preserve auto-equip-on-pickup behavior through command-native flow.
             // Failures are non-fatal for pickup and simply mean "left carried".
-            if (!gold && !_retainIdentity) new AutoEquipCommand(_item).Execute(context, transaction);
+            if (!gold && !_retainIdentity && _autoEquip) new AutoEquipCommand(_item).Execute(context, transaction);
 
             // Fire AfterPickup on actor.
             var afterPickup = GameEvent.New("AfterPickup");

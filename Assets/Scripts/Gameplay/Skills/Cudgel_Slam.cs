@@ -14,11 +14,10 @@ namespace CavesOfOoo.Skills
     /// <para>Per Qud's <c>Cudgel_Slam</c> mechanic — Qud's version can
     /// also slam THROUGH walls if Strength × 5 ≥ wall AV (destroying the
     /// wall) and chains the slam through other creatures. CoO v1
-    /// simplifies: walls AND creatures both stop the push (a "wall hit"
-    /// in the simplified model is "any solid"), and the obstacle isn't
-    /// damaged. Future v2 can add wall-destruction once the wall-AV
-    /// system is ported. Documented as Match (mechanic family) +
-    /// Divergent (no chain / no wall-destroy) per CLAUDE.md §4.2.</para>
+    /// stops at walls and creatures. Its first physical collision partner
+    /// now takes one base-weapon impact through normal damage/destruction
+    /// routing, but the push never chains or continues through a broken wall.
+    /// This collision extension is CoO-original.</para>
     ///
     /// <para><b>Mechanic (CoO):</b> requires a Cudgel-attribute weapon
     /// equipped and a chosen adjacent creature. The chosen physical
@@ -98,6 +97,7 @@ namespace CavesOfOoo.Skills
             // Stop early if blocked by solid terrain or another creature.
             int cellsPushed = 0;
             int wallHits = 0;
+            Entity collisionOwner = null;
             for (int step = 0; step < SLAM_DISTANCE; step++)
             {
                 var targetPos = ctx.Zone.GetEntityPosition(target);
@@ -113,6 +113,7 @@ namespace CavesOfOoo.Skills
                     // PhysicsPart.Solid (not the "Solid" tag) — same
                     // discrepancy that PhysicsPart.cs:69-71 papers over
                     // for normal movement.
+                    if (nextCell != null) collisionOwner = CollisionOwner(ctx.Zone, target, nextCell.X, nextCell.Y);
                     wallHits++;
                     break;
                 }
@@ -130,6 +131,14 @@ namespace CavesOfOoo.Skills
             // Entry reactions may remove or kill the pushed owner.
             if (ctx.Zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints", 1) <= 0)
                 return true;
+
+            // The obstruction suffers one physical impact, not a second melee swing or recursive launch.
+            if (collisionOwner != null && collisionOwner.SpatialZone == ctx.Zone && !string.IsNullOrEmpty(weapon.BaseDamage))
+            {
+                var impact = new Damage(DiceRoller.Roll(weapon.BaseDamage, ctx.Rng));
+                impact.AddAttribute("Bludgeoning");
+                DestructionSystem.RouteDamage(collisionOwner, impact, actor, ctx.Zone);
+            }
 
             // Bonus damage per wall hit, rolled from weapon BaseDamage.
             // Rolling fresh per wall keeps RNG-seeded tests deterministic
@@ -175,5 +184,15 @@ namespace CavesOfOoo.Skills
         }
 
 
+        private static Entity CollisionOwner(Zone zone, Entity pushed, int x, int y)
+        {
+            foreach (var cell in zone.GetOccupiedCells(pushed,x,y))
+                if (cell != null)
+                    foreach (var owner in cell.Occupants)
+                        if (owner != null && owner != pushed && owner.SpatialZone == zone
+                            && (owner.HasTag("Creature") || owner.HasTag("Solid") || owner.GetPart<PhysicsPart>()?.Solid == true))
+                            return owner;
+            return null;
+        }
     }
 }

@@ -12,10 +12,10 @@ namespace CavesOfOoo.Core
     {
         internal const int MaximumYieldUnits = 32;
 
-        internal static bool TryRelease(CropPart crop, Zone zone, Entity actor = null, InventoryTransaction transaction = null, bool gather = false)
+        internal static bool TryRelease(CropPart crop, Zone zone, Entity actor = null, InventoryTransaction transaction = null, bool gather = false, bool seedsOnly = false)
         {
             if (gather && actor?.GetPart<InventoryPart>() == null) return false;
-            var source = new Source(crop, zone, actor);
+            var source = new Source(crop, zone, actor, seedsOnly);
             if (!source.Current() || !source.ValidRecipe()) return Reject(crop, actor, "invalid-source-or-yield");
             var gathering = LocalGatheringClaims.CaptureHarvest(actor, source.Owner, zone);
             var factory = CropSystem.Factory;
@@ -106,6 +106,7 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(actor == null
                         ? "The " + source.Owner.GetDisplayName() + " is ready — its harvest lies on the ground."
                         : gather ? "You gather " + source.Owner.GetDisplayName() + ": " + packed + " packed, " + (products.Count - packed) + " left here."
+                        : seedsOnly ? "You harvest " + source.Owner.GetDisplayName() + " for seed. No produce is gathered."
                         : "You harvest " + source.Owner.GetDisplayName() + ". The produce and saved seed lie here to pick up.");
                     if (Diag.IsChannelEnabled("crop")) Diag.Record("crop", actor == null ? "CropMatured" : "CropHarvested",
                         actor: actor, target: source.Owner, payload: new { yieldBlueprint = source.YieldBlueprint,
@@ -150,18 +151,20 @@ namespace CavesOfOoo.Core
             readonly Entity actor;
             readonly string id;
             readonly int stage, progress, moisture;
-            readonly bool harvest;
-            internal Source(CropPart crop, Zone zone, Entity actor)
+            readonly bool harvest, seedsOnly;
+            readonly int originalYieldCount, originalSeedCount;
+            internal Source(CropPart crop, Zone zone, Entity actor, bool seedsOnly)
             {
-                this.crop = crop; this.zone = zone; this.actor = actor;
+                this.crop = crop; this.zone = zone; this.actor = actor; this.seedsOnly = seedsOnly;
                 Owner = crop?.ParentEntity; Cell = zone?.GetEntityCell(Owner); Index = Cell?.Objects.IndexOf(Owner) ?? -1;
                 physics = Owner?.GetPart<PhysicsPart>(); id = Owner?.ID; Blueprint = Owner?.BlueprintName;
-                YieldBlueprint = crop?.YieldBlueprint; YieldCount = crop?.YieldCount ?? 0;
+                YieldBlueprint = crop?.YieldBlueprint; originalYieldCount = crop?.YieldCount ?? 0; YieldCount = seedsOnly ? 0 : originalYieldCount;
                 harvest = crop?.HarvestAtMaturity == true;
-                SeedBlueprint = harvest ? crop.SeedYieldBlueprint : ""; SeedCount = harvest ? crop.SeedYieldCount : 0;
+                SeedBlueprint = harvest ? crop.SeedYieldBlueprint : ""; originalSeedCount = harvest ? crop.SeedYieldCount : 0;
+                SeedCount = seedsOnly ? (int)Math.Min(int.MaxValue, (long)originalSeedCount * 3) : originalSeedCount;
                 stage = crop?.GrowthStage ?? -1; progress = crop?.TicksInStage ?? -1; moisture = crop?.MoistureTicks ?? -1;
             }
-            internal bool ValidRecipe() => YieldCount > 0 && YieldCount <= MaximumYieldUnits
+            internal bool ValidRecipe() => (seedsOnly ? harvest && actor != null && SeedCount > 0 : YieldCount > 0) && YieldCount <= MaximumYieldUnits
                 && SeedCount >= 0 && SeedCount <= MaximumYieldUnits - YieldCount
                 && !string.IsNullOrEmpty(YieldBlueprint) && (SeedCount == 0 || !string.IsNullOrEmpty(SeedBlueprint));
             internal bool Current()
@@ -171,8 +174,8 @@ namespace CavesOfOoo.Core
                     || Owner.ID != id || string.IsNullOrEmpty(id) || Owner.BlueprintName != Blueprint
                     || crop == null || crop.ParentEntity != Owner || Owner.GetPart<CropPart>() != crop || !Owner.HasTag("Crop")
                     || crop.GrowthStage != stage || crop.TicksInStage != progress || crop.MoistureTicks != moisture
-                    || crop.HarvestAtMaturity != harvest || crop.YieldBlueprint != YieldBlueprint || crop.YieldCount != YieldCount
-                    || (harvest && (crop.SeedYieldBlueprint != SeedBlueprint || crop.SeedYieldCount != SeedCount))
+                    || crop.HarvestAtMaturity != harvest || crop.YieldBlueprint != YieldBlueprint || crop.YieldCount != originalYieldCount
+                    || (harvest && (crop.SeedYieldBlueprint != SeedBlueprint || crop.SeedYieldCount != originalSeedCount))
                     || physics == null || Owner.GetPart<PhysicsPart>() != physics || physics.ParentEntity != Owner
                     || physics.Takeable || physics.Solid || physics.InInventory != null || physics.Equipped != null
                     || BarrenGroundRules.IsBarren(Cell)) return false;
