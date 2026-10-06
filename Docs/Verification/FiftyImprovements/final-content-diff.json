@@ -1,0 +1,3120 @@
+{
+  "baseline": "bfa625f44",
+  "changedBlueprints": [
+    "Battleaxe",
+    "CookedMeat",
+    "Cudgel",
+    "Dagger",
+    "IronHelmet",
+    "LeatherArmor",
+    "LongSword",
+    "Mace",
+    "RoastedHearthbulb",
+    "RoastedMushroom",
+    "RoastedStarapple",
+    "SpeedTonic",
+    "StrengthTonic",
+    "ToastedEmberwheat"
+  ],
+  "unexpectedChanges": [],
+  "changes": {
+    "Battleaxe": {
+      "before": {
+        "Name": "Battleaxe",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "battleaxe"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "P"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&W"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "14"
+              }
+            ]
+          },
+          {
+            "Name": "Equippable",
+            "Params": [
+              {
+                "Key": "Slot",
+                "Value": "Hand"
+              },
+              {
+                "Key": "UsesSlots",
+                "Value": "Hand,Hand"
+              }
+            ]
+          },
+          {
+            "Name": "Handling",
+            "Params": [
+              {
+                "Key": "GripType",
+                "Value": "TwoHand"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "2d6"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Cutting Axe"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "40"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A broad axe head sits on a reinforced haft. The cutting edge curves away from the socket."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          },
+          {
+            "Key": "TwoHanded",
+            "Value": ""
+          }
+        ]
+      },
+      "after": {
+        "Name": "Battleaxe",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "battleaxe"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "P"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&W"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "14"
+              }
+            ]
+          },
+          {
+            "Name": "Equippable",
+            "Params": [
+              {
+                "Key": "Slot",
+                "Value": "Hand"
+              },
+              {
+                "Key": "UsesSlots",
+                "Value": "Hand,Hand"
+              }
+            ]
+          },
+          {
+            "Name": "Handling",
+            "Params": [
+              {
+                "Key": "GripType",
+                "Value": "TwoHand"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "2d6"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Cutting Axe"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "40"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A broad axe head sits on a reinforced haft. The cutting edge curves away from the socket."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Metal"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "metal-equipment-brace"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          },
+          {
+            "Key": "TwoHanded",
+            "Value": ""
+          }
+        ]
+      }
+    },
+    "CookedMeat": {
+      "before": {
+        "Name": "CookedMeat",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "cooked meat"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&R"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "2"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Flesh"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Food,Cooked"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "360"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.2"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "CookedMeat",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "cooked meat"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&R"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "2"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              },
+              {
+                "Key": "MealStat",
+                "Value": "Toughness"
+              },
+              {
+                "Key": "MealBonus",
+                "Value": "2"
+              },
+              {
+                "Key": "MealDuration",
+                "Value": "100"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Flesh"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Food,Cooked"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "360"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.2"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "Cudgel": {
+      "before": {
+        "Name": "Cudgel",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "cudgel"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d4+2"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "2"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Bludgeoning Cudgel"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A stout club, heavier at the striking end and smoothed where a hand holds it."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 12,
+            "Min": 0,
+            "Max": 12
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "Cudgel",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "cudgel"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d4+2"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "2"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Bludgeoning Cudgel"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A stout club, heavier at the striking end and smoothed where a hand holds it."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Wood"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "wood-equipment-splint"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 12,
+            "Min": 0,
+            "Max": 12
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "Dagger": {
+      "before": {
+        "Name": "Dagger",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "dagger"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&c"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "4"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d4"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "1"
+              },
+              {
+                "Key": "MaxStrengthBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Piercing"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "10"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A short blade with a close-fitting grip. The point has been kept sharp."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 5,
+            "Min": 0,
+            "Max": 5
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "Dagger",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "dagger"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&c"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "4"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d4"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "1"
+              },
+              {
+                "Key": "MaxStrengthBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Piercing"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "10"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A short blade with a close-fitting grip. The point has been kept sharp."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Metal"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "metal-equipment-brace"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 5,
+            "Min": 0,
+            "Max": 5
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "IronHelmet": {
+      "before": {
+        "Name": "IronHelmet",
+        "Inherits": "ArmorItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "iron helmet"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "["
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "6"
+              }
+            ]
+          },
+          {
+            "Name": "Equippable",
+            "Params": [
+              {
+                "Key": "Slot",
+                "Value": "Head"
+              }
+            ]
+          },
+          {
+            "Name": "Armor",
+            "Params": [
+              {
+                "Key": "AV",
+                "Value": "2"
+              },
+              {
+                "Key": "DV",
+                "Value": "0"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "25"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A worked iron shell with an opening for the face. The rim has been turned away from the skin."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 12,
+            "Min": 0,
+            "Max": 12
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      },
+      "after": {
+        "Name": "IronHelmet",
+        "Inherits": "ArmorItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "iron helmet"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "["
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "6"
+              }
+            ]
+          },
+          {
+            "Name": "Equippable",
+            "Params": [
+              {
+                "Key": "Slot",
+                "Value": "Head"
+              }
+            ]
+          },
+          {
+            "Name": "Armor",
+            "Params": [
+              {
+                "Key": "AV",
+                "Value": "2"
+              },
+              {
+                "Key": "DV",
+                "Value": "0"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "25"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A worked iron shell with an opening for the face. The rim has been turned away from the skin."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Metal"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "metal-equipment-brace"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 12,
+            "Min": 0,
+            "Max": 12
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      }
+    },
+    "LeatherArmor": {
+      "before": {
+        "Name": "LeatherArmor",
+        "Inherits": "ArmorItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "leather armor"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "["
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&w"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "15"
+              }
+            ]
+          },
+          {
+            "Name": "Armor",
+            "Params": [
+              {
+                "Key": "AV",
+                "Value": "3"
+              },
+              {
+                "Key": "DV",
+                "Value": "-1"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "30"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Leather"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.4"
+              },
+              {
+                "Key": "Porosity",
+                "Value": "0.6"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Cloth"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "380"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.0"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "LeatherArmor",
+        "Inherits": "ArmorItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "leather armor"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "["
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&w"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "15"
+              }
+            ]
+          },
+          {
+            "Name": "Armor",
+            "Params": [
+              {
+                "Key": "AV",
+                "Value": "3"
+              },
+              {
+                "Key": "DV",
+                "Value": "-1"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "30"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Leather"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.4"
+              },
+              {
+                "Key": "Porosity",
+                "Value": "0.6"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Cloth"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "380"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.0"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Leather"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "leather-equipment-stitch"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "LongSword": {
+      "before": {
+        "Name": "LongSword",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "long sword"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d8"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "2"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Cutting LongBlades"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "25"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A long, straight blade balanced above a plain crossguard."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 10,
+            "Min": 0,
+            "Max": 10
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      },
+      "after": {
+        "Name": "LongSword",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "long sword"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "/"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d8"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "2"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Cutting LongBlades"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "25"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A long, straight blade balanced above a plain crossguard."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Metal"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "metal-equipment-brace"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 10,
+            "Min": 0,
+            "Max": 10
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      }
+    },
+    "Mace": {
+      "before": {
+        "Name": "Mace",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "mace"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&w"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "10"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d8+1"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Bludgeoning Cudgel"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "20"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A heavy head on a short haft. Its raised faces concentrate the weight of a blow."
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      },
+      "after": {
+        "Name": "Mace",
+        "Inherits": "MeleeWeapon",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "mace"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&w"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "10"
+              }
+            ]
+          },
+          {
+            "Name": "MeleeWeapon",
+            "Params": [
+              {
+                "Key": "BaseDamage",
+                "Value": "1d8+1"
+              },
+              {
+                "Key": "PenBonus",
+                "Value": "3"
+              },
+              {
+                "Key": "Attributes",
+                "Value": "Bludgeoning Cudgel"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "20"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Steel"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0"
+              },
+              {
+                "Key": "Conductivity",
+                "Value": "0.8"
+              },
+              {
+                "Key": "Brittleness",
+                "Value": "0.2"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Metal,Conductor"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "1500"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "0.5"
+              },
+              {
+                "Key": "BrittleTemperature",
+                "Value": "-150"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "A heavy head on a short haft. Its raised faces concentrate the weight of a blow."
+              }
+            ]
+          },
+          {
+            "Name": "Composition",
+            "Params": [
+              {
+                "Key": "MaterialsRaw",
+                "Value": "Metal"
+              }
+            ]
+          },
+          {
+            "Name": "Repairable",
+            "Params": [
+              {
+                "Key": "RecipeId",
+                "Value": "metal-equipment-brace"
+              },
+              {
+                "Key": "PortableEquipment",
+                "Value": "true"
+              }
+            ]
+          }
+        ],
+        "Stats": [
+          {
+            "Name": "Hitpoints",
+            "Value": 15,
+            "Min": 0,
+            "Max": 15
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      }
+    },
+    "RoastedHearthbulb": {
+      "before": {
+        "Name": "RoastedHearthbulb",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted hearthbulb"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&o"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "2d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "7"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "The split skin holds a soft, sweet center. A small meal that keeps well in its own wrapper."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": []
+      },
+      "after": {
+        "Name": "RoastedHearthbulb",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted hearthbulb"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&o"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "2d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              },
+              {
+                "Key": "MealStat",
+                "Value": "ColdResistance"
+              },
+              {
+                "Key": "MealBonus",
+                "Value": "20"
+              },
+              {
+                "Key": "MealDuration",
+                "Value": "100"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "7"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "The split skin holds a soft, sweet center. A small meal that keeps well in its own wrapper."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": []
+      }
+    },
+    "RoastedMushroom": {
+      "before": {
+        "Name": "RoastedMushroom",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted mushroom"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&Y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Text",
+                "Value": "The edges have browned and curled; the flesh inside is still soft."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "RoastedMushroom",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted mushroom"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&Y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              },
+              {
+                "Key": "MealStat",
+                "Value": "AcidResistance"
+              },
+              {
+                "Key": "MealBonus",
+                "Value": "20"
+              },
+              {
+                "Key": "MealDuration",
+                "Value": "100"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "8"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Text",
+                "Value": "The edges have browned and curled; the flesh inside is still soft."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "RoastedStarapple": {
+      "before": {
+        "Name": "RoastedStarapple",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted starapple"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&Y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "9"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Plant"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.25"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Food,Cooked"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "340"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.0"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      },
+      "after": {
+        "Name": "RoastedStarapple",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "roasted starapple"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&Y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              },
+              {
+                "Key": "MealStat",
+                "Value": "DV"
+              },
+              {
+                "Key": "MealBonus",
+                "Value": "1"
+              },
+              {
+                "Key": "MealDuration",
+                "Value": "100"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "9"
+              }
+            ]
+          },
+          {
+            "Name": "Material",
+            "Params": [
+              {
+                "Key": "MaterialID",
+                "Value": "Plant"
+              },
+              {
+                "Key": "Combustibility",
+                "Value": "0.25"
+              },
+              {
+                "Key": "MaterialTagsRaw",
+                "Value": "Organic,Food,Cooked"
+              }
+            ]
+          },
+          {
+            "Name": "Thermal",
+            "Params": [
+              {
+                "Key": "FlameTemperature",
+                "Value": "340"
+              },
+              {
+                "Key": "HeatCapacity",
+                "Value": "1.0"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "1"
+          }
+        ]
+      }
+    },
+    "SpeedTonic": {
+      "before": {
+        "Name": "SpeedTonic",
+        "Inherits": "TonicItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "speed tonic"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&B"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Tonic",
+            "Params": [
+              {
+                "Key": "Effect",
+                "Value": "Speed"
+              },
+              {
+                "Key": "StatBoost",
+                "Value": "Speed:20"
+              },
+              {
+                "Key": "Message",
+                "Value": "The tonic sends a quicksilver rush through the body."
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "20"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      },
+      "after": {
+        "Name": "SpeedTonic",
+        "Inherits": "TonicItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "speed tonic"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&B"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Tonic",
+            "Params": [
+              {
+                "Key": "Effect",
+                "Value": "Speed"
+              },
+              {
+                "Key": "StatBoost",
+                "Value": "Speed:20"
+              },
+              {
+                "Key": "Message",
+                "Value": "The tonic sends a quicksilver rush through the body."
+              },
+              {
+                "Key": "Duration",
+                "Value": "20"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "20"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      }
+    },
+    "StrengthTonic": {
+      "before": {
+        "Name": "StrengthTonic",
+        "Inherits": "TonicItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "strength tonic"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&R"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Tonic",
+            "Params": [
+              {
+                "Key": "Effect",
+                "Value": "Strength"
+              },
+              {
+                "Key": "StatBoost",
+                "Value": "Strength:4"
+              },
+              {
+                "Key": "Message",
+                "Value": "Power surges through the body."
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "22"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      },
+      "after": {
+        "Name": "StrengthTonic",
+        "Inherits": "TonicItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "strength tonic"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "!"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&R"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Tonic",
+            "Params": [
+              {
+                "Key": "Effect",
+                "Value": "Strength"
+              },
+              {
+                "Key": "StatBoost",
+                "Value": "Strength:4"
+              },
+              {
+                "Key": "Message",
+                "Value": "Power surges through the body."
+              },
+              {
+                "Key": "Duration",
+                "Value": "20"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "22"
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": [
+          {
+            "Key": "Tier",
+            "Value": "2"
+          }
+        ]
+      }
+    },
+    "ToastedEmberwheat": {
+      "before": {
+        "Name": "ToastedEmberwheat",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "toasted emberwheat"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "12"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "Toasted emberwheat, dry and crisp."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": []
+      },
+      "after": {
+        "Name": "ToastedEmberwheat",
+        "Inherits": "FoodItem",
+        "Parts": [
+          {
+            "Name": "Render",
+            "Params": [
+              {
+                "Key": "DisplayName",
+                "Value": "toasted emberwheat"
+              },
+              {
+                "Key": "RenderString",
+                "Value": "%"
+              },
+              {
+                "Key": "ColorString",
+                "Value": "&y"
+              },
+              {
+                "Key": "RenderLayer",
+                "Value": "5"
+              }
+            ]
+          },
+          {
+            "Name": "Physics",
+            "Params": [
+              {
+                "Key": "Takeable",
+                "Value": "true"
+              },
+              {
+                "Key": "Weight",
+                "Value": "1"
+              }
+            ]
+          },
+          {
+            "Name": "Food",
+            "Params": [
+              {
+                "Key": "Healing",
+                "Value": "3d4"
+              },
+              {
+                "Key": "Cooking",
+                "Value": "Meal"
+              },
+              {
+                "Key": "MealStat",
+                "Value": "HeatResistance"
+              },
+              {
+                "Key": "MealBonus",
+                "Value": "20"
+              },
+              {
+                "Key": "MealDuration",
+                "Value": "100"
+              }
+            ]
+          },
+          {
+            "Name": "Commerce",
+            "Params": [
+              {
+                "Key": "Value",
+                "Value": "12"
+              }
+            ]
+          },
+          {
+            "Name": "Examinable",
+            "Params": [
+              {
+                "Key": "Description",
+                "Value": "Toasted emberwheat, dry and crisp."
+              }
+            ]
+          }
+        ],
+        "Stats": [],
+        "Tags": []
+      }
+    }
+  }
+}

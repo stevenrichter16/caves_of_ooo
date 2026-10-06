@@ -5,9 +5,10 @@ namespace CavesOfOoo.Core
     /// </summary>
     public sealed class DuelistCutTinkerModification : ITinkerModification
     {
+        internal const int AVDelta = -1;
         private const string ModTag = "ModDuelistCut";
         private const string BonusStat = "Agility";
-        private const int BonusAmount = 2;
+        internal const int BonusAmount = 2;
 
         public string Id => "mod_duelist_cut";
 
@@ -34,7 +35,7 @@ namespace CavesOfOoo.Core
                 return false;
 
             var armor = item.GetPart<ArmorPart>();
-            armor.AV -= 1;
+            armor.AV += AVDelta;
 
             ArmorTinkerModificationUtility.AddOrUpdateEquipBonus(item, BonusStat, BonusAmount);
             ArmorTinkerModificationUtility.ApplyEquippedStatBonusDelta(item, BonusStat, BonusAmount);

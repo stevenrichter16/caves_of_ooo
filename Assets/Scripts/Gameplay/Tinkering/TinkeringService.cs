@@ -319,6 +319,10 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        /// <summary>Read the exact existing per-unit recovery without consuming anything.</summary>
+        public static bool TryDescribeDisassemblyYield(Entity item, out string bits, out string reason)
+            => TryResolveDisassemblyBits(item, out bits, out reason);
+
         public static bool CanDisassemble(Entity item, out string reason)
         {
             return TryResolveDisassemblyBits(item, out _, out reason);

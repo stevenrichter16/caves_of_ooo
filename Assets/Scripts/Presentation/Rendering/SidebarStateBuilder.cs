@@ -54,6 +54,12 @@ namespace CavesOfOoo.Rendering
                 "TIME " + WorldClock.BandName(WorldClock.GetBand(WorldClock.CurrentTick), WorldMap.GetDepth(zone?.ZoneID))
             };
 
+            string haul = InventoryDecisionDetails.Haul(player, zone);
+            if (!string.IsNullOrEmpty(haul))
+            {
+                var grip = player.GetPart<DragPart>();
+                vitalLines.Add("HAUL -" + grip.AppliedPenalty + " Sp " + grip.Dragged.GetDisplayName());
+            }
             string statusText = BuildStatusText(player);
             LookSnapshot focusSnapshot = currentLookSnapshot ?? BuildFallbackFocus(player, zone);
             IReadOnlyList<SidebarLogEntry> logEntries = BuildRecentLogEntries(maxRecentMessages);

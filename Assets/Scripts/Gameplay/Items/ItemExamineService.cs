@@ -26,6 +26,14 @@ namespace CavesOfOoo.Core
             if (TryDescribeEquipmentDetails(item, out string equipmentDetails))
                 lines.Add(equipmentDetails);
 
+            var food = item.GetPart<FoodPart>();
+            if (food != null)
+            {
+                lines.Add("Eat one unit." + (string.IsNullOrWhiteSpace(food.Healing) ? "" : " Heals " + food.Healing + " HP."));
+                string meal = FoodPart.DescribeMeal(food);
+                if (!string.IsNullOrEmpty(meal)) lines.Add(meal);
+            }
+
             var vessel = item.GetPart<LiquidVesselPart>();
             if (vessel != null)
             {

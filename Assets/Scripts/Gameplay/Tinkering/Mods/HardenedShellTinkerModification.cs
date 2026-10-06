@@ -5,8 +5,9 @@ namespace CavesOfOoo.Core
     /// </summary>
     public sealed class HardenedShellTinkerModification : ITinkerModification
     {
+        internal const int AVDelta = 2;
         private const string ModTag = "ModHardenedShell";
-        private const int SpeedPenaltyDelta = 10;
+        internal const int SpeedPenaltyDelta = 10;
 
         public string Id => "mod_hardened_shell";
 
@@ -24,7 +25,7 @@ namespace CavesOfOoo.Core
                 return false;
 
             var armor = item.GetPart<ArmorPart>();
-            armor.AV += 2;
+            armor.AV += AVDelta;
             armor.SpeedPenalty += SpeedPenaltyDelta;
 
             ArmorTinkerModificationUtility.ApplyEquippedSpeedPenaltyDelta(item, SpeedPenaltyDelta);

@@ -18,7 +18,7 @@ namespace CavesOfOoo.Rendering
     /// F7 (dump body parts), F8 (dismember limb), F9 (craft), P (cycle well state).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
-    public class InputHandler : MonoBehaviour
+    public partial class InputHandler : MonoBehaviour
     {
         /// <summary>
         /// The player entity to move.
@@ -272,7 +272,7 @@ namespace CavesOfOoo.Rendering
                     _pauseMenuUI.Log = MessageLog.Add;
                     // ALPHA onboarding: the menu's new entries.
                     _pauseMenuController.ShowControls =
-                        () => ControlsReference.PrintHelp(MessageLog.Add);
+                        () => { _decisionReaderReturnToPause = true; _pauseControlsPending = true; };
                     _pauseMenuController.RequestQuit = Application.Quit;
                 }
             }
@@ -533,11 +533,13 @@ namespace CavesOfOoo.Rendering
                 {
                     bool wasOpenBeforeTick = _pauseMenuUI.IsOpen;
                     bool consumed = _pauseMenuUI.HandleInput(_saveLoadInputProbe);
+                    // Pause and the reader share a canvas. Draw only after Pause has cleared itself.
+                    if (_pauseControlsPending) { _pauseControlsPending = false; OpenControlsReader(); }
                     bool isOpenAfterTick = _pauseMenuUI.IsOpen;
 
                     if (!wasOpenBeforeTick && isOpenAfterTick)
                         EnterCenteredPopupOverlayView();
-                    else if (wasOpenBeforeTick && !isOpenAfterTick)
+                    else if (wasOpenBeforeTick && !isOpenAfterTick && _inputState != InputState.AnnouncementOpen)
                         ExitCenteredPopupOverlayViewToGameplay();
 
                     if (consumed)
@@ -653,6 +655,8 @@ namespace CavesOfOoo.Rendering
                 if (TryOpenAnnouncement())
                     return;
 
+                if (InventoryUI?.IsSearching != true && InputHelper.GetKeyDown(KeyCode.F1)) { OpenInventoryDetailsReader(); return; }
+                if (InventoryUI?.IsSearching != true && InputHelper.GetKeyDown(KeyCode.F2)) { OpenPlayerStatusReader(); return; }
                 HandleInventoryInput();
                 return;
             }
@@ -665,6 +669,7 @@ namespace CavesOfOoo.Rendering
 
             if (_inputState == InputState.PickupOpen)
             {
+                if (InputHelper.GetKeyDown(KeyCode.F1)) { OpenPickupDetailsReader(); return; }
                 HandlePickupInput();
                 return;
             }
@@ -713,6 +718,7 @@ namespace CavesOfOoo.Rendering
 
             if (_inputState == InputState.TradeOpen)
             {
+                if (InputHelper.GetKeyDown(KeyCode.F1)) { OpenTradeDetailsReader(); return; }
                 HandleTradeInput();
                 return;
             }
@@ -793,7 +799,7 @@ namespace CavesOfOoo.Rendering
             // so bare Slash counts too (unbound elsewhere in this state).
             if (InputHelper.GetKeyDown(KeyCode.F1) || InputHelper.GetKeyDown(KeyCode.Slash))
             {
-                ControlsReference.PrintHelp(MessageLog.Add);
+                OpenControlsReader();
                 return;
             }
 
@@ -4439,6 +4445,9 @@ namespace CavesOfOoo.Rendering
             }
             else text = examinable.BuildWorldExamineLine(CurrentZone, cell, PlayerEntity);
 
+            string surface = InventoryDecisionDetails.Surface(CurrentZone, cell);
+            if (!string.IsNullOrEmpty(surface)) text += "\n\nSurface details\n" + surface;
+
             // Describers may consult parts. Recheck the same selected instance before publication.
             if (!IsCurrentExamineOwner(target, cell) || (!pile &&
                 !ReferenceEquals(target.GetPart<ExaminablePart>(), examinable)))
@@ -4519,6 +4528,11 @@ namespace CavesOfOoo.Rendering
             _stateBeforeAnnouncement = InputState.Normal;
             _inputState = prior;
 
+            if (_decisionReaderActor != null)
+            {
+                RestoreDecisionReader(prior);
+                return;
+            }
             if (_abilityReaderActor != null && (prior == InputState.SkillsScreenOpen || prior == InputState.AbilityManagerOpen))
             {
                 RestoreAbilityReader(prior == InputState.AbilityManagerOpen);

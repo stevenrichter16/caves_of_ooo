@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
@@ -252,6 +253,7 @@ namespace CavesOfOoo.Rendering
         {
             if (PlayerEntity == null) return;
             _pendingEverydayTurn = false;
+            _inventoryQuery = ""; _inventorySearchActive = false; _searchReturnItem = null;
             ClearActionStatus();
             _isOpen = true;
             // The world is still on the shared tilemap during the frame
@@ -348,6 +350,8 @@ namespace CavesOfOoo.Rendering
             }
 
 
+            if (_inventorySearchActive) { HandleInventorySearchInput(); return true; }
+
             // Update selection to follow mouse hover
             UpdateMouseHover();
 
@@ -378,6 +382,7 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return true; }
             if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.I))
             {
                 Close();
@@ -676,6 +681,8 @@ namespace CavesOfOoo.Rendering
 
         private void HandleInventoryPanelInput()
         {
+            if (InputHelper.GetKeyDown(KeyCode.Slash)) { BeginInventorySearch(); return; }
+            if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return; }
             if (InputHelper.GetKeyDown(KeyCode.T))
             {
                 _panel = PANEL_TINKERING;
@@ -1792,6 +1799,8 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < _state.Categories.Count; i++)
             {
                 var cat = _state.Categories[i];
+                var matching = InventoryBrowseQuery.Filter(cat.Items.Select(it => it.Item), _inventoryQuery);
+                if (matching.Count == 0) continue;
                 _rows.Add(new DisplayRow
                 {
                     IsHeader = true,
@@ -1802,6 +1811,7 @@ namespace CavesOfOoo.Rendering
                 for (int j = 0; j < cat.Items.Count; j++)
                 {
                     var item = cat.Items[j];
+                    if (!matching.Contains(item.Item)) continue;
                     string name = item.Name;
 
                     string equipped = item.IsEquipped ? " [E]" : "";
@@ -2302,6 +2312,7 @@ namespace CavesOfOoo.Rendering
                 // Horizontal separators
                 DrawHLine(0, 1, W, QudColorParser.DarkGray);
                 DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
+                DrawText(45, CONTENT_END, " F1 details | F2 current effects ", QudColorParser.Gray);
 
 
                 if (_panel == PANEL_CRAFTING)
@@ -2370,7 +2381,7 @@ namespace CavesOfOoo.Rendering
                         ? " [Space]pick [Enter]craft [C]clear [F]/[B]mode [Tab]cycle [Esc]close"
                         : " [Space]pick [Enter]brew [C]clear [F]/[B]mode [Tab]cycle [Esc]close";
                 else
-                    actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
+                    actions = " [/]find [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
 
                 DrawKeyLegend(0, H - 2, actions);
 
@@ -2771,6 +2782,9 @@ namespace CavesOfOoo.Rendering
 
         private void RenderDetailLine()
         {
+            if (_inventorySearchActive || !string.IsNullOrEmpty(_inventoryQuery))
+            { DrawText(1, H - 1, "Find: " + _inventoryQuery + (_inventorySearchActive ? "_  [Enter]accept [Esc]clear" : "  [/]edit [Esc]clear") + (_rows.Count == 0 ? "  No matches." : ""), QudColorParser.BrightYellow); return; }
+
             if (!string.IsNullOrEmpty(_actionStatus))
             { DrawText(1, H - 1, _actionStatus, QudColorParser.BrightRed); return; }
             if (_equipPopup != null)

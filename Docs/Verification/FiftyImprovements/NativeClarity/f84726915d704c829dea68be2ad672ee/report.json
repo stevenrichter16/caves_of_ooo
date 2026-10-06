@@ -1,0 +1,259 @@
+{
+  "runId": "f84726915d704c829dea68be2ad672ee",
+  "complete": true,
+  "failures": 0,
+  "readerFailures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 10.7371143,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS controlled_finite_fixture",
+    "PASS full_controls_reader",
+    "PASS controls_free_return",
+    "PASS pause_controls_returns_free_to_same_selection",
+    "PASS live_current_effects",
+    "PASS literal_native_inventory_search",
+    "PASS food_healing_and_meal_details",
+    "PASS inventory_reader_keeps_search_and_selection",
+    "PASS loot_can_be_read_before_taking",
+    "PASS partial_take_all_retains_reason",
+    "PASS whole_stack_trade_quote",
+    "PASS trade_reader_free_return"
+  ],
+  "observations": [
+    {
+      "state": "AnnouncementOpen",
+      "pages": 2,
+      "text": "Controls\n\nWASD / arrows / numpad - move (bump a hostile to\nattack)\n. / numpad-5 - wait a turn\nI - inventory (equip, use, drop, throw)\nC - interact / talk (pick a direction)\nG / , - pick up what's underfoot\nL - look mode (Enter on a tile for actions)\nX - skills (spend skill points)\nM - ability manager (bind abilities to slots)\n1-0 - use hotbar ability\nQ - quest log\nTab / Esc - pause menu (save, load, controls, quit)\nF5 - quick save\nF6 - quick load\nF12 - toggle player invincibility (debug; resets on\nload)\n< / Shift+, - stairs up; from the surface, open the\nworld map\n> / Shift+. - stairs down; on the world map, enter\nthe selected destination\nWorld map: ! - named settlement; move onto its\nmarker, then > to enter\nF1 / ? - this controls list\n\nInside inventory: / search names; F1 selected\nitem/craft details; F2 current effects. Escape\nfirst exits search.\nInside loot and trade: F1 selected item details.\nReading is free; Escape returns to the same\nselection.\nSkills and abilities: D full details. Ability\nmanager: P optional rite preview, then direction\nwhen requested.",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":1000,\"food\":1,\"pack\":[{\"ID\":\"2697\",\"count\":1},{\"ID\":\"2698\",\"count\":4},{\"ID\":\"2699\",\"count\":2},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"4497\",\"count\":1}],\"effects\":[{\"ClassName\":\"HeartFlameEffect\",\"Duration\":9}]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "Current effects\n\nHeart Flame - 2 Fire/Heat damage casts at +100%\nbase damage; 9 of your turns left.",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":1000,\"food\":1,\"pack\":[{\"ID\":\"2697\",\"count\":1},{\"ID\":\"2698\",\"count\":4},{\"ID\":\"2699\",\"count\":2},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"4497\",\"count\":1}],\"effects\":[{\"ClassName\":\"HeartFlameEffect\",\"Duration\":9}]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "toasted emberwheat\nEat one unit. Heals 3d4 HP.\n+20 heat resistance for 100 of your turns. Replaces\nyour previous prepared meal.\nHP missing: 0. Healing rolls are capped at your\nmaximum HP.\n\n1 unit. Weight per unit: 1. Total weight: 1.\nLift Strength: 2; yours: 18.\nYou can carry this item.\nGrip: one hand.\ntoasted emberwheat cannot be thrown.\nPack weight: 13; with this item: 13. Burden\nthreshold: 270.",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":1000,\"food\":1,\"pack\":[{\"ID\":\"2697\",\"count\":1},{\"ID\":\"2698\",\"count\":4},{\"ID\":\"2699\",\"count\":2},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"4497\",\"count\":1}],\"effects\":[{\"ClassName\":\"HeartFlameEffect\",\"Duration\":9}]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "You see a heavy test load.\n\n1 unit. Weight per unit: 500. Total weight: 500.\nLift Strength: 251; yours: 18.\nThis item cannot be carried now. You can't carry\nheavy test load: it requires Strength 251.\nGrip: one hand.\nYou can't carry heavy test load: it requires\nStrength 251.\nPack weight: 13; with this item: 513. Burden\nthreshold: 270.\nThis weight would leave you overburdened.\nAbove this inventory's hard capacity (150).",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":1000,\"food\":1,\"pack\":[{\"ID\":\"2697\",\"count\":1},{\"ID\":\"2698\",\"count\":4},{\"ID\":\"2699\",\"count\":2},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"4497\",\"count\":1}],\"effects\":[{\"ClassName\":\"HeartFlameEffect\",\"Duration\":9}]}"
+    },
+    {
+      "state": "AnnouncementOpen",
+      "pages": 1,
+      "text": "You see a three trade daggers (x3).\nThis equipment is sound. A short blade with a\nclose-fitting grip. The point has been kept sharp.\nDamage: 1d4 per penetration.\nHit bonus: +0; Penetration bonus: +1.\nPenetration uses Strength modifier (cap 3).\nAttributes: Piercing.\nOn damaging hits, independent attempts (targets may\nresist):\n  10%: Confused - staggers unpredictably for 2\nturns.\nEquip slots: Hand.\n\nBuy the entire stack: 3 units.\n3 units. Weight per unit: 4. Total weight: 12.\nPrice: 86 drams.\nDrams now: 1000. Drams after: 914.\nPack weight after: 26.\nCurrent quote only; the trade rechecks price, stock\nand permission.",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"drams\":1000,\"food\":1,\"pack\":[{\"ID\":\"2697\",\"count\":1},{\"ID\":\"2698\",\"count\":4},{\"ID\":\"2699\",\"count\":2},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"4497\",\"count\":1},{\"ID\":\"4498\",\"count\":1}],\"effects\":[{\"ClassName\":\"HeartFlameEffect\",\"Duration\":9}]}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/01-controls.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/01b-pause-controls.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/02-current-effects.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/03-prepared-food.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/04-partial-loot.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovements/NativeClarity/f84726915d704c829dea68be2ad672ee/05-trade-quote.png"
+  ],
+  "mealBenchmark": {
+    "runId": "0597d3863f7b4f6a85892e274c0c9d55",
+    "cases": 20,
+    "failures": 0,
+    "complete": true,
+    "checks": [
+      "PASS ToastedEmberwheat_real_cook",
+      "PASS ToastedEmberwheat_paid_protection",
+      "PASS ToastedEmberwheat_owner_clock",
+      "PASS ToastedEmberwheat_replacement_save_and_remove",
+      "PASS RoastedHearthbulb_real_cook",
+      "PASS RoastedHearthbulb_paid_protection",
+      "PASS RoastedHearthbulb_owner_clock",
+      "PASS RoastedHearthbulb_replacement_save_and_remove",
+      "PASS RoastedMushroom_real_cook",
+      "PASS RoastedMushroom_paid_protection",
+      "PASS RoastedMushroom_owner_clock",
+      "PASS RoastedMushroom_replacement_save_and_remove",
+      "PASS CookedMeat_real_cook",
+      "PASS CookedMeat_paid_protection",
+      "PASS CookedMeat_owner_clock",
+      "PASS CookedMeat_replacement_save_and_remove",
+      "PASS RoastedStarapple_real_cook",
+      "PASS RoastedStarapple_paid_protection",
+      "PASS RoastedStarapple_owner_clock",
+      "PASS RoastedStarapple_replacement_save_and_remove"
+    ],
+    "readerContextPreserved": true
+  },
+  "combatBenchmark": {
+    "runId": "05b3cdb54f2d4631ba5b698297981cae",
+    "cases": 12,
+    "failures": 0,
+    "complete": true,
+    "checks": [
+      "PASS authored_items_and_fixed_owner",
+      "PASS blocked_disengage_is_free",
+      "PASS clear_disengage_moves_and_pays",
+      "PASS rooted_vault_is_free",
+      "PASS broken_authored_gear_has_penalty",
+      "PASS repair_without_material_is_free",
+      "PASS repair_pays_one_finite_component",
+      "PASS finite_tonic_paid_owner_turn",
+      "PASS second_dose_refreshes_without_stacking",
+      "PASS surge_expires_on_twenty_owner_turns",
+      "PASS thrown_poison_has_exact_source_and_cost",
+      "PASS saved_poison_finisher_retains_kill_credit"
+    ],
+    "observations": [
+      {
+        "name": "authored_items_and_fixed_owner",
+        "passed": true,
+        "state": {
+          "dagger": "4522",
+          "tonic": "4523",
+          "tonicTurns": 20,
+          "controlled": true
+        }
+      },
+      {
+        "name": "blocked_disengage_is_free",
+        "passed": true,
+        "state": {
+          "handled": false,
+          "beforeTick": 10,
+          "afterTick": 10,
+          "cooldown": 0
+        }
+      },
+      {
+        "name": "clear_disengage_moves_and_pays",
+        "passed": true,
+        "state": {
+          "handled": true,
+          "x": 13,
+          "y": 10,
+          "beforeTick": 10,
+          "afterTick": 20,
+          "cooldownOnCast": 25,
+          "cooldown": 24
+        }
+      },
+      {
+        "name": "rooted_vault_is_free",
+        "passed": true,
+        "state": {
+          "handled": false,
+          "tick": 20
+        }
+      },
+      {
+        "name": "broken_authored_gear_has_penalty",
+        "passed": true,
+        "state": {
+          "intact": 0,
+          "broken": -2,
+          "stillEquipped": true
+        }
+      },
+      {
+        "name": "repair_without_material_is_free",
+        "passed": true,
+        "state": {
+          "repaired": false,
+          "tick": 20
+        }
+      },
+      {
+        "name": "repair_pays_one_finite_component",
+        "passed": true,
+        "state": {
+          "repaired": true,
+          "stock": 1,
+          "hit": 0,
+          "beforeTick": 20,
+          "afterTick": 30
+        }
+      },
+      {
+        "name": "finite_tonic_paid_owner_turn",
+        "passed": true,
+        "state": {
+          "drank": true,
+          "strength": 20,
+          "turns": 20,
+          "beforeTick": 30,
+          "afterTick": 40
+        }
+      },
+      {
+        "name": "second_dose_refreshes_without_stacking",
+        "passed": true,
+        "state": {
+          "drank": true,
+          "strength": 20,
+          "turns": 20
+        }
+      },
+      {
+        "name": "surge_expires_on_twenty_owner_turns",
+        "passed": true,
+        "state": {
+          "strength": 16,
+          "beforeTick": 100,
+          "afterTick": 300
+        }
+      },
+      {
+        "name": "thrown_poison_has_exact_source_and_cost",
+        "passed": true,
+        "state": {
+          "thrown": true,
+          "source": "2c25022243c04560a7147634785466f0",
+          "victim": "245c572e6a144e30a01e78e3ff7d4792",
+          "hp": 1,
+          "stock": 1
+        }
+      },
+      {
+        "name": "saved_poison_finisher_retains_kill_credit",
+        "passed": true,
+        "state": {
+          "sourceRestored": true,
+          "xp": 7,
+          "victimHP": 0
+        }
+      }
+    ]
+  },
+  "worldBenchmark": {
+    "runId": "87d096aad4444701a6d8f112fbf64d80",
+    "cases": 15,
+    "failures": 0,
+    "complete": true,
+    "checks": [
+      "PASS finite_well_drink_paid",
+      "PASS water_transfer_paid_conserved",
+      "PASS clear_young_crop_paid_no_refund",
+      "PASS adjacent_seed_plant_paid",
+      "PASS one_pour_irrigates_real_crop",
+      "PASS one_unit_enters_soil_not_recoverable_pool",
+      "PASS finite_irrigation_reaches_ripe_crop",
+      "PASS gather_ripe_crop_paid",
+      "PASS one_water_douses_real_prop_paid",
+      "PASS timber_feeds_finite_cold_coals_paid",
+      "PASS cold_fuel_requires_real_flame_free_refusal",
+      "PASS held_torch_relights_coals_paid",
+      "PASS selected_gear_dries_paid",
+      "PASS spent_timber_cannot_refeed_free_refusal",
+      "PASS replacement_save_retains_finite_aftermath"
+    ]
+  },
+  "fixture": "Ordinary N/Classic start with original stats. Isolated starting zone flattened and player repositioned; finite cooked food, Heart Flame status, light timber and strength-refused test load, controlled three-dagger trader stock and a 1000-dram purse. All reader/search/loot inputs use native keys; the trade host entry is invoked directly. Copied page inspection uses public paging.",
+  "canVerify": "Native F1/F2/I/search/G/Tab/Escape flow, full current effects and food/meal information, whole-stack quote, partial pickup remaining row/reason, return selection and no reader action costs. Separate meal/combat/world benchmarks have 20/12/15 actual command/owner-clock/save checks.",
+  "cannotVerify": "Controlled fixtures do not prove ordinary item discovery, dialogue discovery, balance, novice comprehension or visual readability without independent screenshot inspection. The meal/combat/world benchmarks are detached direct command/scheduler/save evidence, not native keyboard food/combat/resource use. The world growth witness deliberately advances its detached clock; it does not prove ordinary exploration or waiting experience."
+}

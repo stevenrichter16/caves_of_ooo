@@ -5,6 +5,7 @@ namespace CavesOfOoo.Core
     /// </summary>
     public sealed class FlexweaveTinkerModification : ITinkerModification
     {
+        internal const int AVDelta = -1, DVDelta = 2;
         private const string ModTag = "ModFlexweave";
 
         public string Id => "mod_flexweave";
@@ -23,8 +24,8 @@ namespace CavesOfOoo.Core
                 return false;
 
             var armor = item.GetPart<ArmorPart>();
-            armor.DV += 2;
-            armor.AV -= 1;
+            armor.DV += DVDelta;
+            armor.AV += AVDelta;
 
             ArmorTinkerModificationUtility.AddDisplayPrefix(item, "flexwoven");
             item.SetTag(ModTag, string.Empty);

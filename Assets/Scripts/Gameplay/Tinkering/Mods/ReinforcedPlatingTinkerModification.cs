@@ -5,6 +5,7 @@ namespace CavesOfOoo.Core
     /// </summary>
     public sealed class ReinforcedPlatingTinkerModification : ITinkerModification
     {
+        internal const int AVDelta = 1, DVDelta = -1;
         private const string ModTag = "ModReinforcedPlating";
 
         public string Id => "mod_reinforced_plating";
@@ -23,8 +24,8 @@ namespace CavesOfOoo.Core
                 return false;
 
             var armor = item.GetPart<ArmorPart>();
-            armor.AV += 1;
-            armor.DV -= 1;
+            armor.AV += AVDelta;
+            armor.DV += DVDelta;
 
             ArmorTinkerModificationUtility.AddDisplayPrefix(item, "reinforced");
             item.SetTag(ModTag, string.Empty);

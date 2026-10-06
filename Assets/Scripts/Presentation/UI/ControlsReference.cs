@@ -43,6 +43,17 @@ namespace CavesOfOoo.Rendering
             new Row("F1 / ?", "this controls list"),
         };
 
+        /// <summary>Full optional reader; never logs or opens a UI on its own.</summary>
+        public static string BuildReaderText()
+        {
+            var lines = new System.Collections.Generic.List<string> { "Controls", "" };
+            foreach (var row in Bindings) lines.Add(row.Key + " - " + row.What);
+            lines.Add("\nInside inventory: / search names; F1 selected item/craft details; F2 current effects. Escape first exits search.");
+            lines.Add("Inside loot and trade: F1 selected item details. Reading is free; Escape returns to the same selection.");
+            lines.Add("Skills and abilities: D full details. Ability manager: P optional rite preview, then direction when requested.");
+            return string.Join("\n", lines);
+        }
+
         /// <summary>Dump the full table, one line per binding.</summary>
         public static void PrintHelp(Action<string> log)
         {

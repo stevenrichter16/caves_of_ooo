@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 05:22:46Z" end-time="2026-10-06 05:22:47Z" duration="0.9080138">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25177" result="Failed" site="Child" start-time="2026-10-06 05:22:46Z" end-time="2026-10-06 05:22:47Z" duration="0.908014" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30982" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25177" result="Failed" site="Child" start-time="2026-10-06 05:22:46Z" end-time="2026-10-06 05:22:47Z" duration="0.696935" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30983" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25177" result="Failed" site="Child" start-time="2026-10-06 05:22:46Z" end-time="2026-10-06 05:22:47Z" duration="0.614049" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30984" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25177" result="Failed" site="Child" start-time="2026-10-06 05:22:46Z" end-time="2026-10-06 05:22:47Z" duration="0.513996" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16483" name="FiftyWorldAdversarialTests" fullname="CavesOfOoo.Tests.FiftyWorldAdversarialTests" classname="CavesOfOoo.Tests.FiftyWorldAdversarialTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-06 05:22:47Z" end-time="2026-10-06 05:22:47Z" duration="0.313029" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16492" name="CommittedRestCannotResurrectAnActorKilledByTheOuterAction" fullname="CavesOfOoo.Tests.FiftyWorldAdversarialTests.CommittedRestCannotResurrectAnActorKilledByTheOuterAction" classname="CavesOfOoo.Tests.FiftyWorldAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-06 05:22:47Z" end-time="2026-10-06 05:22:47Z" duration="0.210919" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16490" name="CommittedRestCannotResurrectAnActorKilledByTheOuterAction(False)" fullname="CavesOfOoo.Tests.FiftyWorldAdversarialTests.CommittedRestCannotResurrectAnActorKilledByTheOuterAction(False)" methodname="CommittedRestCannotResurrectAnActorKilledByTheOuterAction" classname="CavesOfOoo.Tests.FiftyWorldAdversarialTests" runstate="Runnable" seed="412009213" result="Failed" start-time="2026-10-06 05:22:47Z" end-time="2026-10-06 05:22:47Z" duration="0.090369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Committed benefits cannot restore a dead actor.
+  Expected: 0
+  But was:  40
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldAdversarialTests.CommittedRestCannotResurrectAnActorKilledByTheOuterAction (System.Boolean deathHandled) [0x0010b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldAdversarialTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16491" name="CommittedRestCannotResurrectAnActorKilledByTheOuterAction(True)" fullname="CavesOfOoo.Tests.FiftyWorldAdversarialTests.CommittedRestCannotResurrectAnActorKilledByTheOuterAction(True)" methodname="CommittedRestCannotResurrectAnActorKilledByTheOuterAction" classname="CavesOfOoo.Tests.FiftyWorldAdversarialTests" runstate="Runnable" seed="497784392" result="Failed" start-time="2026-10-06 05:22:47Z" end-time="2026-10-06 05:22:47Z" duration="0.020854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Committed benefits cannot restore a dead actor.
+  Expected: 3
+  But was:  40
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldAdversarialTests.CommittedRestCannotResurrectAnActorKilledByTheOuterAction (System.Boolean deathHandled) [0x0010b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldAdversarialTests.cs:72
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

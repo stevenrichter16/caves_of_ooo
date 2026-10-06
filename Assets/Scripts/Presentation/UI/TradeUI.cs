@@ -31,6 +31,15 @@ namespace CavesOfOoo.Rendering
 
         private bool _isOpen;
         public bool IsOpen => _isOpen;
+        public string SelectedDecisionDetails()
+        {
+            var rows = _panel == 0 ? _leftRows : _rightRows; int cursor = _panel == 0 ? _leftCursor : _rightCursor;
+            return _isOpen && !_confirmActive && cursor >= 0 && cursor < rows.Count
+                ? InventoryDecisionDetails.Trade(PlayerEntity, _trader, rows[cursor].Item, _panel == 0) : null;
+        }
+        public void HideForDecisionReader() { if (Tilemap != null) Tilemap.ClearAllTiles(); }
+        public void RestoreAfterDecisionReader() { if (_isOpen) { Rebuild(); Render(); } }
+
 
         private Entity _trader;
         private double _performance;
@@ -122,7 +131,7 @@ namespace CavesOfOoo.Rendering
                 Item = item,
                 Name = item.GetDisplayName(),
                 Price = price,
-                Weight = physics != null ? physics.Weight : 0
+                Weight = InventoryPart.GetItemWeight(item)
             };
         }
 
@@ -310,9 +319,9 @@ namespace CavesOfOoo.Rendering
         {
             // Popup is centered: 40 wide, positioned at row 16-28 area
             int popupX = (W - 40) / 2;
-            int popupY = (H - 9) / 2;
-            int yesRow = popupY + 5;
-            int noRow = popupY + 6;
+            int popupY = (H - 11) / 2;
+            int yesRow = popupY + 7;
+            int noRow = popupY + 8;
 
             if (grid.x < popupX + 2 || grid.x >= popupX + 38) return -1;
             if (grid.y == yesRow) return 0;
@@ -534,7 +543,7 @@ namespace CavesOfOoo.Rendering
             var row = rows[cursor];
             int baseValue = TradeSystem.GetItemValue(row.Item);
             string action = _panel == 0 ? "Buy" : "Sell";
-            string detail = $" {row.Name}  Wt:{row.Weight}  Value:{baseValue}  {action} price:{row.Price}$";
+            string detail = $" [F1]details  {row.Name}  Wt:{row.Weight}  {action} stack:{row.Price}$";
             if (detail.Length > W)
                 detail = detail.Substring(0, W);
             DrawText(0, H - 2, detail, QudColorParser.BrightCyan);
@@ -551,18 +560,19 @@ namespace CavesOfOoo.Rendering
 
             var row = rows[_confirmIndex];
             string action = _confirmPanel == 0 ? "Buy" : "Sell";
-            string itemName = row.Name;
-            string priceLine = action + " " + itemName + " for " + row.Price + "$?";
+            string itemName = row.Name ?? "item";
+            string priceSuffix = " for " + row.Price + "$?";
 
             // Popup dimensions
             int popupW = 40;
-            int popupH = 9;
+            int popupH = 11;
             int popupX = (W - popupW) / 2;
             int popupY = (H - popupH) / 2;
 
-            // Truncate if item name is too long
-            if (priceLine.Length > popupW - 4)
-                priceLine = priceLine.Substring(0, popupW - 5) + "~?";
+            // Keep the committed whole-stack price visible even for a long item name.
+            int nameBudget = popupW - 4 - action.Length - 1 - priceSuffix.Length;
+            if (itemName.Length > nameBudget) itemName = itemName.Substring(0, nameBudget - 1) + "~";
+            string priceLine = action + " " + itemName + priceSuffix;
 
             // Clear popup region
             for (int py = popupY; py < popupY + popupH; py++)
@@ -604,9 +614,15 @@ namespace CavesOfOoo.Rendering
             // Item info
             int infoX = popupX + 2;
             DrawText(infoX, popupY + 3, priceLine, QudColorParser.White);
+            int count = row.Item.GetPart<StackerPart>()?.StackCount ?? 1;
+            long afterDrams = (long)TradeSystem.GetDrams(PlayerEntity) + (_confirmPanel == 0 ? -row.Price : row.Price);
+            long afterWeight = (long)(PlayerEntity.GetPart<InventoryPart>()?.GetCarriedWeight() ?? 0)
+                + (_confirmPanel == 0 ? 1 : -1) * InventoryPart.GetItemWeight(row.Item);
+            DrawText(infoX, popupY + 4, count + " units; drams after: " + afterDrams, QudColorParser.Gray);
+            DrawText(infoX, popupY + 5, "Pack weight after: " + afterWeight, QudColorParser.Gray);
 
             // Yes / No choices
-            int choiceY = popupY + 5;
+            int choiceY = popupY + 7;
             Color yesColor = _confirmChoice == 0 ? QudColorParser.White : QudColorParser.Gray;
             Color noColor = _confirmChoice == 1 ? QudColorParser.White : QudColorParser.Gray;
 

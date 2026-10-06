@@ -190,6 +190,29 @@ namespace CavesOfOoo.Core
                 AddDistinct(facts, group.Key);
             }
             if (plan.Displacements.Count == 0) lines.Add("  No equipped items displaced.");
+            var deltas = new SortedDictionary<string, int>(StringComparer.Ordinal);
+            AddContributions(plan.Actor, plan.Item, 1, deltas);
+            foreach (var old in plan.Displacements.Select(d => d.Item).Distinct()) AddContributions(plan.Actor, old, -1, deltas);
+            lines.Add("  Equipment contributions (other effects not totaled):");
+            bool changed = false;
+            foreach (var delta in deltas) if (delta.Value != 0)
+            { lines.Add("  " + delta.Key + " change: " + (delta.Value >= 0 ? "+" : "") + delta.Value); changed = true; }
+            if (!changed) lines.Add("  No numeric contribution change.");
+        }
+
+        private static void AddContributions(Entity actor, Entity item, int sign, IDictionary<string, int> values)
+        {
+            void Add(string stat, int amount) { values.TryGetValue(stat, out int prior); values[stat] = prior + sign * amount; }
+            var armor = item.GetPart<ArmorPart>();
+            if (armor != null) { Add("AV", armor.AV); Add("DV", armor.DV); if (actor.GetStat("Speed") != null) Add("Speed", -armor.SpeedPenalty); }
+            string raw = item.GetPart<EquippablePart>()?.EquipBonuses;
+            foreach (string pair in (raw ?? "").Split(','))
+            {
+                string trimmed = pair.Trim(); int colon = trimmed.IndexOf(':');
+                if (colon < 0 || !int.TryParse(trimmed.Substring(colon + 1), out int amount)) continue;
+                string stat = trimmed.Substring(0, colon);
+                if (actor.GetStat(stat) != null || stat == "HeatResistance" || stat == "ColdResistance" || stat == "ElectricResistance" || stat == "AcidResistance") Add(stat, amount);
+            }
         }
 
         private static string PartNames(IEnumerable<BodyPart> parts)

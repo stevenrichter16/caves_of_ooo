@@ -69,6 +69,16 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen => _isOpen;
         public bool PickedUpAny => _pickedUpAny;
+        public string SelectedDecisionDetails()
+        {
+            string details = _isOpen && _cursorIndex >= 0 && _cursorIndex < _items.Count
+                ? InventoryDecisionDetails.Loot(PlayerEntity, CurrentZone, _items[_cursorIndex], _sourceContainer) : null;
+            return string.IsNullOrEmpty(details) ? null : details
+                + (string.IsNullOrEmpty(_statusMessage) ? "" : "\n\nLast take result: " + _statusMessage);
+        }
+        public void HideForDecisionReader() { ClearFgRegion(); ClearBgRegion(); }
+        public void RestoreAfterDecisionReader() { if (_isOpen) Render(); }
+
         /// <summary>Actual letter used by the last handled selection; read on close to
         /// suppress held-key movement. Non-letter inputs and Open reset this to None.</summary>
         public KeyCode ClosingActivationKey { get; private set; }
@@ -229,17 +239,17 @@ namespace CavesOfOoo.Rendering
 
         private void TakeAll()
         {
-            string unused;
+            int taken = 0; var refusals = new List<string>();
             for (int i = _items.Count - 1; i >= 0; i--)
             {
-                if (TryPickupViaCommand(_items[i], out unused))
-                {
-                    _pickedUpAny = true;
-                    _items.RemoveAt(i);
-                }
+                if (TryPickupViaCommand(_items[i], out string reason))
+                { _pickedUpAny = true; _items.RemoveAt(i); taken++; }
+                else if (!string.IsNullOrEmpty(reason) && !refusals.Contains(reason)) refusals.Add(reason);
             }
-
-            Close();
+            if (_items.Count == 0) { Close(); return; }
+            _cursorIndex = Mathf.Clamp(_cursorIndex, 0, _items.Count - 1); ScrollIntoView();
+            _statusMessage = "Took " + taken + "; " + _items.Count + " remain. " + string.Join(" ", refusals);
+            Render();
         }
 
         /// <summary>
@@ -390,7 +400,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Action bar below popup border
-            string actions = " [Enter/key]take [Tab]all [Esc/g]close";
+            string actions = " [Enter]take [Tab]all [F1]info [Esc/g]close";
             DrawText(0, borderH, actions, QudColorParser.DarkGray);
 
             // Status message (e.g. "too heavy" feedback)

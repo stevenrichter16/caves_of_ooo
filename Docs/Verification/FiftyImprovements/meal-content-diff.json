@@ -1,0 +1,916 @@
+{
+  "ToastedEmberwheat": {
+    "before": {
+      "Name": "ToastedEmberwheat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "toasted emberwheat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Toasted emberwheat, dry and crisp."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    "after": {
+      "Name": "ToastedEmberwheat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "toasted emberwheat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "HeatResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Toasted emberwheat, dry and crisp."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    }
+  },
+  "CookedMeat": {
+    "before": {
+      "Name": "CookedMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cooked meat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Flesh"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.2"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Food,Cooked"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "360"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.2"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    "after": {
+      "Name": "CookedMeat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cooked meat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "Toughness"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "2"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Flesh"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.2"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Food,Cooked"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "360"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.2"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    }
+  },
+  "RoastedStarapple": {
+    "before": {
+      "Name": "RoastedStarapple",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted starapple"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "9"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Plant"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.25"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Food,Cooked"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "340"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.0"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    "after": {
+      "Name": "RoastedStarapple",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted starapple"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "DV"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "1"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "9"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Plant"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.25"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Food,Cooked"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "340"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.0"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    }
+  },
+  "RoastedMushroom": {
+    "before": {
+      "Name": "RoastedMushroom",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted mushroom"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "The edges have browned and curled; the flesh inside is still soft."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    "after": {
+      "Name": "RoastedMushroom",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted mushroom"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "AcidResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "The edges have browned and curled; the flesh inside is still soft."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    }
+  },
+  "RoastedHearthbulb": {
+    "before": {
+      "Name": "RoastedHearthbulb",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted hearthbulb"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&o"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "2d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "7"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The split skin holds a soft, sweet center. A small meal that keeps well in its own wrapper."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    "after": {
+      "Name": "RoastedHearthbulb",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted hearthbulb"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&o"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "2d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "ColdResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "7"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The split skin holds a soft, sweet center. A small meal that keeps well in its own wrapper."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    }
+  }
+}
