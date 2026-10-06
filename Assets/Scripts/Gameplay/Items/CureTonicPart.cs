@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -31,15 +33,21 @@ namespace CavesOfOoo.Core
                     // you — the TYPE_NEGATIVE effects (WSP6.16 backfill)
                     // — and leaves oaths and boons alone.
                     bool any = false;
-                    while (effects.RemoveEffect(eff =>
-                        (eff.GetEffectType() & Effect.TYPE_NEGATIVE) != 0))
-                        any = true;
+                    foreach (var effect in new List<Effect>(effects.GetAllEffects()))
+                        if ((effect.GetEffectType() & Effect.TYPE_NEGATIVE) != 0)
+                            any |= effects.RemoveEffect(effect);
                     if (any)
                         MessageLog.Add($"{actor.GetDisplayName()} is cured of all ailments!");
                 }
                 else
                 {
-                    bool removed = effects.RemoveEffect(eff => eff.ClassName == CureEffect);
+                    bool removed = false;
+                    foreach (var effect in new List<Effect>(effects.GetAllEffects()))
+                        if (effect.ClassName == CureEffect
+                            || CureEffect == nameof(PoisonedEffect) && effect is PoisonedByGasEffect)
+                            removed |= effects.RemoveEffect(effect);
+                    if (CureEffect == nameof(BurningEffect) && actor.GetPart<ThermalPart>() is ThermalPart thermal)
+                        thermal.Temperature = System.Math.Min(thermal.Temperature, thermal.AmbientTemperature);
                     if (removed)
                     {
                         string name = CureEffect.Replace("Effect", "").ToLower();

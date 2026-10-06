@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -19,6 +20,19 @@ namespace CavesOfOoo.Core
 
         /// <summary>Cooking tag for the food system (e.g., "Meal", "Snack").</summary>
         public string Cooking = "";
+
+        /// <summary>Optional expedition preparation; one prepared meal at a time.</summary>
+        public string MealStat = "";
+        public int MealBonus;
+        public int MealDuration = 100;
+
+        public static string DescribeMeal(FoodPart food)
+        {
+            return food != null && PreparedMealEffect.Valid(food.MealStat, food.MealBonus, food.MealDuration)
+                ? "+" + food.MealBonus + " " + PreparedMealEffect.Label(food.MealStat) + " for "
+                    + food.MealDuration + " of your turns. Replaces your previous prepared meal."
+                : "";
+        }
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -48,6 +62,8 @@ namespace CavesOfOoo.Core
 
         private bool DoEat(Entity actor, GameEvent e)
         {
+            if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat alive && alive.Value <= 0))
+                return true;
             if (!InventoryPart.TryConsumeOne(actor, ParentEntity))
                 return true; // Leave the consuming action unhandled on refusal.
 
@@ -68,6 +84,24 @@ namespace CavesOfOoo.Core
                             MessageLog.Add($"{actor.GetDisplayName()} heals {actual} HP.");
                     }
                 }
+            }
+
+            if (PreparedMealEffect.Valid(MealStat, MealBonus, MealDuration))
+            {
+                // A failed outer inventory action restores the food and stats.
+                // Defer replacing the old meal until that action actually commits.
+                string stat = MealStat; int bonus = MealBonus, duration = MealDuration;
+                string description = DescribeMeal(this);
+                Action prepare = () =>
+                {
+                    if (!CombatSystem.IsDeathHandled(actor)
+                        && !(actor.GetStat("Hitpoints") is Stat hpNow && hpNow.Value <= 0)
+                        && actor.ApplyEffect(new PreparedMealEffect(stat, bonus, duration)))
+                        MessageLog.Add("Prepared meal: " + description);
+                };
+                var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+                if (transaction != null) transaction.AfterCommit(prepare);
+                else prepare();
             }
 
             // Show flavor message

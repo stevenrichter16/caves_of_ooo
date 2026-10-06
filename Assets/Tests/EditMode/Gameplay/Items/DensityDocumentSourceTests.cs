@@ -50,9 +50,16 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(StockAndFind(sourceBlueprint, tableName, blueprint, seed));
         }
 
-        [Test] public void EveryShippedTextMatchesCanonicalWordsAndOrder()
+        [Test] public void EveryCanonicalCodexMatchesSourceWordsAndOrder()
         {
-            foreach (var document in ReadableDocumentCatalog.All)
+            // Source is attribution metadata for original local records; only the
+            // thirteen Codex copies promise verbatim text from a repository file.
+            // Select by the expected copy identities so a bad Source cannot hide
+            // a canonical entry from the source-integrity assertion.
+            var expected = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
+            var copies = ReadableDocumentCatalog.All.Where(document => expected.Contains(document.Blueprint)).ToArray();
+            CollectionAssert.AreEquivalent(expected, copies.Select(document => document.Blueprint));
+            foreach (var document in copies)
             {
                 string path = Path.Combine(UnityEngine.Application.dataPath, "..", document.Source);
                 var lines = File.ReadAllText(path).Replace("\r\n", "\n").Split('\n');

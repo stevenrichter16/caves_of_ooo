@@ -94,6 +94,8 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            if (effect is PoisonedEffect poison) poison.DamageSource = source;
+            if (effect is BleedingEffect bleed) bleed.DamageSource = source;
             effect.Owner = ParentEntity;
 
             // Mark the effect as "applied while this owner is the active

@@ -66,7 +66,11 @@ namespace CavesOfOoo.Core
 
             // Hooker validity check. If the hooker died or left the
             // zone, the hook trivially breaks — no save needed.
-            if (Hooker == null)
+            Zone zone = context?.GetParameter<Zone>("Zone");
+            if (Hooker == null || CombatSystem.IsDeathHandled(Hooker)
+                || Hooker.GetStatValue("Hitpoints", 1) <= 0 || zone == null
+                || Hooker.SpatialZone != zone || target.SpatialZone != zone
+                || zone.GetEntityCell(Hooker)?.Objects.Contains(Hooker) != true)
             {
                 LastRemovalCause = CAUSE_EXTERNAL;
                 Duration = 0;
@@ -87,7 +91,6 @@ namespace CavesOfOoo.Core
 
             // Drag toward hooker. Get Zone from event context (mirrors
             // BleedingEffect.OnTurnStart line 43).
-            Zone zone = context?.GetParameter<Zone>("Zone");
             if (zone != null)
                 DragTowardHooker(target, zone);
 

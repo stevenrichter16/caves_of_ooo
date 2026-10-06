@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Diagnostics;
 
@@ -621,57 +622,37 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 MessageLog.Add($"{itemName} detonates with no effect.");
         }
 
-        /// <summary>
-        /// Apply a thrown tonic's effect to every Creature-tagged entity
-        /// in a 3×3 area around <paramref name="center"/>. Iterates the
-        /// cell + 8 neighbors; out-of-bounds cells are skipped via
-        /// <see cref="Zone.GetCell"/>'s null return. Per-cell occupants
-        /// are snapshot via <see cref="Cell.Objects"/> indexing — safe
-        /// even if <see cref="TonicPart.ApplyTo"/> mutates the cell as
-        /// a side effect of applying the effect (e.g., a status that
-        /// kills the creature) because we re-check bounds on each step.
-        ///
-        /// <para>Friendly-fire is intentional: the AOE doesn't filter by
-        /// faction. Throwing a tonic into your own ranks hits them too.
-        /// See <c>Docs/THROWABLE-CONSUMABLES.md §Design</c>.</para>
-        ///
-        /// <para>Logs a single shatter line with hit count for player
-        /// feedback. Caller is responsible for setting
-        /// <c>consumedOnImpact = true</c> after this returns.</para>
-        /// </summary>
+        /// <summary>One dose per physical owner in the impact square, including
+        /// secondary body cells. Creatures retain intentional friendly fire;
+        /// scenery receives only eligible elemental payloads.</summary>
         private static void ApplyTonicAoe(Entity actor, Entity item, Cell center, Zone zone, Random rng)
         {
             var tonic = item?.GetPart<TonicPart>();
             if (tonic == null || center == null || zone == null)
                 return;
 
-            int hitCount = 0;
+            // Freeze owner identity before payload callbacks. A wide body's
+            // exposed contact counts, but its other contacts never multiply doses.
+            var owners = new List<Entity>();
+            var seen = new HashSet<Entity>();
             for (int dx = -1; dx <= 1; dx++)
-            {
                 for (int dy = -1; dy <= 1; dy++)
                 {
                     var cell = zone.GetCell(center.X + dx, center.Y + dy);
                     if (cell == null) continue;
-                    // Snapshot length so the loop is safe against
-                    // ApplyTo side-effects mutating Cell.Objects (rare,
-                    // but possible if an effect kills the entity).
-                    int objectCount = cell.Objects.Count;
-                    for (int i = 0; i < objectCount; i++)
-                    {
-                        if (i >= cell.Objects.Count) break;
-                        var occupant = cell.Objects[i];
-                        if (occupant == null || !occupant.HasTag("Creature"))
-                            continue;
-                        tonic.ApplyTo(
-                            occupant,
-                            actor,
-                            zone,
-                            rng,
-                            consumeItem: false,
-                            showUseMessage: false);
-                        hitCount++;
-                    }
+                    foreach (var occupant in cell.Occupants)
+                        if (CurrentOwner(occupant, zone) && seen.Add(occupant)
+                            && (occupant.HasTag("Creature") || AbilityTargeting.IsElementalTarget(occupant, actor)))
+                            owners.Add(occupant);
                 }
+            int hitCount = 0;
+            foreach (var owner in owners)
+            {
+                if (!CurrentOwner(owner, zone)) continue;
+                bool applied = owner.HasTag("Creature")
+                    ? tonic.ApplyTo(owner, actor, zone, rng, consumeItem: false, showUseMessage: false)
+                    : ApplySceneryTonicPayload(item, owner, actor, zone);
+                if (applied) hitCount++;
             }
 
             string itemName = item?.GetDisplayName() ?? "tonic";
@@ -679,6 +660,34 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 MessageLog.Add($"{itemName} shatters with no effect.");
             else
                 MessageLog.Add($"{itemName} shatters, splashing {hitCount} target{(hitCount > 1 ? "s" : "")}.");
+        }
+        private static bool CurrentOwner(Entity owner, Zone zone)
+            => owner != null && owner.SpatialZone == zone
+                && zone.GetEntityCell(owner)?.Objects.Contains(owner) == true
+                && !CombatSystem.IsDeathHandled(owner) && owner.GetStatValue("Hitpoints", 1) > 0
+                && !(owner.GetPart<DestructiblePart>() is DestructiblePart structural && structural.Gone);
+
+        // Scenery receives elemental payloads only. Calling Tonic.ApplyTo here
+        // would also heal architecture, boost its stats or apply medical cures.
+        private static bool ApplySceneryTonicPayload(Entity item, Entity target, Entity source, Zone zone)
+        {
+            bool applied = false;
+            var status = item.GetPart<StatusTonicPart>();
+            if (status != null)
+                applied |= ApplyElement(TonicEffectFactory.Create(status.EffectName, status.EffectDuration,
+                    status.EffectDamageDice, status.EffectMagnitude, source), target, source, zone);
+            var brew = item.GetPart<BrewItemPart>();
+            if (brew != null)
+                foreach (var entry in brew.GetEffects())
+                    applied |= ApplyElement(TonicEffectFactory.Create(entry.Property, 0, "", entry.Potency, source), target, source, zone);
+            return applied;
+        }
+        private static bool ApplyElement(Effect effect, Entity target, Entity source, Zone zone)
+        {
+            if (!(effect is BurningEffect || effect is FrozenEffect || effect is WetEffect
+                || effect is AcidicEffect || effect is ElectrifiedEffect || effect is CharredEffect)) return false;
+            return ObjectStatusMatrix.Evaluate(effect, target) == ObjectStatusVerdict.Applies
+                && target.ApplyEffect(effect, source, zone);
         }
     }
 }

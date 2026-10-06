@@ -1,32 +1,18 @@
 namespace CavesOfOoo.Core
 {
-    /// <summary>
-    /// WSP2.1 — Broken: an item's identity-marker indicating it has been
-    /// damaged/cracked by combat. Applied to ITEM entities (not creature
-    /// entities) by <see cref="Skills.Cudgel_Hammer"/> on Cudgel hits.
-    ///
-    /// <para><b>Gameplay-impact divergence from Qud (documented):</b>
-    /// In Qud, a Broken item is functionally disabled — weapons can't
-    /// be wielded, armor doesn't protect, tonics aren't drinkable. CoO
-    /// in v1 ships this as a <b>marker effect</b> with flavor messages
-    /// only. The actual equip-blocking / use-blocking integration with
-    /// <c>InventoryPart</c> + <c>EquippablePart</c> + <c>MeleeWeaponPart</c>
-    /// is deferred to a follow-on milestone (would require adding
-    /// <c>HasEffect&lt;BrokenEffect&gt;</c> checks at every gameplay
-    /// path that consumes the item). The marker provides observability
-    /// (player sees "X's mace is broken" in the message log) and the
-    /// scaffolding for the future gameplay hook.</para>
-    ///
-    /// <para>Indefinite duration by default — Broken doesn't
-    /// auto-recover (matches Qud where Broken needs explicit repair).
-    /// Repair-via-effect-removal is a future-content path.</para>
-    /// </summary>
+    /// <summary>Combat damage marker. Explicitly repairable portable gear has
+    /// a bounded penalty; other objects keep their existing marker semantics.</summary>
     public class BrokenEffect : Effect
     {
         public override string DisplayName => "broken";
 
         // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
         public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
+
+        // Public fields persist the exact applied deltas through saves. Loading
+        // does not reapply them, and removal restores rather than resets gear.
+        public int HitPenalty, ArmorPenalty;
+        public bool PenaltyApplied;
 
         public BrokenEffect(int duration = DURATION_INDEFINITE)
         {
@@ -35,14 +21,31 @@ namespace CavesOfOoo.Core
 
         public override void OnApply(Entity target)
         {
-            // The "target" here is the ITEM, not the wearer. Use the
-            // item's display name for the message rather than calling
-            // GetDisplayName which works for both creatures and items.
+            if (!PenaltyApplied && target.GetPart<RepairablePart>()?.PortableEquipment == true)
+            {
+                var melee = target.GetPart<MeleeWeaponPart>();
+                var armor = target.GetPart<ArmorPart>();
+                HitPenalty = melee == null ? 0 : 2;
+                ArmorPenalty = armor == null ? 0 : System.Math.Min(1, System.Math.Max(0, armor.AV));
+                if (melee != null) melee.HitBonus -= HitPenalty;
+                if (armor != null) armor.AV -= ArmorPenalty;
+                PenaltyApplied = true;
+                EquipmentChangeBus.NotifyChanged(target.GetPart<PhysicsPart>()?.Equipped);
+            }
             MessageLog.Add(target.GetDisplayName() + " is broken!");
         }
 
         public override void OnRemove(Entity target)
         {
+            if (PenaltyApplied)
+            {
+                var melee = target.GetPart<MeleeWeaponPart>();
+                var armor = target.GetPart<ArmorPart>();
+                if (melee != null) melee.HitBonus += HitPenalty;
+                if (armor != null) armor.AV += ArmorPenalty;
+                PenaltyApplied = false;
+                EquipmentChangeBus.NotifyChanged(target.GetPart<PhysicsPart>()?.Equipped);
+            }
             MessageLog.Add(target.GetDisplayName() + " is repaired.");
         }
 

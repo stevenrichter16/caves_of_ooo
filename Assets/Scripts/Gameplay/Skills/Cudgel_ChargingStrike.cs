@@ -107,7 +107,7 @@ namespace CavesOfOoo.Skills
                 if (cell.IsSolid()) break; // wall — actor stops here
 
                 // Open cell — advance.
-                if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny) || !MovementSystem.ForceMoveTo(actor, ctx.Zone, nx, ny)) break;
+                if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny) || !MovementSystem.TryMoveTo(actor, ctx.Zone, nx, ny)) break;
                 // Entry reactions can remove, kill or return the actor to its
                 // origin. The committed move still costs this action.
                 moved = true;

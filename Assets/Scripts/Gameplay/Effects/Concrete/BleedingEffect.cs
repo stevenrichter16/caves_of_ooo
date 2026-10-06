@@ -13,6 +13,8 @@ namespace CavesOfOoo.Core
         // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
         public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
 
+        /// <summary>Saved inflictor of the first active dose; Owner remains the patient.</summary>
+        public Entity DamageSource;
         public string DamageDice;
         public int SaveTarget;
         public System.Random Rng;
@@ -41,7 +43,7 @@ namespace CavesOfOoo.Core
             if (damage > 0)
             {
                 Zone zone = context?.GetParameter<Zone>("Zone");
-                CombatSystem.ApplyDamage(target, damage, null, zone);
+                CombatSystem.ApplyDamage(target, damage, DamageSource, zone);
                 MessageLog.Add(target.GetDisplayName() + " takes " + damage + " bleed damage.");
             }
         }
@@ -75,11 +77,23 @@ namespace CavesOfOoo.Core
                 // Upgrade to the worse of the two
                 if (bleed.SaveTarget > SaveTarget)
                     SaveTarget = bleed.SaveTarget;
-                if (string.Compare(bleed.DamageDice, DamageDice, System.StringComparison.Ordinal) > 0)
+                if (ExpectedDamage(bleed.DamageDice) > ExpectedDamage(DamageDice))
                     DamageDice = bleed.DamageDice;
                 return true;
             }
             return false;
+        }
+
+        private static double ExpectedDamage(string dice)
+        {
+            try
+            {
+                var parsed = DiceRoller.Parse(dice);
+                if (parsed.count <= 0 || parsed.sides <= 0) return double.NegativeInfinity;
+                return parsed.count * ((double)parsed.sides + 1d) / 2d + parsed.modifier;
+            }
+            catch (System.FormatException) { return double.NegativeInfinity; }
+            catch (System.OverflowException) { return double.NegativeInfinity; }
         }
 
         public override string GetRenderColorOverride() => "&r";

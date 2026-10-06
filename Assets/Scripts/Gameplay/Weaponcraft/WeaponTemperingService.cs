@@ -162,7 +162,11 @@ namespace CavesOfOoo.Core
                 int chance = Math.Min(50, 20 + 10 * potency);
                 // OnHitEffectsRaw grammar: Name,Chance,Dice,Duration,Magnitude
                 // (duration 0 / empty dice → per-effect defaults).
-                specs.Add(entry.Property + "," + chance + ",,0," + potency);
+                bool poison = string.Equals(entry.Property, "Poison", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(entry.Property, "Poisoned", StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(entry.Property, "PoisonedEffect", StringComparison.OrdinalIgnoreCase);
+                int duration = poison ? TonicEffectFactory.PoisonDuration(potency) : 0;
+                specs.Add(entry.Property + "," + chance + ",," + duration + "," + potency);
             }
 
             joined = string.Join(";", specs);

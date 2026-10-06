@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -67,7 +68,7 @@ namespace CavesOfOoo.Core
             var rng = e.GetParameter<Random>("Random") ?? new Random();
             Zone zone = e.GetParameter<Zone>("Zone");
 
-            if (!ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true))
+            if (!ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true, transaction: e.GetParameter<InventoryTransaction>("InventoryTransaction")))
                 return true; // Unhandled refusal; false would count as successful dispatch.
             e.Handled = true;
             return false;
@@ -95,7 +96,8 @@ namespace CavesOfOoo.Core
             Zone zone = null,
             Random rng = null,
             bool consumeItem = false,
-            bool showUseMessage = true)
+            bool showUseMessage = true,
+            InventoryTransaction transaction = null)
         {
             if (target == null)
             {
@@ -111,7 +113,7 @@ namespace CavesOfOoo.Core
             ApplyHealing(target, rng);
 
             if (!string.IsNullOrEmpty(StatBoost))
-                ApplyStatBoost(target);
+                ApplyStatBoost(target, user, zone, transaction);
 
             var applyEvent = GameEvent.New("ApplyTonic");
             applyEvent.SetParameter("Actor", (object)target);
@@ -161,7 +163,7 @@ namespace CavesOfOoo.Core
                 MessageLog.Add($"{target.GetDisplayName()} heals {actual} HP.");
         }
 
-        private void ApplyStatBoost(Entity target)
+        private void ApplyStatBoost(Entity target, Entity source, Zone zone, InventoryTransaction transaction)
         {
             // Format: "StatName:Amount" (e.g., "Strength:4")
             int colon = StatBoost.IndexOf(':');
@@ -173,6 +175,18 @@ namespace CavesOfOoo.Core
             var stat = target.GetStat(statName);
             if (stat == null) return;
 
+            if (Duration > 0)
+            {
+                int duration = Duration;
+                Action apply = () =>
+                {
+                    if (!CombatSystem.IsDeathHandled(target) && target.GetStatValue("Hitpoints", 1) > 0)
+                        target.ApplyEffect(new TonicStatSurgeEffect(statName, amount, duration), source, zone);
+                };
+                if (transaction != null) transaction.AfterCommit(apply);
+                else apply();
+                return;
+            }
             stat.Boost += amount;
             MessageLog.Add($"{target.GetDisplayName()} feels a surge of {statName}!");
         }

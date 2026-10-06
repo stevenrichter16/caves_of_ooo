@@ -14,6 +14,16 @@ namespace CavesOfOoo.Core
         {
             switch (effect)
             {
+                case TonicStatSurgeEffect surge:
+                    return surge.StatName + " surge: +" + surge.Amount + " for " + surge.Duration + " turns; repeat doses refresh, not stack.";
+                case BrokenEffect broken:
+                    return broken.PenaltyApplied
+                        ? "Broken: " + (broken.HitPenalty > 0 ? "−" + broken.HitPenalty + " melee accuracy. " : "")
+                            + (broken.ArmorPenalty > 0 ? "−" + broken.ArmorPenalty + " armor. " : "")
+                            + "Unequip and repair with the listed material."
+                        : "Broken: damaged condition.";
+                case PreparedMealEffect meal:
+                    return "Prepared meal - " + meal.Describe();
                 case LeyTapEffect ley:
                     return "Ley Tap - 1 damaging cast: +" + ley.BonusDamage
                         + " damage per target; " + ley.Duration + " of your turns left.";

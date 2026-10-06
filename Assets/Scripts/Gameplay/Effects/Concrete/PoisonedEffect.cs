@@ -11,6 +11,8 @@ namespace CavesOfOoo.Core
         // WSP6.16 — TYPE_NEGATIVE backfill (see AcidicEffect.cs).
         public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
 
+        /// <summary>Saved inflictor of the first active dose; Owner remains the patient.</summary>
+        public Entity DamageSource;
         public string DamageDice;
         public System.Random Rng;
 
@@ -37,7 +39,7 @@ namespace CavesOfOoo.Core
             if (damage > 0)
             {
                 Zone zone = context?.GetParameter<Zone>("Zone");
-                CombatSystem.ApplyDamage(target, damage, null, zone);
+                CombatSystem.ApplyDamage(target, damage, DamageSource, zone);
                 MessageLog.Add(target.GetDisplayName() + " takes " + damage + " poison damage.");
             }
         }

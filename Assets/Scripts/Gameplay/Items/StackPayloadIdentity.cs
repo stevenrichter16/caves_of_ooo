@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
         {
             // Preserve order only among parts sharing a dispatch path. A temper marker's
             // position relative to an enhancement is merely crafting history.
-            for (int group = 1; group <= 5; group++)
+            for (int group = 1; group <= 6; group++)
             {
                 int ai = 0, bi = 0;
                 while (true)
@@ -39,6 +39,7 @@ namespace CavesOfOoo.Core
         {
             if (part is TonicPart || part is BrewItemPart || part is StatusTonicPart || part is CureTonicPart) return 1;
             if (part is TorchLightPart) return 5;
+            if (part is FoodPart) return 6;
             if (part is IItemEnhancement) return 2;
             if (part is MeleeWeaponPart) return 3;
             if (part is WeaponTemperPart temper)
@@ -80,6 +81,12 @@ namespace CavesOfOoo.Core
                     && xf?.ExhaustProduct == yf?.ExhaustProduct
                     && xt?.Temperature == yt?.Temperature && xt?.FlameTemperature == yt?.FlameTemperature
                     && xt?.AmbientTemperature == yt?.AmbientTemperature;
+            }
+            if (type == typeof(FoodPart))
+            {
+                var x = (FoodPart)a; var y = (FoodPart)b;
+                return x.Healing == y.Healing && x.Message == y.Message && x.Cooking == y.Cooking
+                    && x.MealStat == y.MealStat && x.MealBonus == y.MealBonus && x.MealDuration == y.MealDuration;
             }
             if (type == typeof(TonicPart))
             {

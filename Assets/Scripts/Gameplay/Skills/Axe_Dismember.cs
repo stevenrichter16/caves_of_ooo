@@ -27,9 +27,7 @@ namespace CavesOfOoo.Skills
     /// at an adjacent target with force-dismember on hit. That active
     /// version is deferred — this ship covers the passive only, which
     /// is the higher-frequency and more-tested Qud branch (the active
-    /// is essentially "Conk-but-with-dismember-instead-of-stun"). Also
-    /// deferred: Qud's "6% chance for two-handed axes" branch — CoO
-    /// doesn't model two-handed weapons distinctly yet. And Qud's
+    /// is essentially "Conk-but-with-dismember-instead-of-stun"). Actual axes held in two hands use a local 6% chance. Qud's
     /// Berserk-synergy "every axe hit while berserk force-dismembers"
     /// — would require checking <c>BerserkEffect</c> here, but the
     /// effect's gameplay impact in CoO is currently +Strength/-DV only,
@@ -60,7 +58,7 @@ namespace CavesOfOoo.Skills
             if (ctx.ActualDamage <= 0) return;
             if (ctx.Defender == null || ctx.Rng == null || IsDead(ctx.Defender)) return;
 
-            if (ctx.Rng.Next(100) >= CHANCE_PERCENT) return;
+            if (ctx.Rng.Next(100) >= (UsesTwoHands(ctx) ? 6 : CHANCE_PERCENT)) return;
 
             // Find severable body parts. By default, skip Mortal parts
             // (Head, Heart, etc.) — those require Decapitate. The Qud
@@ -96,6 +94,20 @@ namespace CavesOfOoo.Skills
                 new BleedingEffect(BLEED_SAVE_TARGET, BLEED_DAMAGE_DICE, ctx.Rng),
                 ctx.Attacker, ctx.Zone);
         }
+        private static bool UsesTwoHands(SkillEventContext ctx)
+        {
+            var weapon = ctx.WeaponEntity;
+            if (weapon == null || ctx.Weapon != weapon.GetPart<MeleeWeaponPart>()
+                || weapon.GetPart<PhysicsPart>()?.Equipped != ctx.Attacker
+                || HandlingService.GetGripType(weapon) != GripType.TwoHand) return false;
+            var body = ctx.Attacker?.GetPart<Body>();
+            if (body == null) return false;
+            int hands = 0;
+            foreach (var part in body.GetParts())
+                if (part.Type == "Hand" && part.Equipped == weapon) hands++;
+            return hands >= 2;
+        }
+
         private static bool IsDead(Entity entity)
             => CombatSystem.IsDeathHandled(entity)
                 || (entity.GetStat("Hitpoints") is Stat hp && hp.Value <= 0);

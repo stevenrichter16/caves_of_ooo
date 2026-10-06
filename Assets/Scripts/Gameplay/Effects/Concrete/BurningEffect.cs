@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
         public override int GetEffectType() => TYPE_GENERAL | TYPE_NEGATIVE;
 
         public float Intensity;
+        public bool CompletedNaturally;
         public Entity IgnitionSource;
         public System.Random Rng;
 
@@ -101,6 +102,11 @@ namespace CavesOfOoo.Core
         public override void OnRemove(Entity target)
         {
             MessageLog.Add(target.GetDisplayName() + " is no longer burning.");
+            if (CompletedNaturally && Duration == 0 && LastRemovalCause == CAUSE_DURATION_EXPIRED
+                && target.GetPart<FuelPart>() == null && target.GetStatValue("Hitpoints", 1) > 0
+                && !CombatSystem.IsDeathHandled(target) && !target.HasEffect<CharredEffect>()
+                && !(target.GetPart<DestructiblePart>() is DestructiblePart structure && (structure.Gone || structure.HP <= 0)))
+                target.ApplyEffect(new CharredEffect(), IgnitionSource, target.SpatialZone);
         }
 
         public override void OnTurnStart(Entity target, GameEvent context)
@@ -214,6 +220,13 @@ namespace CavesOfOoo.Core
             if (zone != null)
                 MaterialSimSystem.EmitHeatToAdjacent(
                     target, zone, Intensity * FireDose.SpreadTotal);
+        }
+
+        public override void OnTurnEnd(Entity target, GameEvent context)
+        {
+            int before = Duration;
+            base.OnTurnEnd(target, context);
+            CompletedNaturally = before > 0 && Duration == 0 && target.GetPart<FuelPart>() == null;
         }
 
         public override bool OnStack(Effect incoming)

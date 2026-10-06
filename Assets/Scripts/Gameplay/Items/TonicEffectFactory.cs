@@ -15,6 +15,10 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class TonicEffectFactory
     {
+        /// <summary>Default poison exposure grows with brew potency, capped at tier three.</summary>
+        public static int PoisonDuration(float potency)
+            => 5 + 2 * (System.Math.Max(1, System.Math.Min(3, (int)potency)) - 1);
+
         public static Effect Create(
             string effectName,
             int effectDuration,
@@ -32,7 +36,7 @@ namespace CavesOfOoo.Core
                 case "poisoned":
                 case "poisonedeffect":
                     return new PoisonedEffect(
-                        duration: effectDuration > 0 ? effectDuration : 5,
+                        duration: effectDuration > 0 ? effectDuration : PoisonDuration(effectMagnitude),
                         damageDice: string.IsNullOrWhiteSpace(effectDamageDice) ? "1d3" : effectDamageDice);
 
                 case "fire":

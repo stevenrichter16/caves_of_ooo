@@ -97,6 +97,18 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
+            // Permission query only: the occupied swap destination is validated
+            // atomically by TrySwap, rather than ordinary walking collision.
+            var permission = GameEvent.New("BeforeMove");
+            permission.SetParameter("Actor", (object)actor);
+            permission.SetParameter("SourceCell", (object)ctx.Zone.GetEntityCell(actor));
+            permission.SetParameter("DX", targetPos.x - actorPos.x);
+            permission.SetParameter("DY", targetPos.y - actorPos.y);
+            bool canMove;
+            try { canMove = actor.FireEvent(permission); }
+            finally { permission.Release(); }
+            if (!canMove) { EmitSkillRejectedDiag(ctx, "movement_blocked"); return false; }
+
             if(!MovementSystem.TrySwap(actor,target,ctx.Zone))
             {
                 EmitSkillRejectedDiag(ctx,"body_swap_blocked");

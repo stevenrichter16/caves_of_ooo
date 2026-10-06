@@ -15,6 +15,9 @@ namespace CavesOfOoo.Core
         public const string RepairCommand="RepairObject";
         public string RecipeId="";
         public bool Repaired;
+        /// <summary>Explicit common-gear opt-in. Portable repair removes Broken;
+        /// structural repair keeps its one-time restored-function contract.</summary>
+        public bool PortableEquipment;
         /// <summary>Committed physical repair cause for local acknowledgment.
         /// Existing repaired saves have no retroactively invented author.</summary>
         public Entity RepairedBy;
@@ -26,14 +29,15 @@ namespace CavesOfOoo.Core
             if(owner==null)return false;
             int count=0;bool blocked=false;
             foreach(var part in owner.Parts)
-                if(part is RepairablePart fault) { count++;blocked|=fault.ParentEntity!=owner || !fault.Repaired; }
+                if(part is RepairablePart fault && !fault.PortableEquipment) { count++;blocked|=fault.ParentEntity!=owner || !fault.Repaired; }
             return count>1 || blocked;
         }
         public string Describe()
         {
             var recipe=RepairRecipeRegistry.Get(RecipeId);
             if(recipe==null)return "The damage cannot be repaired with a known method.";
-            return Repaired ? recipe.RepairedText : recipe.Diagnosis+"\nRepair: "+recipe.Quantity+" "+recipe.MaterialName+". Composition: "+recipe.Composition+".";
+            if (PortableEquipment && ParentEntity?.HasEffect<BrokenEffect>() != true) return "This equipment is sound.";
+            return !PortableEquipment && Repaired ? recipe.RepairedText : recipe.Diagnosis+"\nRepair: "+recipe.Quantity+" "+recipe.MaterialName+". Composition: "+recipe.Composition+".";
         }
         /// <summary>Use the same native command receipt as the player menu. This
         /// method charges no turn; successful gameplay callers charge one action.</summary>
@@ -48,7 +52,7 @@ namespace CavesOfOoo.Core
         {
             if(e.ID=="GetInventoryActions")
             {
-                if(!Repaired)
+                if(PortableEquipment ? ParentEntity.HasEffect<BrokenEffect>() : !Repaired)
                 {
                     var recipe=RepairRecipeRegistry.Get(RecipeId);
                     if(recipe!=null)e.GetParameter<InventoryActionList>("Actions")?.AddAction("Repair",recipe.ActionText+" ("+recipe.Quantity+" "+recipe.MaterialName+")",RepairCommand,'r',20);
@@ -69,20 +73,31 @@ namespace CavesOfOoo.Core
             int faultCount=0,compositionCount=0;
             foreach(var part in owner.Parts) { if(part is RepairablePart)faultCount++;if(part is CompositionPart)compositionCount++; }
             if(faultCount!=1 || compositionCount!=1)return "ambiguous-structure";
-            if(Repaired)return "already-repaired";
+            if(!PortableEquipment && Repaired)return "already-repaired";
             if(recipe==null || RepairRecipeRegistry.Get(RecipeId)!=recipe)return "unknown-recipe";
             if(!actor.HasTag("Player") || actor.GetStatValue("Hitpoints",0)<=0 || CombatSystem.IsDeathHandled(actor)
                 || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true)return "actor-unavailable";
             var inventory=actor.GetPart<InventoryPart>();
             if(inventory?.ParentEntity!=actor)return "missing-inventory";
             var a=zone.GetEntityCell(actor); var t=zone.GetEntityCell(owner); var physics=owner.GetPart<PhysicsPart>();
-            if(actor.SpatialZone!=zone || owner.SpatialZone!=zone || a?.ParentZone!=zone || t?.ParentZone!=zone
-                || !a.Objects.Contains(actor) || !t.Objects.Contains(owner))return "not-local";
+            if(actor.SpatialZone!=zone || a?.ParentZone!=zone || !a.Objects.Contains(actor))return "not-local";
             var manager=WorldLocationContext.For(zone);
             if(manager!=null && (!manager.CachedZones.TryGetValue(zone.ZoneID,out var current) || current!=zone))return "stale-zone";
-            if(SpatialQuery.Distance(zone,actor,owner)>1)return "out-of-reach";
-            if(owner.HasTag("Creature") || physics?.ParentEntity!=owner || physics.Takeable || physics.InInventory!=null || physics.Equipped!=null
-                || owner.GetPart<DestructiblePart>() is DestructiblePart d && (d.Gone || d.HP<=0))return "invalid-target";
+            if (PortableEquipment)
+            {
+                if (!Carried(owner,actor,inventory,owner.BlueprintName)
+                    || (owner.GetPart<StackerPart>()?.StackCount ?? 1) != 1
+                    || owner.GetPart<EquippablePart>() == null
+                    || (owner.GetPart<MeleeWeaponPart>() == null && owner.GetPart<ArmorPart>() == null)) return "invalid-equipment";
+                if (!owner.HasEffect<BrokenEffect>()) return "already-repaired";
+            }
+            else
+            {
+                if(owner.SpatialZone!=zone || t?.ParentZone!=zone || !t.Objects.Contains(owner))return "not-local";
+                if(SpatialQuery.Distance(zone,actor,owner)>1)return "out-of-reach";
+                if(owner.HasTag("Creature") || physics?.ParentEntity!=owner || physics.Takeable || physics.InInventory!=null || physics.Equipped!=null
+                    || owner.GetPart<DestructiblePart>() is DestructiblePart d && (d.Gone || d.HP<=0))return "invalid-target";
+            }
             var composition=owner.GetPart<CompositionPart>();
             if(composition?.ParentEntity!=owner || !composition.Contains(recipe.Composition))return "wrong-composition";
             return null;
@@ -128,14 +143,15 @@ namespace CavesOfOoo.Core
             // selected recipe after payment before granting the structural benefit.
             if(!applied || !receipt.ClaimChanges(tx,actor,RepairCommand) || Context(actor,zone,recipe)!=null
                 || actor.GetPart<InventoryPart>()!=inventory)return Reject(actor,"state-changed");
-            tx.Do(()=>Repaired=true,()=>Repaired=false);
+            if (PortableEquipment) RemoveBrokenWithUndo(tx);
+            else tx.Do(()=>Repaired=true,()=>Repaired=false);
             var priorAuthor=RepairedBy;string priorCause=RepairCauseID,priorZone=RepairedZoneID,priorWorld=RepairWorldKey;
             tx.Do(()=>
             {
                 RepairedBy=actor;RepairCauseID=Guid.NewGuid().ToString("N");RepairedZoneID=zone.ZoneID;
                 RepairWorldKey=WorldLocationContext.For(zone)?.Exploration?.WorldKey;
             },()=>{RepairedBy=priorAuthor;RepairCauseID=priorCause;RepairedZoneID=priorZone;RepairWorldKey=priorWorld;});
-            ConnectedSpreadProgress.RecordRepair(actor,ParentEntity,zone,tx);
+            if (!PortableEquipment) ConnectedSpreadProgress.RecordRepair(actor,ParentEntity,zone,tx);
             tx.AfterCommit(()=>
             {
                 MessageLog.Add(recipe.RepairedText);
@@ -144,6 +160,33 @@ namespace CavesOfOoo.Core
             });
             return true;
         }
+        private void RemoveBrokenWithUndo(InventoryTransaction tx)
+        {
+            var owner = ParentEntity;
+            var effects = owner.GetPart<StatusEffectsPart>();
+            var broken = effects.GetEffect<BrokenEffect>();
+            int index = 0; foreach (var effect in effects.GetAllEffects()) { if (effect == broken) break; index++; }
+            var melee = owner.GetPart<MeleeWeaponPart>(); var armor = owner.GetPart<ArmorPart>();
+            int priorHitPenalty = broken.HitPenalty, priorArmorPenalty = broken.ArmorPenalty;
+            bool priorApplied = broken.PenaltyApplied; string priorCause = broken.LastRemovalCause;
+            // Register before callbacks; an EffectRemoved listener can throw.
+            tx.Do(null, () =>
+            {
+                // Undo only this repair's restoration, retaining independent
+                // enchantment/stat changes made by later callback work.
+                if (priorApplied && !broken.PenaltyApplied)
+                {
+                    if (melee != null) melee.HitBonus -= priorHitPenalty;
+                    if (armor != null) armor.AV -= priorArmorPenalty;
+                }
+                broken.HitPenalty = priorHitPenalty; broken.ArmorPenalty = priorArmorPenalty;
+                broken.PenaltyApplied = priorApplied; broken.LastRemovalCause = priorCause;
+                effects.RestoreRemovedEffectForInventoryUndo(broken,index);
+                EquipmentChangeBus.NotifyChanged(owner.GetPart<PhysicsPart>()?.Equipped);
+            });
+            effects.RemoveEffect(broken);
+        }
+
         private bool Reject(Entity actor,string reason)
         {
             if(actor?.HasTag("Player")==true)MessageLog.Add(reason=="already-repaired"?"That repair is already complete.":Describe());

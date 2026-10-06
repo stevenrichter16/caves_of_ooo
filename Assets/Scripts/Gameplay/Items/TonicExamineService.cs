@@ -60,7 +60,8 @@ namespace CavesOfOoo.Core
                 if (colon > 0 && int.TryParse(tonic.StatBoost.Substring(colon + 1), out int amount))
                 {
                     lines.Add("Stat surge - +" + amount + " "
-                        + tonic.StatBoost.Substring(0, colon) + ".");
+                        + tonic.StatBoost.Substring(0, colon)
+                        + (tonic.Duration > 0 ? " for " + tonic.Duration + " turns; another dose refreshes without stacking." : "."));
                 }
             }
 
@@ -84,7 +85,11 @@ namespace CavesOfOoo.Core
             }
 
             if (cure != null && !string.IsNullOrWhiteSpace(cure.CureEffect))
-                lines.Add("Cures: " + cure.CureEffect.Trim() + ".");
+                lines.Add(cure.CureEffect == nameof(PoisonedEffect)
+                    ? "Cures ordinary poison and lingering gas poisoning; does not prevent new exposure."
+                    : cure.CureEffect == nameof(BurningEffect)
+                        ? "Extinguishes burning and cools the patient to ambient temperature or below."
+                        : "Cures: " + cure.CureEffect.Trim() + ".");
 
             if (lines.Count == 0)
                 return false;

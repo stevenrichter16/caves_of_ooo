@@ -248,9 +248,9 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, rng.DiceRolls);
         }
 
-        [TestCase("Antidote", "ApplyTonic", false)]
-        [TestCase("SoddenFieldDressing", "Apply", true)]
-        public void ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison(string blueprint, string command, bool curesBleeding)
+        [TestCase("Antidote", "ApplyTonic", false, true)]
+        [TestCase("SoddenFieldDressing", "Apply", true, false)]
+        public void ActualTreatmentsConsumeOneAndRetainTheirDistinctCureScopes(string blueprint, string command, bool curesBleeding, bool curesGasPoison)
         {
             var player = _content.Create("Player");
             var zone = new Zone("poison-treatment-regression");
@@ -267,12 +267,37 @@ namespace CavesOfOoo.Tests
             var result = InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(item, command), player, zone);
             Assert.IsTrue(result.Success, result.ErrorMessage);
             Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
+            Assert.Contains(item, player.GetPart<InventoryPart>().Objects);
             Assert.IsFalse(player.HasEffect<PoisonedEffect>());
-            Assert.AreSame(gas, player.GetEffect<PoisonedByGasEffect>());
-            Assert.AreEqual(9, gas.Duration);
-            Assert.AreEqual(3, gas.DamagePerTurn);
+            if (curesGasPoison) Assert.IsNull(player.GetEffect<PoisonedByGasEffect>());
+            else
+            {
+                Assert.AreSame(gas, player.GetEffect<PoisonedByGasEffect>());
+                Assert.AreEqual(9, gas.Duration);
+                Assert.AreEqual(3, gas.DamagePerTurn);
+            }
             Assert.AreEqual(!curesBleeding, player.HasEffect<BleedingEffect>());
             Assert.AreEqual(40, player.GetStatValue("Hitpoints"));
+        }
+
+        [Test]
+        public void AntidoteTreatsGasPoisonAloneWithOneFiniteDoseWithoutPreventingNewExposure()
+        {
+            var player = _content.Create("Player");
+            var zone = new Zone("gas-antidote-control");
+            Assert.IsTrue(zone.AddEntity(player, 5, 5));
+            Assert.IsTrue(player.ApplyEffect(new PoisonedByGasEffect { Duration = 9, DamagePerTurn = 3 }));
+            var item = _content.Create("Antidote");
+            item.GetPart<StackerPart>().StackCount = 2;
+            Assert.IsTrue(player.GetPart<InventoryPart>().AddObject(item));
+            Assert.IsTrue(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(item, "ApplyTonic"), player, zone).Success);
+            Assert.IsFalse(player.HasEffect<PoisonedByGasEffect>());
+            Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
+            Assert.Contains(item, player.GetPart<InventoryPart>().Objects);
+            Assert.AreEqual(40, player.GetStatValue("Hitpoints"));
+            var exposure = new PoisonedByGasEffect { Duration = 9, DamagePerTurn = 3 };
+            Assert.IsTrue(player.ApplyEffect(exposure));
+            Assert.AreSame(exposure, player.GetEffect<PoisonedByGasEffect>());
         }
 
         [Test]

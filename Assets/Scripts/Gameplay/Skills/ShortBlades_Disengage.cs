@@ -76,7 +76,7 @@ namespace CavesOfOoo.Skills
                 // attack, no swap — it's a pure walk).
                 if (MultiCellAbilityQueries.CreatureAtPlacement(ctx.Zone, actor, nx, ny) != null) break;
                 if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny)) break;
-                if (!MovementSystem.ForceMoveTo(actor, ctx.Zone, nx, ny)) break;
+                if (!MovementSystem.TryMoveTo(actor, ctx.Zone, nx, ny)) break;
 
                 x = nx; y = ny;
                 cellsMoved++;
@@ -85,6 +85,8 @@ namespace CavesOfOoo.Skills
                 if (ctx.Zone.GetEntityPosition(actor) != (nx, ny)
                     || actor.GetStatValue("Hitpoints", 1) <= 0) break;
             }
+
+            if (cellsMoved == 0) { EmitSkillRejectedDiag(ctx, "no_movement"); return false; }
 
             MessageLog.Add(actor.GetDisplayName() + " disengages " + cellsMoved + " cell"
                 + (cellsMoved == 1 ? "" : "s") + ".");

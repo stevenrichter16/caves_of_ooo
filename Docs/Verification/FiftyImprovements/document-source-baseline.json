@@ -1,0 +1,115 @@
+{
+  "baseline": "bfa625f44",
+  "files": [
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/DensityDocumentSourceTests.cs",
+      "baselineSha256": "1e4fcfa31a16d8d8c60fcb2382282f0f51a8dc54acbd1cc1d6e08debfde34ac3",
+      "currentSha256": "1e4fcfa31a16d8d8c60fcb2382282f0f51a8dc54acbd1cc1d6e08debfde34ac3",
+      "identical": true
+    },
+    {
+      "path": "Assets/Resources/Content/Data/Documents/CodexDocuments.json",
+      "baselineSha256": "fdb82593403b02ed2c805544f7cd7652dce79e659754ecd95aad10d15b03ab43",
+      "currentSha256": "fdb82593403b02ed2c805544f7cd7652dce79e659754ecd95aad10d15b03ab43",
+      "identical": true
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/ReadableDocumentCatalog.cs",
+      "baselineSha256": "41a7dd2e3bc4ad118efaec83f2ae05adf2c0dbdb488b134d63a5d3e5f4a8a73c",
+      "currentSha256": "41a7dd2e3bc4ad118efaec83f2ae05adf2c0dbdb488b134d63a5d3e5f4a8a73c",
+      "identical": true
+    }
+  ],
+  "canonicalComparisons": [
+    {
+      "blueprint": "Codex01",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex02",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex03",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex04",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex05",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex06",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex07",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex08",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex09",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex10",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex11",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex12",
+      "titleMatches": true,
+      "bodyMatches": true
+    },
+    {
+      "blueprint": "Codex13",
+      "titleMatches": true,
+      "bodyMatches": true
+    }
+  ],
+  "originalRecords": [
+    {
+      "blueprint": "CurationTransferDocket",
+      "source": "Lore/Factions/03_PaleCuration.md; original Marrowstye receiving record",
+      "incorrectFullSourcePathExists": false,
+      "attributionFileExists": true
+    },
+    {
+      "blueprint": "CurationDiscrepancyReport",
+      "source": "Lore/Factions/03_PaleCuration.md; original Marrowstye receiving record",
+      "incorrectFullSourcePathExists": false,
+      "attributionFileExists": true
+    },
+    {
+      "blueprint": "CurationAnnexPlacard",
+      "source": "Lore/Factions/03_PaleCuration.md; original Marrowstye receiving record; annex maintenance",
+      "incorrectFullSourcePathExists": false,
+      "attributionFileExists": true
+    }
+  ],
+  "method": "Read-only git-show byte comparison and plain-text canonical-normalization comparison; this is not baseline Unity execution.",
+  "classification": "Pre-existing overbroad test assumption: original local records use Source as attribution, whereas the thirteen canonical Codex copies use a verbatim source path.",
+  "preparedPatch": "/tmp/fifty-document-source-test.patch",
+  "comparisonPhase": "Before the approved test-only correction; recorded current hashes describe that pre-correction snapshot.",
+  "approvedCorrectionApplied": true
+}

@@ -96,7 +96,7 @@ namespace CavesOfOoo.Skills
 
             // Move actor directly to landing — skipping whatever was at
             // distance 1 (which is the whole point of Vault).
-            if (!MovementSystem.ForceMoveTo(actor, ctx.Zone, landX, landY))
+            if (!MovementSystem.TryMoveTo(actor, ctx.Zone, landX, landY))
             {
                 EmitSkillRejectedDiag(ctx, "landing_blocked");
                 return false;

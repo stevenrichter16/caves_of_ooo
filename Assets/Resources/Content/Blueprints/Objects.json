@@ -872,6 +872,28 @@
               "Value": "A short blade with a close-fitting grip. The point has been kept sharp."
             }
           ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "metal-equipment-brace"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -4449,6 +4471,18 @@
             {
               "Key": "Cooking",
               "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "HeatResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
             }
           ]
         },
@@ -5518,6 +5552,28 @@
             {
               "Key": "Description",
               "Value": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Leather"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "leather-equipment-stitch"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
             }
           ]
         }
@@ -6829,6 +6885,28 @@
               "Value": "A long, straight blade balanced above a plain crossguard."
             }
           ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "metal-equipment-brace"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -6980,6 +7058,28 @@
             {
               "Key": "Description",
               "Value": "A broad axe head sits on a reinforced haft. The cutting edge curves away from the socket."
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "metal-equipment-brace"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
             }
           ]
         }
@@ -7589,6 +7689,28 @@
               "Value": "A heavy head on a short haft. Its raised faces concentrate the weight of a blow."
             }
           ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "metal-equipment-brace"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -8013,6 +8135,28 @@
               "Value": "A stout club, heavier at the striking end and smoothed where a hand holds it."
             }
           ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "wood-equipment-splint"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -8199,6 +8343,28 @@
             {
               "Key": "Description",
               "Value": "A worked iron shell with an opening for the face. The rim has been turned away from the skin."
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Metal"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "metal-equipment-brace"
+            },
+            {
+              "Key": "PortableEquipment",
+              "Value": "true"
             }
           ]
         }
@@ -9017,6 +9183,10 @@
             {
               "Key": "Message",
               "Value": "The tonic sends a quicksilver rush through the body."
+            },
+            {
+              "Key": "Duration",
+              "Value": "20"
             }
           ]
         },
@@ -9090,6 +9260,10 @@
             {
               "Key": "Message",
               "Value": "Power surges through the body."
+            },
+            {
+              "Key": "Duration",
+              "Value": "20"
             }
           ]
         },
@@ -21164,6 +21338,18 @@
             {
               "Key": "Cooking",
               "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "Toughness"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "2"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
             }
           ]
         },
@@ -21263,6 +21449,18 @@
             {
               "Key": "Cooking",
               "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "DV"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "1"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
             }
           ]
         },
@@ -36651,6 +36849,18 @@
             {
               "Key": "Cooking",
               "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "AcidResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
             }
           ]
         },
@@ -40561,6 +40771,18 @@
             {
               "Key": "Cooking",
               "Value": "Meal"
+            },
+            {
+              "Key": "MealStat",
+              "Value": "ColdResistance"
+            },
+            {
+              "Key": "MealBonus",
+              "Value": "20"
+            },
+            {
+              "Key": "MealDuration",
+              "Value": "100"
             }
           ]
         },
