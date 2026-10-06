@@ -183,21 +183,7 @@ namespace CavesOfOoo.Core
                 && zone?.GetEntityCell(actor) != null && zone.GetEntityCell(ParentEntity) != null
                 && SpatialQuery.Distance(zone, actor, ParentEntity) <= 1;
         }
-        private Entity FindFire(Entity actor, Zone zone)
-        {
-            if (zone?.GetEntityCell(actor) == null) return null;
-            foreach (var entity in zone.GetReadOnlyEntities())
-            {
-                if (entity == ParentEntity || SpatialQuery.Distance(zone, actor, entity) > 1) continue;
-                var heat = entity.GetPart<ThermalPart>();
-                if (heat == null || !Finite(heat.Temperature) || !heat.IsAflame) continue;
-                var fuel = entity.GetPart<FuelPart>();
-                if (fuel != null && !UsableFuel(fuel)) continue;
-                if (entity.GetEffect<WetEffect>()?.Moisture > 0.35f) continue;
-                return entity;
-            }
-            return null;
-        }
+        private Entity FindFire(Entity actor, Zone zone) => IgnitionSources.Find(actor, zone, ParentEntity);
         private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
         private static bool UsableFuel(FuelPart fuel) => Finite(fuel.FuelMass) && fuel.FuelMass > 0
             && Finite(fuel.BurnRate) && fuel.BurnRate > 0;

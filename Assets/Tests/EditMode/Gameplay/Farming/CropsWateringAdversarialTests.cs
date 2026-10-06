@@ -20,6 +20,8 @@ namespace CavesOfOoo.Tests
     public class CropsWateringAdversarialTests
     {
         private static EntityFactory _factory;
+        private EntityFactory _oldCropFactory, _oldSeedFactory;
+        private TurnManager _oldClock;
 
         [OneTimeSetUp]
         public void LoadBlueprintsOnce()
@@ -33,6 +35,8 @@ namespace CavesOfOoo.Tests
         [SetUp]
         public void Setup()
         {
+            _oldClock = TurnManager.Active; _oldCropFactory = CropSystem.Factory; _oldSeedFactory = SeedPart.Factory;
+            typeof(TurnManager).GetProperty("Active").SetValue(null, null);
             MessageLog.Clear();
             Diag.ResetAll();
             AsciiFxBus.Clear();
@@ -43,8 +47,9 @@ namespace CavesOfOoo.Tests
         [TearDown]
         public void TearDown()
         {
-            CropSystem.Factory = null;
-            SeedPart.Factory = null;
+            CropSystem.Factory = _oldCropFactory;
+            SeedPart.Factory = _oldSeedFactory;
+            typeof(TurnManager).GetProperty("Active").SetValue(null, _oldClock);
         }
 
         // ── Helpers ──────────────────────────────────────────────

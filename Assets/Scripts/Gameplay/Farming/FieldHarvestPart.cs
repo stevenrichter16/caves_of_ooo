@@ -16,54 +16,22 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
-            if (e.ID == "GetInventoryActions")
-            {
-                if (!Harvested) e.GetParameter<InventoryActionList>("Actions")
-                    ?.AddAction("Harvest", "harvest", "Harvest", 'h', 20);
-                return true;
-            }
-            if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Harvest") return true;
             var actor = e.GetParameter<Entity>("Actor");
             var zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
-            if (Harvested) return Reject(actor, "spent");
-            if (actor == null || ParentEntity == null || zone == null) return Reject(actor, "missing-context");
-            var row = zone.GetEntityCell(ParentEntity);
-            var standing = zone.GetEntityCell(actor);
-            if (row == null || standing == null) return Reject(actor, "detached-owner-or-actor");
-            if (Math.Abs(row.X - standing.X) > 1 || Math.Abs(row.Y - standing.Y) > 1)
-                return Reject(actor, "out-of-reach");
-            var factory = HarvestablePart.Factory;
-            if (factory == null || string.IsNullOrEmpty(YieldBlueprint) || YieldCount <= 0
-                || !factory.Blueprints.ContainsKey(YieldBlueprint)) return Reject(actor, "missing-yield");
-
-            // Stage on the real row cell before spending it or packing any item.
-            // A failed placement rolls back every staged item, leaving the row
-            // and inventory unchanged. Overflow is already safely on the ground.
-            var items = new List<Entity>();
-            for (int i = 0; i < YieldCount; i++)
+            if (e.ID == "GetInventoryActions")
             {
-                var item = factory.CreateEntity(YieldBlueprint);
-                if (item == null || !zone.AddEntity(item, row.X, row.Y))
-                {
-                    foreach (var staged in items) zone.RemoveEntity(staged);
-                    return Reject(actor, "yield-placement");
-                }
-                items.Add(item);
+                zone ??= actor?.SpatialZone;
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                if (!Harvested) actions?.AddAction("Harvest", "harvest", "Harvest", 'h', 20);
+                if (FieldworkActions.CanPrepare(actor, this, zone)) actions?.AddAction("PrepareFieldBed", "prepare cut stubble for planting", "PrepareFieldBed", '\0', 19);
+                return true;
             }
-            SetStubble();
-            int packed = 0;
-            var inventory = actor.GetPart<InventoryPart>();
-            foreach (var item in items)
-                if (inventory != null && inventory.AddObject(item)) { zone.RemoveEntity(item); packed++; }
-            ZoneRenderHooks.MarkCellDirty(row.X, row.Y, "FieldHarvested");
-            int dropped = items.Count - packed;
-            MessageLog.Add(dropped > 0
-                ? $"You gather the ripe grain: {packed} packed, {dropped} left on the cut row."
-                : "You gather the ripe grain, leaving cut stubble.");
-            if (Diag.IsChannelEnabled("loot")) Diag.Record("loot", "FieldHarvested", actor: actor,
-                target: ParentEntity, payload: new { yield = YieldBlueprint, count = packed, dropped });
-            e.Handled = true;
-            return false;
+            if (e.ID != "InventoryAction") return true;
+            string command = e.GetStringParameter("Command");
+            var tx = e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction");
+            bool success = command == "Harvest" ? FieldHarvestService.TryHarvest(actor, this, zone, tx)
+                : command == "PrepareFieldBed" && FieldworkActions.Prepare(actor, this, zone, tx);
+            if (!success) return true; e.Handled = true; return false;
         }
 
         // Only the scoped grazer uses this path after checking both exact rows.
@@ -75,7 +43,7 @@ namespace CavesOfOoo.Core
             if (row != null) ZoneRenderHooks.MarkCellDirty(row.X, row.Y, "FieldGrazed");
         }
 
-        private void SetStubble()
+        internal void SetStubble()
         {
             Harvested = true;
             var render = ParentEntity.GetPart<RenderPart>();

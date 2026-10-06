@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void Adversarial_HeavierExistingStackCannotMakeOverflowDisappearOrOverfillPack()
         {
-            var zone=new Zone("heavy-stack");var actor=Actor(zone);var resident=Factory.CreateEntity("RawMeat");resident.GetPart<PhysicsPart>().Weight=10;actor.GetPart<InventoryPart>().AddObject(resident);actor.GetPart<InventoryPart>().MaxWeight=12;
+            var zone=new Zone("heavy-stack");var actor=Actor(zone);var resident=Factory.CreateEntity("RawMeat");resident.GetPart<PhysicsPart>().Weight=10;resident.GetPart<HandlingPart>().Weight=10;actor.GetPart<InventoryPart>().AddObject(resident);actor.GetPart<InventoryPart>().MaxWeight=12;Assert.AreEqual(10,actor.GetPart<InventoryPart>().GetCarriedWeight(),"The resident must actually weigh ten under Handling authority.");
             var source=Source(zone:zone);Assert.True(Act(source,actor,zone));Assert.AreEqual(1,Packed(actor));Assert.AreEqual(1,Meat(zone.GetAllEntities()));Assert.AreEqual(10,actor.GetPart<InventoryPart>().GetCarriedWeight());
         }
         [Test] public void Adversarial_OuterRollbackRemovesOverflowAndPreservesExistingInventoryStacks()

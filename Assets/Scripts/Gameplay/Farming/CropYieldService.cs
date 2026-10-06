@@ -12,8 +12,9 @@ namespace CavesOfOoo.Core
     {
         internal const int MaximumYieldUnits = 32;
 
-        internal static bool TryRelease(CropPart crop, Zone zone, Entity actor = null, InventoryTransaction transaction = null)
+        internal static bool TryRelease(CropPart crop, Zone zone, Entity actor = null, InventoryTransaction transaction = null, bool gather = false)
         {
+            if (gather && actor?.GetPart<InventoryPart>() == null) return false;
             var source = new Source(crop, zone, actor);
             if (!source.Current() || !source.ValidRecipe()) return Reject(crop, actor, "invalid-source-or-yield");
             var gathering = LocalGatheringClaims.CaptureHarvest(actor, source.Owner, zone);
@@ -83,12 +84,28 @@ namespace CavesOfOoo.Core
                 { restore(); return Reject(crop, actor, "source-changed"); }
                 removed = true;
                 LocalGatheringClaims.RecordHarvest(gathering, products, transaction);
+                int packed = 0;
+                if (gather)
+                {
+                    var pack = actor.GetPart<InventoryPart>();
+                    foreach (var product in products)
+                    {
+                        var taking = LocalGatheringClaims.CaptureTake(actor, product, zone);
+                        var receipt = InventoryTransferSnapshot.Capture(pack, product);
+                        transaction.Do(null, receipt.Restore);
+                        if (!receipt.Apply(() => pack.AddCraftedUnitWithinCapacity(product, out _))) { receipt.Restore(); continue; }
+                        if (!receipt.ClaimChanges(transaction, actor, "GatherCrop")) return false;
+                        zone.RemoveEntity(product); packed++;
+                        LocalGatheringClaims.RecordTake(taking, transaction);
+                    }
+                }
                 ConnectedSpreadProgress.RecordHarvest(actor, source.Owner, zone, transaction);
                 ZoneRenderHooks.MarkCellDirty(source.Cell.X, source.Cell.Y, actor == null ? "CropMatured" : "CropHarvested");
                 transaction.AfterCommit(() =>
                 {
                     MessageLog.Add(actor == null
                         ? "The " + source.Owner.GetDisplayName() + " is ready — its harvest lies on the ground."
+                        : gather ? "You gather " + source.Owner.GetDisplayName() + ": " + packed + " packed, " + (products.Count - packed) + " left here."
                         : "You harvest " + source.Owner.GetDisplayName() + ". The produce and saved seed lie here to pick up.");
                     if (Diag.IsChannelEnabled("crop")) Diag.Record("crop", actor == null ? "CropMatured" : "CropHarvested",
                         actor: actor, target: source.Owner, payload: new { yieldBlueprint = source.YieldBlueprint,
@@ -101,7 +118,7 @@ namespace CavesOfOoo.Core
             finally { if (own) transaction.Rollback(); }
         }
 
-        private static bool Fresh(Entity entity, string blueprint)
+        internal static bool Fresh(Entity entity, string blueprint)
         {
             var physics = entity?.GetPart<PhysicsPart>();
             var stack = entity?.GetPart<StackerPart>();

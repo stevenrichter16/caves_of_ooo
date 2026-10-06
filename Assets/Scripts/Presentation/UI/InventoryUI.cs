@@ -1432,7 +1432,8 @@ namespace CavesOfOoo.Rendering
                 || (action.Command == SoddenDressingPart.ApplyCommand && item.HasPart<SoddenDressingPart>())
                 || action.Command == GrimoireChargePart.ReinkCommand
                 || action.Command == BotanicalProcessingPart.Command
-                || LiquidVesselService.IsLiquidCommand(action.Command)))
+                || LiquidVesselService.IsLiquidCommand(action.Command)
+                || WorldResourceActions.IsCommand(action.Command)))
             {
                 _pendingEverydayTurn = true;
                 Close();

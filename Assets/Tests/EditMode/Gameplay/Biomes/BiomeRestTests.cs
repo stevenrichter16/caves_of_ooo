@@ -25,7 +25,8 @@ namespace CavesOfOoo.Tests
     {
         private static EntityFactory _factory;
         private EntityFactory _savedHarvestFactory;
-        private TurnManager _tm;
+        private TurnManager _tm, _oldClock;
+        private Zone _oldZone;
 
         [OneTimeSetUp]
         public void LoadBlueprintsOnce()
@@ -38,6 +39,7 @@ namespace CavesOfOoo.Tests
         [SetUp]
         public void Setup()
         {
+            _oldClock = TurnManager.Active; _oldZone = SettlementRuntime.ActiveZone;
             MessageLog.Clear();
             FactionManager.Initialize();
             _tm = new TurnManager(); // sets TurnManager.Active
@@ -47,12 +49,15 @@ namespace CavesOfOoo.Tests
         public void TearDown()
         {
             FactionManager.Reset();
+            SettlementRuntime.ActiveZone = _oldZone;
+            typeof(TurnManager).GetProperty("Active").SetValue(null, _oldClock);
         }
 
         private Entity MakePlayer(Zone zone, int x, int y, int hp = 10, int maxHp = 40)
         {
             var player = new Entity { ID = "p", BlueprintName = "Player" };
             player.AddPart(new RenderPart { DisplayName = "you" });
+            player.AddPart(new PhysicsPart());
             player.AddPart(new InventoryPart { MaxWeight = 500 });
             player.AddPart(new StatusEffectsPart());
             player.SetTag("Player");

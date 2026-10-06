@@ -60,10 +60,10 @@ namespace CavesOfOoo.Tests
             {
                 var f=GrovelandsCompositionTests.Factory();var z=new Zone(LastCounterCompositionTests.Id);var b=new LastCounterCompositionBuilder(64);
                 Assert.IsTrue(b.BuildZone(z,f,new Random(1)));Assert.IsTrue(new LastCounterProfileBuilder(b).BuildZone(z,f,new Random(1)));
-                var fire=z.GetAllEntities().Single(e=>e.BlueprintName=="Campfire");var c=z.GetEntityPosition(fire);var player=CinderholdCompositionTests.Player();player.GetStat("Hitpoints").BaseValue=10;z.AddEntity(player,c.x,c.y-1);
+                var fire=z.GetAllEntities().Single(e=>e.BlueprintName=="Campfire");var c=z.GetEntityPosition(fire);var player=CinderholdCompositionTests.Player();player.AddPart(new PhysicsPart{Solid=false});player.GetStat("Hitpoints").BaseValue=10;z.AddEntity(player,c.x,c.y-1);
                 if(hostile){var enemy=f.CreateEntity("MarlbackScrabbler");z.AddEntity(enemy,c.x+1,c.y-1);Assert.IsTrue(FactionManager.IsHostile(enemy,player));}
                 var action=new GameEvent("InventoryAction");action.SetParameter("Command","RestAtCampfire");action.SetParameter("Actor",player);action.SetParameter("Zone",z);fire.FireEvent(action);
-                Assert.IsTrue(action.Handled);Assert.AreEqual(hostile?10:40,player.GetStatValue("Hitpoints"));Assert.AreEqual(hostile?0:RestSystem.RestClockTurns,tm.TickCount);
+                Assert.AreEqual(!hostile,action.Handled,"A refused rest must remain unpaid.");Assert.AreEqual(hostile?10:40,player.GetStatValue("Hitpoints"));Assert.AreEqual(hostile?0:RestSystem.RestClockTurns,tm.TickCount);
             }
             finally{FactionManager.Reset();typeof(TurnManager).GetProperty("Active").SetValue(null,previous);}
         }
@@ -154,7 +154,7 @@ namespace CavesOfOoo.Tests
                 if(blocked){z.AddEntity(f.CreateEntity("SandstoneWall"),16,24);z.AddEntity(f.CreateEntity("SandstoneWall"),18,24);}
                 var seen=LastCounterCompositionTests.FloodAllCells(z);
                 Assert.AreEqual(!blocked,CinderholdCompositionTests.Neighbors(17,24).Any(n=>z.InBounds(n.x,n.y)&&seen[n.x,n.y]));
-                var player=CinderholdCompositionTests.Player();player.GetStat("Hitpoints").BaseValue=10;Assert.IsTrue(z.AddEntity(player,0,12));
+                var player=CinderholdCompositionTests.Player();player.AddPart(new PhysicsPart{Solid=false});player.GetStat("Hitpoints").BaseValue=10;Assert.IsTrue(z.AddEntity(player,0,12));
                 var q=new System.Collections.Generic.Queue<(int x,int y)>();var previousCell=new System.Collections.Generic.Dictionary<(int,int),(int,int)>();q.Enqueue((0,12));previousCell[(0,12)]=(0,12);
                 while(q.Count>0&&!previousCell.ContainsKey((16,24)))
                 {var c=q.Dequeue();foreach(var n in CinderholdCompositionTests.Neighbors(c.x,c.y))if(z.InBounds(n.x,n.y)&&!previousCell.ContainsKey(n)&&!z.GetCell(n.x,n.y).BlocksMovement()){previousCell[n]=c;q.Enqueue(n);}}

@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
     public class SeedPart : Part
     {
         public override string Name => "Seed";
+        const string AdjacentPrefix = "PlantSeedAt|";
 
         /// <summary>
         /// Global factory — set once by GameBootstrap, read at plant
@@ -46,14 +47,28 @@ namespace CavesOfOoo.Core
                 // enforcement; this keeps the row out of the menu.
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null && IsCarried(e.GetParameter<Entity>("Actor")))
-                    actions.AddAction("Plant", "plant", "PlantSeed", 'p', 20);
+                {
+                    actions.AddAction("Plant", "plant here", "PlantSeed", 'p', 20);
+                    var actor = e.GetParameter<Entity>("Actor"); var zone = e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone;
+                    if (WorldResourceActions.ActorCurrent(actor, zone))
+                    {
+                        var origin = zone.GetEntityPosition(actor);
+                        for (int y = origin.y - 1; y <= origin.y + 1; y++) for (int x = origin.x - 1; x <= origin.x + 1; x++)
+                        {
+                            var bed = zone.GetCell(x, y);
+                            if ((x == origin.x && y == origin.y) || !CultivatedSoilPart.IsCultivated(zone, bed) || bed.HasObjectWithPart<CropPart>()) continue;
+                            actions.AddAction("PlantAdjacent", "plant prepared bed (" + x + "," + y + ")",
+                                AdjacentPrefix + Uri.EscapeDataString(zone.ZoneID) + "|" + x + "|" + y, '\0', 19);
+                        }
+                    }
+                }
                 return true;
             }
 
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
-                if (command != "PlantSeed") return true;
+                if (command != "PlantSeed" && command?.StartsWith(AdjacentPrefix, StringComparison.Ordinal) != true) return true;
 
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
@@ -90,6 +105,16 @@ namespace CavesOfOoo.Core
             }
 
             var pos = zone.GetEntityPosition(actor);
+            var actorCell = zone.GetEntityCell(actor);
+            bool adjacent = e.GetStringParameter("Command")?.StartsWith(AdjacentPrefix, StringComparison.Ordinal) == true;
+            if (adjacent)
+            {
+                var fields = e.GetStringParameter("Command").Split('|');
+                if (fields.Length != 4 || WorldResourceActions.Decode(fields[1]) != zone.ZoneID
+                    || !int.TryParse(fields[2], out int x) || !int.TryParse(fields[3], out int y)
+                    || !WorldResourceActions.ActorCurrent(actor, zone) || SpatialQuery.DistanceToCell(zone, actor, x, y) > 1) return false;
+                pos = (x, y);
+            }
             if (pos.x < 0)
             {
                 Reject(actor, "actor_not_in_zone", "There is no ground here to plant in.");
@@ -121,7 +146,7 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            if (RequireCultivatedSoil && !CultivatedSoilPart.IsCultivated(zone, cell))
+            if ((RequireCultivatedSoil || adjacent) && !CultivatedSoilPart.IsCultivated(zone, cell))
             {
                 Reject(actor, "not_cultivated", "This seed needs a prepared bed of tilled soil.");
                 return false;
@@ -156,11 +181,11 @@ namespace CavesOfOoo.Core
                     || (stack?.StackCount ?? 1) != count || seed.GetPart<PhysicsPart>() != seedPhysics
                     || seedPhysics == null || seedPhysics.ParentEntity != seed || seedPhysics.InInventory != actor
                     || seedPhysics.Equipped != null || seed.SpatialZone != null
-                    || actor.SpatialZone != zone || zone.GetEntityCell(actor) != cell
-                    || !cell.Objects.Contains(actor) || CombatSystem.IsDeathHandled(actor)
+                    || actor.SpatialZone != zone || zone.GetEntityCell(actor) != actorCell
+                    || actorCell == null || !actorCell.Objects.Contains(actor) || SpatialQuery.DistanceToCell(zone, actor, cell.X, cell.Y) > 1 || CombatSystem.IsDeathHandled(actor)
                     || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
                     || cell.HasObjectWithPart<CropPart>() || BarrenGroundRules.IsBarren(cell)) return false;
-                if (requireSoil && (!ReferenceEquals(SettlementRuntime.ActiveZone, zone) || !CultivatedSoilPart.IsCultivated(zone, cell))) return false;
+                if ((requireSoil || adjacent) && (!ReferenceEquals(SettlementRuntime.ActiveZone, zone) || !CultivatedSoilPart.IsCultivated(zone, cell))) return false;
                 foreach (var ground in cell.Objects)
                     if (ground.HasTag("Terrain") && ground.HasTag("Plantable")) return true;
                 return false;

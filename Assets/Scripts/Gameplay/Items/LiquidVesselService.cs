@@ -16,12 +16,13 @@ namespace CavesOfOoo.Core
         public const string PoolBlueprint = "PouredLiquidPool";
         public const int PouredCoatingTurns = 4;
         const string FillPrefix = "FillLiquidVessel|";
+        const string OnePrefix = "PourOneLiquidVessel|";
         const string PourPrefix = "PourLiquidVessel|";
 
         /// <summary>Recognizes this Part's two encoded inventory commands.</summary>
         public static bool IsLiquidCommand(string command) => command != null
             && (command.StartsWith(FillPrefix, StringComparison.Ordinal)
-                || command.StartsWith(PourPrefix, StringComparison.Ordinal));
+                || command.StartsWith(PourPrefix, StringComparison.Ordinal) || command.StartsWith(OnePrefix, StringComparison.Ordinal));
 
         /// <summary>Read-only menu projection of carried contents and physically
         /// nearby pools. Every selected identity/position is checked again when used.</summary>
@@ -51,6 +52,9 @@ namespace CavesOfOoo.Core
                 actions.AddAction("PourLiquid", "pour " + name + " " + direction.Item3 + " (" + part.Volume + ")",
                     PourPrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
                     + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 18);
+                actions.AddAction("PourOneLiquid", "pour one " + name + " " + direction.Item3,
+                    OnePrefix + Encode(part.LiquidId) + "|" + part.Volume.ToString(CultureInfo.InvariantCulture)
+                    + "|" + Encode(zone.ZoneID) + "|" + x.ToString(CultureInfo.InvariantCulture) + "|" + y.ToString(CultureInfo.InvariantCulture), '\0', 17);
             }
         }
 
@@ -141,12 +145,13 @@ namespace CavesOfOoo.Core
                 || !int.TryParse(bits[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out int x)
                 || !int.TryParse(bits[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out int y))
                 return Reject(actor, vessel, command, "invalid-selection");
-            string liquidId = part.LiquidId; int amount = part.Volume;
+            string liquidId = part.LiquidId; int before = part.Volume; int amount = command.StartsWith(OnePrefix, StringComparison.Ordinal) ? Math.Min(1, before) : before;
             if (amount <= 0) return Reject(actor, vessel, command, "empty");
-            if (Decode(bits[1]) != liquidId || expectedVolume != amount || Decode(bits[3]) != zone.ZoneID)
+            if (Decode(bits[1]) != liquidId || expectedVolume != before || Decode(bits[3]) != zone.ZoneID)
                 return Reject(actor, vessel, command, "contents-or-zone-changed");
             string invalid = ValidDestination(zone, actor, liquidId, x, y, out Entity destination);
             if (invalid != null) return Reject(actor, vessel, command, invalid);
+            var irrigation = CropPourIrrigation.Capture(zone, x, y, liquidId);
             bool created = destination == null;
             if (created)
             {
@@ -160,7 +165,7 @@ namespace CavesOfOoo.Core
                 // Factory callbacks are allowed to run arbitrary game code. Recheck
                 // the captured actor, contents and destination before paying.
                 if (Validate(actor, vessel, zone, out var current) != null || !ReferenceEquals(current, part)
-                    || part.Volume != amount || part.LiquidId != liquidId
+                    || part.Volume != before || part.LiquidId != liquidId
                     || ValidDestination(zone, actor, liquidId, x, y, out var appeared) != null || appeared != null)
                     return Reject(actor, vessel, command, "state-changed-during-preparation");
             }
@@ -173,7 +178,7 @@ namespace CavesOfOoo.Core
             int previousCoating = zone.TileState.CoatingTurns(x, y, liquidId);
             transaction.Do(null, () =>
             {
-                part.Volume = amount; part.LiquidId = liquidId;
+                part.Volume = before; part.LiquidId = liquidId;
                 // Removal must see the staged liquid identity to erase its pool
                 // projection, then restore any older independent coating lease.
                 if (created && recipient.SpatialZone == zone)
@@ -190,7 +195,8 @@ namespace CavesOfOoo.Core
                 if (recipient.GetPart<RenderPart>() is RenderPart render) render.DisplayName = LiquidName(liquidId) + " puddle";
                 if (!zone.AddEntity(recipient, x, y)) return Reject(actor, vessel, command, "placement-refused");
             }
-            part.Volume = 0; part.LiquidId = "";
+            part.Volume = before - amount; if (part.Volume == 0) part.LiquidId = "";
+            irrigation?.Apply(actor, zone, recipient, transaction);
             transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, x, y, liquidId));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselPoured", actor, vessel,
                 new { destination = recipient.ID, liquidId, amount, x, y }));
@@ -231,6 +237,7 @@ namespace CavesOfOoo.Core
                 || source.GetPart<PhysicsPart>()?.Takeable == true || source.GetPart<PhysicsPart>()?.InInventory != null
                 || source.GetPart<PhysicsPart>()?.Equipped != null || SpatialQuery.Distance(zone, actor, source) > 1) return "source-unavailable";
             if (LiquidRegistry.Get(pool.LiquidId) == null) return "unknown-liquid";
+            if (pool.LiquidId == "water" && !LiquidSourcePhase.CanDrawWater(zone, source)) return "frozen-water";
             if (vessel.Volume > 0 && vessel.LiquidId != pool.LiquidId) return "unlike-liquids";
             if (!LiquidSourceSafety.IsUnmixedPool(zone, source)) return "mixed-source";
             return null;

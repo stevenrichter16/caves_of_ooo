@@ -138,6 +138,7 @@ namespace CavesOfOoo.Tests
                     if(hasCrop)
                     {
                         var owner=StarterSpell3DCaptureFixture.Prop(f.Zone,"rain-crop",12,10);
+                        owner.SetTag("Crop"); owner.GetPart<PhysicsPart>().Takeable=false;
                         crop=new CropPart(); owner.AddPart(crop);
                     }
                     var context=StarterSpell3DCaptureFixture.Context(f.Zone,caster);

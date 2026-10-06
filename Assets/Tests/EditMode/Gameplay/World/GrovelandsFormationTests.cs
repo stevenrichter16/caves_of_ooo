@@ -382,17 +382,25 @@ namespace CavesOfOoo.Tests
             var walker = new Entity { ID = "walker", BlueprintName = "Walker" };
             walker.Tags["Creature"] = "";
             walker.AddPart(new RenderPart { DisplayName = "walker" });
+            walker.AddPart(new PhysicsPart { Solid = false });
+            var zone = new Zone("seep-drink");
+            Assert.IsTrue(zone.AddEntity(walker, 10, 10));
+            Assert.IsTrue(zone.AddEntity(seep, 11, 10));
+            int waterBefore = seep.GetPart<LiquidPoolPart>().Volume;
             walker.ApplyEffect(new ParchedEffect(), null, null);
             Assert.IsTrue(walker.HasEffect<ParchedEffect>(), "setup: parched");
 
             var ev = GameEvent.New("InventoryAction");
             ev.SetParameter("Command", "DrawWaterAtWell");
             ev.SetParameter("Actor", (object)walker);
+            ev.SetParameter("Zone", zone);
             seep.FireEvent(ev);
+            Assert.IsTrue(ev.Handled);
             ev.Release();
 
             Assert.IsFalse(walker.HasEffect<ParchedEffect>(),
                 "\"Drink at the seep. It is for you.\" — and it works");
+            Assert.AreEqual(waterBefore - 1, seep.GetPart<LiquidPoolPart>().Volume);
         }
 
         [Test]

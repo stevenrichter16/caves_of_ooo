@@ -32,7 +32,10 @@ namespace CavesOfOoo.Core
             // free rest, gated only on nearby hostiles (RestSystem).
             if (e.ID == "GetInventoryActions")
             {
-                if (!AllowRest) return true;
+                var queryingActor = e.GetParameter<Entity>("Actor");
+                var queryingZone = e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone;
+                CampfireWorkActions.AddActions(queryingActor, this, queryingZone, e.GetParameter<InventoryActionList>("Actions"));
+                if (!AllowRest || !WorldResourceActions.Nearby(queryingActor, ParentEntity, queryingZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);
                 actions?.AddAction("RestNextBand", "rest until the next time of day", "RestUntilNextBand", 's', 19);
@@ -41,6 +44,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "InventoryAction")
             {
                 string command = e.GetStringParameter("Command");
+                if (CampfireWorkActions.IsCommand(command))
+                {
+                    if (!CampfireWorkActions.TryAct(e.GetParameter<Entity>("Actor"), this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+                        command, e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
+                    e.Handled = true; return false;
+                }
                 if (command != "RestAtCampfire" && command != "RestUntilNextBand") return true;
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
@@ -53,6 +62,13 @@ namespace CavesOfOoo.Core
                 }
 
                 Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+                if (!WorldResourceActions.Nearby(actor, ParentEntity, zone) || ParentEntity.GetPart<CampfirePart>() != this
+                    || ParentEntity.GetPart<PhysicsPart>().Takeable)
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record("furniture", "RestBlocked", actor: actor, target: ParentEntity,
+                        payload: new { site = "campfire", reason = "invalid_rest_context" });
+                    return true;
+                }
                 if (command == "RestUntilNextBand")
                 {
                     if (SpatialQuery.Distance(zone, actor, ParentEntity) > 1)
@@ -62,9 +78,9 @@ namespace CavesOfOoo.Core
                             payload: new { site = "campfire", reason = "out_of_reach" });
                         return true;
                     }
-                    if (!RestSystem.TryRestUntilNextBand(actor, zone, "campfire", out _)) return true;
+                    if (!RestSystem.TryRestUntilNextBandWithTransaction(actor, zone, "campfire", out _, e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
                 }
-                else RestSystem.TryRest(actor, zone, "campfire", out _);
+                else if (!RestSystem.TryRestWithTransaction(actor, zone, "campfire", out _, e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
                 e.Handled = true;
                 return false;
             }

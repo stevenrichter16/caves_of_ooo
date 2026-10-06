@@ -1,5 +1,6 @@
 using System;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -27,11 +28,17 @@ namespace CavesOfOoo.Core
         /// furniture/RestBlocked with the reason, mutate nothing.
         /// </summary>
         public static bool TryRest(Entity actor, Zone zone, string site, out string blockReason)
-            => TryRestFor(actor, zone, site, RestClockTurns, out blockReason);
+            => TryRestFor(actor, zone, site, RestClockTurns, out blockReason, null);
+
+        internal static bool TryRestWithTransaction(Entity actor, Zone zone, string site, out string blockReason, InventoryTransaction transaction)
+            => TryRestFor(actor, zone, site, RestClockTurns, out blockReason, transaction);
 
         /// <summary>Rest to the next 300-tick boundary, including a full band
         /// when already on a boundary. Retains the ordinary hostile/heal rules.</summary>
         public static bool TryRestUntilNextBand(Entity actor, Zone zone, string site, out string blockReason)
+            => TryRestUntilNextBandWithTransaction(actor, zone, site, out blockReason, null);
+
+        internal static bool TryRestUntilNextBandWithTransaction(Entity actor, Zone zone, string site, out string blockReason, InventoryTransaction transaction)
         {
             var clock = TurnManager.Active;
             int tick = clock?.TickCount ?? -1;
@@ -45,24 +52,28 @@ namespace CavesOfOoo.Core
                     payload: new { site, reason = "invalid_rest_context" });
                 return false;
             }
-            return TryRestFor(actor, zone, site, advance, out blockReason);
+            return TryRestFor(actor, zone, site, advance, out blockReason, transaction);
         }
 
-        private static bool TryRestFor(Entity actor, Zone zone, string site, int clockAdvance, out string blockReason)
+        private static bool TryRestFor(Entity actor, Zone zone, string site, int clockAdvance, out string blockReason, InventoryTransaction transaction)
         {
             blockReason = null;
-            if (actor == null)
-            {
-                blockReason = "no actor";
-                return false;
-            }
-
-            if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hpBefore && hpBefore.Value <= 0))
+            if (actor != null && (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hpBefore && hpBefore.Value <= 0)))
             {
                 blockReason = "actor is dead";
                 MessageLog.Add("You cannot rest while dead.");
                 Diag.Record("furniture", "RestBlocked", actor: actor,
                     payload: new { site, reason = "actor_dead" });
+                return false;
+            }
+            var clock = TurnManager.Active;
+            if (!WorldResourceActions.ActorCurrent(actor, zone) || clock == null || clock.TickCount < 0
+                || (long)clock.TickCount + clockAdvance > int.MaxValue)
+            {
+                blockReason = "no valid resting place or clock";
+                MessageLog.Add("You cannot settle down here right now.");
+                Diag.Record("furniture", "RestBlocked", actor: actor,
+                    payload: new { site, reason = "invalid_rest_context" });
                 return false;
             }
 
@@ -81,28 +92,56 @@ namespace CavesOfOoo.Core
             }
 
             int healed = 0;
-            var hp = actor.GetStat("Hitpoints");
-            if (hp != null)
+            void Heal()
             {
-                int before = hp.Value;
-                hp.BaseValue = hp.Max;
-                healed = hp.Value - before;
+                var hp = actor.GetStat("Hitpoints");
+                if (hp != null) { int before = hp.Value; hp.BaseValue = hp.Max; healed = hp.Value - before; }
             }
-
-            actor.GetPart<StatusEffectsPart>()?.RemoveEffect<BleedingEffect>();
-
-            TurnManager.Active?.AdvanceClock(clockAdvance);
-
-            MessageLog.Add(healed > 0
-                ? $"You rest by the {site}. ({healed} HP restored; time passes.)"
-                : $"You rest by the {site}. Time passes.");
-
-            if (Diag.IsChannelEnabled("furniture"))
+            void CureBleeding() => actor.GetPart<StatusEffectsPart>()?.RemoveEffect<BleedingEffect>();
+            void Report()
             {
-                Diag.Record(category: "furniture", kind: "Rested",
-                    actor: actor,
+                MessageLog.Add(healed > 0
+                    ? $"You rest by the {site}. ({healed} HP restored; time passes.)"
+                    : $"You rest by the {site}. Time passes.");
+                Diag.Record("furniture", "Rested", actor: actor,
                     payload: new { site, healed, clockAdvanced = clockAdvance });
             }
+            if (transaction == null)
+            {
+                // Direct world/conversation callers retain their synchronous contract.
+                // PlayerBedService owns its reservation across these callbacks.
+                Heal(); CureBleeding(); clock.AdvanceClock(clockAdvance); Report();
+                return true;
+            }
+            if (!transaction.TryClaim(actor, actor, "Rest"))
+            {
+                blockReason = "another action is already in progress";
+                Diag.Record("furniture", "RestBlocked", actor: actor,
+                    payload: new { site, reason = "rest_in_progress" });
+                return false;
+            }
+            // An outer inventory action may still refuse or throw. Publish its rest
+            // only after payment commits. Separate observers keep a removal listener
+            // from suppressing the already-committed clock advance or final receipt.
+            bool benefitsAllowed = false;
+            transaction.AfterCommit(() =>
+            {
+                // The outer action may have killed the actor after admission. One
+                // commit-time snapshot keeps every benefit and receipt consistent;
+                // the accepted rest still pays its already-committed world time.
+                benefitsAllowed = !CombatSystem.IsDeathHandled(actor)
+                    && (!(actor.GetStat("Hitpoints") is Stat committedHp) || committedHp.Value > 0);
+                clock.AdvanceClock(clockAdvance);
+            });
+            transaction.AfterCommit(() => { if (benefitsAllowed) Heal(); });
+            transaction.AfterCommit(() => { if (benefitsAllowed) CureBleeding(); });
+            transaction.AfterCommit(() =>
+            {
+                if (benefitsAllowed) { Report(); return; }
+                MessageLog.Add("Your rest is interrupted. Time passes.");
+                Diag.Record("furniture", "RestInterrupted", actor: actor,
+                    payload: new { site, reason = "actor_dead", clockAdvanced = clockAdvance });
+            });
             return true;
         }
 
@@ -121,9 +160,7 @@ namespace CavesOfOoo.Core
 
                 var cell = zone.GetEntityCell(other);
                 if (cell == null) continue;
-                int dx = cell.X - actorCell.X; if (dx < 0) dx = -dx;
-                int dy = cell.Y - actorCell.Y; if (dy < 0) dy = -dy;
-                if ((dx > dy ? dx : dy) <= HostileScanRadius)
+                if (SpatialQuery.Distance(zone, actor, other) <= HostileScanRadius)
                     return other;
             }
             return null;

@@ -21,7 +21,8 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
-                if (!IsUsable) return true;
+                var queryingActor = e.GetParameter<Entity>("Actor");
+                if (!WellDrinkingService.Available(queryingActor, this, e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone)) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 actions?.AddAction("Draw water", "draw water", "DrawWaterAtWell", 'w', 20);
                 return true;
@@ -30,32 +31,8 @@ namespace CavesOfOoo.Core
             {
                 if (e.GetStringParameter("Command") != "DrawWaterAtWell") return true;
                 var actor = e.GetParameter<Entity>("Actor");
-                if (actor == null) return true;
-                if (!IsUsable)
-                {
-                    if (actor.HasTag("Player")) MessageLog.Add("The damaged well cannot draw water. Examine it to see what needs repair.");
-                    CavesOfOoo.Diagnostics.Diag.Record("furniture", "WaterDrawRejected", actor, ParentEntity, new { reason = "structural-fault" });
-                    return true;
-                }
-
-                bool wasParched = actor.HasEffect<ParchedEffect>();
-                if (wasParched)
-                {
-                    actor.GetPart<StatusEffectsPart>()?.RemoveEffect<ParchedEffect>();
-                    MessageLog.Add("You draw cool water and drink until the parch lets go.");
-                }
-                else
-                {
-                    MessageLog.Add("You drink. The well water is cool.");
-                }
-
-                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("furniture"))
-                {
-                    CavesOfOoo.Diagnostics.Diag.Record(
-                        category: "furniture", kind: "WaterDrawn",
-                        actor: actor, target: ParentEntity,
-                        payload: new { curedParched = wasParched });
-                }
+                if (!WellDrinkingService.TryDrink(actor, this, e.GetParameter<Zone>("Zone") ?? actor?.SpatialZone ?? SettlementRuntime.ActiveZone,
+                    e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction"))) return true;
                 e.Handled = true;
                 return false;
             }

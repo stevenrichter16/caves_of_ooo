@@ -127,17 +127,19 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Adversarial_Rest_NullZone_RestsWithoutScan()
+        public void Adversarial_Rest_NullZone_RefusesWithoutHealing()
         {
-            // Contract: no zone = no hostile scan possible; rest proceeds
-            // (conversation-driven inn rest with no active zone).
+            // Rest requires a current physical place and hostile scan. A missing
+            // zone cannot provide the world context for a paid recovery action.
             var actor = new Entity { ID = "a" };
             actor.AddPart(new RenderPart { DisplayName = "a" });
             var hp = new Stat { Owner = actor, Name = "Hitpoints", BaseValue = 5, Min = 0, Max = 30 };
             actor.Statistics["Hitpoints"] = hp;
 
-            Assert.IsTrue(RestSystem.TryRest(actor, null, "void", out _));
-            Assert.AreEqual(30, actor.GetStat("Hitpoints").Value);
+            int before = TurnManager.Active?.TickCount ?? 0;
+            Assert.IsFalse(RestSystem.TryRest(actor, null, "void", out _));
+            Assert.AreEqual(5, actor.GetStat("Hitpoints").Value);
+            Assert.AreEqual(before, TurnManager.Active?.TickCount ?? 0);
         }
 
         [Test]

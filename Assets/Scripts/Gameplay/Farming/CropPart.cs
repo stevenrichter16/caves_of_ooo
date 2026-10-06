@@ -95,11 +95,16 @@ namespace CavesOfOoo.Core
                 CropWateringService.AddActions(queryingActor, ParentEntity,
                     e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone,
                     e.GetParameter<InventoryActionList>("Actions"));
+                var queryingZone = e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone;
+                if (FieldworkActions.CanClear(queryingActor, this, queryingZone))
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("ClearCrop",
+                        LocalGatheringClaims.WarningFor(queryingActor, ParentEntity, queryingZone) != null ? "clear young crop (Nella's tied reserve; no yield)" : "clear young crop (no yield)", "ClearCrop", '\0', 18);
                 if (HarvestAtMaturity && GrowthStage == 2)
                 {
                     bool claimed = LocalGatheringClaims.WarningFor(e.GetParameter<Entity>("Actor"), ParentEntity,
                         e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone) != null;
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", claimed ? "harvest (Nella's tied reserve)" : "harvest", "HarvestCultivatedCrop", 'h', 20);
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("GatherCrop", claimed ? "gather into pack (Nella's tied reserve)" : "gather into pack", "GatherCrop", '\0', 19);
                 }
                 return true;
             }
@@ -111,13 +116,19 @@ namespace CavesOfOoo.Core
                 e.Handled = true;
                 return false;
             }
-            if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "HarvestCultivatedCrop") return true;
+            if (e.ID == "InventoryAction" && e.GetStringParameter("Command") == "ClearCrop")
+            {
+                if (!FieldworkActions.Clear(e.GetParameter<Entity>("Actor"), this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+                    e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                e.Handled = true; return false;
+            }
+            if (e.ID != "InventoryAction" || (e.GetStringParameter("Command") != "HarvestCultivatedCrop" && e.GetStringParameter("Command") != "GatherCrop")) return true;
             var actor = e.GetParameter<Entity>("Actor");
             if (actor == null) return true;
             var zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
             if (TurnManager.Active != null && !CropTime.Reconcile(this, zone, WorldClock.CurrentTick)) return true;
             if (!CropYieldService.TryRelease(this, zone,
-                actor, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                actor, e.GetParameter<InventoryTransaction>("InventoryTransaction"), e.GetStringParameter("Command") == "GatherCrop")) return true;
             e.Handled = true;
             return false;
         }

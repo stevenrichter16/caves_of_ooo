@@ -48,6 +48,8 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(contact,z.GetEntityCell(stove),"This fixture must exercise the actual authored overlap, not a synthetic empty cell.");
             Assert.IsTrue(contact.Objects.Contains(stove)&&contact.Objects.Contains(crate));
             Assert.IsNotNull(MorrowfastSceneRuntime.BlockingOwner(contact),"The footprint override must actually be eligible before its local-owner guard.");
+            Assert.IsFalse(WorldInteractionSystem.GatherActions(stove,actor).Any(a=>a.Command=="RestAtCampfire"),"A remote stove must not offer nearby rest.");
+            var approach=MorrowfastTestWorld.Approach(z,actor,stove);Assert.IsTrue(z.MoveEntity(actor,approach.x,approach.y));
             var go=new GameObject("Morrowfast overlap input");var menu=new GameObject("Morrowfast overlap menu");
             try {
                 var input=go.AddComponent<InputHandler>();input.PlayerEntity=actor;input.CurrentZone=z;input.WorldActionMenuUI=menu.AddComponent<WorldActionMenuUI>();
