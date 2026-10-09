@@ -1,0 +1,37 @@
+{
+    "runId": "58eedb02de284d98bf9516ef609dd344",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: journal projects exact newly heard place\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:436 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<ResidentNearbyReport>d__265.MoveNext () [0x0051d] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeResidents.cs:186 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__201.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:456 ",
+    "canVerify": "Isolated ordinary seed64 player; actual generated seed keeper and cook. Native dialogue/trade purchases, ordinary starter-book reading, seed planting, Conjure Rain, paid waiting, visible crop stage, finite produce pickup, cooking, eating and a real unowned-bed action. Exact source stock and purses are observed; screenshots require visual inspection.",
+    "cannotVerify": "Two explicitly logged travel shortcuts reach real generated resident approaches. Subsequent movement and every action use ordinary keys with the scheduler active. No source grants, altered balances, reseeding, cooldown resets or forced outcomes. Bed sleep may truthfully refuse if the bed is already reserved/in use or a real hostile is near; correlated diagnostics record the actual outcome. This finite route does not prove natural discovery, long-term economics, all-site frequency or subjective visual quality. Core tests cover refusal, stock persistence and crop timing separately.",
+    "mode": "native-generated-everyday-residents",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.11.8.0@20,9 generated seed keeper; actual opening stock and crops unchanged"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "FAIL resident_generated_plot",
+        "PASS resident_remembered_nearby",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/58eedb02de284d98bf9516ef609dd344/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/58eedb02de284d98bf9516ef609dd344/residents-01-seed-keeper-plot.png"
+    ],
+    "descriptions": [],
+    "cases": 4,
+    "failures": 3,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 5.094983699999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

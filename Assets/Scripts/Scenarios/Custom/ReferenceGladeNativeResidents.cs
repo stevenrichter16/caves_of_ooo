@@ -149,7 +149,7 @@ namespace CavesOfOoo.Scenarios.Custom
         private IEnumerator ResidentNearbyReport(Entity resident)
         {
             var actor = _input.PlayerEntity;
-            var before = SpreadDiscoveryNotes.Read(actor).ToArray();
+            var before = SpreadDiscoveryNotes.Read(actor, BiomeManager.Exploration?.WorldKey).ToArray();
             int cached = BiomeManager.CachedZoneCount, tick = _input.TurnManager.TickCount;
             int drams = TradeSystem.GetDrams(actor);
             yield return ResidentWorldAction(resident, "Chat");
@@ -160,11 +160,11 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(ConversationManager.CurrentNode?.ID == "Nearby", "native choice reaches nearby node");
             var reportChoices = ConversationManager.VisibleChoices.Select((c, i) => (choice: c, index: i))
                 .Where(p => p.choice.Actions?.Any(a => a.Key == SpreadDiscoveryReports.ActionName) == true).ToArray();
-            Require(reportChoices.Length > 0 && reportChoices.Length <= 2, "one or two bounded historical reports");
+            Require(reportChoices.Length > 0 && reportChoices.Length <= 3, "two nearby reports and at most one regional lead");
             Require(reportChoices.All(p => p.choice.Text.Contains("unconfirmed"))
-                && SpreadDiscoveryNotes.Read(actor).SequenceEqual(before), "hearing reports alone does not grant notes");
+                && SpreadDiscoveryNotes.Read(actor, BiomeManager.Exploration?.WorldKey).SequenceEqual(before), "hearing reports alone does not grant notes");
             yield return ResidentDialogueChoice(reportChoices[0].index);
-            var after = SpreadDiscoveryNotes.Read(actor).ToArray();
+            var after = SpreadDiscoveryNotes.Read(actor, BiomeManager.Exploration?.WorldKey).ToArray();
             var added = after.Except(before).ToArray();
             Check("resident_remembered_nearby", added.Length == 1 && after.Length == before.Length + 1
                 && added[0].Contains("unconfirmed when heard") && added[0].Contains(resident.GetPart<RenderPart>().DisplayName)
@@ -185,7 +185,7 @@ namespace CavesOfOoo.Scenarios.Custom
             { Require(i < 8, "bounded native notes navigation"); yield return Tap(Key.PageDown); }
             string joined = string.Join(" ", lines);
             Check("resident_read_travel_note", _input.QuestLogUI.NotesVisible && _input.QuestLogUI.NotesPage == page
-                && joined.Contains(note) && SpreadDiscoveryNotes.Read(actor).SequenceEqual(after)
+                && joined.Contains(note) && SpreadDiscoveryNotes.Read(actor, BiomeManager.Exploration?.WorldKey).SequenceEqual(after)
                 && BiomeManager.CachedZoneCount == cached && _input.TurnManager.TickCount == tick);
             yield return Capture("residents-01b-remembered-field-directions");
             yield return ResidentCloseMenus();

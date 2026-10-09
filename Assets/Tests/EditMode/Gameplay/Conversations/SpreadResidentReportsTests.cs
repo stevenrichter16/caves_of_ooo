@@ -47,22 +47,22 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("SpreadSeedKeeper")][TestCase("SpreadWaysideCook")]
-        public void ResidentsOfferTwoDifferentNearbyPlacesWithoutCreatingGraphsOrNotes(string blueprint)
+        public void ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes(string blueprint)
         {
             using (var f = new Fixture(blueprint))
             {
                 int count = f.Manager.CachedZoneCount;
-                Assert.AreEqual(2, f.Reports.Length);
-                Assert.AreEqual(2, f.Reports.Select(c => c.Actions.Single(a => a.Key == SpreadDiscoveryReports.ActionName).Value.Split('|')[0]).Distinct().Count());
+                Assert.AreEqual(3, f.Reports.Length);
+                Assert.AreEqual(3, f.Reports.Select(c => c.Actions.Single(a => a.Key == SpreadDiscoveryReports.ActionName).Value.Split('|')[0]).Distinct().Count());
                 foreach (var row in f.Reports) { Assert.That(row.Text, Does.Contain("unconfirmed")); Assert.LessOrEqual(row.Text.Length, 52); }
-                Assert.IsEmpty(SpreadDiscoveryNotes.Read(f.Player));
+                Assert.IsEmpty(SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey));
                 Assert.IsEmpty(StoryletPart.Current.GetActiveQuests());
                 Assert.That(ConversationManager.CurrentText, Does.Contain("unconfirmed when heard"));
                 Assert.True(f.Remember(f.Reports[0]));
-                Assert.AreEqual(1, SpreadDiscoveryNotes.Read(f.Player).Count);
+                Assert.AreEqual(1, SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey).Count);
                 Assert.AreEqual(count, f.Manager.CachedZoneCount);
-                f.Refresh(); Assert.AreEqual(2, f.Reports.Length);
-                Assert.True(f.Remember(f.Reports[0])); Assert.AreEqual(1, SpreadDiscoveryNotes.Read(f.Player).Count);
+                f.Refresh(); Assert.AreEqual(3, f.Reports.Length);
+                Assert.True(f.Remember(f.Reports[0])); Assert.AreEqual(1, SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey).Count);
             }
         }
 
@@ -71,7 +71,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new Fixture())
             {
-                Assert.AreEqual(2, f.Reports.Length); var offer = f.Reports[0];
+                Assert.AreEqual(3, f.Reports.Length); var offer = f.Reports[0];
                 if (change == "node") ConversationManager.CurrentNode = new NodeData { ID = "Start" };
                 if (change == "blueprint") f.Speaker.BlueprintName = "Villager";
                 if (change == "dead") f.Speaker.GetStat("Hitpoints").BaseValue = 0;
@@ -80,7 +80,7 @@ namespace CavesOfOoo.Tests
                 if (change == "plan")
                     typeof(OverworldZoneManager).GetProperty("Exploration", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                         .SetValue(f.Manager, OverworldZoneManager.CreateDetached(null, 64, true).Exploration);
-                Assert.False(f.Remember(offer)); Assert.IsEmpty(SpreadDiscoveryNotes.Read(f.Player));
+                Assert.False(f.Remember(offer)); Assert.IsEmpty(SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey));
             }
         }
 
@@ -88,23 +88,23 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new Fixture())
             {
-                Assert.AreEqual(2, f.Reports.Length);
+                Assert.AreEqual(3, f.Reports.Length);
                 string before = ConversationManager.CurrentText;
                 var offer = f.Reports[0]; Assert.True(f.Remember(offer));
-                string original = SpreadDiscoveryNotes.Read(f.Player).Single();
-                var key = f.Player.Properties.Keys.Single(k => k.StartsWith(SpreadDiscoveryNotes.Prefix, StringComparison.Ordinal));
+                string original = SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey).Single();
+                var key = f.Player.Properties.Keys.Single(k => k.StartsWith(SpreadDiscoveryNotes.ExpeditionPrefix, StringComparison.Ordinal));
                 string wire = f.Player.Properties[key];
                 using var stream = new MemoryStream();
                 SaveGraphSerializer.SaveEntityBody(f.Player, new SaveWriter(stream)); stream.Position = 0;
                 var copy = new Entity(); SaveGraphSerializer.LoadEntityBody(copy, new SaveReader(stream, null));
-                CollectionAssert.AreEqual(SpreadDiscoveryNotes.Read(f.Player), SpreadDiscoveryNotes.Read(copy));
+                CollectionAssert.AreEqual(SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey), SpreadDiscoveryNotes.Read(copy, f.Manager.Exploration.WorldKey));
                 var remote = new Zone("Overworld.11.9.0"); f.Manager.CachedZones[remote.ZoneID] = remote;
                 var ruin = new Entity { BlueprintName = "DestroyedStill" }; Assert.True(remote.AddEntity(ruin, 5, 5));
                 f.Refresh(); Assert.AreEqual(before, ConversationManager.CurrentText);
-                Assert.AreEqual(original, SpreadDiscoveryNotes.Read(f.Player).Single());
+                Assert.AreEqual(original, SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey).Single());
                 Assert.AreEqual(wire, f.Player.Properties[key]);
                 copy.Properties[key] = "{\"Version\":1,\"Family\":\"field-alembic\"}";
-                Assert.IsEmpty(SpreadDiscoveryNotes.Read(copy));
+                Assert.IsEmpty(SpreadDiscoveryNotes.Read(copy, f.Manager.Exploration.WorldKey));
             }
         }
 

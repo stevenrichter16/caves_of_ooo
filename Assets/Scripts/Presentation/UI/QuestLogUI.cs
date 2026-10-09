@@ -89,7 +89,15 @@ namespace CavesOfOoo.Rendering
             _noteLines.Clear();
             AppendNotes(RegionalTravelNotes.Read(StoryletPart.LocalPlayer));
             AppendNotes(RegionalSituationNotes.Read(StoryletPart.LocalPlayer));
-            AppendNotes(SpreadDiscoveryNotes.Read(StoryletPart.LocalPlayer));
+            var player = StoryletPart.LocalPlayer;
+            var zone = player?.SpatialZone;
+            var manager = WorldLocationContext.For(zone);
+            // Current player graph supplies identity; opening a journal never
+            // resolves a destination or manufactures an old world's key.
+            string worldKey = zone != null && manager?.CachedZones != null
+                && manager.CachedZones.TryGetValue(zone.ZoneID, out var current) && ReferenceEquals(current, zone)
+                && zone.GetEntityCell(player) != null ? manager.Exploration?.WorldKey : null;
+            AppendNotes(SpreadDiscoveryNotes.Read(player, worldKey));
             NotesPage=Mathf.Clamp(NotesPage,0,Mathf.Max(0,(_noteLines.Count-1)/NotesLinesPerPage));
         }
 

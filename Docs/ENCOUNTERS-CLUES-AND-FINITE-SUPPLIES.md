@@ -1,0 +1,160 @@
+# Encounters, expedition clues and finite opponent supplies
+
+Status: design prepared during native Sodden art verification, 2026-10-08; native A/B RED recorded on 2026-10-09. **Milestones A/B are implemented; all 301 affected native checks pass. Milestone A ordinary Play8/8 and B ordinary Play7/7 passed. C–E remain planned.** This is the follow-on requested by the user after the regional visual pass. The implementation order below is deliberate; completed art and existing mechanics are not counted as new gameplay.
+
+## Prompts being acted on
+
+**Brainstorm:** Read the current game and the checked local reference investigation. Find situations in which two existing capabilities change one another's value. Name the player's information, choices, actual payment, consequences and reason to return. Credit implemented encounters and finite medicine. Prefer a few memorable ordinary-world decisions to new catalogues of items, enemies or verbs. Preserve quiet wilderness, native ownership and original CoO identities.
+
+**Design:** For the strongest situations, verify every source, acquisition route, AI perception and transaction boundary. Write independent, reversible milestones with exact scope, saved-world policy, meaningful drawbacks, player-readable clues, native acceptance/counterchecks and a real Play scenario. Correct attractive false premises before implementation. A clue cannot promise unobserved present stock; an enemy cannot conjure supplies or track a hidden player; combining two encounters cannot double their budget.
+
+**Implement:** Use this document and its two detailed source designs. For each milestone, write and run native failing tests, implement the smallest complete behavior, verify counters and adversarial scenarios, then exercise it in ordinary gameplay or explicitly label fixture evidence. Update the living document and commit the complete slice. Before pushing, fetch/rebase and push HEAD to main, preserving unrelated local changes. Fix significant findings; record nonblocking polish or balance questions without letting them displace visible gameplay work. Continue with the next milestone without requesting routine approval.
+
+## Goals and player outcomes
+
+1. A burning opponent visibly spends a real water supply and an action. The resulting wetness becomes a different vulnerability. Unspent supplies can become loot.
+2. Travel reports remember particular places rather than overwriting another destination of the same kind. One report points toward a real, useful equipment source and honestly describes uncertainty.
+3. At a few ordinary claimed banks, the existing cache creates a reason to engage with the existing territory rule. Passing through remains optional and safe routes remain possible.
+4. One wounded opponent spends a real freezing-cover supply to retreat. The cloud has its ordinary risks and the opponent loses sight of the player too.
+5. A placed hazard influences an opponent's actual route through the existing actor-specific navigation costs, with limits that preserve imperfect, readable behavior.
+
+These are reference-informed CoO designs, not copied Qud code, assets, text or creatures. The checked comparison is [QUD-ENGAGEMENT-AFTER-ITEM-UTILITY.md](QUD-ENGAGEMENT-AFTER-ITEM-UTILITY.md).
+
+## Verification sweep and corrections
+
+The detailed designs retain checked file/line citations and exact API contracts:
+
+- [Finite supply design](Verification/QudEngagementAfterItemUtility/FiniteSuppliesDesign.md): 25 source links, actual water and gas payloads, scheduler ownership, Flee perception, finite loot and two proposed native roles.
+- [Encounter and clue design](Verification/QudEngagementAfterItemUtility/EncounterClueDesign.md): 35 source links, receipt timing, territory geometry, cache tiers, manifest persistence, historical reports and actual equipment source.
+
+| Initial idea | Verified correction | Implementation decision |
+|---|---|---|
+| Add generic water skins to opponents | Waterskin starts empty; SunbladderShell already contains exactly one water. | Use one actual existing shell, with no independent stock counter or refill. |
+| AI needs a global bypass of player targeting rules | Self-dousing already uses physical current ownership and range, not player FOV. | Expose a narrow command seam; separate observer messages from AI perception. |
+| Veilpuff is harmless smoke | It produces real cryo-mist and four-turn opaque cover. | Preserve cold, first impact and allies; describe freezing cover and refuse unsafe throws. |
+| Retreat already respects last-seen targets | Kill stores a bounded observed location; Flee reads the hidden target's live cell. | Fix and save bounded retreat memory before shipping cover. |
+| Combine water and hunt by invoking both builders | Water requires RiverMeadow; hunt requires Fallow and an earlier captured cover receipt. | First compose an existing occupied bank and its real ordinary cache. |
+| Tier-1 crates can promise a steel weapon component | Their loot tables do not include ComponentAny. | Leave their stock unchanged; use the existing peat works for a reliable historical component lead. |
+| Assembly needs another forging station | Single weapons can already be assembled in the pack. | Explain real component family/drawbacks; do not invent a station gate. |
+| Expedition notes need a new quest tracker | Saved historical notes and revision-checked dialogue offers exist; keys are per family. | Extend that ledger to particular destinations, preserving old notes. |
+| All pathfinding ignores hazards | A* already reads TerrainNavigationWeight; direct local movement can bypass it. | Later connect only those local decisions to the existing weights. |
+
+Root spot-checks confirmed current Kill treatment-before-retreat order, Flee live-coordinate access, exact inventory-only FieldMedicine validation, and Sodden art/native journey boundaries. Recheck cited interfaces before each production slice and record any additional drift here.
+
+## Milestone A — an opponent spends emergency water
+
+**Scope.** Freshly authored cindercaller at the existing tempering shelter, Overworld.15.10.0 (corrected from the original12.10 assumption below). Preserve its existing species, equipment, attack and population budget. Give that one owner a real SunbladderShell and a saved opt-in tactical-supply Part. The Part queries literal inventory; it owns no ammunition number, cooldown refill or hidden immunity. Already-generated saved owner graphs stay literal. An eligible ungenerated destination in an older supported manifest can receive the enrichment on its first ordinary generation; this does not retrofit cached actors.
+
+**Behavior.** When genuinely burning, facing a current hostile and able to act, choose paid self-dousing before ordinary medicine, recovery or attack. Invoke the existing inventory transaction using the actual owned source and target. A successful use consumes one water, keeps the now-empty shell, removes the ordinary flame, cools through the existing mechanic and leaves Wet. It replaces the whole action. Refusal preserves fallback behavior; never dispatch a second BeginTakeAction or charge energy twice.
+
+**Readability.** Existing self-use motion plus an actor-named, observer-visible message. Examine describes the actual supply and its empty state. Offscreen FOV controls feedback only, never whether the NPC can use its own item. Keep failure diagnostics separate from player refusal text. Avoid a broad unrelated medicine-message rewrite unless a concrete tested shared seam requires it.
+
+**Native gates.** Whole-goal RED for exact one-water cost, unchanged shell identity, no simultaneous melee/cast/movement, ordinary Wet follow-up and repeat refusal when empty. Countercases: no opt-in, no flame, missing/foreign/stale supply, action-blocked actor, party/conversation restrictions, veto and failed transaction. Verify real death drops before and after use, save/reload and fresh-site source admission. No new global blueprint behavior.
+
+**Play gate.** Visit the authored role, ignite it through a legitimate action, observe its paid response and inspect the empty shell or recovered unused stock. If a fixture is needed to isolate a branch, label it separately from ordinary source proof.
+
+## Milestone B — useful, particular expedition reports
+
+**Scope.** Extend the existing historical ledger with v2 records keyed by world identity, destination and family. Continue reading v1 properties without rewriting them. Bound records (initial cap32), record wire size4096, canonical addresses and subject values. Reading the ledger must not generate a zone, inspect remote contents or alter the world.
+
+**A useful lead.** A current non-hostile Spread resident can report the existing peat works beyond Sumphold and its peat-packing mallet components. The head is control-oriented Bludgeoning Cudgel with1d4 and Pen−1; learned skills still have to be learned. Existing source provides the compatible haft and binding. Explain the practical role and armor drawback without promising that the locker remains full. Preserve the existing Sumphold work slip, shelter, crossing and return service.
+
+**Flow.** Rehearing a destination updates only that record; another same-family destination survives. Conversation offers retain exact revision, speaker and context checks. The existing travel-note UI displays the records. At capacity, clearly refuse a new record rather than erasing a previous expedition. No automatic cleared/visited tracking in this slice: historical information remains historical after the player empties a destination.
+
+**Native gates.** RED for two same-family destinations; duplicate update, capacity, malformed/foreign-world payloads, old-save notes, stale conversation, changed speaker/map and side-effect-free reads. Verify the component lead remains truthful after actual depletion. Exercise real dialogue, note view, native pack assembly/equip and save/reload; reuse the existing ordinary Sodden journey as a control.
+
+### B source audit and implementation boundary (2026-10-09)
+
+Initial B preparation was **design and unrun test draft only** while the native art release was verified; the implementation record below supersedes that readiness status. The existing saved identity is `SpreadExplorationPlan.WorldKey`, a GUID written from manifest v11 onward; use that exact value instead of adding another world ID or equating same-seed worlds. Preserve the current v1 `Remember`/`Read(Entity)` contracts and byte-for-byte saved properties. Add one v2 overload with an explicit trusted current-world key; the journal obtains it from the player's actual current managed zone, checks that graph is still cached as current, and never loads a destination. Legacy worlds without a saved key retain their existing v1 reports and receive no invented identity.
+
+Extend the current record with only `WorldKey` and `Subject`. A v2 storage key includes world, canonical destination and family; subject is a finite validated value (`place`, or the exact `peat-mallet` subject for the fixed works destination). Keep the eight legacy families plus one `sodden-peat-works` family, with source-specific `SoddenDistrict` formation only for that fixed record. Thirty-two **stored v2 property slots**, including malformed/foreign rows, bound new writes; an exact existing slot may update at capacity. Invalid rows remain untouched and unread, not silently deleted to make room. The v2 reader returns at most32 valid current-world records plus the unchanged v1 notes. The existing paginated travel-note screen is sufficient.
+
+For the first lead, append one additional offer to the two existing nearby reports at `SpreadSeedKeeper_1/Nearby` and `SpreadWaysideCook_1/Nearby`, only for an actual non-hostile resident in current Spread. Gate the works through `SoddenDistrict.Eligible`; preserve the existing four-cell/two-nearby-report selection and no remote stock inspection. Include destination in revision tokens. Existing resident tests pin exactly two reports and v1 storage; update those expectations only after the new tests establish native RED. The ordinary scribe/innkeeper legacy-world fixtures remain compatibility controls.
+
+Prepared `/tmp/coo-expedition-report-tests.cs`: **38 proposed native cases**, using reflection for the missing v2 contract and existing real dialogue/inventory/forging APIs for source, UI and depletion checks. The draft is outside `Assets`, has not compiled or run, and provides no RED/GREEN evidence yet. Detailed signatures, remaining checks and source citations are in [EncounterClueDesign](Verification/QudEngagementAfterItemUtility/EncounterClueDesign.md#milestone-b-implementation-ready-source-audit-2026-10-09). No production or Unity assets changed during this preparation.
+
+### B implementation record — native GREEN, Play pending
+
+The coordinator ran the tests before production: [native-a-b-red.xml](Verification/EncountersCluesFiniteSupplies/native-a-b-red.xml) confirms **all 38 B cases failed** on the missing v2 fields/reader or absent actual works offer. Production followed that result. The v2 ledger, explicit-world journal read, one appended resident lead, destination-bearing offer token, clear capacity refusal and modern resident test migration are now implemented. The legacy v1 reader/writer and old fixtures remain unchanged in behavior; existing v1 saved bytes are not rewritten. No remote source is generated or inspected to hear/read the clue.
+
+Files: `SpreadDiscoveryNotes.cs`, `SpreadDiscoveryReports.cs`, `QuestLogUI.cs`, `ReferenceGladeNativeResidents.cs`, `SpreadResidentReportsTests.cs`, and new `ExpeditionReportTests.cs`/`.meta`. The shared ordinary journey observer remains coordinator-owned; a narrow migration patch was supplied separately. No new blueprint, reward, combat ability, map population or art is added by B.
+
+Self-review: exact world/destination/family identity and finite subject gates are validated independently of conversation authority; the conversation preserves all exact-current speaker/part/graph/node checks and adds captured WorldKey equality. Reads preserve corrupt bytes, skip foreign/malformed records and remain bounded to 32 valid v2 records plus legacy notes. Static lead text explicitly describes historical stock, low damage/poor armor penetration and learned-technique requirements. No significant additional issue was found in the bounded source review. Native compilation, all38 new report cases and affected legacy report/UI regressions pass in the301-case final run. Real dialogue/source Play remains pending; native test success is not a claim of ordinary Play completion.
+
+## Milestone C — claimed supplies with an optional bypass
+
+**Scope.** Fresh manifest version16; derive at most two eligible OccupiedBank enrichments by a separate stable ranking over frozen entries. Keep original family allocation and quiet rows. Version15 and older saved graphs remain literal. Use one original MarlbackScrabbler, one nonempty unlocked native crate/sack and one native post from exact producer receipts. No extra enemy, loot roll, reward upgrade or furniture.
+
+**Decision.** Keep the existing watched seven-by-five rectangle and warning grace. The supplies and every accessible adjacent interaction cell must lie within the watched region, making the territory relevant to actual looting. The whole watched region remains bypassable. Preserve reserved arrivals, borders and other producer claims. The player may withdraw, go around, use distraction/cover or fight; the reward is existing finite stock, not a new quest grant.
+
+**Implementation boundary.** One small partial compositor next to SpreadExplorationActorPlacement owns preflight, both claims/moves, exact territory Part and final outer plan commit in one rollback boundary. Calling two independent successful helpers is insufficient. Revalidate current map/manifest, receipts, full unchanged cache graph, original actor graph except the owned Part, positions and bypass after callbacks. Restore only still-owned moved objects; never overwrite callback replacements, inventory edits or newly occupied cells. Bound candidates32/trials256.
+
+**Native gates.** Same-seed control with enrichment disabled proves identical stock and hostile totals. RED/counters for absent, empty, locked or foreign cache; replaced receipt; missing post; no bypass; protected arrival; failed move; callback graph mutation; outer commit failure; finalization failure. Real warning/withdrawal and inventory transfer must be tested, plus depleted/destroyed save/revisit. Native Play shows at least two distinct approaches; revise geometry if the result still reduces to the same fight.
+
+## Milestone D — finite cover and fair retreat
+
+**Prerequisite.** Give FleeGoal bounded observed-position memory, initially six hidden opportunities to align with existing pursuit. Acquire observations from actor sight, independent of player FOV. Save/reload exact fields through the existing goal save protocol. Hidden threat motion cannot redirect retreat; visible reacquisition can. Preserve max age, health threshold, control state and cornered-contact behavior.
+
+**One role.** Fresh existing soursprayer at the trapper's store, Overworld.11.11.0, carries one real VeilpuffBladder and an authored retreat threshold40%. On an actual retreat turn with a currently observed hostile4–6 cells away, choose a traced empty impact two cells toward that contact. Reuse the real ThrowItemCommand, injected RNG, extraction and gas detonation. Require the actual first impact to match. Refuse an affected ally/self, already-obscured ray, absent legal retreat step, missing stock or blocked action. A throw consumes this turn; movement comes later.
+
+**Consequences.** Cryo-mist and opacity keep their native damage, cooling and duration. No immunity, refilling or perfect counter. After throwing, the opponent is governed by the same lost-sight memory as other retreating observers. Unused stock drops normally; spent stock cannot reappear.
+
+**Gates.** Whole-goal RED for one supply/one action, unsafe first impact, ally footprint, empty stock, stale ownership, hidden target, veto/rollback, caller RNG, save and real death loot. Replay two different hidden player detours: the NPC chooses the same remembered escape. Native Play must demonstrate an attainable ordinary retreat window, not just a granted low-HP fixture. Adjust that single authored threshold/position if necessary.
+
+## Milestone E — local movement respects existing dangers
+
+After A–D, audit direct approach, step-away and firing-position selection. Compare candidate steps with TerrainNavigationWeight and existing A* fallback. Prefer viable lower-cost movement when available; don't grant perfect future hazard knowledge or immobilize a forced-path creature. Keep footprint collision and line-of-fire semantics. Tests compare ordinary/immune creatures, optional/forced paths, real placed hazards and unchanged movement budgets. Demonstrate a player-created obstruction changing one real opponent's choice before expanding to more species.
+
+## Release and continuing improvements
+
+Each milestone independently gets current source corrections, failing native tests, GREEN/counters, dedicated adversarial review, cold-eye audit, concrete Play evidence and the living doc in its commit. Graphics models may change where they make real state/intent clearer; markers must derive from actual visible owners, not reveal hidden stock or objectives.
+
+Do not widen to universal supply shopping, refill searches, ally crafting, a general encounter framework, mixture chemistry or a new quest tracker. Those are later design questions. After these slices, compare actual encounters and choose the next improvement by player impact, not token budget or arbitrary feature count. If a minor broken affordance resists bounded diagnosis, note it and move to a more consequential gap, as the user instructed.
+
+## Implementation record and honesty bounds
+
+- 2026-10-08: prompts acted on through source comparison, independent design reviews and the corrections above. The native art milestone remains the release priority. No A–E implementation or gameplay improvement is claimed by this planning commit.
+- Native tests establish precise state, costs and identity. A scripted Play journey establishes its observed route and interactions. Neither alone proves long-term enjoyment, all-seed balance, every build/hardware configuration or Qud equivalence.
+- Future sections will record actual RED/GREEN counts, observed Play outcomes, fixed review findings, explicit scope changes and remaining limitations for each shipped milestone.
+
+
+## Milestone A implementation and first native evidence
+
+2026-10-09: `native-a-b-red.xml` in `Verification/EncountersCluesFiniteSupplies` records109 new cases,10 control passes and99 failures before production. Milestone A includes71 of those cases: tactical policy34 (33RED), native source3 (oneRED), controlled worksite receipts18 (13RED), final dousing commit8 (allRED), and observer/simulation feedback8 (sixRED). The38 B cases are recorded separately above. Native compilation succeeded before this RED run.
+
+The new saved `TacticalSupplyPart` invokes the existing `PerformInventoryActionCommand`/executor with its real owned SunbladderShell; Kill/Flee return after a committed use and preserve pursuit search aging. The fresh shelter source enriches only its existing two-actor replacement packet. Examinable shows literal stock, turn cost and wet/electric consequence. `EmergencyDousingActions` now rechecks the final transaction after callbacks, and undoes only its own wetness/fire/cooling. Wet and Burning lifecycle text shares a small visible-actor message gate; simulation, aura and diagnostics still occur independently of player FOV. A failed presentation observer cannot turn a committed douse into another AI attack.
+
+Native route added: **Finite Emergency Water Ordinary Audit**, an isolated seed64 Stormcaller start and keyboard journey to the actual shelter. It uses the starting Kindle, real distant Look/Examine, one real AI water action and F5/F6 to verify the same spent shell. It grants no items, HP, effects, hostility, positions or AI behavior. Until a completed report exists, this is an implemented acceptance scenario, not observed success.
+
+Files: new `Gameplay/AI/TacticalSupplyPart.cs`; Kill/Flee and Examinable integration; `SpreadExplorationWorksites` optional source receipt; `EmergencyDousingActions`, Wet/Burning and MessageLog feedback; four native test files; native tactical-water partial/launcher and this living document. All new Assets C# files have unique metadata. No global creature blueprint change, extra population, new water item or generic stock counter.
+
+
+## Final source corrections and native verification (2026-10-09)
+
+The initial source census failed because it assumed the nearby12.10 shelter had a two-creature source receipt. The saved RED already had zero witnesses; this was not a production regression. Existing historical captures and the current mixed-role test identify seed64 at15.10 as a real two-owner shelter. A fixed paired native probe over seeds64,1729,729490642 and both addresses confirmed that12.10 has one original hostile in all three cases, while64/15.10 has the actual cindercaller at22,10 and scrabbler at20,7. Removing the optional shell blueprint changes neither result. Other seeds assign different families at15.10.
+
+**Scope correction:** only the fixed pilot address moves to15.10. No new creature, reroll, encounter guarantee, source-budget relaxation or geometry change. Tests were moved first and recorded genuine missing-policy RED at the existing caster;12.10 is now an explicit exclusion. Evidence: `native-source-fixed-address-probe.json` and `native-source-and-inventory-review-red.xml` (36cases,11passed/25failed).
+
+Cold-eye review also found that the policy's inventory query could describe malformed water as usable even though the actual shared water transaction refused it. Fourteen dedicated adversarial cases recorded10failures/4controls before replacing the duplicated partial checks with the existing pure `WaterTransferActions.Vessel` validator. Invalid early shells no longer hide later valid supplies. A separate already-correct countertest confirms that a throwing presentation callback after successful dousing cannot grant another movement or attack action.
+
+**Final native affected suite:301/301 passed**, zero failed/skipped, in `native-a-b-final-green.xml`. This covers the new policy/source/transaction/feedback/report/adversarial cases and existing medicine, dousing, report, resident and journal controls. This is a bounded affected suite, not the entire project. The ordinary native scenarios remain separate release gates.
+
+The native water observer was corrected before running: one Kindle preheats an ordinary creature but does not ignite it. The route now uses real cooldown actions and a second heat dose, with actual thermal/health/path checks. Whole-opportunity evidence uses native `HitRoll` and `MeleeAttackVetoed` diagnostics, not the nonexistent `AttackAttempt` name. No heat, health or stock is granted. Source absence, unsafe approach or death remains a reported failure rather than a reason to manufacture the desired outcome.
+
+
+### A ordinary source-to-save Play result
+
+`Verification/SpreadDiscoveryExpeditions/Native/4d90e3cd9f644831ab4a700c90686d57/report.json` passes8/8 checks in16.77seconds, zero failures and zero unexpected errors. The ordinary seed64 Stormcaller traveled to the real15.10 shelter, inspected the actual full shell, hit the owner twice with the starting Kindle across its real cooldown, and observed one paid self-douse. First hit:12→9HP and25→310temperature after the native action. Second hit plus ordinary fire:9→2HP, then one water spent, heat25, Wet present, flame removed, no simultaneous movement/melee/cast. Actual Look described the empty shell; F5/unsaved-step/F6 preserved its exact saved identity and zero water.
+
+Screenshots were reviewed for the actor, action feedback and empty supply. This demonstrates one attainable ordinary source/build window. It does not guarantee every damage roll leaves the12HP caster alive, certify all-seed balance or demonstrate live electrical follow-up/death loot; those separate contracts have native test coverage. Existing saves retain literal generated owner graphs.
+
+### B broader resident observer finding
+
+The preliminary resident route `SpreadEverydayResidents/Native/58eedb02de284d98bf9516ef609dd344` recorded the actual new peat-mallet note successfully. It then failed an observer assertion that assumed a note's whole first sentence fit one wrapped journal line. The same broad legacy route also failed its old four-crop garden pin; neither is reported as a successful route. The new report deserves a narrow ordinary journey covering dialogue, wrapping, exact note persistence and unchanged costs, without pulling crop behavior into this release gate. The broad crop-pin issue remains recorded for its own content audit; no crop generation is altered for a note test.
+
+
+### B ordinary source-to-save Play result
+
+`Verification/SpreadDiscoveryExpeditions/Native/6554cf3ce4324837924a8e764c9ade44/report.json` passes7/7 checks in19.06seconds with zero failures and zero unexpected runtime errors. The ordinary seed64 duelist traveled to the actual11.8 seed keeper, opened Chat/Nearby, explicitly remembered the historical peat-mallet lead and read all its wrapped text through Q/Tab. Hearing/remembering/reading changed no turn, energy, currency or cached destination graph. F5, a real paid unsaved step and F6 restored the exact v2 property bytes, origin/speaker/destination, world identity, position and clock.
+
+The note remains historical after acquisition; the separate ordinary Sodden14/14 journey establishes this release's actual equipment source, assembly and use. These are two measured routes, not a claim that the note itself inspected remote stock. The failed preliminary broad resident run is retained as failed evidence.

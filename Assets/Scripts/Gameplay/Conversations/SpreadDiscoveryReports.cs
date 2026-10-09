@@ -29,7 +29,7 @@ namespace CavesOfOoo.Core
             internal ConversationData Conversation;
             internal NodeData Node;
             internal Cell SpeakerCell, PlayerCell;
-            internal string SpeakerID, PlayerID, Name, ConversationID, NodeID;
+            internal string SpeakerID, PlayerID, Name, ConversationID, NodeID, WorldKey;
         }
 
         private sealed class Offer
@@ -51,7 +51,7 @@ namespace CavesOfOoo.Core
             revision = revision == ulong.MaxValue ? 1 : revision + 1;
             foreach (var record in records)
             {
-                string token = record.Family + "|" + revision;
+                string token = record.Family + "|" + record.DestinationZoneID + "|" + revision;
                 current.Add(new Offer { Token = token, Source = context, Record = record });
                 choices.Add(new ChoiceData
                 {
@@ -59,6 +59,7 @@ namespace CavesOfOoo.Core
                         ? "Remember ditch-cutters (unconfirmed)"
                         : record.Family == SpreadDiscoveryNotes.Viper ? "Remember chalk-ring vipers (unconfirmed)"
                         : record.Family == SpreadDiscoveryNotes.Wayhouse ? "Remember Turnbank wayhouse (unconfirmed)"
+                        : record.Family == SpreadDiscoveryNotes.PeatWorks ? "Remember peat-packing mallet (unconfirmed)"
                         : "Remember " + SpreadDiscoveryNotes.FieldPlaceName(record.Family) + " (unconfirmed)",
                     Target = "",
                     Actions = new List<ConversationParam> { new ConversationParam { Key = ActionName, Value = token } }
@@ -85,14 +86,20 @@ namespace CavesOfOoo.Core
                 || !ReferenceEquals(player, offered.Source.Player) || !TryContext(out var current)
                 || !SameContext(offered.Source, current) || !StillSelected(current, offered.Record))
                 return Refuse("discovery_offer_stale");
-            if (!SpreadDiscoveryNotes.Remember(player, offered.Record)) return Refuse("discovery_note_invalid");
+            if (offered.Record.Version == 2)
+            {
+                if (!SpreadDiscoveryNotes.Remember(player, offered.Record, current.WorldKey, out string refusal)) return Refuse(refusal);
+            }
+            else if (!SpreadDiscoveryNotes.Remember(player, offered.Record)) return Refuse("discovery_note_invalid");
             MessageLog.Add("Report recorded in [Q], [Tab] travel notes; unconfirmed when heard.");
             return null;
         }
 
         private static string Refuse(string reason)
         {
-            MessageLog.Add("That report is no longer available from this conversation.");
+            MessageLog.Add(reason == "discovery_note_capacity"
+                ? "Your travel notes are full. This new report was not recorded; your earlier notes are intact."
+                : "That report is no longer available from this conversation.");
             return reason;
         }
 
@@ -124,7 +131,7 @@ namespace CavesOfOoo.Core
             context = new Context
             {
                 Zone = zone, Manager = manager, Map = manager.WorldMap, Plan = manager.RareEncounters, Wayhouse = manager.Wayhouse,
-                Exploration = manager.Exploration,
+                Exploration = manager.Exploration, WorldKey = manager.Exploration?.WorldKey,
                 Speaker = speaker, Player = player, SpeakerID = speaker.ID, PlayerID = player.ID,
                 SpeakerPhysics = speaker.GetPart<PhysicsPart>(), PlayerPhysics = player.GetPart<PhysicsPart>(),
                 SpeakerRender = render, PlayerRender = player.GetPart<RenderPart>(), ConversationPart = part,
@@ -154,7 +161,7 @@ namespace CavesOfOoo.Core
             return ReferenceEquals(a.Zone, b.Zone) && ReferenceEquals(a.Manager, b.Manager)
                 && ReferenceEquals(a.Map, b.Map) && ReferenceEquals(a.Plan, b.Plan)
                 && ReferenceEquals(a.Wayhouse, b.Wayhouse)
-                && ReferenceEquals(a.Exploration, b.Exploration)
+                && ReferenceEquals(a.Exploration, b.Exploration) && a.WorldKey == b.WorldKey
                 && ReferenceEquals(a.Speaker, b.Speaker) && ReferenceEquals(a.Player, b.Player)
                 && ReferenceEquals(a.SpeakerPhysics, b.SpeakerPhysics) && ReferenceEquals(a.PlayerPhysics, b.PlayerPhysics)
                 && ReferenceEquals(a.SpeakerRender, b.SpeakerRender) && ReferenceEquals(a.PlayerRender, b.PlayerRender)
@@ -183,6 +190,10 @@ namespace CavesOfOoo.Core
                     AddIfSelected(context, family, row.Entry.ZoneID, result);
                     if (result.Count == 2) break;
                 }
+                // One explicit regional equipment lead follows the two existing
+                // nearby reports. Eligibility describes historical geography,
+                // never the contents of a remotely cached destination.
+                AddIfSelected(context, SpreadDiscoveryNotes.PeatWorks, SoddenDistrictPlan.WorksZoneID, result);
                 return result;
             }
             if (context.Plan?.Initialized == true)
@@ -202,21 +213,42 @@ namespace CavesOfOoo.Core
             if (!Selected(context, family, id)) return;
             result.Add(new SpreadDiscoveryNotes.Record
             {
-                Version = 1, Family = family, OriginZoneID = context.Zone.ZoneID, DestinationZoneID = id,
+                Version = SpreadDiscoveryNotes.ValidWorldKey(context.WorldKey) ? 2 : 1,
+                WorldKey = SpreadDiscoveryNotes.ValidWorldKey(context.WorldKey) ? context.WorldKey : null,
+                Subject = SpreadDiscoveryNotes.ValidWorldKey(context.WorldKey) ? SubjectFor(family) : null,
+                Family = family, OriginZoneID = context.Zone.ZoneID, DestinationZoneID = id,
                 InformantID = context.SpeakerID, InformantName = context.Name,
-                Formation = FormationSelector.For(BiomeType.Spread, id).ToString()
+                Formation = FormationFor(family, id)
             });
         }
 
         private static bool StillSelected(Context context, SpreadDiscoveryNotes.Record record)
         {
-            return record.OriginZoneID == context.Zone.ZoneID && Selected(context, record.Family, record.DestinationZoneID)
-                && record.Formation == FormationSelector.For(BiomeType.Spread, record.DestinationZoneID).ToString();
+            bool modern = SpreadDiscoveryNotes.ValidWorldKey(context.WorldKey);
+            return record.Version == (modern ? 2 : 1)
+                && (!modern || record.WorldKey == context.WorldKey && record.Subject == SubjectFor(record.Family))
+                && record.OriginZoneID == context.Zone.ZoneID && Selected(context, record.Family, record.DestinationZoneID)
+                && record.Formation == FormationFor(record.Family, record.DestinationZoneID);
         }
+
+        private static string SubjectFor(string family)
+            => family == SpreadDiscoveryNotes.PeatWorks ? SpreadDiscoveryNotes.PeatMalletSubject : SpreadDiscoveryNotes.PlaceSubject;
+
+        private static string FormationFor(string family, string id)
+            => family == SpreadDiscoveryNotes.PeatWorks ? SpreadDiscoveryNotes.WorksFormation
+                : FormationSelector.For(BiomeType.Spread, id).ToString();
 
         private static bool Selected(Context context, string family, string id)
         {
             if (!SpreadDiscoveryNotes.CanonicalSurface(id)) return false;
+            if (family == SpreadDiscoveryNotes.PeatWorks)
+            {
+                var origin = WorldMap.FromZoneID(context.Zone.ZoneID);
+                return id == SoddenDistrictPlan.WorksZoneID && SpreadDiscoveryNotes.ValidWorldKey(context.WorldKey)
+                    && ResidentNode(context.Speaker, context.ConversationID, context.NodeID)
+                    && context.Map.GetBiome(origin.x, origin.y) == BiomeType.Spread
+                    && SoddenDistrict.Eligible(context.Manager, id);
+            }
             if (SpreadDiscoveryNotes.FieldPlaceName(family) != null)
             {
                 return ResidentNode(context.Speaker, context.ConversationID, context.NodeID)
