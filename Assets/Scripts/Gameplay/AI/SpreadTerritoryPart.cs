@@ -32,6 +32,23 @@ namespace CavesOfOoo.Core
             Configured = true; return true;
         }
 
+        /// <summary>Current local enforcement permits a defensive bump without
+        /// making entry a permanent personal or faction grievance. A remembered
+        /// Brain.Target alone cannot outlive withdrawal, payment or the post.</summary>
+        public bool IsEnforcingAgainst(Entity target, Zone zone)
+        {
+            if (!SpreadActorContext.Actor(ParentEntity, zone, out var brain)
+                || ParentEntity.GetPart<SpreadTerritoryPart>() != this || brain.CurrentZone != zone
+                || CombatSystem.IsDeathHandled(ParentEntity) || brain.PartyLeader != null || brain.InConversation
+                || brain.HasGoal<NoFightGoal>() || brain.PeekGoal()?.CanFight() == false
+                || target == null || target == ParentEntity || !SpreadActorContext.Ground(target, zone)
+                || !target.HasTag("Creature") || target.GetStatValue("Hitpoints", 0) <= 0 || CombatSystem.IsDeathHandled(target)
+                || BrainPart.ArePartyAligned(ParentEntity, target)
+                || UnderTheClothEffect.Protects(target, ParentEntity)) return false;
+            return CurrentPost(zone) && WarningTarget == target && brain.Target == target
+                && GraceRemaining == 0 && ClaimsTarget(target, zone);
+        }
+
         internal bool TakeIdleAction(BrainPart brain, Zone zone)
         {
             if (!SpreadActorContext.Actor(ParentEntity, zone, out var actual) || actual != brain
@@ -48,9 +65,7 @@ namespace CavesOfOoo.Core
             }
             if (!CurrentPost(zone)) { ClearWarning(brain); brain.CurrentState = AIState.Idle; return true; }
             var target = SpreadActorContext.Nearest(ParentEntity, zone, Math.Min(brain.SightRadius, 20),
-                e => Intersects(zone, e) && (ParentEntity.GetPart<LocalPassagePermitPart>() is LocalPassagePermitPart permit
-                    ? !permit.Allows(e, zone) && (permit.ClaimsEntry(e, zone) || FactionManager.IsHostile(ParentEntity, e))
-                    : FactionManager.IsHostile(ParentEntity, e)));
+                e => ClaimsTarget(e, zone));
             if (target == null)
             {
                 ClearWarning(brain); brain.CurrentState = AIState.Idle;
@@ -73,6 +88,17 @@ namespace CavesOfOoo.Core
             if (GraceRemaining > 0) { GraceRemaining--; brain.CurrentState = AIState.Idle; return true; }
             SpreadActorContext.Combat(brain, zone, target);
             return true;
+        }
+        bool ClaimsTarget(Entity target, Zone zone)
+        {
+            // A paid crossing and the hospitality oath both govern the actual
+            // enforcer, not merely the player's ability to bump it afterward.
+            if (!Intersects(zone, target) || BrainPart.ArePartyAligned(ParentEntity, target)
+                || UnderTheClothEffect.Protects(ParentEntity, target)) return false;
+            var permit = ParentEntity.GetPart<LocalPassagePermitPart>();
+            return permit != null
+                ? !permit.Allows(target, zone) && (permit.ClaimsEntry(target, zone) || FactionManager.IsHostile(ParentEntity, target))
+                : FactionManager.IsHostile(ParentEntity, target);
         }
         bool Intersects(Zone zone, Entity entity)
         {

@@ -885,9 +885,11 @@ namespace CavesOfOoo.Rendering
                     EndTurnAndProcess();
                 }
                 else if (blockedBy != null && blockedBy.HasTag("Creature")
-                    && FactionManager.IsHostile(PlayerEntity, blockedBy))
+                    && (FactionManager.IsHostile(PlayerEntity, blockedBy)
+                        || blockedBy.GetPart<SpreadTerritoryPart>()?.IsEnforcingAgainst(PlayerEntity, CurrentZone) == true))
                 {
-                    // Bump-to-attack: blocked by a hostile creature, perform melee attack
+                    // Current territorial enforcement permits self-defense even
+                    // when entry created no permanent faction/personal hostility.
                     CombatSystem.PerformMeleeAttack(PlayerEntity, blockedBy, CurrentZone, _combatRng);
                     EndTurnAndProcess();
                 }
