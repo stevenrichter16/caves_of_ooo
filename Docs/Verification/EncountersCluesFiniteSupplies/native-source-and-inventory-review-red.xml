@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 05:50:22Z" end-time="2026-10-09 05:50:36Z" duration="14.1588752">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="26340" result="Failed" site="Child" start-time="2026-10-09 05:50:22Z" end-time="2026-10-09 05:50:36Z" duration="14.158875" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="32437" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="26340" result="Failed" site="Child" start-time="2026-10-09 05:50:22Z" end-time="2026-10-09 05:50:36Z" duration="14.083230" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="32438" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26340" result="Failed" site="Child" start-time="2026-10-09 05:50:22Z" end-time="2026-10-09 05:50:36Z" duration="13.933929" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="32439" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26340" result="Failed" site="Child" start-time="2026-10-09 05:50:22Z" end-time="2026-10-09 05:50:36Z" duration="13.862306" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1975" name="FiniteTacticalSupplyAdversarialTests" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.410407" total="14" passed="4" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1985" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.290773" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1976" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;stacked&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1445458283" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.034127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell (x2))>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1977" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;foreign-stacker&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;foreign-stacker&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1716951996" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.022407" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1978" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;duplicate-id&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="133069885" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.022201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1979" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;duplicate-reference&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;duplicate-reference&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1119483649" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1980" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;dual-vessel&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;dual-vessel&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="126272762" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1981" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;not-takeable&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;not-takeable&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1444967253" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1982" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;empty-id&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;empty-id&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="700422212" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.032171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not report an unusable shell as available emergency water.
+  Expected: null
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse (System.String fault) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1983" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;aliased-pack&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;aliased-pack&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="2014818731" result="Passed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.050504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1984" name="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;wrong-owner&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse(&quot;wrong-owner&quot;)" methodname="SupplyQueryAndDescriptionRefuseExactlyTheWaterThatNativeCommandsCannotUse" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="626125181" result="Passed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.058502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1989" name="UnusableFirstShellDoesNotHideALaterRealUsableSupply" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.067010" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1986" name="UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;stacked&quot;)" methodname="UnusableFirstShellDoesNotHideALaterRealUsableSupply" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="2041410195" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(sunbladder shell)>
+  But was:  <Entity(sunbladder shell (x2))>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply (System.String fault) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1987" name="UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;duplicate-id&quot;)" methodname="UnusableFirstShellDoesNotHideALaterRealUsableSupply" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="309761323" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021886" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(sunbladder shell)>
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply (System.String fault) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1988" name="UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;dual-vessel&quot;)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply(&quot;dual-vessel&quot;)" methodname="UnusableFirstShellDoesNotHideALaterRealUsableSupply" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1155428872" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.022009" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(sunbladder shell)>
+  But was:  <Entity(sunbladder shell)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.UnusableFirstShellDoesNotHideALaterRealUsableSupply (System.String fault) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSupplyAdversarialTests.cs:87
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1992" name="ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.050011" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1990" name="ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement(False)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement(False)" methodname="ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1681688539" result="Passed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.027173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1991" name="ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement(True)" fullname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests.ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement(True)" methodname="ValidSavedSupplyRemainsQueryableBeforeLoadedActorPlacement" classname="CavesOfOoo.Tests.FiniteTacticalSupplyAdversarialTests" runstate="Runnable" seed="1284927383" result="Passed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:23Z" duration="0.021820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1971" name="FiniteTacticalSupplySourceTests" fullname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests" classname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:27Z" duration="3.873222" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1973" name="FixedFreshSiteCensusFindsAnOptedInOriginalOwnerAndDoesNotReplenishCachedStock" fullname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests.FixedFreshSiteCensusFindsAnOptedInOriginalOwnerAndDoesNotReplenishCachedStock" methodname="FixedFreshSiteCensusFindsAnOptedInOriginalOwnerAndDoesNotReplenishCachedStock" classname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests" runstate="Runnable" seed="2030901303" result="Failed" start-time="2026-10-09 05:50:23Z" end-time="2026-10-09 05:50:24Z" duration="0.751368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteTacticalSupplySourceTests.FixedFreshSiteCensusFindsAnOptedInOriginalOwnerAndDoesNotReplenishCachedStock () [0x000a7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FiniteTacticalSuppliesTests.cs:306
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1972" name="OrdinaryFactoryAndLoadedOldActorsDoNotAcquireTheNewSitePolicy" fullname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests.OrdinaryFactoryAndLoadedOldActorsDoNotAcquireTheNewSitePolicy" methodname="OrdinaryFactoryAndLoadedOldActorsDoNotAcquireTheNewSitePolicy" classname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests" runstate="Runnable" seed="2135959486" result="Passed" start-time="2026-10-09 05:50:24Z" end-time="2026-10-09 05:50:24Z" duration="0.032763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1974" name="OtherAuthoredWorksitesDoNotGainEmergencyWaterAsABiomeWideShortcut" fullname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests.OtherAuthoredWorksitesDoNotGainEmergencyWaterAsABiomeWideShortcut" methodname="OtherAuthoredWorksitesDoNotGainEmergencyWaterAsABiomeWideShortcut" classname="CavesOfOoo.Tests.FiniteTacticalSupplySourceTests" runstate="Runnable" seed="696500040" result="Passed" start-time="2026-10-09 05:50:24Z" end-time="2026-10-09 05:50:27Z" duration="3.087661" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="17567" name="FiniteWaterWorksiteTests" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-09 05:50:27Z" end-time="2026-10-09 05:50:36Z" duration="9.245259" total="19" passed="5" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="17586" name="ANewCasterUnableToCarryTheRealShellCannotReceiveFreePolicyStock" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.ANewCasterUnableToCarryTheRealShellCannotReceiveFreePolicyStock" methodname="ANewCasterUnableToCarryTheRealShellCannotReceiveFreePolicyStock" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="831178223" result="Failed" start-time="2026-10-09 05:50:27Z" end-time="2026-10-09 05:50:27Z" duration="0.521810" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.ANewCasterUnableToCarryTheRealShellCannotReceiveFreePolicyStock () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:197
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="17572" name="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 05:50:27Z" end-time="2026-10-09 05:50:29Z" duration="1.466401" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17569" name="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.10.9.0&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.10.9.0&quot;)" methodname="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="133352229" result="Passed" start-time="2026-10-09 05:50:27Z" end-time="2026-10-09 05:50:28Z" duration="0.508624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17570" name="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.12.9.0&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.12.9.0&quot;)" methodname="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="307783981" result="Passed" start-time="2026-10-09 05:50:28Z" end-time="2026-10-09 05:50:28Z" duration="0.439311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17571" name="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock(&quot;Overworld.12.10.0&quot;)" methodname="AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1610062528" result="Failed" start-time="2026-10-09 05:50:28Z" end-time="2026-10-09 05:50:29Z" duration="0.515552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.AssertOldSite (CavesOfOoo.Core.Entity[] owners) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:72
+at CavesOfOoo.Tests.FiniteWaterWorksiteTests.AnotherFreshTemperingShelterKeepsItsOrdinaryPairWithoutNewStock (System.String id) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="17573" name="AOneActorReceiptCannotInventACasterOrWaterToDemonstrateTheNewPolicy" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.AOneActorReceiptCannotInventACasterOrWaterToDemonstrateTheNewPolicy" methodname="AOneActorReceiptCannotInventACasterOrWaterToDemonstrateTheNewPolicy" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="22340795" result="Passed" start-time="2026-10-09 05:50:29Z" end-time="2026-10-09 05:50:29Z" duration="0.334301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17568" name="ExactFreshPairGainsOneRealWaterOnlyOnTheCasterAndRetainsOriginalLoadoutAndPopulation" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.ExactFreshPairGainsOneRealWaterOnlyOnTheCasterAndRetainsOriginalLoadoutAndPopulation" methodname="ExactFreshPairGainsOneRealWaterOnlyOnTheCasterAndRetainsOriginalLoadoutAndPopulation" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="135089193" result="Failed" start-time="2026-10-09 05:50:29Z" end-time="2026-10-09 05:50:30Z" duration="0.539657" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Only the fresh admitted owner gains the policy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.Enabled (CavesOfOoo.Core.Entity actor) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:56
+at CavesOfOoo.Tests.FiniteWaterWorksiteTests.ExactFreshPairGainsOneRealWaterOnlyOnTheCasterAndRetainsOriginalLoadoutAndPopulation () [0x00114] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:91
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="17589" name="FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 05:50:30Z" end-time="2026-10-09 05:50:31Z" duration="0.960733" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17587" name="FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement(&quot;water&quot;)" methodname="FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="215016789" result="Failed" start-time="2026-10-09 05:50:30Z" end-time="2026-10-09 05:50:30Z" duration="0.435095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Only the fresh admitted owner gains the policy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.Enabled (CavesOfOoo.Core.Entity actor) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:56
+at CavesOfOoo.Tests.FiniteWaterWorksiteTests.FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement (System.String fault) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:207
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17588" name="FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement(&quot;policy&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement(&quot;policy&quot;)" methodname="FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1729293641" result="Failed" start-time="2026-10-09 05:50:30Z" end-time="2026-10-09 05:50:31Z" duration="0.522275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Only the fresh admitted owner gains the policy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.Enabled (CavesOfOoo.Core.Entity actor) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:56
+at CavesOfOoo.Tests.FiniteWaterWorksiteTests.FinalGenerationProofRejectsSpentOrDisabledStockAfterPlacement (System.String fault) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:207
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="17584" name="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 05:50:31Z" end-time="2026-10-09 05:50:32Z" duration="1.525510" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17581" name="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;water&quot;)" methodname="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="164390837" result="Failed" start-time="2026-10-09 05:50:31Z" end-time="2026-10-09 05:50:31Z" duration="0.458273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit (System.String fault) [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17582" name="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;water-part&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;water-part&quot;)" methodname="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1652702136" result="Failed" start-time="2026-10-09 05:50:31Z" end-time="2026-10-09 05:50:32Z" duration="0.515918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit (System.String fault) [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17583" name="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;policy&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit(&quot;policy&quot;)" methodname="LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1267345926" result="Failed" start-time="2026-10-09 05:50:32Z" end-time="2026-10-09 05:50:32Z" duration="0.548375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.LaterPartnerFactoryCannotRewriteThePreviouslyPreparedSupplyAndStillCommit (System.String fault) [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="17579" name="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 05:50:32Z" end-time="2026-10-09 05:50:34Z" duration="1.956450" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17575" name="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;empty&quot;)" methodname="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="685550669" result="Failed" start-time="2026-10-09 05:50:32Z" end-time="2026-10-09 05:50:33Z" duration="0.446256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed (System.String fault) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17576" name="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;extra-water&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;extra-water&quot;)" methodname="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1903581948" result="Failed" start-time="2026-10-09 05:50:33Z" end-time="2026-10-09 05:50:33Z" duration="0.528932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed (System.String fault) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17577" name="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;foreign-owner&quot;)" methodname="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1562623269" result="Failed" start-time="2026-10-09 05:50:33Z" end-time="2026-10-09 05:50:34Z" duration="0.445940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed (System.String fault) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17578" name="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed(&quot;wrong-blueprint&quot;)" methodname="MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="788831383" result="Failed" start-time="2026-10-09 05:50:34Z" end-time="2026-10-09 05:50:34Z" duration="0.531415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.MalformedOptionalFactorySupplyRefusesBeforeAnySourceIsClaimed (System.String fault) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="17574" name="MissingOptionalShellPreservesTheEarlierWorkingSite" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.MissingOptionalShellPreservesTheEarlierWorkingSite" methodname="MissingOptionalShellPreservesTheEarlierWorkingSite" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1181427751" result="Passed" start-time="2026-10-09 05:50:34Z" end-time="2026-10-09 05:50:35Z" duration="0.432860" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17580" name="PureFactoryObserversSeeTheActualShellAndDoNotPreventOtherwiseValidPlacement" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.PureFactoryObserversSeeTheActualShellAndDoNotPreventOtherwiseValidPlacement" methodname="PureFactoryObserversSeeTheActualShellAndDoNotPreventOtherwiseValidPlacement" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="1586685932" result="Failed" start-time="2026-10-09 05:50:35Z" end-time="2026-10-09 05:50:35Z" duration="0.513223" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: collection containing null
+  But was:  < <Entity(marlback cindercaller)>, <Entity(marlback scrabbler)> >
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.PureFactoryObserversSeeTheActualShellAndDoNotPreventOtherwiseValidPlacement () [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:152
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="17590" name="ReinvokingTheHelperCannotRetrofitAnEarlierLiteralSite" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.ReinvokingTheHelperCannotRetrofitAnEarlierLiteralSite" methodname="ReinvokingTheHelperCannotRetrofitAnEarlierLiteralSite" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="41920580" result="Passed" start-time="2026-10-09 05:50:35Z" end-time="2026-10-09 05:50:36Z" duration="0.452891" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="17585" name="ShellCreationCanRevokeAuthorityWithoutLeavingAnEnrichedPartialSite" fullname="CavesOfOoo.Tests.FiniteWaterWorksiteTests.ShellCreationCanRevokeAuthorityWithoutLeavingAnEnrichedPartialSite" methodname="ShellCreationCanRevokeAuthorityWithoutLeavingAnEnrichedPartialSite" classname="CavesOfOoo.Tests.FiniteWaterWorksiteTests" runstate="Runnable" seed="71988366" result="Failed" start-time="2026-10-09 05:50:36Z" end-time="2026-10-09 05:50:36Z" duration="0.535388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiniteWaterWorksiteTests.ShellCreationCanRevokeAuthorityWithoutLeavingAnEnrichedPartialSite () [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiniteWaterWorksiteTests.cs:185
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

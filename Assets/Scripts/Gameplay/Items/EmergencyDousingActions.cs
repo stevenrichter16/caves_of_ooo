@@ -18,19 +18,33 @@ namespace CavesOfOoo.Core
         public static void AddActions(Entity actor, Entity item, Zone zone, InventoryActionList actions)
         {
             if (actions == null || ValidateSource(actor, item, zone, out bool clay, out int amount) != null) return;
-            var origin = zone.GetEntityCell(actor);
             foreach (var target in zone.GetReadOnlyEntities())
             {
                 if (ValidateTarget(actor, target, zone, clay, true) != null) continue;
-                var cell = zone.GetEntityCell(target);
-                string command = (clay ? ClayPrefix : WaterPrefix) + Uri.EscapeDataString(zone.ZoneID ?? "")
-                    + "|" + Number(origin.X) + "|" + Number(origin.Y) + "|" + Uri.EscapeDataString(target.ID)
-                    + "|" + Number(cell.X) + "|" + Number(cell.Y) + "|" + Number(amount);
+                string command = BuildCommand(actor, target, zone, clay, amount);
                 bool provokes = !clay && Provokes(actor, target);
                 actions.AddAction(clay ? "SmotherFire" : "DrenchCreature",
                     (clay ? "smother flames on " : "drench ") + (target == actor ? "yourself" : target.GetDisplayName())
                     + (clay ? " (1 clay)" : " (1 water" + (provokes ? "; provokes" : "") + ")"), command, '\0', 18);
             }
+        }
+
+        /// <summary>Construct the same native selection for a self-directed NPC
+        /// use without enumerating the zone's player interaction menu.</summary>
+        internal static bool TryBuildSelfDousingCommand(Entity actor, Entity item, Zone zone, out string command)
+        {
+            command = null;
+            if (ValidateSource(actor, item, zone, out bool clay, out int amount) != null || clay
+                || ValidateTarget(actor, actor, zone, false, true) != null) return false;
+            command = BuildCommand(actor, actor, zone, false, amount);
+            return true;
+        }
+        static string BuildCommand(Entity actor, Entity target, Zone zone, bool clay, int amount)
+        {
+            var origin = zone.GetEntityCell(actor); var cell = zone.GetEntityCell(target);
+            return (clay ? ClayPrefix : WaterPrefix) + Uri.EscapeDataString(zone.ZoneID ?? "")
+                + "|" + Number(origin.X) + "|" + Number(origin.Y) + "|" + Uri.EscapeDataString(target.ID)
+                + "|" + Number(cell.X) + "|" + Number(cell.Y) + "|" + Number(amount);
         }
 
         /// <summary>Join the outer inventory receipt. Failure preserves payment
@@ -87,6 +101,22 @@ namespace CavesOfOoo.Core
             var effects = target.GetPart<StatusEffectsPart>();
             var burning = ActiveBurn(target);
             var wet = target.GetEffect<WetEffect>();
+            var heat = target.GetPart<ThermalPart>();
+            WetEffect appliedWet = wet;
+            int appliedWetDuration = wet?.Duration ?? 0;
+            float? cooledTemperature = null;
+            if (!clay && effects == null)
+            {
+                // Retain the exact manager even if a callback later replaces it.
+                // Entity.ApplyEffect ordinarily creates this same lazy manager.
+                effects = new StatusEffectsPart();
+                var created = effects;
+                tx.Do(() => target.AddPart(created), () =>
+                {
+                    if (target.GetPart<StatusEffectsPart>() == created && created.EffectCount == 0)
+                        target.RemovePart(created);
+                });
+            }
             bool provokes = !clay && burning == null && !BrainPart.ArePartyAligned(actor, target);
             bool removedBurn = false;
             if (burning != null)
@@ -95,7 +125,7 @@ namespace CavesOfOoo.Core
                 string cause = burning.LastRemovalCause;
                 tx.Do(null, () =>
                 {
-                    if (!removedBurn) return;
+                    if (!removedBurn || effects.GetAllEffects().Any(e => e is BurningEffect && e != burning)) return;
                     bool restoreAura = !effects.GetAllEffects().Contains(burning);
                     burning.LastRemovalCause = cause;
                     effects.RestoreRemovedEffectForInventoryUndo(burning, index);
@@ -110,52 +140,61 @@ namespace CavesOfOoo.Core
                 if (wet != null)
                 {
                     float moisture = wet.Moisture; int duration = wet.Duration;
-                    tx.Do(null, () => { wet.Moisture = moisture; wet.Duration = duration; });
+                    tx.Do(null, () =>
+                    {
+                        if (wet.Moisture == 1f) wet.Moisture = moisture;
+                        if (wet.Duration == appliedWetDuration) wet.Duration = duration;
+                    });
                 }
                 else
                 {
-                    var originalEffects = effects;
-                    tx.Do(null, () =>
-                    {
-                        var current = target.GetPart<StatusEffectsPart>();
-                        current?.RemoveEffect(incoming);
-                        // Applying the first status lazily adds the manager.
-                        // Preserve it if a callback also added another status.
-                        if (originalEffects == null && current?.EffectCount == 0) target.RemovePart(current);
-                    });
+                    // Wet has no intrinsic stat penalty to reverse. Removing its
+                    // exact new record also works on a now-detached manager and
+                    // never removes an independently installed replacement Wet.
+                    tx.Do(null, () => effects.RemoveAddedEffectForInventoryUndo(incoming));
                 }
                 if (!target.ApplyEffect(incoming, actor, zone)) return Reject(actor, item, "wetness-refused");
-                effects = target.GetPart<StatusEffectsPart>();
-                var appliedWet = target.GetEffect<WetEffect>();
-                if (appliedWet != (wet ?? incoming) || !WorldResourceActions.Finite(appliedWet.Moisture) || appliedWet.Moisture < 1f)
+                appliedWet = target.GetEffect<WetEffect>();
+                if (target.GetPart<StatusEffectsPart>() != effects || appliedWet != (wet ?? incoming)
+                    || !WorldResourceActions.Finite(appliedWet.Moisture) || appliedWet.Moisture < 1f)
                     return Reject(actor, item, "wetness-changed");
                 // An expiring wet entry can still receive the stack callback.
                 // Renew that same record instead of making a second wet effect.
                 if (appliedWet.Duration == 0) appliedWet.Duration = Effect.DURATION_INDEFINITE;
+                appliedWetDuration = appliedWet.Duration;
             }
-            if (!unchanged() || ActiveBurn(target) != burning) return Reject(actor, item, "changed-during-application");
+            if (!unchanged() || ActiveBurn(target) != burning || target.GetPart<ThermalPart>() != heat)
+                return Reject(actor, item, "changed-during-application");
             if (burning != null)
             {
-                var heat = target.GetPart<ThermalPart>();
                 if (heat != null)
                 {
                     float temperature = heat.Temperature;
-                    tx.Do(null, () => heat.Temperature = temperature);
-                    heat.Temperature = Math.Min(temperature, Math.Min(heat.AmbientTemperature, IgnitionThreshold(target, heat) - 1f));
+                    cooledTemperature = Math.Min(temperature, Math.Min(heat.AmbientTemperature, IgnitionThreshold(target, heat) - 1f));
+                    tx.Do(() => heat.Temperature = cooledTemperature.Value, () =>
+                    {
+                        if (heat.Temperature == cooledTemperature.Value) heat.Temperature = temperature;
+                    });
                 }
                 removedBurn = true;
                 if (!effects.RemoveEffect(burning) || ActiveBurn(target) != null) return Reject(actor, item, "flame-removal-refused");
             }
             if (!unchanged()) return Reject(actor, item, "changed-during-rescue");
-            // The rescue has already committed. One failing notification must
+            // AfterInventoryAction runs after this helper returns. Its callbacks
+            // may succeed while invalidating the selected owner or rescue state.
+            tx.BeforeCommit(() => unchanged() && target.GetPart<StatusEffectsPart>() == effects
+                && target.GetPart<ThermalPart>() == heat && ActiveBurn(target) == null
+                && (clay || target.GetEffect<WetEffect>() == appliedWet && appliedWet.Owner == target
+                    && appliedWet.Moisture == 1f && appliedWet.Duration == appliedWetDuration && appliedWet.Duration != 0)
+                && (!cooledTemperature.HasValue || heat.Temperature == cooledTemperature.Value));
+            // After commit, one failing notification must
             // not suppress the remaining visual update or the paid-use receipt.
             if (provokes) tx.AfterCommit(() => target.GetPart<BrainPart>()?.SetPersonallyHostile(actor));
             if (removedBurn) tx.AfterCommit(() => target.FireEvent("Extinguished"));
             tx.AfterCommit(() => ZoneRenderHooks.MarkCellDirty(zone.GetEntityCell(target), clay ? "Smothered" : "Drenched"));
             tx.AfterCommit(() => Diag.Record("event", "EmergencyDousingUsed", actor, target,
                 new { blueprint, clay, extinguished = removedBurn, provoked = provokes, spent = 1 }));
-            tx.AfterCommit(() => MessageLog.Add(clay ? "You smother the flames with fire clay. It leaves no protective coating."
-                : "You soak " + (target == actor ? "yourself" : target.GetDisplayName()) + " with one water. Wetness conducts electricity."));
+            tx.AfterCommit(() => MessageLog.AddObserved(actor, UseMessage(actor, target, clay)));
             return true;
         }
 
@@ -199,10 +238,19 @@ namespace CavesOfOoo.Core
         static int Quantity(Entity item) => item.GetPart<StackerPart>()?.StackCount ?? 1;
         static string Number(int number) => number.ToString(CultureInfo.InvariantCulture);
         static bool Parse(string text, out int number) => int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out number);
+        static string UseMessage(Entity actor, Entity target, bool clay)
+        {
+            if (actor.HasTag("Player")) return clay ? "You smother the flames with fire clay. It leaves no protective coating."
+                : "You soak " + (target == actor ? "yourself" : target.GetDisplayName()) + " with one water. Wetness conducts electricity.";
+            string recipient = target == actor ? "itself" : target.GetDisplayName();
+            return actor.GetDisplayName() + (clay ? " smothers the flames on " + recipient + " with fire clay."
+                : " douses " + recipient + " with one water. Wetness conducts electricity.");
+        }
         static bool Reject(Entity actor, Entity item, string reason)
         {
             Diag.Record("event", "EmergencyDousingRejected", actor, item, new { reason });
-            MessageLog.Add("You cannot use that supply here (" + reason.Replace('-', ' ') + ").");
+            if (actor?.HasTag("Player") == true)
+                MessageLog.Add("You cannot use that supply here (" + reason.Replace('-', ' ') + ").");
             return false;
         }
     }

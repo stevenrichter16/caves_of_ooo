@@ -28,12 +28,12 @@ namespace CavesOfOoo.Core
                 if (Moisture > 1.0f)
                     Moisture = 1.0f;
             }
-            MessageLog.Add(target.GetDisplayName() + " is drenched.");
+            MessageLog.AddObserved(target, target.GetDisplayName() + " is drenched.");
         }
 
         public override void OnRemove(Entity target)
         {
-            MessageLog.Add(target.GetDisplayName() + " has dried off.");
+            MessageLog.AddObserved(target, target.GetDisplayName() + " has dried off.");
         }
 
         public override void OnTurnEnd(Entity target)

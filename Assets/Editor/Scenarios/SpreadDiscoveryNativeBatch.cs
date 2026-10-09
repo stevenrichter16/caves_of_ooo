@@ -41,6 +41,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchConnectedBombardier() => LaunchCore(false,seed:29,connectedBuild:"bombardier");
         [MenuItem("Caves Of Ooo/Scenarios/World/Sodden Expedition Ordinary Audit")]
         public static void LaunchSoddenDistrict() => LaunchCore(false,connectedBuild:"duelist",soddenDistrict:true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Finite Emergency Water Ordinary Audit")]
+        public static void LaunchTacticalWater() => LaunchCore(false,connectedBuild:"stormcaller",tacticalWater:true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Expedition Report Ordinary Audit")]
         public static void LaunchExpeditionReport() => LaunchCore(false,connectedBuild:"duelist",expeditionReport:true);
         public static void LaunchCards() => LaunchCore(false,false,true);
@@ -58,7 +60,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false,bool mendleafYard=false,bool expeditionReport=false)
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false,bool mendleafYard=false,bool tacticalWater=false,bool expeditionReport=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -80,6 +82,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "predatorDiversion", predatorDiversion);
             SessionState.SetBool(Prefix + "trapJamming", trapJamming);
             SessionState.SetBool(Prefix + "soddenDistrict", soddenDistrict);
+            SessionState.SetBool(Prefix + "tacticalWater", tacticalWater);
             SessionState.SetBool(Prefix + "expeditionReport", expeditionReport);
             SessionState.SetBool(Prefix + "mendleafYard", mendleafYard);
             SessionState.SetInt(Prefix + "seed", seed);
@@ -117,6 +120,8 @@ namespace CavesOfOoo.Editor
             var driver = new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>();
             if (SessionState.GetBool(Prefix + "expeditionReport", false))
                 driver.InitializeExpeditionReport(new ScenarioContext(zone, factory, player, turns));
+            else if (SessionState.GetBool(Prefix + "tacticalWater", false))
+                driver.InitializeTacticalWater(new ScenarioContext(zone, factory, player, turns));
             else if (SessionState.GetBool(Prefix + "mendleafYard", false))
                 driver.InitializeMendleafYard(new ScenarioContext(zone, factory, player, turns));
             else if (SessionState.GetBool(Prefix + "soddenDistrict", false))

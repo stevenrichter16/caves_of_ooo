@@ -137,6 +137,9 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(carriedReward))
                 baseLine += "\n" + carriedReward;
 
+            var water = ParentEntity?.GetPart<TacticalSupplyPart>()?.Describe();
+            if (!string.IsNullOrEmpty(water)) baseLine += "\n" + water;
+
             var medicine = ParentEntity?.GetPart<FieldMedicinePart>()?.Describe();
             if (!string.IsNullOrEmpty(medicine)) baseLine += "\n" + medicine;
 

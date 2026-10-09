@@ -73,7 +73,7 @@ For the first lead, append one additional offer to the two existing nearby repor
 
 Prepared `/tmp/coo-expedition-report-tests.cs`: **38 proposed native cases**, using reflection for the missing v2 contract and existing real dialogue/inventory/forging APIs for source, UI and depletion checks. The draft is outside `Assets`, has not compiled or run, and provides no RED/GREEN evidence yet. Detailed signatures, remaining checks and source citations are in [EncounterClueDesign](Verification/QudEngagementAfterItemUtility/EncounterClueDesign.md#milestone-b-implementation-ready-source-audit-2026-10-09). No production or Unity assets changed during this preparation.
 
-### B implementation record — native GREEN, Play pending
+### B implementation record — native GREEN and ordinary Play complete
 
 The coordinator ran the tests before production: [native-a-b-red.xml](Verification/EncountersCluesFiniteSupplies/native-a-b-red.xml) confirms **all 38 B cases failed** on the missing v2 fields/reader or absent actual works offer. Production followed that result. The v2 ledger, explicit-world journal read, one appended resident lead, destination-bearing offer token, clear capacity refusal and modern resident test migration are now implemented. The legacy v1 reader/writer and old fixtures remain unchanged in behavior; existing v1 saved bytes are not rewritten. No remote source is generated or inspected to hear/read the clue.
 
@@ -158,3 +158,8 @@ The preliminary resident route `SpreadEverydayResidents/Native/58eedb02de284d98b
 `Verification/SpreadDiscoveryExpeditions/Native/6554cf3ce4324837924a8e764c9ade44/report.json` passes7/7 checks in19.06seconds with zero failures and zero unexpected runtime errors. The ordinary seed64 duelist traveled to the actual11.8 seed keeper, opened Chat/Nearby, explicitly remembered the historical peat-mallet lead and read all its wrapped text through Q/Tab. Hearing/remembering/reading changed no turn, energy, currency or cached destination graph. F5, a real paid unsaved step and F6 restored the exact v2 property bytes, origin/speaker/destination, world identity, position and clock.
 
 The note remains historical after acquisition; the separate ordinary Sodden14/14 journey establishes this release's actual equipment source, assembly and use. These are two measured routes, not a claim that the note itself inspected remote stock. The failed preliminary broad resident run is retained as failed evidence.
+
+
+### Release review
+
+A ships87 new native cases (35policy/whole-action,3ordinary source,19source-transaction,8final-commit,8feedback and14inventory-adversarial). B contributes38 new report cases. The301-case affected run includes these125 additions plus176 existing controls. A/B cold-eye review verified transaction/undo symmetry, canonical diagnostics and source authority; significant findings above were fixed before commit. The final ordinary journeys pass8/8 (water) and7/7 (report); the regional art/control journey passes14/14. Broader build performance and the stale unrelated resident crop observer remain explicit follow-ups.

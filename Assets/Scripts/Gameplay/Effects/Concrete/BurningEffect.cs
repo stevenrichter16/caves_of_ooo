@@ -96,12 +96,12 @@ namespace CavesOfOoo.Core
                     thermal.Temperature = minTemp;
             }
 
-            MessageLog.Add(target.GetDisplayName() + " catches fire!");
+            MessageLog.AddObserved(target, target.GetDisplayName() + " catches fire!");
         }
 
         public override void OnRemove(Entity target)
         {
-            MessageLog.Add(target.GetDisplayName() + " is no longer burning.");
+            MessageLog.AddObserved(target, target.GetDisplayName() + " is no longer burning.");
             if (CompletedNaturally && Duration == 0 && LastRemovalCause == CAUSE_DURATION_EXPIRED
                 && target.GetPart<FuelPart>() == null && target.GetStatValue("Hitpoints", 1) > 0
                 && !CombatSystem.IsDeathHandled(target) && !target.HasEffect<CharredEffect>()

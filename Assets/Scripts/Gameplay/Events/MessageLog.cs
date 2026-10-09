@@ -51,6 +51,19 @@ namespace CavesOfOoo.Core
 
         public static void Add(string message) => AddRaw(PlayerMessageGrammar.Normalize(message));
 
+        /// <summary>Report an entity's local effect without revealing an unseen
+        /// NPC. This gates text only; simulation and diagnostics remain native.</summary>
+        public static void AddObserved(Entity owner, string message)
+        {
+            if (owner == null) return;
+            if (owner.HasTag("Player")) { Add(message); return; }
+            var zone = owner.SpatialZone;
+            var cell = zone?.GetEntityCell(owner);
+            if (cell?.ParentZone == zone && cell?.IsVisible == true && cell.Objects.Contains(owner)
+                && owner.GetPart<RenderPart>()?.Visible != false)
+                Add(message);
+        }
+
         private static void AddRaw(string message)
         {
             Messages.Add(message);

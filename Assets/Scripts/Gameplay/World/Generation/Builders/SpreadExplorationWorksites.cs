@@ -37,6 +37,9 @@ namespace CavesOfOoo.Core
    bool drying=allowDrying&&alembic&&zone.ZoneID=="Overworld.11.9.0"&&LoadoutPart.Factory==factory
     &&new[]{"MarlbackPatchbearer","HealingTonic","MendleafPlant","MendleafSprig","AlchemyShelf","BrewedTonic"}.All(factory.Blueprints.ContainsKey);
    bool pair=!alembic&&actors.Owners.Count==2;
+   // Only this freshly authored pair gains a literal, optional emergency supply.
+   // Missing content retains the earlier shelter; malformed content refuses below.
+   bool emergencyWater=forge&&pair&&zone.ZoneID=="Overworld.15.10.0"&&factory.Blueprints.ContainsKey("SunbladderShell");
    var replaced=drying?actors.Owners.OrderBy(e=>Distance(zone.GetEntityPosition(e),Arrival)).Take(1).ToArray():pair?actors.Owners.ToArray():Array.Empty<Entity>();var selected=new HashSet<Entity>(replaced);if(cache!=null)selected.Add(cache);
    string caster=forge?"MarlbackCindercaller":"MarlbackSoursprayer";
    var specs=new List<(string bp,string role,int x,int y)>();
@@ -84,6 +87,8 @@ namespace CavesOfOoo.Core
    // failed factory/ownership transactions below never consume another attempt.
    if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
+   EmergencyWaterStock waterStock=null;
+   bool SupplyShape()=>!emergencyWater||waterStock?.Matches()==true;
    bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
    bool DryingShape()=>!drying||(staged.Count==specs.Count&&staged.Select((e,i)=>DryingOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
    var oldPositions=selected.ToDictionary(e=>e,zone.GetEntityPosition);
@@ -93,6 +98,10 @@ namespace CavesOfOoo.Core
    // Factories execute callbacks. Every creation must leave the original packet untouched.
    try
    {
+    // Create the supply first: its callback cannot rewrite an already prepared
+    // caster. Keep the exact detached proof until its actual inventory accepts it.
+    if(emergencyWater&&(!EmergencyWaterStock.TryCreate(factory,out waterStock)||!authority()||!Sources()||!initial()
+     ||!all.SetEquals(zone.GetReadOnlyEntities())))return false;
     foreach(var spec in specs)
     {
      var e=factory.CreateEntity(spec.bp);
@@ -102,6 +111,7 @@ namespace CavesOfOoo.Core
      {var tactics=e.GetPart<CombatTacticsPart>();if(tactics==null){tactics=new CombatTacticsPart{SkillClasses="",AbilityChance=0};e.AddPart(tactics);}tactics.AssistAllies=true;tactics.AssistRadius=6;}
      if(spec.role=="ranged"&&(!e.HasTag("Creature")||e.GetPart<BrainPart>()==null||e.GetPart<BrainPart>().SightRadius<1||e.GetPart<BrainPart>().SightRadius>6||e.GetPart<CombatTacticsPart>()?.AssistAllies!=true
       ||e.GetPart<SkillsPart>()?.HasSkill(forge?"Pyromancy_EmberSpit":"Corrosion_AcidSpray")!=true||e.GetPart<ActivatedAbilitiesPart>()==null))return false;
+     if(emergencyWater&&spec.role=="ranged"&&!waterStock.Attach(e))return false;
      if((spec.role=="still"&&!e.HasPart<AlchemyStillPart>())||(spec.role=="forge"&&!e.HasPart<ForgePart>())||(spec.role=="trap"&&(!e.HasPart<SpikeTrapTriggerPart>()||!e.HasPart<TrapJammingPart>()))
       ||(spec.role=="broken-wall"&&e.GetPart<PhysicsPart>()?.Solid!=true)||((spec.role=="binding-forage"||spec.role=="cold-forage")&&!e.HasPart<HarvestablePart>()))return false;
      if(store&&!StoreOwner(e,spec.bp,spec.role))return false;
@@ -120,7 +130,7 @@ namespace CavesOfOoo.Core
     }
    }
    catch(Exception){return false;}
-   if(!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+   if(!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -133,14 +143,14 @@ namespace CavesOfOoo.Core
     for(int i=0;i<packet.Length;i++)
     {
      var e=packet[i];var at=positions[i];
-     if(!authority()||!Owned()||!Others()||!AddedState()||!new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).Place(at.x,at.y))return false;
+     if(!authority()||!Owned()||!Others()||!AddedState()||!SupplyShape()||!new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).Place(at.x,at.y))return false;
      if(!zone.AddEntity(e,at.x,at.y))return false;
      if(e==cache)removed.Remove(e);else added.Add(e);
      placedProof[e]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{e});
-     if(!authority()||!Owned()||!Others()||!AddedState())return false;
+     if(!authority()||!Owned()||!Others()||!AddedState()||!SupplyShape())return false;
     }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
-    bool Final()=>authority()&&Provenance()&&StoreShape()&&DryingShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
+    bool Final()=>authority()&&Provenance()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||stock.MatchesOwnedState())&&finalPacket()&&detached.Values.All(p=>p())
      &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
@@ -162,6 +172,46 @@ namespace CavesOfOoo.Core
   static bool Fresh(Entity e,string bp)=>e!=null&&e.BlueprintName==bp&&!string.IsNullOrEmpty(e.ID)&&e.SpatialZone==null
    &&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.ParentEntity==e&&p.InInventory==null&&p.Equipped==null
    &&e.GetPart<RenderPart>()?.ParentEntity==e&&!e.HasPart<SpatialFootprintPart>()&&e.Parts.All(part=>part!=null&&part.ParentEntity==e);
+  // A local generation receipt, not a saved stock counter. Runtime use consumes
+  // the ordinary Waterskin charges and leaves the real shell in the inventory.
+  sealed class EmergencyWaterStock
+  {
+   const string Shell="SunbladderShell";
+   readonly Entity item;readonly string itemId;readonly WaterskinPart skin;readonly PhysicsPart physical;
+   readonly Part[] parts;readonly Func<bool> detached;
+   Entity actor;string actorId;InventoryPart inventory;TacticalSupplyPart policy;
+   EmergencyWaterStock(Entity item)
+   {
+    this.item=item;itemId=item.ID;skin=item.GetPart<WaterskinPart>();physical=item.GetPart<PhysicsPart>();
+    parts=item.Parts.ToArray();detached=SpreadGenerationReceipt.CaptureDetachedState(item);
+   }
+   internal static bool TryCreate(EntityFactory factory,out EmergencyWaterStock stock)
+   {
+    stock=null;var item=factory.CreateEntity(Shell);
+    if(!Fresh(item,Shell)||item.GetPart<PhysicsPart>().Takeable!=true
+     ||item.GetPart<WaterskinPart>() is not WaterskinPart skin||skin.ParentEntity!=item||skin.Capacity!=2||skin.Charges!=1
+     ||item.Parts.Count(p=>p is WaterskinPart)!=1||item.Parts.Count(p=>p is PhysicsPart)!=1||item.HasPart<LiquidVesselPart>()
+     ||(item.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+    var candidate=new EmergencyWaterStock(item);if(!candidate.detached())return false;
+    stock=candidate;return true;
+   }
+   internal bool Attach(Entity owner)
+   {
+    if(actor!=null||!detached()||owner?.BlueprintName!="MarlbackCindercaller"||owner.GetProperty(RoleKey)!="ranged"
+     ||owner.GetPart<InventoryPart>() is not InventoryPart pack||pack.ParentEntity!=owner
+     ||owner.Parts.Count(p=>p is InventoryPart)!=1||owner.HasPart<TacticalSupplyPart>()
+     ||pack.Objects.Any(e=>e?.BlueprintName==Shell)||!pack.AddObject(item))return false;
+    actor=owner;actorId=owner.ID;inventory=pack;policy=new TacticalSupplyPart{SelfDousing=true};owner.AddPart(policy);
+    return Matches();
+   }
+   internal bool Matches()=>actor!=null&&actor.ID==actorId&&actor.BlueprintName=="MarlbackCindercaller"&&actor.GetProperty(RoleKey)=="ranged"
+    &&actor.GetPart<InventoryPart>()==inventory&&inventory.ParentEntity==actor&&actor.Parts.Count(p=>p is InventoryPart)==1
+    &&actor.GetPart<TacticalSupplyPart>()==policy&&policy.ParentEntity==actor&&policy.SelfDousing&&actor.Parts.Count(p=>p is TacticalSupplyPart)==1
+    &&item.ID==itemId&&item.BlueprintName==Shell&&item.Parts.SequenceEqual(parts)&&parts.All(p=>p.ParentEntity==item)
+    &&item.GetPart<PhysicsPart>()==physical&&item.GetPart<WaterskinPart>()==skin
+    &&inventory.Objects.Count(e=>e?.BlueprintName==Shell)==1
+    &&WaterTransferActions.Vessel(actor,item,out int units,out int capacity)&&units==1&&capacity==2;
+  }
   // Later factory/addition callbacks can mutate a previously staged owner.
   // A snapshot of such a mutation is not proof of the promised physical route.
   // Check the same semantics at creation, after staging and at final acceptance.

@@ -93,7 +93,8 @@ namespace CavesOfOoo.Core
             // A finite carried treatment replaces this whole action, including
             // low-health retreat. Hidden self-treatment/recovery still spends a
             // search opportunity; neither action reads the target's coordinates.
-            bool usedAction = ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(Target, CurrentZone, Rng) == true
+            bool usedAction = ParentEntity.GetPart<TacticalSupplyPart>()?.TryUseEmergencyWater(Target, CurrentZone) == true
+                || ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(Target, CurrentZone, Rng) == true
                 || ParentEntity.GetPart<WeaponRecoveryPart>()?.TryRecover(CurrentZone) == true;
             if (usedAction)
             {

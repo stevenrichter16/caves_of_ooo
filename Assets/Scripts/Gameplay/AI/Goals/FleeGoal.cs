@@ -39,7 +39,8 @@ namespace CavesOfOoo.Core
         {
             // BoredGoal can enter Flee directly on first hostile acquisition,
             // so retreat must share the same finite treatment decision as Kill.
-            if (ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(FleeFrom, CurrentZone, Rng) == true)
+            if (ParentEntity.GetPart<TacticalSupplyPart>()?.TryUseEmergencyWater(FleeFrom, CurrentZone) == true
+                || ParentEntity.GetPart<FieldMedicinePart>()?.TryUseMedicine(FleeFrom, CurrentZone, Rng) == true)
                 return;
 
             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
