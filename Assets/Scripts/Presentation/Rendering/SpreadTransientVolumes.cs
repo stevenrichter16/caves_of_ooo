@@ -119,6 +119,8 @@ namespace CavesOfOoo.Rendering
    if(sample.Owner!=null)return QudColorParser.Parse(sample.Color).linear;
    if(sample.Kind=="residue:embers")return new Color(1,.45f,.1f).linear;
    if(sample.Kind=="residue:petals")return new Color(.6f,.6f,.6f).linear;
+   if(sample.Kind=="residue:grit")return new Color(.82f,.85f,.73f).linear;
+   if(sample.Kind=="veil-mist")return new Color(.65f,.9f,1).linear;
    if(sample.Kind=="coating:oil")return new Color(.35f,.25f,.45f).linear;
    if(sample.Kind=="coating:ice")return new Color(.85f,.95f,1).linear;
    if(sample.Kind.StartsWith("coating:",StringComparison.Ordinal))return new Color(.3f,.55f,.95f).linear;
@@ -128,7 +130,7 @@ namespace CavesOfOoo.Rendering
   static Mesh BuildMesh(SpreadTransientSample sample)
   {
    var vertices=new List<Vector3>();var normals=new List<Vector3>();var uv=new List<Vector2>();var triangles=new List<int>();
-   bool cloud=sample.Owner!=null||sample.Kind=="steam"||sample.Kind=="smoke";
+   bool cloud=sample.Owner!=null||sample.Kind=="steam"||sample.Kind=="smoke"||sample.Kind=="veil-mist";
    bool groundMark=sample.Kind.StartsWith("coating:",StringComparison.Ordinal)||sample.Kind.StartsWith("residue:",StringComparison.Ordinal);
    int count=groundMark?8:cloud?sample.Band==1?4:sample.Band==2?9:16:4+sample.Band*2;
    for(int i=0;i<count;i++)

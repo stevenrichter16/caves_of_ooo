@@ -91,8 +91,9 @@ namespace CavesOfOoo.Core
                 return null;
 
             var parts = new List<string>();
+            bool gritted = LiquidSlipSystem.HasGrit(zone, cell.X, cell.Y);
             for (int i = 0; i < state.Coatings.Count; i++)
-                parts.Add(DescribeLayer(state.Coatings[i], withCounts));
+                parts.Add(DescribeLayer(state.Coatings[i], withCounts, gritted));
             for (int i = 0; i < state.Residues.Count; i++)
                 parts.Add(DescribeLayer(state.Residues[i], withCounts));
             if (state.Heat > 0) parts.Add("hot");
@@ -100,7 +101,8 @@ namespace CavesOfOoo.Core
             if (state.Charge > 0) parts.Add("charged");
             if (!string.IsNullOrEmpty(state.Cloud))
                 parts.Add(TileStateCatalog.DisplayName(state.Cloud) + " cloud"
-                    + FormatTurns(state.CloudTurns, withCounts));
+                    + FormatTurns(state.CloudTurns, withCounts)
+                    + (state.Cloud == "veil-mist" && state.CloudTurns > 0 ? " (blocks sight)" : ""));
             return parts;
         }
 
@@ -109,12 +111,13 @@ namespace CavesOfOoo.Core
         /// turn count so a coating never grows two brackets. Residues
         /// share this path; their ids are not liquids, so the registry
         /// answers null and they are never flagged.</summary>
-        private static string DescribeLayer(ZoneTileState.Layer layer, bool withCounts)
+        private static string DescribeLayer(ZoneTileState.Layer layer, bool withCounts, bool gritted = false)
         {
             string name = TileStateCatalog.DisplayName(layer.Id);
             string turns = FormatTurns(layer.Turns, withCounts);   // "" or " (N turns)"
+            if (layer.Id == "grit" && layer.Turns > 0) return name + turns + " (firm footing)";
             var def = LiquidRegistry.IsInitialized ? LiquidRegistry.Get(layer.Id) : null;
-            bool slippery = def != null && def.Slippery;
+            bool slippery = def != null && def.Slippery && !gritted;
             if (!slippery) return name + turns;
             if (turns.Length == 0) return name + " (slippery)";
             return name + turns.Substring(0, turns.Length - 1) + ", slippery)";

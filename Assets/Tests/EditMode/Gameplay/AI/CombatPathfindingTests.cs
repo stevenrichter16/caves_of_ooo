@@ -5,9 +5,8 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Tests
 {
     /// <summary>
-    /// Tier 2c tests: verifies that hostile creatures (KillGoal) navigate
-    /// around walls to reach their target using A* fallback instead of
-    /// getting stuck on greedy-step obstacles.
+    /// Tier 2c tests: verifies navigation to known waypoints using A* fallback
+    /// around walls, plus KillGoal's approach to an openly visible target.
     /// </summary>
     [TestFixture]
     public class CombatPathfindingTests
@@ -67,6 +66,21 @@ namespace CavesOfOoo.Tests
             entity.AddPart(brain);
             zone.AddEntity(entity, x, y);
             return (entity, brain);
+        }
+
+        private void ApproachKnownWaypoint(Entity creature, Zone zone, int x, int y, int steps)
+        {
+            // Navigation receives a known destination. It must not manufacture
+            // KillGoal knowledge of an unseen enemy behind an opaque wall.
+            // Learned versus unknown pursuit memory is covered separately by
+            // CombatInventoryPursuitTests and its adversarial fixture.
+            for (int i = 0; i < steps; i++)
+            {
+                var pos = zone.GetEntityPosition(creature);
+                if (AIHelpers.IsAdjacent(pos.x, pos.y, x, y)) break;
+                Assert.True(AIHelpers.TryApproachWithPathfinding(creature, zone, pos.x, pos.y, x, y),
+                    $"Known waypoint ({x},{y}) should remain reachable from ({pos.x},{pos.y}) on step {i}.");
+            }
         }
 
         // ========================
@@ -149,7 +163,7 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
-        // KillGoal — combat scenarios with walls
+        // Known-waypoint navigation and visible-target combat scenarios
         // ========================
 
         [Test]
@@ -171,30 +185,25 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void KillGoal_NavigatesAroundLargeWall()
+        public void TryApproach_KnownWaypoint_NavigatesAroundLargeWall()
         {
             // The critical test: BEFORE Tier 2c this scenario was impossible.
             // Large wall between attacker and target. Greedy gets stuck.
             // A* fallback should navigate around.
             //
-            // We push KillGoal directly (not via BoredGoal's hostile scan) because
-            // the wall blocks line-of-sight. This test is about NAVIGATION, not DETECTION.
+            // Supply the known waypoint directly: the wall blocks perception,
+            // while this test isolates the navigation primitive.
             var zone = new Zone("TestZone");
 
             // Build a vertical wall from (7,2) to (7,10) — 9 cells
             for (int wy = 2; wy <= 10; wy++)
                 PlaceWall(zone, 7, wy);
 
-            var (attacker, brain) = CreateAttacker(zone, 3, 6);
+            var (attacker, _) = CreateAttacker(zone, 3, 6);
             var player = CreatePlayer(hp: 100);
             zone.AddEntity(player, 11, 6);
 
-            // Push KillGoal directly — bypass BoredGoal's LOS-gated hostile scan
-            brain.PushGoal(new KillGoal(player));
-
-            // Run many turns — attacker must route around the wall
-            for (int i = 0; i < 30; i++)
-                attacker.FireEvent(GameEvent.New("TakeTurn"));
+            ApproachKnownWaypoint(attacker, zone, 11, 6, 30);
 
             var pos = zone.GetEntityPosition(attacker);
 
@@ -204,13 +213,14 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(crossedWall || reachedPlayer,
                 $"Attacker at ({pos.x},{pos.y}) should have crossed the wall (x>=8) or reached the player. " +
                 "This is the key Tier 2c behavior: A* fallback navigates around obstacles.");
+            Assert.True(reachedPlayer, "Navigation should finish beside its supplied waypoint, not merely wander across the wall line.");
         }
 
         [Test]
-        public void KillGoal_LShapedWall_NavigatesAround()
+        public void TryApproach_KnownWaypoint_NavigatesAroundLShapedWall()
         {
             // L-shaped wall forcing a longer detour.
-            // Push KillGoal directly to isolate navigation from LOS detection.
+            // Supply the known waypoint to isolate navigation from perception.
             var zone = new Zone("TestZone");
 
             // Vertical wall at x=7, y=3..7
@@ -220,22 +230,17 @@ namespace CavesOfOoo.Tests
             for (int wx = 8; wx <= 11; wx++)
                 PlaceWall(zone, wx, 7);
 
-            var (attacker, brain) = CreateAttacker(zone, 3, 5);
+            var (attacker, _) = CreateAttacker(zone, 3, 5);
             var player = CreatePlayer(hp: 100);
             zone.AddEntity(player, 12, 5);
 
-            brain.PushGoal(new KillGoal(player));
-
-            for (int i = 0; i < 40; i++)
-            {
-                attacker.FireEvent(GameEvent.New("TakeTurn"));
-                var cp = zone.GetEntityPosition(attacker);
-                if (AIHelpers.IsAdjacent(cp.x, cp.y, 12, 5)) break;
-            }
+            ApproachKnownWaypoint(attacker, zone, 12, 5, 40);
 
             var pos = zone.GetEntityPosition(attacker);
             Assert.IsTrue(pos.x >= 8 || AIHelpers.IsAdjacent(pos.x, pos.y, 12, 5),
                 $"Attacker at ({pos.x},{pos.y}) should have pathed around the L-wall");
+            Assert.True(AIHelpers.IsAdjacent(pos.x, pos.y, 12, 5),
+                "Navigation should finish beside its supplied waypoint, not pass through incidental wandering.");
         }
 
         [Test]
@@ -260,39 +265,35 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void KillGoal_TargetMoves_ReplansEachTick()
+        public void TryApproach_UpdatedKnownWaypoint_ReplansEachCall()
         {
-            // Moving target: A* runs fresh each tick, so the attacker adapts.
-            // Push KillGoal directly to isolate from LOS (wall blocks sight).
+            // A newly supplied destination replaces the previous known waypoint.
+            // A* runs fresh on each call even where the wall blocks perception.
             var zone = new Zone("TestZone");
 
             // Wall forces A* pathfinding
             for (int wy = 3; wy <= 10; wy++)
                 PlaceWall(zone, 7, wy);
 
-            var (attacker, brain) = CreateAttacker(zone, 3, 6);
+            var (attacker, _) = CreateAttacker(zone, 3, 6);
             var player = CreatePlayer(hp: 100);
             zone.AddEntity(player, 11, 6);
 
-            brain.PushGoal(new KillGoal(player));
-
-            // 5 ticks of chasing
-            for (int i = 0; i < 5; i++)
-                attacker.FireEvent(GameEvent.New("TakeTurn"));
+            ApproachKnownWaypoint(attacker, zone, 11, 6, 5);
 
             var posBeforeMove = zone.GetEntityPosition(attacker);
 
-            // Teleport the player south — attacker should re-plan toward new position
+            // Move the player south and explicitly supply the newly known waypoint.
             zone.MoveEntity(player, 11, 15);
 
-            // More ticks — attacker should adjust
-            for (int i = 0; i < 20; i++)
-                attacker.FireEvent(GameEvent.New("TakeTurn"));
+            ApproachKnownWaypoint(attacker, zone, 11, 15, 20);
 
             var posAfterPlayerMoved = zone.GetEntityPosition(attacker);
             Assert.IsTrue(posAfterPlayerMoved.y >= posBeforeMove.y,
                 $"Attacker at ({posAfterPlayerMoved.x},{posAfterPlayerMoved.y}) was at ({posBeforeMove.x},{posBeforeMove.y}) before player moved. " +
                 "Attacker should be moving south to follow the displaced player.");
+            Assert.True(AIHelpers.IsAdjacent(posAfterPlayerMoved.x, posAfterPlayerMoved.y, 11, 15),
+                "Navigation must reach the updated waypoint instead of continuing toward the former destination.");
         }
     }
 }

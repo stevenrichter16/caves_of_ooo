@@ -36,6 +36,19 @@ namespace CavesOfOoo.Core
         /// chain).</summary>
         public int Level = 1;
 
+        /// <summary>Optional authored opaque tile-cloud id, independent of the
+        /// gas payload's harmful effects. Empty preserves ordinary grenades.</summary>
+        public string SightCloud = "";
+        /// <summary>Finite opacity lifetime in ordinary tile-state ticks.</summary>
+        public int SightCloudTurns;
+        private const int LegacyVeilLifetime = 4;
+
+        /// <summary>Old saved harvested bladders predate the optional fields.
+        /// Restore only that exact normal item/payload pair; explicit authored
+        /// configuration, including a negative lifetime opt-out, always wins.</summary>
+        private bool UsesLegacyVeilDefault => string.IsNullOrEmpty(SightCloud) && SightCloudTurns == 0
+            && ParentEntity?.BlueprintName == "VeilpuffBladder" && GasId == "cryo-mist";
+
         /// <summary>
         /// Spawn a 3×3 grid of gas clouds around <paramref name="center"/>
         /// (center cell + 8 adjacents). Each cell gets a fresh gas
@@ -54,6 +67,9 @@ namespace CavesOfOoo.Core
             if (string.IsNullOrEmpty(GasId)) return 0;
 
             int spawned = 0;
+            bool legacyVeil = UsesLegacyVeilDefault;
+            string sightCloud = legacyVeil ? "veil-mist" : SightCloud;
+            int sightTurns = legacyVeil ? LegacyVeilLifetime : SightCloudTurns;
             for (int dx = -1; dx <= 1; dx++)
             {
                 for (int dy = -1; dy <= 1; dy++)
@@ -61,15 +77,33 @@ namespace CavesOfOoo.Core
                     int x = center.X + dx, y = center.Y + dy;
                     var spawn = GasFactory.SpawnGas(zone, x, y, GasId,
                         density: Density, level: Level, creator: actor);
-                    if (spawn != null) spawned++;
+                    if (spawn != null)
+                    {
+                        spawned++;
+                        if (sightTurns > 0 && ZoneTileState.IsOpaqueCloud(sightCloud)
+                            && spawn.GetPart<GasPoolPart>()?.Density > 0 && OpenCloudPath(zone, center, x, y))
+                            zone.TileState.WriteCloud(x, y, sightCloud, sightTurns);
+                    }
                 }
             }
 
             if (Diagnostics.Diag.IsChannelEnabled("gas"))
                 Diagnostics.Diag.Record("gas", "GrenadeDetonated", actor, ParentEntity,
                     new { gasId = GasId, density = Density, level = Level,
-                          centerX = center.X, centerY = center.Y, cellsSpawned = spawned });
+                          centerX = center.X, centerY = center.Y, cellsSpawned = spawned,
+                          sightCloud, sightTurns });
             return spawned;
+        }
+
+        // Opacity is a local burst, not a cloud on the far side of sealed
+        // geometry. Ordinary gas spawn/dispersal retains its existing rules.
+        private static bool OpenCloudPath(Zone zone, Cell center, int x, int y)
+        {
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.IsSolid() || center.IsSolid()) return false;
+            if (x == center.X || y == center.Y) return true;
+            return zone.GetCell(x, center.Y)?.IsSolid() == false
+                || zone.GetCell(center.X, y)?.IsSolid() == false;
         }
     }
 }

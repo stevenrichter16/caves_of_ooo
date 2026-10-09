@@ -1,0 +1,210 @@
+{
+  "method": "Exhaustive property-presence closure of nonempty selections of current authored reagents. Parse positive Int32 potencies with MAX merge; match required/forbidden presence exactly. More copies cannot create new profiles. Does not execute Unity.",
+  "input_sha256": {
+    "Assets/Resources/Content/Blueprints/Objects.json": "3766ebf63a4713b39864791fed502c6f82958a635da9d400a674258257e2cd24",
+    "Assets/Resources/Content/Data/Alchemy/BrewRules.json": "941e9f46ecf928ca45a00e9db1975bbd8c8524778fe252b9326272d5a3d5a802",
+    "Assets/Scripts/Gameplay/Alchemy/BrewResolver.cs": "5c759dec94079add780e56599f30f7a5315148cf12e84b4aacd770a75ef3c8ad",
+    "Assets/Scripts/Gameplay/Alchemy/BrewingService.cs": "fcab3d1a02e3b9325ffad3ff164804e89416769bed29c8386f59f00121125d38",
+    "Assets/Scripts/Gameplay/Alchemy/ReagentPart.cs": "c593fc0195b969536e49374cc213d43a41a17b938eed3c72f9b94ee79ca9bed8",
+    "Assets/Scripts/Gameplay/Alchemy/BrewProperty.cs": "579f1020af227aa83c3667663a043489c22229bb064e388bf9e05d13e40866d8",
+    "Assets/Scripts/Gameplay/Alchemy/BrewRuleRegistry.cs": "c6f7961e6168f196cb0ed5461b98c6bfca6d0d03ff7f0bdd5d674229eb6f0e3e"
+  },
+  "reagents": [
+    {
+      "id": "ConcentratedMendleaf",
+      "properties": {
+        "vital": 2
+      }
+    },
+    {
+      "id": "CleansedGrovePulp",
+      "properties": {
+        "vital": 2
+      }
+    },
+    {
+      "id": "FireMoss",
+      "properties": {
+        "heat": 2,
+        "volatile": 1
+      }
+    },
+    {
+      "id": "LampOil",
+      "properties": {
+        "combustible": 3,
+        "viscous": 1
+      }
+    },
+    {
+      "id": "EmberFruit",
+      "properties": {
+        "heat": 1,
+        "sweet": 1
+      }
+    },
+    {
+      "id": "FrostLichen",
+      "properties": {
+        "cold": 2
+      }
+    },
+    {
+      "id": "GlacierSalt",
+      "properties": {
+        "cold": 3,
+        "binding": 1
+      }
+    },
+    {
+      "id": "GlimmerBrine",
+      "properties": {
+        "corrosive": 2,
+        "conductive": 2
+      }
+    },
+    {
+      "id": "SparkRoot",
+      "properties": {
+        "conductive": 3
+      }
+    },
+    {
+      "id": "VenomGland",
+      "properties": {
+        "toxic": 2
+      }
+    },
+    {
+      "id": "BogSap",
+      "properties": {
+        "toxic": 1,
+        "viscous": 2
+      }
+    },
+    {
+      "id": "CandyHeartRoot",
+      "properties": {
+        "vital": 2,
+        "sweet": 1
+      }
+    },
+    {
+      "id": "MendleafSprig",
+      "properties": {
+        "vital": 1
+      }
+    },
+    {
+      "id": "StoneburrSeed",
+      "properties": {
+        "binding": 2
+      }
+    },
+    {
+      "id": "BlastcapSpore",
+      "properties": {
+        "volatile": 2,
+        "combustible": 1
+      }
+    },
+    {
+      "id": "GroveRed",
+      "properties": {
+        "vital": 3,
+        "toxic": 1
+      }
+    },
+    {
+      "id": "ShamblerSporeSac",
+      "properties": {
+        "toxic": 2,
+        "volatile": 1
+      }
+    },
+    {
+      "id": "SeamleafSprig",
+      "properties": {
+        "vital": 2
+      }
+    },
+    {
+      "id": "PitchpodResin",
+      "properties": {
+        "heat": 1,
+        "combustible": 1
+      }
+    },
+    {
+      "id": "ChillcressTip",
+      "properties": {
+        "cold": 1
+      }
+    },
+    {
+      "id": "SlipsedgeGel",
+      "properties": {
+        "viscous": 1
+      }
+    },
+    {
+      "id": "SourmantleFold",
+      "properties": {
+        "corrosive": 1
+      }
+    },
+    {
+      "id": "BinderrootKnot",
+      "properties": {
+        "binding": 1
+      }
+    },
+    {
+      "id": "PrismreedPith",
+      "properties": {
+        "conductive": 1
+      }
+    }
+  ],
+  "distinct_profiles_from_nonempty_selections": 1471,
+  "outcomes": {
+    "Brew": 1468,
+    "InertSludge": 0,
+    "Mishap": 3
+  },
+  "no_effect_witnesses": [
+    {
+      "properties": [
+        "heat",
+        "volatile"
+      ],
+      "witness": [
+        "FireMoss"
+      ],
+      "outcome": "Mishap"
+    },
+    {
+      "properties": [
+        "cold",
+        "heat",
+        "volatile"
+      ],
+      "witness": [
+        "FireMoss",
+        "FrostLichen"
+      ],
+      "outcome": "Mishap"
+    },
+    {
+      "properties": [
+        "combustible",
+        "volatile"
+      ],
+      "witness": [
+        "BlastcapSpore"
+      ],
+      "outcome": "Mishap"
+    }
+  ],
+  "bound": "Current Objects.json and BrewRules.json only. Saved, modded or runtime-injected profiles/rules could change the result. Acquisition and the absence of such normal-play injection were reviewed separately. This does not test command costs, mishap damage, UI, balance or native runtime behavior."
+}

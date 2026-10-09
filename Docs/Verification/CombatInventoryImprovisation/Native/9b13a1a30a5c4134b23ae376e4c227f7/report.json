@@ -1,0 +1,109 @@
+{
+  "runId": "9b13a1a30a5c4134b23ae376e4c227f7",
+  "complete": false,
+  "failures": 3,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 5.5351514,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS grease_one_unit_one_action",
+    "PASS grease_rendered",
+    "PASS grit_one_unit_one_action",
+    "PASS grit_rendered",
+    "PASS grit_preserves_oil",
+    "PASS veil_consumed_direct_command",
+    "PASS veil_blocks_sight_has_cold_gas",
+    "FAIL veil_rendered",
+    "PASS pursuit_remembers_old_cell",
+    "FAIL pursuit_budget_six",
+    "PASS pursuit_probe_preserves_live_context"
+  ],
+  "observations": [
+    {
+      "phase": "01-finite-controlled-supplies",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4498\",\"count\":null},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "02-grease-action-menu",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4498\",\"count\":null},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "03-grease-ground",
+      "state": "Normal",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"oil\\\",\\\"Turns\\\":7}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "phase": "native_geometry",
+      "x": 21,
+      "y": 12,
+      "expected": "coating:oil",
+      "submitted": true
+    },
+    {
+      "phase": "04-grit-action-menu",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"oil\\\",\\\"Turns\\\":7}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "phase": "05-gritted-grease-ground",
+      "state": "Normal",
+      "snapshot": "{\"tick\":30,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4500\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"oil\\\",\\\"Turns\\\":6}],\\\"Residues\\\":[{\\\"Id\\\":\\\"grit\\\",\\\"Turns\\\":11}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "phase": "native_geometry",
+      "x": 21,
+      "y": 12,
+      "expected": "residue:grit",
+      "submitted": true
+    },
+    {
+      "phase": "06-thrown-veil-cover",
+      "state": "Normal",
+      "snapshot": "{\"tick\":30,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":898,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":1057,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":976,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":977,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":896,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":897,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"oil\\\",\\\"Turns\\\":6}],\\\"Residues\\\":[{\\\"Id\\\":\\\"grit\\\",\\\"Turns\\\":11}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}},{\\\"Key\\\":1058,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":1056,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}},{\\\"Key\\\":978,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"veil-mist\\\",\\\"CloudTurns\\\":4}}]}\"}"
+    },
+    {
+      "phase": "native_geometry",
+      "x": 17,
+      "y": 12,
+      "expected": "veil-mist",
+      "submitted": false
+    },
+    {
+      "phase": "detached_pursuit_probe",
+      "lastSeenX": 16,
+      "lastSeenY": 10,
+      "hiddenTarget": {
+        "Item1": 16,
+        "Item2": 14
+      },
+      "observer": {
+        "Item1": 12,
+        "Item2": 10
+      },
+      "budgets": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "Abandoned": false,
+      "fixture": "One visible AI action, real thrown veil, hidden target reposition, one searching action, then eight walls hold observer in shadow for five further direct AI actions. The detached zone clock and cloud lifetime are not advanced."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/01-finite-controlled-supplies.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/02-grease-action-menu.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/03-grease-ground.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/04-grit-action-menu.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/05-gritted-grease-ground.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatInventoryImprovisation/Native/9b13a1a30a5c4134b23ae376e4c227f7/06-thrown-veil-cover.png"
+  ],
+  "fixture": "Ordinary N/Classic start, unchanged player HP/stats, isolated flattened Spread zone, player repositioned, three finite supplies granted. No real campaign loaded. Exact-owner inventory popup uses a public host entry; arrow/Enter execute its grease/grit selections. Veil is a direct real ThrowItemCommand and does not claim native keyboard throw or its scheduler cost. No persistent camera preferences changed.",
+  "canVerify": "Native-key grease/grit choices, one consumed unit and one ordinary +10-tick action each, visible submitted ground and cloud geometry, real grenade payload, and a detached finite last-seen pursuit probe. Screenshots are supplied for visual inspection.",
+  "cannotVerify": "Controlled supplies do not prove normal discovery, balance, novelty, long-term fun or novice comprehension. Direct throw/pursuit probes are distinct from player keyboard combat; blocked-observer search holds cloud time fixed and is not a natural escape playtest. Geometry presence alone does not establish screenshot quality."
+}

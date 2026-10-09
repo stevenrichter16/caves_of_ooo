@@ -163,7 +163,9 @@ namespace CavesOfOoo.Core
             // leader's own target legitimacy (documented, accepted
             // limitation -- see the phase doc).
             if (leaderBrain.HasGoal<KillGoal>() && leaderBrain.Target != null
-                && CurrentZone.GetEntityCell(leaderBrain.Target) != null)
+                && CurrentZone.GetEntityCell(leaderBrain.Target) != null
+                && AIHelpers.TryGetVisibleTargetCell(ParentEntity, leaderBrain.Target,
+                    CurrentZone, ParentBrain.SightRadius, out _))
             {
                 PushChildGoal(new KillGoal(leaderBrain.Target));
                 return;

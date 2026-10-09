@@ -1441,6 +1441,7 @@ namespace CavesOfOoo.Rendering
                 || action.Command == BotanicalProcessingPart.Command
                 || LiquidVesselService.IsLiquidCommand(action.Command)
                 || WorldResourceActions.IsCommand(action.Command)
+                || CombatUtilityActions.IsCommand(action.Command)
                 || PreparationActions.IsCommand(action.Command)
                 || SecondExplorationActions.IsCommand(action.Command)))
             {

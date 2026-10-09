@@ -98,6 +98,32 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// Find an actually visible body contact, without treating a large
+        /// creature's hidden anchor as observed knowledge. Body enumeration is
+        /// allocation-free. Cloud endpoints remain visible like opaque surfaces;
+        /// an intervening cloud blocks sight, not adjacent contact or projectiles.
+        /// </summary>
+        public static bool TryGetVisibleTargetCell(Entity observer, Entity target, Zone zone, int radius, out Cell visibleCell)
+        {
+            visibleCell = null;
+            if (observer == null || target == null || zone == null || radius < 0) return false;
+            int nearest = int.MaxValue;
+            foreach (var eye in zone.GetOccupiedCells(observer))
+            {
+                if (eye == null) continue;
+                foreach (var contact in zone.GetOccupiedCells(target))
+                {
+                    if (contact == null) continue;
+                    int distance = ChebyshevDistance(eye.X, eye.Y, contact.X, contact.Y);
+                    if (distance > radius || distance >= nearest
+                        || !HasLineOfSight(zone, eye.X, eye.Y, contact.X, contact.Y)) continue;
+                    nearest = distance; visibleCell = contact;
+                }
+            }
+            return visibleCell != null;
+        }
+
+        /// <summary>
         /// Cached version of <see cref="FindNearestHostile"/>. Reuses the
         /// per-NPC <see cref="BrainPart"/> hostile cache when it's still
         /// valid (target alive, in zone, in LOS, still hostile, within
@@ -452,10 +478,17 @@ namespace CavesOfOoo.Core
         public static bool TryUseRangedAbility(Entity entity, Zone zone, Random rng,
             (int x, int y) myPos, (int x, int y) targetPos)
         {
+            // The physical ray may pass through mist, but an AI cannot choose
+            // a hidden live coordinate as its aim. This is a knowledge gate,
+            // not a projectile collision rule.
+            if (entity == null || zone == null || !zone.InBounds(myPos.x, myPos.y)
+                || !zone.InBounds(targetPos.x, targetPos.y)
+                || !HasLineOfSight(zone, myPos.x, myPos.y, targetPos.x, targetPos.y)) return false;
             var abilities = entity.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null) return false;
 
             int dist = ChebyshevDistance(myPos.x, myPos.y, targetPos.x, targetPos.y);
+            if (entity.GetPart<BrainPart>() is BrainPart brain && dist > brain.SightRadius) return false;
 
             for (int i = 0; i < abilities.AbilityList.Count; i++)
             {

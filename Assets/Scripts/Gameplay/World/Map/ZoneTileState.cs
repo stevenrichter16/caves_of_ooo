@@ -97,11 +97,13 @@ namespace CavesOfOoo.Core
         public int SightVersion { get; private set; }
         /// <summary>Runtime observer for opacity changes; observer failure cannot cancel state changes.</summary>
         public System.Action OnSightChanged;
-        /// <summary>True only for live authored smoke. Out-of-bounds and other cloud IDs are transparent.</summary>
+        /// <summary>Authored optical clouds; harmful entity gases are not implicitly opaque.</summary>
+        public static bool IsOpaqueCloud(string cloud) => cloud == "smoke" || cloud == "veil-mist";
+        /// <summary>True only for a live authored opaque cloud. Other IDs stay transparent.</summary>
         public bool ObscuresSight(int x, int y)
         {
             var state = Get(x, y);
-            return state != null && state.Cloud == "smoke" && state.CloudTurns > 0;
+            return state != null && IsOpaqueCloud(state.Cloud) && state.CloudTurns > 0;
         }
         private void SightChanged()
         {
@@ -109,10 +111,10 @@ namespace CavesOfOoo.Core
             try { OnSightChanged?.Invoke(); }
             catch (System.Exception) { /* A presentation observer must not abort simulation state. */ }
         }
-        private bool HasSmoke()
+        private bool HasOpaqueCloud()
         {
             foreach (var entry in _states)
-                if (entry.Value.Cloud == "smoke" && entry.Value.CloudTurns > 0) return true;
+                if (IsOpaqueCloud(entry.Value.Cloud) && entry.Value.CloudTurns > 0) return true;
             return false;
         }
 
@@ -388,24 +390,26 @@ namespace CavesOfOoo.Core
                 if (!_states.TryGetValue(stateKey, out var s)) continue;  // removed mid-loop
                 visited++;
 
-                DecayLayers(s.Coatings);
-                DecayLayers(s.Residues);
+                bool changed = DecayLayers(s.Coatings);
+                changed |= DecayLayers(s.Residues);
 
                 // Energy bleeds off a step at a time so a charge does not
                 // sit on a tile for the rest of the fight.
-                if (s.Heat > 0) s.Heat--;
-                if (s.Cold > 0) s.Cold--;
-                if (s.Charge > 0) s.Charge--;
+                if (s.Heat > 0) { s.Heat--; changed = true; }
+                if (s.Cold > 0) { s.Cold--; changed = true; }
+                if (s.Charge > 0) { s.Charge--; changed = true; }
 
                 if (!string.IsNullOrEmpty(s.Cloud))
                 {
-                    bool wasSmoke = s.Cloud == "smoke" && s.CloudTurns > 0;
+                    changed = true;
+                    bool wasSmoke = IsOpaqueCloud(s.Cloud) && s.CloudTurns > 0;
                     s.CloudTurns--;
                     if (s.CloudTurns <= 0)
                     { s.Cloud = ""; s.CloudTurns = 0; sightChanged |= wasSmoke; }
                 }
 
                 if (s.IsEmpty) _reclaimScratch.Add(stateKey);
+                else if (changed) Changed(stateKey % Zone.Width, stateKey / Zone.Width);
             }
 
             for (int i = 0; i < _reclaimScratch.Count; i++)
@@ -419,16 +423,19 @@ namespace CavesOfOoo.Core
             return visited;
         }
 
-        private static void DecayLayers(List<Layer> layers)
+        private static bool DecayLayers(List<Layer> layers)
         {
+            bool changed = false;
             for (int i = layers.Count - 1; i >= 0; i--)
             {
                 // Permanent layers are owned by something else and must
                 // not be aged away underneath it.
                 if (layers[i].Turns == Permanent) continue;
+                changed = true;
                 layers[i].Turns--;
                 if (layers[i].Turns <= 0) layers.RemoveAt(i);
             }
+            return changed;
         }
 
         // ── Save / load ──────────────────────────────────────────
@@ -459,7 +466,7 @@ namespace CavesOfOoo.Core
         /// save from before this feature existed must load cleanly.</summary>
         public void LoadFromString(string json)
         {
-            bool before = HasSmoke();
+            bool before = HasOpaqueCloud();
             try
             {
                 _states.Clear();
@@ -480,7 +487,7 @@ namespace CavesOfOoo.Core
                     _states[entry.Key] = entry.State;
                 }
             }
-            finally { if (before || HasSmoke()) SightChanged(); }
+            finally { if (before || HasOpaqueCloud()) SightChanged(); }
         }
     }
 }

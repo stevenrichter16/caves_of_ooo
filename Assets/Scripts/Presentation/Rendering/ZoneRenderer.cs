@@ -1252,7 +1252,11 @@ namespace CavesOfOoo.Rendering
             {_tileStateTilemap.SetTile(tilePos,null);return;}
             char glyph;
             Color color;
-            if (state.Residues.Count > 0)
+            if (state.Cloud == "veil-mist" && state.CloudTurns > 0)
+            {
+                glyph = '\''; color = new Color(0.65f, 0.90f, 1.0f);
+            }
+            else if (state.Residues.Count > 0)
             {
                 // Generalized (status study §7 fix 6): the old check
                 // matched the literal id "embers", so any NEW residue id
@@ -1262,6 +1266,8 @@ namespace CavesOfOoo.Rendering
                 glyph = '"';
                 color = state.Residues[0].Id == "embers"
                     ? new Color(1.0f, 0.45f, 0.10f)                      // embers
+                    : state.Residues[0].Id == "grit"
+                    ? new Color(0.82f, 0.85f, 0.73f)                      // grit
                     : new Color(0.60f, 0.60f, 0.60f);                    // unnamed residue
             }
             else if (HasLayer(state.Coatings, "oil"))

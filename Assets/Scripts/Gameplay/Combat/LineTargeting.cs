@@ -170,6 +170,11 @@ namespace CavesOfOoo.Core
                     continue;
                 if (entity.HasTag("Creature"))
                     continue;
+                // Real gas clouds carry Physics for placement, but are a medium
+                // a projectile crosses, not physical impact objects. Keep loose
+                // nonsolid items and ordinary scenery as existing interceptors.
+                if (entity.HasTag("Gas") && entity.HasPart<GasPoolPart>())
+                    continue;
                 // Authored multi-cell scenery has one destructible owner at
                 // every occupied surface. Ordinary terrain retains its
                 // established geometry-only projectile behavior.

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="10" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 01:00:13Z" end-time="2026-10-09 01:00:15Z" duration="2.0586416">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25616" result="Failed" site="Child" start-time="2026-10-09 01:00:13Z" end-time="2026-10-09 01:00:15Z" duration="2.058642" total="15" passed="10" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31541" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25616" result="Failed" site="Child" start-time="2026-10-09 01:00:13Z" end-time="2026-10-09 01:00:15Z" duration="1.942850" total="15" passed="10" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31542" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25616" result="Failed" site="Child" start-time="2026-10-09 01:00:13Z" end-time="2026-10-09 01:00:15Z" duration="1.864743" total="15" passed="10" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31543" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25616" result="Failed" site="Child" start-time="2026-10-09 01:00:13Z" end-time="2026-10-09 01:00:15Z" duration="1.764259" total="15" passed="10" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="9073" name="CombatInventoryDiscoveryTests" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:15Z" duration="0.781484" total="12" passed="8" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9078" name="CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:14Z" duration="0.293830" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9076" name="CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText(&quot;&quot;,0)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText(&quot;&quot;,0)" methodname="CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="1484937754" result="Failed" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:14Z" duration="0.070924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText (System.String cloud, System.Int32 turns) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatInventoryDiscoveryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9077" name="CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText(&quot;veil-mist&quot;,4)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText(&quot;veil-mist&quot;,4)" methodname="CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="1749119834" result="Failed" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:14Z" duration="0.020880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CarriedVeilpuffHelpExplainsCoverEvenWithLegacyExamineText (System.String cloud, System.Int32 turns) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatInventoryDiscoveryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9083" name="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:15Z" duration="0.188224" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9079" name="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;&quot;,-1)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;&quot;,-1)" methodname="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="1705726271" result="Passed" start-time="2026-10-09 01:00:14Z" end-time="2026-10-09 01:00:15Z" duration="0.022369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9080" name="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;veil-mist&quot;,0)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;veil-mist&quot;,0)" methodname="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="1228514499" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.021059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9081" name="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;veil-mist&quot;,7)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;veil-mist&quot;,7)" methodname="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="266832892" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.020189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9082" name="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;steam&quot;,4)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp(&quot;steam&quot;,4)" methodname="ChangedOrDisabledPayloadDoesNotReceiveNormalVeilHelp" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="2108386497" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.020078" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9075" name="CropCatalogueExplainsVeilpuffSightUtility" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CropCatalogueExplainsVeilpuffSightUtility" methodname="CropCatalogueExplainsVeilpuffSightUtility" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="1798116717" result="Failed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.025178" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "sight"
+  But was:  "throw the bladder to release freezing mist. the cold can harm allies and vulnerable objects too."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatInventoryDiscoveryTests.CropCatalogueExplainsVeilpuffSightUtility () [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatInventoryDiscoveryTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9074" name="StandingVeilpuffExplainsItsHarvestsSightUtility" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.StandingVeilpuffExplainsItsHarvestsSightUtility" methodname="StandingVeilpuffExplainsItsHarvestsSightUtility" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="2140908176" result="Failed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.022501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "sight"
+  But was:  "you see a veilpuff. cold moisture gathers inside the taut puffball and clouds the air when its skin breaks. the planted crop takes 80 moist rounds to become ripe. watered crops keep growing while you travel. harvest by hand, then pick up its veilpuff bladder and one saved seed. throw the bladder to release freezing mist. the cold can harm allies and vulnerable objects too."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatInventoryDiscoveryTests.StandingVeilpuffExplainsItsHarvestsSightUtility () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatInventoryDiscoveryTests.cs:16
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9088" name="VeilHelpRequiresTheActualCarriedVeilpuffPayload" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.VeilHelpRequiresTheActualCarriedVeilpuffPayload" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.150468" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9084" name="VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;other-item&quot;)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;other-item&quot;)" methodname="VeilHelpRequiresTheActualCarriedVeilpuffPayload" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="809390510" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.020858" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9085" name="VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;other-gas&quot;)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;other-gas&quot;)" methodname="VeilHelpRequiresTheActualCarriedVeilpuffPayload" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="546042939" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.019897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9086" name="VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;missing-payload&quot;)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;missing-payload&quot;)" methodname="VeilHelpRequiresTheActualCarriedVeilpuffPayload" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="383615634" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.020272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9087" name="VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;not-carried&quot;)" fullname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests.VeilHelpRequiresTheActualCarriedVeilpuffPayload(&quot;not-carried&quot;)" methodname="VeilHelpRequiresTheActualCarriedVeilpuffPayload" classname="CavesOfOoo.Tests.CombatInventoryDiscoveryTests" runstate="Runnable" seed="424241974" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.019975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="9089" name="CombatInventoryThrowTests" fullname="CavesOfOoo.Tests.CombatInventoryThrowTests" classname="CavesOfOoo.Tests.CombatInventoryThrowTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.383158" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9092" name="ClosedDoorAndOrdinaryWallBothBurstOnApproachSide" fullname="CavesOfOoo.Tests.CombatInventoryThrowTests.ClosedDoorAndOrdinaryWallBothBurstOnApproachSide" classname="CavesOfOoo.Tests.CombatInventoryThrowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.310998" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9090" name="ClosedDoorAndOrdinaryWallBothBurstOnApproachSide(True)" fullname="CavesOfOoo.Tests.CombatInventoryThrowTests.ClosedDoorAndOrdinaryWallBothBurstOnApproachSide(True)" methodname="ClosedDoorAndOrdinaryWallBothBurstOnApproachSide" classname="CavesOfOoo.Tests.CombatInventoryThrowTests" runstate="Runnable" seed="1475774697" result="Failed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.062005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  a solid impact must leave the paid screen on the approach side
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatInventoryThrowTests.ClosedDoorAndOrdinaryWallBothBurstOnApproachSide (System.Boolean door) [0x000c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatInventoryThrowTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9091" name="ClosedDoorAndOrdinaryWallBothBurstOnApproachSide(False)" fullname="CavesOfOoo.Tests.CombatInventoryThrowTests.ClosedDoorAndOrdinaryWallBothBurstOnApproachSide(False)" methodname="ClosedDoorAndOrdinaryWallBothBurstOnApproachSide" classname="CavesOfOoo.Tests.CombatInventoryThrowTests" runstate="Runnable" seed="526108756" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.047481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9093" name="NonSolidCreatureImpactStillCentersTheRealColdPayloadOnThatCreature" fullname="CavesOfOoo.Tests.CombatInventoryThrowTests.NonSolidCreatureImpactStillCentersTheRealColdPayloadOnThatCreature" methodname="NonSolidCreatureImpactStillCentersTheRealColdPayloadOnThatCreature" classname="CavesOfOoo.Tests.CombatInventoryThrowTests" runstate="Runnable" seed="2031909901" result="Passed" start-time="2026-10-09 01:00:15Z" end-time="2026-10-09 01:00:15Z" duration="0.053203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

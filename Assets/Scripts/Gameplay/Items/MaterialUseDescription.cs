@@ -2,9 +2,9 @@ using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Read-only, carried-item guidance for the three native repair
-    /// materials. Built on explicit inspection, never world generation or a
-    /// repair dry run. False means the item is outside this bounded help surface
+    /// <summary>Read-only, carried-item guidance for supported repair materials
+    /// and improvised combat supplies. Built on explicit inspection, never world
+    /// generation or a repair dry run. False means the item is outside this bounded help surface
     /// or no longer has a usable unit in this actor's carried inventory.</summary>
     public static class MaterialUseDescription
     {
@@ -13,6 +13,28 @@ namespace CavesOfOoo.Core
             text = null;
             var inventory = actor?.GetPart<InventoryPart>();
             if (item == null || inventory == null || !inventory.CanConsumeOne(item)) return false;
+            if (item.BlueprintName == "FrogOil")
+            {
+                text = item.GetDisplayName() + "\n\nSpread one gourd underfoot or onto nearby ground to leave grease for eight turns."
+                    + " Creatures crossing it may slip sideways, including you. The grease can catch fire."
+                    + " Choose a direction from this item's actions; a successful use spends the gourd. Silver sand gives firm footing over grease.";
+                return true;
+            }
+            if (item.BlueprintName == "VeilpuffBladder")
+            {
+                var gas = item.GetPart<GasGrenadePart>();
+                // Saved bladders can retain their pre-veil examine text. Match
+                // the exact legacy fallback or normal authored payload rather
+                // than advertising cover for an explicit opt-out or other gas.
+                if (gas == null || gas.GasId != "cryo-mist"
+                    || !((string.IsNullOrEmpty(gas.SightCloud) && gas.SightCloudTurns == 0)
+                        || (gas.SightCloud == "veil-mist" && gas.SightCloudTurns == 4))) return false;
+                text = item.GetDisplayName() + "\n\nThrow the bladder to release freezing mist and a stationary four-turn veil that blocks distant sight."
+                    + " Put the veil between you and an enemy, then move out of sight; pursuers search where they last saw you."
+                    + " Bodies and projectiles can cross the veil, and nearby enemies remain dangerous."
+                    + " The cold mist can drift and harm allies too. Throwing spends the bladder.";
+                return true;
+            }
             if (item.BlueprintName == "SalvagedTimber" || item.BlueprintName == "KnotflaxCord")
             {
                 text = item.GetDisplayName() + "\n\n" + (item.BlueprintName == "SalvagedTimber"
@@ -55,6 +77,9 @@ namespace CavesOfOoo.Core
                     +" After diagnosis, one fire clay makes a quiet clapper; the bare, loud setting costs no material.";
             if (item.BlueprintName == SettlementRepairDefinitions.FireClayBlueprint)
                 text += "\n\nStructural repair: two measures seal a split clay-lined catch well. Stand beside it and choose Repair; this repair needs no guide. Exposed fire-clay seams provide finite supplies.";
+            if (item.BlueprintName == SettlementRepairDefinitions.SilverSandBlueprint)
+                text += "\n\nScatter one measure as grit underfoot or onto nearby ground for twelve turns of firm footing over oil or ice."
+                    + " Enemies can use that footing too. It does not put out fire or make dangerous liquids harmless.";
             return true;
         }
     }

@@ -193,6 +193,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     // takes immediate gas damage on the next ApplyGas
                     // pass. Friendly fire is intentional.
                     landingCell = trace.ImpactCell ?? zone.GetEntityCell(hitTarget);
+                    // A targetable closed door/scenery is still solid geometry.
+                    // Burst on its approach side, just as the wall branch does;
+                    // an occupied but passable creature cell remains the center.
+                    if (landingCell?.IsSolid() == true)
+                        landingCell = trace.LastTraversableCell ?? actorCell;
                     DetonateGasGrenade(actor, itemToThrow, landingCell, zone);
                     consumedOnImpact = true;
                     landingCell = null;

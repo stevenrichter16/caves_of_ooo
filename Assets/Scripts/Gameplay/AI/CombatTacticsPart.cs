@@ -105,6 +105,9 @@ namespace CavesOfOoo.Core
                 !target.HasTag("Creature") || actor.SpatialZone != zone || target.SpatialZone != zone)
                 return Reject(target, null, "invalid-actor-or-target");
             if (!FactionManager.IsHostile(actor, target)) return Reject(target, null, "not-hostile");
+            if (!AIHelpers.TryGetVisibleTargetCell(actor, target, zone,
+                actor.GetPart<BrainPart>()?.SightRadius ?? 10, out _))
+                return Reject(target, null, "target-not-visible");
             var abilities = actor.GetPart<ActivatedAbilitiesPart>();
             var skills = actor.GetPart<SkillsPart>();
             if (abilities == null || skills == null) return Reject(target, null, "no-owned-skills");
@@ -189,9 +192,27 @@ namespace CavesOfOoo.Core
                     var hits = SkillLine.Collect(zone, actor, source.X, source.Y, dx, dy, range);
                     first = hits.Count == 0 ? null : hits[0];
                 }
-                if (first == target) return new Candidate { Ability = ability, Dx = dx, Dy = dy };
+                // Seeing one part of a large body does not reveal every other
+                // part. The selected first-impact contact must itself be seen.
+                if (first == target && VisibleContactOnRay(zone, source, dx, dy, range, target))
+                    return new Candidate { Ability = ability, Dx = dx, Dy = dy };
             }
             Reject(target, ability, "no-clear-target-ray"); return null;
+        }
+
+        private bool VisibleContactOnRay(Zone zone, Cell source, int dx, int dy, int range, Entity target)
+        {
+            int sight = ParentEntity.GetPart<BrainPart>()?.SightRadius ?? 10;
+            for (int step = 1; step <= range; step++)
+            {
+                var cell = zone.GetCell(source.X + dx * step, source.Y + dy * step);
+                if (cell == null) return false;
+                foreach (var occupant in cell.Occupants)
+                    if (occupant == target)
+                        return step <= sight && AIHelpers.HasLineOfSight(zone, source.X, source.Y, cell.X, cell.Y);
+                if (cell.IsSolid()) return false;
+            }
+            return false;
         }
 
         private static bool IsProjectile(BaseSkillPart skill) => skill is Corrosion_AcidSpray

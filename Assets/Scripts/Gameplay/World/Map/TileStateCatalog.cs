@@ -21,6 +21,7 @@ namespace CavesOfOoo.Core
         {
             if (string.IsNullOrEmpty(id))
                 return "";
+            if (id == "veil-mist") return "veil mist";
 
             if (LiquidRegistry.IsInitialized)
             {

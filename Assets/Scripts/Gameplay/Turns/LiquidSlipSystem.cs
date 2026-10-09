@@ -131,15 +131,22 @@ namespace CavesOfOoo.Core
         public static LiquidDefinition FindSlipperyLiquid(Zone zone, Cell cell)
         {
             if (zone == null || cell == null) return null;
+            if (HasGrit(zone, cell.X, cell.Y)) return null;
             var state = zone.TileState.Get(cell.X, cell.Y);
             if (state == null) return null;
             for (int i = 0; i < state.Coatings.Count; i++)
             {
+                if (state.Coatings[i].Turns <= 0) continue;
                 var def = LiquidRegistry.Get(state.Coatings[i].Id);
                 if (def != null && def.Slippery) return def;
             }
             return null;
         }
+
+        /// <summary>Temporary physical traction for this contact. It prevents
+        /// slipping only; liquid contact, heat and other hazards stay active.</summary>
+        public static bool HasGrit(Zone zone, int x, int y)
+            => zone?.TileState.HasResidue(x, y, CombatUtilityActions.GritResidue) == true;
 
         private static bool BodyHasOtherCreature(Zone zone, Entity mover, int x, int y)
         {

@@ -1,0 +1,141 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"05750bc246f14a8584fc62706d464755\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791506185121,\"finished_unix_ms\":1791506212677,\"last_update_unix_ms\":1791506212677,\"progress\":{\"completed\":62,\"total\":62,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791506212347,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.CombatInventoryVeilTests.VeilRoundTripRetainsRemainingLifetimeAndLoadedTopologyInvalidation\",\"last_finished_unix_ms\":1791506212350,\"stuck_suspected\":false,\"editor_is_focused\":false,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.GritLookReadoutExplainsTractionAndExpiryWithoutHidingOil\",\"message\":\"  Expected: String containing \\\"firm footing\\\"\\n  But was:  \\\"On the ground: oil (5 turns, slippery), grit (1 turn)\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.NewSurfaceHasRealNativeGeometryAndRelinquishesHiddenCells(\\\"grit\\\",\\\"residue:grit\\\")\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.NewSurfaceHasRealNativeGeometryAndRelinquishesHiddenCells(\\\"veil-mist\\\",\\\"veil-mist\\\")\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(\\\"FrogOil\\\",\\\"SpreadGrease|\\\")\",\"message\":\"  the normal inventory must offer the real utility action\\n  Expected: greater than or equal to 0\\n  But was:  -1\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(\\\"SilverSand\\\",\\\"ScatterGrit|\\\")\",\"message\":\"  the normal inventory must offer the real utility action\\n  Expected: greater than or equal to 0\\n  But was:  -1\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.SilverSandInspectionIncludesCombatAndRepairUse\",\"message\":\"  Expected: String containing \\\"grit\\\"\\n  But was:  \\\"silver sand\\n\\none measure can repair a damaged settlement well's filtration ring. speak to its keeper where this repair is offered. the material is spent; the guide is kept.\\n\\nrequired guide: well maintenance manual (missing). ask the settlement elder about the damaged site for its guide.\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(\\\"FrogOil\\\",\\\"SpreadGrease|\\\")\",\"message\":\"  the normal inventory must offer the real utility action\\n  Expected: greater than or equal to 0\\n  But was:  -1\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(\\\"SilverSand\\\",\\\"ScatterGrit|\\\")\",\"message\":\"  the normal inventory must offer the real utility action\\n  Expected: greater than or equal to 0\\n  But was:  -1\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPresentationTests.VeilReadoutNamesItsActualObscuringCloud\",\"message\":\"  Expected: String containing \\\"sight\\\"\\n  But was:  \\\"On the ground: veil-mist cloud (4 turns)\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.AuthoredRangedAiRequiresVisibleTargetButTransparentCloudDoesNotBlock(\\\"smoke\\\",False)\",\"message\":\"  Expected: False\\n  But was:  True\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.GenericRangedAiAlsoRequiresVisibleTarget(\\\"smoke\\\",False)\",\"message\":\"  Expected: False\\n  But was:  True\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.GoalRoundTripRetainsSearchBudgetAndLastSeenRatherThanCurrentHiddenCell\",\"message\":\"  Saved public field required: LastSeenX\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.HiddenMovingTargetDoesNotRedirectNextStepFromItsLastSeenCell\",\"message\":\"  Expected: (12, 10)\\n  But was:  (12, 11)\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.HiddenSearchHasSixActionsAndNeverRefreshesFromInvisibleMotion\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.MissingOrDeadTargetFinishesWithoutMovement(True)\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.NewOrLegacyGoalCannotInventLastSeenCoordinatesForHiddenTarget\",\"message\":\"  Expected: (10, 10)\\n  But was:  (11, 10)\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.ReacquisitionRefreshesMemoryAndResumesPursuit\",\"message\":\"  Saved public field required: Searching\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryPursuitTests.VisibleMovingTargetUpdatesKnowledgeAndPursuit\",\"message\":\"  Saved public field required: LastSeenY\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.AlreadySavedSupplyWithoutANewPartStillOffersAndPerformsTheAction(\\\"FrogOil\\\")\",\"message\":\"  Expected one actual menu choice for SpreadGrease|\\n  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.AlreadySavedSupplyWithoutANewPartStillOffersAndPerformsTheAction(\\\"SilverSand\\\")\",\"message\":\"  Expected one actual menu choice for ScatterGrit|\\n  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.DistantBlockedAndUnrelatedItemsOfferNoInvalidTargets(\\\"FrogOil\\\")\",\"message\":\"  the valid nearby choices must exist\\n  Expected: greater than 0\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.DistantBlockedAndUnrelatedItemsOfferNoInvalidTargets(\\\"SilverSand\\\")\",\"message\":\"  the valid nearby choices must exist\\n  Expected: greater than 0\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.DuplicateCommandCannotSpendAgainOrStackLifetime(\\\"FrogOil\\\")\",\"message\":\"  Expected one actual menu choice for SpreadGrease|\\n  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.DuplicateCommandCannotSpendAgainOrStackLifetime(\\\"SilverSand\\\")\",\"message\":\"  Expected one actual menu choice for ScatterGrit|\\n  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.CombatInventoryUtilityTests.GritPreventsActualMovementSlipForPlayersAndOtherCreatures(\\\"oil\\\",False)\",\"message\":\"  Expected: (11, 10)\\n  But was:  (12, 10)\\n\"}],\"failures_capped\":true},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "05750bc246f14a8584fc62706d464755",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791506185121,
+        "finished_unix_ms": 1791506212677,
+        "last_update_unix_ms": 1791506212677,
+        "progress": {
+          "completed": 62,
+          "total": 62,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791506212347,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.CombatInventoryVeilTests.VeilRoundTripRetainsRemainingLifetimeAndLoadedTopologyInvalidation",
+          "last_finished_unix_ms": 1791506212350,
+          "stuck_suspected": false,
+          "editor_is_focused": false,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.GritLookReadoutExplainsTractionAndExpiryWithoutHidingOil",
+              "message": "  Expected: String containing \"firm footing\"\n  But was:  \"On the ground: oil (5 turns, slippery), grit (1 turn)\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.NewSurfaceHasRealNativeGeometryAndRelinquishesHiddenCells(\"grit\",\"residue:grit\")",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.NewSurfaceHasRealNativeGeometryAndRelinquishesHiddenCells(\"veil-mist\",\"veil-mist\")",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(\"FrogOil\",\"SpreadGrease|\")",
+              "message": "  the normal inventory must offer the real utility action\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(\"SilverSand\",\"ScatterGrit|\")",
+              "message": "  the normal inventory must offer the real utility action\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.SilverSandInspectionIncludesCombatAndRepairUse",
+              "message": "  Expected: String containing \"grit\"\n  But was:  \"silver sand\n\none measure can repair a damaged settlement well's filtration ring. speak to its keeper where this repair is offered. the material is spent; the guide is kept.\n\nrequired guide: well maintenance manual (missing). ask the settlement elder about the damaged site for its guide.\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(\"FrogOil\",\"SpreadGrease|\")",
+              "message": "  the normal inventory must offer the real utility action\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(\"SilverSand\",\"ScatterGrit|\")",
+              "message": "  the normal inventory must offer the real utility action\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPresentationTests.VeilReadoutNamesItsActualObscuringCloud",
+              "message": "  Expected: String containing \"sight\"\n  But was:  \"On the ground: veil-mist cloud (4 turns)\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.AuthoredRangedAiRequiresVisibleTargetButTransparentCloudDoesNotBlock(\"smoke\",False)",
+              "message": "  Expected: False\n  But was:  True\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.GenericRangedAiAlsoRequiresVisibleTarget(\"smoke\",False)",
+              "message": "  Expected: False\n  But was:  True\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.GoalRoundTripRetainsSearchBudgetAndLastSeenRatherThanCurrentHiddenCell",
+              "message": "  Saved public field required: LastSeenX\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.HiddenMovingTargetDoesNotRedirectNextStepFromItsLastSeenCell",
+              "message": "  Expected: (12, 10)\n  But was:  (12, 11)\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.HiddenSearchHasSixActionsAndNeverRefreshesFromInvisibleMotion",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.MissingOrDeadTargetFinishesWithoutMovement(True)",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.NewOrLegacyGoalCannotInventLastSeenCoordinatesForHiddenTarget",
+              "message": "  Expected: (10, 10)\n  But was:  (11, 10)\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.ReacquisitionRefreshesMemoryAndResumesPursuit",
+              "message": "  Saved public field required: Searching\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryPursuitTests.VisibleMovingTargetUpdatesKnowledgeAndPursuit",
+              "message": "  Saved public field required: LastSeenY\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.AlreadySavedSupplyWithoutANewPartStillOffersAndPerformsTheAction(\"FrogOil\")",
+              "message": "  Expected one actual menu choice for SpreadGrease|\n  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.AlreadySavedSupplyWithoutANewPartStillOffersAndPerformsTheAction(\"SilverSand\")",
+              "message": "  Expected one actual menu choice for ScatterGrit|\n  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.DistantBlockedAndUnrelatedItemsOfferNoInvalidTargets(\"FrogOil\")",
+              "message": "  the valid nearby choices must exist\n  Expected: greater than 0\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.DistantBlockedAndUnrelatedItemsOfferNoInvalidTargets(\"SilverSand\")",
+              "message": "  the valid nearby choices must exist\n  Expected: greater than 0\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.DuplicateCommandCannotSpendAgainOrStackLifetime(\"FrogOil\")",
+              "message": "  Expected one actual menu choice for SpreadGrease|\n  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.DuplicateCommandCannotSpendAgainOrStackLifetime(\"SilverSand\")",
+              "message": "  Expected one actual menu choice for ScatterGrit|\n  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.CombatInventoryUtilityTests.GritPreventsActualMovementSlipForPlayersAndOtherCreatures(\"oil\",False)",
+              "message": "  Expected: (11, 10)\n  But was:  (12, 10)\n"
+            }
+          ],
+          "failures_capped": true
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

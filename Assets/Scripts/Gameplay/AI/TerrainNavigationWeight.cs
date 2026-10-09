@@ -34,7 +34,7 @@ namespace CavesOfOoo.Core
             int max = SteamContact.ForCell(cell, actor);
             if (!LiquidRegistry.IsInitialized) return max;
             var state = cell.ParentZone?.TileState.Get(cell.X, cell.Y);
-            if (state != null)
+            if (state != null && !LiquidSlipSystem.HasGrit(cell.ParentZone, cell.X, cell.Y))
                 for (int i = 0; i < state.Coatings.Count; i++)
                 {
                     var layer = state.Coatings[i];

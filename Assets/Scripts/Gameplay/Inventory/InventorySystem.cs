@@ -272,6 +272,7 @@ namespace CavesOfOoo.Core
             // event object's parameters can be released safely; the list
             // reference outlives it.
             item.FireEventAndRelease(e);
+            CombatUtilityActions.AddActions(actor, item, actor?.SpatialZone, actionList);
             actionList.Sort();
             return actionList.Actions;
         }

@@ -40,7 +40,11 @@ namespace CavesOfOoo.Rendering
    sample=default;
    if(!SpreadPresentationScope.IsActive(zone)||!zone.InBounds(x,y))return false;
    var cell=zone.GetCell(x,y);if(cell==null||!cell.IsVisible||!cell.Explored)return false;
-   var state=zone.TileState.Get(x,y);if(state==null||state.Coatings==null||state.Residues==null||state.Residues.Count>0)return false;
+   var state=zone.TileState.Get(x,y);if(state==null||state.Coatings==null||state.Residues==null)return false;
+   // An opaque veil must remain visible over its cold and ground residues.
+   if(state.Cloud=="veil-mist"&&state.CloudTurns>0)
+   {sample=new SpreadTransientSample(null,"veil-mist","","&C",x,y,state.CloudTurns,Math.Min(2,state.CloudTurns));return true;}
+   if(state.Residues.Count>0)return false;
    if(state.Coatings.Count>0&&!(representedPermanentWater&&state.Coatings.Count==1&&state.Coatings[0]?.Id=="water"&&state.Coatings[0].Turns==ZoneTileState.Permanent))return false;
    string kind,color;int amount;
    if(state.Charge>0){kind="charge";color="&W";amount=state.Charge;}
@@ -58,9 +62,10 @@ namespace CavesOfOoo.Rendering
    sample=default;if(!SpreadPresentationScope.IsActive(zone)||!zone.InBounds(x,y))return false;
    var cell=zone.GetCell(x,y);if(cell==null||!cell.Explored||!cell.IsVisible)return false;
    var state=zone.TileState.Get(x,y);if(state==null||state.Residues==null||state.Coatings==null)return false;
+   if(state.Cloud=="veil-mist"&&state.CloudTurns>0)return false;
    if(state.Residues.Count>0)
    {
-    var layer=state.Residues[0];if(!LiveLayer(layer)||(layer.Id!="embers"&&layer.Id!="petals"))return false;
+    var layer=state.Residues[0];if(!LiveLayer(layer)||(layer.Id!="embers"&&layer.Id!="petals"&&layer.Id!="grit"))return false;
     sample=new SpreadTransientSample(null,"residue:"+layer.Id,"",layer.Id=="embers"?"&R":"&w",x,y,layer.Turns,1);return true;
    }
    if(state.Coatings.Count==0)return false;

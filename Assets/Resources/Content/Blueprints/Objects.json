@@ -33632,7 +33632,7 @@
         {
           "Name": "Examinable",
           "Params": [
-            { "Key": "Description", "Value": "Rendered fat in a stoppered gourd. Burns slow, smells like the bog it came from. Sumphold lamps run on it." }
+            { "Key": "Description", "Value": "Rendered fat in a stoppered gourd. Spread it onto nearby ground to leave slippery grease for eight turns. It can trip a pursuer or your own feet, and catches fire. Silver sand gives firm footing over the slick." }
           ]
         }
       ],
@@ -53024,7 +53024,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Cold moisture gathers inside the taut puffball and clouds the air when its skin breaks. The planted crop takes 80 moist rounds to become ripe. Watered crops keep growing while you travel. Harvest by hand, then pick up its veilpuff bladder and one saved seed. Throw the bladder to release freezing mist. The cold can harm allies and vulnerable objects too."
+              "Value": "Cold moisture gathers inside the taut puffball and clouds the air when its skin breaks. The planted crop takes 80 moist rounds to become ripe. Watered crops keep growing while you travel. Harvest by hand, then pick up its veilpuff bladder and one saved seed. Throw the bladder to release freezing mist and a four-turn veil that blocks distant sight. The cold can harm allies and vulnerable objects too."
             }
           ]
         }
@@ -53106,6 +53106,14 @@
             {
               "Key": "Level",
               "Value": "1"
+            },
+            {
+              "Key": "SightCloud",
+              "Value": "veil-mist"
+            },
+            {
+              "Key": "SightCloudTurns",
+              "Value": "4"
             }
           ]
         },
@@ -53123,7 +53131,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Throw the bladder to release freezing mist. The cold can harm allies and vulnerable objects too. Cold moisture gathers inside the taut puffball and clouds the air when its skin breaks."
+              "Value": "Throw the bladder to release freezing mist and a four-turn veil that hides distant shapes. Put the veil between you and an enemy, then move out of sight; pursuers search where they last saw you. Bodies and projectiles can cross it, nearby enemies remain dangerous, and the cold can harm allies too."
             }
           ]
         }

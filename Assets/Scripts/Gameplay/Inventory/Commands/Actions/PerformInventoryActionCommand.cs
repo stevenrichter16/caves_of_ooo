@@ -78,20 +78,29 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     $"Inventory action '{_actionCommand}' was cancelled.");
             }
 
-            // Fire InventoryAction on the item.
-            var actionEvent = GameEvent.New("InventoryAction");
-            actionEvent.SetParameter("Actor", (object)actor);
-            actionEvent.SetParameter("Item", (object)_item);
-            actionEvent.SetParameter("Command", _actionCommand);
-            // Native Parts may join this command's receipt rather than commit
-            // a nested transaction before AfterInventoryAction has succeeded.
-            actionEvent.SetParameter("InventoryTransaction", (object)transaction);
-            if (zone != null)
-                actionEvent.SetParameter("Zone", (object)zone);
+            // Exact loose-material actions also work on pre-existing save Parts.
+            // They retain the same before/after veto and transaction boundary.
+            bool nativeUtility = CombatUtilityActions.IsCommand(_actionCommand);
+            bool handled;
+            if (nativeUtility)
+                handled = CombatUtilityActions.TryAct(actor, _item, zone, _actionCommand, transaction);
+            else
+            {
+                // Fire InventoryAction on the item.
+                var actionEvent = GameEvent.New("InventoryAction");
+                actionEvent.SetParameter("Actor", (object)actor);
+                actionEvent.SetParameter("Item", (object)_item);
+                actionEvent.SetParameter("Command", _actionCommand);
+                // Native Parts may join this command's receipt rather than commit
+                // a nested transaction before AfterInventoryAction has succeeded.
+                actionEvent.SetParameter("InventoryTransaction", (object)transaction);
+                if (zone != null)
+                    actionEvent.SetParameter("Zone", (object)zone);
 
-            // Listeners may set actionEvent.Handled — read before release.
-            bool handled = !_item.FireEvent(actionEvent) || actionEvent.Handled;
-            actionEvent.Release();
+                // Listeners may set actionEvent.Handled — read before release.
+                handled = !_item.FireEvent(actionEvent) || actionEvent.Handled;
+                actionEvent.Release();
+            }
             if (!handled)
             {
                 return InventoryCommandResult.Fail(
