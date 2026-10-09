@@ -1,0 +1,1281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="71" result="Failed(Child)" total="71" passed="3" failed="68" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:50:03Z" duration="12.4356864">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25716" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:50:03Z" duration="12.435686" total="71" passed="3" failed="68" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31671" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25716" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:50:03Z" duration="12.400413" total="71" passed="3" failed="68" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31672" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25716" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:50:03Z" duration="12.389364" total="71" passed="3" failed="68" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31673" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25716" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:50:03Z" duration="12.378661" total="71" passed="3" failed="68" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="9167" name="CombatSupplyDousingTests" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:49:53Z" duration="1.250426" total="23" passed="3" failed="20" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9195" name="BlockedActorAndDistantTargetCannotUseSupplies" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:49:52Z" duration="0.218876" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9193" name="BlockedActorAndDistantTargetCannotUseSupplies(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies(False)" methodname="BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="65436481" result="Failed" start-time="2026-10-09 02:49:51Z" end-time="2026-10-09 02:49:52Z" duration="0.156026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies (System.Boolean clay) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9194" name="BlockedActorAndDistantTargetCannotUseSupplies(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies(True)" methodname="BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="585349723" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.059299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies (System.Boolean clay) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9170" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.116105" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9168" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel(False)" methodname="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1414442054" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.056681" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel (System.Boolean flask) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9169" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel(True)" methodname="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="935181252" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.058238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel (System.Boolean flask) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="9196" name="ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" methodname="ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1933312676" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.056899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof () [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:140
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9171" name="DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" methodname="DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1339412920" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.043203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity () [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9197" name="DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" methodname="DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1361144633" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.029226" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts () [0x00078] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:148
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9172" name="FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" methodname="FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="442322763" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.022565" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9192" name="InvalidSupplyHasNoDrenchOrSmotherMenu" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.195179" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9189" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;empty&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="471871919" result="Passed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.023074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9190" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;acid&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1621204751" result="Passed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.022252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9191" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;unrelated&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;unrelated&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1547112388" result="Passed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.148840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9179" name="NoOpAndDuplicateSelectionsNeverSpendSupplies" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.053454" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9177" name="NoOpAndDuplicateSelectionsNeverSpendSupplies(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies(False)" methodname="NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1020573567" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.029185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies (System.Boolean clay) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9178" name="NoOpAndDuplicateSelectionsNeverSpendSupplies(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies(True)" methodname="NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="772070382" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.023283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies (System.Boolean clay) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9187" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.047472" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9185" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(False)" methodname="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="45548454" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.024009" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment (System.Boolean clay) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9186" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(True)" methodname="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1380369315" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.022773" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment (System.Boolean clay) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9175" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.148147" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9173" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(False)" methodname="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="355757695" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.079018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery (System.Boolean clay) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9174" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(True)" methodname="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1041677296" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:52Z" duration="0.068368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for SmotherFire|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery (System.Boolean clay) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9184" name="StaleWaterSelectionCannotRetargetOrSpend" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:53Z" duration="0.257402" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9180" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;actor&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="433655905" result="Failed" start-time="2026-10-09 02:49:52Z" end-time="2026-10-09 02:49:53Z" duration="0.188474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend (System.String change) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9181" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;target&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;target&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1895409308" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.022646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend (System.String change) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9182" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;amount&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;amount&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1581085157" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.022771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend (System.String change) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9183" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;drop&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;drop&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="718229735" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.022519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend (System.String change) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="9176" name="UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" methodname="UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1847151755" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.022099" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9188" name="WetVetoDoesNotSpendWaterOrRemoveBurning" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.WetVetoDoesNotSpendWaterOrRemoveBurning" methodname="WetVetoDoesNotSpendWaterOrRemoveBurning" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1621907067" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.022913" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for DrenchCreature|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplyDousingTests.Selection (CavesOfOoo.Core.Entity item, CavesOfOoo.Core.Entity target, System.Boolean clay) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:12
+at CavesOfOoo.Tests.CombatSupplyDousingTests.WetVetoDoesNotSpendWaterOrRemoveBurning () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="30507" name="CombatSupplyInventoryTests" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.304934" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30519" name="CarriedInspectionExplainsTheNewUseAndItsTradeoff" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.068852" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30516" name="CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;KnotflaxCord&quot;,&quot;snare&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;KnotflaxCord&quot;,&quot;snare&quot;)" methodname="CarriedInspectionExplainsTheNewUseAndItsTradeoff" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1771537276" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.023187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "snare"
+  But was:  "knotflax cord
+
+one coil replaces a snapped well line. gather a dry knotflax bundle or harvest ripe knotflax from a tilled bed. for repairs, stand beside the damaged object, examine it, then choose its repair action. only successful work spends supplies."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff (System.String blueprint, System.String word) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30517" name="CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;FireClay&quot;,&quot;smother&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;FireClay&quot;,&quot;smother&quot;)" methodname="CarriedInspectionExplainsTheNewUseAndItsTradeoff" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1786070476" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.021897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "smother"
+  But was:  "fire clay
+
+one measure can rebuild a damaged settlement oven. speak to its farmer where this repair is offered. the material is spent; the guide is kept.
+
+required guide: oven builder's guide (missing). ask the settlement elder about the damaged site for its guide.
+
+another use: morrowfast's bell. ask nemm about it and inspect the reserve cord first. after diagnosis, one fire clay makes a quiet clapper; the bare, loud setting costs no material.
+
+structural repair: two measures seal a split clay-lined catch well. stand beside it and choose repair; this repair needs no guide. exposed fire-clay seams provide finite supplies."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff (System.String blueprint, System.String word) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30518" name="CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;Waterskin&quot;,&quot;drench&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff(&quot;Waterskin&quot;,&quot;drench&quot;)" methodname="CarriedInspectionExplainsTheNewUseAndItsTradeoff" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="349740702" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.021760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.CarriedInspectionExplainsTheNewUseAndItsTradeoff (System.String blueprint, System.String word) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30511" name="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.135185" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30508" name="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;KnotflaxCord&quot;,&quot;LayCordSnare|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;KnotflaxCord&quot;,&quot;LayCordSnare|&quot;)" methodname="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1777790119" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.068619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30509" name="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;FireClay&quot;,&quot;SmotherFire|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;FireClay&quot;,&quot;SmotherFire|&quot;)" methodname="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1449003630" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.032655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30510" name="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;Waterskin&quot;,&quot;DrenchCreature|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn(&quot;Waterskin&quot;,&quot;DrenchCreature|&quot;)" methodname="RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1456094248" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.033175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.RealSupplyActionClosesInventoryAndQueuesExactlyOneTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30515" name="StaleSupplyActionKeepsMenuAndQueuesNoTurn" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.098979" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30512" name="StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;KnotflaxCord&quot;,&quot;LayCordSnare|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;KnotflaxCord&quot;,&quot;LayCordSnare|&quot;)" methodname="StaleSupplyActionKeepsMenuAndQueuesNoTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1946730775" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.031761" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30513" name="StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;FireClay&quot;,&quot;SmotherFire|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;FireClay&quot;,&quot;SmotherFire|&quot;)" methodname="StaleSupplyActionKeepsMenuAndQueuesNoTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1555848056" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.031882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30514" name="StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;Waterskin&quot;,&quot;DrenchCreature|&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn(&quot;Waterskin&quot;,&quot;DrenchCreature|&quot;)" methodname="StaleSupplyActionKeepsMenuAndQueuesNoTurn" classname="CavesOfOoo.Tests.CombatSupplyInventoryTests" runstate="Runnable" seed="1633745406" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.032263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  the normal inventory must offer the real utility action
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyInventoryTests.InventoryAction (System.String blueprint, System.String prefix, System.Boolean stale) [0x00204] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:55
+at CavesOfOoo.Tests.CombatSupplyInventoryTests.StaleSupplyActionKeepsMenuAndQueuesNoTurn (System.String blueprint, System.String prefix) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/CombatSupplyInventoryTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24017" name="CombatSupplyPresentationTests" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:50:02Z" duration="8.614458" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24036" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:54Z" duration="0.739973" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24021" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;missing-mechanism&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;missing-mechanism&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="244370785" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.031739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24022" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;foreign-mechanism&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;foreign-mechanism&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1171684349" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.029690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24023" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;spent&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="2020966099" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.030017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24024" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;hidden&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1344679819" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.029919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24025" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;portable&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;portable&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="495071598" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.030461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24026" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;carried&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="452703536" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.030689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24027" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;equipped&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1673211810" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.030821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24028" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;solid&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="2039559384" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.031269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24029" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;solid-tag&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;solid-tag&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="441181908" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.031605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24030" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;creature&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1594351785" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.040326" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24031" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;item&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;item&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1447696680" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:53Z" duration="0.089553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24032" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;glyph&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1356752280" result="Failed" start-time="2026-10-09 02:49:53Z" end-time="2026-10-09 02:49:54Z" duration="0.236956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24033" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;visual&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="173993643" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.031687" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24034" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;visual-variant&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="679816398" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.030988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24035" name="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance(&quot;glyph-variants&quot;)" methodname="AlteredCordOwnerCannotBorrowTheArmedSnareAppearance" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1036309829" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.031339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.AlteredCordOwnerCannotBorrowTheArmedSnareAppearance (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24039" name="AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.007863" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24037" name="AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop(0)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop(0)" methodname="AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="431389680" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.003133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Both original source models must be authored before native import.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop (System.Int32 variant) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24038" name="AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop(1)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop(1)" methodname="AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1096161557" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.001040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Both original source models must be authored before native import.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.AuthoredCordHasReadableRaisedStakesAndAnOpenPaleLoop (System.Int32 variant) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24020" name="DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.063873" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24018" name="DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics(0)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics(0)" methodname="DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1268939680" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.032032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics (System.Int32 variant) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:33
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24019" name="DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics(1)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics(1)" methodname="DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="549488515" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:54Z" duration="0.030629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real deployed cord blueprint must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatSupplyPresentationTests.Snare (CavesOfOoo.Data.EntityFactory factory) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:17
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.DeployedCordUsesDistinctExactLoopGeometryWithoutChangingMechanics (System.Int32 variant) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:33
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24042" name="NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:50:00Z" duration="6.435304" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24040" name="NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner(&quot;hidden&quot;)" methodname="NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="838094076" result="Failed" start-time="2026-10-09 02:49:54Z" end-time="2026-10-09 02:49:58Z" duration="4.731119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  KnotflaxSnare
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Add (System.String blueprint, System.Int32 x, System.Int32 y) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:116
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:98
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+              <test-case id="24041" name="NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner(&quot;removed&quot;)" methodname="NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="1104180657" result="Failed" start-time="2026-10-09 02:49:58Z" end-time="2026-10-09 02:50:00Z" duration="1.701885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  KnotflaxSnare
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Add (System.String blueprint, System.Int32 x, System.Int32 y) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:116
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.NativeCordModelUsesRealPaletteAndRelinquishesHiddenOrConsumedOwner (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:98
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24043" name="SavedDeployedCordKeepsItsExactAppearanceOnItsLoadedOwner" fullname="CavesOfOoo.Tests.CombatSupplyPresentationTests.SavedDeployedCordKeepsItsExactAppearanceOnItsLoadedOwner" methodname="SavedDeployedCordKeepsItsExactAppearanceOnItsLoadedOwner" classname="CavesOfOoo.Tests.CombatSupplyPresentationTests" runstate="Runnable" seed="2137520118" result="Failed" start-time="2026-10-09 02:50:00Z" end-time="2026-10-09 02:50:02Z" duration="1.364426" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  KnotflaxSnare
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.Add (System.String blueprint, System.Int32 x, System.Int32 y) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:116
+at CavesOfOoo.Tests.CombatSupplyPresentationTests.SavedDeployedCordKeepsItsExactAppearanceOnItsLoadedOwner () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatSupplyPresentationTests.cs:123
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[EntityFactory: unknown blueprint 'KnotflaxSnare'
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="9198" name="CombatSupplySnareTests" fullname="CavesOfOoo.Tests.CombatSupplySnareTests" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-09 02:50:02Z" end-time="2026-10-09 02:50:03Z" duration="1.438757" total="17" passed="0" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="9205" name="AForcedLandingTriggersTheSnareWithoutExtendingAnExistingRoot" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.AForcedLandingTriggersTheSnareWithoutExtendingAnExistingRoot" methodname="AForcedLandingTriggersTheSnareWithoutExtendingAnExistingRoot" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="2122747833" result="Failed" start-time="2026-10-09 02:50:02Z" end-time="2026-10-09 02:50:02Z" duration="0.022185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.AForcedLandingTriggersTheSnareWithoutExtendingAnExistingRoot () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9204" name="AlliedFactionDoesNotMakeCordSafe" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.AlliedFactionDoesNotMakeCordSafe" methodname="AlliedFactionDoesNotMakeCordSafe" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="2061037867" result="Failed" start-time="2026-10-09 02:50:02Z" end-time="2026-10-09 02:50:02Z" duration="0.021821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.AlliedFactionDoesNotMakeCordSafe () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9203" name="AnUnsnaredNeighborDoesNotRootTheSameCreature" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.AnUnsnaredNeighborDoesNotRootTheSameCreature" methodname="AnUnsnaredNeighborDoesNotRootTheSameCreature" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="392898048" result="Failed" start-time="2026-10-09 02:50:02Z" end-time="2026-10-09 02:50:02Z" duration="0.021341" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.AnUnsnaredNeighborDoesNotRootTheSameCreature () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:45
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9202" name="FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 02:50:02Z" end-time="2026-10-09 02:50:03Z" duration="1.069125" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9200" name="FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable(False)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable(False)" methodname="FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1733979108" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.021356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable (System.Boolean npc) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9201" name="FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable(True)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable(True)" methodname="FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="263804082" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.FirstCrossingRootsPlayerOrOtherCreatureButLeavesAttackAndSpellActionsAvailable (System.Boolean npc) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="9212" name="HereDuplicateSnareAndUnrelatedMaterialsAreNeverOffered" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.HereDuplicateSnareAndUnrelatedMaterialsAreNeverOffered" methodname="HereDuplicateSnareAndUnrelatedMaterialsAreNeverOffered" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1049138698" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.021394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.HereDuplicateSnareAndUnrelatedMaterialsAreNeverOffered () [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9206" name="MultiCellFarFootTriggersOnceWhenItsAnchorDoesNotEnterTheSnare" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.MultiCellFarFootTriggersOnceWhenItsAnchorDoesNotEnterTheSnare" methodname="MultiCellFarFootTriggersOnceWhenItsAnchorDoesNotEnterTheSnare" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="2129400923" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.021382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.MultiCellFarFootTriggersOnceWhenItsAnchorDoesNotEnterTheSnare () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9211" name="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.089991" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9208" name="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;StoneWall&quot;)" methodname="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1063937631" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.021562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment (System.String occupant) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9209" name="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;MarlbackScrabbler&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;MarlbackScrabbler&quot;)" methodname="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1238680982" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment (System.String occupant) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9210" name="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;RawMeat&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment(&quot;RawMeat&quot;)" methodname="OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="239281968" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.019785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.OccupiedGroundIsNotOfferedAndLateOccupationRejectsWithoutPayment (System.String occupant) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="9199" name="OrdinaryCordMenuLaysOneVisibleNonrecoverableSnareAndSpendsOneCoil" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OrdinaryCordMenuLaysOneVisibleNonrecoverableSnareAndSpendsOneCoil" methodname="OrdinaryCordMenuLaysOneVisibleNonrecoverableSnareAndSpendsOneCoil" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="170317885" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020099" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.OrdinaryCordMenuLaysOneVisibleNonrecoverableSnareAndSpendsOneCoil () [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:21
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9217" name="OuterInventoryFailureRestoresExactCordAndRemovesOnlyItsStagedSnare" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.OuterInventoryFailureRestoresExactCordAndRemovesOnlyItsStagedSnare" methodname="OuterInventoryFailureRestoresExactCordAndRemovesOnlyItsStagedSnare" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1327130551" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.019740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.OuterInventoryFailureRestoresExactCordAndRemovesOnlyItsStagedSnare () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9218" name="PlacedSnareAndOldSavedCordSurviveNativeEntitySerialization" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.PlacedSnareAndOldSavedCordSurviveNativeEntitySerialization" methodname="PlacedSnareAndOldSavedCordSurviveNativeEntitySerialization" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="869381597" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020848" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.PlacedSnareAndOldSavedCordSurviveNativeEntitySerialization () [0x0007b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:121
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9207" name="PropsDoNotSpendTheSnare" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.PropsDoNotSpendTheSnare" methodname="PropsDoNotSpendTheSnare" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1786092510" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020308" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.PropsDoNotSpendTheSnare () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:77
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9216" name="StaleMenuRefusesWithoutPlacementOrPayment" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.060729" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9213" name="StaleMenuRefusesWithoutPlacementOrPayment(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment(&quot;moved&quot;)" methodname="StaleMenuRefusesWithoutPlacementOrPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1667331113" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.020333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment (System.String change) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9214" name="StaleMenuRefusesWithoutPlacementOrPayment(&quot;dropped&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment(&quot;dropped&quot;)" methodname="StaleMenuRefusesWithoutPlacementOrPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1655847471" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.019524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment (System.String change) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9215" name="StaleMenuRefusesWithoutPlacementOrPayment(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment(&quot;quantity&quot;)" methodname="StaleMenuRefusesWithoutPlacementOrPayment" classname="CavesOfOoo.Tests.CombatSupplySnareTests" runstate="Runnable" seed="1335772737" result="Failed" start-time="2026-10-09 02:50:03Z" end-time="2026-10-09 02:50:03Z" duration="0.019626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected one actual menu choice for LayCordSnare|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FiftyWorldFixture.Choice (CavesOfOoo.Core.Entity source, System.String prefix, System.Func`2[T,TResult] match) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:90
+at CavesOfOoo.Tests.CombatSupplySnareTests.Lay (CavesOfOoo.Core.Entity cord, System.Int32 x, System.Int32 y) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:11
+at CavesOfOoo.Tests.CombatSupplySnareTests.StaleMenuRefusesWithoutPlacementOrPayment (System.String change) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplySnareTests.cs:101
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

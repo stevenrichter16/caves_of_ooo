@@ -4,7 +4,7 @@ Regenerates only this directory's kit.json; Unity importer owns persistent asset
 from pathlib import Path
 import json, math
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A','#A0A77C','#CBC697','#647353','#235D25','#40872C','#65AE3D','#435A53','#62786C','#819489','#16883B','#45CB4B','#A0E772','#207838','#D2D3B4','#B77B43','#403D28','#756C40','#A39456','#C4B877','#243E39']
-BLUEPRINTS=['BerryBush','Signpost','HollowStump','Beehive','RiverShrine','FlowerField','StoneFloor','StoneWall','Chair','Bed','Well','Oven','WatchLantern','CampfireGroundMarker','WellGroundMarker','OvenGroundMarker','LanternGroundMarker','Shrine','AlchemyShelf','AlchemyStill','TinkersForge','OldStump','PressurePlate','BearTrap','FireTrap','SpikeTrap','WeaponRack']
+BLUEPRINTS=['BerryBush','Signpost','HollowStump','Beehive','RiverShrine','FlowerField','StoneFloor','StoneWall','Chair','Bed','Well','Oven','WatchLantern','CampfireGroundMarker','WellGroundMarker','OvenGroundMarker','LanternGroundMarker','Shrine','AlchemyShelf','AlchemyStill','TinkersForge','OldStump','PressurePlate','BearTrap','FireTrap','SpikeTrap','WeaponRack','KnotflaxSnare']
 def model(bp,v,unlit=False,jammed=False):
     boxes=[]
     def b(x,y,z,sx,sy,sz,c):
@@ -133,6 +133,22 @@ def model(bp,v,unlit=False,jammed=False):
         # Empty pegs. Loot remains real separate native stock, never fake weapons.
         for x in [-.22,0,.22]:b(x,.79,.025,.055,.06,.14,21)
         for x in [-.30,.30]:b(x,.06,0,.13,.12,.56,19)
+    elif bp=='KnotflaxSnare':
+        # A broad pale, open noose at ankle height. Its two small stakes and
+        # folded tail distinguish cord from the adjacent metal trap families.
+        # The renderer adds no collider; only the actual CordSnarePart catches.
+        for i in range(20):
+            a=i*math.tau/20
+            b(math.cos(a)*.25,.055,math.sin(a)*.25,.091,.047,.091,5 if i%4==0 else 22)
+        for x,z in [(-.34,-.20),(.34,.20)]:
+            b(x,.12,z,.072,.24,.079,19)
+            b(x,.25,z,.080,.035,.085,21)
+            b(x,.14,z,.096,.035,.101,5)
+        b(-.294,.085,-.20,.12,.047,.052,22)
+        b(.29,.085,.20,.14,.047,.052,22)
+        b(-.345,.055,-.32,.046,.039,.20,5)
+        b(-.277,.055,-.397,.18,.039,.046,22)
+        b(-.20,.055,-.355,.046,.039,.13,22)
     else:raise ValueError(bp)
     if jammed:
         # The same physical mechanism, visibly arrested by a spent length of

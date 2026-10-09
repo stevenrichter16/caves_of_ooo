@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.9010866">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25777" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.901087" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31747" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25777" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.861967" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31748" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25777" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.850340" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31749" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25777" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.838818" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="9173" name="CombatSupplyDousingAdversarialTests" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.249442" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9212" name="RollbackRestartsTheRestoredFireAura" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.246409" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9208" name="RollbackRestartsTheRestoredFireAura(False,False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(False,False)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1253186333" result="Passed" start-time="2026-10-09 03:12:31Z" end-time="2026-10-09 03:12:32Z" duration="0.105367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9209" name="RollbackRestartsTheRestoredFireAura(False,True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(False,True)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="187615616" result="Failed" start-time="2026-10-09 03:12:32Z" end-time="2026-10-09 03:12:32Z" duration="0.023305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <CavesOfOoo.Core.AsciiFxRequestType[2]>, actual is <CavesOfOoo.Core.AsciiFxRequestType[1]>
+  Values differ at index [1]
+  Missing:  < AuraStart >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura (System.Boolean clay, System.Boolean rollback) [0x00163] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingAdversarialTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9210" name="RollbackRestartsTheRestoredFireAura(True,False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(True,False)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1041606063" result="Passed" start-time="2026-10-09 03:12:32Z" end-time="2026-10-09 03:12:32Z" duration="0.049956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9211" name="RollbackRestartsTheRestoredFireAura(True,True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(True,True)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="195351001" result="Failed" start-time="2026-10-09 03:12:32Z" end-time="2026-10-09 03:12:32Z" duration="0.051001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <CavesOfOoo.Core.AsciiFxRequestType[2]>, actual is <CavesOfOoo.Core.AsciiFxRequestType[1]>
+  Values differ at index [1]
+  Missing:  < AuraStart >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura (System.Boolean clay, System.Boolean rollback) [0x00163] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/CombatSupplyDousingAdversarialTests.cs:178
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

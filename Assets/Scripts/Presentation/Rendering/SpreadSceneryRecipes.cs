@@ -53,6 +53,7 @@ namespace CavesOfOoo.Rendering
    {"FireTrap",new Definition("FireTrap","^",false,"",e => e.GetPart<FireTrapTriggerPart>())},
    {"SpikeTrap",new Definition("SpikeTrap","^",false,"",e => e.GetPart<SpikeTrapTriggerPart>())},
    {"WeaponRack",new Definition("WeaponRack","T",true,"",e => e.GetPart<ContainerPart>())},
+   {"KnotflaxSnare",new Definition("KnotflaxSnare","^",false,"",e => e.GetPart<CordSnarePart>())},
   };
   public static bool TryModel(Entity owner,int variant,out string modelId)
   {
@@ -67,6 +68,9 @@ namespace CavesOfOoo.Rendering
    if(definition.RequiredPart != null)
    {var part=definition.RequiredPart(owner);if(part==null||!ReferenceEquals(part.ParentEntity,owner))return false;}
    if(owner.GetPart<HarvestablePart>()?.Harvested==true)return false;
+   // Staged and consumed cord must never present the ready-to-catch loop.
+   // The receiving-world refinement separately verifies physical ownership.
+   if(owner.BlueprintName=="KnotflaxSnare"&&owner.GetPart<CordSnarePart>().Spent)return false;
    if(definition.JammedModels!=null&&owner.GetPart<TrapJammingPart>() is TrapJammingPart jam)
    {
     // Old saved traps without this opt-in retain their armed art. A malformed

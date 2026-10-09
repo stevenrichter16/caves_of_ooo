@@ -6,7 +6,7 @@ using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Finite ground uses for existing loose materials, including items
+    /// <summary>Improvised combat uses for carried supplies, including items
     /// restored from saves without a new Part. Commands bind the selected zone,
     /// actor origin, target and quantity; execution rechecks their actual owners.
     /// The outer inventory transaction owns payment and the precise layer delta.</summary>
@@ -24,10 +24,13 @@ namespace CavesOfOoo.Core
         };
 
         public static bool IsCommand(string command) => command != null
-            && (command.StartsWith(GreasePrefix, StringComparison.Ordinal) || command.StartsWith(GritPrefix, StringComparison.Ordinal));
+            && (command.StartsWith(GreasePrefix, StringComparison.Ordinal) || command.StartsWith(GritPrefix, StringComparison.Ordinal)
+                || CordSnareActions.IsCommand(command) || EmergencyDousingActions.IsCommand(command));
 
         public static void AddActions(Entity actor, Entity item, Zone zone, InventoryActionList actions)
         {
+            CordSnareActions.AddActions(actor, item, zone, actions);
+            EmergencyDousingActions.AddActions(actor, item, zone, actions);
             if (actions == null || Validate(actor, item, zone, out bool grease) != null) return;
             var origin = zone.GetEntityCell(actor);
             int count = Quantity(item);
@@ -46,6 +49,8 @@ namespace CavesOfOoo.Core
         /// supplies; only commit publishes the success receipt and tile reactions.</summary>
         internal static bool TryAct(Entity actor, Entity item, Zone zone, string command, InventoryTransaction transaction)
         {
+            if (CordSnareActions.IsCommand(command)) return CordSnareActions.TryAct(actor, item, zone, command, transaction);
+            if (EmergencyDousingActions.IsCommand(command)) return EmergencyDousingActions.TryAct(actor, item, zone, command, transaction);
             if (!IsCommand(command)) return false;
             string invalid = Validate(actor, item, zone, out bool grease);
             if (invalid != null || transaction == null) return Reject(actor, item, command, invalid ?? "missing-transaction");

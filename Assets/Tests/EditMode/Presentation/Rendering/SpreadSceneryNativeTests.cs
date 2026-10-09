@@ -64,6 +64,8 @@ namespace CavesOfOoo.Tests
         [TestCase("spread-scenery-weaponrack-1")]
         [TestCase("spread-scenery-watchlantern-unlit-0")]
         [TestCase("spread-scenery-watchlantern-unlit-1")]
+        [TestCase("spread-scenery-knotflaxsnare-0")]
+        [TestCase("spread-scenery-knotflaxsnare-1")]
         public void EveryExactModelIsPersistentDrawableAndUsesBorrowedApprovedPalette(string id)
         {
             var library=SpreadScenery3DLibrary.Load();Assert.NotNull(library,"Explicit native scenery import is required.");

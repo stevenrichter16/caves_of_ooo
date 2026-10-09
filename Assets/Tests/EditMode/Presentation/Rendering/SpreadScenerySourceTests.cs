@@ -21,7 +21,7 @@ namespace CavesOfOoo.Tests
         [Test] public void CompleteExactPackPassesWithoutChangingSource()
         {
             var source = Valid(); string before = JsonUtility.ToJson(source);
-            source.Validate(); source.Validate(); Assert.AreEqual(64, source.models.Length);
+            source.Validate(); source.Validate(); Assert.AreEqual(66, source.models.Length);
             Assert.AreEqual(before, JsonUtility.ToJson(source));
         }
         [Test] public void ActualAuthoredPackHasExactCoverageAndDistinctGeometry()
@@ -30,7 +30,7 @@ namespace CavesOfOoo.Tests
                 ?? Path.GetFullPath(Path.Combine(Application.dataPath, "../ArtSource/SpreadScenery3D/kit.json"));
             var source = JsonUtility.FromJson<SpreadScenerySource>(File.ReadAllText(path));
             source.Validate();
-            Assert.AreEqual(64, source.models.Select(m => string.Join("|",m.boxes.Select(b=>JsonUtility.ToJson(b)))).Distinct().Count(),
+            Assert.AreEqual(66, source.models.Select(m => string.Join("|",m.boxes.Select(b=>JsonUtility.ToJson(b)))).Distinct().Count(),
                 "Every model variant has intentionally distinct authored geometry.");
             Assert.LessOrEqual(source.models.Max(m => m.boxes.Length), 512);
             CollectionAssert.AreEqual(SpreadScenerySource.ApprovedPalette, source.palette);

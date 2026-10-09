@@ -13,6 +13,20 @@ namespace CavesOfOoo.Core
             text = null;
             var inventory = actor?.GetPart<InventoryPart>();
             if (item == null || inventory == null || !inventory.CanConsumeOne(item)) return false;
+            if (item.HasPart<WaterskinPart>() || item.HasPart<LiquidVesselPart>())
+            {
+                var skin = item.GetPart<WaterskinPart>();
+                var vessel = item.GetPart<LiquidVesselPart>();
+                if ((skin == null) == (vessel == null)) return false;
+                text = item.GetDisplayName() + "\n\n" + (skin != null
+                    ? "Carries fresh water for drinking, crops, transfers and dousing burning scenery."
+                    : "Collects and pours one kind of liquid at a time. Water can also supply crops, transfers and douse burning scenery; this flask has no drinking action.")
+                    + "\n\nWith water inside, spend one unit to drench yourself or an adjacent creature. This puts out current flames and leaves the target wet."
+                    + " Wetness helps resist heat ignition but strengthens a later electrical charge; it does not make fire attacks harmless."
+                    + " Soaking a non-burning outsider provokes it. Fire clay can smother current flames without adding wetness."
+                    + " The vessel remains after use; refill it from a suitable clean-water source.";
+                return true;
+            }
             if (item.BlueprintName == "FrogOil")
             {
                 text = item.GetDisplayName() + "\n\nSpread one gourd underfoot or onto nearby ground to leave grease for eight turns."
@@ -39,7 +53,7 @@ namespace CavesOfOoo.Core
             {
                 text = item.GetDisplayName() + "\n\n" + (item.BlueprintName == "SalvagedTimber"
                     ? "Two lengths brace a damaged wooden gate. One length makes a permanent wooden jam in a visible spike trap, bear trap, fire trap or pressure plate that offers the action. Stand beside that trap and choose Jam mechanism; a successful jam spends one length and cannot be removed or reclaimed. Recover timber from finite pallets or fallen frame salvage, or ask a mender."
-                    : "One coil replaces a snapped well line. Gather a dry knotflax bundle or harvest ripe knotflax from a tilled bed.")
+                    : "One coil replaces a snapped well line. Gather a dry knotflax bundle or harvest ripe knotflax from a tilled bed. One coil also lays a visible, single-use snare on adjacent empty ground. The first creature crossing it cannot move for two of its turns but can still attack or cast. You and your companions can be caught too; the spent cord cannot be recovered.")
                     + " For repairs, stand beside the damaged object, examine it, then choose its repair action. Only successful work spends supplies.";
                 return true;
             }
@@ -76,7 +90,8 @@ namespace CavesOfOoo.Core
                 text += "\n\nAnother use: Morrowfast's bell. Ask Nemm about it and inspect the reserve cord first."
                     +" After diagnosis, one fire clay makes a quiet clapper; the bare, loud setting costs no material.";
             if (item.BlueprintName == SettlementRepairDefinitions.FireClayBlueprint)
-                text += "\n\nStructural repair: two measures seal a split clay-lined catch well. Stand beside it and choose Repair; this repair needs no guide. Exposed fire-clay seams provide finite supplies.";
+                text += "\n\nStructural repair: two measures seal a split clay-lined catch well. Stand beside it and choose Repair; this repair needs no guide. Exposed fire-clay seams provide finite supplies."
+                    + "\n\nEmergency use: smother flames on yourself or an adjacent burning creature or object with one measure. This adds no wetness, useful around electrical threats. Existing wetness and other ailments remain. It provides no lasting fire protection; leave the source of heat.";
             if (item.BlueprintName == SettlementRepairDefinitions.SilverSandBlueprint)
                 text += "\n\nScatter one measure as grit underfoot or onto nearby ground for twelve turns of firm footing over oil or ice."
                     + " Enemies can use that footing too. It does not put out fire or make dangerous liquids harmless.";

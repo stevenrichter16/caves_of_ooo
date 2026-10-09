@@ -1,0 +1,70 @@
+{
+  "runId": "968e6a85ce4e43278148985457bf20a3",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 13.7103082,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS cord_one_unit_one_action",
+    "PASS cord_native_model",
+    "PASS native_step_triggers_cord",
+    "PASS snare_model_removed",
+    "PASS root_blocks_movement",
+    "PASS root_expires_and_walk_resumes",
+    "PASS clay_one_unit_one_action",
+    "PASS clay_extinguishes_without_wet",
+    "PASS water_one_unit_one_action",
+    "PASS water_extinguishes_and_wets"
+  ],
+  "observations": [
+    {
+      "phase": "01-finite-controlled-supplies",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4498\",\"count\":1},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "02-cord-action-menu",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4498\",\"count\":1},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "03-deployed-cord-model",
+      "state": "Normal",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "04-snare-caught-player",
+      "state": "Normal",
+      "snapshot": "{\"tick\":30,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "05-clay-action-menu",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":60,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "06-water-action-menu",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":70,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "07-drenched-player",
+      "state": "Normal",
+      "snapshot": "{\"tick\":80,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"4500\",\"count\":null}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/01-finite-controlled-supplies.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/02-cord-action-menu.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/03-deployed-cord-model.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/04-snare-caught-player.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/05-clay-action-menu.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/06-water-action-menu.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/CombatSupplyImprovisation/Native/968e6a85ce4e43278148985457bf20a3/07-drenched-player.png"
+  ],
+  "fixture": "Ordinary N/Classic start in an isolated flattened Spread zone. One coil, one clay and a two-charge waterskin are granted. Player is repositioned; burning is applied twice as a controlled precondition. No real campaign loaded. Native I/arrow/Enter actions use the exact-owner public popup entry; movement and waiting use native keys. Runtime camera zoom temporarily0.42 and restored; no camera preferences changed.",
+  "canVerify": "Three real inventory menu choices, exact payment and ordinary +10-tick action costs, submitted snare geometry, native movement restraint/expiry, dry clay extinguishing and wet water extinguishing. Captures permit separate visual inspection.",
+  "cannotVerify": "Controlled supplies and status setup do not prove natural acquisition, encounter balance, player understanding or long-term fun. No autonomous NPC supply choice is claimed. Electrical and rescue countercases are covered by EditMode tests, not this native scenario."
+}

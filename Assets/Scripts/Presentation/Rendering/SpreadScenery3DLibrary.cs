@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "SpreadScenery3D/Library";
         public const string Folder = "Assets/Resources/SpreadScenery3D";
-        public const string ReviewedSourceSha256 = "aee94bdfc5b92c6e13d0bdb20abd83c77f119163396a632728b9f83e3dcb9376";
+        public const string ReviewedSourceSha256 = "14a61e5acd97f0f3575877a1838dda7827689bf4ddc18019b723c9e9f26b4468";
         public string SourceSha256;
         public Material Material;
         [Serializable] public sealed class Entry

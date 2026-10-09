@@ -17,7 +17,7 @@ namespace CavesOfOoo.Rendering
             "StoneFloor", "StoneWall", "Chair", "Bed", "Well", "Oven", "WatchLantern",
             "CampfireGroundMarker", "WellGroundMarker", "OvenGroundMarker", "LanternGroundMarker",
             "Shrine", "AlchemyShelf", "AlchemyStill", "TinkersForge", "OldStump",
-            "PressurePlate", "BearTrap", "FireTrap", "SpikeTrap", "WeaponRack"
+            "PressurePlate", "BearTrap", "FireTrap", "SpikeTrap", "WeaponRack", "KnotflaxSnare"
         });
         public static IReadOnlyList<string> ApprovedPalette { get; } = Array.AsReadOnly(new[] {
             "#082C28", "#103E36", "#1A4B40", "#26594A", "#A0A77C", "#CBC697",
