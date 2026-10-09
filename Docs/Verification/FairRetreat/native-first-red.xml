@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="31" result="Failed(Child)" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 06:06:50Z" end-time="2026-10-09 06:06:52Z" duration="1.277751">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="26371" result="Failed" site="Child" start-time="2026-10-09 06:06:50Z" end-time="2026-10-09 06:06:52Z" duration="1.277751" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="32475" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="26371" result="Failed" site="Child" start-time="2026-10-09 06:06:50Z" end-time="2026-10-09 06:06:52Z" duration="1.232942" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="32476" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26371" result="Failed" site="Child" start-time="2026-10-09 06:06:50Z" end-time="2026-10-09 06:06:52Z" duration="1.121621" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="32477" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26371" result="Failed" site="Child" start-time="2026-10-09 06:06:50Z" end-time="2026-10-09 06:06:52Z" duration="1.064093" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1825" name="FairRetreatTests" fullname="CavesOfOoo.Tests.FairRetreatTests" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:52Z" duration="0.820718" total="31" passed="4" failed="27" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1834" name="ABlockedRetreatStillSpendsItsHiddenOpportunity" fullname="CavesOfOoo.Tests.FairRetreatTests.ABlockedRetreatStillSpendsItsHiddenOpportunity" methodname="ABlockedRetreatStillSpendsItsHiddenOpportunity" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1556352623" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.045166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.ABlockedRetreatStillSpendsItsHiddenOpportunity () [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:95
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1841" name="CorneredAdjacentContactStillFightsBackInsideMist" fullname="CavesOfOoo.Tests.FairRetreatTests.CorneredAdjacentContactStillFightsBackInsideMist" methodname="CorneredAdjacentContactStillFightsBackInsideMist" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1469653475" result="Passed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.027315" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1859" name="ExistingAgeAndHealthCompletionRulesRemainUnchanged" fullname="CavesOfOoo.Tests.FairRetreatTests.ExistingAgeAndHealthCompletionRulesRemainUnchanged" methodname="ExistingAgeAndHealthCompletionRulesRemainUnchanged" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="2136312121" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Threshold is strict, not inclusive.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.ExistingAgeAndHealthCompletionRulesRemainUnchanged () [0x0006b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:212
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1862" name="HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" methodname="HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="399486945" result="Passed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.024649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1828" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.046051" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1826" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(6)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(6)" methodname="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1119177303" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022931" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (8, 10)
+  But was:  (8, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep (System.Int32 hiddenY) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1827" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(14)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(14)" methodname="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="667564796" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (8, 10)
+  But was:  (8, 9)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep (System.Int32 hiddenY) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1845" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.059357" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1843" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;water&quot;)" methodname="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="167701309" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.033437" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove (System.String kind) [0x000e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1844" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;medicine&quot;)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;medicine&quot;)" methodname="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="2105664786" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.025104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove (System.String kind) [0x000e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1857" name="InvalidRecordedCellsCannotDriveMovement" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.088299" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1853" name="InvalidRecordedCellsCannotDriveMovement(-1,10)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(-1,10)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1548896738" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: LastSeenX
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement (System.Int32 x, System.Int32 y) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1854" name="InvalidRecordedCellsCannotDriveMovement(80,10)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(80,10)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="981454473" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: LastSeenX
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement (System.Int32 x, System.Int32 y) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1855" name="InvalidRecordedCellsCannotDriveMovement(10,-1)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(10,-1)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1489767840" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: LastSeenX
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement (System.Int32 x, System.Int32 y) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1856" name="InvalidRecordedCellsCannotDriveMovement(10,25)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(10,25)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="456051870" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: LastSeenX
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement (System.Int32 x, System.Int32 y) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1839" name="LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" fullname="CavesOfOoo.Tests.FairRetreatTests.LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" methodname="LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1755219370" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:115
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1860" name="LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" fullname="CavesOfOoo.Tests.FairRetreatTests.LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" methodname="LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="91013586" result="Passed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1858" name="MemoryExpiryDoesNotClearAnotherGoalsTarget" fullname="CavesOfOoo.Tests.FairRetreatTests.MemoryExpiryDoesNotClearAnotherGoalsTarget" methodname="MemoryExpiryDoesNotClearAnotherGoalsTarget" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1947325290" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.MemoryExpiryDoesNotClearAnotherGoalsTarget () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:205
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1832" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.043582" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1830" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(False)" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(False)" methodname="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1832564214" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 10)
+  But was:  (9, 10)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation (System.Boolean legacyShape) [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1831" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(True)" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(True)" methodname="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1677500855" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 10)
+  But was:  (9, 10)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation (System.Boolean legacyShape) [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1851" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.139437" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1848" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(0)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(0)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="198444111" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.024148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction (System.Int32 remaining) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:188
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1849" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(-1)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(-1)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="988531727" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.039546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction (System.Int32 remaining) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:188
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1850" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(int.MinValue)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(int.MinValue)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="192741949" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.074342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction (System.Int32 remaining) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:188
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1838" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.046506" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1836" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(False)" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(False)" methodname="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="29921001" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision (System.Boolean actorVisible) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1837" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(True)" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(True)" methodname="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="24794994" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.022878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision (System.Boolean actorVisible) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1861" name="OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" fullname="CavesOfOoo.Tests.FairRetreatTests.OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" methodname="OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1414019969" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.024137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: HasLastSeen
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:222
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1852" name="OversizedStoredBudgetIsClampedBeforeUse" fullname="CavesOfOoo.Tests.FairRetreatTests.OversizedStoredBudgetIsClampedBeforeUse" methodname="OversizedStoredBudgetIsClampedBeforeUse" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="49755694" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021870" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Write (System.Object instance, System.String name, System.Object value) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:48
+at CavesOfOoo.Tests.FairRetreatTests.OversizedStoredBudgetIsClampedBeforeUse () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:193
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1842" name="RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" fullname="CavesOfOoo.Tests.FairRetreatTests.RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" methodname="RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="623476603" result="Passed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1847" name="SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" fullname="CavesOfOoo.Tests.FairRetreatTests.SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" methodname="SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="917588739" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.025804" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: HasLastSeen
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget () [0x00081] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:174
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1846" name="ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" fullname="CavesOfOoo.Tests.FairRetreatTests.ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" methodname="ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="526789145" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021172" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: UnseenRemaining
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1833" name="SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" fullname="CavesOfOoo.Tests.FairRetreatTests.SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" methodname="SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1025915373" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:87
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1840" name="VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" methodname="VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="633560884" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.023365" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: LastSeenX
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor () [0x000ac] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:125
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1829" name="VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" methodname="VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1654015471" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:51Z" duration="0.021430" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Saved retreat field absent: LastSeenY
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.Read[T] (System.Object instance, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:43
+at CavesOfOoo.Tests.FairRetreatTests.VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance () [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:67
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1835" name="VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" methodname="VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="983088231" result="Failed" start-time="2026-10-09 06:06:51Z" end-time="2026-10-09 06:06:52Z" duration="0.021003" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (7, 10)
+  But was:  (7, 8)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FairRetreatTests.VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities () [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FairRetreatTests.cs:100
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

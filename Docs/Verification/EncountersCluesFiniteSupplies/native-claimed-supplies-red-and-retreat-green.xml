@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="53" result="Failed(Child)" total="53" passed="33" failed="20" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 06:14:02Z" end-time="2026-10-09 06:14:06Z" duration="4.2435513">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="26393" result="Failed" site="Child" start-time="2026-10-09 06:14:02Z" end-time="2026-10-09 06:14:06Z" duration="4.243551" total="53" passed="33" failed="20" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="32504" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="26393" result="Failed" site="Child" start-time="2026-10-09 06:14:02Z" end-time="2026-10-09 06:14:06Z" duration="4.145863" total="53" passed="33" failed="20" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="32505" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26393" result="Failed" site="Child" start-time="2026-10-09 06:14:02Z" end-time="2026-10-09 06:14:06Z" duration="4.101780" total="53" passed="33" failed="20" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="32506" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26393" result="Failed" site="Child" start-time="2026-10-09 06:14:02Z" end-time="2026-10-09 06:14:06Z" duration="4.057783" total="53" passed="33" failed="20" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1285" name="ClaimedSuppliesManifestTests" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.490172" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1293" name="FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.339999" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1291" name="FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion(False)" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion(False)" methodname="FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="1430380966" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.205165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Known unmodified seed1/17.12 source: the actual existing Sack must become the post.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion (System.Boolean saved15) [0x000e9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1292" name="FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion(True)" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion(True)" methodname="FixedNativeSourceWitnessGainsTheCacheOnlyInAFreshVersion" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="1187268541" result="Passed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.131650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1289" name="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.110583" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1286" name="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(1,&quot;Overworld.11.2.0|Overworld.17.12.0|Overworld.7.15.0|Overworld.7.6.0|Overworld.8.5.0&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(1,&quot;Overworld.11.2.0|Overworld.17.12.0|Overworld.7.15.0|Overworld.7.6.0|Overworld.8.5.0&quot;)" methodname="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="1791967681" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.037416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: explicit new-world opt-in, with saved15 kept literal.
+  Expected: 16
+  But was:  15
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank (System.Int32 seed, System.String frozenBanks) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1287" name="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(64,&quot;Overworld.11.2.0|Overworld.12.5.0|Overworld.4.14.0|Overworld.7.12.0|Overworld.7.6.0&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(64,&quot;Overworld.11.2.0|Overworld.12.5.0|Overworld.4.14.0|Overworld.7.12.0|Overworld.7.6.0&quot;)" methodname="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="818420054" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.035192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: explicit new-world opt-in, with saved15 kept literal.
+  Expected: 16
+  But was:  15
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank (System.Int32 seed, System.String frozenBanks) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1288" name="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(1729,&quot;Overworld.10.7.0|Overworld.11.5.0|Overworld.16.12.0|Overworld.4.13.0|Overworld.8.10.0|Overworld.9.0.0&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank(1729,&quot;Overworld.10.7.0|Overworld.11.5.0|Overworld.16.12.0|Overworld.4.13.0|Overworld.8.10.0|Overworld.9.0.0&quot;)" methodname="FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="1232917737" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.035332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: explicit new-world opt-in, with saved15 kept literal.
+  Expected: 16
+  But was:  15
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSuppliesManifestTests.FreshVersionOptsInWithoutAddingOrReallocatingAnyPrimaryBank (System.Int32 seed, System.String frozenBanks) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1290" name="LiteralVersionFifteenStillRestoresWithoutRewritingItsManifest" fullname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests.LiteralVersionFifteenStillRestoresWithoutRewritingItsManifest" methodname="LiteralVersionFifteenStillRestoresWithoutRewritingItsManifest" classname="CavesOfOoo.Tests.ClaimedSuppliesManifestTests" runstate="Runnable" seed="211916952" result="Passed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.035980" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1294" name="ClaimedSuppliesPlacementTests" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:05Z" duration="1.909316" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1302" name="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:04Z" duration="0.420137" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1298" name="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;locked&quot;)" methodname="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1248096935" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.086625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty (System.String fault) [0x000c1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:171
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1299" name="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;empty&quot;)" methodname="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="589091568" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.088289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty (System.String fault) [0x000c1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:171
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1300" name="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;foreign-owner&quot;)" methodname="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="545173881" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:03Z" duration="0.102572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty (System.String fault) [0x000c1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:171
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1301" name="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;replaced-container-part&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty(&quot;replaced-container-part&quot;)" methodname="AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1784270615" result="Failed" start-time="2026-10-09 06:14:03Z" end-time="2026-10-09 06:14:04Z" duration="0.140792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AChangedOrUnsuitableActualCacheDoesNotCreateAPartialDuty (System.String fault) [0x000c1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:171
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1308" name="AnIndependentActorRelocationDuringCommitIsNeverOverwrittenByRollback" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AnIndependentActorRelocationDuringCommitIsNeverOverwrittenByRollback" methodname="AnIndependentActorRelocationDuringCommitIsNeverOverwrittenByRollback" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="966858164" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.084583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.AnIndependentActorRelocationDuringCommitIsNeverOverwrittenByRollback () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:202
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1307" name="ARefusedOuterCommitRollsBackTheStillOwnedActorAndOnlyItsNewRole" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.ARefusedOuterCommitRollsBackTheStillOwnedActorAndOnlyItsNewRole" methodname="ARefusedOuterCommitRollsBackTheStillOwnedActorAndOnlyItsNewRole" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1787759745" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.104752" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.ARefusedOuterCommitRollsBackTheStillOwnedActorAndOnlyItsNewRole () [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:193
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1309" name="ChangedRealStockInsideCommitRefusesAndKeepsTheIndependentTransfer" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.ChangedRealStockInsideCommitRefusesAndKeepsTheIndependentTransfer" methodname="ChangedRealStockInsideCommitRefusesAndKeepsTheIndependentTransfer" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="223055289" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.097199" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.ChangedRealStockInsideCommitRefusesAndKeepsTheIndependentTransfer () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:211
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1313" name="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.269679" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1310" name="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;stock&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;stock&quot;)" methodname="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1216443379" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.092482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1311" name="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;post&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;post&quot;)" methodname="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="954639593" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.088007" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1312" name="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;role&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement(&quot;role&quot;)" methodname="FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="492613256" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.085325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.FinalGenerationProofRejectsChangedStockPostOrDutyAfterLocalPlacement (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1295" name="OneOriginalDefenderGuardsTheUnmovedCacheAndItsOriginalCompleteStock" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.OneOriginalDefenderGuardsTheUnmovedCacheAndItsOriginalCompleteStock" methodname="OneOriginalDefenderGuardsTheUnmovedCacheAndItsOriginalCompleteStock" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1615829842" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.084017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.OneOriginalDefenderGuardsTheUnmovedCacheAndItsOriginalCompleteStock () [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:147
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1306" name="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:05Z" duration="0.658346" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1303" name="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;default-arrival&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;default-arrival&quot;)" methodname="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="356145808" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:04Z" duration="0.226708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround (System.String fault) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1304" name="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;reserved&quot;)" methodname="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="1682771121" result="Failed" start-time="2026-10-09 06:14:04Z" end-time="2026-10-09 06:14:05Z" duration="0.274406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround (System.String fault) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1305" name="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;only-corridor&quot;)" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround(&quot;only-corridor&quot;)" methodname="PlayerRoutesAndArrivalRemainOutsideTheClaimedGround" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="202769007" result="Failed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.153430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PlayerRoutesAndArrivalRemainOutsideTheClaimedGround (System.String fault) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:184
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1296" name="PureAuthorityObserverDoesNotPreventAValidCommit" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PureAuthorityObserverDoesNotPreventAValidCommit" methodname="PureAuthorityObserverDoesNotPreventAValidCommit" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="2005920779" result="Failed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.084594" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.PureAuthorityObserverDoesNotPreventAValidCommit () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:158
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1297" name="TwoSourceActorsDoNotGetCollapsedOrPromotedIntoThisSingleDefenderSite" fullname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.TwoSourceActorsDoNotGetCollapsedOrPromotedIntoThisSingleDefenderSite" methodname="TwoSourceActorsDoNotGetCollapsedOrPromotedIntoThisSingleDefenderSite" classname="CavesOfOoo.Tests.ClaimedSuppliesPlacementTests" runstate="Runnable" seed="898598320" result="Failed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.101369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  RED: missing stationary-cache source compositor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ClaimedSupplyContract.Place (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.Entity actor, CavesOfOoo.Core.SpreadGenerationReceipt people, CavesOfOoo.Core.SpreadGenerationReceipt stock, System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:25
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests+Fixture.Place (System.Func`1[TResult] authority, System.Func`3[T1,T2,TResult] commit) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:134
+at CavesOfOoo.Tests.ClaimedSuppliesPlacementTests.TwoSourceActorsDoNotGetCollapsedOrPromotedIntoThisSingleDefenderSite () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/ClaimedSuppliesTests.cs:160
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1854" name="FairRetreatTests" fullname="CavesOfOoo.Tests.FairRetreatTests" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:06Z" duration="0.866977" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1863" name="ABlockedRetreatStillSpendsItsHiddenOpportunity" fullname="CavesOfOoo.Tests.FairRetreatTests.ABlockedRetreatStillSpendsItsHiddenOpportunity" methodname="ABlockedRetreatStillSpendsItsHiddenOpportunity" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1038906636" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.027078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1870" name="CorneredAdjacentContactStillFightsBackInsideMist" fullname="CavesOfOoo.Tests.FairRetreatTests.CorneredAdjacentContactStillFightsBackInsideMist" methodname="CorneredAdjacentContactStillFightsBackInsideMist" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1848008236" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.024795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1888" name="ExistingAgeAndHealthCompletionRulesRemainUnchanged" fullname="CavesOfOoo.Tests.FairRetreatTests.ExistingAgeAndHealthCompletionRulesRemainUnchanged" methodname="ExistingAgeAndHealthCompletionRulesRemainUnchanged" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="348041100" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1891" name="HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" methodname="HiddenLowHealthKillStillReturnsToBoredWithoutInventingARetreatHandoff" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1916736202" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.023624" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1857" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.043988" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1855" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(6)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(6)" methodname="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="954775121" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1856" name="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(14)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenPlayerDetoursCannotRedirectTheNextRetreatStep(14)" methodname="HiddenPlayerDetoursCannotRedirectTheNextRetreatStep" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="398961280" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1874" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.061344" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1872" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;water&quot;)" methodname="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="165783332" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.030121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1873" name="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;medicine&quot;)" fullname="CavesOfOoo.Tests.FairRetreatTests.HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove(&quot;medicine&quot;)" methodname="HiddenSelfTreatmentCostsOneRememberedOpportunityAndDoesNotAlsoMove" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="2017508700" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.030363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1886" name="InvalidRecordedCellsCannotDriveMovement" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.157554" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1882" name="InvalidRecordedCellsCannotDriveMovement(-1,10)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(-1,10)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1249887987" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.036723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1883" name="InvalidRecordedCellsCannotDriveMovement(80,10)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(80,10)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1540028552" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.075352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1884" name="InvalidRecordedCellsCannotDriveMovement(10,-1)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(10,-1)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="933596952" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1885" name="InvalidRecordedCellsCannotDriveMovement(10,25)" fullname="CavesOfOoo.Tests.FairRetreatTests.InvalidRecordedCellsCannotDriveMovement(10,25)" methodname="InvalidRecordedCellsCannotDriveMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="393543101" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1868" name="LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" fullname="CavesOfOoo.Tests.FairRetreatTests.LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" methodname="LostSightAndReacquisitionTransitionsAnnounceOnceRatherThanEveryAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1038744727" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.022676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1889" name="LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" fullname="CavesOfOoo.Tests.FairRetreatTests.LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" methodname="LostThreatEndsTheGoalAndNeverCreatesNewKnowledge" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="538210104" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.021001" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1887" name="MemoryExpiryDoesNotClearAnotherGoalsTarget" fullname="CavesOfOoo.Tests.FairRetreatTests.MemoryExpiryDoesNotClearAnotherGoalsTarget" methodname="MemoryExpiryDoesNotClearAnotherGoalsTarget" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="728723320" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.020959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1861" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.042828" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1859" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(False)" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(False)" methodname="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1396356142" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.020829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1860" name="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(True)" fullname="CavesOfOoo.Tests.FairRetreatTests.NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation(True)" methodname="NewAndLegacyZeroStateGoalsCannotInventAHiddenThreatLocation" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1469454038" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.020958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1880" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:06Z" duration="0.063990" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1877" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(0)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(0)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1778034788" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:05Z" duration="0.020978" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1878" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(-1)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(-1)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1889256605" result="Passed" start-time="2026-10-09 06:14:05Z" end-time="2026-10-09 06:14:06Z" duration="0.020897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1879" name="NonpositiveStoredBudgetCannotStartAnotherHiddenAction(int.MinValue)" fullname="CavesOfOoo.Tests.FairRetreatTests.NonpositiveStoredBudgetCannotStartAnotherHiddenAction(int.MinValue)" methodname="NonpositiveStoredBudgetCannotStartAnotherHiddenAction" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1573885944" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.021002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1867" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.047931" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1865" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(False)" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(False)" methodname="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1636845053" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.021470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1866" name="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(True)" fullname="CavesOfOoo.Tests.FairRetreatTests.ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision(True)" methodname="ObserverFovChangesOnlyFeedbackNeverTheRetreatDecision" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="175548710" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.025574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1890" name="OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" fullname="CavesOfOoo.Tests.FairRetreatTests.OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" methodname="OrdinaryBoredAcquisitionStillCreatesAnImmediatelyActingRetreat" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="2016277438" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.024146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1881" name="OversizedStoredBudgetIsClampedBeforeUse" fullname="CavesOfOoo.Tests.FairRetreatTests.OversizedStoredBudgetIsClampedBeforeUse" methodname="OversizedStoredBudgetIsClampedBeforeUse" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="321711773" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.022714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1871" name="RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" fullname="CavesOfOoo.Tests.FairRetreatTests.RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" methodname="RememberedAdjacentPositionDoesNotLicenseAnAttackOnTheNowDistantHiddenBody" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="284930498" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.022540" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1876" name="SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" fullname="CavesOfOoo.Tests.FairRetreatTests.SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" methodname="SavedRetreatContinuesFromTheRecordedContactAndRemainingBudget" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="402958117" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.026796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1875" name="ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" fullname="CavesOfOoo.Tests.FairRetreatTests.ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" methodname="ScheduledStunDoesNotAdvanceGoalAgeMemoryOrMovement" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1441753360" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.024363" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1862" name="SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" fullname="CavesOfOoo.Tests.FairRetreatTests.SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" methodname="SixHiddenOpportunitiesExpireWithoutForgivingPersonalHostility" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="571475869" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.040127" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1869" name="VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" methodname="VisibleBodyContactSuppliesMemoryInsteadOfTheHiddenLargeBodyAnchor" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="488022836" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.076294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1858" name="VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" methodname="VisibleDetourDoesRedirectRetreatAndRefreshItsAllowance" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1566940155" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.021873" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1864" name="VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" fullname="CavesOfOoo.Tests.FairRetreatTests.VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" methodname="VisibleReacquisitionRefreshesMemoryAfterTwoHiddenOpportunities" classname="CavesOfOoo.Tests.FairRetreatTests" runstate="Runnable" seed="1739586473" result="Passed" start-time="2026-10-09 06:14:06Z" end-time="2026-10-09 06:14:06Z" duration="0.021535" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
