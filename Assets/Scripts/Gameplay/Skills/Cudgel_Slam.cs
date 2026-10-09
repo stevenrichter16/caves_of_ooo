@@ -117,6 +117,7 @@ namespace CavesOfOoo.Skills
                     wallHits++;
                     break;
                 }
+                if (EquipmentBraceEffect.TryAbsorb(target, ctx.Zone)) break;
                 if (!MovementSystem.ForceMoveTo(target, ctx.Zone, nextCell.X, nextCell.Y))
                 {
                     // MoveEntity refused for some other reason. Treat as

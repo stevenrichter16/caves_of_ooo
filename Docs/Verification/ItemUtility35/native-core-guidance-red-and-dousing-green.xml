@@ -1,0 +1,1076 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="96" result="Failed(Child)" total="96" passed="55" failed="41" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 03:14:02Z" end-time="2026-10-09 03:14:06Z" duration="3.4420612">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="25819" result="Failed" site="Child" start-time="2026-10-09 03:14:02Z" end-time="2026-10-09 03:14:06Z" duration="3.442061" total="96" passed="55" failed="41" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="31793" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="25819" result="Failed" site="Child" start-time="2026-10-09 03:14:02Z" end-time="2026-10-09 03:14:06Z" duration="3.396924" total="96" passed="55" failed="41" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="31794" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25819" result="Failed" site="Child" start-time="2026-10-09 03:14:02Z" end-time="2026-10-09 03:14:06Z" duration="3.380434" total="96" passed="55" failed="41" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="31795" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25819" result="Failed" site="Child" start-time="2026-10-09 03:14:02Z" end-time="2026-10-09 03:14:06Z" duration="3.364437" total="96" passed="55" failed="41" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="9173" name="CombatSupplyDousingAdversarialTests" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:04Z" duration="1.045492" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="9187" name="BeforeActionVetoKeepsBothFlameAndPayment" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.BeforeActionVetoKeepsBothFlameAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.126120" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9185" name="BeforeActionVetoKeepsBothFlameAndPayment(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.BeforeActionVetoKeepsBothFlameAndPayment(False)" methodname="BeforeActionVetoKeepsBothFlameAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="455311348" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.100398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9186" name="BeforeActionVetoKeepsBothFlameAndPayment(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.BeforeActionVetoKeepsBothFlameAndPayment(True)" methodname="BeforeActionVetoKeepsBothFlameAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1533320361" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.023144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9198" name="ClayDoesNotExtinguishFireOnTheFloorOrConsumeForAnUnburningBody" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ClayDoesNotExtinguishFireOnTheFloorOrConsumeForAnUnburningBody" methodname="ClayDoesNotExtinguishFireOnTheFloorOrConsumeForAnUnburningBody" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1218171756" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.027569" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9184" name="CorruptWaterOwnershipCannotSpend" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.CorruptWaterOwnershipCannotSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.113000" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9180" name="CorruptWaterOwnershipCannotSpend(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.CorruptWaterOwnershipCannotSpend(&quot;duplicate-id&quot;)" methodname="CorruptWaterOwnershipCannotSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="250211054" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.021973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9181" name="CorruptWaterOwnershipCannotSpend(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.CorruptWaterOwnershipCannotSpend(&quot;foreign-owner&quot;)" methodname="CorruptWaterOwnershipCannotSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="432461303" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.021459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9182" name="CorruptWaterOwnershipCannotSpend(&quot;equipped-alias&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.CorruptWaterOwnershipCannotSpend(&quot;equipped-alias&quot;)" methodname="CorruptWaterOwnershipCannotSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="128584729" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.020882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9183" name="CorruptWaterOwnershipCannotSpend(&quot;ground-alias&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.CorruptWaterOwnershipCannotSpend(&quot;ground-alias&quot;)" methodname="CorruptWaterOwnershipCannotSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1254795244" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.047909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9200" name="DuplicateRecipientIdIsRejectedWithoutGuessing" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.DuplicateRecipientIdIsRejectedWithoutGuessing" methodname="DuplicateRecipientIdIsRejectedWithoutGuessing" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="460511250" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.055358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9199" name="ExpiringWetRecordIsRenewedWithoutDuplicates" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ExpiringWetRecordIsRenewedWithoutDuplicates" methodname="ExpiringWetRecordIsRenewedWithoutDuplicates" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="299306240" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.080771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9207" name="ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.180414" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9205" name="ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate(False)" methodname="ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1783008128" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.022545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9206" name="ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate(True)" methodname="ExtinguishedObserverFailureCannotHideCommittedDousingReceiptOrVisualUpdate" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="613496219" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.023680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9192" name="FailurePreservesAnIndependentConditionAddedByTheOuterObserver" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.FailurePreservesAnIndependentConditionAddedByTheOuterObserver" methodname="FailurePreservesAnIndependentConditionAddedByTheOuterObserver" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1067173357" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.022112" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9190" name="FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.046380" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9188" name="FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply(False)" methodname="FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1715305271" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.022430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9189" name="FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply(True)" methodname="FlameRemovalCallbackExceptionRestoresTheExactFlameAndSupply" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="66573139" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.022135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9179" name="ForgedCommandsCannotSoakOrSpend" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:04Z" duration="0.106331" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9174" name="ForgedCommandsCannotSoakOrSpend(&quot;zone&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend(&quot;zone&quot;)" methodname="ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1290585939" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.021418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9175" name="ForgedCommandsCannotSoakOrSpend(&quot;verb&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend(&quot;verb&quot;)" methodname="ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="715473929" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:03Z" duration="0.020465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9176" name="ForgedCommandsCannotSoakOrSpend(&quot;amount&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend(&quot;amount&quot;)" methodname="ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1933564765" result="Passed" start-time="2026-10-09 03:14:03Z" end-time="2026-10-09 03:14:04Z" duration="0.021191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9177" name="ForgedCommandsCannotSoakOrSpend(&quot;overflow&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend(&quot;overflow&quot;)" methodname="ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1570927766" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020997" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9178" name="ForgedCommandsCannotSoakOrSpend(&quot;target&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ForgedCommandsCannotSoakOrSpend(&quot;target&quot;)" methodname="ForgedCommandsCannotSoakOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1631528673" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9203" name="InvalidRecipientDoesNotReceiveDousing" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.InvalidRecipientDoesNotReceiveDousing" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.043169" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9201" name="InvalidRecipientDoesNotReceiveDousing(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.InvalidRecipientDoesNotReceiveDousing(&quot;dead&quot;)" methodname="InvalidRecipientDoesNotReceiveDousing" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1371403946" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9202" name="InvalidRecipientDoesNotReceiveDousing(&quot;temperature&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.InvalidRecipientDoesNotReceiveDousing(&quot;temperature&quot;)" methodname="InvalidRecipientDoesNotReceiveDousing" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="922776227" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021098" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9204" name="MoisturePersistsThroughActualEntitySaveWithoutAddingProtectionFlags" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.MoisturePersistsThroughActualEntitySaveWithoutAddingProtectionFlags" methodname="MoisturePersistsThroughActualEntitySaveWithoutAddingProtectionFlags" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1631635292" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.027949" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9196" name="ReentrantUseCannotConsumeTwice" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ReentrantUseCannotConsumeTwice" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.044339" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9194" name="ReentrantUseCannotConsumeTwice(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ReentrantUseCannotConsumeTwice(False)" methodname="ReentrantUseCannotConsumeTwice" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="591837807" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9195" name="ReentrantUseCannotConsumeTwice(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.ReentrantUseCannotConsumeTwice(True)" methodname="ReentrantUseCannotConsumeTwice" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="914047691" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9212" name="RollbackRestartsTheRestoredFireAura" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.086889" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9208" name="RollbackRestartsTheRestoredFireAura(False,False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(False,False)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1415190863" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9209" name="RollbackRestartsTheRestoredFireAura(False,True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(False,True)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1572516941" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9210" name="RollbackRestartsTheRestoredFireAura(True,False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(True,False)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="106217575" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9211" name="RollbackRestartsTheRestoredFireAura(True,True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RollbackRestartsTheRestoredFireAura(True,True)" methodname="RollbackRestartsTheRestoredFireAura" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="204710437" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9193" name="RolledBackNonBurningDrenchDoesNotProvoke" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.RolledBackNonBurningDrenchDoesNotProvoke" methodname="RolledBackNonBurningDrenchDoesNotProvoke" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1618607278" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9191" name="WetApplicationCallbackExceptionRemovesOnlyTheNewWetEffect" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.WetApplicationCallbackExceptionRemovesOnlyTheNewWetEffect" methodname="WetApplicationCallbackExceptionRemovesOnlyTheNewWetEffect" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="442268938" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9197" name="WideCreatureIsReachableByItsNearBodyContact" fullname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests.WideCreatureIsReachableByItsNearBodyContact" methodname="WideCreatureIsReachableByItsNearBodyContact" classname="CavesOfOoo.Tests.CombatSupplyDousingAdversarialTests" runstate="Runnable" seed="1910361145" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.024091" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="9213" name="CombatSupplyDousingTests" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:05Z" duration="0.818321" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="9241" name="BlockedActorAndDistantTargetCannotUseSupplies" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.043369" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9239" name="BlockedActorAndDistantTargetCannotUseSupplies(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies(False)" methodname="BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="165181352" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9240" name="BlockedActorAndDistantTargetCannotUseSupplies(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.BlockedActorAndDistantTargetCannotUseSupplies(True)" methodname="BlockedActorAndDistantTargetCannotUseSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="733239686" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9216" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.044600" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9214" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel(False)" methodname="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1096342468" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9215" name="CarriedWaterDousesSelfAndKeepsTheEmptyVessel(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.CarriedWaterDousesSelfAndKeepsTheEmptyVessel(True)" methodname="CarriedWaterDousesSelfAndKeepsTheEmptyVessel" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1900343099" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9242" name="ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" methodname="ClayPreservesExistingWetnessAndDoesNotMakeTheRecipientFireproof" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="261906604" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.032560" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9217" name="DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" methodname="DrenchingBeforeFireIsPossibleButWetnessAmplifiesLaterElectricity" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="104545749" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.065085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9243" name="DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" methodname="DrenchingSavedSuppliesWorksWithoutRebuildingTheirParts" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="57468682" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.082769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9218" name="FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" methodname="FireClaySmothersWithoutAddingWetAndDoesNotRemoveOtherConditions" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="407996929" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.125334" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9238" name="InvalidSupplyHasNoDrenchOrSmotherMenu" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.166263" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9235" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;empty&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1642676864" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020994" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9236" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;acid&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1769288675" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9237" name="InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;unrelated&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.InvalidSupplyHasNoDrenchOrSmotherMenu(&quot;unrelated&quot;)" methodname="InvalidSupplyHasNoDrenchOrSmotherMenu" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1092929297" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.123621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9225" name="NoOpAndDuplicateSelectionsNeverSpendSupplies" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.044542" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9223" name="NoOpAndDuplicateSelectionsNeverSpendSupplies(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies(False)" methodname="NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="268581524" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.021854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9224" name="NoOpAndDuplicateSelectionsNeverSpendSupplies(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.NoOpAndDuplicateSelectionsNeverSpendSupplies(True)" methodname="NoOpAndDuplicateSelectionsNeverSpendSupplies" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1793287763" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9233" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.043809" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9231" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(False)" methodname="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1339098072" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.022232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9232" name="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment(True)" methodname="OuterFailureRestoresTheExactBurnWetnessTemperatureAndPayment" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1551907256" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:04Z" duration="0.020999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9221" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:05Z" duration="0.042508" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9219" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(False)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(False)" methodname="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="173296581" result="Passed" start-time="2026-10-09 03:14:04Z" end-time="2026-10-09 03:14:05Z" duration="0.021212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9220" name="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(True)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.RescueAdjacentCreatureAndClayAlsoReachesBurningScenery(True)" methodname="RescueAdjacentCreatureAndClayAlsoReachesBurningScenery" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1758920102" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9230" name="StaleWaterSelectionCannotRetargetOrSpend" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.084481" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9226" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;actor&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1931269534" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9227" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;target&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;target&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="842007945" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9228" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;amount&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;amount&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="503215654" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9229" name="StaleWaterSelectionCannotRetargetOrSpend(&quot;drop&quot;)" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.StaleWaterSelectionCannotRetargetOrSpend(&quot;drop&quot;)" methodname="StaleWaterSelectionCannotRetargetOrSpend" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="454852564" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9222" name="UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" methodname="UninvitedDrenchingProvokesAnOutsiderButNotAPartyMember" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="1787491952" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9234" name="WetVetoDoesNotSpendWaterOrRemoveBurning" fullname="CavesOfOoo.Tests.CombatSupplyDousingTests.WetVetoDoesNotSpendWaterOrRemoveBurning" methodname="WetVetoDoesNotSpendWaterOrRemoveBurning" classname="CavesOfOoo.Tests.CombatSupplyDousingTests" runstate="Runnable" seed="562035596" result="Passed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020764" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="10398" name="ItemUtility35GuidanceTests" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:06Z" duration="0.988217" total="37" passed="1" failed="36" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="10434" name="OrdinaryItemInspectionExplainsItsNewTacticalUse" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:06Z" duration="0.946617" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10399" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;HealingTonic&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1816765652" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.022166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Heals 4d6+4 HP on the spot.
+
+Drunk when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10400" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Antidote&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Antidote&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="354049961" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures ordinary poison and lingering gas poisoning; does not prevent new exposure.
+
+Drunk when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10401" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;BurnSalve&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;BurnSalve&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="778967265" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.019547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Extinguishes burning and cools the patient to ambient temperature or below.
+
+Drunk when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10402" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Panacea&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Panacea&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="299521197" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.019532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures: All.
+
+Drunk when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10403" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnotflaxBandage&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnotflaxBandage&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1484764693" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures: BleedingEffect.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10404" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SoddenFieldDressing&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SoddenFieldDressing&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="603059440" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10405" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SumpsievePad&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SumpsievePad&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1179161955" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures ordinary poison and lingering gas poisoning; does not prevent new exposure.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10406" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ClaspbeanPulp&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ClaspbeanPulp&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="50363172" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.019851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures: BleedingEffect.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10407" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;MargincressRibbon&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;MargincressRibbon&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="2041274100" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.019955" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures: BleedingEffect.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10408" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;AbsentmintLeaf&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;AbsentmintLeaf&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="780482494" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Cures: ConfusedEffect.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10409" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnitmossPad&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnitmossPad&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="937912700" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Heals 2d4 HP on the spot.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10410" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SootrootPulp&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SootrootPulp&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1722793304" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.061585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "On whoever it takes hold of:
+ - Extinguishes burning and cools the patient to ambient temperature or below.
+
+Applied when used. Can be thrown - shatters over the target and adjacent tiles."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10411" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;CookedMeat&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;CookedMeat&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1011942055" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.073265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 3d4 HP.
++2 Toughness for 100 of your turns. Replaces your previous prepared meal."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10412" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ToastedEmberwheat&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ToastedEmberwheat&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="772715205" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.148688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 3d4 HP.
++20 heat resistance for 100 of your turns. Replaces your previous prepared meal."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10413" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedMushroom&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedMushroom&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="294941377" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 3d4 HP.
++20 acid resistance for 100 of your turns. Replaces your previous prepared meal."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10414" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedHearthbulb&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedHearthbulb&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1532642903" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 2d4 HP.
++20 cold resistance for 100 of your turns. Replaces your previous prepared meal."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10415" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedStarapple&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedStarapple&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="583521010" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021615" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 3d4 HP.
++1 DV for 100 of your turns. Replaces your previous prepared meal."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10416" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FieldMeal&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FieldMeal&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="761286578" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.022564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10417" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FireMoss&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FireMoss&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1547508256" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.022590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10418" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FrostLichen&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FrostLichen&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="7677601" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.021414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10419" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlacierSalt&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlacierSalt&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="594322578" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10420" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;EmberFruit&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;EmberFruit&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="844058195" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10421" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlimmerBrine&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlimmerBrine&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1459102121" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10422" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SparkRoot&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SparkRoot&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="736931508" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10423" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PrismreedPith&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PrismreedPith&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="555144156" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.019694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10424" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampOil&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampOil&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1028845724" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10425" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SlipsedgeGel&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SlipsedgeGel&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1066709422" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10426" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PitchpodResin&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PitchpodResin&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1295890199" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10427" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Honeycomb&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Honeycomb&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1947016083" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Eat one unit. Heals 1d6 HP."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10428" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Torch&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Torch&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="331444116" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:05Z" duration="0.020246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Equip slots: Hand."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10429" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampveinFan&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampveinFan&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1869252628" result="Failed" start-time="2026-10-09 03:14:05Z" end-time="2026-10-09 03:14:06Z" duration="0.020159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Equip slots: Hand."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10430" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GroundwireScreen&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GroundwireScreen&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="307362509" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.020266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Armor contribution - AV: +0; DV: +0.
+Equip slots: Hand.
+Equip bonuses (if the stat exists): ElectricResistance +50."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10431" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GripfrondWrap&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GripfrondWrap&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1417067788" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.019566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Armor contribution - AV: +1; DV: +0.
+Equip slots: Handwear."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10432" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;IronshodBoots&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;IronshodBoots&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="2020996693" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.019453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10433" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlowQuartz&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlowQuartz&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1655154301" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.019455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse (System.String blueprint) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10436" name="TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" methodname="TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="998061274" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.019339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "Tactical use:"
+  But was:  "Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.TacticalGuidancePreservesActualWeaponArmorAndTonicDetails () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:61
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10435" name="UnrelatedItemDoesNotAdvertiseAnInventedUtility" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.UnrelatedItemDoesNotAdvertiseAnInventedUtility" methodname="UnrelatedItemDoesNotAdvertiseAnInventedUtility" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1897677281" result="Passed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.021177" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="10437" name="ItemUtility35TransactionTests" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.004709" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="10441" name="ExceptionInFinalValidationLeavesUndoAvailable" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.ExceptionInFinalValidationLeavesUndoAvailable" methodname="ExceptionInFinalValidationLeavesUndoAvailable" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" seed="2064883835" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.000556" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  deferred battlefield effects need final target validation before payment commits
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35TransactionTests.ValidateAtCommit (CavesOfOoo.Core.Inventory.InventoryTransaction tx, System.Func`1[TResult] predicate) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:13
+at CavesOfOoo.Tests.ItemUtility35TransactionTests.ExceptionInFinalValidationLeavesUndoAvailable () [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:35
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10440" name="FinalValidationAllowsOrRollsBackStagedPayment" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.FinalValidationAllowsOrRollsBackStagedPayment" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.001864" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10438" name="FinalValidationAllowsOrRollsBackStagedPayment(True)" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.FinalValidationAllowsOrRollsBackStagedPayment(True)" methodname="FinalValidationAllowsOrRollsBackStagedPayment" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" seed="537618931" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.000364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  deferred battlefield effects need final target validation before payment commits
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35TransactionTests.ValidateAtCommit (CavesOfOoo.Core.Inventory.InventoryTransaction tx, System.Func`1[TResult] predicate) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:13
+at CavesOfOoo.Tests.ItemUtility35TransactionTests.FinalValidationAllowsOrRollsBackStagedPayment (System.Boolean valid) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:21
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10439" name="FinalValidationAllowsOrRollsBackStagedPayment(False)" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.FinalValidationAllowsOrRollsBackStagedPayment(False)" methodname="FinalValidationAllowsOrRollsBackStagedPayment" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" seed="277349670" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.000202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  deferred battlefield effects need final target validation before payment commits
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35TransactionTests.ValidateAtCommit (CavesOfOoo.Core.Inventory.InventoryTransaction tx, System.Func`1[TResult] predicate) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:13
+at CavesOfOoo.Tests.ItemUtility35TransactionTests.FinalValidationAllowsOrRollsBackStagedPayment (System.Boolean valid) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:21
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10442" name="PredicateSeesStateAtCommitRatherThanRegistration" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.PredicateSeesStateAtCommitRatherThanRegistration" methodname="PredicateSeesStateAtCommitRatherThanRegistration" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" seed="1493397731" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.000246" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  deferred battlefield effects need final target validation before payment commits
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35TransactionTests.ValidateAtCommit (CavesOfOoo.Core.Inventory.InventoryTransaction tx, System.Func`1[TResult] predicate) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:13
+at CavesOfOoo.Tests.ItemUtility35TransactionTests.PredicateSeesStateAtCommitRatherThanRegistration () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="10443" name="RollbackDiscardsFinalValidation" fullname="CavesOfOoo.Tests.ItemUtility35TransactionTests.RollbackDiscardsFinalValidation" methodname="RollbackDiscardsFinalValidation" classname="CavesOfOoo.Tests.ItemUtility35TransactionTests" runstate="Runnable" seed="384819356" result="Failed" start-time="2026-10-09 03:14:06Z" end-time="2026-10-09 03:14:06Z" duration="0.000221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  deferred battlefield effects need final target validation before payment commits
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35TransactionTests.ValidateAtCommit (CavesOfOoo.Core.Inventory.InventoryTransaction tx, System.Func`1[TResult] predicate) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:13
+at CavesOfOoo.Tests.ItemUtility35TransactionTests.RollbackDiscardsFinalValidation () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35TransactionTests.cs:50
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

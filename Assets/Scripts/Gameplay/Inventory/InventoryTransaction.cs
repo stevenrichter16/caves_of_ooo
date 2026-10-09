@@ -18,6 +18,16 @@ namespace CavesOfOoo.Core.Inventory
         private readonly List<Entity> _claimedItems = new List<Entity>();
         private readonly Dictionary<Entity, long> _currencyDeltas = new Dictionary<Entity, long>();
         private List<Action> _committedObservers;
+        private List<Func<bool>> _commitConditions;
+
+        /// <summary>Recheck a captured target after inventory event callbacks,
+        /// before any payment is committed. Predicates must be read-only. A false
+        /// result or exception leaves undo intact for the command executor.</summary>
+        internal void BeforeCommit(Func<bool> condition)
+        {
+            if (_completed) throw new InvalidOperationException("Transaction is already complete.");
+            if (condition != null) (_commitConditions ??= new List<Func<bool>>()).Add(condition);
+        }
 
         /// <summary>Publish an informational receipt only after the complete
         /// command and wallet changes commit. Rollback discards it. Observer
@@ -103,6 +113,13 @@ namespace CavesOfOoo.Core.Inventory
         public void Commit()
         {
             if (_completed) return;
+            if (_commitConditions != null)
+                foreach (var condition in _commitConditions)
+                    if (!condition())
+                    {
+                        Diag.Record("event", "InventoryCommitRejected", payload: new { reason = "target-changed" });
+                        throw new InvalidOperationException("The selected item or target changed before the action completed.");
+                    }
             List<CurrencyChange> changes = null;
             if (_currencyDeltas.Count > 0)
             {
@@ -126,6 +143,7 @@ namespace CavesOfOoo.Core.Inventory
                     change.Actor.IntProperties[TradeSystem.CURRENCY_PROP] = change.After;
             }
             _currencyDeltas.Clear();
+            _commitConditions = null;
             _undoActions.Clear();
             ReleaseClaims();
             _completed = true;
@@ -193,6 +211,7 @@ namespace CavesOfOoo.Core.Inventory
             _currencyDeltas.Clear();
             _committedObservers = null;
             ReleaseClaims();
+            _commitConditions = null;
             _completed = true;
             IsCommitted = false;
             IsRolledBack = true;

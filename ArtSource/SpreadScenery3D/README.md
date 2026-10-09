@@ -1,6 +1,6 @@
 # Spread missing scenery source
 
-Original cuboid geometry for 28 exact native owner families, with two deterministic variants each, two extra unlit WatchLantern variants and eight jammed mechanical-trap variants (66 models). `build_kit.py` reproduces `kit.json` without simulation randomness. `preview_kit.py` makes an optional offline gallery; it does not establish Unity visibility, fog, lighting, batching or owner authority.
+Original cuboid geometry for 29 exact native owner families, with two deterministic variants each, two extra unlit WatchLantern variants and eight jammed mechanical-trap variants (68 models). `build_kit.py` reproduces `kit.json` without simulation randomness. `preview_kit.py` makes an optional offline gallery; it does not establish Unity visibility, fog, lighting, batching or owner authority.
 
 The jammed states retain the trap's mechanism and add broad tan timber bracing. Spike teeth are depressed, bear jaws catch a board, a fire trap's pressure actuator is restrained outside the vents, and a pressure plate is wedged at its edge. The original 56 model definitions remain unchanged. Only the exact supported `TrapJammingPart.Jammed` state selects these variants; ordinary single-use traps still disappear after firing. Import the reviewed current pack through **Caves Of Ooo → Art → Import Timber Trap States**, which writes its receipt to `Docs/Verification/TimberTraps/native-art-import.json` without overwriting the earlier scenery-import evidence.
 
@@ -11,3 +11,5 @@ The 24 color swatches are exactly the accepted ReferenceGlade3D palette. The imp
 `CavesOfOoo.Editor.SpreadSceneryBuilder.Run()` is an explicit idle-Editor import. It verifies the reviewed source SHA, complete exact roster, finite nondegenerate cuboids, palette, borrowed library and every destination type before writing only `Assets/Resources/SpreadScenery3D`. Its temporary objects use a preview scene and are disposed. Generated native meshes and prefabs must pass the dedicated tests before use.
 
 Only StoneFloor models have catalog kind `ground`, which suppresses the native fallback grass for that cell. Other models, including ground markers, remain `entity`. Actual live renderer refinement is a separate narrow integration: only supported current Spread/committed-lair owners with an existing `unmodeled-native-blueprint` result may use these models. Existing successful and refused recipes retain their original authority.
+
+Two cracked glow-quartz variants show separated pale crystal shards. The original 66 models remain unchanged. Only the real nonrecoverable radius-four finite light selects them; geometry itself emits no light. Import through `SpreadSceneryBuilder.Run("Docs/Verification/ItemUtility35/native-art-import.json")`.

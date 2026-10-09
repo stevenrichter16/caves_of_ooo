@@ -56,6 +56,8 @@ namespace CavesOfOoo.Core
                 if (lines.Count > 0) lines.Add("");
                 lines.Add(tonic);
             }
+            string tactics = ItemTacticalUseDescription.Describe(item);
+            if (!string.IsNullOrEmpty(tactics)) lines.Add(tactics);
             if (lines.Count == 0) return false;
             details = string.Join("\n", lines);
             return true;

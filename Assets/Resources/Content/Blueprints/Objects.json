@@ -45120,7 +45120,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A sumpsieve seed. Plant it while standing on an empty prepared bed. Conjure Rain keeps its soil moist; dry growth pauses. The ripe crop supplies sumpsieve pad. Apply the pad to draw poison from a wound. It does not treat poison gas or fungal infection."
+              "Value": "A sumpsieve seed. Plant it while standing on an empty prepared bed. Conjure Rain keeps its soil moist; dry growth pauses. The ripe crop supplies sumpsieve pad. Apply the pad to treat ordinary or lingering gas poison. It does not treat fungal infection or prevent new exposure."
             }
           ]
         }
@@ -45212,7 +45212,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Peat-cutters keep these bitter, perforated leaves drying on shelves above the damp. The planted crop takes 48 moist rounds to become ripe. Watered crops keep growing while you travel. Harvest by hand, then pick up its sumpsieve pad and one saved seed. Apply the pad to draw poison from a wound. It does not treat poison gas or fungal infection."
+              "Value": "Peat-cutters keep these bitter, perforated leaves drying on shelves above the damp. The planted crop takes 48 moist rounds to become ripe. Watered crops keep growing while you travel. Harvest by hand, then pick up its sumpsieve pad and one saved seed. Apply the pad to treat ordinary or lingering gas poison. It does not treat fungal infection or prevent new exposure."
             }
           ]
         }
@@ -45312,7 +45312,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Apply the pad to draw poison from a wound. It does not treat poison gas or fungal infection. Peat-cutters keep these bitter, perforated leaves drying on shelves above the damp."
+              "Value": "Apply the pad to treat ordinary or lingering gas poison. It does not treat fungal infection or prevent new exposure. Peat-cutters keep these bitter, perforated leaves drying on shelves above the damp."
             }
           ]
         }
@@ -54176,6 +54176,91 @@
           "Value": ""
         }
       ]
+    },
+    {
+      "Name": "CrackedGlowQuartz",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cracked glow-quartz"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "LightSource",
+          "Params": [
+            {
+              "Key": "Radius",
+              "Value": "4"
+            },
+            {
+              "Key": "LightColor",
+              "Value": "&C"
+            },
+            {
+              "Key": "Intensity",
+              "Value": "0.6"
+            },
+            {
+              "Key": "Enabled",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Lifespan",
+          "Params": [
+            {
+              "Key": "TurnsRemaining",
+              "Value": "30"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A split glow-quartz shard throws a low, steady light. Its spent glow lasts thirty world turns. It cannot be recovered for another use and does not lure creatures."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

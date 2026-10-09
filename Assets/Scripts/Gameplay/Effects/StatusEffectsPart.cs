@@ -49,7 +49,13 @@ namespace CavesOfOoo.Core
             return ApplyEffectInternal(effect, source, zone, forced: true);
         }
 
-        private bool ApplyEffectInternal(Effect effect, Entity source, Zone zone, bool forced)
+        // Inventory receipts observe only intrinsic lifecycle changes, before
+        // external lifecycle listeners. Finally captures partial work on throws.
+        internal bool ApplyEffectWithReceipt(Effect effect, Entity source, Zone zone, Action beforeChange, Action afterChange)
+            => ApplyEffectInternal(effect, source, zone, false, beforeChange, afterChange);
+
+        private bool ApplyEffectInternal(Effect effect, Entity source, Zone zone, bool forced,
+            Action beforeChange = null, Action afterChange = null)
         {
             if (effect == null || ParentEntity == null)
                 return false;
@@ -74,7 +80,11 @@ namespace CavesOfOoo.Core
             {
                 if (_effects[i].GetType() == incomingType)
                 {
-                    if (_effects[i].OnStack(effect))
+                    bool stacked;
+                    beforeChange?.Invoke();
+                    try { stacked = _effects[i].OnStack(effect); }
+                    finally { afterChange?.Invoke(); }
+                    if (stacked)
                     {
                         // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM10/D8.
                         // 23 concrete effects override OnStack with
@@ -129,11 +139,14 @@ namespace CavesOfOoo.Core
             var tm = TurnManager.Active;
             effect.JustApplied = tm != null && tm.CurrentActor == ParentEntity;
 
-            if (!effect.Apply(ParentEntity))
-                return false;
-
-            _effects.Add(effect);
-            effect.Applied(ParentEntity);
+            beforeChange?.Invoke();
+            try
+            {
+                if (!effect.Apply(ParentEntity)) return false;
+                _effects.Add(effect);
+                effect.Applied(ParentEntity);
+            }
+            finally { afterChange?.Invoke(); }
 
             // D2.1 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.1).
             // Position mirror of D1.2's OnRemove hook in RemoveEffectAt:
@@ -253,6 +266,16 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        internal bool RemoveEffectWithReceipt(Effect effect, Action beforeChange, Action afterChange)
+        {
+            int index = _effects.IndexOf(effect);
+            if (index < 0) return false;
+            beforeChange?.Invoke();
+            effect.LastRemovalCause = Effect.CAUSE_EXTERNAL;
+            RemoveEffectAt(index, afterChange);
+            return true;
+        }
+
         public bool HasEffect<T>() where T : Effect
         {
             for (int i = 0; i < _effects.Count; i++)
@@ -318,6 +341,15 @@ namespace CavesOfOoo.Core
             if (effect == null || _effects.Contains(effect)) return;
             effect.Owner = ParentEntity;
             _effects.Insert(Math.Max(0, Math.Min(index, _effects.Count)), effect);
+        }
+
+        // Inverse of RestoreRemovedEffectForInventoryUndo. The enlisted receipt
+        // restores the intrinsic stat shift; do not apply OnRemove a second time.
+        internal void RemoveAddedEffectForInventoryUndo(Effect effect)
+        {
+            if (effect == null || !_effects.Remove(effect)) return;
+            effect.Owner = null;
+            TryStopAura(effect);
         }
 
         public override void OnAfterLoad(SaveReader reader)
@@ -403,6 +435,7 @@ namespace CavesOfOoo.Core
             if (e.ID == "AfterMove")
             {
                 PlayerSeatService.AfterMovement(ParentEntity);
+                EquipmentBraceEffect.CancelOnMovement(ParentEntity);
                 return true;
             }
 
@@ -577,11 +610,12 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        private void RemoveEffectAt(int index)
+        private void RemoveEffectAt(int index, Action afterChange = null)
         {
             Effect effect = _effects[index];
             _effects.RemoveAt(index);
-            effect.Remove(ParentEntity);
+            try { effect.Remove(ParentEntity); }
+            finally { afterChange?.Invoke(); }
 
             // Diag hook (D1.2): record the OnRemove with effect type, final
             // duration, and the cause string set by the caller (one of

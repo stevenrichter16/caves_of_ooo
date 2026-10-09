@@ -127,6 +127,7 @@ namespace CavesOfOoo.Core
             if (!zone.CanPlaceFootprint(target, nx, ny)
                 || CavesOfOoo.Skills.MultiCellAbilityQueries.CreatureAtPlacement(zone, target, nx, ny) != null
                 || SpatialQuery.DistanceAt(zone, target, nx, ny, Hooker) == 0) return;
+            if (EquipmentBraceEffect.TryAbsorb(target, zone, deferRemoval: true)) return;
             if (MovementSystem.ForceMoveTo(target, zone, nx, ny))
                 MessageLog.Add(target.GetDisplayName() + " is dragged toward " + Hooker.GetDisplayName() + ".");
         }

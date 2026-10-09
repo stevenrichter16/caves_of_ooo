@@ -1,0 +1,25 @@
+{
+  "runId": "090550eba5b544e5a76eb5edb8f81dee",
+  "complete": false,
+  "failures": 2,
+  "errors": 0,
+  "fatal": "System.InvalidOperationException: inventory host entry\n  at CavesOfOoo.Scenarios.Custom.ItemUtility35NativePlayer+<InventoryChoice>d__51.MoveNext () [0x00231] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ItemUtility35NativePlayer.cs:155 \n  at CavesOfOoo.Scenarios.Custom.ItemUtility35NativePlayer+<RunSafely>d__55.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ItemUtility35NativePlayer.cs:180 ",
+  "seconds": 2.4499199,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "FAIL precondition"
+  ],
+  "observations": [
+    {
+      "phase": "01-finite-controlled-supplies",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"2698\",\"count\":1},{\"ID\":\"2699\",\"count\":4},{\"ID\":\"2700\",\"count\":2},{\"ID\":\"2702\",\"count\":3},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2701\",\"count\":1},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/090550eba5b544e5a76eb5edb8f81dee/01-finite-controlled-supplies.png"
+  ],
+  "fixture": "Ordinary N/Classic start with isolated saves and finite controlled supplies. Flat Spread stone floor, one deliberately stationary companion outside the AI turn roster, held fan and worn boots. One water film and one transient gas are explicit stimuli. Real I/arrow/Enter menus and paid turns operate supplies. Two physical pushes are scripted measurements. Runtime camera zoom0.42 restored afterward; no campaign loaded.",
+  "canVerify": "Native menu availability and exact one-action costs, recipient healing/preparation, real finite films/wicking, freezing/thawing, oil ignition, transient gas reduction, finite ground-light geometry, one-use physical brace. Screenshots permit separate visual inspection.",
+  "cannotVerify": "Controlled item grants and stationary companion do not prove natural acquisition, encounter balance, autonomous NPC utility choice or long-term fun. Electricity and every remaining item variant are tested in EditMode, not claimed as visually exercised here."
+}

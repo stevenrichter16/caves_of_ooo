@@ -4,7 +4,7 @@ Regenerates only this directory's kit.json; Unity importer owns persistent asset
 from pathlib import Path
 import json, math
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A','#A0A77C','#CBC697','#647353','#235D25','#40872C','#65AE3D','#435A53','#62786C','#819489','#16883B','#45CB4B','#A0E772','#207838','#D2D3B4','#B77B43','#403D28','#756C40','#A39456','#C4B877','#243E39']
-BLUEPRINTS=['BerryBush','Signpost','HollowStump','Beehive','RiverShrine','FlowerField','StoneFloor','StoneWall','Chair','Bed','Well','Oven','WatchLantern','CampfireGroundMarker','WellGroundMarker','OvenGroundMarker','LanternGroundMarker','Shrine','AlchemyShelf','AlchemyStill','TinkersForge','OldStump','PressurePlate','BearTrap','FireTrap','SpikeTrap','WeaponRack','KnotflaxSnare']
+BLUEPRINTS=['BerryBush','Signpost','HollowStump','Beehive','RiverShrine','FlowerField','StoneFloor','StoneWall','Chair','Bed','Well','Oven','WatchLantern','CampfireGroundMarker','WellGroundMarker','OvenGroundMarker','LanternGroundMarker','Shrine','AlchemyShelf','AlchemyStill','TinkersForge','OldStump','PressurePlate','BearTrap','FireTrap','SpikeTrap','WeaponRack','KnotflaxSnare','CrackedGlowQuartz']
 def model(bp,v,unlit=False,jammed=False):
     boxes=[]
     def b(x,y,z,sx,sy,sz,c):
@@ -133,6 +133,19 @@ def model(bp,v,unlit=False,jammed=False):
         # Empty pegs. Loot remains real separate native stock, never fake weapons.
         for x in [-.22,0,.22]:b(x,.79,.025,.055,.06,.14,21)
         for x in [-.30,.30]:b(x,.06,0,.13,.12,.56,19)
+    elif bp=='CrackedGlowQuartz':
+        # Two separated fractured crystals with pale cut faces. Their dark
+        # bases leave a clear crack; illumination belongs to the real Part.
+        b(-.13,.08,-.03,.19,.16,.23,10)
+        b(-.14,.22,-.04,.14,.18,.17,12)
+        b(-.14,.33,-.05,.09,.06,.11,17)
+        b(-.17,.23,-.131,.06,.14,.021,17)
+        b(.115,.065,.05,.18,.13,.21,10)
+        b(.115,.17,.05,.13,.14,.15,12)
+        b(.12,.26,.048,.08,.05,.09,17)
+        b(.15,.17,-.029,.055,.11,.019,5)
+        b(.025,.03,-.18,.06,.06,.08,12)
+        b(-.05,.025,.18,.09,.05,.06,17)
     elif bp=='KnotflaxSnare':
         # A broad pale, open noose at ankle height. Its two small stakes and
         # folded tail distinguish cord from the adjacent metal trap families.

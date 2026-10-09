@@ -26,6 +26,7 @@ namespace CavesOfOoo.Rendering
   }
   private static readonly Dictionary<string,Definition> Definitions=new Dictionary<string,Definition>(StringComparer.Ordinal)
   {
+   {"CrackedGlowQuartz",new Definition("CrackedGlowQuartz","*",false,"",e => e.GetPart<LifespanPart>())},
    {"BerryBush",new Definition("BerryBush",";",false,"",e => e.GetPart<HarvestablePart>())},
    {"Signpost",new Definition("Signpost","I",true,"",e => e.GetPart<RegionalSignpostPart>())},
    {"HollowStump",new Definition("HollowStump","u",true,"",e => e.GetPart<HarvestablePart>())},
@@ -68,6 +69,12 @@ namespace CavesOfOoo.Rendering
    if(definition.RequiredPart != null)
    {var part=definition.RequiredPart(owner);if(part==null||!ReferenceEquals(part.ParentEntity,owner))return false;}
    if(owner.GetPart<HarvestablePart>()?.Harvested==true)return false;
+   if(owner.BlueprintName=="CrackedGlowQuartz")
+   {
+    var life=owner.GetPart<LifespanPart>();var light=owner.GetPart<LightSourcePart>();
+    if(life.TurnsRemaining<=0||light==null||light.ParentEntity!=owner||!light.Enabled
+       ||light.Radius!=4||light.Intensity!=.6f||light.LightColor!="&C")return false;
+   }
    // Staged and consumed cord must never present the ready-to-catch loop.
    // The receiving-world refinement separately verifies physical ownership.
    if(owner.BlueprintName=="KnotflaxSnare"&&owner.GetPart<CordSnarePart>().Spent)return false;

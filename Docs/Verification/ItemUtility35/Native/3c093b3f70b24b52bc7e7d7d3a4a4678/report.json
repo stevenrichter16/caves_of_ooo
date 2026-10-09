@@ -1,0 +1,181 @@
+{
+  "runId": "3c093b3f70b24b52bc7e7d7d3a4a4678",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 16.9069345,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS companion_healing",
+    "PASS companion_meal",
+    "PASS conductive_film",
+    "PASS wick_film",
+    "PASS freeze_water",
+    "PASS warm_frozen_companion",
+    "PASS grease_ground",
+    "PASS ignite_grease",
+    "PASS fan_transient_gas",
+    "PASS finite_light",
+    "PASS light_native_model",
+    "PASS brace_one_push",
+    "PASS second_push_moves"
+  ],
+  "observations": [
+    {
+      "phase": "01-finite-controlled-supplies",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4498\",\"count\":1},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "phase": "02-treat-companion",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4498\",\"count\":1},{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "action": "TreatCompanion|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "03-share-preparation",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":21,\"energy\":1045,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4499\",\"count\":1},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "action": "ShareMeal|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "04-conductive-route",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":32,\"energy\":1090,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    },
+    {
+      "action": "MaterialField|Film|",
+      "elapsedTicks": 10,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "05-wick-route",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":42,\"energy\":1040,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1061,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"brine\\\",\\\"Turns\\\":7}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "MaterialField|Wick|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "06-freeze-wet-ground",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":53,\"energy\":1085,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"water\\\",\\\"Turns\\\":8}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "MaterialField|Freeze|",
+      "elapsedTicks": 10,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "07-warm-companion",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":63,\"energy\":1035,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"ice\\\",\\\"Turns\\\":3}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "MaterialField|Warm|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "08-oil-shortcut",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":74,\"energy\":1080,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"ice\\\",\\\"Turns\\\":2}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "MaterialField|Film|",
+      "elapsedTicks": 10,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "09-kindle-oil",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":84,\"energy\":1030,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4505\",\"count\":1},{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1059,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"oil\\\",\\\"Turns\\\":7}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}},{\\\"Key\\\":981,\\\"State\\\":{\\\"Coatings\\\":[{\\\"Id\\\":\\\"ice\\\",\\\"Turns\\\":1}],\\\"Residues\\\":[],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "MaterialField|Kindle|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "10-fan-gas",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":95,\"energy\":1075,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1059,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[{\\\"Id\\\":\\\"embers\\\",\\\"Turns\\\":3}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"smoke\\\",\\\"CloudTurns\\\":2}}]}\"}"
+    },
+    {
+      "action": "FanGas|",
+      "elapsedTicks": 10,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "11-crack-ground-light",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":105,\"energy\":1025,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[{\"ID\":\"4507\",\"count\":1}],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1059,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[{\\\"Id\\\":\\\"embers\\\",\\\"Turns\\\":2}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"smoke\\\",\\\"CloudTurns\\\":1}}]}\"}"
+    },
+    {
+      "action": "CrackQuartz|",
+      "elapsedTicks": 11,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "12-crystal-model",
+      "state": "Normal",
+      "snapshot": "{\"tick\":116,\"energy\":1070,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1059,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[{\\\"Id\\\":\\\"embers\\\",\\\"Turns\\\":1}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "phase": "13-plant-feet",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":116,\"energy\":1070,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[],\"ground\":\"{\\\"Entries\\\":[{\\\"Key\\\":1059,\\\"State\\\":{\\\"Coatings\\\":[],\\\"Residues\\\":[{\\\"Id\\\":\\\"embers\\\",\\\"Turns\\\":1}],\\\"Heat\\\":0,\\\"Cold\\\":0,\\\"Charge\\\":0,\\\"Cloud\\\":\\\"\\\",\\\"CloudTurns\\\":0}}]}\"}"
+    },
+    {
+      "action": "BraceBoots|",
+      "elapsedTicks": 10,
+      "speed": 95,
+      "energySpent": 1000
+    },
+    {
+      "phase": "14-finished",
+      "state": "Normal",
+      "snapshot": "{\"tick\":126,\"energy\":1020,\"hp\":40,\"zone\":\"Overworld.11.10.0\",\"player\":\"2697\",\"pack\":[],\"ground\":\"{\\\"Entries\\\":[]}\"}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/01-finite-controlled-supplies.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/02-treat-companion.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/03-share-preparation.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/04-conductive-route.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/05-wick-route.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/06-freeze-wet-ground.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/07-warm-companion.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/08-oil-shortcut.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/09-kindle-oil.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/10-fan-gas.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/11-crack-ground-light.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/12-crystal-model.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/13-plant-feet.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/ItemUtility35/Native/3c093b3f70b24b52bc7e7d7d3a4a4678/14-finished.png"
+  ],
+  "fixture": "Ordinary N/Classic start with isolated saves; its starter pack is replaced by finite controlled supplies. Flat Spread stone floor, one deliberately stationary companion outside the AI turn roster, held fan and worn boots. One water film and one transient gas are explicit stimuli. Real I/arrow/Enter menus and paid turns operate supplies. Two physical pushes are scripted measurements. Runtime camera zoom0.42 restored afterward; no campaign loaded.",
+  "canVerify": "Native menu availability and exact one-action costs, recipient healing/preparation, real finite films/wicking, freezing/thawing, oil ignition, transient gas reduction, finite ground-light geometry, one-use physical brace. Screenshots permit separate visual inspection.",
+  "cannotVerify": "Controlled item grants and stationary companion do not prove natural acquisition, encounter balance, autonomous NPC utility choice or long-term fun. Electricity and every remaining item variant are tested in EditMode, not claimed as visually exercised here."
+}

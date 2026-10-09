@@ -374,6 +374,7 @@ namespace CavesOfOoo.Skills
                     if (CellHasOtherCreature(dest, target)) break; // occupied
                 }
 
+                if (EquipmentBraceEffect.TryAbsorb(target, zone)) break;
                 if (!MovementSystem.ForceMoveTo(target, zone, nx, ny)) break;
                 movedAny = true;
             }

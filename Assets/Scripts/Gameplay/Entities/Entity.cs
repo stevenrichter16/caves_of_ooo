@@ -351,6 +351,21 @@ namespace CavesOfOoo.Core
             return applied;
         }
 
+        // Inventory care keeps the same material/immunity facade while recording
+        // the intrinsic effect mutation before independent lifecycle observers.
+        internal bool ApplyEffectWithReceipt(Effect effect, Entity source, Zone zone, Action beforeChange, Action afterChange)
+        {
+            SpellFxCapture.Target(zone, this);
+            if (!ObjectStatusMatrix.PassesTheDoor(effect, this, source))
+            {
+                SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied: false);
+                return false;
+            }
+            bool applied = EnsureStatusEffectsPart().ApplyEffectWithReceipt(effect, source, zone, beforeChange, afterChange);
+            SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied);
+            return applied;
+        }
+
         /// <summary>
         /// Force-apply a status effect, bypassing standard CanApply checks.
         /// "Force" skips the effect's own CanBeAppliedTo — it does NOT skip
