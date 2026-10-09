@@ -32,7 +32,12 @@ namespace CavesOfOoo.Core
     var post=zone.GetEntityCell(territory.Post);
     if(post.X==territory.PostX&&post.Y==territory.PostY&&post.X>=territory.Left&&post.X<=territory.Right
       &&post.Y>=territory.Top&&post.Y<=territory.Bottom)
+    {
+     var box=territory.Post.GetPart<ContainerPart>();
+     if(box?.ParentEntity==territory.Post&&(territory.Post.BlueprintName=="Crate"||territory.Post.BlueprintName=="Sack"))
+      return "It guards the ground around that "+(territory.Post.BlueprintName=="Crate"?"crate":"sack")+". Heed its warning and withdraw to avoid a fight; an attack is remembered.";
      return "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered.";
+    }
    }
    return null;
   }

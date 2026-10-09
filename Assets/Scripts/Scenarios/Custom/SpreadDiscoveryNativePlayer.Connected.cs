@@ -42,7 +42,7 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Tap(Key.Enter); yield return Settled();
             var pack = Player.GetPart<InventoryPart>();
             Check("ordinary_start", !menu.IsOpen && Player.GetProperty(StartingBuildService.PropertyName) == _connectedBuild
-                && Manager.WorldSeed == 64 && Zone.ZoneID == GleanersDistrict.SurfaceID
+                && Manager.WorldSeed == (_claimedSupplies ? 1 : 64) && Zone.ZoneID == GleanersDistrict.SurfaceID
                 && Player.GetStatValue("Hitpoints") == 40 && Player.GetStatValue("Level") == 1
                 && Player.GetStatValue("Strength") == def.Attributes.Strength && Player.GetStatValue("Agility") == def.Attributes.Agility
                 && pack.EquippedItems.Values.Any(e => e.BlueprintName == "Dagger" && e.GetPart<PhysicsPart>()?.Equipped == Player)

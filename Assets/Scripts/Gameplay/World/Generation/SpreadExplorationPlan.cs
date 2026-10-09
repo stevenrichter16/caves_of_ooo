@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=15;
+        public const int CurrentVersion=16;
         public const string WorldKeyProperty="SpreadExploration.WorldKey";
         public string WorldKey { get; private set; } = "";
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
@@ -344,7 +344,7 @@ namespace CavesOfOoo.Core
             var lines=wire.Split('\n');var header=lines[0].Split('|');
             if(header.Length!=3)throw Invalid("header");
             int version=Number(header[0]);
-            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=8&&version!=9&&version!=10&&version!=11&&version!=12&&version!=13&&version!=14&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=8&&version!=9&&version!=10&&version!=11&&version!=12&&version!=13&&version!=14&&version!=15&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
             string worldKey="";
             if(version>=11 && (!world.Properties.TryGetValue(WorldKeyProperty,out worldKey) || !Guid.TryParseExact(worldKey,"N",out _)))throw Invalid("world identity");
             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");

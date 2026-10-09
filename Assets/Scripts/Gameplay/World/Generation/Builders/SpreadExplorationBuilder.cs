@@ -235,6 +235,21 @@ namespace CavesOfOoo.Core
    bool Authority()=>Current(z,f,entry)&&othersUnchanged()&&population.CaptureSourceReceipts
     &&ReferenceEquals(receipt,grazer?population.AmbientReplacementReceipt:population.SourceReceipt)
     &&(!grazer||ReferenceEquals(ambient,population.AmbientSourceReceipt));
+   // The primary OccupiedBank allocation already controls encounter density.
+   // Only fresh16 worlds may tie this existing actor to an unmoved ordinary cache.
+   if(!grazer&&plan.Version>=16)
+   {
+    var stock=containers?.SourceReceipt;
+    if(Source(stock,z,f))
+    {
+     bool ClaimedAuthority()=>Authority()&&containers.CaptureSourceReceipts&&ReferenceEquals(stock,containers.SourceReceipt);
+     var result=SpreadExplorationActorPlacement.TryClaimedSupplies(z,actor,receipt,stock,ClaimedAuthority,
+      (owners,proof)=>Commit(z,f,entry,owners,()=>ClaimedAuthority()&&proof()));
+     if(result==ClaimedSuppliesOutcome.Committed)return true;
+     if(result==ClaimedSuppliesOutcome.Rejected)return false;
+     // No source has been claimed; absence retains the earlier territory variant.
+    }
+   }
    if(!Authority()||!receipt.TryConsume())return Refuse(z,entry,"changed-source");
    bool placed=grazer?SpreadExplorationActorPlacement.TryGleanings(z,actor,Authority):SpreadExplorationActorPlacement.TryTerritory(z,actor,Authority);
    if(!placed)
