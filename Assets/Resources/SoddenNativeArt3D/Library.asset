@@ -1,0 +1,1377 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aaed5d7c1946049c558622aa0436e9, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SoddenNativeArtLibrary
+  SourceSha256: e5eb1e3fa457642eebdf8d3d6e3e269964f714101ebbab2404b5545f6159c432
+  Material: {fileID: 2100000, guid: 7b7469f48510346ba99c16c0c235165c, type: 2}
+  Entries:
+  - Id: sodden-ground-0
+    Prefab: {fileID: 5662847730163155227, guid: 725c6fcd2a9fc4dadbb784f34d4d5e1a, type: 3}
+    Mesh: {fileID: 4300000, guid: 4ceca77adb8f342ccb0b6c2e0596ce01, type: 2}
+    Spec:
+      id: sodden-ground-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Grass
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0040000007, z: 0}
+      boundsSize: {x: 1, y: 0.088, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: sodden-ground-1
+    Prefab: {fileID: 8398678412267561401, guid: adbded733fdc1466db7fc04463d9e923, type: 3}
+    Mesh: {fileID: 4300000, guid: ab64e6236af2d400fb01c34982b3d29f, type: 2}
+    Spec:
+      id: sodden-ground-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Grass
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.009, z: 0}
+      boundsSize: {x: 1, y: 0.098, z: 1}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: sodden-ground-2
+    Prefab: {fileID: 1298921058051691447, guid: ed7b1bc31c3714d5092d59d92733bc36, type: 3}
+    Mesh: {fileID: 4300000, guid: e4c889b88bafe458081f449bc5fc4327, type: 2}
+    Spec:
+      id: sodden-ground-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Grass
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.009, z: 0}
+      boundsSize: {x: 1, y: 0.098, z: 1}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: sodden-ground-3
+    Prefab: {fileID: 2130054271962791784, guid: ca504193175b341fc8096c529c4ab0e4, type: 3}
+    Mesh: {fileID: 4300000, guid: 295c062a90df746b0ad429c1ccf304ce, type: 2}
+    Spec:
+      id: sodden-ground-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Grass
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0040000007, z: 0}
+      boundsSize: {x: 1, y: 0.088, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: sodden-mire-0
+    Prefab: {fileID: 7993902942541486548, guid: 574e4a8c4a8b340d589322b8e034b213, type: 3}
+    Mesh: {fileID: 4300000, guid: e55b36a9cb566407ea8f3be1c7ea109a, type: 2}
+    Spec:
+      id: sodden-mire-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-mire-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: MirePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038999997, z: 0}
+      boundsSize: {x: 1, y: 0.021999998, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: sodden-mire-1
+    Prefab: {fileID: 31829496580839634, guid: 6a7707beb68e844788c25290af0d86b2, type: 3}
+    Mesh: {fileID: 4300000, guid: 5178553d78c144cb9b07c45746702f3d, type: 2}
+    Spec:
+      id: sodden-mire-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-mire-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: MirePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038999997, z: 0}
+      boundsSize: {x: 1, y: 0.021999998, z: 1}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: sodden-mire-2
+    Prefab: {fileID: 3726096611475806540, guid: 932e5585611d34a8cb49b1bb51f6fe5a, type: 3}
+    Mesh: {fileID: 4300000, guid: 04f53f440df8844c9b48ce7f645c2486, type: 2}
+    Spec:
+      id: sodden-mire-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-mire-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: MirePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038999997, z: 0}
+      boundsSize: {x: 1, y: 0.021999998, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: sodden-mire-3
+    Prefab: {fileID: 6547625461162943518, guid: 9677d88786de24dcda78dc9885ee9cdd, type: 3}
+    Mesh: {fileID: 4300000, guid: 1445543f4abc34ce58c20b1ff59e1cae, type: 2}
+    Spec:
+      id: sodden-mire-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-mire-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: MirePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038999997, z: 0}
+      boundsSize: {x: 1, y: 0.021999998, z: 1}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: sodden-peat-0
+    Prefab: {fileID: 2318343839139663040, guid: 34a746ee425cc4d4d97cd6b65697fab8, type: 3}
+    Mesh: {fileID: 4300000, guid: b3916613f6932445591db8c3de874678, type: 2}
+    Spec:
+      id: sodden-peat-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-peat-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PeatBank
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.5565, z: 0}
+      boundsSize: {x: 0.996, y: 1.113, z: 0.981}
+      triangles: 348
+      clips: []
+      sockets: []
+  - Id: sodden-peat-1
+    Prefab: {fileID: 6805402194332768246, guid: 22ab174172cf04debb32380f7df5f5ee, type: 3}
+    Mesh: {fileID: 4300000, guid: c65c380ef49f449959c9f1415c151ae1, type: 2}
+    Spec:
+      id: sodden-peat-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-peat-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PeatBank
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.5875, z: 0}
+      boundsSize: {x: 0.996, y: 1.175, z: 0.981}
+      triangles: 348
+      clips: []
+      sockets: []
+  - Id: sodden-peat-2
+    Prefab: {fileID: 7794269963780707224, guid: 5b64b16d61d944efab86d0c1df080a6f, type: 3}
+    Mesh: {fileID: 4300000, guid: 5c82cb0d3efb649e1944ebb27d4fb4d4, type: 2}
+    Spec:
+      id: sodden-peat-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-peat-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PeatBank
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.593, z: 0}
+      boundsSize: {x: 0.996, y: 1.186, z: 0.981}
+      triangles: 348
+      clips: []
+      sockets: []
+  - Id: sodden-peat-3
+    Prefab: {fileID: 5465462750993963357, guid: 920123589d96e4811a776491bab453ac, type: 3}
+    Mesh: {fileID: 4300000, guid: 7e5fc6ffeb1a7415daddb521287e472f, type: 2}
+    Spec:
+      id: sodden-peat-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-peat-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PeatBank
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.624, z: 0}
+      boundsSize: {x: 0.996, y: 1.248, z: 0.981}
+      triangles: 348
+      clips: []
+      sockets: []
+  - Id: sodden-snag-0
+    Prefab: {fileID: 6866719658987252884, guid: 7fd1863831ac24d369a6bdc4189245fd, type: 3}
+    Mesh: {fileID: 4300000, guid: b5f538a7dc8df4d64b656677bc60446a, type: 2}
+    Spec:
+      id: sodden-snag-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-snag-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: DeadTree
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.415, z: 0.049999997}
+      boundsSize: {x: 0.984, y: 2.8400002, z: 0.46}
+      triangles: 360
+      clips: []
+      sockets: []
+  - Id: sodden-snag-1
+    Prefab: {fileID: 4566139828142376692, guid: 67c19afb5dd834712a10db52c3e64541, type: 3}
+    Mesh: {fileID: 4300000, guid: cbc4ac04f81644b389cd8d91303ee8c1, type: 2}
+    Spec:
+      id: sodden-snag-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-snag-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: DeadTree
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.4675, z: 0.049999997}
+      boundsSize: {x: 0.984, y: 2.9450002, z: 0.46}
+      triangles: 360
+      clips: []
+      sockets: []
+  - Id: sodden-snag-2
+    Prefab: {fileID: 3556538198168280310, guid: 04c30cc70e9304fd9a52313456aa8ccc, type: 3}
+    Mesh: {fileID: 4300000, guid: 27812f5ade1bb4669a0240a58cfbea0a, type: 2}
+    Spec:
+      id: sodden-snag-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-snag-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: DeadTree
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.52, z: 0.049999997}
+      boundsSize: {x: 0.984, y: 3.0500002, z: 0.46}
+      triangles: 360
+      clips: []
+      sockets: []
+  - Id: sodden-snag-3
+    Prefab: {fileID: 3162418769586986954, guid: cece76189aa7c41fa8963350c65300cf, type: 3}
+    Mesh: {fileID: 4300000, guid: 90b146b1996864a078b5aed4cdb74566, type: 2}
+    Spec:
+      id: sodden-snag-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-snag-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: DeadTree
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.5725, z: 0.049999997}
+      boundsSize: {x: 0.984, y: 3.1549997, z: 0.46}
+      triangles: 360
+      clips: []
+      sockets: []
+  - Id: sodden-boards-0
+    Prefab: {fileID: 4307601055665203751, guid: ff9ff075a43aa41f49af6a021992cae4, type: 3}
+    Mesh: {fileID: 4300000, guid: beea5dc24aa0448939d4a76cfbef56fa, type: 2}
+    Spec:
+      id: sodden-boards-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-boards-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: sodden-boards-1
+    Prefab: {fileID: 1980483842206075101, guid: 63f56e928548248f19627b1cf545ff50, type: 3}
+    Mesh: {fileID: 4300000, guid: 7aa3b9666ee394cecafe882679383cc2, type: 2}
+    Spec:
+      id: sodden-boards-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-boards-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: sodden-boards-2
+    Prefab: {fileID: 7552013612588553375, guid: c34dcf14e64de4c83871106f6ceac93d, type: 3}
+    Mesh: {fileID: 4300000, guid: 51aea418526b34fe38ff6773eee47fd3, type: 2}
+    Spec:
+      id: sodden-boards-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-boards-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: sodden-boards-3
+    Prefab: {fileID: 6791759216491078135, guid: 8cf57ae34eac349f380399f6d93d22fd, type: 3}
+    Mesh: {fileID: 4300000, guid: 4608073641e6544d3989fdfcb7347465, type: 2}
+    Spec:
+      id: sodden-boards-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-boards-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: sodden-body-0
+    Prefab: {fileID: 4118484642567175143, guid: 834a444a7620a405db3edba15faf3560, type: 3}
+    Mesh: {fileID: 4300000, guid: 561ec19b1af6241bc84d439c66b15c8f, type: 2}
+    Spec:
+      id: sodden-body-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-body-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BogTakenBody
+      rigged: 0
+      boundsCenter: {x: -0.0065000057, y: 0.15200001, z: -0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 312
+      clips: []
+      sockets: []
+  - Id: sodden-body-1
+    Prefab: {fileID: 7425505227483280467, guid: c6cbf9164b328470db743455bb79d05f, type: 3}
+    Mesh: {fileID: 4300000, guid: d0fe75e049ca84962839c1b60b63f2bb, type: 2}
+    Spec:
+      id: sodden-body-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-body-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BogTakenBody
+      rigged: 0
+      boundsCenter: {x: 0.0065000057, y: 0.15200001, z: -0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 312
+      clips: []
+      sockets: []
+  - Id: sodden-body-2
+    Prefab: {fileID: 1421141844633619471, guid: a2a8e87eb0d1d4b7195ca71bf88d05d7, type: 3}
+    Mesh: {fileID: 4300000, guid: b55ae3b5d9826400f81a9a003982b169, type: 2}
+    Spec:
+      id: sodden-body-2
+      path: Assets/Resources/SoddenNativeArt3D/sodden-body-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BogTakenBody
+      rigged: 0
+      boundsCenter: {x: -0.0065000057, y: 0.15200001, z: -0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 312
+      clips: []
+      sockets: []
+  - Id: sodden-body-3
+    Prefab: {fileID: 2564018335057350818, guid: c845a9d85ff7b4f6ca2e58075ae21a76, type: 3}
+    Mesh: {fileID: 4300000, guid: 8e988877a698d4fa78c9b914d03c1945, type: 2}
+    Spec:
+      id: sodden-body-3
+      path: Assets/Resources/SoddenNativeArt3D/sodden-body-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BogTakenBody
+      rigged: 0
+      boundsCenter: {x: 0.0065000057, y: 0.15200001, z: -0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 312
+      clips: []
+      sockets: []
+  - Id: spread-reeds-0
+    Prefab: {fileID: 3053733462516765520, guid: 53d1fa341d3244be788e4c553d7f776f, type: 3}
+    Mesh: {fileID: 4300000, guid: aa0357b0613d942bfa2ed92bafd390ce, type: 2}
+    Spec:
+      id: spread-reeds-0
+      path: Assets/Resources/SoddenNativeArt3D/spread-reeds-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Reeds
+      rigged: 0
+      boundsCenter: {x: 0.01712799, y: 0.389, z: 0.00088851154}
+      boundsSize: {x: 0.728992, y: 0.778, z: 0.628737}
+      triangles: 432
+      clips: []
+      sockets: []
+  - Id: spread-reeds-1
+    Prefab: {fileID: 7400129933148885708, guid: bef8389a09e4b43319f533222f7c216e, type: 3}
+    Mesh: {fileID: 4300000, guid: 5c4bb2e7e95094b388fd0432abc57cb7, type: 2}
+    Spec:
+      id: spread-reeds-1
+      path: Assets/Resources/SoddenNativeArt3D/spread-reeds-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Reeds
+      rigged: 0
+      boundsCenter: {x: -0.0019619912, y: 0.389, z: 0.00053450465}
+      boundsSize: {x: 0.72195995, y: 0.778, z: 0.601085}
+      triangles: 408
+      clips: []
+      sockets: []
+  - Id: spread-reeds-2
+    Prefab: {fileID: 1855405748959655546, guid: 0b02890b82911452cbc82218139a4f13, type: 3}
+    Mesh: {fileID: 4300000, guid: 60eafb4217e854a069d074500d5b5b12, type: 2}
+    Spec:
+      id: spread-reeds-2
+      path: Assets/Resources/SoddenNativeArt3D/spread-reeds-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Reeds
+      rigged: 0
+      boundsCenter: {x: 0.0014515072, y: 0.389, z: 0.0063689947}
+      boundsSize: {x: 0.73467505, y: 0.778, z: 0.622074}
+      triangles: 432
+      clips: []
+      sockets: []
+  - Id: spread-reeds-3
+    Prefab: {fileID: 2102272285692652475, guid: 94c00e8ac43fe49b79e90418abce5938, type: 3}
+    Mesh: {fileID: 4300000, guid: e43fdad1f2d9a40adbce621967cb3a10, type: 2}
+    Spec:
+      id: spread-reeds-3
+      path: Assets/Resources/SoddenNativeArt3D/spread-reeds-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Reeds
+      rigged: 0
+      boundsCenter: {x: -0.012363493, y: 0.389, z: 0.006384507}
+      boundsSize: {x: 0.729285, y: 0.778, z: 0.62264895}
+      triangles: 408
+      clips: []
+      sockets: []
+  - Id: sodden-native-greatdew-0
+    Prefab: {fileID: 9046292433319008191, guid: e1cb3156c898e4d06a967f8ba64a3af7, type: 3}
+    Mesh: {fileID: 4300000, guid: 5fc196c5262294cd89c835d80089fcf9, type: 2}
+    Spec:
+      id: sodden-native-greatdew-0
+      path: Assets/Resources/SoddenNativeArt3D/sodden-native-greatdew-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Greatdew
+      rigged: 0
+      boundsCenter: {x: 0.0024999976, y: 0.40075, z: -0.019999996}
+      boundsSize: {x: 0.695, y: 0.8015, z: 0.51600003}
+      triangles: 336
+      clips: []
+      sockets: []
+  - Id: sodden-native-greatdew-1
+    Prefab: {fileID: 4228252440718553774, guid: aebb1625e4a174cdc8615dc5a6b5120a, type: 3}
+    Mesh: {fileID: 4300000, guid: 7f558a4599abc404ea1f361766aa255f, type: 2}
+    Spec:
+      id: sodden-native-greatdew-1
+      path: Assets/Resources/SoddenNativeArt3D/sodden-native-greatdew-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Greatdew
+      rigged: 0
+      boundsCenter: {x: -0.027499989, y: 0.40075, z: -0.019999996}
+      boundsSize: {x: 0.645, y: 0.8015, z: 0.51600003}
+      triangles: 336
+      clips: []
+      sockets: []
+  - Id: spread-environment-paving-0
+    Prefab: {fileID: 8928378133063678659, guid: a4a966b52e41d403ebf900d168a74ca0, type: 3}
+    Mesh: {fileID: 4300000, guid: 25a0a602cc4f84deeaf17b5a84b4865d, type: 2}
+    Spec:
+      id: spread-environment-paving-0
+      path: Assets/Resources/SoddenNativeArt3D/spread-environment-paving-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: spread-environment-paving-1
+    Prefab: {fileID: 4600609607273948325, guid: bca57d15a364743c19f0a72f74916618, type: 3}
+    Mesh: {fileID: 4300000, guid: 2ef43f983095d4e0aaefa8eacb477f3f, type: 2}
+    Spec:
+      id: spread-environment-paving-1
+      path: Assets/Resources/SoddenNativeArt3D/spread-environment-paving-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: spread-environment-paving-2
+    Prefab: {fileID: 2652715398245330017, guid: eba622f673d7e485f9c91b85dd19b218, type: 3}
+    Mesh: {fileID: 4300000, guid: 0db62e1aeba5245b689a4f9866b22d78, type: 2}
+    Spec:
+      id: spread-environment-paving-2
+      path: Assets/Resources/SoddenNativeArt3D/spread-environment-paving-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: spread-environment-paving-3
+    Prefab: {fileID: 1411158344931230170, guid: 802fb3c1f375b4cb398ab0eaacece467, type: 3}
+    Mesh: {fileID: 4300000, guid: 4ba8971638ae640ffafa01519408952d, type: 2}
+    Spec:
+      id: spread-environment-paving-3
+      path: Assets/Resources/SoddenNativeArt3D/spread-environment-paving-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: wellmeet-floor-0
+    Prefab: {fileID: 5437336132791867330, guid: 1cc7b95a5cb754dcb824b3a65801111d, type: 3}
+    Mesh: {fileID: 4300000, guid: 5cfa68eb0d2524b6398f4148484e18d4, type: 2}
+    Spec:
+      id: wellmeet-floor-0
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-floor-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: wellmeet-floor-1
+    Prefab: {fileID: 4474077735537899376, guid: 652013024c8d54632b78d748d9265804, type: 3}
+    Mesh: {fileID: 4300000, guid: 288802c15e6654a1dbe190e2cc1230bb, type: 2}
+    Spec:
+      id: wellmeet-floor-1
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-floor-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: wellmeet-floor-2
+    Prefab: {fileID: 8542779179961956685, guid: 09f59913bd93e4a03bdbfc68ef8343cf, type: 3}
+    Mesh: {fileID: 4300000, guid: b98edd304b8034f428f568ddd363bf3d, type: 2}
+    Spec:
+      id: wellmeet-floor-2
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-floor-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: wellmeet-floor-3
+    Prefab: {fileID: 8224154323342593241, guid: 8f50ebef643344830a8b2f2c2b86d768, type: 3}
+    Mesh: {fileID: 4300000, guid: 01ba81b97470f48579ffc242e03700e9, type: 2}
+    Spec:
+      id: wellmeet-floor-3
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-floor-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneFloor
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.003999999, z: 0}
+      boundsSize: {x: 1, y: 0.063999996, z: 1}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-0
+    Prefab: {fileID: 2479027346887989778, guid: d369e7ecabc9b481da5c2f050f51f9b9, type: 3}
+    Mesh: {fileID: 4300000, guid: 8f0f5fe7d95cd4b78b2d0a02b560196b, type: 2}
+    Spec:
+      id: sumphold-wall-0
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.526, z: -0.000000014901161}
+      boundsSize: {x: 0.99799997, y: 1.052, z: 0.998}
+      triangles: 372
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-1
+    Prefab: {fileID: 7271788594900821962, guid: 0f832d8ddaa9f481f91de1cbfaebaae5, type: 3}
+    Mesh: {fileID: 4300000, guid: beed67268cd10429f86b5e4b807e5a63, type: 2}
+    Spec:
+      id: sumphold-wall-1
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.526, z: -0.000000014901161}
+      boundsSize: {x: 0.99799997, y: 1.052, z: 0.998}
+      triangles: 372
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-2
+    Prefab: {fileID: 5058318927788882886, guid: 167eae3662b464d3fb7d763b7806a7e8, type: 3}
+    Mesh: {fileID: 4300000, guid: cd1a53823a7d84623951794aea4c61d1, type: 2}
+    Spec:
+      id: sumphold-wall-2
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.526, z: -0.000000014901161}
+      boundsSize: {x: 0.99799997, y: 1.052, z: 0.998}
+      triangles: 372
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-3
+    Prefab: {fileID: 8186524905154094174, guid: 6ee58e5e0a2c94689826e4f784963684, type: 3}
+    Mesh: {fileID: 4300000, guid: c200c2aba8a634871a3b2e2914de3a26, type: 2}
+    Spec:
+      id: sumphold-wall-3
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: StoneWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.526, z: -0.000000014901161}
+      boundsSize: {x: 0.99799997, y: 1.052, z: 0.998}
+      triangles: 372
+      clips: []
+      sockets: []
+  - Id: sumphold-water-0
+    Prefab: {fileID: 2740194014117974413, guid: c0b8c85a239bb4a509ad84ed18ce77d3, type: 3}
+    Mesh: {fileID: 4300000, guid: 9b5d52326d089411197b7f94a9a30162, type: 2}
+    Spec:
+      id: sumphold-water-0
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-water-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: WaterPuddle
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0030000005, z: 0}
+      boundsSize: {x: 1, y: 0.022, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: sumphold-water-1
+    Prefab: {fileID: 3503228321329148395, guid: 2b40a584bb1934caba10b0a391a7a06e, type: 3}
+    Mesh: {fileID: 4300000, guid: 33e5099e03e54423eab0ca73071dad61, type: 2}
+    Spec:
+      id: sumphold-water-1
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-water-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: WaterPuddle
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0030000005, z: 0}
+      boundsSize: {x: 1, y: 0.022, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: sumphold-water-2
+    Prefab: {fileID: 1810219742997489645, guid: 90490f057532a425fbbbcb4a6f0fed76, type: 3}
+    Mesh: {fileID: 4300000, guid: 5218cad0e32dc43a6abf3598f0149423, type: 2}
+    Spec:
+      id: sumphold-water-2
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-water-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: WaterPuddle
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0030000005, z: 0}
+      boundsSize: {x: 1, y: 0.022, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: sumphold-water-3
+    Prefab: {fileID: 721898696790341175, guid: 89376bfcc0bbb436a80908c0ccfe0b1b, type: 3}
+    Mesh: {fileID: 4300000, guid: ceb62003e529d44059dcd843a4fd9018, type: 2}
+    Spec:
+      id: sumphold-water-3
+      path: Assets/Resources/SoddenNativeArt3D/sumphold-water-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: WaterPuddle
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0030000005, z: 0}
+      boundsSize: {x: 1, y: 0.022, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: drownedledger-boards-0
+    Prefab: {fileID: 6515548980278768976, guid: 7fc2fe967565b4739b72efd748d09f9d, type: 3}
+    Mesh: {fileID: 4300000, guid: 611fa99f2139046888864ee2e9e4ee88, type: 2}
+    Spec:
+      id: drownedledger-boards-0
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-boards-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: drownedledger-boards-1
+    Prefab: {fileID: 1012095264479041837, guid: f9d23e07e40a84bb6bf18772c1dfa469, type: 3}
+    Mesh: {fileID: 4300000, guid: 7758d35022fc34c7d96f8a3517f74acf, type: 2}
+    Spec:
+      id: drownedledger-boards-1
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-boards-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: drownedledger-boards-2
+    Prefab: {fileID: 7668745072389555335, guid: 96449c62c0af64eacaefc19d1a82d4a5, type: 3}
+    Mesh: {fileID: 4300000, guid: 0f420cbdc1cc843daad9880268340e8b, type: 2}
+    Spec:
+      id: drownedledger-boards-2
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-boards-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: drownedledger-boards-3
+    Prefab: {fileID: 3740622669733559271, guid: 0b6d1855888b94ac3b7a2836b9a9b975, type: 3}
+    Mesh: {fileID: 4300000, guid: 9bd66ae37144c4f6c8cfe0ce29c4ef9f, type: 2}
+    Spec:
+      id: drownedledger-boards-3
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-boards-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: Duckboard
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.095, z: -0.010499999}
+      boundsSize: {x: 0.98, y: 0.19, z: 0.96299994}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: wellmeet-tent-0
+    Prefab: {fileID: 4166589018702885724, guid: 356e475bdcd824e19967bbe0eebea2bf, type: 3}
+    Mesh: {fileID: 4300000, guid: 1769f2d63ea224eb69199a9584da0997, type: 2}
+    Spec:
+      id: wellmeet-tent-0
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-tent-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: -0.01875}
+      boundsSize: {x: 1, y: 1.1, z: 0.2775}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: wellmeet-tent-1
+    Prefab: {fileID: 6580708883255175460, guid: 09e1b6699bf644249a7b05ebc523c1ff, type: 3}
+    Mesh: {fileID: 4300000, guid: 3ed1afe1571d74ca8aaf5f306eaa0db8, type: 2}
+    Spec:
+      id: wellmeet-tent-1
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-tent-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: -0.01875}
+      boundsSize: {x: 1, y: 1.1, z: 0.2775}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: wellmeet-tent-2
+    Prefab: {fileID: 5430316330031038053, guid: 7a9155dfd1df34e809af38fc5c08c477, type: 3}
+    Mesh: {fileID: 4300000, guid: 5795fd23b57dd42308170e30163ddcf3, type: 2}
+    Spec:
+      id: wellmeet-tent-2
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-tent-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: -0.01875}
+      boundsSize: {x: 1, y: 1.1, z: 0.2775}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: wellmeet-tent-3
+    Prefab: {fileID: 8917433789137367034, guid: 5da6cad84700847df8014913d7cb1edd, type: 3}
+    Mesh: {fileID: 4300000, guid: e80507b9bef9b4b38a6431aa5730a965, type: 2}
+    Spec:
+      id: wellmeet-tent-3
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-tent-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: -0.01875}
+      boundsSize: {x: 1, y: 1.1, z: 0.2775}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: wellmeet-corner-0
+    Prefab: {fileID: 1208687740976540540, guid: c67eb86d439694cb8826f7a67232a964, type: 3}
+    Mesh: {fileID: 4300000, guid: a7c4eb4485e8f4a549f693f6c2871e66, type: 2}
+    Spec:
+      id: wellmeet-corner-0
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-corner-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0.2065, y: 0.55, z: 0.2065}
+      boundsSize: {x: 0.587, y: 1.1, z: 0.587}
+      triangles: 216
+      clips: []
+      sockets: []
+  - Id: wellmeet-corner-1
+    Prefab: {fileID: 5280922415482203875, guid: cb59014d01fb244508865417658f26a0, type: 3}
+    Mesh: {fileID: 4300000, guid: c30fc0b8c68454837a926f544beaf4cd, type: 2}
+    Spec:
+      id: wellmeet-corner-1
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-corner-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0.2065, y: 0.55, z: 0.2065}
+      boundsSize: {x: 0.587, y: 1.1, z: 0.587}
+      triangles: 216
+      clips: []
+      sockets: []
+  - Id: wellmeet-corner-2
+    Prefab: {fileID: 4238884226305227141, guid: 1753373a64f174400b9338e065570e70, type: 3}
+    Mesh: {fileID: 4300000, guid: 40c3e99a15440412f86939949493073b, type: 2}
+    Spec:
+      id: wellmeet-corner-2
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-corner-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0.2065, y: 0.55, z: 0.2065}
+      boundsSize: {x: 0.587, y: 1.1, z: 0.587}
+      triangles: 216
+      clips: []
+      sockets: []
+  - Id: wellmeet-corner-3
+    Prefab: {fileID: 2397150670970996713, guid: 943934488290e450b81d8e1ae7e390d6, type: 3}
+    Mesh: {fileID: 4300000, guid: 9a0da9063c36049abbb126fdcf6729ed, type: 2}
+    Spec:
+      id: wellmeet-corner-3
+      path: Assets/Resources/SoddenNativeArt3D/wellmeet-corner-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: TentWall
+      rigged: 0
+      boundsCenter: {x: 0.2065, y: 0.55, z: 0.2065}
+      boundsSize: {x: 0.587, y: 1.1, z: 0.587}
+      triangles: 216
+      clips: []
+      sockets: []
+  - Id: drownedledger-preserved-0
+    Prefab: {fileID: 5370561112479988519, guid: cab3344ca952f46dfb0c5454dab92545, type: 3}
+    Mesh: {fileID: 4300000, guid: 424e9347d1e9f46058b18019d8fe21ae, type: 2}
+    Spec:
+      id: drownedledger-preserved-0
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-preserved-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PreFellingBody
+      rigged: 0
+      boundsCenter: {x: 0.0065000057, y: 0.15200001, z: 0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 324
+      clips: []
+      sockets: []
+  - Id: drownedledger-preserved-1
+    Prefab: {fileID: 1092905218594417926, guid: 6ca95855210a9452eadfe5511d4f015f, type: 3}
+    Mesh: {fileID: 4300000, guid: 082d51ec1399d4fc9b8e9b89ebb6a476, type: 2}
+    Spec:
+      id: drownedledger-preserved-1
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-preserved-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PreFellingBody
+      rigged: 0
+      boundsCenter: {x: -0.0065000057, y: 0.15200001, z: 0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 324
+      clips: []
+      sockets: []
+  - Id: drownedledger-preserved-2
+    Prefab: {fileID: 2653554416620503311, guid: f17394f2dc0d04d9aa2955f2660c608c, type: 3}
+    Mesh: {fileID: 4300000, guid: b0f11686312ea40c981c0fef5b66027a, type: 2}
+    Spec:
+      id: drownedledger-preserved-2
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-preserved-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PreFellingBody
+      rigged: 0
+      boundsCenter: {x: 0.0065000057, y: 0.15200001, z: 0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 324
+      clips: []
+      sockets: []
+  - Id: drownedledger-preserved-3
+    Prefab: {fileID: 3838891175533778189, guid: bba743865a2eb463a991e1d3e8ad3a09, type: 3}
+    Mesh: {fileID: 4300000, guid: fabb711e02260415980ff019af64987d, type: 2}
+    Spec:
+      id: drownedledger-preserved-3
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-preserved-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: PreFellingBody
+      rigged: 0
+      boundsCenter: {x: -0.0065000057, y: 0.15200001, z: 0.035250008}
+      boundsSize: {x: 0.52, y: 0.26, z: 0.8875}
+      triangles: 324
+      clips: []
+      sockets: []
+  - Id: drownedledger-stake-0
+    Prefab: {fileID: 5413251372514263136, guid: 63b40862cb753454baf650424d0f2766, type: 3}
+    Mesh: {fileID: 4300000, guid: 565809386d3e3499296f38bd4b020ee9, type: 2}
+    Spec:
+      id: drownedledger-stake-0
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-stake-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SurveyStake
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.52, z: 0}
+      boundsSize: {x: 0.24, y: 1.04, z: 0.228}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: drownedledger-stake-1
+    Prefab: {fileID: 1270821464743717410, guid: a108af14abf104b63b1b3bae2dc8441c, type: 3}
+    Mesh: {fileID: 4300000, guid: 5441340c53e4443b3920a45f69e44e4e, type: 2}
+    Spec:
+      id: drownedledger-stake-1
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-stake-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SurveyStake
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: 0}
+      boundsSize: {x: 0.24, y: 1.1, z: 0.228}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: drownedledger-stake-2
+    Prefab: {fileID: 8480931763788146190, guid: 0ebf6f7cb027a4340a815fa6934bbd2a, type: 3}
+    Mesh: {fileID: 4300000, guid: bc24875af67f6485281ef073dc39d2d2, type: 2}
+    Spec:
+      id: drownedledger-stake-2
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-stake-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SurveyStake
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.58, z: 0}
+      boundsSize: {x: 0.24, y: 1.16, z: 0.228}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: drownedledger-stake-3
+    Prefab: {fileID: 8222027549382026440, guid: 189e2e937e78f444596055ca377849d5, type: 3}
+    Mesh: {fileID: 4300000, guid: 5acb2de8c3a80484da79fe18e79cce0c, type: 2}
+    Spec:
+      id: drownedledger-stake-3
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-stake-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SurveyStake
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.61, z: 0}
+      boundsSize: {x: 0.24, y: 1.22, z: 0.228}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: drownedledger-table-0
+    Prefab: {fileID: 7458863929478481190, guid: c9f298b22739e4b88bffe480772f97a3, type: 3}
+    Mesh: {fileID: 4300000, guid: b0d18c4b946a64d2ca581e222f426181, type: 2}
+    Spec:
+      id: drownedledger-table-0
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-table-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: ReadingTable
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.495, z: 0}
+      boundsSize: {x: 0.87, y: 0.99, z: 0.84}
+      triangles: 252
+      clips: []
+      sockets: []
+  - Id: drownedledger-table-1
+    Prefab: {fileID: 4860658376061862038, guid: 5a6ffc094f81d4c9a9a39d9a53f1e2f8, type: 3}
+    Mesh: {fileID: 4300000, guid: 34c04b766be1f4baaa2314eb78234e4f, type: 2}
+    Spec:
+      id: drownedledger-table-1
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-table-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: ReadingTable
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.505, z: 0}
+      boundsSize: {x: 0.87, y: 1.01, z: 0.84}
+      triangles: 252
+      clips: []
+      sockets: []
+  - Id: drownedledger-table-2
+    Prefab: {fileID: 4384232228660014223, guid: 7b05dc838997142968a4bc5ef92114d5, type: 3}
+    Mesh: {fileID: 4300000, guid: 8fd8fc47d48fb4128a42b3f35a317e23, type: 2}
+    Spec:
+      id: drownedledger-table-2
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-table-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: ReadingTable
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.515, z: 0}
+      boundsSize: {x: 0.87, y: 1.03, z: 0.84}
+      triangles: 252
+      clips: []
+      sockets: []
+  - Id: drownedledger-table-3
+    Prefab: {fileID: 469253949538610262, guid: 17f7c7a2bd8424e319dc20c5f1d0c5bf, type: 3}
+    Mesh: {fileID: 4300000, guid: b7908c9fdcbe54a7887d7387842e1dc0, type: 2}
+    Spec:
+      id: drownedledger-table-3
+      path: Assets/Resources/SoddenNativeArt3D/drownedledger-table-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: ReadingTable
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 0.87, y: 1.05, z: 0.84}
+      triangles: 252
+      clips: []
+      sockets: []
+  - Id: ring-vine-wall-0
+    Prefab: {fileID: 2450562282030172323, guid: 7b68fd9e7cbb64607a6338f70bb6aff1, type: 3}
+    Mesh: {fileID: 4300000, guid: ef6a98dc1cc0e4122a9a392e34672311, type: 2}
+    Spec:
+      id: ring-vine-wall-0
+      path: Assets/Resources/SoddenNativeArt3D/ring-vine-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: VineWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.61874974, z: 0}
+      boundsSize: {x: 0.93, y: 1.2725005, z: 0.91}
+      triangles: 396
+      clips: []
+      sockets: []
+  - Id: ring-vine-wall-1
+    Prefab: {fileID: 4052594945203087524, guid: c2cc1c3d7632c465caffc2e606c64380, type: 3}
+    Mesh: {fileID: 4300000, guid: 7742735d47a7f4fe09313aad5087ba5d, type: 2}
+    Spec:
+      id: ring-vine-wall-1
+      path: Assets/Resources/SoddenNativeArt3D/ring-vine-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: VineWall
+      rigged: 0
+      boundsCenter: {x: -0.0013455003, y: 0.61874974, z: 0}
+      boundsSize: {x: 0.9715949, y: 1.2725005, z: 0.91}
+      triangles: 396
+      clips: []
+      sockets: []
+  - Id: ring-vine-wall-2
+    Prefab: {fileID: 4408683381852158661, guid: 45174a596ef634044baa5c812ce808cc, type: 3}
+    Mesh: {fileID: 4300000, guid: 5cea893032646470cad125f8114b42c9, type: 2}
+    Spec:
+      id: ring-vine-wall-2
+      path: Assets/Resources/SoddenNativeArt3D/ring-vine-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: VineWall
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.61874974, z: 0}
+      boundsSize: {x: 0.93, y: 1.2725005, z: 0.91}
+      triangles: 396
+      clips: []
+      sockets: []
+  - Id: ring-vine-wall-3
+    Prefab: {fileID: 8815791832513476709, guid: a4a7fbc97e86444f88947ba23aa7e083, type: 3}
+    Mesh: {fileID: 4300000, guid: 9b78e0e9faa7a4bf398df2cd46450e44, type: 2}
+    Spec:
+      id: ring-vine-wall-3
+      path: Assets/Resources/SoddenNativeArt3D/ring-vine-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: VineWall
+      rigged: 0
+      boundsCenter: {x: -0.0061279982, y: 0.61874974, z: 0}
+      boundsSize: {x: 0.969962, y: 1.2725005, z: 0.91}
+      triangles: 396
+      clips: []
+      sockets: []
+  - Id: ring-brine-pool-0
+    Prefab: {fileID: 8189995313010875519, guid: fa74d261b396e478888d770dd7eb2616, type: 3}
+    Mesh: {fileID: 4300000, guid: 796f651d1845f4ddbb2de80f75a2c63d, type: 2}
+    Spec:
+      id: ring-brine-pool-0
+      path: Assets/Resources/SoddenNativeArt3D/ring-brine-pool-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BrinePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.069000006, z: 0}
+      boundsSize: {x: 1, y: 0.08800001, z: 1}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ring-brine-pool-1
+    Prefab: {fileID: 1278431160617193526, guid: 5b5a95fca46a14dbd9e097bbe23982f0, type: 3}
+    Mesh: {fileID: 4300000, guid: 3ba59930157804f88b852ec89d14e38b, type: 2}
+    Spec:
+      id: ring-brine-pool-1
+      path: Assets/Resources/SoddenNativeArt3D/ring-brine-pool-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BrinePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.069000006, z: 0}
+      boundsSize: {x: 1, y: 0.08800001, z: 1}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ring-brine-pool-2
+    Prefab: {fileID: 8556411925967243801, guid: 7576fe543c8b941209e3d06aa6b872aa, type: 3}
+    Mesh: {fileID: 4300000, guid: 0440e93c18cdc488aa21e53b07349222, type: 2}
+    Spec:
+      id: ring-brine-pool-2
+      path: Assets/Resources/SoddenNativeArt3D/ring-brine-pool-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BrinePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.069000006, z: 0}
+      boundsSize: {x: 1, y: 0.08800001, z: 1}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ring-brine-pool-3
+    Prefab: {fileID: 5389927759057154089, guid: e5fddbe546a07403894556780904cd00, type: 3}
+    Mesh: {fileID: 4300000, guid: b9fe31ae7a64c484296e9eeb57130bd0, type: 2}
+    Spec:
+      id: ring-brine-pool-3
+      path: Assets/Resources/SoddenNativeArt3D/ring-brine-pool-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: BrinePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.069000006, z: 0}
+      boundsSize: {x: 1, y: 0.08800001, z: 1}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: sodden-district-bench-broken
+    Prefab: {fileID: 7671408944152968316, guid: 0c483b41d1e05488c948c07b85409d7b, type: 3}
+    Mesh: {fileID: 4300000, guid: d950398d11b8d4a56b63e65f72262dc3, type: 2}
+    Spec:
+      id: sodden-district-bench-broken
+      path: Assets/Resources/SoddenNativeArt3D/sodden-district-bench-broken.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SoddenDressingBench
+      rigged: 0
+      boundsCenter: {x: -0.010000005, y: 0.68999994, z: 0}
+      boundsSize: {x: 0.89, y: 1.3799999, z: 0.76}
+      triangles: 264
+      clips: []
+      sockets: []
+  - Id: sodden-district-bench-working
+    Prefab: {fileID: 7916096544949131111, guid: dbad87b2096ec497bbbb631fac9681d0, type: 3}
+    Mesh: {fileID: 4300000, guid: 25df285773fee48b4903e1d93d72e66d, type: 2}
+    Spec:
+      id: sodden-district-bench-working
+      path: Assets/Resources/SoddenNativeArt3D/sodden-district-bench-working.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SoddenDressingBench
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.825, z: 0}
+      boundsSize: {x: 0.91, y: 1.65, z: 0.76}
+      triangles: 312
+      clips: []
+      sockets: []
+  - Id: sodden-district-works-locker
+    Prefab: {fileID: 1709890105656471628, guid: d6906364b920943b59ac8ba2e805fe5e, type: 3}
+    Mesh: {fileID: 4300000, guid: 700d8eb427ab944439692bb4e260dfd7, type: 2}
+    Spec:
+      id: sodden-district-works-locker
+      path: Assets/Resources/SoddenNativeArt3D/sodden-district-works-locker.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SoddenWorksLocker
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.61925, z: 0}
+      boundsSize: {x: 0.94, y: 1.2385, z: 0.837}
+      triangles: 300
+      clips: []
+      sockets: []
+  - Id: sodden-district-works-salvage
+    Prefab: {fileID: 500048555145863827, guid: af03693bc2129446ea075f0f20a9cf3f, type: 3}
+    Mesh: {fileID: 4300000, guid: 10e5d7d2971664230ae0db3f250921d6, type: 2}
+    Spec:
+      id: sodden-district-works-salvage
+      path: Assets/Resources/SoddenNativeArt3D/sodden-district-works-salvage.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SoddenWorksSalvage
+      rigged: 0
+      boundsCenter: {x: -0.006249994, y: 0.57875, z: 0.055000007}
+      boundsSize: {x: 0.9175, y: 1.0725, z: 0.85}
+      triangles: 204
+      clips: []
+      sockets: []
+  - Id: sodden-district-route-notice
+    Prefab: {fileID: 7242494898167613722, guid: fec95a83a3914473f8dea120e8bb1055, type: 3}
+    Mesh: {fileID: 4300000, guid: bd8d464e3d1a34ce1b33524566a726e6, type: 2}
+    Spec:
+      id: sodden-district-route-notice
+      path: Assets/Resources/SoddenNativeArt3D/sodden-district-route-notice.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SoddenRouteNotice
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9925, z: 0.010499999}
+      boundsSize: {x: 0.96000004, y: 1.985, z: 0.361}
+      triangles: 216
+      clips: []
+      sockets: []
+  - Id: density-pool-acid
+    Prefab: {fileID: 2454568943117592656, guid: 2179d810d355141889eaee6fab9fe252, type: 3}
+    Mesh: {fileID: 4300000, guid: a33436c029dff42c292a3e75a4793f70, type: 2}
+    Spec:
+      id: density-pool-acid
+      path: Assets/Resources/SoddenNativeArt3D/density-pool-acid.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: AcidPool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0725, z: 0}
+      boundsSize: {x: 1, y: 0.095, z: 1}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: ring-steam-vent
+    Prefab: {fileID: 4944744784515847622, guid: d55bb4c5e63d54de3a85d0f1cfb95613, type: 3}
+    Mesh: {fileID: 4300000, guid: 14e937049327249c4bf2eb151854dedf, type: 2}
+    Spec:
+      id: ring-steam-vent
+      path: Assets/Resources/SoddenNativeArt3D/ring-steam-vent.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: sodden-native-palette
+      sourceBlueprint: SteamVent
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.262, z: 0}
+      boundsSize: {x: 0.72, y: 0.524, z: 0.69}
+      triangles: 192
+      clips: []
+      sockets: []

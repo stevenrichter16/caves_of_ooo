@@ -92,7 +92,7 @@ namespace CavesOfOoo.Tests
             using(var f=new SpawnRing3DIntegrationFixture(Spread))
             {
                 var item=Add(f,"Dagger");f.Refresh();Exact(f,item);var first=f.View(item);
-                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;f.Refresh();
+                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;f.Refresh();
                 Assert.False((Recipe(f,item).ModelId??"").StartsWith("spread-portable-",StringComparison.Ordinal));SpawnRing3DIntegrationFixture.Hidden(first);
                 f.Manager.WorldMap.Tiles[12,10]=BiomeType.Spread;f.Refresh();Exact(f,item);
                 var foreign=new Zone(f.Zone.ZoneID);Assert.IsNull(SpawnRing3DRecipes.Resolve(foreign,item,f.Library.Definition).ModelId);

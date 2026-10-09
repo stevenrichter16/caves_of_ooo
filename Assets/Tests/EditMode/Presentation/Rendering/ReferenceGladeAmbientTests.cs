@@ -55,7 +55,7 @@ namespace CavesOfOoo.Tests
             using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
             {
                 Probe(f.View(f.Player).GetComponentInChildren<Renderer>());
-                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Sodden;f.Refresh();Assert.AreNotEqual(LightProbeUsage.CustomProvided,f.View(f.Player).GetComponentInChildren<Renderer>().lightProbeUsage);
+                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Beating;f.Refresh();Assert.AreNotEqual(LightProbeUsage.CustomProvided,f.View(f.Player).GetComponentInChildren<Renderer>().lightProbeUsage);
                 f.Manager.WorldMap.Tiles[11,10]=BiomeType.Spread;f.Frame();Probe(f.View(f.Player).GetComponentInChildren<Renderer>());
             }
         }

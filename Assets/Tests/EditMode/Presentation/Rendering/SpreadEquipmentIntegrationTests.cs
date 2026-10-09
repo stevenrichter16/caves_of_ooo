@@ -256,7 +256,7 @@ namespace CavesOfOoo.Tests
             {
                 f.CleanGear(f.Player);var item=f.Equip(f.Player,"Hatchet");f.Refresh();var presenter=(SpawnRing3DPresenter)f.Presenter;
                 Assert.True(presenter.TryGetApprovedEquipmentStyle(f.Player,item,out _));
-                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;
+                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;
                 Assert.False(presenter.TryGetApprovedEquipmentStyle(f.Player,item,out _));f.Refresh();Assert.False(presenter.TryGetApprovedEquipmentStyle(f.Player,item,out _));
                 f.Manager.WorldMap.Tiles[12,10]=BiomeType.Spread;f.Refresh();Assert.True(presenter.TryGetApprovedEquipmentStyle(f.Player,item,out var evidence),evidence.Failure);
             }

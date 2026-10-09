@@ -8,6 +8,8 @@ namespace CavesOfOoo.Scenarios.Custom
 {
     public sealed partial class SpreadDiscoveryNativePlayer
     {
+        string _soddenForgedWeaponId;
+
         // Native UI only: the parts are taken from the actual generated works locker.
         // Reflection reads the cursor/selection; it never assigns one or grants items.
         IEnumerator EquipmentDiscoveryMallet()
@@ -46,6 +48,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && forged.GetPart<MeleeWeaponPart>().Attributes == preview.Attributes
                 && !inventory.Contains(head) && !inventory.Contains(haft) && !inventory.Contains(binding)
                 && Tick == craftTick && Energy == craftEnergy);
+            _soddenForgedWeaponId = forged.ID;
             // Both Duelist hands start occupied. Explicitly stow that loadout
             // through the UI; successive auto replacements target the same hand.
             var startingHands = inventory.GetAllEquipped()

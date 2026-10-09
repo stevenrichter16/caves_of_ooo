@@ -49,6 +49,7 @@ namespace CavesOfOoo.Rendering
         private SpreadBiomeHumanoidLibrary humanoidLibrary;
         private PatchbearerArtLibrary patchbearerLibrary;
         private SpreadNativeStyle3DLibrary nativeStyleLibrary;
+        private SoddenNativeArtLibrary soddenArt;
         private SpreadBiomeStyleCatalog approvedStyle;
         private MaterialPropertyBlock styleProperties;
         private readonly List<Material> styleMaterials=new List<Material>(4);
@@ -62,7 +63,7 @@ namespace CavesOfOoo.Rendering
         private SpreadTransientVolumes transientVolumes;
         private Camera source;
         private bool requestedVisible = true, hooks;
-        private bool boundReferenceGlade, boundSpreadStyle, boundOrdinaryCave;
+        private bool boundReferenceGlade, boundSpreadStyle, boundOrdinaryCave, boundSoddenStyle;
         public Zone CurrentZone { get; private set; }
         public Camera WorldCamera => surface?.WorldCamera;
         public bool IsReady { get; private set; }
@@ -76,6 +77,7 @@ namespace CavesOfOoo.Rendering
         private bool GladeAuthorityMatches => CurrentZone == null
             || (boundReferenceGlade == ReferenceGladePlan.IsActive(CurrentZone)
                 && boundSpreadStyle == SpreadPresentationScope.IsActive(CurrentZone)
+                && boundSoddenStyle == SoddenPresentationScope.IsActive(CurrentZone)
                 && boundOrdinaryCave == BiomeCropRecipes.IsOrdinaryCave(CurrentZone));
         private bool PresentationRequested => GladeAuthorityMatches && IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
@@ -89,13 +91,14 @@ namespace CavesOfOoo.Rendering
         {
             bool referenceGlade = ReferenceGladePlan.IsActive(zone);
             bool spreadStyle = SpreadPresentationScope.IsActive(zone);
+            bool soddenStyle = SoddenPresentationScope.IsActive(zone);
             bool ordinaryCave = BiomeCropRecipes.IsOrdinaryCave(zone);
             if(zone!=null&&!AreaCompositionScope.Allows(zone))
-            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;boundSpreadStyle=spreadStyle;boundOrdinaryCave=ordinaryCave;return;}
-            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && boundSpreadStyle == spreadStyle && boundOrdinaryCave == ordinaryCave && (IsReady || Failure != null))
+            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;boundSpreadStyle=spreadStyle;boundSoddenStyle=soddenStyle;boundOrdinaryCave=ordinaryCave;return;}
+            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && boundSpreadStyle == spreadStyle && boundSoddenStyle == soddenStyle && boundOrdinaryCave == ordinaryCave && (IsReady || Failure != null))
             { source = sourceCamera; SyncCamera(); return; }
-            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade; boundSpreadStyle = spreadStyle; boundOrdinaryCave = ordinaryCave;
-            if (!Village3DSettings.Enabled || zone == null || source == null || !(spreadStyle || ordinaryCave || SupportsZone(zone.ZoneID))) return;
+            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade; boundSpreadStyle = spreadStyle; boundSoddenStyle = soddenStyle; boundOrdinaryCave = ordinaryCave;
+            if (!Village3DSettings.Enabled || zone == null || source == null || !(spreadStyle || soddenStyle || ordinaryCave || SupportsZone(zone.ZoneID))) return;
             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return;
             try
             {
@@ -162,9 +165,51 @@ namespace CavesOfOoo.Rendering
                     if (visitorCreatureLibrary == null) throw new InvalidOperationException("Native Sodden Bandfrog art missing.");
                     visitorCreatureLibrary.Validate(); materials.Add(visitorCreatureLibrary.Material);
                 }
+                if (soddenStyle)
+                {
+                    soddenArt = SoddenNativeArtLibrary.Load();
+                    if (soddenArt == null) throw new InvalidOperationException("Native Sodden art library is unavailable.");
+                    soddenArt.Validate(); materials.Add(soddenArt.Material);
+                    // Receiving bog residents and travelling equipment keep their
+                    // authored native rigs and shared readable palettes. All loads
+                    // occur once at bind; geometry is never authored at runtime.
+                    if (glade == null)
+                    {
+                        glade = ReferenceGladeVoxelLibrary.Load();
+                        if (glade == null) throw new InvalidOperationException("Shared native actor palette is unavailable.");
+                        glade.Validate(); gladeLibrary = glade; materials.Add(glade.Material);
+                    }
+                    if (humanoidLibrary == null)
+                    {
+                        humanoidLibrary = SpreadBiomeHumanoidLibrary.Load();
+                        if (humanoidLibrary == null) throw new InvalidOperationException("Native bog resident rigs are unavailable.");
+                        humanoidLibrary.Validate();
+                    }
+                    if (visitorPaintLibrary == null)
+                    {
+                        visitorPaintLibrary = SpreadVisitorPaintLibrary.Load();
+                        if (visitorPaintLibrary == null) throw new InvalidOperationException("Native bog actor paint is unavailable.");
+                        visitorPaintLibrary.Validate();
+                    }
+                    if (visitorCreatureLibrary == null)
+                    {
+                        visitorCreatureLibrary = SpreadVisitorCreatureLibrary.Load();
+                        if (visitorCreatureLibrary == null) throw new InvalidOperationException("Native bog creature rigs are unavailable.");
+                        visitorCreatureLibrary.Validate(); materials.Add(visitorCreatureLibrary.Material);
+                    }
+                    approvedStyle = new SpreadBiomeStyleCatalog(soddenArt, glade, humanoidLibrary,
+                        visitorPaintLibrary, visitorCreatureLibrary, nativeStyleLibrary);
+                }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), 2.2f);
-                if (glade != null)
+                if (soddenStyle)
+                {
+                    surface.ConfigureLighting(1.35f, .60f, .92f, new Color(.94f, 1f, .94f),
+                        new Vector3(55, -145, 0), .66f, .008f, .018f, 18f, FilterMode.Bilinear, useLocalShadowBias: true);
+                    surface.ConfigureAmbientProbe(new Color(.24f, .30f, .28f));
+                    surface.MaterialFor(soddenArt.Material).SetFloat("_GroundMottleStrength", .18f);
+                }
+                else if (glade != null)
                 {
                     surface.ConfigureLighting(1.45f, .65f, .9f, new Color(1f, .98f, .92f),
                         new Vector3(55, -145, 0), .68f, .008f, .018f, 18f, FilterMode.Bilinear, useLocalShadowBias: true);
@@ -174,10 +219,10 @@ namespace CavesOfOoo.Rendering
                     surface.MaterialFor(glade.Material).SetFloat("_GroundMottleStrength", .24f);
                 }
                 questCues = new NativeQuestCueViews(surface, library.WorldMaterial, 16);
-                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade??cultivationPalette,nativeStyleLibrary);
-                if (glade != null && (referenceGlade || spreadStyle)) groundContact = new ReferenceGladeGroundContact(glade,surface.MaterialFor(glade.Material),spreadStyle?SpreadEnvironment3DLibrary.Load():null);
-                if(spreadStyle)transientVolumes=new SpreadTransientVolumes(surface,library.WorldMaterial,(x,y)=>ground.HasWater(x,y));
-                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true), spreadStyle);
+                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade??cultivationPalette,nativeStyleLibrary,soddenArt);
+                if (!soddenStyle && glade != null && (referenceGlade || spreadStyle)) groundContact = new ReferenceGladeGroundContact(glade,surface.MaterialFor(glade.Material),spreadStyle?SpreadEnvironment3DLibrary.Load():null);
+                if(spreadStyle || soddenStyle)transientVolumes=new SpreadTransientVolumes(surface,library.WorldMaterial,(x,y)=>ground.HasWater(x,y));
+                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true), spreadStyle || soddenStyle);
                 IsReady = true; Subscribe(); Refresh(null); SyncCamera();
             }
             catch (Exception e)
@@ -274,7 +319,7 @@ namespace CavesOfOoo.Rendering
         }
         private GameObject PrefabFor(SpawnRing3DRecipe recipe)
             => recipe.Owner.HasPart<MultiCellPilotPropPart>() ? pilotLibrary?.FindModel(recipe.ModelId)
-                : nativeStyleLibrary?.ForOwner(CurrentZone,recipe)?.Prefab ?? library.FindModel(recipe.ModelId);
+                : soddenArt?.Find(recipe.ModelId)?.Prefab ?? nativeStyleLibrary?.ForOwner(CurrentZone,recipe)?.Prefab ?? library.FindModel(recipe.ModelId);
         private View AddView(SpawnRing3DRecipe recipe)
         {
             var prefab = PrefabFor(recipe);
@@ -283,7 +328,7 @@ namespace CavesOfOoo.Rendering
             root.transform.position = recipe.Position;
             if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
             PrepareModel(root, recipe.Transient, recipe.ModelId);
-            if ((boundReferenceGlade || boundSpreadStyle || PatchbearerArtLibrary.IsModelId(recipe.ModelId)) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
+            if ((boundReferenceGlade || boundSpreadStyle || boundSoddenStyle || PatchbearerArtLibrary.IsModelId(recipe.ModelId)) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
             {
                 // Measure visible geometry for the three authored body forms.
                 // Their wider animation/culling envelope is preserved separately.
@@ -425,7 +470,7 @@ namespace CavesOfOoo.Rendering
         }
         private void RefreshHeadwearCover()
         {
-            if (!boundSpreadStyle || humanoidLibrary == null || styleProperties == null) return;
+            if ((!boundSpreadStyle && !boundSoddenStyle) || humanoidLibrary == null || styleProperties == null) return;
             foreach (var view in views.Values)
             {
                 var adopted = humanoidLibrary.Find(view.ModelId);
@@ -500,7 +545,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetApprovedEquipmentStyle(Entity actor, Entity item, out SpreadBiomeStyleEvidence evidence)
         {
             evidence = new SpreadBiomeStyleEvidence(null,"outside-current-equipment-scope",false);
-            if (!IsReady || ((!boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)) && !EquipmentDiscoveryRecipes.Handles(item) && !FiftySecondVisualAliases.IsEquipment(item?.BlueprintName))
+            if (!IsReady || (((!boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)) && (!boundSoddenStyle || !SoddenPresentationScope.IsActive(CurrentZone))) && !EquipmentDiscoveryRecipes.Handles(item) && !FiftySecondVisualAliases.IsEquipment(item?.BlueprintName))
                 || !GladeAuthorityMatches || equipment == null || actor == null || !IsRenderedEntity(actor)) return false;
             var current = SpawnRing3DRecipes.Resolve(CurrentZone,actor,definition,pilotLibrary?.Definition);
             if (current.ModelId == null || !ReferenceEquals(current.Owner,actor) || !recipes.TryGetValue(actor,out var committed)
@@ -739,7 +784,7 @@ namespace CavesOfOoo.Rendering
             groundContact?.Dispose(); groundContact = null;
             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
             recipes.Clear(); staticStyles.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
-            CurrentZone = null; source = null; library = null; collectorPortables = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; patchbearerLibrary = null; nativeStyleLibrary = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
+            CurrentZone = null; source = null; library = null; collectorPortables = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; patchbearerLibrary = null; nativeStyleLibrary = null; soddenArt = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
         }
         private void PrepareModel(GameObject root, bool transient, string modelId = null)
         {

@@ -20,7 +20,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>Distinct unmapped sources, excluding already baked meshes.</summary>
         public int MissingMeshCount => missing.Count;
 
-        private VoxelWorldPresentation(string zoneId, VoxelWorldMeshCatalog catalog, bool referenceGlade)
+        private VoxelWorldPresentation(string zoneId, VoxelWorldMeshCatalog catalog, bool referenceGlade, bool soddenStyle)
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
@@ -115,6 +115,27 @@ namespace CavesOfOoo.Rendering
                 var scenery = SpreadScenery3DLibrary.Load();
                 if (scenery == null) throw new InvalidOperationException("Spread scenery voxel library missing.");
                 scenery.Validate(); foreach (var entry in scenery.Entries) generated.Add(entry.Mesh);
+            }
+            if(soddenStyle)
+            {
+                var native=SoddenNativeArtLibrary.Load();
+                if(native==null)throw new InvalidOperationException("Native Sodden art kit missing.");
+                native.Validate();foreach(var entry in native.Entries)generated.Add(entry.Mesh);
+                // These borrowed cuboid bodies already preserve original bones,
+                // clips and palette detail; do not voxelize them a second time.
+                var glade=ReferenceGladeVoxelLibrary.Load();var animals=SpreadBiomeActorLibrary.Load();
+                var people=SpreadBiomeHumanoidLibrary.Load();var visitors=SpreadVisitorCreatureLibrary.Load();
+                var paints=SpreadVisitorPaintLibrary.Load();var scenery=SpreadScenery3DLibrary.Load();
+                if(glade==null||animals==null||people==null||visitors==null||paints==null||scenery==null)
+                    throw new InvalidOperationException("Shared Sodden actor/scenery art missing.");
+                glade.Validate();animals.Validate();people.Validate();visitors.Validate();paints.Validate();scenery.Validate();
+                foreach(var entry in glade.Entries)generated.Add(entry.Mesh);
+                foreach(var entry in glade.ActorPaints)generated.Add(entry.Painted);
+                foreach(var entry in animals.Entries)generated.Add(entry.Mesh);
+                foreach(var entry in people.Entries)generated.Add(entry.Mesh);
+                foreach(var entry in visitors.Entries)generated.Add(entry.Mesh);
+                foreach(var entry in paints.Entries)generated.Add(entry.Painted);
+                foreach(var entry in scenery.Entries)generated.Add(entry.Mesh);
             }
             // Pool hazards and market stalls can occur in any supported native
             // zone. Register their already-voxel meshes once per bind, not frame.
@@ -285,7 +306,7 @@ namespace CavesOfOoo.Rendering
             }
         }
         public static bool IsEnabledFor(Zone zone)
-            => Village3DSettings.Enabled && zone != null && (SpreadPresentationScope.IsActive(zone) || BiomeCropRecipes.IsOrdinaryCave(zone) || IsSupported(zone.ZoneID)) && AreaCompositionScope.Allows(zone);
+            => Village3DSettings.Enabled && zone != null && (SpreadPresentationScope.IsActive(zone) || SoddenPresentationScope.IsActive(zone) || BiomeCropRecipes.IsOrdinaryCave(zone) || IsSupported(zone.ZoneID)) && AreaCompositionScope.Allows(zone);
 
         /// <summary>Unsupported zones do not load resources. Invalid required
         /// resources throw into the presenter's existing cleanup/fallback path.</summary>
@@ -296,7 +317,7 @@ namespace CavesOfOoo.Rendering
             {
                 var library = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
                 if (library == null) throw new InvalidOperationException("Required voxel mesh catalogue is unavailable.");
-                var result = new VoxelWorldPresentation(zone.ZoneID, library, ReferenceGladePlan.IsActive(zone) || SpreadPresentationScope.IsActive(zone));
+                var result = new VoxelWorldPresentation(zone.ZoneID, library, ReferenceGladePlan.IsActive(zone) || SpreadPresentationScope.IsActive(zone), SoddenPresentationScope.IsActive(zone));
                 if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "VoxelPresentationBound",
                     payload: new { zoneId = zone.ZoneID, bindings = library.Bindings.Length });
                 return result;

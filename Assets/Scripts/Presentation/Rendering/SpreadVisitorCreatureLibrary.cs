@@ -87,7 +87,7 @@ namespace CavesOfOoo.Rendering
             // The southern crossing retains the same original native Bandfrog
             // body. This narrow reuse admits no other visitor or new population.
             bool districtBandfrog=zone!=null&&SoddenDistrictPlan.IsSupportedZone(zone.ZoneID)&&owner?.BlueprintName=="Bandfrog";
-            if((!SpreadPresentationScope.IsActive(zone)&&!districtBandfrog)||owner==null||!ReferenceEquals(native.Owner,owner)
+            if((!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone)&&!districtBandfrog)||owner==null||!ReferenceEquals(native.Owner,owner)
                 ||native.Failure!=null&&native.Failure!="unmodeled-native-blueprint")return native;
             var spec=SpreadVisitorCreatureSource.ForBlueprint(owner.BlueprintName);
             if(spec==null)return native;

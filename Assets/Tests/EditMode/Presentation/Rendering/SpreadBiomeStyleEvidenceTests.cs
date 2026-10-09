@@ -65,7 +65,7 @@ namespace CavesOfOoo.Tests
   public void LossOfReceivingAuthorityRefusesBeforeRefreshAndRecoversAfterRebind()
   {
    using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0"))
-   {Assert.True(Audit(f,f.Player,out _));f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;Assert.False(Audit(f,f.Player,out _));f.Refresh();Assert.False(Audit(f,f.Player,out _));f.Manager.WorldMap.Tiles[12,10]=BiomeType.Spread;f.Refresh();Assert.True(Audit(f,f.Player,out _));}
+   {Assert.True(Audit(f,f.Player,out _));f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;Assert.False(Audit(f,f.Player,out _));f.Refresh();Assert.False(Audit(f,f.Player,out _));f.Manager.WorldMap.Tiles[12,10]=BiomeType.Spread;f.Refresh();Assert.True(Audit(f,f.Player,out _));}
   }
   [Test]
   public void HiddenOrRemovedActorCannotClaimStillAllocatedBody()

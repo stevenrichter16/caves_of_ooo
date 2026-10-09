@@ -58,7 +58,7 @@ namespace CavesOfOoo.Tests
                 var source=f.Library.FindModel("ring-player").GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
                 var original=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath).Resolve(source);
                 var local=f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;Assert.AreNotSame(original,local);
-                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Sodden;f.Refresh();Assert.AreSame(original,f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
+                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Beating;f.Refresh();Assert.AreSame(original,f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
                 f.Manager.WorldMap.Tiles[11,10]=BiomeType.Spread;f.Refresh();Assert.AreSame(local,f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
             }
         }

@@ -229,7 +229,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("StoneFloor", "wellmeet-floor-")] [TestCase("StoneWall", "sumphold-wall-")]
-        [TestCase("PeatCutter", "sumphold-cutter-")] [TestCase("Bandfrog", "spread-visitor-bandfrog")]
+        [TestCase("PeatCutter", "spread-person-peat-cutter")] [TestCase("Bandfrog", "spread-visitor-bandfrog")]
         [TestCase("Bed", "wellmeet-bed-")] [TestCase("Chair", "wellmeet-chair-")]
         public void ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(string blueprint, string prefix)
         {

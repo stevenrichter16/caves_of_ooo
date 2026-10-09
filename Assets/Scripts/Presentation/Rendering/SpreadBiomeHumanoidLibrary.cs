@@ -70,7 +70,7 @@ namespace CavesOfOoo.Rendering
   internal static string ResolveFieldResidentOwner(Zone zone,Entity owner)=>ResolveScopedOwner(zone,owner,true);
   private static string ResolveScopedOwner(Zone zone,Entity owner,bool resident)
   {
-   if(!SpreadPresentationScope.IsActive(zone)||(resident?!SpreadBiomeHumanoidSource.IsFieldResident(owner?.BlueprintName):!SpreadBiomeHumanoidSource.IsCaster(owner?.BlueprintName)))return null;
+   if((!SpreadPresentationScope.IsActive(zone) && !SoddenPresentationScope.IsActive(zone))||(resident?!SpreadBiomeHumanoidSource.IsFieldResident(owner?.BlueprintName):!SpreadBiomeHumanoidSource.IsCaster(owner?.BlueprintName)))return null;
    var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();var brain=owner.GetPart<BrainPart>();var body=owner.GetPart<Body>();var cell=zone.GetEntityCell(owner);
    if(cell==null||!ReferenceEquals(owner.SpatialZone,zone)||!ReferenceEquals(cell.ParentZone,zone)||!cell.Objects.Contains(owner)
       ||render==null||render.ParentEntity!=owner||!render.Visible||render.RenderString!=(resident?"@":"g")||render.ColorString!=(resident?(owner.BlueprintName=="SpreadSeedKeeper"?"&y":"&w"):(owner.BlueprintName=="MarlbackCindercaller"?"&R":"&G"))
@@ -81,7 +81,7 @@ namespace CavesOfOoo.Rendering
   }
   internal static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe native)
   {
-   if(!SpreadPresentationScope.IsActive(zone)||ModelId(owner?.BlueprintName)==null)return native;
+   if((!SpreadPresentationScope.IsActive(zone) && !SoddenPresentationScope.IsActive(zone))||ModelId(owner?.BlueprintName)==null)return native;
    if(SpreadBiomeHumanoidSource.IsCuration(owner.BlueprintName)&&CurationYard3DLibrary.ResolveModel(zone,owner)==null)return native;
    if(SpreadBiomeHumanoidSource.IsCaster(owner.BlueprintName)&&ResolveCasterOwner(zone,owner)==null)return native;
    if(SpreadBiomeHumanoidSource.IsFieldResident(owner.BlueprintName)&&ResolveFieldResidentOwner(zone,owner)==null)return native;

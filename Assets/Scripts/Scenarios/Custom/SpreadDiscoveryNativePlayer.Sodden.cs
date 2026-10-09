@@ -54,6 +54,7 @@ namespace CavesOfOoo.Scenarios.Custom
             var crop=Zone.GetReadOnlyEntities().Single(e=>e.BlueprintName=="SumpsieveCrop"&&e.GetPart<CropPart>().GrowthStage==2);
             string cropID=crop.ID;yield return ConnectedHarvest(crop,"SumpsievePad");
             Check("sodden_real_crop",Packed("SumpsievePad")==2&&Packed("SumpsieveSeed")==1&&CountGraphId(cropID)==0);
+            BeginTiming("sodden-native-expedition-crossing-works-return");
             yield return SoddenEdge(true,SoddenDistrictPlan.CrossingZoneID);
             yield return SoddenDryBow(true);
             Check("sodden_dry_crossing",At.X==60&&At.Y==12&&Zone.GetReadOnlyEntities().Any(e=>e.BlueprintName=="MirePool")&&Zone.GetReadOnlyEntities().Any(e=>e.BlueprintName=="Bandfrog"));
@@ -76,6 +77,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("sodden_repaired_return",bench.GetPart<RepairablePart>().Repaired&&Packed("SalvagedTimber")==2&&bench.GetPart<SoddenPreparationPart>().Worker.ID==_soddenWorker);
             yield return Capture("sodden-06-restored-bench");
             SoddenModel(bench,"sodden-district-bench-working");
+            EndTiming();
             int drams=TradeSystem.GetDrams(Player);
             yield return Paid(WorldAction(bench,SoddenPreparationPart.PrepareCommand),"local","sodden-paid-field-dressing");
             Check("sodden_paid_preparation",Packed("SoddenFieldDressing")==1&&Packed("SumpsievePad")==1&&Packed("KnotflaxCord")==1&&TradeSystem.GetDrams(Player)==drams-2);

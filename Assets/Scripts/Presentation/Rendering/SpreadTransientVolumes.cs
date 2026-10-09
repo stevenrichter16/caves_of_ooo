@@ -32,7 +32,7 @@ namespace CavesOfOoo.Rendering
   {
    if(disposed)return;
    if(!ReferenceEquals(zone,current)){Clear();zone=current;}
-   if(!SpreadPresentationScope.IsActive(zone)||surface.ContentRoot==null){Clear();return;}
+   if((!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone))||surface.ContentRoot==null){Clear();return;}
    // Retired sources must release capacity before this dirty refresh admits
    // their replacements. This reads live source state; it never advances it.
    removedGas.Clear();foreach(var p in gases)if(!SpreadTransientSource.TryGas(zone,p.Key,out _))removedGas.Add(p.Key);

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     {
         public static SpawnRing3DRecipe Refine(Zone zone, Entity owner, SpawnRing3DRecipe native)
         {
-            if (!SpreadPresentationScope.IsActive(zone) || owner == null
+            if ((!SpreadPresentationScope.IsActive(zone) && !SoddenPresentationScope.IsActive(zone)) || owner == null
                 || (owner.BlueprintName == "BeetleJar" && owner.GetPart<PhysicsPart>()?.Takeable != true)
                 || !SpreadPortableRecipes.HandlesBlueprint(owner.BlueprintName)) return native;
             if (native.Failure != null && native.Failure != "unmodeled-native-blueprint") return native;

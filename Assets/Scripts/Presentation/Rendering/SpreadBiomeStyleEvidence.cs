@@ -86,6 +86,40 @@ namespace CavesOfOoo.Rendering
    if(patchbearers==null)throw new ArgumentNullException(nameof(patchbearers));
    patchbearers.Validate();foreach(var e in patchbearers.Entries)Add(e.Id,e.Mesh,patchbearers.Material);
   }
+  // The regional kit replaces exact static model identities. Shared portable,
+  // crop and animated assets remain their original approved sources, including
+  // the player's recognizable body when crossing from the Spread into the bog.
+  internal SpreadBiomeStyleCatalog(SoddenNativeArtLibrary sodden,ReferenceGladeVoxelLibrary glade,
+   SpreadBiomeHumanoidLibrary people,SpreadVisitorPaintLibrary visitorPaints,
+   SpreadVisitorCreatureLibrary visitors,SpreadNativeStyle3DLibrary nativeStyles)
+  {
+   if(sodden==null||glade==null||people==null||visitorPaints==null||visitors==null)
+    throw new ArgumentException("Complete authenticated Sodden presentation sources required.");
+   foreach(var e in glade.Entries)Add(e.Id,e.Mesh,glade.Material);
+   foreach(var e in glade.ActorPaints)Add(e.ModelId,e.Painted,glade.Material);
+   foreach(var e in people.Entries)Add(e.Id,e.Mesh,people.Material);
+   foreach(var e in visitorPaints.Entries)Add(e.ModelId,e.Painted,visitorPaints.Material);
+   foreach(var e in visitors.Entries)Add(e.Id,e.Mesh,visitors.Material);
+   var animals=SpreadBiomeActorLibrary.Load();var scenery=SpreadScenery3DLibrary.Load();
+   var portable=SpreadPortable3DLibrary.Load();
+   if(animals==null||scenery==null||portable==null)throw new InvalidOperationException("Shared bog body/scenery/portable sources missing.");
+   animals.Validate();scenery.Validate();portable.Validate();
+   foreach(var e in animals.Entries)Add(e.Id,e.Mesh,glade.Material);
+   foreach(var e in scenery.Entries)Add(e.Id,e.Mesh,scenery.Material);
+   foreach(var e in portable.Entries)Add(e.Id,e.Mesh,portable.Material);
+   var botany=BiomeCrop3DLibrary.Load();
+   if(botany!=null){botany.Validate();foreach(var e in botany.Entries)Add(e.Id,e.Mesh,botany.Material);}
+   var cultivation=RepairCultivation3DLibrary.Load();
+   if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)Add(e.Id,e.Mesh,cultivation.Material);}
+   var discoveries=EquipmentDiscoveryArtLibrary.Load();
+   if(discoveries!=null){discoveries.Validate();foreach(var e in discoveries.Entries)Add(e.Id,e.Mesh,discoveries.Material);}
+   var patchbearers=PatchbearerArtLibrary.Load();
+   if(patchbearers!=null){patchbearers.Validate();foreach(var e in patchbearers.Entries)Add(e.Id,e.Mesh,patchbearers.Material);}
+   // Sumphold remains gameplay-Spread. Its existing recipes can legitimately
+   // choose reviewed native static copies; region art takes explicit priority.
+   if(nativeStyles!=null)foreach(var e in nativeStyles.Entries)Add(e.Id,e.Mesh,e.Material,e.Materials);
+   foreach(var e in sodden.Entries)models[e.Id]=new Contract(e.Mesh,sodden.Material,null);
+  }
   private void Add(string model,Mesh mesh,Material material,Material[] materials=null)
   {if(model==null||mesh==null||material==null||models.ContainsKey(model))throw new InvalidOperationException("Invalid exact style model contract.");models.Add(model,new Contract(mesh,material,materials));}
   internal bool TryGet(string model,out Contract contract){contract=null;return model!=null&&models.TryGetValue(model,out contract);}

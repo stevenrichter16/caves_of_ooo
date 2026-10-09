@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
   {
    using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0")){
     f.Refresh();var before=Surface(f);Assert.False(before.Sun.GetComponent<UniversalAdditionalLightData>().usePipelineSettings);
-    f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;f.Refresh();var foreign=Surface(f);
+    f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;f.Refresh();var foreign=Surface(f);
     Assert.AreNotSame(before,foreign);Assert.True(foreign.Sun.GetComponent<UniversalAdditionalLightData>().usePipelineSettings);
     f.Manager.WorldMap.Tiles[12,10]=BiomeType.Spread;f.Refresh();var restored=Surface(f);
     Assert.AreNotSame(foreign,restored);Assert.False(restored.Sun.GetComponent<UniversalAdditionalLightData>().usePipelineSettings);

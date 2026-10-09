@@ -167,6 +167,7 @@ namespace CavesOfOoo.Rendering
         internal Model FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
         {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:
             (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? ((modelId == "sodden-native-greatdew-0" || modelId == "sodden-native-greatdew-1") ? LoadExtension<SoddenNativeArtLibrary>(load, SoddenNativeArtLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (EquipmentDiscoveryArtLibrary.IsModelId(modelId) ? LoadExtension<EquipmentDiscoveryArtLibrary>(load, EquipmentDiscoveryArtLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SoddenDistrictArtLibrary.IsModelId(modelId) ? LoadExtension<SoddenDistrictArtLibrary>(load, SoddenDistrictArtLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (RepairCultivationSource.IsModelId(modelId) ? LoadExtension<RepairCultivation3DLibrary>(load, RepairCultivation3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
@@ -220,7 +221,7 @@ namespace CavesOfOoo.Rendering
         // Address-only compatibility remains finite; the receiving-world overload
         // derives extra eligibility from its exact managed map/lair ownership.
         public bool SupportsZone(Zone zone)
-            => zone != null && (SpreadPresentationScope.IsActive(zone) || BiomeCropRecipes.IsOrdinaryCave(zone) || SupportsZone(zone.ZoneID));
+            => zone != null && (SpreadPresentationScope.IsActive(zone) || SoddenPresentationScope.IsActive(zone) || BiomeCropRecipes.IsOrdinaryCave(zone) || SupportsZone(zone.ZoneID));
         public bool SupportsZone(string zoneId)
         {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId) || CinderholdCompositionPlan.IsSupportedZone(zoneId) || SumpholdCompositionPlan.IsSupportedZone(zoneId) || DrownedLedgerCompositionPlan.IsSupportedZone(zoneId) || MarrowstyeCompositionPlan.IsSupportedZone(zoneId) || FirstTentCompositionPlan.IsSupportedZone(zoneId) || LastCounterCompositionPlan.IsSupportedZone(zoneId) || GantryCompositionPlan.IsSupportedZone(zoneId) || TineCompositionPlan.IsSupportedZone(zoneId) || QuillholdCompositionPlan.IsSupportedZone(zoneId) || TallyCompositionPlan.IsSupportedZone(zoneId));}
         static bool SameNames(string[] values,string[] expected)

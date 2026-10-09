@@ -1,0 +1,13 @@
+{
+  "status": "interrupted-unresponsive-editor",
+  "job": "d2432b1708e14734a8a034b65f4b4bc9",
+  "requestedCases": 2699,
+  "lastReportedCompleted": 1008,
+  "completedSuite": false,
+  "reason": "Repeated tool session timeouts; editor main thread stayed CPU-busy and Editor.log stopped advancing for over ten minutes. No completed XML was produced. This is not a passing or complete regression result.",
+  "lastReportedFailures": [
+    "ReferenceGladeProfileTests.ChangingAuthorityRebuildsTheOwnedProfileInBothDirections: three intended obsolete unsupported-Sodden assumptions",
+    "SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(PeatCutter): expected old model prefix"
+  ],
+  "recovery": "Restart the isolated EditMode test editor and run bounded affected groups separately. No user scene edits were present before test launch."
+}

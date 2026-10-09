@@ -113,7 +113,7 @@ namespace CavesOfOoo.Tests
                 else if(change=="removed")Assert.True(f.Zone.RemoveEntity(owner));
                 else if(change=="same-id-clone"){var clone=f.Factory.CreateEntity("BerryBush");clone.ID=owner.ID;owner=clone;}
                 else if(change=="foreign-render")owner.GetPart<RenderPart>().ParentEntity=new Entity();
-                else f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;
+                else f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;
                 f.Refresh();Assert.False(Presenter(f).TryGetApprovedStyle(owner,out _));
                 Assert.False(SpawnRing3DRecipes.Resolve(f.Zone,owner,f.Library.Definition).ModelId?.StartsWith("spread-scenery-",StringComparison.Ordinal)==true);
             }

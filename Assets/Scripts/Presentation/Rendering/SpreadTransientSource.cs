@@ -20,7 +20,7 @@ namespace CavesOfOoo.Rendering
   public static bool TryGas(Zone zone,Entity owner,out SpreadTransientSample sample)
   {
    sample=default;
-   if(owner==null||!SpreadPresentationScope.IsActive(zone))return false;
+   if(owner==null||(!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone)))return false;
    var cell=zone.GetEntityCell(owner);var gas=owner.GetPart<GasPoolPart>();var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
    if(cell==null||!cell.Objects.Contains(owner)||!cell.IsVisible||!cell.Explored||gas==null||!ReferenceEquals(gas.ParentEntity,owner)
       ||gas.Density<=0||GasRegistry.Get(gas.GasId)==null||owner.BlueprintName!=gas.GasId+"Cloud"||!owner.HasTag("Gas")
@@ -38,7 +38,7 @@ namespace CavesOfOoo.Rendering
   public static bool TryElement(Zone zone,int x,int y,out SpreadTransientSample sample,bool representedPermanentWater=false)
   {
    sample=default;
-   if(!SpreadPresentationScope.IsActive(zone)||!zone.InBounds(x,y))return false;
+   if((!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone))||!zone.InBounds(x,y))return false;
    var cell=zone.GetCell(x,y);if(cell==null||!cell.IsVisible||!cell.Explored)return false;
    var state=zone.TileState.Get(x,y);if(state==null||state.Coatings==null||state.Residues==null)return false;
    // An opaque veil must remain visible over its cold and ground residues.
@@ -59,7 +59,7 @@ namespace CavesOfOoo.Rendering
   /// responsibility. Amount retains actual remaining turns, including Permanent.</summary>
   public static bool TrySurfaceMark(Zone zone,int x,int y,out SpreadTransientSample sample,bool representedPermanentWater=false)
   {
-   sample=default;if(!SpreadPresentationScope.IsActive(zone)||!zone.InBounds(x,y))return false;
+   sample=default;if((!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone))||!zone.InBounds(x,y))return false;
    var cell=zone.GetCell(x,y);if(cell==null||!cell.Explored||!cell.IsVisible)return false;
    var state=zone.TileState.Get(x,y);if(state==null||state.Residues==null||state.Coatings==null)return false;
    if(state.Cloud=="veil-mist"&&state.CloudTurns>0)return false;

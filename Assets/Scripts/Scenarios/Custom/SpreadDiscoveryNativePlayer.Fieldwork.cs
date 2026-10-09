@@ -215,6 +215,15 @@ namespace CavesOfOoo.Scenarios.Custom
             && SpatialQuery.Distance(Zone, Player, target) <= 1 && Threats(Zone).Contains(target)
             && !ReferenceGladeRouteControl.HasLiveCalm(Zone, target);
 
+        bool FieldworkAuditedWeapon(Entity weapon)
+        {
+            if (weapon?.GetPart<PhysicsPart>()?.Equipped != Player || !InventorySystem.IsEquipped(Player, weapon)) return false;
+            if (weapon.ID == _connectedOriginalDaggerId && weapon.BlueprintName == "Dagger") return true;
+            return _soddenDistrict && !string.IsNullOrEmpty(_soddenForgedWeaponId) && weapon.ID == _soddenForgedWeaponId
+                && weapon.GetPart<WeaponAssemblyPart>()?.BladeBlueprint == "PeatMalletHeadComponent"
+                && weapon.GetPart<MeleeWeaponPart>()?.Attributes == "Bludgeoning Cudgel";
+        }
+
         IEnumerator FieldworkDuelistDefense()
         {
             var oldGuard = _guard; string oldId = _guardId; bool oldFighting = _fighting;
@@ -227,9 +236,8 @@ namespace CavesOfOoo.Scenarios.Custom
                         .OrderBy(e => e.ID, StringComparer.Ordinal).FirstOrDefault();
                     if (target == null) yield break;
                     var weapon = StartingBuildService.PrimaryHandWeapon(Player);
-                    Require(_connectedDefenses < 6 && weapon?.ID == _connectedOriginalDaggerId
-                        && weapon.BlueprintName == "Dagger" && weapon.GetPart<PhysicsPart>()?.Equipped == Player,
-                        "bounded ordinary close defense with the same starting dagger");
+                    Require(_connectedDefenses < 6 && FieldworkAuditedWeapon(weapon),
+                        "bounded ordinary close defense with the same starting dagger or exact earned Sodden mallet");
                     int hp = Player.GetStatValue("Hitpoints"), tonics = Packed("HealingTonic"), attacks = 0;
                     _connectedDefenses++; _guard = target; _guardId = target.ID; _fighting = true;
                     _guardAttempt = _guardDamage = _guardLethal = false;
@@ -248,12 +256,12 @@ namespace CavesOfOoo.Scenarios.Custom
                             }
                         }
                         var cell = SpatialQuery.ClosestCell(Zone, target, At.X, At.Y);
-                        yield return Paid(Tap(Direction(cell.X - At.X, cell.Y - At.Y)), "local", "fieldwork-adjacent-dagger-defense");
+                        yield return Paid(Tap(Direction(cell.X - At.X, cell.Y - At.Y)), "local", "fieldwork-adjacent-earned-weapon-defense");
                     }
                     Require(_guardAttempt && !FieldworkNeedsAdjacentDefense(target),
-                        "actual dagger defense ended when the selected close threat died or separated");
+                        "actual acquired-weapon defense ended when the selected close threat died or separated");
                     _observations.Add(new { phase = "fieldwork-native-adjacent-defense", target = target.ID,
-                        targetBlueprint = target.BlueprintName, defense = _connectedDefenses, attacks,
+                        targetBlueprint = target.BlueprintName, defense = _connectedDefenses, attacks, weapon = weapon.ID, weaponBlueprint = weapon.BlueprintName,
                         hpBefore = hp, hpAfter = Player.GetStatValue("Hitpoints"), tonicsBefore = tonics,
                         tonicsAfter = Packed("HealingTonic"), endedWithDeath = CombatSystem.IsDeathHandled(target),
                         actualDamageObserved = _guardDamage, directLethalObserved = _guardLethal,
@@ -280,9 +288,8 @@ namespace CavesOfOoo.Scenarios.Custom
                 .OrderBy(e => SpatialQuery.Distance(Zone, Player, e)).ThenBy(e => e.ID, StringComparer.Ordinal).FirstOrDefault();
             if (target == null) yield break;
             var weapon = StartingBuildService.PrimaryHandWeapon(Player);
-            Require(_connectedDefenses < 6 && weapon?.ID == _connectedOriginalDaggerId
-                && weapon.BlueprintName == "Dagger" && weapon.GetPart<PhysicsPart>()?.Equipped == Player,
-                "bounded ordinary Duelist confrontation with the same starting dagger");
+            Require(_connectedDefenses < 6 && FieldworkAuditedWeapon(weapon),
+                "bounded ordinary Duelist confrontation with the same starting dagger or exact earned Sodden mallet");
             var oldGuard = _guard; string oldId = _guardId; bool oldFighting = _fighting;
             bool oldAttempt = _guardAttempt, oldDamage = _guardDamage, oldLethal = _guardLethal;
             int hp = Player.GetStatValue("Hitpoints"), tonics = Packed("HealingTonic");
@@ -300,7 +307,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 // every paid clock window and uses only real carried tonics.
                 yield return FightGuard(requireDirectLethal: false);
                 Require(CombatSystem.IsDeathHandled(target) && _guardAttempt && _guardDamage,
-                    "actual obstructing hostile resolved after observed starting-dagger attacks");
+                    "actual obstructing hostile resolved after observed audited-weapon attacks");
                 _observations.Add(new { phase = "fieldwork-ordinary-obstruction-resolved", target = target.ID,
                     hpBefore = hp, hpAfter = Player.GetStatValue("Hitpoints"), tonicsBefore = tonics,
                     tonicsAfter = Packed("HealingTonic"), directLethalObserved = _guardLethal,

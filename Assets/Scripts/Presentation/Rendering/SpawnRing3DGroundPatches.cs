@@ -18,6 +18,7 @@ namespace CavesOfOoo.Rendering
         private readonly SpawnRing3DLibrary library;
         private readonly VoxelWorldPresentation voxel;
         private readonly SpreadNativeStyle3DLibrary nativeStyles;
+        private readonly SoddenNativeArtLibrary soddenArt;
         private readonly SpawnRing3DCatalog catalog;
         private readonly Patch[] patches = new Patch[Columns * Rows];
         private readonly bool[] marked = new bool[Columns * Rows];
@@ -28,7 +29,9 @@ namespace CavesOfOoo.Rendering
         private readonly List<CombineInstance> worldPieces = new List<CombineInstance>(256);
         private readonly List<CombineInstance> waterPieces = new List<CombineInstance>(128);
         private readonly Material worldMaterial, waterMaterial, pilotGroundMaterial, gladeMaterial, gladeSource;
+        private readonly Material soddenMaterial, soddenSource;
         private readonly List<CombineInstance> gladePieces = new List<CombineInstance>(256);
+        private readonly List<CombineInstance> soddenPieces = new List<CombineInstance>(256);
         private readonly List<Vector3> pilotVertices = new List<Vector3>(200);
         private readonly List<Vector2> pilotUvs = new List<Vector2>(200);
         private readonly List<int> pilotTriangles = new List<int>(300);
@@ -40,8 +43,8 @@ namespace CavesOfOoo.Rendering
         private sealed class Patch
         {
             public GameObject Root, Geometry;
-            public Mesh WorldMesh, WaterMesh, PilotGroundMesh, GladeMesh;
-            public MeshRenderer WorldRenderer,WaterRenderer,PilotGroundRenderer,GladeRenderer;
+            public Mesh WorldMesh, WaterMesh, PilotGroundMesh, GladeMesh, SoddenMesh;
+            public MeshRenderer WorldRenderer,WaterRenderer,PilotGroundRenderer,GladeRenderer,SoddenRenderer;
             public Dictionary<Entity,SpawnRing3DRecipe> Contributions;
             public HashSet<Entity> CultivatedOwners;
             public ulong Fingerprint;
@@ -59,23 +62,24 @@ namespace CavesOfOoo.Rendering
             public readonly Mesh Mesh;
             public readonly int Submesh;
             public readonly Matrix4x4 Relative;
-            public readonly bool Water, Glade;
+            public readonly bool Water, Glade, Sodden;
             public readonly Material SourceMaterial;
-            public Fragment(Mesh mesh, int submesh, Matrix4x4 relative, bool water, bool glade, Material material)
-            { Mesh = mesh; Submesh = submesh; Relative = relative; Water = water; Glade = glade; SourceMaterial = material; }
+            public Fragment(Mesh mesh, int submesh, Matrix4x4 relative, bool water, bool glade, bool sodden, Material material)
+            { Mesh = mesh; Submesh = submesh; Relative = relative; Water = water; Glade = glade; Sodden = sodden; SourceMaterial = material; }
         }
 
-        public SpawnRing3DGroundPatches(NativeZone3DRenderSurface surface, SpawnRing3DLibrary library, MultiCellPilot3DLibrary pilot = null, VoxelWorldPresentation voxel = null, ReferenceGladeVoxelLibrary glade = null,SpreadNativeStyle3DLibrary nativeStyles = null)
+        public SpawnRing3DGroundPatches(NativeZone3DRenderSurface surface, SpawnRing3DLibrary library, MultiCellPilot3DLibrary pilot = null, VoxelWorldPresentation voxel = null, ReferenceGladeVoxelLibrary glade = null,SpreadNativeStyle3DLibrary nativeStyles = null,SoddenNativeArtLibrary soddenArt = null)
         {
             if (surface == null || surface.ContentRoot == null || library == null)
                 throw new ArgumentException("A live native surface and ring library are required.");
             this.surface = surface; this.library = library; catalog = library.Definition;
-            this.voxel = voxel;this.nativeStyles=nativeStyles;
+            this.voxel = voxel;this.nativeStyles=nativeStyles;this.soddenArt=soddenArt;
             // Validate borrowed material families before allocating owned geometry.
             worldMaterial = surface.MaterialFor(library.WorldMaterial);
             waterMaterial = surface.MaterialFor(library.WaterMaterial);
             if (pilot != null) pilotGroundMaterial = surface.MaterialFor(pilot.GroundMaterial);
             if (glade != null) {glade.Validate();gladeSource=glade.Material;gladeMaterial=surface.MaterialFor(gladeSource);}
+            if (soddenArt != null) {soddenSource=soddenArt.Material;soddenMaterial=surface.MaterialFor(soddenSource);}
             try
             {
                 for (int i = 0; i < waterMeshes.Length; i++) waterMeshes[i] = SpawnRing3DWaterMesh.Create(i);
@@ -105,8 +109,8 @@ namespace CavesOfOoo.Rendering
                 var fragment=model.Fragments[slot];var borrowed=expected.Materials[slot];
                 if(fragment.Mesh!=expected.Mesh||fragment.Submesh!=slot||fragment.SourceMaterial!=borrowed)
                 {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"committed-source-mismatch",true,expected.Mesh,borrowed);return false;}
-                var submitted=fragment.Glade?patch.GladeMesh:fragment.Water?patch.WaterMesh:patch.WorldMesh;
-                var renderer=fragment.Glade?patch.GladeRenderer:fragment.Water?patch.WaterRenderer:patch.WorldRenderer;
+                var submitted=fragment.Sodden?patch.SoddenMesh:fragment.Glade?patch.GladeMesh:fragment.Water?patch.WaterMesh:patch.WorldMesh;
+                var renderer=fragment.Sodden?patch.SoddenRenderer:fragment.Glade?patch.GladeRenderer:fragment.Water?patch.WaterRenderer:patch.WorldRenderer;
                 if(submitted==null||submitted.vertexCount==0||submitted.subMeshCount!=1||submitted.GetIndexCount(0)==0||renderer==null||!renderer.enabled||!renderer.gameObject.activeInHierarchy||renderer.forceRenderingOff||renderer.GetComponent<MeshFilter>()?.sharedMesh!=submitted)
                 {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"submitted-mesh-mismatch",true,expected.Mesh,borrowed,submitted);return false;}
                 if(!SpreadBiomeStyleCatalog.PaletteMatches(renderer,surface.MaterialFor(borrowed),borrowed,properties,materials,out var material))
@@ -193,7 +197,7 @@ namespace CavesOfOoo.Rendering
 
         private void Rebuild(Zone zone, Dictionary<Entity, SpawnRing3DRecipe> recipes, int index, string fallback, ulong fingerprint)
         {
-            Patch patch = patches[index]; worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear();
+            Patch patch = patches[index]; worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); soddenPieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear();
             BoundsFor(index, out int startX, out int startY);
             Matrix4x4 toLocal = patch.Root.transform.worldToLocalMatrix;
             var contributions=new Dictionary<Entity,SpawnRing3DRecipe>();var cultivated=new HashSet<Entity>();
@@ -218,8 +222,8 @@ namespace CavesOfOoo.Rendering
                     waterPieces.Add(new CombineInstance { mesh = waterMeshes[DryMask(zone,x,y)], subMeshIndex = 0,
                         transform = toLocal * Matrix4x4.Translate(Village3DProjection.CellCentre(x,y,catalog.tileState.height)) });
             }
-            GameObject geometry = null; Mesh newWorld = null, newWater = null, newPilotGround = null, newGlade = null;
-            MeshRenderer newWorldRenderer=null,newWaterRenderer=null,newPilotRenderer=null,newGladeRenderer=null;
+            GameObject geometry = null; Mesh newWorld = null, newWater = null, newPilotGround = null, newGlade = null, newSodden = null;
+            MeshRenderer newWorldRenderer=null,newWaterRenderer=null,newPilotRenderer=null,newGladeRenderer=null,newSoddenRenderer=null;
             try
             {
                 geometry = Child("Patch geometry", patch.Root.transform); geometry.SetActive(false);
@@ -227,22 +231,24 @@ namespace CavesOfOoo.Rendering
                 newWater = Combine(waterPieces, "Ring patch water");
                 newPilotGround = BuildPilotGround();
                 newGlade = Combine(gladePieces,"Reference glade patch palette");
+                newSodden = Combine(soddenPieces,"Sodden native patch palette");
                 if (newWorld != null) newWorldRenderer=AddRenderer(geometry.transform, newWorld, worldMaterial);
                 if (newWater != null) newWaterRenderer=AddRenderer(geometry.transform, newWater, waterMaterial);
                 if (newPilotGround != null) newPilotRenderer=AddRenderer(geometry.transform, newPilotGround, pilotGroundMaterial);
                 if (newGlade != null) newGladeRenderer=AddRenderer(geometry.transform,newGlade,gladeMaterial);
+                if (newSodden != null) newSoddenRenderer=AddRenderer(geometry.transform,newSodden,soddenMaterial);
                 surface.PrepareModel(geometry, transient:false);
                 if (patch.Geometry != null) patch.Geometry.SetActive(false);
-                DestroyOwned(patch.Geometry); DestroyOwned(patch.WorldMesh); DestroyOwned(patch.WaterMesh); DestroyOwned(patch.PilotGroundMesh); DestroyOwned(patch.GladeMesh);
-                patch.Geometry = geometry; patch.WorldMesh = newWorld; patch.WaterMesh = newWater; patch.PilotGroundMesh = newPilotGround; patch.GladeMesh = newGlade;
-                patch.WorldRenderer=newWorldRenderer;patch.WaterRenderer=newWaterRenderer;patch.PilotGroundRenderer=newPilotRenderer;patch.GladeRenderer=newGladeRenderer;patch.Contributions=contributions;patch.CultivatedOwners=cultivated;
-                geometry = null; newWorld = newWater = newPilotGround = newGlade = null;
+                DestroyOwned(patch.Geometry); DestroyOwned(patch.WorldMesh); DestroyOwned(patch.WaterMesh); DestroyOwned(patch.PilotGroundMesh); DestroyOwned(patch.GladeMesh); DestroyOwned(patch.SoddenMesh);
+                patch.Geometry = geometry; patch.WorldMesh = newWorld; patch.WaterMesh = newWater; patch.PilotGroundMesh = newPilotGround; patch.GladeMesh = newGlade; patch.SoddenMesh = newSodden;
+                patch.WorldRenderer=newWorldRenderer;patch.WaterRenderer=newWaterRenderer;patch.PilotGroundRenderer=newPilotRenderer;patch.GladeRenderer=newGladeRenderer;patch.SoddenRenderer=newSoddenRenderer;patch.Contributions=contributions;patch.CultivatedOwners=cultivated;
+                geometry = null; newWorld = newWater = newPilotGround = newGlade = newSodden = null;
                 patch.Geometry.SetActive(true); patch.Fingerprint = fingerprint; patch.Built = true; patch.Revision++; GroundBuildCount++;
                 for (int y = startY; y < startY + PatchHeight; y++) for (int x = startX; x < startX + PatchWidth; x++)
                     builtWater[y * Zone.Width + x] = SpawnRing3DRecipes.HasPermanentWater(zone,x,y);
             }
-            catch { DestroyOwned(geometry); DestroyOwned(newWorld); DestroyOwned(newWater); DestroyOwned(newPilotGround); DestroyOwned(newGlade); throw; }
-            finally { worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear(); }
+            catch { DestroyOwned(geometry); DestroyOwned(newWorld); DestroyOwned(newWater); DestroyOwned(newPilotGround); DestroyOwned(newGlade); DestroyOwned(newSodden); throw; }
+            finally { worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); soddenPieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear(); }
         }
 
         private bool IsPilotGround(Entity owner)
@@ -272,7 +278,7 @@ namespace CavesOfOoo.Rendering
             {
                 var fragment = model.Fragments[i];
                 var combine = new CombineInstance { mesh = fragment.Mesh, subMeshIndex = fragment.Submesh, transform = placement * fragment.Relative };
-                (fragment.Glade ? gladePieces : fragment.Water ? waterPieces : worldPieces).Add(combine);
+                (fragment.Sodden ? soddenPieces : fragment.Glade ? gladePieces : fragment.Water ? waterPieces : worldPieces).Add(combine);
             }
         }
         private Model GetModel(string id,SpawnRing3DRecipe? recipe=null)
@@ -280,7 +286,7 @@ namespace CavesOfOoo.Rendering
             var entry=recipe.HasValue?nativeStyles?.ForOwner(currentZone,recipe.Value):null;
             var cache=entry!=null?styledModels:models;
             if (cache.TryGetValue(id, out var cached)) return cached;
-            var spec = catalog.FindModel(id); var prefab = entry?.Prefab ?? library.FindModel(id);
+            var spec = catalog.FindModel(id); var prefab = soddenArt?.Find(id)?.Prefab ?? entry?.Prefab ?? library.FindModel(id);
             if (spec == null || prefab == null || (spec.kind != "ground" && spec.kind != "entity"))
                 throw new InvalidOperationException("Unavailable static ring model: " + id);
             var renderers = prefab.GetComponentsInChildren<Renderer>(true);
@@ -299,11 +305,12 @@ namespace CavesOfOoo.Rendering
                 {
                     bool water = materials[i] == library.WaterMaterial;
                     bool glade = gladeSource != null && materials[i] == gladeSource;
-                    if (!water && !glade && materials[i] != library.WorldMaterial)
+                    bool sodden = soddenSource != null && materials[i] == soddenSource;
+                    if (!water && !glade && !sodden && materials[i] != library.WorldMaterial)
                         throw new InvalidOperationException("Unregistered static ring material family: " + id);
                     if (mesh.GetTopology(i) != MeshTopology.Triangles || mesh.GetIndexCount(i) == 0)
                         throw new InvalidOperationException("Batched ring mesh has an empty or nontriangle submesh: " + id);
-                    if (renderer.enabled && ActiveUnder(renderer.transform, prefab.transform)) fragments.Add(new Fragment(mesh, i, relative, water, glade, materials[i]));
+                    if (renderer.enabled && ActiveUnder(renderer.transform, prefab.transform)) fragments.Add(new Fragment(mesh, i, relative, water, glade, sodden, materials[i]));
                 }
             }
             if (fragments.Count == 0) throw new InvalidOperationException("Batched ring model has no active drawable fragments: " + id);
@@ -348,6 +355,7 @@ namespace CavesOfOoo.Rendering
                 ||DrownedLedgerCompositionPlan.IsSupportedZone(zone.ZoneID)||MarrowstyeCompositionPlan.IsSupportedZone(zone.ZoneID)
                 ||FirstTentCompositionPlan.IsSupportedZone(zone.ZoneID)||LastCounterCompositionPlan.IsSupportedZone(zone.ZoneID)
                 ||GantryCompositionPlan.IsSupportedZone(zone.ZoneID)||TineCompositionPlan.IsSupportedZone(zone.ZoneID)||QuillholdCompositionPlan.IsSupportedZone(zone.ZoneID)||TallyCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
+            if(soddenArt!=null)return SoddenNativeArtLibrary.ModelId("ground",0);
             if(SpreadPresentationScope.IsActive(zone))return ReferenceGladeVoxelLibrary.ModelId("ground",0);
             bool stone = MultiCellPilotRuntime.IsActive(zone) || zone.ZoneID == "Overworld.2.5.0" || zone.ZoneID == "Overworld.3.5.0" || zone.ZoneID == "Overworld.4.5.0";
             var binding = catalog.FindBlueprint(stone ? "TepuiStone" : "Grass");
@@ -392,10 +400,10 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < patches.Length; i++)
             {
                 var patch = patches[i]; if (patch == null) continue;
-                DestroyOwned(patch.WorldMesh); DestroyOwned(patch.WaterMesh); DestroyOwned(patch.PilotGroundMesh); DestroyOwned(patch.GladeMesh); DestroyOwned(patch.Root); patches[i] = null;
+                DestroyOwned(patch.WorldMesh); DestroyOwned(patch.WaterMesh); DestroyOwned(patch.PilotGroundMesh); DestroyOwned(patch.GladeMesh); DestroyOwned(patch.SoddenMesh); DestroyOwned(patch.Root); patches[i] = null;
             }
             for (int i = 0; i < waterMeshes.Length; i++) { DestroyOwned(waterMeshes[i]); waterMeshes[i] = null; }
-            models.Clear(); styledModels.Clear(); worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear(); currentZone = null;
+            models.Clear(); styledModels.Clear(); worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); soddenPieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear(); currentZone = null;
         }
         private static void DestroyOwned(UnityEngine.Object value)
         { if (value == null) return; if (Application.isPlaying) UnityEngine.Object.Destroy(value); else UnityEngine.Object.DestroyImmediate(value); }

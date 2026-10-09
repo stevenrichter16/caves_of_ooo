@@ -35,7 +35,7 @@ namespace CavesOfOoo.Tests
    for(int i=0;i<3;i++)Assert.True(SpreadTransientSource.TryGas(zone,gas,out _));
    Assert.AreEqual(version,zone.EntityVersion);Assert.AreEqual(tiles,zone.TileState.ToSaveString());CollectionAssert.AreEqual(parts,gas.Parts);
    Assert.AreEqual(83,gas.GetPart<GasPoolPart>().Density);Assert.AreEqual(color,gas.GetPart<GasPoolPart>().ColorString);
-   manager.WorldMap.Tiles[4,9]=BiomeType.Sodden;Assert.False(SpreadTransientSource.TryGas(zone,gas,out _));
+   manager.WorldMap.Tiles[4,9]=BiomeType.Beating;Assert.False(SpreadTransientSource.TryGas(zone,gas,out _));
   }
   [TestCase(0,0)][TestCase(1,1)][TestCase(29,1)][TestCase(30,2)][TestCase(79,2)][TestCase(80,3)][TestCase(int.MaxValue,3)]
   public void DensityBandsReuseNativeBoundariesWithoutChangingRawAmount(int amount,int expected)
@@ -72,7 +72,7 @@ namespace CavesOfOoo.Tests
   }
   [TestCase("coating")][TestCase("residue")][TestCase("unknown-cloud")][TestCase("expired-cloud")][TestCase("foreign")]
   public void UnrepresentedOrHigherPriorityTileStateMustNotBeSuppressed(string kind)
-  {zone.TileState.WriteCloud(20,10,"steam",2);if(kind=="coating")zone.TileState.WriteCoating(20,10,"water",2);else if(kind=="residue")zone.TileState.WriteResidue(20,10,"embers",2);else if(kind=="unknown-cloud")zone.TileState.WriteCloud(20,10,"unknown",2);else if(kind=="expired-cloud")zone.TileState.Get(20,10).CloudTurns=0;else manager.WorldMap.Tiles[4,9]=BiomeType.Sodden;Assert.False(SpreadTransientSource.TryElement(zone,20,10,out _));}
+  {zone.TileState.WriteCloud(20,10,"steam",2);if(kind=="coating")zone.TileState.WriteCoating(20,10,"water",2);else if(kind=="residue")zone.TileState.WriteResidue(20,10,"embers",2);else if(kind=="unknown-cloud")zone.TileState.WriteCloud(20,10,"unknown",2);else if(kind=="expired-cloud")zone.TileState.Get(20,10).CloudTurns=0;else manager.WorldMap.Tiles[4,9]=BiomeType.Beating;Assert.False(SpreadTransientSource.TryElement(zone,20,10,out _));}
   [Test] public void TileEnergyPriorityMatchesExistingNativeMark()
   {zone.TileState.WriteCloud(20,10,"smoke",3);zone.TileState.AddHeat(20,10,1);zone.TileState.AddCold(20,10,1);zone.TileState.AddCharge(20,10,1);Assert.True(SpreadTransientSource.TryElement(zone,20,10,out var s));Assert.AreEqual("charge",s.Kind);zone.TileState.Get(20,10).Charge=0;Assert.True(SpreadTransientSource.TryElement(zone,20,10,out s));Assert.AreEqual("heat",s.Kind);}
   [Test] public void NullAndOutOfRangeQueriesDoNotInventState(){Assert.False(SpreadTransientSource.TryGas(null,null,out _));Assert.False(SpreadTransientSource.TryElement(zone,-1,0,out _));Assert.False(SpreadTransientSource.TryElement(zone,Zone.Width,0,out _));Assert.AreEqual(0,zone.TileState.WrittenCount);}

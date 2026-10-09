@@ -45,7 +45,7 @@ namespace CavesOfOoo.Tests
                 Approved(f);var first=f.Get<NativeZone3DRenderSurface>("ActiveSurface");var old=f.View(f.Player);
                 var source=f.Library.FindModel("ring-player").GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
                 var ordinary=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath).Resolve(source);
-                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;Update(f,route);
+                f.Manager.WorldMap.Tiles[12,10]=BiomeType.Beating;Update(f,route);
                 Assert.True(old==null);var next=f.Get<NativeZone3DRenderSurface>("ActiveSurface");Assert.AreNotSame(first,next);
                 Assert.AreSame(ordinary,f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
                 Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);

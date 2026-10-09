@@ -17,7 +17,7 @@ namespace CavesOfOoo.Tests
                 var source=f.Library.FindModel("ring-player").GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
                 var ordinaryMesh=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath).Resolve(source);
                 Assert.AreNotSame(ordinaryMesh,localMesh);
-                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Sodden;Assert.IsFalse(ReferenceGladePlan.IsActive(f.Zone));
+                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Beating;Assert.IsFalse(ReferenceGladePlan.IsActive(f.Zone));
                 Update(f,entry);var ordinary=f.Get<NativeZone3DRenderSurface>("ActiveSurface");
                 Assert.NotNull(ordinary);Assert.AreNotSame(before,ordinary,"A stale glade profile must not survive loss of authority.");
                 Assert.IsTrue(oldRoot==null);Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);

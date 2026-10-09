@@ -23,7 +23,7 @@ namespace CavesOfOoo.Rendering
     public static class SpawnRing3DRecipes
     {
         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
-            => CurationYard3DLibrary.Refine(zone,entity,FurrowstalkerLibrary.Refine(zone, entity, SpreadCookingCoalsLibrary.Refine(zone, entity, SpreadCooking3DLibrary.Refine(zone, entity, SpreadFieldGate3DLibrary.Refine(zone, entity, SpreadCollectorArtLibrary.Refine(zone, entity, QuestFreeSpreadArtLibrary.Refine(zone, entity, SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot)))))))))))))))));
+            => SoddenPopulationArtRecipes.Refine(zone,entity,CurationYard3DLibrary.Refine(zone,entity,FurrowstalkerLibrary.Refine(zone, entity, SpreadCookingCoalsLibrary.Refine(zone, entity, SpreadCooking3DLibrary.Refine(zone, entity, SpreadFieldGate3DLibrary.Refine(zone, entity, SpreadCollectorArtLibrary.Refine(zone, entity, QuestFreeSpreadArtLibrary.Refine(zone, entity, SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))))))))))))));
 
         private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
         {
@@ -223,7 +223,7 @@ namespace CavesOfOoo.Rendering
             }
             // Only these newly authored species enter this additive route. Existing
             // native quest/state recipes retain their own identity requirements.
-            if (SpreadPresentationScope.IsActive(zone) && SpreadBiomeActorLibrary.ModelId(entity.BlueprintName) != null)
+            if ((SpreadPresentationScope.IsActive(zone) || SoddenPresentationScope.IsActive(zone)) && SpreadBiomeActorLibrary.ModelId(entity.BlueprintName) != null)
             {
                 string animal = SpreadBiomeActorLibrary.ResolveOwner(entity);
                 return animal == null ? Refused(entity, "unsupported-current-spread-animal")
@@ -489,7 +489,10 @@ namespace CavesOfOoo.Rendering
                 // These exact native cave identities share their established art
                 // in all composed stacks; no area plan is replayed by rendering.
                 bool caveArt=GinmereCompositionPlan.IsSupportedZone(zone.ZoneID)||cathedral||stillleaf||olderdeep;
-                if(overwrit||caveArt||wellmeet)
+                // Regional bog terrain keeps its own materials inside the Ledger too.
+                // Earlier stateful site/owner recipes have already retained precedence.
+                if((overwrit||caveArt||wellmeet)
+                    && !(SoddenPresentationScope.IsActive(zone) && SoddenVoxelLibrary.Family(entity.BlueprintName)!=null))
                 {
                     string family=overwrit?OverwritVoxelLibrary.Family(entity.BlueprintName):GinmereVoxelLibrary.Family(entity.BlueprintName);
                     if(family!=null)
@@ -557,7 +560,7 @@ namespace CavesOfOoo.Rendering
                         return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
                     }
                 }
-                if(SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold||drownedLedger)
+                if(SoddenPresentationScope.IsActive(zone)||SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold||drownedLedger)
                 {
                     string family=SoddenVoxelLibrary.Family(entity.BlueprintName);
                     if(family!=null)
@@ -569,7 +572,7 @@ namespace CavesOfOoo.Rendering
                 }
                 if(SpreadCompositionPlan.IsWildernessZone(zone.ZoneID)
                     || entity.BlueprintName=="Emberwheat"
-                    || ((SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold||drownedLedger) && entity.BlueprintName=="Reeds"))
+                    || ((SoddenPresentationScope.IsActive(zone)||SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold||drownedLedger) && entity.BlueprintName=="Reeds"))
                 {
                     string family=SpreadVoxelLibrary.Family(entity.BlueprintName);
                     if(entity.BlueprintName=="RipeCropRow"&&entity.GetPart<FieldHarvestPart>()?.Harvested==true)
@@ -807,7 +810,7 @@ namespace CavesOfOoo.Rendering
                 if (layer.Id == "water" && layer.Turns == ZoneTileState.Permanent) return true;
             return false;
         }
-        private static int Variant(string zone, string blueprint, string id, int x, int y, int count)
+        internal static int Variant(string zone, string blueprint, string id, int x, int y, int count)
         {
             // Explicit FNV-1a, not randomized string.GetHashCode or simulation RNG.
             unchecked

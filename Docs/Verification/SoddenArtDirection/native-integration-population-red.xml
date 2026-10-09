@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="12" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 04:12:09Z" end-time="2026-10-09 04:12:16Z" duration="7.3545914">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="26072" result="Failed" site="Child" start-time="2026-10-09 04:12:09Z" end-time="2026-10-09 04:12:16Z" duration="7.354591" total="35" passed="12" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="32106" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="26072" result="Failed" site="Child" start-time="2026-10-09 04:12:09Z" end-time="2026-10-09 04:12:16Z" duration="7.168239" total="35" passed="12" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="69043" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="32107" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26072" result="Failed" site="Child" start-time="2026-10-09 04:12:09Z" end-time="2026-10-09 04:12:16Z" duration="6.785284" total="35" passed="12" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="32108" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26072" result="Failed" site="Child" start-time="2026-10-09 04:12:10Z" end-time="2026-10-09 04:12:16Z" duration="6.667438" total="35" passed="12" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27277" name="SoddenNativeStyleIntegrationTests" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-09 04:12:10Z" end-time="2026-10-09 04:12:15Z" duration="5.432793" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27281" name="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-09 04:12:10Z" end-time="2026-10-09 04:12:12Z" duration="1.854831" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27278" name="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.15.7.0&quot;)" methodname="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="1930180783" result="Failed" start-time="2026-10-09 04:12:10Z" end-time="2026-10-09 04:12:11Z" duration="0.949845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette (System.String zoneId) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27279" name="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.16.7.0&quot;)" methodname="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="811542108" result="Failed" start-time="2026-10-09 04:12:11Z" end-time="2026-10-09 04:12:11Z" duration="0.612576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette (System.String zoneId) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27280" name="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.17.5.0&quot;)" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette(&quot;Overworld.17.5.0&quot;)" methodname="ExistingNativeTerrainUsesTheExactNewGeometryAndPalette" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="438100631" result="Failed" start-time="2026-10-09 04:12:11Z" end-time="2026-10-09 04:12:12Z" duration="0.289761" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.ExistingNativeTerrainUsesTheExactNewGeometryAndPalette (System.String zoneId) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27289" name="GroundMemoryAndRefreshReuseTheCommittedPatch" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.GroundMemoryAndRefreshReuseTheCommittedPatch" methodname="GroundMemoryAndRefreshReuseTheCommittedPatch" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="874576698" result="Failed" start-time="2026-10-09 04:12:12Z" end-time="2026-10-09 04:12:12Z" duration="0.309358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  unmapped-style-source
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.GroundMemoryAndRefreshReuseTheCommittedPatch () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:148
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27288" name="NativeOwnerRefusalCannotBeRepairedByTheNewArt" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NativeOwnerRefusalCannotBeRepairedByTheNewArt" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 04:12:12Z" end-time="2026-10-09 04:12:13Z" duration="0.744361" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27286" name="NativeOwnerRefusalCannotBeRepairedByTheNewArt(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NativeOwnerRefusalCannotBeRepairedByTheNewArt(&quot;hidden&quot;)" methodname="NativeOwnerRefusalCannotBeRepairedByTheNewArt" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="1133408254" result="Failed" start-time="2026-10-09 04:12:12Z" end-time="2026-10-09 04:12:12Z" duration="0.363003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NativeOwnerRefusalCannotBeRepairedByTheNewArt (System.String change) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27287" name="NativeOwnerRefusalCannotBeRepairedByTheNewArt(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NativeOwnerRefusalCannotBeRepairedByTheNewArt(&quot;removed&quot;)" methodname="NativeOwnerRefusalCannotBeRepairedByTheNewArt" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="784359546" result="Failed" start-time="2026-10-09 04:12:12Z" end-time="2026-10-09 04:12:13Z" duration="0.377628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NativeOwnerRefusalCannotBeRepairedByTheNewArt (System.String change) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27282" name="NewStyleRequiresExactManagedOwnerRatherThanPlausibleAddress" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NewStyleRequiresExactManagedOwnerRatherThanPlausibleAddress" methodname="NewStyleRequiresExactManagedOwnerRatherThanPlausibleAddress" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="1503836257" result="Failed" start-time="2026-10-09 04:12:13Z" end-time="2026-10-09 04:12:13Z" duration="0.000272" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.NewStyleRequiresExactManagedOwnerRatherThanPlausibleAddress () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27283" name="RegionAuthorityChangeImmediatelyRelinquishesStyleAndRefreshRebinds" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RegionAuthorityChangeImmediatelyRelinquishesStyleAndRefreshRebinds" methodname="RegionAuthorityChangeImmediatelyRelinquishesStyleAndRefreshRebinds" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="1150646085" result="Failed" start-time="2026-10-09 04:12:13Z" end-time="2026-10-09 04:12:13Z" duration="0.319507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RegionAuthorityChangeImmediatelyRelinquishesStyleAndRefreshRebinds () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:89
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27290" name="SavedNativeOwnerRetainsItsLiteralIdentityAndGetsScopedArtOnLoad" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.SavedNativeOwnerRetainsItsLiteralIdentityAndGetsScopedArtOnLoad" methodname="SavedNativeOwnerRetainsItsLiteralIdentityAndGetsScopedArtOnLoad" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="595295143" result="Failed" start-time="2026-10-09 04:12:13Z" end-time="2026-10-09 04:12:13Z" duration="0.385767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  unmapped-style-source
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.SavedNativeOwnerRetainsItsLiteralIdentityAndGetsScopedArtOnLoad () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:166
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27285" name="StartingSpreadKeepsItsExistingApprovedArt" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.StartingSpreadKeepsItsExistingApprovedArt" methodname="StartingSpreadKeepsItsExistingApprovedArt" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="150453474" result="Failed" start-time="2026-10-09 04:12:13Z" end-time="2026-10-09 04:12:15Z" duration="1.529362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.StartingSpreadKeepsItsExistingApprovedArt () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:121
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27284" name="SumpholdIsAnExactAuthenticatedTownException" fullname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.SumpholdIsAnExactAuthenticatedTownException" methodname="SumpholdIsAnExactAuthenticatedTownException" classname="CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests" runstate="Runnable" seed="131389305" result="Failed" start-time="2026-10-09 04:12:15Z" end-time="2026-10-09 04:12:15Z" duration="0.285780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The additive native Sodden art contract is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.RequiredType (System.String name) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:18
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.Active (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:22
+at CavesOfOoo.Tests.SoddenNativeStyleIntegrationTests.SumpholdIsAnExactAuthenticatedTownException () [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenNativeStyleIntegrationTests.cs:108
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27291" name="SoddenPopulationArtTests" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-10-09 04:12:15Z" end-time="2026-10-09 04:12:16Z" duration="0.976693" total="24" passed="12" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27297" name="ActualBogResidentsUseTheirOriginalAnimatedBodies" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-09 04:12:15Z" end-time="2026-10-09 04:12:16Z" duration="0.252271" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27292" name="ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Reedfrog&quot;,&quot;spread-visitor-reedfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Reedfrog&quot;,&quot;spread-visitor-reedfrog&quot;)" methodname="ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1848702286" result="Failed" start-time="2026-10-09 04:12:15Z" end-time="2026-10-09 04:12:15Z" duration="0.125351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: "spread-visitor-reedfrog"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies (System.String blueprint, System.String expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27293" name="ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Bandfrog&quot;,&quot;spread-visitor-bandfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Bandfrog&quot;,&quot;spread-visitor-bandfrog&quot;)" methodname="ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="657730666" result="Failed" start-time="2026-10-09 04:12:15Z" end-time="2026-10-09 04:12:16Z" duration="0.032419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: "spread-visitor-bandfrog"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies (System.String blueprint, System.String expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27294" name="ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;GinFrog&quot;,&quot;spread-visitor-gin-frog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;GinFrog&quot;,&quot;spread-visitor-gin-frog&quot;)" methodname="ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1847719762" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.031264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: "spread-visitor-gin-frog"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies (System.String blueprint, System.String expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27295" name="ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Viper&quot;,&quot;spread-biome-viper&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;Viper&quot;,&quot;spread-biome-viper&quot;)" methodname="ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1791742392" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: "spread-biome-viper"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies (System.String blueprint, System.String expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27296" name="ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;PeatCutter&quot;,&quot;spread-person-peat-cutter&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies(&quot;PeatCutter&quot;,&quot;spread-person-peat-cutter&quot;)" methodname="ActualBogResidentsUseTheirOriginalAnimatedBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="625607358" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.031299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: "spread-person-peat-cutter"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.ActualBogResidentsUseTheirOriginalAnimatedBodies (System.String blueprint, System.String expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27318" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.154027" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27313" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Reedfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Reedfrog&quot;)" methodname="ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="557933136" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.031701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27314" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Bandfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Bandfrog&quot;)" methodname="ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="2002903251" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27315" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;GinFrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;GinFrog&quot;)" methodname="ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1123119479" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27316" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Viper&quot;)" methodname="ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1423490138" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029526" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27317" name="ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Greatdew&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.ChangedMapAuthorityDoesNotGrantNewBogAppearance(&quot;Greatdew&quot;)" methodname="ChangedMapAuthorityDoesNotGrantNewBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="433163212" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27319" name="DestroyedGreatdewCannotReturnAsHealthyScenery" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DestroyedGreatdewCannotReturnAsHealthyScenery" methodname="DestroyedGreatdewCannotReturnAsHealthyScenery" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="605273681" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030248" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27302" name="DroppedUsefulItemsKeepTheirAuthoredPortableBodies" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.119972" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27298" name="DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;Cudgel&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;Cudgel&quot;)" methodname="DroppedUsefulItemsKeepTheirAuthoredPortableBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1412427321" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "spread-portable-cudgel"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies (System.String blueprint) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27299" name="DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;Hatchet&quot;)" methodname="DroppedUsefulItemsKeepTheirAuthoredPortableBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1955102189" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "spread-portable-hatchet"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies (System.String blueprint) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27300" name="DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;HealingTonic&quot;)" methodname="DroppedUsefulItemsKeepTheirAuthoredPortableBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1987358585" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "spread-portable-healingtonic"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies (System.String blueprint) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27301" name="DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;FrogOil&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies(&quot;FrogOil&quot;)" methodname="DroppedUsefulItemsKeepTheirAuthoredPortableBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1815156678" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.028988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "spread-portable-frogoil"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.DroppedUsefulItemsKeepTheirAuthoredPortableBodies (System.String blueprint) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27306" name="GreatdewHasItsOwnBentStemBodyAndKeepsItsActualSnare" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.GreatdewHasItsOwnBentStemBodyAndKeepsItsActualSnare" methodname="GreatdewHasItsOwnBentStemBodyAndKeepsItsActualSnare" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1355799295" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.049008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  unmodeled-native-blueprint
+  Expected: String starting with "sodden-native-greatdew-"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.GreatdewHasItsOwnBentStemBodyAndKeepsItsActualSnare () [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27312" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.201067" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27307" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Reedfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Reedfrog&quot;)" methodname="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1557502259" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.075136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27308" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Bandfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Bandfrog&quot;)" methodname="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="949196824" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.031167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27309" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;GinFrog&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;GinFrog&quot;)" methodname="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="954192302" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.031784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27310" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Viper&quot;)" methodname="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1201641316" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.030291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27311" name="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Greatdew&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance(&quot;Greatdew&quot;)" methodname="HiddenMovedAndReskinnedOwnersCannotBorrowBogAppearance" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1545453361" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029677" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27320" name="MissingSnareDoesNotGainAnImpliedTrap" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.MissingSnareDoesNotGainAnImpliedTrap" methodname="MissingSnareDoesNotGainAnImpliedTrap" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1961511026" result="Passed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029871" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27305" name="PlacedItemResultsHaveActualThreeDimensionalBodies" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.PlacedItemResultsHaveActualThreeDimensionalBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.061409" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27303" name="PlacedItemResultsHaveActualThreeDimensionalBodies(&quot;CrackedGlowQuartz&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.PlacedItemResultsHaveActualThreeDimensionalBodies(&quot;CrackedGlowQuartz&quot;)" methodname="PlacedItemResultsHaveActualThreeDimensionalBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1052724211" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: String starting with "spread-scenery-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.PlacedItemResultsHaveActualThreeDimensionalBodies (System.String blueprint) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27304" name="PlacedItemResultsHaveActualThreeDimensionalBodies(&quot;KnotflaxSnare&quot;)" fullname="CavesOfOoo.Tests.SoddenPopulationArtTests.PlacedItemResultsHaveActualThreeDimensionalBodies(&quot;KnotflaxSnare&quot;)" methodname="PlacedItemResultsHaveActualThreeDimensionalBodies" classname="CavesOfOoo.Tests.SoddenPopulationArtTests" runstate="Runnable" seed="1612452050" result="Failed" start-time="2026-10-09 04:12:16Z" end-time="2026-10-09 04:12:16Z" duration="0.029792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  unmodeled-native-blueprint
+  Expected: String starting with "spread-scenery-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPopulationArtTests.PlacedItemResultsHaveActualThreeDimensionalBodies (System.String blueprint) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenPopulationArtTests.cs:48
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

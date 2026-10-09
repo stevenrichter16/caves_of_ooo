@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
             {
                 f.CleanGear(f.Player);f.Refresh();var original=f.Library.FindModel("ring-player").transform.localScale;
                 Assert.That(BodyBounds(f.View(f.Player)).size.y,Is.InRange(1.20f,1.36f));
-                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Sodden;f.Refresh();Assert.AreEqual(original,f.View(f.Player).transform.localScale);
+                f.Manager.WorldMap.Tiles[11,10]=BiomeType.Beating;f.Refresh();Assert.AreEqual(original,f.View(f.Player).transform.localScale);
                 f.Manager.WorldMap.Tiles[11,10]=BiomeType.Spread;f.Refresh();Assert.That(BodyBounds(f.View(f.Player)).size.y,Is.InRange(1.20f,1.36f));
             }
             using(var f=new SpawnRing3DIntegrationFixture())Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);
