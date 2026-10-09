@@ -388,8 +388,9 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Approach a target, preferring the direct greedy step when the ideal
-        /// direction is unobstructed, and falling back to A* pathfinding when
-        /// the direct path is blocked. Returns true if a step was taken.
+        /// direction is unobstructed and free of known terrain cost, falling back
+        /// to actor-aware A* when blocked or dangerous. Returns true for movement
+        /// or one stationary door action.
         ///
         /// Use this for KillGoal/chase AI and any goal that needs to "walk toward
         /// an entity that might move" without caching path state. Each call is
@@ -399,19 +400,19 @@ namespace CavesOfOoo.Core
         /// Why not TryStepToward's fallbacks? TryStepToward's cardinal fallbacks
         /// can make sideways moves that DON'T reduce distance to target, causing
         /// oscillation when a wall fully blocks the direct route. This helper
-        /// only uses greedy when the ideal (single-step toward target) cell is
-        /// open — otherwise it uses A* which is guaranteed to make progress
+        /// only uses greedy when the ideal (single-step toward target) body is
+        /// open and has no terrain cost — otherwise it uses A* to make progress
         /// toward a reachable target.
         ///
         /// Performance: A* is pool-based and fast (microseconds per call on a
-        /// 2000-cell grid). It runs every tick a creature is blocked, which
-        /// is typically only while navigating around building walls.
+        /// 2000-cell grid). It also runs when the direct prospective body has
+        /// a terrain cost, so ordinary pursuit can use its existing avoidance.
         /// </summary>
         public static bool TryApproachWithPathfinding(
             Entity entity, Zone zone,
             int myX, int myY, int targetX, int targetY)
         {
-            // Fast path: take the ideal single-step if the target cell is open.
+            // Fast path: take the ideal single-step only when open and harmless.
             // This is a single-direction check, not TryStepToward's multi-fallback,
             // so we never make sideways moves that fail to reduce distance.
             var (dx, dy) = StepToward(myX, myY, targetX, targetY);
@@ -422,7 +423,8 @@ namespace CavesOfOoo.Core
                 if (zone.InBounds(idealX, idealY))
                 {
                     var idealCell = zone.GetCell(idealX, idealY);
-                    if (idealCell != null && idealCell.IsPassable())
+                    if (idealCell != null && idealCell.IsPassable()
+                        && TerrainNavigationWeight.ForStep(zone, idealX, idealY, entity) == 0)
                     {
                         if (TryStepOrOpenDoor(entity, zone, dx, dy))
                             return true;
@@ -430,7 +432,7 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // Slow path: A* pathfind around obstacles. Only the first step of
+            // Slow path: weighted A* around obstacles or danger. Only the first step of
             // the returned path is used — the next tick will recompute if still
             // needed, so we naturally handle moving targets.
             // ignoreCreatures=true: combat approach should route around walls but
@@ -458,6 +460,35 @@ namespace CavesOfOoo.Core
         {
             var (dx, dy) = StepAway(myX, myY, awayFromX, awayFromY);
 
+            // Preserve the ordinary clean-ground retreat exactly. Only a
+            // dangerous preferred step opens this small outward choice: the
+            // two existing axis fallbacks, or adjacent diagonals for a cardinal
+            // retreat. Every choice still moves away from the supplied contact.
+            if ((dx != 0 || dy != 0)
+                && TerrainNavigationWeight.ForStep(zone, myX + dx, myY + dy, entity) > 0)
+            {
+                var first = (dx: dx, dy: dy, cost: RetreatStepCost(entity, zone, myX, myY, myX + dx, myY + dy, awayFromX, awayFromY));
+                var second = dx == 0
+                    ? (dx: -1, dy: dy, cost: RetreatStepCost(entity, zone, myX, myY, myX - 1, myY + dy, awayFromX, awayFromY))
+                    : dy == 0
+                        ? (dx: dx, dy: -1, cost: RetreatStepCost(entity, zone, myX, myY, myX + dx, myY - 1, awayFromX, awayFromY))
+                        : (dx: dx, dy: 0, cost: RetreatStepCost(entity, zone, myX, myY, myX + dx, myY, awayFromX, awayFromY));
+                var third = dx == 0
+                    ? (dx: 1, dy: dy, cost: RetreatStepCost(entity, zone, myX, myY, myX + 1, myY + dy, awayFromX, awayFromY))
+                    : dy == 0
+                        ? (dx: dx, dy: 1, cost: RetreatStepCost(entity, zone, myX, myY, myX + dx, myY + 1, awayFromX, awayFromY))
+                        : (dx: 0, dy: dy, cost: RetreatStepCost(entity, zone, myX, myY, myX, myY + dy, awayFromX, awayFromY));
+                // Adjacent swaps keep the preferred/legacy order on equal cost.
+                if (first.cost > second.cost) (first, second) = (second, first);
+                if (second.cost > third.cost) (second, third) = (third, second);
+                if (first.cost > second.cost) (first, second) = (second, first);
+                // These are real attempts, not speculative moves. An opening or
+                // unlocking action is success and stops this entire opportunity.
+                return (first.cost < int.MaxValue && TryStepOrOpenDoor(entity, zone, first.dx, first.dy))
+                    || (second.cost < int.MaxValue && TryStepOrOpenDoor(entity, zone, second.dx, second.dy))
+                    || (third.cost < int.MaxValue && TryStepOrOpenDoor(entity, zone, third.dx, third.dy));
+            }
+
             if (TryStepOrOpenDoor(entity, zone, dx, dy))
                 return true;
 
@@ -468,6 +499,54 @@ namespace CavesOfOoo.Core
                 if (TryStepOrOpenDoor(entity, zone, 0, dy))
                     return true;
             }
+            return false;
+        }
+
+        // Pure local admission before ranking. An axis fallback from a diagonal
+        // bearing can keep the same Chebyshev distance; it is not an escape.
+        private static int RetreatStepCost(Entity entity, Zone zone, int fromX, int fromY,
+            int x, int y, int awayX, int awayY)
+        {
+            if (!zone.InBounds(x, y) || ChebyshevDistance(x, y, awayX, awayY)
+                <= ChebyshevDistance(fromX, fromY, awayX, awayY)) return int.MaxValue;
+            bool legal = zone.CanPlaceFootprint(entity, x, y, allowOperableDoors: true);
+            if (!legal)
+            {
+                // The normal movement hook may spend one stationary key action.
+                // Admit that exact existing permission without firing its event.
+                foreach (var cell in zone.GetOccupiedCells(entity, x, y))
+                {
+                    if (cell == null) return int.MaxValue;
+                    foreach (var owner in cell.Occupants)
+                        if (owner != entity && CanRetreatUnlock(entity, owner, zone)
+                            && zone.CanPlaceFootprint(entity, x, y, ignoring: owner, allowOperableDoors: true))
+                        { legal = true; break; }
+                    if (legal) break;
+                }
+            }
+            if (!legal) return int.MaxValue;
+            if (x != fromX && y != fromY)
+            {
+                if (entity.HasPart<SpatialFootprintPart>())
+                {
+                    if (!zone.CanPlaceFootprint(entity, x, fromY)
+                        && !zone.CanPlaceFootprint(entity, fromX, y)) return int.MaxValue;
+                }
+            }
+            return TerrainNavigationWeight.ForStep(zone, x, y, entity);
+        }
+        private static bool CanRetreatUnlock(Entity actor, Entity owner, Zone zone)
+        {
+            var latch = owner?.GetPart<LockPart>();
+            if (latch?.IsLocked != true || owner.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true
+                || owner.HasPart<MorrowfastDoorPart>()) return false;
+            var door = owner.GetPart<DoorPart>();
+            if (door != null && !door.CanUnlock(actor, zone)) return false;
+            if (string.IsNullOrEmpty(latch.KeyId)) return true;
+            var inventory = actor.GetPart<InventoryPart>();
+            if (inventory?.Objects == null) return false;
+            foreach (var item in inventory.Objects)
+                if (item?.GetPart<KeyPart>()?.KeyId == latch.KeyId) return true;
             return false;
         }
 

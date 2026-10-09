@@ -262,12 +262,27 @@ namespace CavesOfOoo.Core
             if (preferred > 0 && distance == preferred && clear)
             { Record("TacticPositioned",target,"","hold-range"); return true; }
             if (!RepositionForShot || clear) return false;
-            for (int dir=0;dir<8;dir++)
+            int attempted = 0;
+            for (int attempt = 0; attempt < 8; attempt++)
             {
-                var next=zone.GetCellInDirection(source.X,source.Y,dir);
-                if (next==null || !zone.CanPlaceFootprint(actor,next.X,next.Y)
-                    || MultiCellAbilityQueries.CreatureAtPlacement(zone,actor,next.X,next.Y)!=null || !Clear(next)) continue;
-                if (MovementSystem.TryMoveTo(actor,zone,next.X,next.Y))
+                int bestDirection = -1, bestCost = int.MaxValue;
+                Cell best = null;
+                for (int dir = 0; dir < 8; dir++)
+                {
+                    if ((attempted & (1 << dir)) != 0) continue;
+                    var next = zone.GetCellInDirection(source.X, source.Y, dir);
+                    if (next == null || !zone.CanPlaceFootprint(actor, next.X, next.Y)
+                        || MultiCellAbilityQueries.CreatureAtPlacement(zone, actor, next.X, next.Y) != null || !Clear(next)) continue;
+                    int cost = TerrainNavigationWeight.ForStep(zone, next.X, next.Y, actor);
+                    if (cost >= bestCost) continue;
+                    bestDirection = dir; best = next; bestCost = cost;
+                    // Costs cannot be negative. The first clean square already
+                    // wins, preserving the original direction order on ties.
+                    if (cost == 0) break;
+                }
+                if (best == null) break;
+                attempted |= 1 << bestDirection;
+                if (MovementSystem.TryMoveTo(actor, zone, best.X, best.Y))
                 { Record("TacticPositioned",target,"","clear-shot-step"); return true; }
             }
             return false;

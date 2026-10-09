@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="4" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 06:42:32Z" end-time="2026-10-09 06:42:33Z" duration="0.7576192">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="26451" result="Failed" site="Child" start-time="2026-10-09 06:42:32Z" end-time="2026-10-09 06:42:33Z" duration="0.757619" total="15" passed="4" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="32584" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="26451" result="Failed" site="Child" start-time="2026-10-09 06:42:32Z" end-time="2026-10-09 06:42:33Z" duration="0.734378" total="15" passed="4" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="32585" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26451" result="Failed" site="Child" start-time="2026-10-09 06:42:32Z" end-time="2026-10-09 06:42:33Z" duration="0.676080" total="15" passed="4" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="32586" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26451" result="Failed" site="Child" start-time="2026-10-09 06:42:32Z" end-time="2026-10-09 06:42:33Z" duration="0.602285" total="15" passed="4" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1452" name="DangerAwareHotSteamMovementTests" fullname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests" classname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.112223" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1455" name="ExistingRealHotContactChangesApproachUnlessFullyHeatImmune" fullname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests.ExistingRealHotContactChangesApproachUnlessFullyHeatImmune" classname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.110482" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1453" name="ExistingRealHotContactChangesApproachUnlessFullyHeatImmune(False)" fullname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests.ExistingRealHotContactChangesApproachUnlessFullyHeatImmune(False)" methodname="ExistingRealHotContactChangesApproachUnlessFullyHeatImmune" classname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests" runstate="Runnable" seed="1918463945" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.074715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareHotSteamMovementTests.ExistingRealHotContactChangesApproachUnlessFullyHeatImmune (System.Boolean immune) [0x00090] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1454" name="ExistingRealHotContactChangesApproachUnlessFullyHeatImmune(True)" fullname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests.ExistingRealHotContactChangesApproachUnlessFullyHeatImmune(True)" methodname="ExistingRealHotContactChangesApproachUnlessFullyHeatImmune" classname="CavesOfOoo.Tests.DangerAwareHotSteamMovementTests" runstate="Runnable" seed="1846998925" result="Passed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.031128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1434" name="DangerAwareMovementCounterTests" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.029786" total="13" passed="3" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1442" name="BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.007119" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1440" name="BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe(False)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe(False)" methodname="BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="966946009" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.005118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 11)
+  But was:  (11, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe (System.Boolean physicsOnly) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1441" name="BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe(True)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe(True)" methodname="BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="1603844922" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 11)
+  But was:  (11, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.BlockedLowCostCandidateIsNotSentThroughMovementAsAProbe (System.Boolean physicsOnly) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1451" name="ChoosingASaferDoorSpendsTheTurnWithoutThenEnteringDanger" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.ChoosingASaferDoorSpendsTheTurnWithoutThenEnteringDanger" methodname="ChoosingASaferDoorSpendsTheTurnWithoutThenEnteringDanger" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="768358681" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001589" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.ChoosingASaferDoorSpendsTheTurnWithoutThenEnteringDanger () [0x0008c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:73
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1450" name="EqualDangerRetreatCostsKeepPreferredDirection" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.EqualDangerRetreatCostsKeepPreferredDirection" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.003299" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1448" name="EqualDangerRetreatCostsKeepPreferredDirection(False)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.EqualDangerRetreatCostsKeepPreferredDirection(False)" methodname="EqualDangerRetreatCostsKeepPreferredDirection" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="876033913" result="Passed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1449" name="EqualDangerRetreatCostsKeepPreferredDirection(True)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.EqualDangerRetreatCostsKeepPreferredDirection(True)" methodname="EqualDangerRetreatCostsKeepPreferredDirection" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="556631587" result="Passed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1445" name="HazardousDiagonalCannotCutTwoBlockedCorners" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.HazardousDiagonalCannotCutTwoBlockedCorners" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.005941" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1443" name="HazardousDiagonalCannotCutTwoBlockedCorners(False)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.HazardousDiagonalCannotCutTwoBlockedCorners(False)" methodname="HazardousDiagonalCannotCutTwoBlockedCorners" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="655190566" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.HazardousDiagonalCannotCutTwoBlockedCorners (System.Boolean footprint) [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1444" name="HazardousDiagonalCannotCutTwoBlockedCorners(True)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.HazardousDiagonalCannotCutTwoBlockedCorners(True)" methodname="HazardousDiagonalCannotCutTwoBlockedCorners" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="2073680563" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.003691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.HazardousDiagonalCannotCutTwoBlockedCorners (System.Boolean footprint) [0x000b9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1446" name="SaferLockedDoorUsesExistingMatchingKeyAsOneStationaryAction" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.SaferLockedDoorUsesExistingMatchingKeyAsOneStationaryAction" methodname="SaferLockedDoorUsesExistingMatchingKeyAsOneStationaryAction" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="36263920" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001738" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.SaferLockedDoorUsesExistingMatchingKeyAsOneStationaryAction () [0x00112] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1447" name="SandedIceRestoresActualCleanDirectPreference" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.SandedIceRestoresActualCleanDirectPreference" methodname="SandedIceRestoresActualCleanDirectPreference" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="1852646677" result="Passed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001391" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1439" name="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.006475" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1435" name="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(8,5,10,11)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(8,5,10,11)" methodname="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="1124902598" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 11)
+  But was:  (11, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance (System.Int32 threatX, System.Int32 threatY, System.Int32 expectedX, System.Int32 expectedY) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1436" name="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(12,5,10,11)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(12,5,10,11)" methodname="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="718394050" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (10, 11)
+  But was:  (9, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance (System.Int32 threatX, System.Int32 threatY, System.Int32 expectedX, System.Int32 expectedY) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1437" name="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(5,8,11,10)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(5,8,11,10)" methodname="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="382922077" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (11, 10)
+  But was:  (11, 11)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance (System.Int32 threatX, System.Int32 threatY, System.Int32 expectedX, System.Int32 expectedY) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1438" name="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(5,12,11,10)" fullname="CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance(5,12,11,10)" methodname="UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance" classname="CavesOfOoo.Tests.DangerAwareMovementCounterTests" runstate="Runnable" seed="711140741" result="Failed" start-time="2026-10-09 06:42:33Z" end-time="2026-10-09 06:42:33Z" duration="0.001302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (11, 10)
+  But was:  (11, 9)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DangerAwareMovementCounterTests.UnequalAxisBearingRejectsAFallbackThatDoesNotIncreaseDistance (System.Int32 threatX, System.Int32 threatY, System.Int32 expectedX, System.Int32 expectedY) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DangerAwareMovementCounterTests.cs:36
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
