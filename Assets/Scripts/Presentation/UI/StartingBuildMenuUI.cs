@@ -124,7 +124,9 @@ namespace CavesOfOoo.Rendering
                 DrawText(CARD_X, CONTENT_Y + i, lines[i], color);
             }
 
-            DrawText(0, BORDER_H, "[Up/Down] browse  [1-" + model.Options.Count + "] jump  [Enter] begin", QudColorParser.DarkGray);
+            DrawText(0, BORDER_H, NativeGamepadInput.IsConnected
+                ? "[D-pad] browse  [A] begin"
+                : "[Up/Down] browse  [1-" + model.Options.Count + "] jump  [Enter] begin", QudColorParser.DarkGray);
         }
 
         private void DrawFrame()

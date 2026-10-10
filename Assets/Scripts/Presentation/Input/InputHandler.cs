@@ -87,6 +87,8 @@ namespace CavesOfOoo.Rendering
         // this field + its two adapters are the thin Unity glue.
         private readonly SaveLoadInputController _saveLoadInputController = new SaveLoadInputController();
         private static readonly UnityInputProbeAdapter _saveLoadInputProbe = new UnityInputProbeAdapter();
+        private static readonly IInputProbe _bootGamepadProbe = new GamepadChoiceInputProbe(_saveLoadInputProbe, KeyCode.C, KeyCode.N);
+        private static readonly IInputProbe _deathGamepadProbe = new GamepadChoiceInputProbe(_saveLoadInputProbe, KeyCode.L, KeyCode.R);
         private static readonly SaveGameServiceAdapter _saveLoadService = new SaveGameServiceAdapter();
 
         // Phase 4b: death-screen modal. Polled HP-based activation rather
@@ -427,7 +429,7 @@ namespace CavesOfOoo.Rendering
                 // hasSave=true.
                 if (_bootMenuController.IsActive)
                 {
-                    _bootMenuController.Tick(_saveLoadInputProbe, _saveLoadService, MessageLog.Add);
+                    _bootMenuController.Tick(_bootGamepadProbe, _saveLoadService, MessageLog.Add);
                     return;
                 }
 
@@ -444,7 +446,7 @@ namespace CavesOfOoo.Rendering
                 }
                 if (_deathScreenController.IsActive)
                 {
-                    _deathScreenController.Tick(_saveLoadInputProbe, _saveLoadService, _deathScreenRestarter, MessageLog.Add);
+                    _deathScreenController.Tick(_deathGamepadProbe, _saveLoadService, _deathScreenRestarter, MessageLog.Add);
                     return;  // suppress all other input while the modal is up
                 }
 
@@ -3904,6 +3906,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetDirectionKeyDown(out int dx, out int dy)
         {
+            if (NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
             dx = 0;
             dy = 0;
 
@@ -3943,6 +3946,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetMoveInput(out int dx, out int dy)
         {
+            if (NativeGamepadInput.TryDirection(false, out dx, out dy)) return true;
             dx = 0;
             dy = 0;
 

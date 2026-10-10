@@ -160,7 +160,7 @@ namespace CavesOfOoo.Rendering
 
             // Hint at bottom (outside the border)
             int hintY = BORDER_H;
-            DrawText(0, hintY, "[Enter]select [Tab]close", QudColorParser.DarkGray);
+            DrawText(0, hintY, NativeGamepadInput.IsConnected ? "[A]select [B]close" : "[Enter]select [Tab]close", QudColorParser.DarkGray);
         }
 
         private void ClearAll()

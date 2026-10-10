@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Thin wrapper over Unity input that checks BOTH the legacy <c>UnityEngine.Input</c>
-    /// and the New Input System's <c>Keyboard.current</c>. The legacy system's
+    /// Shared keyboard and built-in gamepad boundary. Checks native gamepad bindings,
+    /// legacy <c>UnityEngine.Input</c> and the New Input System's <c>Keyboard.current</c>. The legacy system's
     /// <c>GetKeyDown</c> and the new system's <c>wasPressedThisFrame</c> are both
     /// one-frame-precise, so together they reliably detect "pressed this frame"
     /// for user keyboard input across either input backend.
@@ -78,6 +78,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKeyDown(KeyCode keyCode)
         {
+            if (NativeGamepadInput.GetKeyDown(keyCode)) return true;
             if (Input.GetKeyDown(keyCode))
                 return true;
 
@@ -92,6 +93,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKey(KeyCode keyCode)
         {
+            if (NativeGamepadInput.GetKey(keyCode)) return true;
             if (Input.GetKey(keyCode))
                 return true;
 
@@ -106,6 +108,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static bool GetKeyUp(KeyCode keyCode)
         {
+            if (NativeGamepadInput.GetKeyUp(keyCode)) return true;
             if (Input.GetKeyUp(keyCode))
                 return true;
 

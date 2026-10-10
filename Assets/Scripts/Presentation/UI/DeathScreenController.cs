@@ -50,6 +50,7 @@ namespace CavesOfOoo.Rendering
             if (IsActive) return;
             IsActive = true;
             log?.Invoke("You are dead. Press [L] to load last save, [R] to restart.");
+            log?.Invoke("Controller: [A] load, [X] restart.");
         }
 
         /// <summary>

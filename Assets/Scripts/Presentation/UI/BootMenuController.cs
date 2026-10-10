@@ -52,6 +52,7 @@ namespace CavesOfOoo.Rendering
 
             IsActive = true;
             log?.Invoke("Save detected. Press [C] to continue, [N] for new game.");
+            log?.Invoke("Controller: [A] continue, [X] new game.");
             return true;
         }
 

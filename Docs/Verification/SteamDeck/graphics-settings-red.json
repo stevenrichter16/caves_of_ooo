@@ -1,0 +1,45 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"73b81c4a786d4b72b342ef2c5e09fcde\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791614280540,\"finished_unix_ms\":1791614285607,\"last_update_unix_ms\":1791614285607,\"progress\":{\"completed\":1,\"total\":1,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791614285551,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.SteamDeckBuildSettingsTests.LinuxPlayerUsesVerifiedVulkanInsteadOfAutomaticOpenGL\",\"last_finished_unix_ms\":1791614285558,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.SteamDeckBuildSettingsTests.LinuxPlayerUsesVerifiedVulkanInsteadOfAutomaticOpenGL\",\"message\":\"  Unity automatic Linux selection chose OpenGL and reproduced a black world with a live HUD.\\n  Expected: False\\n  But was:  True\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "73b81c4a786d4b72b342ef2c5e09fcde",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791614280540,
+        "finished_unix_ms": 1791614285607,
+        "last_update_unix_ms": 1791614285607,
+        "progress": {
+          "completed": 1,
+          "total": 1,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791614285551,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.SteamDeckBuildSettingsTests.LinuxPlayerUsesVerifiedVulkanInsteadOfAutomaticOpenGL",
+          "last_finished_unix_ms": 1791614285558,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckBuildSettingsTests.LinuxPlayerUsesVerifiedVulkanInsteadOfAutomaticOpenGL",
+              "message": "  Unity automatic Linux selection chose OpenGL and reproduced a black world with a live HUD.\n  Expected: False\n  But was:  True\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

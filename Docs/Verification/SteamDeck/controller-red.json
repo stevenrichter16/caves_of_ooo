@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "57926e81b9014a59b05ea5195592db36",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1791612628559,
+      "finished_unix_ms": 1791612644641,
+      "last_update_unix_ms": 1791612644641,
+      "progress": {
+        "completed": 37,
+        "total": 37,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1791612644306,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.TriggerWaitIsSuppressedForEntireModifiedPress",
+        "last_finished_unix_ms": 1791612644308,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(A,Alpha1,Return)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(Circle,Alpha2,Escape)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(X,Alpha3,I)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(Y,Alpha4,C)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(LeftShoulder,Alpha5,L)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(RightShoulder,Alpha6,G)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(Start,Alpha7,Tab)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(Select,Alpha8,F1)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(LeftStick,Alpha9,X)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.AbilityChordDoesNotLeakBaseActionWhenModifierReleased(RightStick,Alpha0,M)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(A,Return)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(Circle,Escape)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(X,I)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(Y,C)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(LeftShoulder,L)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(RightShoulder,G)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(Start,Tab)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(Select,F1)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(LeftStick,X)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.BuiltInButtonHasOnePressHeldAndRelease(RightStick,M)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.ControllerCanChooseAStartingBuildExactlyOnce",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.DpadDiagonalIsNotReducedToCardinal",
+            "message": "  GetMoveInput\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.KeyboardWorksWithIdleGamepadAndAfterDisconnect",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.ModifierPressedAfterHeldConfirmDoesNotCast",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.NativeGamepadInputTests.RightStickCyclesSlotsAndPagesWithoutWalking",
+            "message": "  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

@@ -47,6 +47,13 @@ namespace CavesOfOoo.Rendering
         public static string BuildReaderText()
         {
             var lines = new System.Collections.Generic.List<string> { "Controls", "" };
+            lines.Add("Controller: D-pad/left stick move (including diagonals). A confirm/cast selected slot; B back; X inventory; Y interact.");
+            lines.Add("LB look; RB pick up; RT wait/underfoot; Menu pause; View help/item details; LS click skills; RS click abilities.");
+            lines.Add("Right stick left/right selects hotbar slots; up/down pages readers.");
+            lines.Add("At save/death prompts: A continue/load; X new game/restart. At character selection: D-pad browse, A begin.");
+            lines.Add("Hold LT: A/B/X/Y/LB/RB/Menu/View/LS/RS activate slots 1/2/3/4/5/6/7/8/9/0.");
+            lines.Add("Hold LT + D-pad: up stairs/world map; down stairs/enter destination; left quests; right factions. Release directions between actions.");
+            lines.Add("");
             foreach (var row in Bindings) lines.Add(row.Key + " - " + row.What);
             lines.Add("\nInside inventory: / search names; F1 selected item/craft details; F2 current effects. Escape first exits search.");
             lines.Add("Inside loot and trade: F1 selected item details. Reading is free; Escape returns to the same selection.");
@@ -68,6 +75,8 @@ namespace CavesOfOoo.Rendering
         public static void PrintBootSummary(Action<string> log)
         {
             if (log == null) return;
+            if (NativeGamepadInput.IsConnected)
+                log("Controller: D-pad/stick move; A confirm; X inventory; Y interact; Menu pause; View controls. Hold LT for abilities.");
             log("Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.");
             log("[X] skills, [M] abilities, [F5] save, [F1] full controls.");
             log("Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.");

@@ -14,6 +14,19 @@ namespace CavesOfOoo.Rendering
         public bool GetKeyDown(KeyCode k) => InputHelper.GetKeyDown(k);
     }
 
+    /// <summary>Maps A and X only inside a saved-game choice prompt. Keyboard
+    /// bindings and modifier-latched controller actions retain their meanings.</summary>
+    internal sealed class GamepadChoiceInputProbe : IInputProbe
+    {
+        readonly IInputProbe fallback;
+        readonly KeyCode resume, restart;
+        public GamepadChoiceInputProbe(IInputProbe fallback, KeyCode resume, KeyCode restart)
+        { this.fallback = fallback; this.resume = resume; this.restart = restart; }
+        public bool GetKeyDown(KeyCode key) => fallback.GetKeyDown(key)
+            || (key == resume && NativeGamepadInput.GetKeyDown(KeyCode.Return))
+            || (key == restart && NativeGamepadInput.GetKeyDown(KeyCode.I));
+    }
+
     /// <summary>
     /// Production <see cref="ISaveLoadService"/> wrapping
     /// <see cref="SaveGameService"/>'s static BeginNewGame / QuickSave / QuickLoad /
