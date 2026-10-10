@@ -2,8 +2,7 @@
 
 Status, 2026-10-10: implementation and native review complete. Final focused
 EditMode verification passed **407/407**, zero skipped; final native Play passed
-**39/39**, with visual acceptance of the corrected labels and menus. Linux build,
-package and delivery verification remain pending.
+**39/39**, with visual acceptance of the corrected labels and menus. The Linux build and archive verification are complete; source commit `44d8484c8` is pushed to main.
 No physical Steam Deck test is claimed. This
 replaces the earlier native binding plan in `STEAM-DECK-PLAYABILITY.md` and
 requires no manually configured Steam keyboard layout. Keyboard controls remain
@@ -164,8 +163,7 @@ The report's `publicRouteComplete` field belongs to an older content-audit mode
 and is not the controller completion criterion; this mode uses `complete`, its
 39 checks and error counts.
 
-Native Play and screenshot review are complete. A fresh Linux player build,
-launcher/help packaging and checksums remain pending root verification. The Play route is
+Native Play and screenshot review are complete. The fresh Linux player, launcher/help package and checksums have been verified (delivery receipt below). The Play route is
 finite and synthetic; it does not cast an ability or attack a creature, prove
 complete Qud parity, test Steam Input remapping, measure physical Deck performance
 or establish ergonomics. Native macOS test success is not Linux/Deck runtime
@@ -188,5 +186,17 @@ success. Do not claim delivery until those separate receipts exist.
   `Verification/SteamDeckQudControls/` receipts.
 
 Self-review: 🟢 final focused native GREEN, planner review and native Play/visual
-acceptance; 🟡 Linux build/package/delivery pending; ⚪ explicit CoO adaptations and unsupported systems;
+acceptance and verified Linux package; ⚪ explicit CoO adaptations and unsupported systems;
 ⚪ physical Deck feel/performance unverified.
+
+
+## Linux delivery — 2026-10-10
+
+- Source: `44d8484c87ff85512e3414f49a3925ca870cb792`, fetched/rebased against main before push. This documentation-only follow-up does not change the built source.
+- Build job `build-1d5b0f420f`: Unity 6000.3.4f1, Linux x86_64, Mono, non-development, SampleScene, Vulkan. Succeeded in 22.25 seconds with zero errors and the same four pre-existing compiler warnings (effect-owner hiding, bootstrap unreachable branch, unused backstab field).
+- Archive: `Builds/SteamDeck/2026-10-10-qud-controls/CavesOfOoo-SteamDeck-QudControls-44d8484c8.tar.gz` (101,148,945 bytes).
+- SHA-256: `adc53ca75c2a76845cdcd62d062d3d4061a5ffe07ad95d839f770d5489f00d81`.
+- All 161 payload files were read back from the archive and matched their SHA-256 manifest; member list and launcher/player executable permissions matched. Current README and launcher are included, along with build/test provenance.
+- Receipts: `Verification/SteamDeckQudControls/build-report.json` and `package-checks.json`; the build folder also contains the full audit receipts and build-generated settings diff. Generated rendering/build settings were restored. Existing local Unity logs and Linux package configuration changes were preserved and excluded from these commits; packaging records the configuration difference.
+- On Deck: replace the entire old game folder with this archive's `CavesOfOoo` folder. Keep normal Steam Input **Gamepad** output; an old keyboard-only override masks the built-in buttons. No hand-authored keyboard mappings are required. Saves remain in the existing separate save directory.
+- Honesty bound: successful Linux compilation and verified packaging do not constitute running the binary on a physical Deck. Native macOS Input System/Play evidence is recorded above; Deck performance, ergonomics and Steam Input behavior remain unmeasured.
