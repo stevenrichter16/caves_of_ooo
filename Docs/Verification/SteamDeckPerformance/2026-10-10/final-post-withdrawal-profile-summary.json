@@ -1,0 +1,166 @@
+{
+  "run": "ed533fbddfd04331a0adb5fcab235bd2",
+  "cases": 18,
+  "complete": true,
+  "failures": 0,
+  "profileFrames": 19196,
+  "wall": {
+    "samples": 19196,
+    "mean": 3.135424524100143,
+    "median": 2.1667693508788943,
+    "p95": 3.169458592310548,
+    "max": 964.1217589378357
+  },
+  "before": {
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetWidth": 1461,
+    "targetHeight": 918,
+    "msaa": 1,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "groundBuildCount": 40,
+    "gc0": 9976,
+    "gc1": 9976,
+    "gc2": 9976,
+    "filter": "Bilinear",
+    "zone": "Overworld.11.10.0",
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": false,
+    "timeScale": 1.0
+  },
+  "after": {
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetWidth": 1461,
+    "targetHeight": 918,
+    "msaa": 1,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "groundBuildCount": 40,
+    "gc0": 9991,
+    "gc1": 9991,
+    "gc2": 9991,
+    "filter": "Bilinear",
+    "zone": "Overworld.11.10.0",
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": false,
+    "timeScale": 1.0
+  },
+  "markers": {
+    "COO.NativePresenter.Refresh": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.22341114258921593,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 84.844542
+      },
+      "active": {
+        "samples": 304,
+        "mean": 14.106502901315789,
+        "median": 13.667854,
+        "p95": 16.256459,
+        "max": 84.844542
+      }
+    },
+    "COO.GroundContact.Rasterize": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.1582476904923157,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 15.784792
+      },
+      "active": {
+        "samples": 304,
+        "mean": 9.991988220394736,
+        "median": 9.823187,
+        "p95": 11.927,
+        "max": 15.784792
+      }
+    },
+    "COO.ZoneRenderer.RenderCells": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.09301487632195884,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 77.00075
+      },
+      "active": {
+        "samples": 304,
+        "mean": 5.873093917763158,
+        "median": 5.4925204999999995,
+        "p95": 6.816167,
+        "max": 77.00075
+      }
+    },
+    "COO.EnvSprites.PostRender": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.1695150645480594,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 92.528458
+      },
+      "active": {
+        "samples": 304,
+        "mean": 10.70342652631579,
+        "median": 9.627416499999999,
+        "p95": 12.206375,
+        "max": 92.528458
+      }
+    },
+    "COO.ZoneRenderer.RenderZone": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.6942298293826518,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 134.592958
+      },
+      "active": {
+        "samples": 304,
+        "mean": 43.834676233552635,
+        "median": 41.800312500000004,
+        "p95": 50.337125,
+        "max": 134.592958
+      }
+    },
+    "COO.ZoneRenderer.RenderSidebar": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.0842099550403751,
+        "median": 0.046666,
+        "p95": 0.061042,
+        "max": 3.310708
+      },
+      "active": {
+        "samples": 19195,
+        "mean": 0.0842099550403751,
+        "median": 0.046666,
+        "p95": 0.061042,
+        "max": 3.310708
+      }
+    },
+    "COO.ZoneRenderer.RenderHotbar": {
+      "all": {
+        "samples": 19195,
+        "mean": 0.006014305027350873,
+        "median": 0.00575,
+        "p95": 0.008125,
+        "max": 0.034708
+      },
+      "active": {
+        "samples": 19195,
+        "mean": 0.006014305027350873,
+        "median": 0.00575,
+        "p95": 0.008125,
+        "max": 0.034708
+      }
+    }
+  }
+}

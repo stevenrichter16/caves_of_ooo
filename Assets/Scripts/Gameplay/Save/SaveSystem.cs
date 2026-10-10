@@ -51,6 +51,10 @@ namespace CavesOfOoo.Core
         private int _nextEntityToken = 1;
         private int _bodyWriteIndex;
 
+        // Writer-local diagnostic arm for exact-byte/throughput comparison.
+        // Gameplay uses the default cached writer path; no process-global mode.
+        internal bool UseLegacyFieldWriters { get; set; }
+
         public SaveWriter(Stream stream)
         {
             _writer = new BinaryWriter(stream);
@@ -76,7 +80,7 @@ namespace CavesOfOoo.Core
 
         public void WriteCheck(string name) => Write(CheckValue(name));
 
-        // Extension-only byte payloads; the legacy string encoding stays unchanged.
+        // Extension payloads and pre-encoded immutable metadata; legacy bytes stay unchanged.
         internal void WriteBytes(byte[] bytes) => _writer.Write(bytes);
 
         public void Write(int value) => _writer.Write(value);
@@ -924,7 +928,7 @@ namespace CavesOfOoo.Core
         }
     }
 
-    public static class SaveGraphSerializer
+    public static partial class SaveGraphSerializer
     {
         private static readonly object FieldCacheGate = new object();
         private static readonly Dictionary<Type, FieldInfo[]> PublicFieldCache = new Dictionary<Type, FieldInfo[]>();
@@ -1568,7 +1572,7 @@ namespace CavesOfOoo.Core
 
         private static void SavePart(Part part, SaveWriter writer)
         {
-            writer.WriteString(GetTypeName(part.GetType()));
+            WriteTypeName(part.GetType(), writer);
             part.OnBeforeSave(writer);
 
             if (part is StatusEffectsPart status)
@@ -1637,7 +1641,7 @@ namespace CavesOfOoo.Core
 
         private static void SaveEffect(Effect effect, SaveWriter writer)
         {
-            writer.WriteString(GetTypeName(effect.GetType()));
+            WriteTypeName(effect.GetType(), writer);
             effect.OnBeforeSave(writer);
             writer.Write(effect.Duration);
             WritePublicFields(effect, writer, EffectFieldFilter);
@@ -1971,7 +1975,7 @@ namespace CavesOfOoo.Core
 
         private static void SaveGoal(GoalHandler goal, SaveWriter writer)
         {
-            writer.WriteString(GetTypeName(goal.GetType()));
+            WriteTypeName(goal.GetType(), writer);
             writer.Write(goal.Age);
             WritePublicFields(goal, writer, GoalFieldFilter);
         }
@@ -1998,12 +2002,24 @@ namespace CavesOfOoo.Core
 
         private static void WritePublicFields(object obj, SaveWriter writer, Func<FieldInfo, bool> include = null)
         {
-            FieldInfo[] fields = GetSerializablePublicFields(obj.GetType(), include);
-            writer.Write(fields.Length);
-            for (int i = 0; i < fields.Length; i++)
+            if (writer.UseLegacyFieldWriters)
             {
-                writer.WriteString(fields[i].Name);
-                WriteFieldValue(fields[i].FieldType, fields[i].GetValue(obj), writer);
+                FieldInfo[] fields = GetSerializablePublicFields(obj.GetType(), include);
+                writer.Write(fields.Length);
+                for (int i = 0; i < fields.Length; i++)
+                {
+                    writer.WriteString(fields[i].Name);
+                    WriteFieldValue(fields[i].FieldType, fields[i].GetValue(obj), writer);
+                }
+                return;
+            }
+
+            var plan = GetSerializableFieldWriters(obj.GetType(), include);
+            writer.Write(plan.Length);
+            for (int i = 0; i < plan.Length; i++)
+            {
+                writer.WriteBytes(plan[i].EncodedName);
+                plan[i].WriteCurrentValue(obj, writer);
             }
         }
 
@@ -2246,7 +2262,7 @@ namespace CavesOfOoo.Core
             bool writesConcreteType = declaredType == null || declaredType.IsAbstract || declaredType.IsInterface || actualType != declaredType;
             writer.Write(writesConcreteType);
             if (writesConcreteType)
-                writer.WriteString(GetTypeName(actualType));
+                WriteTypeName(actualType, writer);
 
             if (value is Entity entity)
                 writer.WriteEntityReference(entity);

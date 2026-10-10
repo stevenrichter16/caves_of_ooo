@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "59fe6ab7ac134b4795dc6d1ec31cb9b9",
+    "status": "succeeded",
+    "mode": "EditMode",
+    "started_unix_ms": 1791650147539,
+    "finished_unix_ms": 1791651356596,
+    "last_update_unix_ms": 1791651356596,
+    "progress": {
+      "completed": 1903,
+      "total": 1903,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1791651355344,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.WorldFxCoordinatorTests.ZoneChange_CancelsActiveAndQueuedWork",
+      "last_finished_unix_ms": 1791651355351,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": {
+      "mode": "EditMode",
+      "summary": {
+        "total": 1903,
+        "passed": 1902,
+        "failed": 0,
+        "skipped": 1,
+        "durationSeconds": 1191.2731315,
+        "resultState": "Skipped:Ignored"
+      },
+      "results": [
+        {
+          "name": "CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup",
+          "fullName": "CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup",
+          "state": "Skipped:Ignored",
+          "durationSeconds": 0.0027483,
+          "message": "This runtime does not expose a usable per-thread allocation counter; use native profiler allocations.",
+          "stackTrace": "at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:148\n",
+          "output": ""
+        }
+      ]
+    }
+  },
+  "hint": null
+}

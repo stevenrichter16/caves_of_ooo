@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="20" result="Failed" start-time="2026-10-10T16:21:43.0834850Z" end-time="2026-10-10T16:21:44.1388380Z" duration="1.055325" total="9" passed="8" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="74" random-seed="1584597252">
+  <command-line><![CDATA[/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-save-descriptor-red-runner/descriptor-adversarial-red.xml --where "class == CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1025" name="EditModeRunner.dll" fullname="/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-10T16:21:43.0834850Z" end-time="2026-10-10T16:21:44.1388380Z" duration="1.055325" total="9" passed="8" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-save-descriptor-red-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-save-descriptor-red-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="38654" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1026" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-10T16:21:43.0849660Z" end-time="2026-10-10T16:21:44.1388360Z" duration="1.053855" total="9" passed="8" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1027" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-10T16:21:43.0850590Z" end-time="2026-10-10T16:21:44.1388300Z" duration="1.053756" total="9" passed="8" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1013" name="SteamDeckSaveDescriptorAdversarialTests" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-10T16:21:43.0853900Z" end-time="2026-10-10T16:21:44.1388150Z" duration="1.053410" total="9" passed="8" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1019" name="AliasedCyclicEntityReferencesAndTypeNamesRoundtrip" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.AliasedCyclicEntityReferencesAndTypeNamesRoundtrip" methodname="AliasedCyclicEntityReferencesAndTypeNamesRoundtrip" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="745695248" result="Passed" start-time="2026-10-10T16:21:43.0863120Z" end-time="2026-10-10T16:21:43.0978600Z" duration="0.011572" asserts="3" />
+          <test-case id="1014" name="ArbitraryPredicateDoesNotExecuteUnderMetadataLock" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.ArbitraryPredicateDoesNotExecuteUnderMetadataLock" methodname="ArbitraryPredicateDoesNotExecuteUnderMetadataLock" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="1475539631" result="Failed" label="Error" start-time="2026-10-10T16:21:43.0984220Z" end-time="2026-10-10T16:21:44.1281720Z" duration="1.029735" asserts="1">
+            <failure>
+              <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> NUnit.Framework.AssertionException :   Caller predicates must not hold a lock needed by another metadata query.
+  Expected: True
+  But was:  False
+
+
+  1)   Caller predicates must not hold a lock needed by another metadata query.
+  Expected: True
+  But was:  False
+
+]]></message>
+              <stack-trace><![CDATA[   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.ArbitraryPredicateDoesNotExecuteUnderMetadataLock() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorAdversarialTests.cs:line 67
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+--AssertionException
+   at NUnit.Framework.Assert.ReportFailure(String message)
+   at NUnit.Framework.Assert.ReportFailure(ConstraintResult result, String message, Object[] args)
+   at NUnit.Framework.Assert.That[TActual](TActual actual, IResolveConstraint expression, String message, Object[] args)
+   at NUnit.Framework.Assert.IsTrue(Boolean condition, String message, Object[] args)
+   at CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.<>c__DisplayClass7_0.<ArbitraryPredicateDoesNotExecuteUnderMetadataLock>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorAdversarialTests.cs:line 63
+   at CavesOfOoo.Core.SaveGraphSerializer.<>c__DisplayClass75_0.<GetSerializablePublicFields>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at System.Array.FindAll[T](T[] array, Predicate`1 match)
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializablePublicFields(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializableFieldWriters(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveFieldWriters.cs:line 37
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Caller predicates must not hold a lock needed by another metadata query.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.<>c__DisplayClass7_0.<ArbitraryPredicateDoesNotExecuteUnderMetadataLock>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorAdversarialTests.cs:line 63
+   at CavesOfOoo.Core.SaveGraphSerializer.<>c__DisplayClass75_0.<GetSerializablePublicFields>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at System.Array.FindAll[T](T[] array, Predicate`1 match)
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializablePublicFields(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializableFieldWriters(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveFieldWriters.cs:line 37
+]]></stack-trace>
+              </assertion>
+              <assertion result="Error">
+                <message><![CDATA[System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.
+  ----> NUnit.Framework.AssertionException :   Caller predicates must not hold a lock needed by another metadata query.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.ArbitraryPredicateDoesNotExecuteUnderMetadataLock() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorAdversarialTests.cs:line 67
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+--AssertionException
+   at NUnit.Framework.Assert.ReportFailure(String message)
+   at NUnit.Framework.Assert.ReportFailure(ConstraintResult result, String message, Object[] args)
+   at NUnit.Framework.Assert.That[TActual](TActual actual, IResolveConstraint expression, String message, Object[] args)
+   at NUnit.Framework.Assert.IsTrue(Boolean condition, String message, Object[] args)
+   at CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.<>c__DisplayClass7_0.<ArbitraryPredicateDoesNotExecuteUnderMetadataLock>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorAdversarialTests.cs:line 63
+   at CavesOfOoo.Core.SaveGraphSerializer.<>c__DisplayClass75_0.<GetSerializablePublicFields>b__0(FieldInfo field) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at System.Array.FindAll[T](T[] array, Predicate`1 match)
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializablePublicFields(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:line 2071
+   at CavesOfOoo.Core.SaveGraphSerializer.GetSerializableFieldWriters(Type type, Func`2 include) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveFieldWriters.cs:line 37
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1024" name="ArbitraryPredicatesDoNotReuseAnEarlierFilteredPlan" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.ArbitraryPredicatesDoNotReuseAnEarlierFilteredPlan" methodname="ArbitraryPredicatesDoNotReuseAnEarlierFilteredPlan" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="1277975123" result="Passed" start-time="2026-10-10T16:21:44.1282680Z" end-time="2026-10-10T16:21:44.1293920Z" duration="0.001124" asserts="2" />
+          <test-suite type="ParameterizedMethod" id="1018" name="EveryDirectFieldReadsItsCurrentValue" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.EveryDirectFieldReadsItsCurrentValue" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-10T16:21:44.1294130Z" end-time="2026-10-10T16:21:44.1370540Z" duration="0.007641" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54">
+            <test-case id="1015" name="EveryDirectFieldReadsItsCurrentValue(&quot;render&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.EveryDirectFieldReadsItsCurrentValue(&quot;render&quot;)" methodname="EveryDirectFieldReadsItsCurrentValue" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="1799385291" result="Passed" start-time="2026-10-10T16:21:44.1294830Z" end-time="2026-10-10T16:21:44.1342580Z" duration="0.004775" asserts="26" />
+            <test-case id="1016" name="EveryDirectFieldReadsItsCurrentValue(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.EveryDirectFieldReadsItsCurrentValue(&quot;physics&quot;)" methodname="EveryDirectFieldReadsItsCurrentValue" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="610302917" result="Passed" start-time="2026-10-10T16:21:44.1342800Z" end-time="2026-10-10T16:21:44.1351330Z" duration="0.000853" asserts="12" />
+            <test-case id="1017" name="EveryDirectFieldReadsItsCurrentValue(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.EveryDirectFieldReadsItsCurrentValue(&quot;thermal&quot;)" methodname="EveryDirectFieldReadsItsCurrentValue" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="1910321723" result="Passed" start-time="2026-10-10T16:21:44.1351480Z" end-time="2026-10-10T16:21:44.1367170Z" duration="0.001569" asserts="16" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1023" name="FixedCategoryPlansRetainTheirExclusions" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.FixedCategoryPlansRetainTheirExclusions" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10T16:21:44.1372560Z" end-time="2026-10-10T16:21:44.1384480Z" duration="0.001192" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="11">
+            <test-case id="1021" name="FixedCategoryPlansRetainTheirExclusions(&quot;effect&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.FixedCategoryPlansRetainTheirExclusions(&quot;effect&quot;)" methodname="FixedCategoryPlansRetainTheirExclusions" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="1613017994" result="Passed" start-time="2026-10-10T16:21:44.1372790Z" end-time="2026-10-10T16:21:44.1379830Z" duration="0.000704" asserts="6" />
+            <test-case id="1022" name="FixedCategoryPlansRetainTheirExclusions(&quot;goal&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.FixedCategoryPlansRetainTheirExclusions(&quot;goal&quot;)" methodname="FixedCategoryPlansRetainTheirExclusions" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="577888271" result="Passed" start-time="2026-10-10T16:21:44.1379940Z" end-time="2026-10-10T16:21:44.1384270Z" duration="0.000432" asserts="5" />
+          </test-suite>
+          <test-case id="1020" name="PartHooksKeepOrderAndCallerThreadInBothModes" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests.PartHooksKeepOrderAndCallerThreadInBothModes" methodname="PartHooksKeepOrderAndCallerThreadInBothModes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorAdversarialTests" runstate="Runnable" seed="681062377" result="Passed" start-time="2026-10-10T16:21:44.1384600Z" end-time="2026-10-10T16:21:44.1387860Z" duration="0.000326" asserts="3" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

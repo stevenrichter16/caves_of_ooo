@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "358f96c4fb414219a6b9b7186c3a856b",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1791649863558,
+    "finished_unix_ms": 1791649955565,
+    "last_update_unix_ms": 1791649955565,
+    "progress": {
+      "completed": 30,
+      "total": 30,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1791649954546,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.SteamDeckNativePaintOwnerTests.VillageNeedsCurrentAuthoredOwnerAndActualBody(\"renderer\")",
+      "last_finished_unix_ms": 1791649955161,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.SteamDeckNativePaintAdversarialTests.CrossCellRenderMutation_PreservesFallbackAndOneEvent(True)",
+          "message": "  A mutation before target Render needs its fresh glyph; after target Render retains the already selected glyph. Neither may be hidden by a stale native claim.\n  Expected: same as <CP437_3F (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SteamDeckNativePaintAdversarialTests.DirectCellRefresh_UsesCurrentGlyphWithoutLeakingDeferredPaint",
+          "message": "  A stale presenter recipe must not swallow the explicitly refreshed glyph.\n  Expected: same as <CP437_3F (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SteamDeckNativePaintAdversarialTests.UnsubmittedNativeBody_CannotHideFreshDirectFallback(\"renderer\")",
+          "message": "  Actual native output disappeared; cached membership is not ownership proof.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SteamDeckNativePaintAdversarialTests.UnsubmittedNativeBody_CannotHideFreshDirectFallback(\"root\")",
+          "message": "  Actual native output disappeared; cached membership is not ownership proof.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SteamDeckNativePaintAdversarialTests.UnsubmittedNativeBody_CannotHideFreshDirectFallback(\"force-off\")",
+          "message": "  Actual native output disappeared; cached membership is not ownership proof.\n  Expected: True\n  But was:  False\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

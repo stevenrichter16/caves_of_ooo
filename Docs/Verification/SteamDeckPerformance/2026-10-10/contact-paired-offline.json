@@ -1,0 +1,70 @@
+{
+  "runtime": ".NET 10.0.5",
+  "architecture": "Arm64",
+  "os": "macOS 26.0.0",
+  "configuration": "Release; DOTNET_TieredCompilation=0",
+  "baseline": "HEAD bf3c2468b contact raster, including opaque skips",
+  "input": "Identical borrowed List<Placed> per case; deterministic seed 177; 4,000 sampled positions with yaw i%4; mixed-overlap repeats each shape four times",
+  "measurement": "12 warmups per algorithm; 21 measured batches per algorithm, 24 full calls each; balanced rotating order; medians in milliseconds per call; full 128,000-byte equality checked before timing",
+  "limitation": "Synthetic identical-input CPU diagnostic on .NET 10 ARM64. Does not establish Unity Mono/IL2CPP or Steam Deck performance. The matched Unity route separately showed the candidate slower.",
+  "results": [
+    {
+      "name": "solid-grid",
+      "placements": 4000,
+      "byteIdentical": true,
+      "baselineMs": 1.1561583333333334,
+      "bandsMs": 1.1902583333333332,
+      "rowReuseMs": 1.1061041666666667,
+      "bandsRatio": 1.0294942301732029,
+      "rowReuseRatio": 0.956706477630659
+    },
+    {
+      "name": "tiny-grid",
+      "placements": 4000,
+      "byteIdentical": true,
+      "baselineMs": 0.29362083333333333,
+      "bandsMs": 0.3911625,
+      "rowReuseMs": 0.2988125,
+      "bandsRatio": 1.332202812584257,
+      "rowReuseRatio": 1.0176815337240488
+    },
+    {
+      "name": "thin-grid",
+      "placements": 4000,
+      "byteIdentical": true,
+      "baselineMs": 0.4860541666666667,
+      "bandsMs": 0.5962500000000001,
+      "rowReuseMs": 0.4875875,
+      "bandsRatio": 1.226715129486597,
+      "rowReuseRatio": 1.0031546552596162
+    },
+    {
+      "name": "mixed-grid",
+      "placements": 4000,
+      "byteIdentical": true,
+      "baselineMs": 0.7870625000000001,
+      "bandsMs": 0.9246875,
+      "rowReuseMs": 0.7937291666666666,
+      "bandsRatio": 1.1748590486778367,
+      "rowReuseRatio": 1.008470314195717
+    },
+    {
+      "name": "mixed-overlap",
+      "placements": 16000,
+      "byteIdentical": true,
+      "baselineMs": 2.8885625000000004,
+      "bandsMs": 3.348708333333333,
+      "rowReuseMs": 2.9171875000000003,
+      "bandsRatio": 1.1592992477515487,
+      "rowReuseRatio": 1.0099097734599822
+    }
+  ],
+  "decision": "Reject bands; do not adopt row-only alternative. Restore HEAD first-slate contact raster and retain existing tests.",
+  "nativeGate": {
+    "run": "3795617a6472467b8b49470d9110ef54",
+    "configuration": "Matched full-detail 1080p route",
+    "baselineContactMedianMs": 8.542,
+    "candidateContactMedianMs": 10.016,
+    "marker": "ReferenceGladeContactGeometry.Rasterize only; excludes gather/upload"
+  }
+}

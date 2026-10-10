@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="11" result="Failed" start-time="2026-10-10T16:16:41.4454560Z" end-time="2026-10-10T16:16:41.4742250Z" duration="0.028730" total="11" passed="8" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="16" random-seed="1958228683">
+  <command-line><![CDATA[/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-save-descriptor-red-runner/descriptor-red.xml --where "class == CavesOfOoo.Tests.SteamDeckSaveDescriptorTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SteamDeckSaveDescriptorTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1013" name="EditModeRunner.dll" fullname="/private/tmp/coo-save-descriptor-red-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-10T16:16:41.4454560Z" end-time="2026-10-10T16:16:41.4742250Z" duration="0.028730" total="11" passed="8" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="16">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-save-descriptor-red-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-save-descriptor-red-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="37519" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1014" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-10T16:16:41.4471060Z" end-time="2026-10-10T16:16:41.4742230Z" duration="0.027117" total="11" passed="8" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="16">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-10T16:16:41.4472240Z" end-time="2026-10-10T16:16:41.4742210Z" duration="0.026997" total="11" passed="8" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="16">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SteamDeckSaveDescriptorTests" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-10T16:16:41.4475630Z" end-time="2026-10-10T16:16:41.4742070Z" duration="0.026644" total="11" passed="8" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="16">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1011" name="CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup" methodname="CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="851623204" result="Failed" start-time="2026-10-10T16:16:41.4483820Z" end-time="2026-10-10T16:16:41.4667040Z" duration="0.018347" asserts="1">
+            <failure>
+              <message><![CDATA[  The warm common-field path must avoid reflection value boxing and repeated type metadata allocations.
+  Expected: less than or equal to 2048
+  But was:  432000
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 152
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  The warm common-field path must avoid reflection value boxing and repeated type metadata allocations.
+  Expected: less than or equal to 2048
+  But was:  432000
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 152
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1006" name="CurrentFieldValuesRetainExactLegacyBytes" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-10T16:16:41.4672430Z" end-time="2026-10-10T16:16:41.4717210Z" duration="0.004478" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="5">
+            <test-case id="1001" name="CurrentFieldValuesRetainExactLegacyBytes(&quot;render&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes(&quot;render&quot;)" methodname="CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="1213519212" result="Passed" start-time="2026-10-10T16:16:41.4673040Z" end-time="2026-10-10T16:16:41.4703440Z" duration="0.003040" asserts="1" />
+            <test-case id="1002" name="CurrentFieldValuesRetainExactLegacyBytes(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes(&quot;physics&quot;)" methodname="CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="706338129" result="Passed" start-time="2026-10-10T16:16:41.4703630Z" end-time="2026-10-10T16:16:41.4706110Z" duration="0.000249" asserts="1" />
+            <test-case id="1003" name="CurrentFieldValuesRetainExactLegacyBytes(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes(&quot;thermal&quot;)" methodname="CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="1385484146" result="Passed" start-time="2026-10-10T16:16:41.4706260Z" end-time="2026-10-10T16:16:41.4706930Z" duration="0.000067" asserts="1" />
+            <test-case id="1004" name="CurrentFieldValuesRetainExactLegacyBytes(&quot;derived&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes(&quot;derived&quot;)" methodname="CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="750524771" result="Passed" start-time="2026-10-10T16:16:41.4707030Z" end-time="2026-10-10T16:16:41.4708230Z" duration="0.000119" asserts="1" />
+            <test-case id="1005" name="CurrentFieldValuesRetainExactLegacyBytes(&quot;fallback&quot;)" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.CurrentFieldValuesRetainExactLegacyBytes(&quot;fallback&quot;)" methodname="CurrentFieldValuesRetainExactLegacyBytes" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="941900954" result="Passed" start-time="2026-10-10T16:16:41.4708340Z" end-time="2026-10-10T16:16:41.4714080Z" duration="0.000574" asserts="1" />
+          </test-suite>
+          <test-case id="1007" name="DirectMutationAfterWarmupChangesBytesAndStillMatchesLegacy" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.DirectMutationAfterWarmupChangesBytesAndStillMatchesLegacy" methodname="DirectMutationAfterWarmupChangesBytesAndStillMatchesLegacy" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="1490167192" result="Passed" start-time="2026-10-10T16:16:41.4718720Z" end-time="2026-10-10T16:16:41.4726630Z" duration="0.000791" asserts="2" />
+          <test-case id="1010" name="ImmutableFieldWriterPlanIsReused" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.ImmutableFieldWriterPlanIsReused" methodname="ImmutableFieldWriterPlanIsReused" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="2013408731" result="Failed" start-time="2026-10-10T16:16:41.4726740Z" end-time="2026-10-10T16:16:41.4730590Z" duration="0.000385" asserts="1">
+            <failure>
+              <message><![CDATA[  Repeated owners need cached write plans, not repeated reflection/type classification.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.ImmutableFieldWriterPlanIsReused() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 134
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Repeated owners need cached write plans, not repeated reflection/type classification.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.ImmutableFieldWriterPlanIsReused() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 134
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1012" name="LegacyVerificationModeBelongsToEachWriter" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.LegacyVerificationModeBelongsToEachWriter" methodname="LegacyVerificationModeBelongsToEachWriter" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="1827289809" result="Failed" start-time="2026-10-10T16:16:41.4730700Z" end-time="2026-10-10T16:16:41.4732720Z" duration="0.000201" asserts="1">
+            <failure>
+              <message><![CDATA[  Paired graph measurements must select the legacy loop without a process-global switch.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.LegacyVerificationModeBelongsToEachWriter() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 162
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Paired graph measurements must select the legacy loop without a process-global switch.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.LegacyVerificationModeBelongsToEachWriter() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/SteamDeckSaveDescriptorTests.cs:line 162
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1009" name="MutableIncludePredicateIsEvaluatedForEveryWrite" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.MutableIncludePredicateIsEvaluatedForEveryWrite" methodname="MutableIncludePredicateIsEvaluatedForEveryWrite" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="463990433" result="Passed" start-time="2026-10-10T16:16:41.4732820Z" end-time="2026-10-10T16:16:41.4735990Z" duration="0.000317" asserts="3" />
+          <test-case id="1008" name="NullableCollectionsAndAliasedReferencesRetainFraming" fullname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests.NullableCollectionsAndAliasedReferencesRetainFraming" methodname="NullableCollectionsAndAliasedReferencesRetainFraming" classname="CavesOfOoo.Tests.SteamDeckSaveDescriptorTests" runstate="Runnable" seed="887653335" result="Passed" start-time="2026-10-10T16:16:41.4736100Z" end-time="2026-10-10T16:16:41.4741670Z" duration="0.000557" asserts="3" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

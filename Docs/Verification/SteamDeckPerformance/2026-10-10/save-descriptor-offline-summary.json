@@ -1,0 +1,56 @@
+[
+  {
+    "receipt": "save-descriptor-offline-red.xml",
+    "total": "11",
+    "passed": "8",
+    "failed": "3",
+    "skipped": "0",
+    "runtime": "isolated .NET 10.0.5, not Unity",
+    "failures": [
+      {
+        "name": "CommonPrimitiveFieldLoopsDoNotAllocateBoxesAfterWarmup",
+        "message": "  The warm common-field path must avoid reflection value boxing and repeated type metadata allocations.\n  Expected: less than or equal to 2048\n  But was:  432000\n"
+      },
+      {
+        "name": "ImmutableFieldWriterPlanIsReused",
+        "message": "  Repeated owners need cached write plans, not repeated reflection/type classification.\n  Expected: not null\n  But was:  null\n"
+      },
+      {
+        "name": "LegacyVerificationModeBelongsToEachWriter",
+        "message": "  Paired graph measurements must select the legacy loop without a process-global switch.\n  Expected: not null\n  But was:  null\n"
+      }
+    ]
+  },
+  {
+    "receipt": "save-descriptor-offline-green.xml",
+    "total": "11",
+    "passed": "11",
+    "failed": "0",
+    "skipped": "0",
+    "runtime": "isolated .NET 10.0.5, not Unity",
+    "failures": []
+  },
+  {
+    "receipt": "save-descriptor-adversarial-offline-red.xml",
+    "total": "9",
+    "passed": "8",
+    "failed": "1",
+    "skipped": "0",
+    "runtime": "isolated .NET 10.0.5, not Unity",
+    "failures": [
+      {
+        "name": "ArbitraryPredicateDoesNotExecuteUnderMetadataLock",
+        "message": "System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.\n  ----> NUnit.Framework.AssertionException :   Caller predicates must not hold a lock needed by another metadata query.\n  Expected: True\n  But was:  False\n\n\n  1)   Caller predicates must not hold a lock needed by another metadata query.\n  Expected: True\n  But was:  False\n\n"
+      }
+    ]
+  },
+  {
+    "receipt": "save-descriptor-adversarial-offline-green.xml",
+    "total": "38",
+    "passed": "38",
+    "failed": "0",
+    "skipped": "0",
+    "runtime": "isolated .NET 10.0.5, not Unity",
+    "failures": []
+  }
+]

@@ -27,6 +27,8 @@ namespace CavesOfOoo.Editor
         public static void Run() => LaunchCore(true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Graphics Audit")]
+        public static void LaunchGraphics() => LaunchCore(false, graphicsAudit: true);
         public static void LaunchCombat() => LaunchCore(false,false,true);
         public static void LaunchBiome() => LaunchCore(false,false,false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Specialist Content Audit")]
@@ -55,7 +57,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Annex Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -72,6 +74,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetBool(Prefix+"graphicsAudit",graphicsAudit);
             SessionState.SetBool(Prefix+"profile",profile);
             SessionState.SetBool(Prefix+"combat",combat);
             SessionState.SetBool(Prefix+"biome",biome);
@@ -110,6 +113,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            if (SessionState.GetBool(Prefix+"graphicsAudit",false)) runner.ConfigureGraphicsAudit();
             if (SessionState.GetBool(Prefix+"biomeCaveCrops",false)) runner.ConfigureBotanicalCaveOnly();
             runner.Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false),SessionState.GetBool(Prefix+"curation",false),SessionState.GetBool(Prefix+"curationQuarantine",false),SessionState.GetBool(Prefix+"repairCultivation",false),SessionState.GetBool(Prefix+"biomeCrops",false),SessionState.GetBool(Prefix+"curationAnnex",false));
         }

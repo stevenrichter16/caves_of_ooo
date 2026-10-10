@@ -1,6 +1,6 @@
 # Steam Deck optimization implementation — 2026-10-10
 
-Status: first slate implemented and verified; measured second slate begins next. Baseline `5657211c5`. Scope is the seven
+Status: first slate and measured save follow-up implemented, reviewed and verified. Both slower rendering proposals were removed. Linux package delivery follows. Baseline `5657211c5`. Scope is the seven
 confirmed findings in STEAM-DECK-PERFORMANCE-AUDIT.md, with bounded follow-ups for
 combat cues/FX and measured pathfinding costs. Original implementation work; no
 Qud port. Keep Vulkan, gameplay/content, save recovery and the authored 3D style.
@@ -93,7 +93,7 @@ commit `f239fb81b` already added its useful tactical popup, while this older tes
 still rejected any announcement. Updated the test to assert the actual oil-film
 text and explicitly reject the repair-guidance command; no item production change.
 That job also executed nine source-order review tests: four expected REDs, five
-counterchecks passed. Review fix is in progress. Individual RED/GREEN receipts
+counterchecks passed. The source-order review fix passed the later 56-case follow-up. Individual RED/GREEN receipts
 are in `Docs/Verification/SteamDeckPerformance/2026-10-10`.
 
 The first save timing probe was rejected: nested fixture registration caused it
@@ -166,3 +166,19 @@ Menu → Graphics → Handheld preset.
 - Deferred: per-instance ambient/transient material blocks stay intact. Uniform
   static blocks are omitted, but actual GPU batching and Deck speed need hardware
   evidence. No gameplay/content was reduced.
+
+
+## Accepted scope and final verification
+
+The second-slate save descriptors preserve version-7 bytes and improve paired
+native capture medians by 53% for one zone and 69% for twenty zones. Native hidden
+painting and contact-band proposals passed correctness checks but lost the timing
+gate; they were removed completely. See `STEAM-DECK-OPTIMIZATION-SLATE2.md` for
+plans, negative experiments, scope divergence, final-source test receipts and
+matched configuration/active timings. The release keeps all seven first-slate
+areas plus the accepted save follow-up and controller-driven graphics audit.
+
+Final-source native regression: 240 passed / 0 failed / 1 allocation-counter skip.
+Earlier broad sweep: 1,902 passed / 0 failed / 1 skip; counts overlap and are not
+additive. Final ordinary input route: 18/18. Graphics menu audit: 12/12 with exact
+preference/device cleanup. Local measurements establish improvements, not Deck FPS.

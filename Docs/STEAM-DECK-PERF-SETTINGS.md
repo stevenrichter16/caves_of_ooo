@@ -1,8 +1,10 @@
 # Steam Deck presentation settings
 
 Status: implementation complete; native focused GREEN 10/10, surface GREEN
-4/4 and dedicated adversarial GREEN 26/26 reported by root. The updated
-AlphaOnboarding menu-shape pin also passed.
+4/4, dedicated adversarial GREEN 26/26 and isolated graphics Play audit GREEN
+12/12, including cleanup. The pre-rollback combined native run completed 1,903 cases:
+1,902 passed, zero failed, one allocation-counter check skipped. The updated
+AlphaOnboarding menu-shape pin passed. The later contact/native-paint candidates failed the movement timing gate and were rolled back; settings remain intact. Final post-rollback movement timing remains pending.
 Qud reference: none. Preferences affect presentation, never simulation/save data.
 
 ## Goal and scope
@@ -19,8 +21,8 @@ rendering agent owns NativeZone3DRenderSurface/presenter integration. All native
 Unity refresh/test/play calls are root-controlled. No commits or staging.
 
 Content readiness: 🟢 existing fonts, popup tilemaps, gamepad mappings and effects
-modes; no art/new camera/save migration needed. 🟡 submenu routing, preference
-migration and legacy low-detail behavior need regression coverage.
+modes; no art/new camera/save migration needed. 🟢 submenu routing, preference
+defaults and legacy low-detail behavior have native regression coverage.
 
 ## Verification sweep and corrections
 
@@ -130,6 +132,27 @@ pause wiring, NativeZone3DRenderSurface.Sync and its callers in both presenters.
 - Updated AlphaOnboardingTests' intentionally superseded menu-shape pin from four
   rows/Quit=3 to five rows/Graphics=3/Quit=4. Controls remains index2 and the
   existing callback/save/load lifecycle assertions remain unchanged.
+- Root's final isolated native Play audit `dafb9c430adf4cf5a43414be7266d18c`
+  passed 12/12 checks with zero failures or unexpected errors and reports complete.
+  Simulated Gamepad input opened the menu, applied both presets, and used B/Start
+  to restore the world. The three cleanup checks verify original preference key
+  presence/values, removal of the synthetic pad and restoration of the previous
+  current pad when it still exists. Integer preferences are retained as integers,
+  avoiding float-conversion loss. This supersedes the initial 9-check receipt.
+  Receipt and five captures:
+  `Docs/Verification/SteamDeckPerformance/GraphicsNative/dafb9c430adf4cf5a43414be7266d18c/report.json`.
+  This is script-observable routing/restoration evidence; screenshots require
+  visual review and do not establish physical-controller comfort or GPU speed.
+- Final combined native job `59fe6ab7ac134b4795dc6d1ec31cb9b9` completed 1,903
+  cases: 1,902 passed, zero failed and one skipped. Receipt:
+  `Docs/Verification/SteamDeckPerformance/2026-10-10/final-combined-native.json`.
+  The skipped save-writer allocation test reports an unavailable per-thread
+  allocation counter; no zero-allocation claim follows from that run.
+- Matched movement profile `3795617a6472467b8b49470d9110ef54` found regressions
+  in the later contact/native-paint experiments; both were rolled back. The
+  accepted graphics settings and presenter integration remain unchanged. Final
+  post-rollback timing is pending. Preset behavior and cleanup are verified
+  independently of any frame-time or hardware-performance claim.
 
 ## Files changed
 
@@ -148,12 +171,17 @@ pause wiring, NativeZone3DRenderSurface.Sync and its callers in both presenters.
   (+ meta) — 26 boundary, lifecycle and native-input/UI tests.
 - Assets/Tests/EditMode/Gameplay/Alpha/AlphaOnboardingTests.cs — update the previous
   flat-menu shape assertion for the intentionally added Graphics entry.
+- Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.GraphicsAudit.cs
+  (+ meta), ReferenceGladeNativePlayer.cs and
+  Assets/Editor/Scenarios/ReferenceGladeNativeBatch.cs — isolated native gamepad
+  route, exact preference/device cleanup and auditable completion checks.
 
-Can verify (script-observable): focused 10/10, surface 4/4 and dedicated
-adversarial 26/26 native GREEN; preference defaults and preservation; menu
-state/navigation through real InputSystem gamepad input, popup tilemap cleanup,
-no new camera and world-only target settings. The AlphaOnboarding shape pin
-passed. These checks do not substitute for the root-owned live route/profile.
+Can verify (script-observable): focused 10/10, surface 4/4, dedicated adversarial
+26/26 and isolated graphics Play audit 12/12 GREEN; preference defaults and exact
+restoration; menu navigation through real InputSystem gamepad events; synthetic
+device cleanup; popup tilemap cleanup; no new camera and world-only target
+settings. The AlphaOnboarding shape pin and final combined compatibility gate
+passed. These checks do not substitute for the pending movement profile.
 
 Cannot verify (visual/feel): Steam Deck GPU/CPU speed, perceived graphics quality,
 physical-controller comfort or full live-screen layout readability. The explicit
@@ -163,3 +191,12 @@ handheld preset is a user-selectable quality policy, not a performance guarantee
   Without a saved detail preference: low detail=true, derived world resolution=.75,
   shadows=false. Without saved FX mode: Reduced. Existing Full detail/effects and
   explicit per-dimension preferences remain authoritative.
+
+
+Final acceptance closure: after candidate withdrawal, native job
+`1128918628c74d2f9d3c41a5864c8e4c` completed 240 passed / zero failed /
+one unsupported allocation-counter skip. Final movement run
+`ed533fbddfd04331a0adb5fcab235bd2` passed all 18 route cases; full-zone active
+median 41.800 ms, tile cells 5.493 ms, environment sprites 9.627 ms. Captures
+were visually inspected. Full evidence and limitations are in
+`STEAM-DECK-OPTIMIZATION-SLATE2.md`; no physical Deck performance claim.
