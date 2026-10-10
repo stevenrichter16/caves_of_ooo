@@ -1,6 +1,6 @@
 # Steam Deck optimization implementation — 2026-10-10
 
-Status: first slate and measured save follow-up implemented, reviewed and verified. Both slower rendering proposals were removed. Linux package delivery follows. Baseline `5657211c5`. Scope is the seven
+Status: first slate and measured save follow-up implemented, reviewed and verified. Both slower rendering proposals were removed. Linux package built and archive verified; delivery recorded in STEAM-DECK-OPTIMIZATION-SLATE2.md. Baseline `5657211c5`. Scope is the seven
 confirmed findings in STEAM-DECK-PERFORMANCE-AUDIT.md, with bounded follow-ups for
 combat cues/FX and measured pathfinding costs. Original implementation work; no
 Qud port. Keep Vulkan, gameplay/content, save recovery and the authored 3D style.

@@ -1,6 +1,6 @@
 # Steam Deck optimization — second measured slate
 
-Status: accepted implementation, reviews, native regression and movement profile complete. Both slower rendering candidates removed. Linux package delivery follows. First-slate base: `bf3c2468b`.
+Status: accepted implementation, reviews, native regression and movement profile complete. Both slower rendering candidates removed. Linux package built and archive verified. First-slate base: `bf3c2468b`.
 CoO-original performance work; no Qud implementation or content changes.
 
 ## Evidence and priorities
@@ -183,3 +183,27 @@ measurements, not Steam Deck FPS, battery or thermal certification.
 
 Raw captures/markers: `Verification/DensityCompletion/ReferenceGlade/Native/ed533fbddfd04331a0adb5fcab235bd2`.
 Compact receipt: `Verification/SteamDeckPerformance/2026-10-10/final-post-withdrawal-profile-summary.json`.
+
+
+## Linux package delivery
+
+Source commit `97ad6347cbcb81cf0423115a4dc114758723fd93` built successfully for Linux x86_64 / Mono /
+Vulkan with Unity 6000.3.4f1. Build job `build-97f4e38af8`: 27.22 seconds,
+187.15 MB player, **zero errors / four compiler warnings**. Warnings are existing
+hidden `Owner` fields in plasma/poison effects, an unreachable bootstrap branch,
+and an unused Backstab field; no warning names a new serializer or audit source.
+Unity-generated build serialization changes were recorded under the local audit
+folder and the four initially clean settings assets restored after building.
+
+Archive: `Builds/SteamDeck/2026-10-10-performance/CavesOfOoo-SteamDeck-97ad6347c.tar.gz`
+(101,124,020 bytes). SHA-256:
+`10b21c947f13926410b55d9d7d873f2c0dfb5a13f108eb91137512df1114441d`.
+All **161 payload files** were streamed back out of the archive and matched
+their SHA-256 digests; game and launcher executable permissions verified. It
+includes built-in controls, Vulkan, Handheld graphics choices, instructions,
+source/build/test provenance and checksums. Existing saves remain in their
+separate user-data folder. The earlier archive was retained.
+
+Build/package receipts: `Verification/SteamDeckPerformance/2026-10-10/release-build-report.json`
+and `release-package-checks.json`. No physical Steam Deck run was possible here;
+large-world capture and occasional local frame spikes remain documented limits.
