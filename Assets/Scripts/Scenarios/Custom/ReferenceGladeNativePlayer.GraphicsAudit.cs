@@ -54,9 +54,11 @@ namespace CavesOfOoo.Scenarios.Custom
             };
             try
             {
+                // New-device controls must be observed neutral before the first press.
+                pad.MakeCurrent(); InputSystem.QueueStateEvent(pad, new GamepadState()); yield return null;
                 var menu = FindFirstObjectByType<PauseMenuUI>();
                 Require(menu != null, "native pause UI");
-                yield return PadTap(pad, GamepadButton.Start);
+                yield return PadTap(pad, GamepadButton.Select);
                 Check("gamepad_opens_pause", menu.Controller.IsOpen);
                 for (int i = 0; i < PauseMenuController.GraphicsIndex; i++) yield return PadTap(pad, GamepadButton.DpadDown);
                 yield return PadTap(pad, GamepadButton.South);
@@ -73,7 +75,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 yield return Capture("03-handheld-world");
                 var presenter = FindFirstObjectByType<SpawnRing3DPresenter>();
                 Check("handheld_native_world_visible", presenter != null && presenter.PresentationVisible);
-                yield return PadTap(pad, GamepadButton.Start);
+                yield return PadTap(pad, GamepadButton.Select);
                 for (int i = 0; i < PauseMenuController.GraphicsIndex; i++) yield return PadTap(pad, GamepadButton.DpadDown);
                 yield return PadTap(pad, GamepadButton.South);
                 yield return PadTap(pad, GamepadButton.DpadDown);

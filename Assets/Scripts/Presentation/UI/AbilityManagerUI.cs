@@ -394,7 +394,9 @@ namespace CavesOfOoo.Rendering
 
             // Footer hint.
             int hintY = borderH;
-            DrawText(0, hintY, "[Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close",
+            DrawText(0, hintY, NativeGamepadInput.IsConnected
+                ? "[A]use [Y]bind/clear [LT+RT]details [B]close"
+                : "[Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close",
                 QudColorParser.DarkGray);
         }
 

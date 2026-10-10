@@ -45,6 +45,7 @@ namespace CavesOfOoo.Rendering
         private bool _isOpen;
         private Entity _target;
         private Cell _cell;
+        private string _titleOverride;
         private readonly List<string> _statusLines = new List<string>();
 
         /// <summary>Status rows render between the title divider and the
@@ -116,18 +117,22 @@ namespace CavesOfOoo.Rendering
         /// An empty/null actions list means the menu renders a single row
         /// reading "(no actions available)" — caller can check emptiness
         /// beforehand and skip opening if they prefer.
+        /// A nonblank <paramref name="title"/> displays generic choices instead
+        /// of world-object title/status/pile information. Selection is unchanged.
         /// </summary>
         public void Open(Entity actor, Entity target, Cell cell, List<InventoryAction> actions,
-            Zone zone, bool isPileSummary = false)
+            Zone zone, bool isPileSummary = false, string title = null)
         {
             _isOpen = true;
             _target = target;
             _cell = cell;
+            _titleOverride = string.IsNullOrWhiteSpace(title) ? null : title;
             _statusLines.Clear();
-            _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
+            if (_titleOverride == null)
+                _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
             // Physical occupancy cannot distinguish a pile summary from the
             // selected owner's menu after the player chooses an exact target.
-            _cellIsPile = isPileSummary;
+            _cellIsPile = _titleOverride == null && isPileSummary;
             _actions.Clear();
             if (actions != null)
                 _actions.AddRange(actions);
@@ -362,7 +367,7 @@ namespace CavesOfOoo.Rendering
             return lines;
         }
 
-        private string BuildTitle() => BuildTitleFor(_cell, _target);
+        private string BuildTitle() => _titleOverride ?? BuildTitleFor(_cell, _target);
 
         private void Render()
         {
@@ -380,7 +385,7 @@ namespace CavesOfOoo.Rendering
             DrawPopupBorder(0, 0, POPUP_W, borderH, _statusLines.Count, visibleCount);
 
 
-            // Title = cell description (pile / single / terrain / empty)
+            // Generic choices supply their own title; world menus describe the cell.
             string title = BuildTitle();
             int maxTitleLen = POPUP_W - 4;
             if (!string.IsNullOrEmpty(title) && title.Length > maxTitleLen)
@@ -388,7 +393,8 @@ namespace CavesOfOoo.Rendering
             DrawText(2, 1, title, QudColorParser.BrightYellow);
 
             // Hint row at the bottom-right of title bar
-            const string hint = "[Enter]ok [Esc]x";
+            bool controller = NativeGamepadInput.IsConnected;
+            string hint = controller ? "[A]ok [B]back" : "[Enter]ok [Esc]x";
             int hintX = POPUP_W - hint.Length - 2;
             if (hintX > title.Length + 4)
                 DrawText(hintX, 1, hint, QudColorParser.DarkGray);
@@ -446,7 +452,10 @@ namespace CavesOfOoo.Rendering
                 if (_scrollOffset + visibleCount < totalRows)
                     DrawChar(POPUP_W - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
             }
-            DrawText(2, borderH, "[F1]details [Enter]ok [Esc]back", QudColorParser.Gray);
+            string footer = controller
+                ? (_titleOverride != null ? "[A]select [B]back" : "[A]select [B]back [LT+RT]details")
+                : (_titleOverride != null ? "[Enter]ok [Esc]back" : "[F1]details [Enter]ok [Esc]back");
+            DrawText(2, borderH, footer, QudColorParser.Gray);
         }
 
         private void ComputePopupPosition()

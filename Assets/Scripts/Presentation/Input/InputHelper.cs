@@ -79,6 +79,13 @@ namespace CavesOfOoo.Rendering
         public static bool GetKeyDown(KeyCode keyCode)
         {
             if (NativeGamepadInput.GetKeyDown(keyCode)) return true;
+            return GetKeyboardKeyDown(keyCode);
+        }
+
+        /// <summary>Physical keyboards only. World movement must not read menu
+        /// arrows synthesized by a controller selecting a direction.</summary>
+        public static bool GetKeyboardKeyDown(KeyCode keyCode)
+        {
             if (Input.GetKeyDown(keyCode))
                 return true;
 
@@ -94,6 +101,13 @@ namespace CavesOfOoo.Rendering
         public static bool GetKey(KeyCode keyCode)
         {
             if (NativeGamepadInput.GetKey(keyCode)) return true;
+            return GetKeyboardKey(keyCode);
+        }
+
+        /// <summary>Physical keyboards only, including legacy and Input System
+        /// keyboards. An idle or disconnected gamepad never masks them.</summary>
+        public static bool GetKeyboardKey(KeyCode keyCode)
+        {
             if (Input.GetKey(keyCode))
                 return true;
 

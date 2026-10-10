@@ -33,7 +33,7 @@ namespace CavesOfOoo.Rendering
             new Row("M", "ability manager (bind abilities to slots)"),
             new Row("1-0", "use hotbar ability"),
             new Row("Q", "quest log"),
-            new Row("Tab / Esc", "pause menu (save, load, controls, quit)"),
+            new Row("Tab / Esc", "pause menu (save, load, controls, graphics, quit)"),
             new Row("F5", "quick save"),
             new Row("F6", "quick load"),
             new Row("F12", "toggle player invincibility (debug; resets on load)"),
@@ -47,12 +47,21 @@ namespace CavesOfOoo.Rendering
         public static string BuildReaderText()
         {
             var lines = new System.Collections.Generic.List<string> { "Controls", "" };
-            lines.Add("Controller: D-pad/left stick move (including diagonals). A confirm/cast selected slot; B back; X inventory; Y interact.");
-            lines.Add("LB look; RB pick up; RT wait/underfoot; Menu pause; View help/item details; LS click skills; RS click abilities.");
-            lines.Add("Right stick left/right selects hotbar slots; up/down pages readers.");
+            lines.Add("Controller - world");
+            lines.Add("Left stick: select a direction for free. RT: step (diagonals supported); neutral stick waits one turn. Held RT repeats until danger; release to rearm.");
+            lines.Add("A: use the indicated cell, or a contextual action underfoot/nearby. LT + A: nearby interaction picker, or use the indicated cell.");
+            lines.Add("B: recover at a nearby bed/campfire when injured; full health does nothing. LT + B: wait 1/10/100 turns, stopping for danger. Waiting does not heal.");
+            lines.Add("D-pad left/right: select ability. X: use selected ability. LT + X: all abilities. LT + D-pad up/down: one page of ten slots; no other hotbar pages.");
+            lines.Add("LB: attack nearest adjacent hostile. LT + LB: force attack in a chosen direction. LT + RB: pick a carried item to throw.");
+            lines.Add("Y: walk toward a local edge. LT + Y: safe local exploration. Left stick click: visible known points of interest. Travel stops for danger/input, stays in this zone and does not auto-loot.");
+            lines.Add("Right stick: look. D-pad up/down: stairs/world map. LT + D-pad left/right: zoom in/out. LT + RT: highlight visible points of interest.");
+            lines.Add("Menu: character (inventory, attributes, skills, abilities, quests, factions, controls). View: pause (save/load, graphics, quit). LT + Menu: controls.");
+            lines.Add("RB / right stick click / LT + right stick click: reserved fire / reload / replace cell. Missile weapons, reload and energy cells are unavailable in this build.");
+            lines.Add("Controller - menus and targeting");
+            lines.Add("D-pad/left stick: navigate menus. A: confirm. B: back. Y: tab; LB/RB: pages where supported. Right stick up/down: page readers. LT + RT: item details where supported.");
+            lines.Add("Abilities screen: select an ability, then Y opens its hotbar-slot chooser. Choose a slot and press A to assign, or B to cancel.");
+            lines.Add("Targeting: sticks/D-pad select a cell; A or RT confirms, B cancels. Release held controls after changing screens; release stair directions between actions.");
             lines.Add("At save/death prompts: A continue/load; X new game/restart. At character selection: D-pad browse, A begin.");
-            lines.Add("Hold LT: A/B/X/Y/LB/RB/Menu/View/LS/RS activate slots 1/2/3/4/5/6/7/8/9/0.");
-            lines.Add("Hold LT + D-pad: up stairs/world map; down stairs/enter destination; left quests; right factions. Release directions between actions.");
             lines.Add("");
             foreach (var row in Bindings) lines.Add(row.Key + " - " + row.What);
             lines.Add("\nInside inventory: / search names; F1 selected item/craft details; F2 current effects. Escape first exits search.");
@@ -76,7 +85,7 @@ namespace CavesOfOoo.Rendering
         {
             if (log == null) return;
             if (NativeGamepadInput.IsConnected)
-                log("Controller: D-pad/stick move; A confirm; X inventory; Y interact; Menu pause; View controls. Hold LT for abilities.");
+                log("Controller: LS direction; RT step/wait; A use; X ability; Menu character; View pause; LT + Menu controls.");
             log("Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.");
             log("[X] skills, [M] abilities, [F5] save, [F1] full controls.");
             log("Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.");

@@ -67,6 +67,12 @@ namespace CavesOfOoo.Rendering
                 string title = snapshot?.Title ?? "GRIMOIRES";
                 string summary = snapshot?.SummaryText ?? string.Empty;
                 string hint = snapshot?.HintText ?? string.Empty;
+                // Device guidance is presentation state, independent of the cached
+                // gameplay snapshot. Resolve it before comparing retained text.
+                if (snapshot != null && NativeGamepadInput.IsConnected)
+                    hint = snapshot.PendingSlot >= 0
+                        ? "[LS] direction  [A/RT] confirm  [B] cancel"
+                        : "[D-pad L/R] cycle  [X] cast";
                 IReadOnlyList<HotbarSlotSnapshot> slots = snapshot?.Slots;
                 int slotCount = slots?.Count ?? 0;
                 bool headerChanged = !_hasContent || title != _lastTitle || hint != _lastHint;

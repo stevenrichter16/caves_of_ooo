@@ -1,0 +1,36 @@
+{
+  "job_id": "c6db50219f004313bd29e74c7c097070",
+  "status": "failed",
+  "mode": "EditMode",
+  "started_unix_ms": 1791670980839,
+  "finished_unix_ms": 1791670996294,
+  "last_update_unix_ms": 1791670996294,
+  "progress": {
+    "completed": 5,
+    "total": 5,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1791670995876,
+    "last_finished_test_full_name": "CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(True,True)",
+    "last_finished_unix_ms": 1791670995878,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerHotbarHintTests.DeviceChangeRepaintsSameSnapshotHeaderOnlyAndEqualFrameDoesNoWork",
+        "message": "  Expected string length 27 but was 22. Strings differ at index 1.\n  Expected: \"[D-pad L/R] cycle  [X] cast\"\n  But was:  \"[] cycle  [Enter] cast\"\n  ------------^\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(True,False)",
+        "message": "  Expected string length 27 but was 22. Strings differ at index 1.\n  Expected: \"[D-pad L/R] cycle  [X] cast\"\n  But was:  \"[] cycle  [Enter] cast\"\n  ------------^\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(True,True)",
+        "message": "  Expected string length 42 but was 22. Strings differ at index 1.\n  Expected: \"[LS] direction  [A/RT] confirm  [B] cancel\"\n  But was:  \"[] cycle  [Enter] cast\"\n  ------------^\n"
+      }
+    ],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": null
+}

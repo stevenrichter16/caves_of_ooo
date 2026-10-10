@@ -1,0 +1,48 @@
+{
+  "job_id": "a921f2e833034432953a7e4ec85c2e1e",
+  "status": "failed",
+  "mode": "EditMode",
+  "started_unix_ms": 1791671269098,
+  "finished_unix_ms": 1791671286394,
+  "last_update_unix_ms": 1791671286394,
+  "progress": {
+    "completed": 7,
+    "total": 7,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1791671285982,
+    "last_finished_test_full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ReopeningWorldMenuAfterChoicesRestoresDefaultTitleStatusAndPileFlag",
+    "last_finished_unix_ms": 1791671285984,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ChoiceMenuRendersItsTitleWithoutWorldStatusOrFalseDetails(\"Wait\",False)",
+        "message": "  Expected: String starting with \"Wait\"\n  But was:  \"You see a test actor.  [HP 6/10]\"\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ChoiceMenuRendersItsTitleWithoutWorldStatusOrFalseDetails(\"Wait\",True)",
+        "message": "  Expected: String starting with \"Wait\"\n  But was:  \"You see a test actor.  [HP 6/10]\"\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ChoiceMenuRendersItsTitleWithoutWorldStatusOrFalseDetails(\"Character\",False)",
+        "message": "  Expected: String starting with \"Character\"\n  But was:  \"You see a test actor.  [HP 6/10]\"\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ChoiceMenuRendersItsTitleWithoutWorldStatusOrFalseDetails(\"Character\",True)",
+        "message": "  Expected: String starting with \"Character\"\n  But was:  \"You see a test actor.  [HP 6/10]\"\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.DefaultWorldMenuRetainsHealthStatusAndAppropriateDetailsHint(True)",
+        "message": "  Expected string length 32 but was 31. Strings differ at index 1.\n  Expected: \"[A]select [B]back [LT+RT]details\"\n  But was:  \"[F1]details [Enter]ok [Esc]back\"\n  ------------^\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.QudControllerChoiceMenuTests.ReopeningWorldMenuAfterChoicesRestoresDefaultTitleStatusAndPileFlag",
+        "message": "  Expected: String starting with \"Wait\"\n  But was:  \"You see a test actor.  [HP 6/10]\"\n"
+      }
+    ],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": null
+}

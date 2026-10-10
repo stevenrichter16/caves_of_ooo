@@ -128,6 +128,8 @@ namespace CavesOfOoo.Rendering
             WorldActionMenuOpen,  // Phase 4d — look-mode click/Enter on a cell opens this
             SkillsScreenOpen,     // ST.7b — KeyCode.X opens the skills/powers tree popup
             AbilityManagerOpen,   // WSP8.0 — KeyCode.M opens the ability manager modal
+            ControllerMenu,
+            ControllerDirection,
             QuestLogOpen          // Q1 — KeyCode.Q opens the quest log overlay
         }
         private InputState _inputState = InputState.Normal;
@@ -410,6 +412,18 @@ namespace CavesOfOoo.Rendering
 
         private void Update()
         {
+            RefreshControllerSession();
+            NativeGamepadInput.SetContext(ControllerContext());
+            try { UpdateInput(); }
+            finally
+            {
+                NativeGamepadInput.SetContext(ControllerContext());
+                RefreshControllerDirectionCue();
+            }
+        }
+
+        private void UpdateInput()
+        {
             // Completion owns Unity/preferences/log work. Pump even behind a
             // modal or before the player graph exists; the worker never does it.
             SaveGameService.PumpPendingSaves();
@@ -469,6 +483,15 @@ namespace CavesOfOoo.Rendering
                     _worldActionKeyToRelease = KeyCode.None;
                 }
 
+            if (_controllerTravel != ControllerTravelMode.None &&
+                (NativeGamepadInput.AnyPressed || UnityEngine.Input.anyKeyDown
+                 || UnityEngine.InputSystem.Keyboard.current?.anyKey.wasPressedThisFrame == true
+                 || !NativeGamepadInput.IsConnected))
+                CancelControllerTravel("You stop.");
+
+            if (_inputState == InputState.ControllerMenu) { HandleControllerMenu(); return; }
+            if (_inputState == InputState.ControllerDirection) { HandleControllerDirection(); return; }
+
             EnsureHotbarSelectionValid();
             SyncHotbarState();
 
@@ -508,7 +531,8 @@ namespace CavesOfOoo.Rendering
             // pressed INSIDE an open inventory belongs to the modal,
             // and no walk is stepping while a modal is up anyway —
             // ShouldInterrupt re-checks safety before every step.)
-            if (_stairPath != null && UnityEngine.Input.anyKeyDown)
+            if (_stairPath != null && (UnityEngine.Input.anyKeyDown || NativeGamepadInput.AnyPressed
+                || UnityEngine.InputSystem.Keyboard.current?.anyKey.wasPressedThisFrame == true))
                 _stairInterruptRequested = true;
 
             // Save/Load + Pause menu (Phases 4 + 4d) — fire only in normal
@@ -597,6 +621,8 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            if (_inputState == InputState.Normal && HandleControllerWorldInput()) return;
+
             // Wait/skip turn (tap or hold) — placed BEFORE the general rate
             // limit so the hold cadence is independent of MoveRepeatDelay.
             // With WaitHoldDelay=0.1 → 10 turns/sec while '.' is held; the
@@ -622,6 +648,13 @@ namespace CavesOfOoo.Rendering
             // Rate limit
             if (Time.time - _lastMoveTime < MoveRepeatDelay)
                 return;
+
+            if (_controllerTravel != ControllerTravelMode.None && _inputState == InputState.Normal)
+            {
+                StepControllerTravel();
+                _lastMoveTime = Time.time;
+                return;
+            }
 
             // An in-progress walk to the stairs takes the turn, unless
             // the player asks for something else — any keypress stops
@@ -869,6 +902,56 @@ namespace CavesOfOoo.Rendering
             // Check movement keys
             if (GetMoveInput(out dx, out dy))
             {
+                ExecuteMovementStep(dx, dy);
+
+                _lastMoveTime = Time.time;
+            }
+
+            // Ability activation (keys 1-9)
+            int abilitySlot = GetAbilitySlotInput();
+            if (abilitySlot >= 0)
+            {
+                _selectedHotbarSlot = abilitySlot;
+                SyncHotbarState();
+                TryActivateAbility(abilitySlot);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Pickup item (G or comma)
+            if (InputHelper.GetKeyDown(KeyCode.G) || InputHelper.GetKeyDown(KeyCode.Comma))
+            {
+                TryPickupItem();
+                _lastMoveTime = Time.time;
+            }
+
+            // Descend stairs (> key = Shift+Period)
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Period))
+            {
+                TryUseStairs(goingDown: true);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Ascend stairs (< key = Shift+Comma)
+            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
+                && InputHelper.GetKeyDown(KeyCode.Comma))
+            {
+                TryUseStairs(goingDown: false);
+                _lastMoveTime = Time.time;
+                return;
+            }
+
+            // Wait/skip turn is handled above the rate-limit gate; see the
+            // "Wait/skip turn (tap or hold)" block earlier in this function.
+            }
+        }
+
+        // Shared by keyboard movement and the controller's explicit RT step.
+        // Keeps bump combat, paid door actions, breakables and status thawing identical.
+        private void ExecuteMovementStep(int dx, int dy)
+        {
                 var oldCell = CurrentZone.GetEntityCell(PlayerEntity);
                 int oldX = oldCell?.X ?? -1;
                 int oldY = oldCell?.Y ?? -1;
@@ -964,48 +1047,6 @@ namespace CavesOfOoo.Rendering
                     }
                 }
 
-                _lastMoveTime = Time.time;
-            }
-
-            // Ability activation (keys 1-9)
-            int abilitySlot = GetAbilitySlotInput();
-            if (abilitySlot >= 0)
-            {
-                _selectedHotbarSlot = abilitySlot;
-                SyncHotbarState();
-                TryActivateAbility(abilitySlot);
-                _lastMoveTime = Time.time;
-                return;
-            }
-
-            // Pickup item (G or comma)
-            if (InputHelper.GetKeyDown(KeyCode.G) || InputHelper.GetKeyDown(KeyCode.Comma))
-            {
-                TryPickupItem();
-                _lastMoveTime = Time.time;
-            }
-
-            // Descend stairs (> key = Shift+Period)
-            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
-                && InputHelper.GetKeyDown(KeyCode.Period))
-            {
-                TryUseStairs(goingDown: true);
-                _lastMoveTime = Time.time;
-                return;
-            }
-
-            // Ascend stairs (< key = Shift+Comma)
-            if ((InputHelper.GetKey(KeyCode.LeftShift) || InputHelper.GetKey(KeyCode.RightShift))
-                && InputHelper.GetKeyDown(KeyCode.Comma))
-            {
-                TryUseStairs(goingDown: false);
-                _lastMoveTime = Time.time;
-                return;
-            }
-
-            // Wait/skip turn is handled above the rate-limit gate; see the
-            // "Wait/skip turn (tap or hold)" block earlier in this function.
-            }
         }
 
         /// <summary>
@@ -1165,6 +1206,7 @@ namespace CavesOfOoo.Rendering
         /// path through the RESTORED zone.</summary>
         public void CancelStairTravel(string why)
         {
+            CancelControllerTravel(null);
             _stairInterruptRequested = false;
             if (_stairPath == null) return;
             _stairPath = null;
@@ -1896,7 +1938,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.D)) { OpenSkillsDetailsReader(); return; }
+            if (InputHelper.GetKeyDown(KeyCode.D) || NativeGamepadInput.GetKeyDown(KeyCode.F1)) { OpenSkillsDetailsReader(); return; }
             SkillsScreenUI.HandleInput();
 
             if (!SkillsScreenUI.IsOpen)
@@ -1945,7 +1987,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.D)) { OpenAbilityDetailsReader(); return; }
+            if (NativeGamepadInput.GetKeyDown(KeyCode.Tab)) { OpenControllerAbilitySlots(); return; }
+            if (InputHelper.GetKeyDown(KeyCode.D) || NativeGamepadInput.GetKeyDown(KeyCode.F1)) { OpenAbilityDetailsReader(); return; }
             if (InputHelper.GetKeyDown(KeyCode.P)) { BeginSelectedRitePreview(); return; }
             AbilityManagerUI.HandleInput();
 
@@ -3912,34 +3955,37 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetDirectionKeyDown(out int dx, out int dy)
         {
-            if (NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
+            bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting;
+            if (cursor && NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
+            if (!cursor && NativeGamepadInput.GetKeyDown(KeyCode.Return)
+                && NativeGamepadInput.TrySelectedDirection(out dx, out dy)) return true;
             dx = 0;
             dy = 0;
 
             // Cardinal
-            if (InputHelper.GetKeyDown(KeyCode.W) || InputHelper.GetKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyDown(KeyCode.Keypad8) || InputHelper.GetKeyDown(KeyCode.K))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.W) || InputHelper.GetKeyboardKeyDown(KeyCode.UpArrow) || InputHelper.GetKeyboardKeyDown(KeyCode.Keypad8) || InputHelper.GetKeyboardKeyDown(KeyCode.K))
             { dy = -1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.S) || InputHelper.GetKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyDown(KeyCode.Keypad2) || InputHelper.GetKeyDown(KeyCode.J))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.S) || InputHelper.GetKeyboardKeyDown(KeyCode.DownArrow) || InputHelper.GetKeyboardKeyDown(KeyCode.Keypad2) || InputHelper.GetKeyboardKeyDown(KeyCode.J))
             { dy = 1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.A) || InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.Keypad4) || InputHelper.GetKeyDown(KeyCode.H))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.A) || InputHelper.GetKeyboardKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyboardKeyDown(KeyCode.Keypad4) || InputHelper.GetKeyboardKeyDown(KeyCode.H))
             { dx = -1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.D) || InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.Keypad6) || InputHelper.GetKeyDown(KeyCode.L))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.D) || InputHelper.GetKeyboardKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyboardKeyDown(KeyCode.Keypad6) || InputHelper.GetKeyboardKeyDown(KeyCode.L))
             { dx = 1; return true; }
 
             // Diagonals
-            if (InputHelper.GetKeyDown(KeyCode.Keypad7) || InputHelper.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.Keypad7) || InputHelper.GetKeyboardKeyDown(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.Keypad9) || InputHelper.GetKeyDown(KeyCode.U))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.Keypad9) || InputHelper.GetKeyboardKeyDown(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.Keypad1) || InputHelper.GetKeyDown(KeyCode.B))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.Keypad1) || InputHelper.GetKeyboardKeyDown(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (InputHelper.GetKeyDown(KeyCode.Keypad3) || InputHelper.GetKeyDown(KeyCode.N))
+            if (InputHelper.GetKeyboardKeyDown(KeyCode.Keypad3) || InputHelper.GetKeyboardKeyDown(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -3952,38 +3998,38 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetMoveInput(out int dx, out int dy)
         {
-            if (NativeGamepadInput.TryDirection(false, out dx, out dy)) return true;
+            if (NativeGamepadInput.TryMoveDirection(out dx, out dy)) return true;
             dx = 0;
             dy = 0;
 
             // Cardinal directions
             // North (W, Up, Numpad8, vi k)
-            if (InputHelper.GetKey(KeyCode.W) || InputHelper.GetKey(KeyCode.UpArrow) || InputHelper.GetKey(KeyCode.Keypad8) || InputHelper.GetKey(KeyCode.K))
+            if (InputHelper.GetKeyboardKey(KeyCode.W) || InputHelper.GetKeyboardKey(KeyCode.UpArrow) || InputHelper.GetKeyboardKey(KeyCode.Keypad8) || InputHelper.GetKeyboardKey(KeyCode.K))
             { dy = -1; return true; }
 
             // South (S, Down, Numpad2, vi j)
-            if (InputHelper.GetKey(KeyCode.S) || InputHelper.GetKey(KeyCode.DownArrow) || InputHelper.GetKey(KeyCode.Keypad2) || InputHelper.GetKey(KeyCode.J))
+            if (InputHelper.GetKeyboardKey(KeyCode.S) || InputHelper.GetKeyboardKey(KeyCode.DownArrow) || InputHelper.GetKeyboardKey(KeyCode.Keypad2) || InputHelper.GetKeyboardKey(KeyCode.J))
             { dy = 1; return true; }
 
             // West (A, Left, Numpad4, vi h)
-            if (InputHelper.GetKey(KeyCode.A) || InputHelper.GetKey(KeyCode.LeftArrow) || InputHelper.GetKey(KeyCode.Keypad4) || InputHelper.GetKey(KeyCode.H))
+            if (InputHelper.GetKeyboardKey(KeyCode.A) || InputHelper.GetKeyboardKey(KeyCode.LeftArrow) || InputHelper.GetKeyboardKey(KeyCode.Keypad4) || InputHelper.GetKeyboardKey(KeyCode.H))
             { dx = -1; return true; }
 
             // East (D, Right, Numpad6). L belongs to Look in normal play.
-            if (InputHelper.GetKey(KeyCode.D) || InputHelper.GetKey(KeyCode.RightArrow) || InputHelper.GetKey(KeyCode.Keypad6))
+            if (InputHelper.GetKeyboardKey(KeyCode.D) || InputHelper.GetKeyboardKey(KeyCode.RightArrow) || InputHelper.GetKeyboardKey(KeyCode.Keypad6))
             { dx = 1; return true; }
 
             // Diagonals (numpad + vi keys)
-            if (InputHelper.GetKey(KeyCode.Keypad7) || InputHelper.GetKey(KeyCode.Y))
+            if (InputHelper.GetKeyboardKey(KeyCode.Keypad7) || InputHelper.GetKeyboardKey(KeyCode.Y))
             { dx = -1; dy = -1; return true; }
 
-            if (InputHelper.GetKey(KeyCode.Keypad9) || InputHelper.GetKey(KeyCode.U))
+            if (InputHelper.GetKeyboardKey(KeyCode.Keypad9) || InputHelper.GetKeyboardKey(KeyCode.U))
             { dx = 1; dy = -1; return true; }
 
-            if (InputHelper.GetKey(KeyCode.Keypad1) || InputHelper.GetKey(KeyCode.B))
+            if (InputHelper.GetKeyboardKey(KeyCode.Keypad1) || InputHelper.GetKeyboardKey(KeyCode.B))
             { dx = -1; dy = 1; return true; }
 
-            if (InputHelper.GetKey(KeyCode.Keypad3) || InputHelper.GetKey(KeyCode.N))
+            if (InputHelper.GetKeyboardKey(KeyCode.Keypad3) || InputHelper.GetKeyboardKey(KeyCode.N))
             { dx = 1; dy = 1; return true; }
 
             return false;
@@ -4185,7 +4231,7 @@ namespace CavesOfOoo.Rendering
 
         private void HandleAttackConfirmInput()
         {
-            if (InputHelper.GetKeyDown(KeyCode.Y))
+            if (InputHelper.GetKeyDown(KeyCode.Y) || NativeGamepadInput.GetKeyDown(KeyCode.Return))
             {
                 ResolveAttackConfirmation(true);
             }
@@ -4243,7 +4289,7 @@ namespace CavesOfOoo.Rendering
             var bgTilemap = DialogueUI.BgTilemap;
 
             string name = target != null ? target.GetDisplayName() : "this creature";
-            string prompt = "Really attack " + name + "? (y/n)";
+            string prompt = "Really attack " + name + (NativeGamepadInput.IsConnected ? "? (A yes / B no)" : "? (y/n)");
 
             _confirmW = prompt.Length + 4;
             _confirmH = 3;

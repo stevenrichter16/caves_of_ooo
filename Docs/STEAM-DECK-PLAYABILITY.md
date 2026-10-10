@@ -9,14 +9,24 @@ after continuing a save. Linux player settings now explicitly select Vulkan,
 with no silent fallback to the demonstrated failing OpenGL path. No player launch
 option is needed. Mac and Windows graphics settings are unchanged.
 
-Native standard-gamepad controls now feed the existing input boundary. Keyboard,
-mouse, simulation turns, menu dispatch and save behavior retain their existing
-paths. This is game code, not a remotely installed Steam account layout.
+Native standard-gamepad controls now use Qud's physical layout through separate
+world, targeting and menu contexts. Left-stick direction selection is free; RT
+steps or waits. The controller routes actions through the game's existing action
+rules, with new bounded local travel. Keyboard and mouse remain available. This
+is game code, not a remotely installed Steam account layout.
 
-Qud reference: none; platform compatibility and original game controls, not a
-Qud mechanic port.
+The current control revision is documented in
+[STEAM-DECK-QUD-CONTROLS.md](STEAM-DECK-QUD-CONTROLS.md), with exact installed Qud
+default bindings, online corroboration and version limits in
+[STEAM-DECK-QUD-CONTROLS-SOURCES.md](STEAM-DECK-QUD-CONTROLS-SOURCES.md).
+It is a bounded adaptation, not full Qud gameplay/menu parity. The original
+Vulkan compatibility work did not port a Qud mechanic.
 
-## Plan and verification sweep
+## Original compatibility plan and verification sweep
+
+This section and the original release receipts below describe the earlier native
+controller/Vulkan milestone. The current controls replace that milestone's initial
+flat mapping; its test counts are not evidence for the later Qud-style revision.
 
 1. Write native Input System event tests before implementing gamepad bindings.
 2. Supply eight-direction movement, normal menus, ability slots and travel through
@@ -36,27 +46,45 @@ Qud mechanic port.
 | Confirm alone reaches every starting menu | Save/death gates only accept letter keys; add context-specific A/X adapters. |
 | Successful Linux build establishes rendering | Actual Linux OpenGL run reproduced black world; Vulkan restores it. |
 
-## Controls
+## Current controls
 
 | Control | Action |
 |---|---|
-| D-pad / left stick | Move, aim, navigate menus; eight directions supported |
-| A / B | Confirm or cast selected ability / back |
-| X / Y | Inventory / interact |
-| LB / RB / RT | Look / pick up / wait or select underfoot |
-| Menu / View | Pause / help or item details |
-| Left / right stick click | Skills / abilities |
-| Right stick left/right | Previous/next hotbar slot |
-| Right stick up/down | Page readers |
-| LT + A/B/X/Y/LB/RB/Menu/View/LS/RS | Ability slots 1/2/3/4/5/6/7/8/9/0 |
-| LT + direction up/down | Stairs or world-map travel |
-| LT + direction left/right | Quests / factions |
+| Left stick / RT | Select an eight-way direction for free / step; neutral stick waits one turn |
+| A | Act in the indicated cell; with a neutral stick, contextual use underfoot/nearby |
+| B / LT + B | Nearby bed/campfire recovery when injured / wait menu (1, 10, 100 turns) |
+| X / LT + X | Use selected hotbar ability / all abilities |
+| Abilities screen Y | Open a hotbar-slot chooser for the selected ability; A assigns, B cancels |
+| Y / LT + Y | Walk toward a local edge / safe local exploration |
+| LB / LT + LB | Attack nearest adjacent hostile / force attack in a chosen direction |
+| LT + RB | Pick a carried throwable item, then target |
+| LT + A | Nearby interaction picker, or indicated-cell action when a direction is selected |
+| Menu / View / LT + Menu | Character submenu / pause / controls |
+| Left stick click | Visible known points of interest |
+| Right stick | Look; up/down pages readers in menus |
+| D-pad left/right | Select previous/next hotbar ability |
+| D-pad up/down | Stairs or world-map travel |
+| LT + D-pad left/right | Zoom in/out |
+| LT + D-pad up/down | Explain the single ten-slot hotbar page; LT + X opens all abilities |
+| LT + RT | Visible-world labels; item details in supported menus |
+| RB / right stick click / LT + right stick click | Reserved fire / reload / replace cell; show unavailable-system messages |
+| Menu D-pad or left stick; A / B | Navigate; confirm / back |
+| Menu Y; LB / RB | Tab; previous/next page where supported by that screen |
+| Targeting sticks or D-pad; A or RT / B | Select target; confirm / cancel |
 | A / X at save or death prompt | Continue/load / new game/restart |
 
-Release the travel direction between actions. Stick hysteresis suppresses drift.
-An ability chord never changes into inventory/confirm/wait when LT is released.
-Save/death mapping exists only while that gate owns input, preserving ordinary
-X inventory and A confirm behavior elsewhere.
+Menu opens inventory/equipment, attributes/effects, skills, abilities, quests,
+factions and controls. View opens pause, including graphics settings. At full
+health B is a no-op; when injured it uses actual nearby rest services and preserves
+their action rules. Ordinary waiting does not heal. Firearms, reload and energy
+cells are not implemented; their reserved buttons do not substitute unrelated actions.
+
+Release stair directions between actions. Stick hysteresis suppresses drift.
+LT chords retain their meaning until the action button is released. Held controls
+are quarantined across input-context/device changes. Held RT stops for danger;
+release RT to rearm it. Edge, exploration and point travel stop for danger or fresh
+input, stay within the current zone and do not automatically attack or loot.
+The save/death A/X mapping exists only while that gate owns input.
 
 Text entry and vendor-specific rear buttons are outside the standard Gamepad
 interface. The normal Steam Gamepad layout supplies this interface; custom
@@ -65,10 +93,14 @@ keyboard/mouse-only Steam layouts can still suppress native gamepad buttons.
 ## Implementation
 
 `NativeGamepadInput` samples the actual Input System Gamepad once per input update,
-without injecting keyboard events or advancing input updates. `InputHelper` combines
-those bindings with existing keyboard reads. InputHandler reads the explicit
-movement vector before its legacy cardinal chain. Choice adapters translate A/X
-only inside boot and death gates; controllers keep their load-failure safeguards.
+without injecting keyboard events or advancing input updates. It exposes typed
+world commands, selected direction and modal key adapters. `InputHandler.Controller`
+routes commands through existing action methods; keyboard-only movement fallback
+prevents a menu arrow from turning into world movement. `ControllerTravel` supplies
+bounded local route selection. Choice adapters translate A/X only inside boot and
+death gates; controllers keep their load-failure safeguards. Current input,
+gameplay/travel and help fixtures are run by the coordinating native Unity task;
+their final receipts belong to the Qud-controls living document.
 
 The Linux build policy is the serialized equivalent of:
 
@@ -81,7 +113,7 @@ PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneLinux64,
 Linux builds now require Vulkan. The shader/compositor internals were not changed:
 this fixes backend selection; it does not claim to repair Unity's OpenGL path.
 
-## Evidence
+## Original compatibility evidence
 
 Receipts are under `Docs/Verification/SteamDeck/`.
 
@@ -118,7 +150,7 @@ project source. Native Unity device-event tests establish binding behavior; they
 do not prove a physical Deck controller, Steam Input configuration, audio or
 hardware performance. No offline-runner count is used as GPU evidence.
 
-## In-phase self-review
+## Original compatibility self-review
 
 - 🟡 Fixed: cardinal-first keyboard dispatch lost gamepad diagonals. Eight-direction
   movement and targeting tests cover every direction and release.
@@ -136,7 +168,7 @@ Cold-eye pass: checked adapter scope, modifier release symmetry, disconnect clea
 keyboard coexistence, unchanged save dispatch, platform-only settings and guidance
 against actual mappings. No remaining notable implementation findings.
 
-## Files
+## Original compatibility files
 
 - NEW `Assets/Scripts/Presentation/Input/NativeGamepadInput.cs` (+ meta).
 - MOD `InputHelper.cs`, `InputHandler.cs`, `SaveLoadInputAdapters.cs`.
@@ -149,7 +181,7 @@ against actual mappings. No remaining notable implementation findings.
 Packaging result is recorded in the release folder's build report, build-info and
 checksums. Save files live outside the extracted game folder.
 
-## Release build
+## Original compatibility release build
 
 `build-f3e9db46ef`: Linux Mono, Vulkan-only, normal SampleScene, non-development;
 37.79 seconds, 0 errors, 4 warnings. Output:
