@@ -38,6 +38,20 @@ namespace CavesOfOoo.Rendering
         private readonly Dictionary<Collider, View> byCollider = new Dictionary<Collider, View>();
         private readonly HashSet<Entity> seen = new HashSet<Entity>();
         private readonly List<Entity> removed = new List<Entity>();
+        // Previous membership is required when a dirty cell no longer contains
+        // its removed/moved owner. Buckets contain only committed native owners.
+        private readonly List<Entity>[] ownersByCell = new List<Entity>[Zone.Width * Zone.Height];
+        private readonly Dictionary<Entity, int> ownerCells = new Dictionary<Entity, int>();
+        private readonly HashSet<int> visibilityOnlyCells = new HashSet<int>();
+        private int reconciledEntityVersion;
+        /// <summary>Cumulative owner recipe resolutions in Refresh since bind;
+        /// read-only style/picking probes are excluded from this work counter.</summary>
+        public int RecipeResolveCount { get; private set; }
+        /// <summary>Cumulative contact work since bind, including initial upload.
+        /// Suspended detail/hidden presentation performs none of these operations.</summary>
+        public int ContactContributorVisitCount => groundContact?.ContributorVisitCount ?? 0;
+        public int ContactRasterizeCount => groundContact?.RasterizeCount ?? 0;
+        public int ContactUploadCount => groundContact?.UploadCount ?? 0;
         private RaycastHit[] hits = new RaycastHit[64];
         private SpawnRing3DLibrary library;
         private SpreadPortable3DLibrary collectorPortables;
@@ -242,8 +256,13 @@ namespace CavesOfOoo.Rendering
             }
         }
         /// <summary>Refresh native references after cell/FOV invalidation. Null
-        /// dirtyCells checks the complete ground fingerprint; no seed is replayed.</summary>
+        /// or empty dirt performs full owner recovery; nonempty dirt must include every
+        /// changed old/new cell. Cardinal recipe dependencies are added here.
+        /// Use RefreshVisibility only when the caller knows owner geometry has
+        /// not changed. No seed is replayed and no world state is changed.</summary>
         public void Refresh(LightMap light, HashSet<int> dirtyCells = null)
+            => RefreshInternal(light, dirtyCells, false);
+        private void RefreshInternal(LightMap light, HashSet<int> dirtyCells, bool visibilityOnly)
         {
             using (PerformanceMarkers.Zone.NativeRefresh.Auto())
             {
@@ -252,7 +271,7 @@ namespace CavesOfOoo.Rendering
             if (!IsReady || CurrentZone == null) return;
             if(!AreaCompositionScope.Allows(CurrentZone))
             {var zone=CurrentZone;var camera=source;Release();CurrentZone=zone;source=camera;return;}
-            try { RefreshCurrent(light, dirtyCells); }
+            try { RefreshCurrent(light, dirtyCells, visibilityOnly); }
             catch (Exception e)
             {
                 // Later native changes can request a newly unavailable model.
@@ -264,55 +283,124 @@ namespace CavesOfOoo.Rendering
             }
             }
         }
-        private void RefreshCurrent(LightMap light, HashSet<int> dirtyCells)
+        /// <summary>Refresh visibility/light and current presentation state
+        /// without geometry resolution when membership is unchanged. Call
+        /// Refresh with dirty cells for owner mutations, or null/empty for unknown
+        /// edits. The caller must positively know that owner inputs are unchanged.</summary>
+        public void RefreshVisibility(LightMap light) => RefreshInternal(light, visibilityOnlyCells, true);
+        private void RefreshCurrent(LightMap light, HashSet<int> dirtyCells, bool visibilityOnly)
         {
+            bool full = dirtyCells == null
+                || (dirtyCells.Count == 0 && (!visibilityOnly || reconciledEntityVersion != CurrentZone.EntityVersion));
+            if (!full)
+                foreach (int key in dirtyCells)
+                    if (key < 0 || key >= ownersByCell.Length) { full = true; break; }
             seen.Clear(); removed.Clear();
-            foreach (var entity in CurrentZone.GetReadOnlyEntities())
+            if (full)
             {
-                var recipe = SpawnRing3DRecipes.Resolve(CurrentZone, entity, definition, pilotLibrary?.Definition);
-                if (recipe.ModelId == null) continue;
-                seen.Add(entity);
-                if(nativeStyleLibrary!=null){bool styled=nativeStyleLibrary.ForOwner(CurrentZone,recipe)!=null;
-                    if(!staticStyles.TryGetValue(entity,out bool previousStyle)||previousStyle!=styled)Mark(recipe);staticStyles[entity]=styled;}
-                if (recipes.TryGetValue(entity, out var previous) && !SameGeometry(previous, recipe))
-                { Mark(previous); Mark(recipe); }
-                else if (!recipes.ContainsKey(entity)) Mark(recipe);
-                recipes[entity] = recipe;
-                if (recipe.Batched)
-                { if (views.TryGetValue(entity, out var old)) RemoveView(old); continue; }
-                if (!views.TryGetValue(entity, out var view) || view.ModelId != recipe.ModelId || view.SourcePrefab != PrefabFor(recipe))
+                foreach (var owner in CurrentZone.GetReadOnlyEntities()) seen.Add(owner);
+                foreach (var pair in recipes) if (!seen.Contains(pair.Key)) removed.Add(pair.Key);
+                foreach (var owner in removed) RemoveRecipe(owner);
+            }
+            else
+            {
+                foreach (int key in dirtyCells)
                 {
-                    if (view != null && PatchbearerArtLibrary.IsModelId(view.ModelId) && PatchbearerArtLibrary.IsModelId(recipe.ModelId))
-                        view = ReplacePatchbearerView(view, recipe);
-                    else { if (view != null) RemoveView(view); view = AddView(recipe); }
+                    int x = key % Zone.Width, y = key / Zone.Width;
+                    CollectOwners(x, y);
+                    // Walls, niches and landform heights depend on the four
+                    // cardinal neighbors, including across ground-patch edges.
+                    CollectOwners(x - 1, y); CollectOwners(x + 1, y);
+                    CollectOwners(x, y - 1); CollectOwners(x, y + 1);
                 }
-                // Apply an authored rest-facing only when that recipe changes;
-                // ordinary movement, combat and cast facing retain their pose.
-                if(view.AuthoredQuarterTurns!=recipe.QuarterTurns)
-                {view.Root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);view.AuthoredQuarterTurns=recipe.QuarterTurns;}
-                var cell = CurrentZone.GetEntityCell(entity);
-                if (view.Target != recipe.Position || !Application.isPlaying || !PresentationVisible || view.MoveDuration <= 0)
-                { view.Target = recipe.Position; view.Root.transform.position = recipe.Position; view.MoveDuration = 0; }
-                bool drawn = recipe.Transient ? AnyBodyKnown(entity, visibleOnly:true) : AnyRemembered(view, cell);
-                SetDrawn(view, drawn);
-                SyncQuestCue(view);
-                SyncCollectorCarry(view);
-                if (drawn && view.Cast?.IsActive != true && view.MoveDuration <= 0 && Time.unscaledTime >= view.ActionUntil) Play(view, "Idle");
             }
-            foreach (var pair in recipes) if (!seen.Contains(pair.Key)) removed.Add(pair.Key);
-            foreach (var entity in removed)
-            {
-                Mark(recipes[entity]); recipes.Remove(entity); staticStyles.Remove(entity);
-                if (views.TryGetValue(entity, out var view)) RemoveView(view);
-            }
-            ground.Refresh(CurrentZone, recipes, dirtyCells);
+            foreach (var owner in seen) ReconcileOwner(owner);
+            reconciledEntityVersion = CurrentZone.EntityVersion;
+            RefreshViews();
+            ground.Refresh(CurrentZone, recipes, full ? null : dirtyCells);
+            // Apply suspension before calling Refresh, including a setting
+            // change followed by a refresh before the next LateUpdate.
+            if (!PresentationVisible || Village3DSettings.LowDetail) groundContact?.SetEnabled(false);
             groundContact?.Refresh(CurrentZone, recipes, FullReveal);
             surface.UpdateFog(CurrentZone, light, FullReveal);
             transientVolumes?.Refresh(CurrentZone);
             RefreshEquipment(true); SyncCamera();
         }
+        private void CollectOwners(int x, int y)
+        {
+            var cell = CurrentZone.GetCell(x, y);
+            if (cell == null) return;
+            var previous = ownersByCell[y * Zone.Width + x];
+            if (previous != null) foreach (var owner in previous) seen.Add(owner);
+            // Occupants includes non-anchor body cells and deduplicates through
+            // the candidate set when a multi-cell owner spans several dirt cells.
+            foreach (var owner in cell.Occupants) seen.Add(owner);
+        }
+        private void UnindexOwner(Entity owner)
+        {
+            if (!ownerCells.TryGetValue(owner, out int key)) return;
+            ownersByCell[key]?.Remove(owner); ownerCells.Remove(owner);
+        }
+        private void RemoveRecipe(Entity owner)
+        {
+            if (recipes.TryGetValue(owner, out var previous)) Mark(previous);
+            recipes.Remove(owner); staticStyles.Remove(owner); UnindexOwner(owner);
+            if (views.TryGetValue(owner, out var view)) RemoveView(view);
+        }
+        private void ReconcileOwner(Entity entity)
+        {
+            var cell = CurrentZone.GetEntityCell(entity);
+            if (cell == null) { RemoveRecipe(entity); return; }
+            RecipeResolveCount++;
+            var recipe = SpawnRing3DRecipes.Resolve(CurrentZone, entity, definition, pilotLibrary?.Definition);
+            if (recipe.ModelId == null) { RemoveRecipe(entity); return; }
+            if (nativeStyleLibrary != null)
+            {
+                bool styled = nativeStyleLibrary.ForOwner(CurrentZone, recipe) != null;
+                if (!staticStyles.TryGetValue(entity, out bool previousStyle) || previousStyle != styled) Mark(recipe);
+                staticStyles[entity] = styled;
+            }
+            if (recipes.TryGetValue(entity, out var previous))
+            { if (!SameGeometry(previous, recipe)) { Mark(previous); Mark(recipe); } }
+            else Mark(recipe);
+            recipes[entity] = recipe;
+            int key = cell.Y * Zone.Width + cell.X;
+            if (!ownerCells.TryGetValue(entity, out int oldKey) || oldKey != key)
+            {
+                UnindexOwner(entity);
+                var bucket = ownersByCell[key] ?? (ownersByCell[key] = new List<Entity>(4));
+                bucket.Add(entity); ownerCells[entity] = key;
+            }
+            if (recipe.Batched)
+            { if (views.TryGetValue(entity, out var old)) RemoveView(old); return; }
+            if (!views.TryGetValue(entity, out var view) || view.ModelId != recipe.ModelId || view.SourcePrefab != PrefabFor(recipe))
+            {
+                if (view != null && PatchbearerArtLibrary.IsModelId(view.ModelId) && PatchbearerArtLibrary.IsModelId(recipe.ModelId))
+                    view = ReplacePatchbearerView(view, recipe);
+                else { if (view != null) RemoveView(view); view = AddView(recipe); }
+            }
+            if (view.Transient != recipe.Transient)
+            { PrepareModel(view.Root, recipe.Transient, recipe.ModelId); view.Transient = recipe.Transient; }
+            if (view.AuthoredQuarterTurns != recipe.QuarterTurns)
+            { view.Root.transform.localRotation = Quaternion.Euler(0, recipe.QuarterTurns * 90, 0); view.AuthoredQuarterTurns = recipe.QuarterTurns; }
+            if (view.Target != recipe.Position || !Application.isPlaying || !PresentationVisible || view.MoveDuration <= 0)
+            { view.Target = recipe.Position; view.Root.transform.position = recipe.Position; view.MoveDuration = 0; }
+        }
+        private void RefreshViews()
+        {
+            foreach (var view in views.Values)
+            {
+                if (view.Root == null) throw new InvalidOperationException("Owned native view was destroyed before refresh.");
+                var cell = CurrentZone.GetEntityCell(view.Owner);
+                bool drawn = cell != null && view.Owner.GetPart<RenderPart>()?.Visible == true
+                    && (view.Transient ? AnyBodyKnown(view.Owner, visibleOnly: true) : AnyRemembered(view, cell));
+                SetDrawn(view, drawn); SyncQuestCue(view); SyncCollectorCarry(view);
+                if (drawn && view.Cast?.IsActive != true && view.MoveDuration <= 0 && Time.unscaledTime >= view.ActionUntil) Play(view, "Idle");
+            }
+        }
         private static bool SameGeometry(SpawnRing3DRecipe a, SpawnRing3DRecipe b)
-            => a.ModelId == b.ModelId && a.Position == b.Position && a.Batched == b.Batched && a.QuarterTurns == b.QuarterTurns;
+            => a.ModelId == b.ModelId && a.Position == b.Position && a.Batched == b.Batched
+                && a.Transient == b.Transient && a.QuarterTurns == b.QuarterTurns;
         private void Mark(SpawnRing3DRecipe recipe)
         {
             if (recipe.Batched && Village3DProjection.TryWorldToCell(recipe.Position, out int x, out int y)) ground.Mark(x, y);
@@ -621,7 +709,7 @@ namespace CavesOfOoo.Rendering
         private void SyncCamera()
         {
             bool wasVisible = surface != null && surface.IsVisible;
-            surface?.Sync(source, PresentationRequested, Village3DSettings.LowDetail);
+            surface?.SyncConfigured(source, PresentationRequested, Village3DSettings.WorldResolutionScale, Village3DSettings.ShadowsEnabled);
             groundContact?.SetEnabled(PresentationVisible && !Village3DSettings.LowDetail);
             if (wasVisible && !PresentationVisible) foreach (var view in views.Values) { Interrupt(view); view.CollectorCarry?.Sync(CurrentZone,false,out _); }
         }
@@ -784,6 +872,8 @@ namespace CavesOfOoo.Rendering
             groundContact?.Dispose(); groundContact = null;
             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
             recipes.Clear(); staticStyles.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
+            Array.Clear(ownersByCell, 0, ownersByCell.Length); ownerCells.Clear();
+            reconciledEntityVersion = 0; RecipeResolveCount = 0;
             CurrentZone = null; source = null; library = null; collectorPortables = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; patchbearerLibrary = null; nativeStyleLibrary = null; soddenArt = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
         }
         private void PrepareModel(GameObject root, bool transient, string modelId = null)

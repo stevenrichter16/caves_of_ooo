@@ -54,26 +54,49 @@ namespace CavesOfOoo.Core
         /// status system: without it, tile state only ever existed where
         /// the player had just cast something.</para>
         ///
-        /// <para>Iterates <c>GetAllEntities</c>, not the live key
-        /// collection — seeding writes to TileState, and the read-only
-        /// view is documented as unsafe to iterate while mutating
-        /// (Zone.cs:141, and the same trap is called out in
-        /// CLAUDE.md).</para>
+        /// <para>Visit indexed sources in the captured zone-owner order. If a
+        /// callback attaches a source to a later existing owner, visit it this
+        /// pass as the original full-owner snapshot did. New or already visited
+        /// owners wait until the next pass. Unchanged passes scan only sources.</para>
         /// </summary>
         public static void SeedTerrainSources(Zone zone)
         {
             if (zone?.TileState == null) return;
 
-            var entities = zone.GetAllEntities();
-            for (int i = 0; i < entities.Count; i++)
+            var sources = zone.GetReadOnlyEntitiesWithPart<TileStateSourcePart>();
+            if (sources.Count == 0) return;
+            var order = zone.GetEntityOrderSnapshot();
+            int version = zone.GetPartMembershipVersion<TileStateSourcePart>();
+            var entities = UnityEngine.Pool.ListPool<Entity>.Get();
+            try
             {
-                Entity e = entities[i];
-                var source = e?.GetPart<TileStateSourcePart>();
-                if (source == null) continue;
+                CopyRemainingSources(sources, order, -1, entities);
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    Entity e = entities[i];
+                    int cursor = order.RankOf(e);
+                    var source = e?.GetPart<TileStateSourcePart>();
+                    if (source != null)
+                        foreach (var cell in zone.GetOccupiedCells(e))
+                            if (cell != null) source.Seed(zone, cell.X, cell.Y);
 
-                foreach(var cell in zone.GetOccupiedCells(e))
-                    if(cell!=null) source.Seed(zone,cell.X,cell.Y);
+                    int currentVersion = zone.GetPartMembershipVersion<TileStateSourcePart>();
+                    if (version == currentVersion) continue;
+                    version = currentVersion;
+                    CopyRemainingSources(sources, order, cursor, entities);
+                    i = -1;
+                }
             }
+            finally { UnityEngine.Pool.ListPool<Entity>.Release(entities); }
+        }
+
+        private static void CopyRemainingSources(IReadOnlyList<Entity> sources,
+            Zone.EntityOrderSnapshot order, int afterRank, List<Entity> remaining)
+        {
+            remaining.Clear();
+            for (int i = 0; i < sources.Count; i++)
+                if (order.RankOf(sources[i]) > afterRank) remaining.Add(sources[i]);
+            remaining.Sort(order);
         }
 
         /// <summary>

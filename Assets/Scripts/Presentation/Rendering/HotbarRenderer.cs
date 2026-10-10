@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
 using UnityEngine;
@@ -15,6 +16,15 @@ namespace CavesOfOoo.Rendering
 
         private readonly Tilemap _tilemap;
         private readonly Tilemap _backgroundTilemap;
+        private static readonly TileBase[] BlankRow = new TileBase[GameplayHotbarLayout.GridWidth];
+        private static readonly TileBase[] BlankSlot = new TileBase[GameplayHotbarLayout.SlotWidth * 4];
+        private readonly List<HotbarSlotSnapshot> _lastSlots =
+            new List<HotbarSlotSnapshot>(GameplayHotbarLayout.SlotCount);
+        private bool _hasContent;
+        private bool _needsInitialClear = true;
+        private string _lastTitle;
+        private string _lastSummary;
+        private string _lastHint;
 
         public GameplayHotbarRenderer(Tilemap tilemap, Tilemap backgroundTilemap)
         {
@@ -24,6 +34,12 @@ namespace CavesOfOoo.Rendering
 
         public void Clear()
         {
+            // Explicit lifecycle clears always clear supplied maps and invalidate
+            // the retained presentation, even when the next snapshot is equal.
+            _hasContent = false;
+            _needsInitialClear = false;
+            _lastSlots.Clear();
+            _lastTitle = _lastSummary = _lastHint = null;
             if (_tilemap != null)
             {
                 _tilemap.ClearAllTiles();
@@ -41,28 +57,115 @@ namespace CavesOfOoo.Rendering
         {
             using (PerformanceMarkers.Ui.HotbarRender.Auto())
             {
-                PerformanceDiagnostics.RecordHotbarRender();
-                Clear();
-
                 if (_tilemap == null || _backgroundTilemap == null || camera == null || !camera.enabled)
+                {
+                    if (_hasContent || _needsInitialClear)
+                        Clear();
+                    return;
+                }
+
+                string title = snapshot?.Title ?? "GRIMOIRES";
+                string summary = snapshot?.SummaryText ?? string.Empty;
+                string hint = snapshot?.HintText ?? string.Empty;
+                IReadOnlyList<HotbarSlotSnapshot> slots = snapshot?.Slots;
+                int slotCount = slots?.Count ?? 0;
+                bool headerChanged = !_hasContent || title != _lastTitle || hint != _lastHint;
+                bool summaryChanged = !_hasContent || summary != _lastSummary;
+                bool slotsChanged = !_hasContent || SlotsChanged(slots, slotCount);
+                if (!headerChanged && !summaryChanged && !slotsChanged)
                     return;
 
-                DrawBackground();
-                DrawText(1, GameplayHotbarLayout.GridHeight - 1, snapshot?.Title ?? "GRIMOIRES", QudColorParser.White, 18);
-                DrawRightAligned(
-                    GameplayHotbarLayout.GridWidth - 2,
-                    GameplayHotbarLayout.GridHeight - 1,
-                    snapshot?.HintText ?? string.Empty,
-                    QudColorParser.DarkGray,
-                    GameplayHotbarLayout.GridWidth - 20);
-                DrawText(1, GameplayHotbarLayout.GridHeight - 2, snapshot?.SummaryText ?? string.Empty, QudColorParser.Gray, GameplayHotbarLayout.GridWidth - 2);
+                PerformanceDiagnostics.RecordHotbarRender();
+                bool firstPaint = !_hasContent;
+                if (firstPaint)
+                {
+                    if (_needsInitialClear)
+                        Clear();
+                    DrawBackground();
+                }
+                if (headerChanged)
+                {
+                    if (!firstPaint)
+                        ClearRow(GameplayHotbarLayout.GridHeight - 1);
+                    DrawText(1, GameplayHotbarLayout.GridHeight - 1, title, QudColorParser.White, 18);
+                    DrawRightAligned(
+                        GameplayHotbarLayout.GridWidth - 2,
+                        GameplayHotbarLayout.GridHeight - 1,
+                        hint,
+                        QudColorParser.DarkGray,
+                        GameplayHotbarLayout.GridWidth - 20);
+                }
+                if (summaryChanged)
+                {
+                    if (!firstPaint)
+                        ClearRow(GameplayHotbarLayout.GridHeight - 2);
+                    DrawText(1, GameplayHotbarLayout.GridHeight - 2, summary, QudColorParser.Gray, GameplayHotbarLayout.GridWidth - 2);
+                }
+                if (slotsChanged)
+                {
+                    // Ordinary snapshots have ten ordered, non-overlapping slots.
+                    // Arbitrary callers may provide sparse/reordered/duplicate
+                    // indices, so replay those in order after clearing old boxes.
+                    bool granular = !firstPaint && HasOrderedSlots(_lastSlots) &&
+                        HasOrderedSlots(slots) && _lastSlots.Count == slotCount;
+                    if (!firstPaint && !granular)
+                    {
+                        for (int i = 0; i < _lastSlots.Count; i++)
+                            ClearSlot(_lastSlots[i].SlotIndex);
+                        for (int i = 0; i < slotCount; i++)
+                            ClearSlot(slots[i].SlotIndex);
+                    }
+                    for (int i = 0; i < slotCount; i++)
+                    {
+                        if (granular && HotbarStateBuilder.SlotsEqual(_lastSlots[i], slots[i]))
+                            continue;
+                        if (granular)
+                            ClearSlot(slots[i].SlotIndex);
+                        DrawSlot(slots[i]);
+                    }
+                }
 
-                if (snapshot?.Slots == null)
-                    return;
-
-                for (int i = 0; i < snapshot.Slots.Count; i++)
-                    DrawSlot(snapshot.Slots[i]);
+                // Copy values: IReadOnlyList does not guarantee the caller's
+                // underlying array/list is immutable between render calls.
+                _lastSlots.Clear();
+                for (int i = 0; i < slotCount; i++)
+                    _lastSlots.Add(slots[i]);
+                _lastTitle = title;
+                _lastSummary = summary;
+                _lastHint = hint;
+                _hasContent = true;
             }
+        }
+
+        private bool SlotsChanged(IReadOnlyList<HotbarSlotSnapshot> slots, int count)
+        {
+            if (_lastSlots.Count != count)
+                return true;
+            for (int i = 0; i < count; i++)
+                if (!HotbarStateBuilder.SlotsEqual(_lastSlots[i], slots[i]))
+                    return true;
+            return false;
+        }
+
+        private static bool HasOrderedSlots(IReadOnlyList<HotbarSlotSnapshot> slots)
+        {
+            if (slots == null)
+                return true;
+            for (int i = 0; i < slots.Count; i++)
+                if (slots[i].SlotIndex != i)
+                    return false;
+            return true;
+        }
+
+        private void ClearRow(int y)
+        {
+            _tilemap.SetTilesBlock(new BoundsInt(0, y, 0, GameplayHotbarLayout.GridWidth, 1, 1), BlankRow);
+        }
+
+        private void ClearSlot(int slotIndex)
+        {
+            _tilemap.SetTilesBlock(new BoundsInt(slotIndex * GameplayHotbarLayout.SlotWidth, 0, 0,
+                GameplayHotbarLayout.SlotWidth, 4, 1), BlankSlot);
         }
 
         private void DrawBackground()

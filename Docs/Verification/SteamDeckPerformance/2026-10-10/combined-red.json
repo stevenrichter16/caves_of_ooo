@@ -1,0 +1,141 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"b90c3b902ac44fdaa4075fb08c545abc\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791646412487,\"finished_unix_ms\":1791646521468,\"last_update_unix_ms\":1791646521468,\"progress\":{\"completed\":78,\"total\":78,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791646520990,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.SteamDeckSaveStagingTests.WorkerIsBackgroundAndCompletionRunsOnlyWhenPumped\",\"last_finished_unix_ms\":1791646520990,\"stuck_suspected\":false,\"editor_is_focused\":false,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"name\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"source\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"cooldown\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"binding\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"remove\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"selected\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\\\"pending\\\")\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(null,\\\"\\\",'?')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\\\"\\\",\\\"\\\",'?')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\\\"   \\\",\\\"\\\",'?')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\\\"---\\\",\\\"---\\\",'?')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\\\"a  b\\\",\\\"AB\\\",'A')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\\\"LongSingleWord\\\",\\\"LongSi\\\",'L')\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_Renderer_SlotChangeDoesNotRepaintOtherSlot\",\"message\":\"  Expected: RGBA(1.000, 0.000, 1.000, 1.000)\\n  But was:  RGBA(0.330, 0.330, 0.330, 1.000)\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.CardinalDependencyRebuildsNeighborWhenOnlyRemovedWallCellIsDirty(False)\",\"message\":\"  The neighboring patch must observe connection/rotation changes across its boundary.\\n  Expected: greater than 2\\n  But was:  2\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.CardinalDependencyRebuildsNeighborWhenOnlyRemovedWallCellIsDirty(True)\",\"message\":\"  The neighboring patch must observe connection/rotation changes across its boundary.\\n  Expected: greater than 2\\n  But was:  2\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\\\"hide\\\")\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\\\"glyph\\\")\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\\\"remove\\\")\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\\\"move\\\")\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.EmptyDirtVisibilityChangeHonorsRevealWithoutGeometryResolution(False)\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.EmptyDirtVisibilityChangeHonorsRevealWithoutGeometryResolution(True)\",\"message\":\"  RecipeResolveCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\\\"hide\\\")\",\"message\":\"  ContactUploadCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\\\"remove\\\")\",\"message\":\"  ContactUploadCount\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\\\"move\\\")\",\"message\":\"  ContactUploadCount\\n  Expected: not null\\n  But was:  null\\n\"}],\"failures_capped\":true},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "b90c3b902ac44fdaa4075fb08c545abc",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791646412487,
+        "finished_unix_ms": 1791646521468,
+        "last_update_unix_ms": 1791646521468,
+        "progress": {
+          "completed": 78,
+          "total": 78,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791646520990,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.SteamDeckSaveStagingTests.WorkerIsBackgroundAndCompletionRunsOnlyWhenPumped",
+          "last_finished_unix_ms": 1791646520990,
+          "stuck_suspected": false,
+          "editor_is_focused": false,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"name\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"source\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"cooldown\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"binding\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"remove\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"selected\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarMutation_UpdatesImmediatelyAndPreservesOldSnapshot(\"pending\")",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(null,\"\",'?')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\"\",\"\",'?')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\"   \",\"\",'?')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\"---\",\"---\",'?')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\"a  b\",\"AB\",'A')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_HotbarNames_MalformedOrCompactInputIsStable(\"LongSingleWord\",\"LongSi\",'L')",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.HotbarSnapshot>\n  But was:  <CavesOfOoo.Rendering.HotbarSnapshot>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckHudAdversarialTests.Adversarial_Renderer_SlotChangeDoesNotRepaintOtherSlot",
+              "message": "  Expected: RGBA(1.000, 0.000, 1.000, 1.000)\n  But was:  RGBA(0.330, 0.330, 0.330, 1.000)\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.CardinalDependencyRebuildsNeighborWhenOnlyRemovedWallCellIsDirty(False)",
+              "message": "  The neighboring patch must observe connection/rotation changes across its boundary.\n  Expected: greater than 2\n  But was:  2\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.CardinalDependencyRebuildsNeighborWhenOnlyRemovedWallCellIsDirty(True)",
+              "message": "  The neighboring patch must observe connection/rotation changes across its boundary.\n  Expected: greater than 2\n  But was:  2\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\"hide\")",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\"glyph\")",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\"remove\")",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.DirtyOwnerMutationRetiresOldOutputWithoutResolvingTheWholeZone(\"move\")",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.EmptyDirtVisibilityChangeHonorsRevealWithoutGeometryResolution(False)",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.EmptyDirtVisibilityChangeHonorsRevealWithoutGeometryResolution(True)",
+              "message": "  RecipeResolveCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\"hide\")",
+              "message": "  ContactUploadCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\"remove\")",
+              "message": "  ContactUploadCount\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SteamDeckNativeRenderAdversarialTests.SuspendedContactReadsTheLatestOwnerAndRevealState(False,\"move\")",
+              "message": "  ContactUploadCount\n  Expected: not null\n  But was:  null\n"
+            }
+          ],
+          "failures_capped": true
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

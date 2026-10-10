@@ -25,6 +25,7 @@ namespace CavesOfOoo.Editor
             if (SessionState.GetBool(Prefix + "restoreScenes", false)) AwaitSceneRestore();
         }
         public static void Run() => LaunchCore(true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);
         public static void LaunchCombat() => LaunchCore(false,false,true);
         public static void LaunchBiome() => LaunchCore(false,false,false,true);

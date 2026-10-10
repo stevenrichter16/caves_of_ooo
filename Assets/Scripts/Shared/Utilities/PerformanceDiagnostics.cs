@@ -39,9 +39,11 @@ namespace CavesOfOoo.Diagnostics
         {
         }
 
-        public PerformanceFrameSnapshot(PerformanceFrameSnapshot other)
+        public PerformanceFrameSnapshot(PerformanceFrameSnapshot other) => CopyFrom(other);
+
+        internal void CopyFrom(PerformanceFrameSnapshot other)
         {
-            if (other == null)
+            if (other == null || ReferenceEquals(other, this))
                 return;
 
             UnityFrame = other.UnityFrame;
@@ -69,6 +71,7 @@ namespace CavesOfOoo.Diagnostics
             ActiveDustMotes = other.ActiveDustMotes;
             MarkDirtyCount = other.MarkDirtyCount;
 
+            MarkDirtyBySource.Clear();
             foreach (KeyValuePair<string, int> kvp in other.MarkDirtyBySource)
                 MarkDirtyBySource[kvp.Key] = kvp.Value;
         }
@@ -90,13 +93,30 @@ namespace CavesOfOoo.Diagnostics
     {
         private static readonly List<StartupPhaseTiming> StartupPhasesInternal = new List<StartupPhaseTiming>();
         private static readonly PerformanceFrameSnapshot CurrentFrame = new PerformanceFrameSnapshot();
+        private static readonly PerformanceFrameSnapshot CompletedFrame = new PerformanceFrameSnapshot();
+        private static PerformanceFrameSnapshot publishedSnapshot;
 
         public const double DefaultSpikeThresholdMs = 16.7d;
 
         public static bool VerboseLoggingEnabled;
         public static bool DetailedCellProfilingEnabled;
         public static double SpikeThresholdMs { get; set; } = DefaultSpikeThresholdMs;
-        public static PerformanceFrameSnapshot LastCompletedFrameSnapshot { get; private set; } = new PerformanceFrameSnapshot();
+        /// <summary>One detached snapshot per requested completed frame. A caller
+        /// may retain it across later frames; internal reusable storage is never exposed.</summary>
+        public static PerformanceFrameSnapshot LastCompletedFrameSnapshot
+        {
+            get
+            {
+                if (publishedSnapshot == null)
+                {
+                    publishedSnapshot = new PerformanceFrameSnapshot(CompletedFrame);
+                    SnapshotMaterializationCount++;
+                }
+                return publishedSnapshot;
+            }
+        }
+        /// <summary>Actual detached frame snapshots allocated since ResetAll.</summary>
+        public static int SnapshotMaterializationCount { get; private set; }
         public static IReadOnlyList<StartupPhaseTiming> StartupPhases => StartupPhasesInternal;
         public static double StartupTotalMs { get; private set; }
         public static int CurrentInventorySessionRenderCount { get; private set; }
@@ -108,7 +128,8 @@ namespace CavesOfOoo.Diagnostics
             StartupPhasesInternal.Clear();
             StartupTotalMs = 0d;
             ResetCurrentFrame();
-            LastCompletedFrameSnapshot = new PerformanceFrameSnapshot();
+            CompletedFrame.CopyFrom(CurrentFrame); publishedSnapshot = null;
+            SnapshotMaterializationCount = 0;
             CurrentInventorySessionRenderCount = 0;
             LastCompletedInventorySessionRenderCount = 0;
             InventorySessionId = 0;
@@ -126,7 +147,7 @@ namespace CavesOfOoo.Diagnostics
         public static void EndFrame(double zoneRendererLateUpdateMs)
         {
             CurrentFrame.ZoneRendererLateUpdateMs = zoneRendererLateUpdateMs;
-            LastCompletedFrameSnapshot = new PerformanceFrameSnapshot(CurrentFrame);
+            CompletedFrame.CopyFrom(CurrentFrame); publishedSnapshot = null;
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (VerboseLoggingEnabled && zoneRendererLateUpdateMs >= SpikeThresholdMs)

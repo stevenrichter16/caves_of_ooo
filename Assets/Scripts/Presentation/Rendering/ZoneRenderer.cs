@@ -160,6 +160,7 @@ namespace CavesOfOoo.Rendering
         /// visibility changes.
         /// </summary>
         private bool _fullDirty = true;
+        private bool _nativeGeometryFullDirty = true;
 
         /// <summary>
         /// Per-cell dirty set for incremental rendering. Encoded as
@@ -619,6 +620,7 @@ namespace CavesOfOoo.Rendering
             _worldCursorState = null;
             _cursorPlayer = null;
             _fullDirty = true;
+            _nativeGeometryFullDirty = true;
             _dirtyCells.Clear();
             RefreshWaterCache();
 
@@ -749,14 +751,18 @@ namespace CavesOfOoo.Rendering
             {
                 PerformanceDiagnostics.RecordMarkDirty(source);
                 _fullDirty = true;
+                // Only this proven source is a global visibility change with
+                // separately published geometry cells. Unknown/bulk edits recover
+                // all native owners. Never downgrade an earlier full request.
+                if (source != "Move.Player") _nativeGeometryFullDirty = true;
                 _sidebarRenderer?.Invalidate();
             }
         }
 
         /// <summary>
         /// Mark a single cell as needing re-render on the next
-        /// <see cref="LateUpdate"/>. No-op if <see cref="_fullDirty"/> is
-        /// already set (the full redraw will cover this cell anyway).
+        /// <see cref="LateUpdate"/>. Retained even during a full visibility
+        /// redraw so native owners can reconcile their actual geometry changes.
         /// Bounds-checks <c>(x, y)</c> against the current zone — out-of-bounds
         /// coords are silently dropped rather than encoded into a hash bucket
         /// that no cell would ever match.
@@ -772,7 +778,6 @@ namespace CavesOfOoo.Rendering
             {
                 PerformanceDiagnostics.RecordMarkDirty(source);
                 _sidebarRenderer?.Invalidate();
-                if (_fullDirty) return; // full redraw will cover it
                 if (CurrentZone == null) return;
                 if (x < 0 || y < 0 || x >= Zone.Width || y >= Zone.Height) return;
                 _dirtyCells.Add(EncodeCellKey(x, y));
@@ -929,13 +934,14 @@ namespace CavesOfOoo.Rendering
                         _ambientMotesRenderer.gameObject.SetActive(true);
                     _wasPaused = false;
                     _fullDirty = true; // Force full redraw to restore bg/fx layers
+                    _nativeGeometryFullDirty = true;
                 }
 
                 if (CurrentZone != null)
                 {
                     if (_fullDirty)
                     {
-                        RenderZone();
+                        RenderZoneCore(useTrackedGeometry: true);
                         _fullDirty = false;
                         _dirtyCells.Clear();
                     }
@@ -992,6 +998,9 @@ namespace CavesOfOoo.Rendering
         /// Full redraw of the zone onto the tilemap.
         /// </summary>
         public void RenderZone()
+            => RenderZoneCore(useTrackedGeometry: false);
+
+        private void RenderZoneCore(bool useTrackedGeometry)
         {
             using (PerformanceMarkers.Zone.RenderZone.Auto())
             {
@@ -1030,7 +1039,8 @@ namespace CavesOfOoo.Rendering
 
                 SyncVillagePresentation(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _village3DPresenter?.Refresh(_lightMap);
-                RefreshSpawnRingPresentation();
+                RefreshSpawnRingPresentation(useTrackedGeometry && !_nativeGeometryFullDirty ? _dirtyCells : null);
+                _nativeGeometryFullDirty = false;
 
                 int cellsRendered = Zone.Width * Zone.Height;
                 PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
@@ -1568,7 +1578,7 @@ namespace CavesOfOoo.Rendering
                 Camera hotbarCamera = _hotbarCamera;
                 if (hotbarCamera == null || !hotbarCamera.enabled)
                 {
-                    _hotbarRenderer?.Clear();
+                    _hotbarRenderer?.Render(null, hotbarCamera);
                     return;
                 }
 
@@ -1894,6 +1904,12 @@ namespace CavesOfOoo.Rendering
                 || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.ClaimsCell(x, y))
                 || (_fellingScenePresenter != null && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone) && _fellingScenePresenter.ClaimsCell(x, y))
                 || (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone) && _morrowfastScenePresenter.ClaimsCell(x, y));
+
+        private bool ClaimsNativeSceneCell(int x, int y)
+            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone)
+                    && _spawnRing3DPresenter.ClaimsCell(x, y))
+                || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone)
+                    && _village3DPresenter.ClaimsCell(x, y));
 
         private bool IsAuthoredSceneEntity(Entity entity)
             => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.IsAuthoredEntity(entity))
@@ -2308,7 +2324,8 @@ namespace CavesOfOoo.Rendering
             {
                 var old = _waterTilePositions[i];
                 var cell = CurrentZone?.GetCell(old.x, old.y);
-                if (cell == null || !cell.IsVisible || !IsAmbientWater(cell.GetTopVisibleObject()))
+                if (cell == null || !cell.IsVisible || ClaimsNativeSceneCell(old.x, old.y)
+                    || !IsAmbientWater(cell.GetTopVisibleObject()))
                     ClearFineWaterAt(old.x, old.y);
             }
             _waterTilePositions.Clear();
@@ -2328,6 +2345,10 @@ namespace CavesOfOoo.Rendering
                 {
                     Cell cell = CurrentZone.GetCell(x, y);
                     if (cell == null) continue;
+
+                    // The native surface already renders this environment. Keep
+                    // legacy flow/shimmer/debris only for real fallback cells.
+                    if (ClaimsNativeSceneCell(x, y)) continue;
 
                     Entity top = cell.GetTopVisibleObject();
                     if (top == null) continue;

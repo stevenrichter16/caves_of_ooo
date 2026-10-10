@@ -193,7 +193,10 @@ namespace CavesOfOoo
                 // reloads every file, guaranteeing the full set at game start.
                 Data.ConversationLoader.LoadAll();
 
-                MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
+                MessageLog.OnMessage = msg =>
+                {
+                    if (Diag.DetailedCaptureEnabled) Debug.Log($"[Combat] {msg}");
+                };
 
                 Debug.Log("[Bootstrap] Step 3/9: Creating EntityFactory...");
                 _factory = new EntityFactory();

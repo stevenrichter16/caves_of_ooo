@@ -8,10 +8,21 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class HotbarStateBuilder
     {
+        // Fixed-size presentation caches retain strings only, never players or
+        // abilities. Gameplay fields are public/mutable, so validate their exact
+        // visible values on every call instead of relying on event invalidation.
+        // Like the other HUD builders, this is used on the main thread only.
+        private static readonly HotbarSlotSnapshot[] SlotScratch =
+            new HotbarSlotSnapshot[GameplayHotbarLayout.SlotCount];
+        private static readonly string[] DisplayNames = new string[GameplayHotbarLayout.SlotCount];
+        private static readonly string[] ShortNames = new string[GameplayHotbarLayout.SlotCount];
+        private static readonly char[] Glyphs = new char[GameplayHotbarLayout.SlotCount];
+        private static HotbarSnapshot _cachedSnapshot;
+
         public static HotbarSnapshot Build(Entity player, int selectedSlot, ActivatedAbility pendingAbility)
         {
             var abilities = player?.GetPart<ActivatedAbilitiesPart>();
-            var slots = new List<HotbarSlotSnapshot>(GameplayHotbarLayout.SlotCount);
+            var slots = SlotScratch;
             int pendingSlot = pendingAbility != null && abilities != null
                 ? abilities.GetSlotForAbility(pendingAbility.ID)
                 : -1;
@@ -26,35 +37,68 @@ namespace CavesOfOoo.Rendering
                 string displayName = occupied
                     ? (!string.IsNullOrEmpty(tooltip.DisplayName) ? tooltip.DisplayName : ability.DisplayName)
                     : string.Empty;
-                string shortName = occupied
-                    ? BuildShortName(displayName)
-                    : "empty";
+                displayName = displayName ?? string.Empty;
+                if (occupied && DisplayNames[slot] != displayName)
+                {
+                    DisplayNames[slot] = displayName;
+                    ShortNames[slot] = BuildShortName(displayName);
+                    Glyphs[slot] = BuildGlyph(displayName);
+                }
 
-                slots.Add(new HotbarSlotSnapshot(
+                slots[slot] = new HotbarSlotSnapshot(
                     slot,
                     SlotToHotkey(slot),
                     displayName,
-                    shortName,
+                    occupied ? ShortNames[slot] : "empty",
                     tooltip.ColorCode,
                     tooltip.Mechanics,
-                    occupied ? BuildGlyph(displayName) : '.',
+                    occupied ? Glyphs[slot] : '.',
                     ability?.CooldownRemaining ?? 0,
                     occupied,
                     slot == selectedSlot,
                     slot == pendingSlot,
-                    ability?.IsUsable ?? false));
+                    ability?.IsUsable ?? false);
+            }
+
+            if (_cachedSnapshot != null && _cachedSnapshot.SelectedSlot == selectedSlot &&
+                _cachedSnapshot.PendingSlot == pendingSlot)
+            {
+                bool unchanged = true;
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    if (!SlotsEqual(slots[i], _cachedSnapshot.Slots[i]))
+                    {
+                        unchanged = false;
+                        break;
+                    }
+                }
+                if (unchanged)
+                    return _cachedSnapshot;
             }
 
             int summarySlot = pendingSlot >= 0 ? pendingSlot : selectedSlot;
             string summaryText = BuildSummaryText(slots, summarySlot);
 
-            return new HotbarSnapshot(
+            // A retained snapshot must not point at the next call's scratch data.
+            // Wrap the copy to prevent callers from downcasting and mutating it.
+            _cachedSnapshot = new HotbarSnapshot(
                 "GRIMOIRES",
                 summaryText,
                 "[] cycle  [Enter] cast",
-                slots,
+                System.Array.AsReadOnly((HotbarSlotSnapshot[])slots.Clone()),
                 selectedSlot,
                 pendingSlot);
+            return _cachedSnapshot;
+        }
+
+        internal static bool SlotsEqual(HotbarSlotSnapshot left, HotbarSlotSnapshot right)
+        {
+            return left.SlotIndex == right.SlotIndex && left.Hotkey == right.Hotkey &&
+                left.DisplayName == right.DisplayName && left.ShortName == right.ShortName &&
+                left.AccentColorCode == right.AccentColorCode && left.MechanicsText == right.MechanicsText &&
+                left.Glyph == right.Glyph && left.CooldownRemaining == right.CooldownRemaining &&
+                left.Occupied == right.Occupied && left.Selected == right.Selected &&
+                left.Pending == right.Pending && left.Usable == right.Usable;
         }
 
         public static char SlotToHotkey(int slot)
@@ -66,7 +110,7 @@ namespace CavesOfOoo.Rendering
             return '?';
         }
 
-        private static string BuildSummaryText(List<HotbarSlotSnapshot> slots, int summarySlot)
+        private static string BuildSummaryText(IReadOnlyList<HotbarSlotSnapshot> slots, int summarySlot)
         {
             if (summarySlot < 0 || summarySlot >= slots.Count)
                 return "No rite bound. Use the Abilities tab to assign one.";

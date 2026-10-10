@@ -39,18 +39,22 @@ namespace CavesOfOoo.Rendering
             int maxRecentMessages = SidebarLogMessageLimit,
             bool showThoughts = false)
         {
-            var inventoryState = InventoryScreenData.Build(player);
+            // The sidebar needs authoritative vitals, not item categories,
+            // actions, equipment display rows or a paperdoll. Query mutable
+            // weight/defense directly so changes do not depend on revision hooks.
+            var inventory = player?.GetPart<InventoryPart>();
+            bool hasInventory = inventory != null;
 
             var vitalLines = new List<string>(5)
             {
-                ComposeDualLine("HP", FindStat(inventoryState, "HP", "0"), "MP", FindStat(inventoryState, "MP", "-")),
-                ComposeDualLine("LV", FindStat(inventoryState, "LV", GetLevel(player).ToString()), "XP", GetXpLine(player)),
-                ComposeDualLine("AV", FindStat(inventoryState, "AV", "0"), "DV", FindStat(inventoryState, "DV", "0")),
+                ComposeDualLine("HP", hasInventory ? ReadVitalStat(player, "Hitpoints", "HP", "0") : "0", "MP", hasInventory ? ReadVitalStat(player, "MP", "MP", "-") : "-"),
+                ComposeDualLine("LV", hasInventory ? ReadVitalStat(player, "Level", "LV", GetLevel(player).ToString()) : GetLevel(player).ToString(), "XP", GetXpLine(player)),
+                ComposeDualLine("AV", hasInventory ? CombatSystem.GetAV(player).ToString() : "0", "DV", hasInventory ? CombatSystem.GetDV(player).ToString() : "0"),
                 ComposeDualLine(
                     "WT",
-                    inventoryState.CarriedWeight + "/" + inventoryState.MaxCarryWeight,
+                    hasInventory ? inventory.GetCarriedWeight() + "/" + inventory.GetMaxCarryWeight() : "0/0",
                     "DR",
-                    inventoryState.Drams.ToString()),
+                    hasInventory ? TradeSystem.GetDrams(player).ToString() : "0"),
                 "TIME " + WorldClock.BandName(WorldClock.GetBand(WorldClock.CurrentTick), WorldMap.GetDepth(zone?.ZoneID))
             };
 
@@ -99,19 +103,36 @@ namespace CavesOfOoo.Rendering
             return result;
         }
 
-        private static string FindStat(InventoryScreenData.ScreenState state, string label, string fallback)
+        private static string ReadVitalStat(Entity player, string name, string label, string fallback)
         {
-            if (state?.PlayerStats != null)
-            {
-                for (int i = 0; i < state.PlayerStats.Count; i++)
-                {
-                    InventoryScreenData.StatDisplay stat = state.PlayerStats[i];
-                    if (stat != null && string.Equals(stat.Label, label, StringComparison.OrdinalIgnoreCase))
-                        return string.IsNullOrWhiteSpace(stat.Value) ? fallback : stat.Value;
-                }
-            }
+            if (player?.Statistics == null)
+                return fallback;
 
-            return fallback;
+            // Match InventoryScreenData's canonical-priority and case-insensitive
+            // labels, including legacy HP/LV aliases, without constructing or
+            // sorting a full stat display list.
+            string foundName = name;
+            if (!player.Statistics.TryGetValue(name, out Stat stat))
+            {
+                foundName = null;
+                foreach (var pair in player.Statistics)
+                {
+                    if (!string.Equals(pair.Key, name, StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(pair.Key, label, StringComparison.OrdinalIgnoreCase))
+                        continue;
+                    if (foundName != null && StringComparer.OrdinalIgnoreCase.Compare(pair.Key, foundName) >= 0)
+                        continue;
+                    foundName = pair.Key;
+                    stat = pair.Value;
+                }
+                if (foundName == null)
+                    return fallback;
+            }
+            if (stat == null)
+                return "0";
+            if (string.Equals(foundName, "Hitpoints", StringComparison.OrdinalIgnoreCase))
+                return stat.Value + "/" + (stat.Max > 0 ? stat.Max : stat.Value);
+            return stat.Value.ToString();
         }
 
         private static int GetLevel(Entity player)

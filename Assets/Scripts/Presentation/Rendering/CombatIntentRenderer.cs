@@ -57,8 +57,10 @@ namespace CavesOfOoo.Rendering
                 || !CombatIntentReadout.IsVisibleActor(player, zone)) { Clear(); return; }
             int count = 0;
             var playerCell = zone.GetEntityCell(player);
-            foreach (var actor in zone.GetReadOnlyEntities())
+            var actors = zone.GetReadOnlyEntitiesWithPart<CommittedMeleePart>();
+            for (int i = 0; i < actors.Count; i++)
             {
+                var actor = actors[i];
                 var intent = actor.GetPart<CommittedMeleePart>();
                 if (intent == null || !intent.IsWindingUp || !CombatIntentReadout.IsVisibleActor(actor, zone)) continue;
                 var source = zone.GetEntityCell(actor);

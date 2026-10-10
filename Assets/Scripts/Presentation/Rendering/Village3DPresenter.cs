@@ -326,7 +326,7 @@ namespace CavesOfOoo.Rendering
         private void ApplyVisibility()
         {
             bool wasVisible = surface != null && surface.IsVisible;
-            surface?.Sync(source, PresentationRequested, Village3DSettings.LowDetail);
+            surface?.SyncConfigured(source, PresentationRequested, Village3DSettings.WorldResolutionScale, Village3DSettings.ShadowsEnabled);
             if (wasVisible && !PresentationVisible) foreach (var actor in actors) Interrupt(actor);
         }
         private void LateUpdate()

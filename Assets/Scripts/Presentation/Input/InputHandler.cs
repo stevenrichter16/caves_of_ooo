@@ -405,8 +405,14 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null) ZoneRenderer.ClearAffordanceInput(this);
         }
 
+        private void OnDestroy() => SaveGameService.FlushPendingSaves();
+        private void OnApplicationQuit() => SaveGameService.FlushPendingSaves();
+
         private void Update()
         {
+            // Completion owns Unity/preferences/log work. Pump even behind a
+            // modal or before the player graph exists; the worker never does it.
+            SaveGameService.PumpPendingSaves();
             if (ZoneRenderer != null) ZoneRenderer.SetAffordanceInput(this);
             if (SpellFxSettingsPanel.IsOpen) return;
             using (PerformanceMarkers.Input.Update.Auto())
@@ -1079,8 +1085,8 @@ namespace CavesOfOoo.Rendering
             // transition (this method only runs for successful results —
             // both call sites gate on the transition succeeding). Death
             // is now recoverable even for a player who never learned F5.
-            if (SaveGameService.QuickSave())
-                MessageLog.Add("Autosaved.");
+            if (!SaveGameService.RequestQuickSave())
+                MessageLog.Add("Autosave failed.");
 
             // ALPHA economy-renewables SM3: traders the player sold out
             // regain buying power over time (floor top-up, save-safe

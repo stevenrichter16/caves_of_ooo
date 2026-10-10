@@ -128,6 +128,24 @@ namespace CavesOfOoo.Diagnostics
         private static int _filledCount;      // total slots filled, capped at BufferSize
         private static long _droppedCount;    // records dropped because the buffer wrapped
         private static readonly Dictionary<string, bool> _channels = new Dictionary<string, bool>();
+        private static readonly HashSet<string> _explicitDetailedChannels = new HashSet<string>(StringComparer.Ordinal);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private const bool DevelopmentCaptureDefault = true;
+#else
+        private const bool DevelopmentCaptureDefault = false;
+#endif
+        public const string CaptureEnvironmentVariable = "COO_DIAGNOSTICS";
+        private static bool DefaultDetailedCapture => CaptureEnabledByDefault(DevelopmentCaptureDefault,
+            Environment.GetEnvironmentVariable(CaptureEnvironmentVariable));
+        /// <summary>Pure launch policy: editor/development retain detailed
+        /// capture; retail can opt in explicitly with COO_DIAGNOSTICS=1.</summary>
+        public static bool CaptureEnabledByDefault(bool developmentBuild, string launchOption)
+            => developmentBuild || launchOption == "1";
+        /// <summary>Detailed routine evidence is opt-in in retail builds. Editor
+        /// and development builds retain the established diagnostic defaults.
+        /// Normal actions and rejection/failure evidence remain eligible when off;
+        /// explicit channel disable always wins. Does not alter gameplay logging.</summary>
+        public static bool DetailedCaptureEnabled { get; set; } = DefaultDetailedCapture;
         private static readonly string _sessionId = Guid.NewGuid().ToString("N").Substring(0, 12);
 
         /// <summary>
@@ -157,7 +175,8 @@ namespace CavesOfOoo.Diagnostics
         // ====================================================================
 
         /// <summary>
-        /// True if the named category is currently enabled for recording.
+        /// True if the named category is eligible for recording. Routine kinds
+        /// may still be filtered by IsRecordEnabled in a retail capture policy.
         /// Unknown categories return false (off-by-default per
         /// AI-OBSERVABILITY.md §10 Step 2).
         /// </summary>
@@ -170,18 +189,53 @@ namespace CavesOfOoo.Diagnostics
         /// <summary>
         /// Enable or disable recording for a named category. Categories are
         /// free-form strings; calling SetChannel with a never-before-used
-        /// name registers it. Off-by-default unless in
-        /// <see cref="DefaultOnCategories"/>.
+        /// name registers it. Explicit enable also opts that channel into detail
+        /// capture, independently of DetailedCaptureEnabled. Unknown categories
+        /// remain off by default unless in <see cref="DefaultOnCategories"/>.
         /// </summary>
         public static void SetChannel(string category, bool enabled)
         {
             if (string.IsNullOrEmpty(category)) return;
             _channels[category] = enabled;
+            if (enabled) _explicitDetailedChannels.Add(category);
+            else _explicitDetailedChannels.Remove(category);
+        }
+
+        /// <summary>Kind-aware capture gate for avoiding expensive payload
+        /// construction. Retained payloads still serialize at Record time.
+        /// The retail filter names routine streams conservatively; unknown action
+        /// kinds in an enabled ordinary channel remain observable.</summary>
+        public static bool IsRecordEnabled(string category, string kind)
+        {
+            if (string.IsNullOrEmpty(kind) || !IsChannelEnabled(category)) return false;
+            if (DetailedCaptureEnabled || _explicitDetailedChannels.Contains(category)) return true;
+            // Failures and rejected actions remain diagnostic evidence even in
+            // categories whose normal successful bookkeeping is detail-only.
+            if (kind.IndexOf("Reject", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Fail", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Refus", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Error", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Veto", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Blocked", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Mismatch", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Unmapped", StringComparison.OrdinalIgnoreCase) >= 0
+                || kind.IndexOf("Missing", StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            switch (category)
+            {
+                case "worldgen": return kind == "PricklebrowNestDisturbed";
+                case "gasbench": case "questbench": return false;
+                case "crop": return kind != "CropTimeReconciled";
+                case "tile": return kind != "PropagationWave";
+                case "gas": return kind != "Spread" && kind != "Merged" && kind != "SpawnMerged";
+                case "event": return kind != "CarryPenaltyRefreshed";
+                case "effect": return kind != "NativeSpellPrepared";
+                default: return true;
+            }
         }
 
         /// <summary>
         /// Record an observable into the ring buffer. No-op when the
-        /// category is disabled.
+        /// category is disabled or the current detail policy excludes this kind.
         ///
         /// The <paramref name="payload"/> is JSON-serialized synchronously
         /// (eager); subsequent mutations to the payload object do not
@@ -208,7 +262,7 @@ namespace CavesOfOoo.Diagnostics
         {
             if (string.IsNullOrEmpty(category)) return;
             if (string.IsNullOrEmpty(kind)) return;
-            if (!IsChannelEnabled(category)) return;
+            if (!IsRecordEnabled(category, kind)) return;
 
             try
             {
@@ -284,7 +338,8 @@ namespace CavesOfOoo.Diagnostics
             _writeIndex = 0;
             _filledCount = 0;
             _droppedCount = 0;
-            _channels.Clear();
+            _channels.Clear(); _explicitDetailedChannels.Clear();
+            DetailedCaptureEnabled = DefaultDetailedCapture;
             foreach (var cat in DefaultOnCategories)
                 _channels[cat] = true;
             // Clear the ambient WithCause scope. Test isolation: a leaky

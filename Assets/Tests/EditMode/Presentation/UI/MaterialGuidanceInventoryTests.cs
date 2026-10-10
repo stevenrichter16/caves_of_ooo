@@ -249,6 +249,7 @@ namespace CavesOfOoo.Tests
             int action = OpenExamine(item, requireSingle: true);
             var commands = Actions().Cast<object>().Select(a => (string)Get(a, "Command")).ToArray();
             Assert.That(commands, Does.Contain("drop"));
+            Assert.That(commands, Does.Not.Contain("examine_material"), "ordinary item details are not repair guidance");
             if (blueprint == "Dagger") Assert.That(commands, Does.Contain("equip_auto"));
             Call(inventoryUI, "ExecuteItemAction", action);
             if (blueprint == "Dagger")
@@ -258,6 +259,15 @@ namespace CavesOfOoo.Tests
                 string text = OpenQueuedAnnouncement();
                 StringAssert.Contains("Damage: 1d4", text);
                 StringAssert.Contains(item.GetDisplayName(), text);
+                StringAssert.DoesNotContain("oven", text.ToLowerInvariant());
+                CloseAnnouncement();
+            }
+            else if (blueprint == "LampOil")
+            {
+                // The tactical-use pass added legitimate oil-film instructions.
+                // Keep that item popup while still rejecting repair guidance.
+                string text = OpenQueuedAnnouncement();
+                StringAssert.Contains("flammable, slippery ground film", text);
                 StringAssert.DoesNotContain("oven", text.ToLowerInvariant());
                 CloseAnnouncement();
             }

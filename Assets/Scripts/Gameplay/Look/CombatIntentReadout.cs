@@ -52,13 +52,17 @@ namespace CavesOfOoo.Core
         public static string ThreatLine(Zone zone, Cell cell)
         {
             if (!VisibleCell(zone, cell)) return null;
-            foreach (var actor in zone.GetReadOnlyEntities())
+            var actors = zone.GetReadOnlyEntitiesWithPart<CommittedMeleePart>();
+            for (int i = 0; i < actors.Count; i++)
+            {
+                var actor = actors[i];
                 if (ThreatensVisibleCell(actor, zone, cell))
                 {
                     var intent = actor.GetPart<CommittedMeleePart>();
                     return "In the path of " + actor.GetDisplayName() + "'s " + intent.AttackName
                         + ". Step aside or interrupt the attack.";
                 }
+            }
             return null;
         }
 

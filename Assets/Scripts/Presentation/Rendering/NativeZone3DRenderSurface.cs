@@ -71,6 +71,9 @@ namespace CavesOfOoo.Rendering
                     if (families.ContainsKey(source)) continue;
                     var material = Clone(source); ownedMaterials.Add(material);
                     material.SetTexture("_FogLight", FogTexture); material.SetFloat("_Exposure", exposure);
+                    // Uniform static visibility belongs to the owned material
+                    // family. Transient owners retain their per-renderer policy.
+                    material.SetFloat("_Transient", 0);
                     families.Add(source, material); families.Add(material, material);
                 }
                 compositeMaterial = Clone(compositeSource);
@@ -158,13 +161,21 @@ namespace CavesOfOoo.Rendering
                 var materials = renderer.sharedMaterials;
                 for (int i = 0; i < materials.Length; i++) materials[i] = MaterialFor(materials[i]);
                 renderer.sharedMaterials = materials;
-                renderer.GetPropertyBlock(properties); properties.SetFloat("_Transient", transient ? 1 : 0);
-                if (ownedAmbientProbe != null)
+                renderer.GetPropertyBlock(properties);
+                // Empty static renderers can use the SRP Batcher. Never clear
+                // an existing block: it may own tint, headwear or other data.
+                // Custom SH and transient policy still require renderer data.
+                if (transient || ownedAmbientProbe != null || !properties.isEmpty)
                 {
-                    renderer.lightProbeUsage = LightProbeUsage.CustomProvided;
-                    properties.CopySHCoefficientArraysFrom(ownedAmbientProbe);
+                    properties.SetFloat("_Transient", transient ? 1 : 0);
+                    if (ownedAmbientProbe != null)
+                    {
+                        renderer.lightProbeUsage = LightProbeUsage.CustomProvided;
+                        properties.CopySHCoefficientArraysFrom(ownedAmbientProbe);
+                    }
+                    renderer.SetPropertyBlock(properties);
                 }
-                renderer.SetPropertyBlock(properties); properties.Clear();
+                properties.Clear();
                 // Indexed blocks override the renderer-level block. Preserve
                 // their other values, but keep the native visibility policy.
                 for (int i = 0; i < materials.Length; i++)
@@ -224,8 +235,15 @@ namespace CavesOfOoo.Rendering
         /// <summary>Mirrors a borrowed orthographic XY camera. Hidden surfaces
         /// retain reusable resources; invalid or null sources fail closed.</summary>
         public void Sync(Camera borrowedSource, bool visible, bool lowDetail)
+            => SyncConfigured(borrowedSource, visible, lowDetail ? .75f : 1f, !lowDetail);
+        /// <summary>Applies independent world-target resolution and shadow
+        /// policy. The borrowed HUD camera/target and presentation geometry stay
+        /// unchanged. Invalid resolution fails closed; supported range is .5–1.</summary>
+        public void SyncConfigured(Camera borrowedSource, bool visible, float resolutionScale, bool shadowsEnabled)
         {
             if (disposed) return;
+            if (!Village3DProjection.Finite(resolutionScale) || resolutionScale < .5f || resolutionScale > 1f)
+            { SetVisible(false); return; }
             bool valid = visible && borrowedSource != null && borrowedSource.orthographic
                 && ContentRoot != null && WorldCamera != null && CompositeRenderer != null;
             Rect viewport = valid ? borrowedSource.pixelRect : default;
@@ -238,9 +256,8 @@ namespace CavesOfOoo.Rendering
                     && Village3DProjection.Finite(p.x) && Village3DProjection.Finite(p.y);
             }
             if (!valid) { SetVisible(false); return; }
-            float resolution = lowDetail ? .75f : 1f;
-            int width = Mathf.Max(1, Mathf.RoundToInt(viewport.width * resolution));
-            int height = Mathf.Max(1, Mathf.RoundToInt(viewport.height * resolution));
+            int width = Mathf.Max(1, Mathf.RoundToInt(viewport.width * resolutionScale));
+            int height = Mathf.Max(1, Mathf.RoundToInt(viewport.height * resolutionScale));
             if (width > SystemInfo.maxTextureSize || height > SystemInfo.maxTextureSize)
             { SetVisible(false); return; }
             if (target == null || !target.IsCreated() || target.width != width || target.height != height)
@@ -251,7 +268,7 @@ namespace CavesOfOoo.Rendering
                 if (!target.Create()) { ReleaseTarget(); SetVisible(false); return; }
                 WorldCamera.targetTexture = target; compositeMaterial.SetTexture("_MainTex", target);
             }
-            Sun.shadows = lowDetail ? LightShadows.None : LightShadows.Soft;
+            Sun.shadows = shadowsEnabled ? LightShadows.Soft : LightShadows.None;
             WorldCamera.orthographicSize = borrowedSource.orthographicSize; WorldCamera.aspect = borrowedSource.aspect;
             WorldCamera.depth = borrowedSource.depth - 1; WorldCamera.rect = new Rect(0, 0, 1, 1);
             Vector3 position = borrowedSource.transform.position;

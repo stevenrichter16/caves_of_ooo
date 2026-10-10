@@ -7,6 +7,7 @@ namespace CavesOfOoo.Rendering
     /// <summary>Presentation preferences only; never part of a saved game.</summary>
     public static class SpellFxSettings
     {
+        public const string ModePreferenceKey = "CavesOfOoo.Fx.Mode";
         public static SpellFxMode Mode { get; set; } = SpellFxMode.Full;
         private static float _speed = 1f, _flash = 0.15f, _shake, _soundVolume = 1f;
         public static float AnimationSpeed { get => _speed; set => _speed = SafeClamp(value, .25f, 4f, 1f); }
@@ -20,7 +21,7 @@ namespace CavesOfOoo.Rendering
 
         public static void Load()
         {
-            Mode = (SpellFxMode)Mathf.Clamp(PlayerPrefs.GetInt("CavesOfOoo.Fx.Mode", 2), 0, 2);
+            Mode = (SpellFxMode)Mathf.Clamp(PlayerPrefs.GetInt(ModePreferenceKey, Village3DSettings.UseHandheldDefaults ? 1 : 2), 0, 2);
             AnimationSpeed = PlayerPrefs.GetFloat("CavesOfOoo.Fx.Speed", 1f);
             FlashIntensity = PlayerPrefs.GetFloat("CavesOfOoo.Fx.Flash", .15f);
             SoundVolume = PlayerPrefs.GetFloat("CavesOfOoo.Fx.SoundVolume", 1f);
@@ -29,7 +30,7 @@ namespace CavesOfOoo.Rendering
 
         public static void Save()
         {
-            PlayerPrefs.SetInt("CavesOfOoo.Fx.Mode", (int)Mode);
+            PlayerPrefs.SetInt(ModePreferenceKey, (int)Mode);
             PlayerPrefs.SetFloat("CavesOfOoo.Fx.Speed", AnimationSpeed);
             PlayerPrefs.SetFloat("CavesOfOoo.Fx.Flash", FlashIntensity);
             PlayerPrefs.SetFloat("CavesOfOoo.Fx.Shake", ShakeIntensity);

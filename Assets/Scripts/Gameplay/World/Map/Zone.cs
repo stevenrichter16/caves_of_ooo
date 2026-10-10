@@ -92,6 +92,104 @@ namespace CavesOfOoo.Core
         /// Quick lookup: entity -> which cell it's in.
         /// </summary>
         private Dictionary<Entity, Cell> _entityCells = new Dictionary<Entity, Cell>();
+        // Runtime-only membership, lazily seeded per queried type. Values remain
+        // live: callers invoking gameplay callbacks must copy into a scratch list.
+        private sealed class PartOwners
+        {
+            internal readonly List<Entity> Owners = new List<Entity>();
+            internal readonly HashSet<Entity> Membership = new HashSet<Entity>();
+            internal int Version;
+            internal void Set(Entity owner, bool included)
+            {
+                if (included)
+                {
+                    if (!Membership.Add(owner)) return;
+                    Owners.Add(owner);
+                }
+                else
+                {
+                    if (!Membership.Remove(owner)) return;
+                    Owners.Remove(owner);
+                }
+                unchecked { Version++; }
+            }
+            internal void Clear()
+            { Owners.Clear(); Membership.Clear(); unchecked { Version++; } }
+        }
+        private readonly Dictionary<System.Type, PartOwners> _partOwners = new Dictionary<System.Type, PartOwners>();
+
+        /// <summary>Live, read-only relevant-owner membership. Seeded once per
+        /// part type, maintained by physical entry/exit and AddPart/RemovePart.
+        /// Never iterate across callbacks that mutate the zone or its parts.
+        /// Direct save hydration must finish with RebuildEntityCellsFromCells.</summary>
+        public IReadOnlyList<Entity> GetReadOnlyEntitiesWithPart<T>() where T : Part
+        {
+            var type = typeof(T);
+            if (!_partOwners.TryGetValue(type, out var bucket))
+            {
+                bucket = new PartOwners();
+                foreach (var owner in _entityCells.Keys) bucket.Set(owner, HasPartOfType(owner, type));
+                _partOwners.Add(type, bucket);
+            }
+            return bucket.Owners;
+        }
+
+        internal int GetPartMembershipVersion<T>() where T : Part
+        {
+            GetReadOnlyEntitiesWithPart<T>();
+            return _partOwners[typeof(T)].Version;
+        }
+
+        // Preserve the exact order of the old full-owner snapshot. Dictionary
+        // slots can be reused after removals, so insertion ordinals are not an
+        // equivalent order. The snapshot is immutable: callbacks can invalidate
+        // the zone's cache while an outer pass still holds its original ranks.
+        internal sealed class EntityOrderSnapshot : IComparer<Entity>
+        {
+            private readonly Dictionary<Entity, int> _ranks;
+            internal EntityOrderSnapshot(Dictionary<Entity, Cell> owners)
+            {
+                _ranks = new Dictionary<Entity, int>(owners.Count);
+                foreach (var owner in owners.Keys) _ranks.Add(owner, _ranks.Count);
+            }
+            internal int RankOf(Entity owner) => owner != null && _ranks.TryGetValue(owner, out int rank) ? rank : -1;
+            public int Compare(Entity a, Entity b) => RankOf(a).CompareTo(RankOf(b));
+        }
+        private EntityOrderSnapshot _entityOrderSnapshot;
+        internal EntityOrderSnapshot GetEntityOrderSnapshot()
+            => _entityOrderSnapshot ?? (_entityOrderSnapshot = new EntityOrderSnapshot(_entityCells));
+
+        internal void NotifyEntityPartsChanged(Entity owner)
+        {
+            bool present = _entityCells.ContainsKey(owner);
+            foreach (var entry in _partOwners)
+                entry.Value.Set(owner, present && HasPartOfType(owner, entry.Key));
+        }
+        private static bool HasPartOfType(Entity owner, System.Type type)
+        {
+            for (int i = 0; i < owner.Parts.Count; i++)
+                if (type.IsInstanceOfType(owner.Parts[i])) return true;
+            return false;
+        }
+
+        private sealed class CellOrderComparer : IComparer<Entity>
+        {
+            private readonly Zone zone;
+            internal CellOrderComparer(Zone zone) { this.zone = zone; }
+            public int Compare(Entity a, Entity b)
+            {
+                if (ReferenceEquals(a, b)) return 0;
+                var ac = zone.GetEntityCell(a); var bc = zone.GetEntityCell(b);
+                if (ac == null) return bc == null ? 0 : -1;
+                if (bc == null) return 1;
+                int order = ac.X.CompareTo(bc.X); if (order != 0) return order;
+                order = ac.Y.CompareTo(bc.Y); if (order != 0) return order;
+                return ac.Objects.IndexOf(a).CompareTo(bc.Objects.IndexOf(b));
+            }
+        }
+        private CellOrderComparer _cellOrderComparer;
+        internal void SortInCellOrder(List<Entity> owners)
+            => owners.Sort(_cellOrderComparer ?? (_cellOrderComparer = new CellOrderComparer(this)));
         private ZoneSpatialIndex _spatial;
         private ZoneSpatialIndex Spatial => _spatial ?? (_spatial = new ZoneSpatialIndex(this));
 
@@ -332,6 +430,7 @@ namespace CavesOfOoo.Core
 
             cell.AddObject(entity);
             _entityCells[entity] = cell;
+            if (isFreshAdd) _entityOrderSnapshot = null;
             entity.SpatialZone = this;
             if (hasFootprint) Spatial.Register(entity,cell);
 
@@ -345,7 +444,10 @@ namespace CavesOfOoo.Core
             ProjectPool(entity, cell);
 
             if (isFreshAdd)
+            {
                 IndexEntityTags(entity);
+                NotifyEntityPartsChanged(entity);
+            }
 
             EntityVersion++;
             if(hasFootprint)
@@ -373,6 +475,8 @@ namespace CavesOfOoo.Core
                 _spatial?.Unregister(entity);
                 cell.RemoveObject(entity);
                 _entityCells.Remove(entity);
+                _entityOrderSnapshot = null;
+                NotifyEntityPartsChanged(entity);
                 if (entity.SpatialZone == this) entity.SpatialZone = null;
                 UnindexEntityTags(entity);
                 EntityVersion++;
@@ -639,7 +743,9 @@ namespace CavesOfOoo.Core
             foreach (var existing in _entityCells.Keys)
                 if (existing.SpatialZone == this) existing.SpatialZone = null;
             _entityCells.Clear();
+            _entityOrderSnapshot = null;
             _tagIndex.Clear();
+            foreach (var bucket in _partOwners.Values) bucket.Clear();
             for (int x = 0; x < Width; x++) for (int y = 0; y < Height; y++)
             {
                 Cell cell = Cells[x, y];
@@ -654,9 +760,10 @@ namespace CavesOfOoo.Core
                     _entityCells[entity] = cell;
                     entity.SpatialZone = this;
                     if (entity.HasPart<SpatialFootprintPart>()) Spatial.Register(entity,cell);
-                    IndexEntityTags(entity); i++;
+                    IndexEntityTags(entity); NotifyEntityPartsChanged(entity); i++;
                 }
             }
+            _entityOrderSnapshot = null;
         }
 
         public void SetEntityVersionForLoad(int version)

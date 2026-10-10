@@ -24,6 +24,13 @@ namespace CavesOfOoo.Rendering
         private readonly Color32[] upload=new Color32[ReferenceGladeContactGeometry.Width*ReferenceGladeContactGeometry.Height];
         private Material material;private Texture2D mask;private bool disposed,valid,hasSignature;
         private ulong signature;
+        private bool enabled=true;
+        private Zone latestZone;
+        private IReadOnlyDictionary<Entity,SpawnRing3DRecipe> latestRecipes;
+        private bool latestFullReveal;
+        internal int ContributorVisitCount { get; private set; }
+        internal int RasterizeCount { get; private set; }
+        internal int UploadCount { get; private set; }
         internal ReferenceGladeGroundContact(ReferenceGladeVoxelLibrary library,Material ownedMaterial,SpreadEnvironment3DLibrary environment=null)
         {
             if(library==null||ownedMaterial==null||ReferenceEquals(library.Material,ownedMaterial)
@@ -68,10 +75,15 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Zone.ContactRefresh.Auto())
             {
             if(disposed)return;
+            // Retain the current graph, not a snapshot: reenable must read live
+            // visibility even when no render refresh happened during suspension.
+            latestZone=zone;latestRecipes=recipes;latestFullReveal=fullReveal;
+            if(!enabled)return;
             if(!SpreadPresentationScope.IsActive(zone)||recipes==null){Clear();return;}
             placed.Clear();ulong next=Offset;int count=0;
             foreach(var pair in recipes)
             {
+                ContributorVisitCount++;
                 var recipe=pair.Value;
                 if(!recipe.Batched||recipe.Transient||recipe.Failure!=null||!ReferenceEquals(pair.Key,recipe.Owner)
                     ||recipe.ModelId==null||!sources.TryGetValue(recipe.ModelId,out var shape)||shape.Bases.Length==0)continue;
@@ -87,13 +99,25 @@ namespace CavesOfOoo.Rendering
             }
             if(hasSignature&&next==signature)return;
             using (PerformanceMarkers.Zone.ContactRasterize.Auto())
-                valid=ReferenceGladeContactGeometry.Rasterize(placed,pixels);
+            {RasterizeCount++;valid=ReferenceGladeContactGeometry.Rasterize(placed,pixels);}
             signature=next;hasSignature=true;Upload();
-            if(!valid&&material!=null)material.SetFloat(StrengthId,0);
+            ApplyStrength();
             }
         }
-        internal void SetEnabled(bool enabled)
-        {if(!disposed&&material!=null)material.SetFloat(StrengthId,enabled&&valid?MaximumAttenuation:0);}
+        internal void SetEnabled(bool value)
+        {
+            if(disposed)return;
+            bool resume=value&&!enabled;enabled=value;
+            if(resume)
+            {
+                // Never expose an old contact field for even one frame. The
+                // latest graph may have changed while its output was hidden.
+                hasSignature=false;Refresh(latestZone,latestRecipes,latestFullReveal);
+            }
+            ApplyStrength();
+        }
+        private void ApplyStrength()
+        {if(material!=null)material.SetFloat(StrengthId,enabled&&valid?MaximumAttenuation:0);}
         private void Clear()
         {
             placed.Clear();hasSignature=false;valid=false;Array.Clear(pixels,0,pixels.Length);Upload();
@@ -101,7 +125,7 @@ namespace CavesOfOoo.Rendering
         }
         private void Upload()
         {using (PerformanceMarkers.Zone.ContactUpload.Auto())
-            {if(mask==null)return;for(int i=0;i<pixels.Length;i++)upload[i]=new Color32(pixels[i],0,0,255);mask.SetPixels32(upload);mask.Apply(false,false);}}
+            {if(mask==null)return;UploadCount++;for(int i=0;i<pixels.Length;i++)upload[i]=new Color32(pixels[i],0,0,255);mask.SetPixels32(upload);mask.Apply(false,false);}}
         private static void Mix(ref ulong hash,uint value){unchecked{hash=(hash^value)*Prime;}}
         public void Dispose()
         {
@@ -110,7 +134,7 @@ namespace CavesOfOoo.Rendering
             // A foreign/borrowed material was rejected before any allocation.
             if(material!=null){material.SetFloat(StrengthId,0);material.SetTexture(FieldId,null);}material=null;
             if(mask!=null){if(Application.isPlaying)Object.Destroy(mask);else Object.DestroyImmediate(mask);}mask=null;
-            sources.Clear();placed.Clear();valid=false;hasSignature=false;
+            sources.Clear();placed.Clear();valid=false;hasSignature=false;latestZone=null;latestRecipes=null;
         }
     }
 }

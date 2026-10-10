@@ -29,12 +29,7 @@ namespace CavesOfOoo.Rendering
 
         // ---- Layout constants ----
         private const int POPUP_W = 28;
-        private const int CONTENT_ROWS = 4;          // Save, Load, Controls, Quit
-        private const int BORDER_H = CONTENT_ROWS + 4;  // top + title + sep + content + bottom
-        private const int POPUP_H = BORDER_H + 1;       // +1 for hint line
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
-
-        private static readonly string[] LABELS = { "Save game", "Load game", "Controls", "Quit" };
 
         // The controller is owned externally (InputHandler creates one).
         // We accept a reference so this UI is testable independently
@@ -49,6 +44,11 @@ namespace CavesOfOoo.Rendering
         private bool _wasOpenLastFrame;
         private int _worldOriginX;
         private int _worldTopY;
+        private int _renderedHeight;
+        private int _renderedBorderHeight;
+        private bool _hasRenderedBounds;
+        private bool _hasMousePosition;
+        private Vector3 _lastMousePosition;
 
         public bool IsOpen => Controller != null && Controller.IsOpen;
 
@@ -64,19 +64,25 @@ namespace CavesOfOoo.Rendering
 
             int prevSelected = Controller.SelectedIndex;
             bool wasOpen = Controller.IsOpen;
+            int previousRevision = Controller.ViewRevision;
+            Vector3 mousePosition = UnityEngine.Input.mousePosition;
+            bool mouseMoved = _hasMousePosition && mousePosition != _lastMousePosition;
+            _lastMousePosition = mousePosition;
+            _hasMousePosition = true;
 
             // Mouse hover (only meaningful while open).
             if (Controller.IsOpen)
             {
                 int hoverRow = GetRowAtMouse();
-                if (hoverRow >= 0 && hoverRow != Controller.SelectedIndex)
+                // A stationary cursor must not undo a Dpad/keyboard selection.
+                if (mouseMoved && hoverRow >= 0 && hoverRow != Controller.SelectedIndex)
                     Controller.HoverSelect(hoverRow);
 
                 // Mouse click → confirm at clicked row, or close on outside-click.
                 if (UnityEngine.Input.GetMouseButtonDown(0))
                 {
                     int clickedRow = GetRowAtMouse();
-                    if (clickedRow >= 0 && SaveLoadService != null)
+                    if (clickedRow >= 0)
                     {
                         Controller.ClickSelect(clickedRow, SaveLoadService, Log);
                         OnControllerStateChanged(wasOpen);
@@ -97,7 +103,7 @@ namespace CavesOfOoo.Rendering
             // Render when state changed or selection changed (either due to
             // keyboard nav or mouse hover handled above).
             if (Controller.IsOpen != wasOpen
-                || (Controller.IsOpen && Controller.SelectedIndex != prevSelected))
+                || (Controller.IsOpen && (Controller.SelectedIndex != prevSelected || Controller.ViewRevision != previousRevision)))
             {
                 OnControllerStateChanged(wasOpen);
             }
@@ -136,17 +142,26 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null || Controller == null) return;
 
-            ComputePopupPosition();
-            ClearRegion(0, 0, POPUP_W, POPUP_H);
-            DrawBgFill(0, 0, POPUP_W, BORDER_H);
-            DrawPopupBorder(0, 0, POPUP_W, BORDER_H, CONTENT_ROWS);
+            // Erase the previous rectangle before changing page height/origin.
+            // Otherwise returning from the taller graphics page leaves stale rows.
+            ClearAll();
+            int contentRows = Controller.VisibleItemCount;
+            int borderHeight = contentRows + 4;
+            int popupHeight = borderHeight + 1;
+            ComputePopupPosition(popupHeight);
+            _renderedHeight = popupHeight;
+            _renderedBorderHeight = borderHeight;
+            _hasRenderedBounds = true;
+            ClearRegion(0, 0, POPUP_W, popupHeight);
+            DrawBgFill(0, 0, POPUP_W, borderHeight);
+            DrawPopupBorder(0, 0, POPUP_W, borderHeight, contentRows);
 
             // Title row
-            DrawText(2, 1, "Pause", QudColorParser.BrightYellow);
+            DrawText(2, 1, Controller.IsGraphicsOpen ? "Graphics" : "Pause", QudColorParser.BrightYellow);
 
-            // Two button rows
+            // Current page rows
             const int contentY = 3;
-            for (int i = 0; i < LABELS.Length; i++)
+            for (int i = 0; i < contentRows; i++)
             {
                 int rowY = contentY + i;
                 bool selected = i == Controller.SelectedIndex;
@@ -155,24 +170,28 @@ namespace CavesOfOoo.Rendering
                     DrawChar(1, rowY, '>', QudColorParser.White);
 
                 Color labelColor = selected ? QudColorParser.White : QudColorParser.Gray;
-                DrawText(3, rowY, LABELS[i], labelColor);
+                DrawText(3, rowY, Controller.GetItemLabel(i), labelColor);
             }
 
             // Hint at bottom (outside the border)
-            int hintY = BORDER_H;
-            DrawText(0, hintY, NativeGamepadInput.IsConnected ? "[A]select [B]close" : "[Enter]select [Tab]close", QudColorParser.DarkGray);
+            string hint = Controller.IsGraphicsOpen
+                ? (NativeGamepadInput.IsConnected ? "[A]change [B]back" : "[Enter]change [Esc]back")
+                : (NativeGamepadInput.IsConnected ? "[A]select [B]close" : "[Enter]select [Tab]close");
+            DrawText(0, borderHeight, hint, QudColorParser.DarkGray);
         }
 
         private void ClearAll()
         {
-            ClearRegion(0, 0, POPUP_W, POPUP_H);
-            ClearBgRegion(0, 0, POPUP_W, BORDER_H);
+            if (!_hasRenderedBounds || Tilemap == null) return;
+            ClearRegion(0, 0, POPUP_W, _renderedHeight);
+            ClearBgRegion(0, 0, POPUP_W, _renderedBorderHeight);
+            _hasRenderedBounds = false;
         }
 
-        private void ComputePopupPosition()
+        private void ComputePopupPosition(int popupHeight)
         {
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
-            _worldTopY = CenteredPopupLayout.GetCenteredTopY(POPUP_H);
+            _worldTopY = CenteredPopupLayout.GetCenteredTopY(popupHeight);
         }
 
         private int GetRowAtMouse()
@@ -186,7 +205,7 @@ namespace CavesOfOoo.Rendering
             int gy = _worldTopY - gridY;
 
             const int contentY = 3;
-            if (gx > 0 && gx < POPUP_W - 1 && gy >= contentY && gy < contentY + CONTENT_ROWS)
+            if (gx > 0 && gx < POPUP_W - 1 && gy >= contentY && gy < contentY + Controller.VisibleItemCount)
                 return gy - contentY;
             return -1;
         }

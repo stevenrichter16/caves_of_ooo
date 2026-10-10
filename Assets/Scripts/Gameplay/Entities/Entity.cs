@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
                 Parts.Remove(part); part.ParentEntity=null;
                 throw new InvalidOperationException("The complete footprint cannot be placed here.");
             }
+            SpatialZone?.NotifyEntityPartsChanged(this);
             part.Initialize();
         }
 
@@ -65,6 +66,7 @@ namespace CavesOfOoo.Core
             Parts.RemoveAt(index);
             if(part is SpatialFootprintPart && SpatialZone != null && !SpatialZone.RefreshFootprint(this))
             {Parts.Insert(index,part);return false;}
+            SpatialZone?.NotifyEntityPartsChanged(this);
             part.Remove();
             part.ParentEntity = null;
             return true;

@@ -82,7 +82,7 @@ namespace CavesOfOoo.Core
                 crop.LastGrowthWorldTick = currentTick;
                 crop.GrowthWetTickRemainder = remainder;
                 if (units > 0) CropSystem.AdvanceWetUnits(zone, crop.ParentEntity, crop, units);
-                if (Diag.IsChannelEnabled("crop")) Diag.Record("crop", "CropTimeReconciled", target: crop.ParentEntity,
+                if (Diag.IsRecordEnabled("crop", "CropTimeReconciled")) Diag.Record("crop", "CropTimeReconciled", target: crop.ParentEntity,
                     payload: new { elapsedWorldTicks = elapsed, growthUnits = units, moistureBefore = beforeMoisture,
                         moistureAfter = crop.MoistureTicks, remainder, currentTick, timingVersion = CurrentVersion });
                 return true;

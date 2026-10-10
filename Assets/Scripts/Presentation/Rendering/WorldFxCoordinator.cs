@@ -29,6 +29,9 @@ namespace CavesOfOoo.Rendering
         private int _clearVersion;
         private int _nativeCancellationVersion;
         public WorldFxPlayback LastPlayback { get; private set; }
+        /// <summary>Cumulative actual groups of ASCII/sprite/native backend
+        /// updates. An ordinary frame advances once; admission may repaint once.</summary>
+        public int BackendUpdatePassCount { get; private set; }
         public Action<float, float> CameraAccent { get; set; }
         public int ActiveSequenceCount => _playbacks.Count;
         public SpriteSpellFxRenderer SpriteRenderer => _sprites;
@@ -117,9 +120,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Advance already-playing instances before accepting this frame's requests.
-            _ascii.Update(playbackDelta);
-            _sprites.Update(playbackDelta);
-            _native.Update(nativeDelta);
+            UpdateBackends(playbackDelta, nativeDelta);
             if (recoveredContact && _native.ActiveCount > 0 && Diag.IsChannelEnabled("effect"))
                 Diag.Record("effect", "NativeSpellHitchRecovered", payload: new
                 {
@@ -131,7 +132,9 @@ namespace CavesOfOoo.Rendering
             EmberAudio.Update(wallDelta, playbackDelta, nativeDelta);
             StarterAudio.Update(wallDelta, playbackDelta, nativeDelta);
             RefreshAudioMix();
-            // Empty queues are common: avoid allocating an empty batch every frame.
+            // Empty queues are common: no admission means the first pass has
+            // already painted current state and must not be repeated.
+            bool admitted = false;
             if (AsciiFxBus.PendingCount > 0)
             {
                 var legacy = AsciiFxBus.Drain();
@@ -140,8 +143,9 @@ namespace CavesOfOoo.Rendering
                     var request = legacy[i];
                     try
                     {
-                        if (request != null && (_mode != SpellFxMode.Off || IsStateOrReadout(request)))
-                            _ascii.AcceptRequest(request);
+                        if (request != null && (_mode != SpellFxMode.Off || IsStateOrReadout(request))
+                            && (request.Type == AsciiFxRequestType.AuraStop || (_zone != null && request.Zone == _zone)))
+                        { _ascii.AcceptRequest(request); admitted = true; }
                     }
                     finally { AsciiFxBus.Release(request); }
                 }
@@ -149,12 +153,19 @@ namespace CavesOfOoo.Rendering
             if (SpellFxBus.PendingCount > 0)
             {
                 var spells = SpellFxBus.Drain();
-                for (int i = 0; i < spells.Count; i++) Play(spells[i]);
+                for (int i = 0; i < spells.Count; i++)
+                    admitted |= !Play(spells[i]).IsFinished;
             }
-            _ascii.Update(0f);
-            _sprites.Update(0f);
-            _native.Update(0f);
-            ReleaseCancelledNativePlaybacks();
+            if (admitted)
+            {
+                UpdateBackends(0f, 0f);
+                ReleaseCancelledNativePlaybacks();
+            }
+        }
+        private void UpdateBackends(float playbackDelta, float nativeDelta)
+        {
+            BackendUpdatePassCount++;
+            _ascii.Update(playbackDelta); _sprites.Update(playbackDelta); _native.Update(nativeDelta);
         }
 
         private void PrepareNative()

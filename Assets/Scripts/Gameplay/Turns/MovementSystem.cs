@@ -281,15 +281,13 @@ namespace CavesOfOoo.Core
         /// </summary>
         private static void DirtyForMove(Entity entity, int oldX, int oldY, int newX, int newY)
         {
-            if (entity != null && entity.HasTag("Player"))
-            {
-                ZoneRenderHooks.MarkFullDirty("Move.Player");
-                return;
-            }
-
             if (oldX >= 0 && oldY >= 0)
                 ZoneRenderHooks.MarkCellDirty(oldX, oldY, "Move.Old");
             ZoneRenderHooks.MarkCellDirty(newX, newY, "Move.New");
+            // Visibility changes globally, but native geometry still only moved
+            // at these two anchors. Preserve both invalidation channels.
+            if (entity != null && entity.HasTag("Player"))
+                ZoneRenderHooks.MarkFullDirty("Move.Player");
         }
 
         private static void NotifyVisualMove(

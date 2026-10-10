@@ -1,0 +1,44 @@
+{
+  "job_id": "e2b7486c6ca147138ec56075d2a974eb",
+  "status": "failed",
+  "mode": "EditMode",
+  "started_unix_ms": 1791647656081,
+  "finished_unix_ms": 1791647926700,
+  "last_update_unix_ms": 1791647926700,
+  "progress": {
+    "completed": 1742,
+    "total": 1742,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1791647926056,
+    "last_finished_test_full_name": "CavesOfOoo.Tests.WorldFxCoordinatorTests.ZoneChange_CancelsActiveAndQueuedWork",
+    "last_finished_unix_ms": 1791647926061,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [
+      {
+        "full_name": "CavesOfOoo.Tests.MaterialGuidanceInventoryTests.UnrelatedItemsKeepTheirOwnExamineAndOtherActions(\"LampOil\",null)",
+        "message": "  unrelated ordinary items must not route to repair guidance\n  Expected: False\n  But was:  True\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SpawnRing3DAdversarialTests.ActorGlyphReskinDropsAndRestoresOnlyItsOwnArtWithoutMembershipChange",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SpawnRing3DAdversarialTests.LiveTakeabilitySwitchRebindsBetweenBatchedAndTransientOwnership(True)",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SpawnRing3DAdversarialTests.LiveTakeabilitySwitchRebindsBetweenBatchedAndTransientOwnership(False)",
+        "message": "  Expected: True\n  But was:  False\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SpawnRing3DAdversarialTests.ReconcileRemovalMarkSurvivesAnExplicitEmptyDirtySet",
+        "message": "  Expected: False\n  But was:  True\n"
+      }
+    ],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": null
+}

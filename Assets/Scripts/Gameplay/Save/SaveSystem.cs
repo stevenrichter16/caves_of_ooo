@@ -481,11 +481,41 @@ namespace CavesOfOoo.Core
         private static string _activeGameID = DefaultGameID;
         private static string _newGameID;
         private static bool _startingNewGame;
+        private static string _saveRootOverride;
+        private static readonly BackgroundSaveQueue<CapturedSave> PendingSaves = new BackgroundSaveQueue<CapturedSave>(CommitCapturedSave);
+
+        // The buffer is transferred from a private MemoryStream and is never exposed
+        // or reused. Only detached strings/bytes cross to the worker, never state/Parts.
+        private sealed class CapturedSave
+        {
+            internal readonly string GameID, Name, SavePath, MetadataPath, Metadata;
+            internal readonly byte[] Buffer;
+            internal readonly int Length;
+            internal readonly double CaptureMilliseconds;
+            // Worker-owned measurements are published through queue completion fencing.
+            internal double CompressionMilliseconds, CommitMilliseconds;
+            internal CapturedSave(string gameID, string name, string savePath, string metadataPath,
+                string metadata, byte[] buffer, int length, double captureMilliseconds)
+            { GameID = gameID; Name = name; SavePath = savePath; MetadataPath = metadataPath;
+              Metadata = metadata; Buffer = buffer; Length = length; CaptureMilliseconds = captureMilliseconds; }
+        }
+
+        /// <summary>Latest caller-thread serialization/metadata duration, available
+        /// immediately after capture. Does not include worker or queue waiting.</summary>
+        public static double LastCaptureMilliseconds { get; private set; }
+        /// <summary>Latest completed save stages, published only by main-thread operations.</summary>
+        public static SavePerformanceSample LastCompletedSavePerformance { get; private set; }
+        /// <summary>True while an autosave is writing, queued, or awaiting completion delivery.</summary>
+        public static bool HasPendingSave => PendingSaves.HasPending;
 
         /// <summary>Overrides all implicit save paths and boot discovery for an
         /// isolated runtime. Null/empty uses the normal persistent Saves directory.
         /// The owner must restore the previous override after its runtime stops.</summary>
-        public static string SaveRootOverride { get; set; }
+        public static string SaveRootOverride
+        {
+            get => _saveRootOverride;
+            set { FlushPendingSaves(); _saveRootOverride = value; }
+        }
         private static string SavesRoot => string.IsNullOrEmpty(SaveRootOverride)
             ? Path.Combine(Application.persistentDataPath, "Saves") : SaveRootOverride;
 
@@ -494,6 +524,7 @@ namespace CavesOfOoo.Core
         /// load binding intact so the boot menu can still Continue a prior save.</summary>
         public static void RegisterRuntime(Func<GameSessionState> captureCurrent, Action<GameSessionState> applyLoaded, string newGameID = null)
         {
+            FlushPendingSaves();
             _captureCurrent = captureCurrent;
             _applyLoaded = applyLoaded;
             _newGameID = newGameID;
@@ -506,6 +537,7 @@ namespace CavesOfOoo.Core
         public static bool BeginNewGame()
         {
             if (_startingNewGame) return false;
+            FlushPendingSaves();
             _startingNewGame = true;
             if (string.IsNullOrEmpty(_newGameID)) _newGameID = Guid.NewGuid().ToString("N");
             string expectedID = _newGameID;
@@ -530,7 +562,10 @@ namespace CavesOfOoo.Core
         public static void SetActiveGameID(string gameID)
         {
             if (!string.IsNullOrEmpty(gameID))
+            {
+                FlushPendingSaves();
                 _activeGameID = gameID;
+            }
         }
 
         /// <summary>PlayerPrefs key holding the last game ID a save was
@@ -620,55 +655,137 @@ namespace CavesOfOoo.Core
             return JsonUtility.FromJson<SaveGameInfo>(File.ReadAllText(path));
         }
 
+        /// <summary>Capture the current checkpoint on the caller/main thread and
+        /// queue detached bytes. True means accepted, not durable. Rapid requests
+        /// retain the active write and newest pending capture; intermediate pending
+        /// checkpoints may be superseded. Pump or flush reports durable completion.</summary>
+        public static bool RequestQuickSave()
+        {
+            try
+            {
+                PumpPendingSaves();
+                GameSessionState state = _captureCurrent?.Invoke();
+                if (state == null) return false;
+                if (string.IsNullOrEmpty(state.GameID)) state.GameID = _activeGameID;
+                // A caller that changes identity without re-registering still cannot
+                // coalesce away another game's accepted checkpoint.
+                if (!string.Equals(_activeGameID, state.GameID, StringComparison.Ordinal)) FlushPendingSaves();
+                _activeGameID = state.GameID;
+                PendingSaves.Enqueue(CaptureSave(QuickName, state));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[Save] Autosave capture failed: {ex}");
+                return false;
+            }
+        }
+
+        /// <summary>Publish completed autosaves on the main thread, without waiting
+        /// for in-flight work. Call once per frame even while gameplay is paused.</summary>
+        public static void PumpPendingSaves() => PendingSaves.Pump(PublishAutosave);
+
+        /// <summary>Wait for every accepted checkpoint before load, reset, runtime
+        /// replacement or quit. False reports any newly delivered write failure;
+        /// the last valid checkpoint remains available for recovery.</summary>
+        public static bool FlushPendingSaves() => PendingSaves.Flush(PublishAutosave);
+
+        private static void PublishAutosave(CapturedSave save, Exception error)
+        {
+            PublishSavePerformance(save, error == null);
+            if (error != null)
+            {
+                Debug.LogError($"[Save] Save of slot '{save.Name}' failed: {error}");
+                MessageLog.Add("Autosave failed.");
+                return;
+            }
+            RememberSavedGame(save.GameID);
+            MessageLog.Add("Autosaved.");
+        }
+
         public static bool SaveSlot(string name)
         {
-            if (_captureCurrent == null)
+            FlushPendingSaves();
+            try
+            {
+                GameSessionState state = _captureCurrent?.Invoke();
+                if (state == null) return false;
+                if (string.IsNullOrEmpty(state.GameID)) state.GameID = _activeGameID;
+                _activeGameID = state.GameID;
+                return SaveCapturedState(name, state);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[Save] Save of slot '{name}' failed: {ex}");
                 return false;
+            }
+        }
 
-            GameSessionState state = _captureCurrent();
-            if (state == null)
-                return false;
+        private static CapturedSave CaptureSave(string name, GameSessionState state)
+        {
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+            string savePath = GetSavePath(name, state.GameID);
+            string metadataPath = GetMetadataPath(name, state.GameID);
+            using (var stream = new MemoryStream())
+            {
+                state.Save(new SaveWriter(stream));
+                string metadata = JsonUtility.ToJson(state.CreateInfo(), prettyPrint: true);
+                timer.Stop();
+                LastCaptureMilliseconds = timer.Elapsed.TotalMilliseconds;
+                return new CapturedSave(state.GameID, name, savePath, metadataPath, metadata,
+                    stream.GetBuffer(), checked((int)stream.Length), LastCaptureMilliseconds);
+            }
+        }
 
-            if (string.IsNullOrEmpty(state.GameID))
-                state.GameID = _activeGameID;
-            _activeGameID = state.GameID;
+        // Worker-safe: only owned bytes, strings, gzip, clocks and file operations.
+        private static void CommitCapturedSave(CapturedSave save)
+        {
+            using (var compressed = new MemoryStream())
+            {
+                var timer = System.Diagnostics.Stopwatch.StartNew();
+                try
+                {
+                    using (var gzip = new GZipStream(compressed, CompressionMode.Compress, leaveOpen: true))
+                        gzip.Write(save.Buffer, 0, save.Length);
+                }
+                finally { save.CompressionMilliseconds = timer.Elapsed.TotalMilliseconds; }
+                timer.Restart();
+                try
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(save.SavePath));
+                    WriteSaveAtomically(save.SavePath, output => compressed.WriteTo(output));
+                    WriteTextAtomically(save.MetadataPath, save.Metadata);
+                }
+                finally { save.CommitMilliseconds = timer.Elapsed.TotalMilliseconds; }
+            }
+        }
 
-            return SaveCapturedState(name, state);
+        private static void PublishSavePerformance(CapturedSave save, bool succeeded)
+        {
+            LastCompletedSavePerformance = new SavePerformanceSample(save.CaptureMilliseconds,
+                save.CompressionMilliseconds, save.CommitMilliseconds, save.Length, succeeded);
+        }
+
+        private static void RememberSavedGame(string gameID)
+        {
+            PlayerPrefs.SetString(LastGameIDPrefsKey, gameID);
+            PlayerPrefs.Save();
         }
 
         private static bool SaveCapturedState(string name, GameSessionState state)
         {
-            // BETA AUDIT 🔴 #2 — the save side had NO exception
-            // handling while LoadSlot did (asymmetric): a disk-full /
-            // cloud-sync-lock IOException or a Part serialization bug
-            // threw INTO the input loop, and the callers' "Save
-            // failed" messages (keyed off the bool) were unreachable
-            // dead code. Mirror LoadSlot: catch, log, return false.
+            CapturedSave save = null;
             try
             {
-                string savePath = GetSavePath(name, state.GameID);
-                string metadataPath = GetMetadataPath(name, state.GameID);
-                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
-
-                WriteSaveAtomically(savePath, stream =>
-                {
-                    using (var gzip = new GZipStream(stream, CompressionMode.Compress, leaveOpen: true))
-                    {
-                        var writer = new SaveWriter(gzip);
-                        state.Save(writer);
-                    }
-                });
-
-                WriteTextAtomically(metadataPath, JsonUtility.ToJson(state.CreateInfo(), prettyPrint: true));
-
-                // ALPHA save-lifeline: remember where we saved so the next
-                // boot rediscovers this game without a directory scan.
-                PlayerPrefs.SetString(LastGameIDPrefsKey, state.GameID);
-                PlayerPrefs.Save();
+                save = CaptureSave(name, state);
+                CommitCapturedSave(save);
+                RememberSavedGame(save.GameID);
+                PublishSavePerformance(save, true);
                 return true;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
+                if (save != null) PublishSavePerformance(save, false);
                 Debug.LogError($"[Save] Save of slot '{name}' failed: {ex}");
                 return false;
             }
@@ -676,6 +793,7 @@ namespace CavesOfOoo.Core
 
         public static bool LoadSlot(string name)
         {
+            FlushPendingSaves();
             if (_applyLoaded == null)
                 return false;
 
@@ -720,6 +838,9 @@ namespace CavesOfOoo.Core
 
         public static bool HasSave(string name)
         {
+            // This gates explicit load actions, including the first accepted
+            // checkpoint after an initial disk failure. Resolve it before saying no.
+            FlushPendingSaves();
             return File.Exists(GetSavePath(name));
         }
 
@@ -746,39 +867,21 @@ namespace CavesOfOoo.Core
         private static void WriteSaveAtomically(string path, Action<Stream> write)
         {
             string tmp = path + ".tmp";
-            string bak = path + ".bak";
-
             try
             {
                 using (var file = File.Create(tmp))
-                    write(file);
-
-                ValidateGzipHeader(tmp);
-
-                if (File.Exists(path))
                 {
-                    if (File.Exists(bak))
-                        File.Delete(bak);
-                    File.Copy(path, bak);
+                    write(file);
+                    file.Flush(flushToDisk: true);
                 }
-
-                if (File.Exists(path))
-                    File.Delete(path);
-                File.Move(tmp, path);
-                ValidateGzipHeader(path);
+                ValidateGzipHeader(tmp);
+                ReplaceCompletedFile(tmp, path);
             }
             catch
             {
-                if (File.Exists(tmp))
-                    File.Delete(tmp);
-
-                if (File.Exists(bak))
-                {
-                    if (File.Exists(path))
-                        File.Delete(path);
-                    File.Copy(bak, path);
-                }
-
+                // Before replacement, the current destination is still the newest
+                // valid checkpoint. Never roll it back to a potentially stale .bak.
+                TryDeleteTemporaryFile(tmp);
                 throw;
             }
         }
@@ -786,37 +889,29 @@ namespace CavesOfOoo.Core
         private static void WriteTextAtomically(string path, string contents)
         {
             string tmp = path + ".tmp";
-            string bak = path + ".bak";
-
             try
             {
-                File.WriteAllText(tmp, contents ?? string.Empty);
-
-                if (File.Exists(path))
+                using (var file = File.Create(tmp))
                 {
-                    if (File.Exists(bak))
-                        File.Delete(bak);
-                    File.Copy(path, bak);
+                    using (var writer = new StreamWriter(file, new System.Text.UTF8Encoding(false), 1024, leaveOpen: true))
+                        writer.Write(contents ?? string.Empty);
+                    file.Flush(flushToDisk: true);
                 }
-
-                if (File.Exists(path))
-                    File.Delete(path);
-                File.Move(tmp, path);
+                ReplaceCompletedFile(tmp, path);
             }
-            catch
-            {
-                if (File.Exists(tmp))
-                    File.Delete(tmp);
+            catch { TryDeleteTemporaryFile(tmp); throw; }
+        }
 
-                if (File.Exists(bak))
-                {
-                    if (File.Exists(path))
-                        File.Delete(path);
-                    File.Copy(bak, path);
-                }
+        private static void ReplaceCompletedFile(string tmp, string path)
+        {
+            if (File.Exists(path)) File.Replace(tmp, path, path + ".bak");
+            else File.Move(tmp, path);
+        }
 
-                throw;
-            }
+        private static void TryDeleteTemporaryFile(string path)
+        {
+            try { if (File.Exists(path)) File.Delete(path); }
+            catch { /* Preserve the original write failure; next write retries this temp. */ }
         }
 
         private static void ValidateGzipHeader(string path)
@@ -831,6 +926,16 @@ namespace CavesOfOoo.Core
 
     public static class SaveGraphSerializer
     {
+        private static readonly object FieldCacheGate = new object();
+        private static readonly Dictionary<Type, FieldInfo[]> PublicFieldCache = new Dictionary<Type, FieldInfo[]>();
+        private static readonly Dictionary<Type, FieldInfo[]> EffectFieldCache = new Dictionary<Type, FieldInfo[]>();
+        private static readonly Dictionary<Type, FieldInfo[]> GoalFieldCache = new Dictionary<Type, FieldInfo[]>();
+        private static readonly Dictionary<Type, Dictionary<string, FieldInfo>> ReadFieldCache = new Dictionary<Type, Dictionary<string, FieldInfo>>();
+        private static readonly Func<FieldInfo, bool> EffectFieldFilter = field => field.Name != nameof(Effect.Owner) && field.Name != nameof(Effect.Duration);
+        private static readonly Func<FieldInfo, bool> GoalFieldFilter = field =>
+            field.Name != nameof(GoalHandler.ParentBrain) && field.Name != nameof(GoalHandler.ParentHandler)
+            && !typeof(Delegate).IsAssignableFrom(field.FieldType);
+
         public static void SaveEntityBody(Entity entity, SaveWriter writer)
         {
             writer.WriteCheck("Entity.Begin");
@@ -1535,7 +1640,7 @@ namespace CavesOfOoo.Core
             writer.WriteString(GetTypeName(effect.GetType()));
             effect.OnBeforeSave(writer);
             writer.Write(effect.Duration);
-            WritePublicFields(effect, writer, field => field.Name != nameof(Effect.Owner) && field.Name != nameof(Effect.Duration));
+            WritePublicFields(effect, writer, EffectFieldFilter);
             effect.OnAfterSave(writer);
         }
 
@@ -1868,10 +1973,7 @@ namespace CavesOfOoo.Core
         {
             writer.WriteString(GetTypeName(goal.GetType()));
             writer.Write(goal.Age);
-            WritePublicFields(goal, writer, field =>
-                field.Name != nameof(GoalHandler.ParentBrain) &&
-                field.Name != nameof(GoalHandler.ParentHandler) &&
-                !typeof(Delegate).IsAssignableFrom(field.FieldType));
+            WritePublicFields(goal, writer, GoalFieldFilter);
         }
 
         private static GoalHandler LoadGoal(SaveReader reader)
@@ -1922,37 +2024,52 @@ namespace CavesOfOoo.Core
 
         private static FieldInfo[] GetSerializablePublicFields(Type type, Func<FieldInfo, bool> include)
         {
-            var result = new List<FieldInfo>();
-            FieldInfo[] fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public);
-            for (int i = 0; i < fields.Length; i++)
+            FieldInfo[] fields;
+            lock (FieldCacheGate)
             {
-                FieldInfo field = fields[i];
-                if (field.IsStatic || field.IsInitOnly || Attribute.IsDefined(field, typeof(NonSerializedAttribute)))
-                    continue;
-                // Entity owner backlinks are rebound by their load hooks. Furniture
-                // Owner strings are authored access rules and must survive saves.
-                if (field.Name == nameof(Part.ParentEntity)
-                    || (field.Name == nameof(Effect.Owner) && field.FieldType == typeof(Entity)))
-                    continue;
-                if (include != null && !include(field))
-                    continue;
-                if (!CanSerializeType(field.FieldType))
-                    continue;
-                result.Add(field);
+                if (!PublicFieldCache.TryGetValue(type, out fields))
+                {
+                    var result = new List<FieldInfo>();
+                    foreach (FieldInfo field in type.GetFields(BindingFlags.Instance | BindingFlags.Public))
+                    {
+                        if (field.IsStatic || field.IsInitOnly || Attribute.IsDefined(field, typeof(NonSerializedAttribute))) continue;
+                        if (field.Name == nameof(Part.ParentEntity)
+                            || (field.Name == nameof(Effect.Owner) && field.FieldType == typeof(Entity))) continue;
+                        if (CanSerializeType(field.FieldType)) result.Add(field);
+                    }
+                    fields = result.ToArray();
+                    PublicFieldCache[type] = fields;
+                }
+                if (include == null) return fields;
+                // Arbitrary caller predicates may close over mutable state. Cache
+                // only the two fixed serializer categories, never delegate results generally.
+                Dictionary<Type, FieldInfo[]> cache = ReferenceEquals(include, EffectFieldFilter) ? EffectFieldCache
+                    : ReferenceEquals(include, GoalFieldFilter) ? GoalFieldCache : null;
+                if (cache != null)
+                {
+                    if (!cache.TryGetValue(type, out var filtered))
+                    { filtered = Array.FindAll(fields, field => include(field)); cache[type] = filtered; }
+                    return filtered;
+                }
             }
-            return result.ToArray();
+            return Array.FindAll(fields, field => include(field));
         }
 
         private static FieldInfo GetField(Type type, string name)
         {
-            while (type != null)
+            lock (FieldCacheGate)
             {
-                FieldInfo field = type.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
-                if (field != null)
-                    return field;
-                type = type.BaseType;
+                if (!ReadFieldCache.TryGetValue(type, out var fields))
+                { fields = new Dictionary<string, FieldInfo>(StringComparer.Ordinal); ReadFieldCache[type] = fields; }
+                if (fields.TryGetValue(name, out var known)) return known;
+                for (Type current = type; current != null; current = current.BaseType)
+                {
+                    FieldInfo field = current.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+                    if (field != null) { fields[name] = field; return field; }
+                }
+                fields[name] = null;
+                return null;
             }
-            return null;
         }
 
         private static bool CanSerializeType(Type type)
