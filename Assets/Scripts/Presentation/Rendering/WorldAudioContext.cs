@@ -8,6 +8,7 @@ namespace CavesOfOoo.Rendering
         public readonly string MusicId, AmbienceId;
         public readonly bool Danger;
         WorldAudioContext(string music,string ambience,bool danger){MusicId=music;AmbienceId=ambience;Danger=danger;}
+        public WorldAudioContext WithAmbience(string id)=>new WorldAudioContext(MusicId,id,Danger);
         public static WorldAudioContext Select(BiomeType biome,int depth,bool danger)
         {
             string music,ambience;

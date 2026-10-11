@@ -1,0 +1,67 @@
+{
+    "runId": "c0fd56e92d294e4b8593d3c2eb5a234a",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Isolated normal boot; actual imported streamed music playback, sampled listener signal, keyboard movement and committed footstep cues, idle context work, same-biome music continuity, save/load replacement and native gamepad audio settings.",
+    "cannotVerify": "Noncontiguous output windows prove a nonzero signal below full scale only in those sampled windows. They do not prove globally unclipped audio, subjective listening quality, physical speakers, all biome transitions, or Deck performance. Tests separately cover hidden-source refusals and crossfades. Three audio preferences are temporarily initialized and exactly restored; no gameplay state is injected.",
+    "mode": "world-audio",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio_fixed_pool_live",
+        "PASS imported_streamed_music_plays",
+        "PASS ambience_plays",
+        "PASS observed_audio_windows_nonzero_and_below_full_scale",
+        "PASS place_snapshot_is_bounded",
+        "PASS real_place_detail_recording_plays",
+        "PASS place_idle_wait_never_rescans_or_grows_pool",
+        "PASS idle_does_not_rescan_or_restart_music",
+        "PASS real_walk_emits_two_player_steps",
+        "PASS same_biome_steps_do_not_restart_music",
+        "PASS imported_music_playhead_advances_during_walk",
+        "PASS gamepad_opens_audio_page",
+        "PASS gamepad_adjusts_only_music",
+        "PASS audio_page_keeps_music_running",
+        "PASS music_mute_keeps_ambience",
+        "PASS music_unmute_resumes_a_single_voice",
+        "PASS ambience_mute_clears_details_but_keeps_music",
+        "PASS audio_back_returns_to_game",
+        "PASS loaded_world_has_one_audio_owner",
+        "PASS audio_preferences_restored",
+        "PASS audio_synthetic_gamepad_removed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/c0fd56e92d294e4b8593d3c2eb5a234a/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/c0fd56e92d294e4b8593d3c2eb5a234a/02-audio-settings.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/c0fd56e92d294e4b8593d3c2eb5a234a/03-audio-after-load.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Mixed output samples",
+            "source": "AudioListener.GetOutputData",
+            "text": "RMS=0.00348963194782259 peak=0.01395569 samples=669696; noncontiguous observer windows, not a continuous recording or listening review.",
+            "units": 0
+        },
+        {
+            "subject": "Place soundscape",
+            "source": "Real generated glade and audio output",
+            "text": "Bed=field; retained sources=2; last detail=wood-creak; visited owners=222. No direct cue injection or world edits.",
+            "units": 0
+        }
+    ],
+    "cases": 22,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 37.4426704,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

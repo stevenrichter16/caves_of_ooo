@@ -47,6 +47,17 @@ namespace CavesOfOoo.Scenarios.Custom
                 double rms=Math.Sqrt(squares/Math.Max(1,count));
                 _descriptions.Add(new Description{subject="Mixed output samples",source="AudioListener.GetOutputData",text="RMS="+rms+" peak="+peak+" samples="+count+"; noncontiguous observer windows, not a continuous recording or listening review."});
                 Check("observed_audio_windows_nonzero_and_below_full_scale",rms>0.000001&&peak<1);
+                Check("place_snapshot_is_bounded",audio.Soundscape!=null&&audio.Soundscape.LastVisitedOwners<=512&&audio.Soundscape.SourceCount>0);
+                int placeScans=audio.Soundscape.ScanCount,detailStart=audio.Player.AcceptedDetailCount;
+                until=Time.realtimeSinceStartupAsDouble+26;bool heardDetail=false;
+                while(Time.realtimeSinceStartupAsDouble<until&&!heardDetail)
+                {
+                    heardDetail=audio.Player.AcceptedDetailCount>detailStart&&audio.Player.Root.GetComponentsInChildren<AudioSource>().Any(s=>!s.loop&&s.priority==200&&s.isPlaying&&s.clip!=null&&s.volume>0);
+                    yield return null;
+                }
+                Check("real_place_detail_recording_plays",heardDetail&&audio.Player.AcceptedDetailCount>detailStart);
+                Check("place_idle_wait_never_rescans_or_grows_pool",audio.Soundscape.ScanCount==placeScans&&audio.Player.AllocatedSources==16);
+                _descriptions.Add(new Description{subject="Place soundscape",source="Real generated glade and audio output",text="Bed="+audio.Context.AmbienceId+"; retained sources="+audio.Soundscape.SourceCount+"; last detail="+audio.Player.LastDetailId+"; visited owners="+audio.Soundscape.LastVisitedOwners+". No direct cue injection or world edits."});
                 int context=audio.ContextCheckCount,starts=audio.Player.MusicStartCount;
                 yield return new WaitForSecondsRealtime(.6f);
                 Check("idle_does_not_rescan_or_restart_music",audio.ContextCheckCount==context&&audio.Player.MusicStartCount==starts);
@@ -69,6 +80,10 @@ namespace CavesOfOoo.Scenarios.Custom
                 Check("music_mute_keeps_ambience",WorldAudioSettings.MusicVolume==0&&audio.Player.ActiveMusicSources==0&&audio.Player.ActiveAmbienceSources>0);
                 yield return PadTap(pad,GamepadButton.DpadRight);yield return new WaitForSecondsRealtime(2.2f);
                 Check("music_unmute_resumes_a_single_voice",audio.Player.ActiveMusicSources==1);
+                yield return PadTap(pad,GamepadButton.DpadDown);
+                for(int i=0;i<11;i++)yield return PadTap(pad,GamepadButton.DpadLeft);
+                Check("ambience_mute_clears_details_but_keeps_music",WorldAudioSettings.AmbienceVolume==0&&audio.Player.ActiveDetailSources==0&&audio.Player.ActiveAmbienceSources==0&&audio.Player.ActiveMusicSources==1);
+                for(int i=0;i<5;i++)yield return PadTap(pad,GamepadButton.DpadRight);
                 yield return PadTap(pad,GamepadButton.East);yield return PadTap(pad,GamepadButton.East);
                 Check("audio_back_returns_to_game",!menu.Controller.IsOpen&&State()=="Normal");
                 var old=_input.PlayerEntity;yield return Tap(Key.F5);yield return Tap(Key.F6);

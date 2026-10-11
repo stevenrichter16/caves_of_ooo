@@ -1,0 +1,54 @@
+test_every_row_has_real_imported_asset_and_conservative_gain (__main__.PlaceAudioAssets.test_every_row_has_real_imported_asset_and_conservative_gain) ... FAIL
+test_expansion_provenance_and_credits_are_complete (__main__.PlaceAudioAssets.test_expansion_provenance_and_credits_are_complete) ... FAIL
+test_melee_variants_are_distinct_actual_assets (__main__.PlaceAudioAssets.test_melee_variants_are_distinct_actual_assets) ... FAIL
+test_original22_still_match_pinned_outputs (__main__.PlaceAudioAssets.test_original22_still_match_pinned_outputs) ... ok
+test_place_ids_are_concrete_and_bounded (__main__.PlaceAudioAssets.test_place_ids_are_concrete_and_bounded) ... FAIL
+
+======================================================================
+FAIL: test_every_row_has_real_imported_asset_and_conservative_gain (__main__.PlaceAudioAssets.test_every_row_has_real_imported_asset_and_conservative_gain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 30, in test_every_row_has_real_imported_asset_and_conservative_gain
+    c=self.catalog()
+      ^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 14, in catalog
+    self.assertTrue(p.is_file(), 'Separate expansion catalog must exist')
+AssertionError: False is not true : Separate expansion catalog must exist
+
+======================================================================
+FAIL: test_expansion_provenance_and_credits_are_complete (__main__.PlaceAudioAssets.test_expansion_provenance_and_credits_are_complete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 39, in test_expansion_provenance_and_credits_are_complete
+    c=self.catalog();p=WORLD/'places-provenance.json'
+      ^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 14, in catalog
+    self.assertTrue(p.is_file(), 'Separate expansion catalog must exist')
+AssertionError: False is not true : Separate expansion catalog must exist
+
+======================================================================
+FAIL: test_melee_variants_are_distinct_actual_assets (__main__.PlaceAudioAssets.test_melee_variants_are_distinct_actual_assets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 22, in test_melee_variants_are_distinct_actual_assets
+    rows=self.catalog()['sounds']
+         ^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 14, in catalog
+    self.assertTrue(p.is_file(), 'Separate expansion catalog must exist')
+AssertionError: False is not true : Separate expansion catalog must exist
+
+======================================================================
+FAIL: test_place_ids_are_concrete_and_bounded (__main__.PlaceAudioAssets.test_place_ids_are_concrete_and_bounded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 17, in test_place_ids_are_concrete_and_bounded
+    c=self.catalog()
+      ^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio.py", line 14, in catalog
+    self.assertTrue(p.is_file(), 'Separate expansion catalog must exist')
+AssertionError: False is not true : Separate expansion catalog must exist
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.015s
+
+FAILED (failures=4)

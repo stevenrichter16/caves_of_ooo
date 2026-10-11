@@ -15,13 +15,14 @@ namespace CavesOfOoo.Rendering
         int tick=int.MinValue;BiomeType biome=BiomeType.Spread;int depth;bool observedDanger;float dangerHold;
         Entity dangerWitness;bool wasWorldVisible;
         public WorldAudioPlayer Player{get;private set;}
+        public WorldAudioSoundscape Soundscape{get;private set;}
         public WorldAudioContext Context{get;private set;}
         public int ContextCheckCount{get;private set;}
         public int AcceptedPlayerSteps=>router?.AcceptedPlayerSteps??0;
         public void Initialize(InputHandler source)
         {
             if(input==source&&Player?.AllocatedSources==16)return;Release();input=source;if(source==null)return;
-            WorldAudioSettings.Load();Player=new WorldAudioPlayer(transform,WorldAudioLibrary.LoadResources());router=new WorldAudioEventRouter(Player);
+            WorldAudioSettings.Load();Player=new WorldAudioPlayer(transform,WorldAudioLibrary.LoadResources());router=new WorldAudioEventRouter(Player);Soundscape=new WorldAudioSoundscape(Player);
             // The first context sample is after ZoneRenderer's FOV pass, too.
             tick=int.MinValue;
         }
@@ -49,6 +50,7 @@ namespace CavesOfOoo.Rendering
                     biome=map!=null&&map.InBounds(coordinates.x,coordinates.y)?map.GetBiome(coordinates.x,coordinates.y):BiomeType.Spread;
                     // A modal can advance simulation while FOV remains from the previous
                     // view. Never discover threats from that stale hidden-world snapshot.
+                    Soundscape.Observe(zone,actor,biome,depth,WorldClock.GetBand(turn),worldVisible);
                     dangerWitness=worldVisible?VisibleDanger(zone,actor):null;observedDanger=dangerWitness!=null;if(observedDanger)dangerHold=DangerReleaseSeconds;
                 }
             }
@@ -57,7 +59,11 @@ namespace CavesOfOoo.Rendering
             if(observedDanger&&(!worldVisible||!VisibleWitness(zone,actor,dangerWitness)))observedDanger=false;
             if(!observedDanger)dangerHold=Mathf.Max(0,dangerHold-delta);
             bool alive=actor!=null&&actor.GetStatValue("Hitpoints",1)>0&&!CombatSystem.IsDeathHandled(actor)&&zone?.GetEntityCell(actor)!=null;
+            string priorBed=Context.AmbienceId;
             Context=alive?WorldAudioContext.Select(biome,depth,observedDanger||dangerHold>0):default;
+            Soundscape.Tick(delta,worldVisible&&alive,Context.Danger);
+            // Menus preserve the established bed but cannot discover new object/animal sources.
+            if(alive)Context=Context.WithAmbience(worldVisible?Soundscape.AmbienceId:changed||priorBed=="water"?null:priorBed);
             Player.SetContext(Context);Player.Update(delta);
         }
         static Entity VisibleDanger(Zone where,Entity listener)
@@ -88,6 +94,6 @@ namespace CavesOfOoo.Rendering
         }
         void OnDisable()=>Release();
         void OnDestroy()=>Release();
-        void Release(){router?.Dispose();router=null;Player?.Dispose();Player=null;zone=null;actor=null;map=null;tick=int.MinValue;dangerHold=0;observedDanger=false;dangerWitness=null;wasWorldVisible=false;}
+        void Release(){Soundscape=null;router?.Dispose();router=null;Player?.Dispose();Player=null;zone=null;actor=null;map=null;tick=int.MinValue;dangerHold=0;observedDanger=false;dangerWitness=null;wasWorldVisible=false;}
     }
 }

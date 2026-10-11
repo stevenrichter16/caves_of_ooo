@@ -1,7 +1,10 @@
 # Caves of Ooo — Steam Deck current build
 
 This native Linux build adds licensed ambient music, environmental recordings and
-short sounds for movement and committed actions. It also includes Qud-style
+short sounds for movement and committed actions. Outdoor ambience now follows
+daylight and shelter, with sparse calls from nearby visible wildlife and local
+water, fire, wood and stone details. Melee uses distinct blade, blunt and natural
+swings and multiple contact sounds. It also includes Qud-style
 built-in controller controls, the Vulkan world-view fix, reduced drawing and
 interface work, faster save capture, and background save compression. It preserves
 the 3D scene and existing save format.
@@ -101,7 +104,11 @@ Choose **Audio credits** for the full paginated attribution in the game. The sam
 text is supplied in `AUDIO-CREDITS.txt`, with complete license texts in
 `Audio-Licenses`. The three full compositions are independently licensed Scott
 Buckley works; no Caves of Qud music is included. Environmental and action recordings
-are CC0, with their authors and modifications retained in the credits.
+are CC0, with their authors and modifications retained in the credits. The added
+place and combat set has separate `PLACES-CREDITS.txt` and provenance files too;
+its complete credits are also included in `AUDIO-CREDITS.txt`. Quiet gaps are
+intentional: indoor spaces suppress outdoor wildlife, and empty workshops do not
+play imaginary workers.
 
 For videos or livestream recordings, Scott Buckley uses YouTube Content ID. Put
 these complete credit lines in your video description, or set **Music to 0%** before

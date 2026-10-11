@@ -241,6 +241,7 @@ namespace CavesOfOoo.Core
             int penBonus = weapon?.PenBonus ?? 0;
             int maxStrBonus = weapon?.MaxStrengthBonus ?? -1;
             string statName = weapon?.Stat ?? "Strength";
+            var audioAttempt = WorldAudioCombat.Begin(attacker, defender, weapon, zone);
 
             // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9/B3. No separate
             // off-hand to-hit penalty — once the off-hand's per-turn
@@ -458,7 +459,6 @@ namespace CavesOfOoo.Core
             // while the actual entity lost only 6 HP and sat at 194/200 —
             // the HP bar told the truth, the log lied.
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
-            var audioContact = zone?.GetEntityCell(defender);
 
             // Apply damage (typed overload — preferred path). Internally:
             //   Phase F BeforeTakeDamage event (listeners can veto/mutate)
@@ -466,7 +466,7 @@ namespace CavesOfOoo.Core
             //   → TakeDamage event (more in-flight mutations possible)
             //   → HP decrement (clamped to ≥ 0)
             //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
-            ApplyDamage(defender, damage, attacker, zone);
+            ApplyDamageCore(defender, damage, attacker, zone, audioAttempt);
 
             // W3 re-review: the defender's TakeDamage dispatch (which
             // runs INSIDE that call, before the decrement) can kill the
@@ -481,8 +481,6 @@ namespace CavesOfOoo.Core
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
             int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
-            if (actualDamage > 0 && audioContact != null)
-                WorldAudioHooks.Emit(WorldAudioCue.Hit, attacker, zone, audioContact.X, audioContact.Y);
             CompanionCombat.AfterPlayerDirectDamage(attacker, defender, zone, actualDamage);
 
             // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player
@@ -872,6 +870,9 @@ namespace CavesOfOoo.Core
         /// resistance stats before the HP decrement.
         /// </summary>
         public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
+            => ApplyDamageCore(target, damage, source, zone, default);
+
+        private static void ApplyDamageCore(Entity target, Damage damage, Entity source, Zone zone, WorldAudioCombatAttempt audioAttempt)
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
@@ -1064,7 +1065,9 @@ namespace CavesOfOoo.Core
                 // e.g. LifestealPart.cs) would otherwise see a deeply
                 // negative number on an overkill hit instead of a floored
                 // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
+                int audioHpBeforeCommit = hpStat.BaseValue;
                 hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
+                WorldAudioCombat.Impact(audioAttempt, Math.Max(0, audioHpBeforeCommit - hpStat.BaseValue));
                 if (hpStat.BaseValue < hpBefore)
                 {
                     target.GetPart<BrainPart>()?.BreakDamageSensitivePeace();

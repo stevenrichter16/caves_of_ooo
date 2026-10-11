@@ -226,7 +226,10 @@ namespace CavesOfOoo.Rendering
                 else if(SelectedIndex==AudioCreditsIndex)
                 {
                     var credits=Resources.Load<TextAsset>("Audio/World/CREDITS");
-                    MessageLog.AddAnnouncement(credits!=null?credits.text:"Audio credits are unavailable.");
+                    var places=Resources.Load<TextAsset>("Audio/World/PLACES-CREDITS");
+                    string text=credits!=null?credits.text:"";
+                    if(places!=null)text+=(text.Length>0?"\n\n":"")+places.text;
+                    MessageLog.AddAnnouncement(text.Length>0?text:"Audio credits are unavailable.");
                     Close();
                 }
                 else ChangeAudio(1);

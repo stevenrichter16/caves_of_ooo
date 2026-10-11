@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_wind_filter_retains_air_band_and_reduces_rumble_and_chirps (test_place_audio_adversarial.PlaceAudioSignals.test_wind_filter_retains_air_band_and_reduces_rumble_and_chirps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_place_audio_adversarial.py", line 55, in test_wind_filter_retains_air_band_and_reduces_rumble_and_chirps
+    self.assertTrue(hasattr(pipeline, 'apply_filters'), 'Declared wind filter must process actual samples')
+AssertionError: False is not true : Declared wind filter must process actual samples
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

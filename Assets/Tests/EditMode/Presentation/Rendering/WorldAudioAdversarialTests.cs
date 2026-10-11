@@ -78,9 +78,11 @@ namespace CavesOfOoo.Tests
             audio.Dispose();audio=new WorldAudioPlayer(root.transform,invalid);audio.SetContext(WorldAudioContext.Select(BiomeType.Spread,0,false));audio.Update(3);
             Assert.AreEqual(0,audio.ActiveMusicSources);Assert.AreEqual(0,audio.ActiveAmbienceSources);Assert.False(audio.TryPlay(WorldAudioCue.Pickup));
         }
-        [TestCase(-1)][TestCase(13)][TestCase(int.MaxValue)]
+        [TestCase(-1)][TestCase(int.MaxValue)]
         public void InvalidCueCannotIndexPoolOrConsumeValidCue(int value)
         {Assert.False(audio.TryPlay((WorldAudioCue)value));Assert.True(audio.TryPlay(WorldAudioCue.Pickup));Assert.AreEqual(1,audio.AcceptedSoundCount);}
+        [Test] public void FirstUnassignedCueCannotIndexPoolOrConsumeValidCue()
+        {InvalidCueCannotIndexPoolOrConsumeValidCue(Enum.GetValues(typeof(WorldAudioCue)).Length);}
         [TestCase(float.NaN)][TestCase(float.PositiveInfinity)][TestCase(-100f)]
         public void PanCannotPoisonSourceProperties(float pan)
         {

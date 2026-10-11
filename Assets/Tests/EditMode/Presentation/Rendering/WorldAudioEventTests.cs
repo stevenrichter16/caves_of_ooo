@@ -50,9 +50,12 @@ namespace CavesOfOoo.Tests
         [Test] public void HitRequiresExplicitMeleeOutcomeAndDoesNotDuplicateGenericSpellDamage()
         {
             EntityVisualHooks.EmitDamage(foe,actor,zone,3,false);Assert.AreEqual(0,audio.AcceptedSoundCount);
-            EntityVisualHooks.EmitAttack(actor,foe,zone);Assert.AreEqual(1,audio.AcceptedSoundCount);
-            EntityVisualHooks.EmitDamage(foe,actor,zone,3,false);Assert.AreEqual(1,audio.AcceptedSoundCount);
-            WorldAudioHooks.Emit(WorldAudioCue.Hit,actor,zone,11,10);Assert.AreEqual(2,audio.AcceptedSoundCount);
+            EntityVisualHooks.EmitAttack(actor,foe,zone);Assert.AreEqual(0,audio.AcceptedSoundCount);
+            CombatSystem.ApplyDamage(foe,3,actor,zone);Assert.AreEqual(17,foe.GetStatValue("Hitpoints"));
+            WorldAudioHooks.Emit(WorldAudioCue.Hit,actor,zone,11,10);Assert.AreEqual(0,audio.AcceptedSoundCount);
+            actor.AddPart(new MeleeWeaponPart{Attributes="Cutting",BaseDamage="1d1",MaxStrengthBonus=0});
+            Assert.True(CombatSystem.PerformMeleeAttack(actor,foe,zone,new WorldAudioCombatTests.BranchRandom()));
+            Assert.Less(foe.GetStatValue("Hitpoints"),17);Assert.AreEqual(2,audio.AcceptedSoundCount);
             audio.Update(.3f);EntityVisualHooks.EmitDamage(foe,actor,zone,3,false);Assert.AreEqual(2,audio.AcceptedSoundCount);
         }
         [Test] public void AdditiveSubscriptionSurvivesRouterDisposeWithoutStealingExistingObserver()

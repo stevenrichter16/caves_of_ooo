@@ -1,0 +1,37 @@
+setUpClass (__main__.ExpansionGates) ... ERROR
+setUpClass (__main__.ReceiptGates) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.ExpansionGates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/SteamDeck/test_package_place_audio.py", line 19, in setUpClass
+    cls.pack=module();cls.repo=SCRIPT.resolve().parents[2]
+             ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/SteamDeck/test_package_place_audio.py", line 12, in module
+    value=importlib.util.module_from_spec(spec);spec.loader.exec_module(value);return value
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/Tools/SteamDeck/package-place-audio.py'
+
+======================================================================
+ERROR: setUpClass (__main__.ReceiptGates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/SteamDeck/test_package_place_audio.py", line 15, in setUpClass
+    def setUpClass(cls):cls.pack=module()
+                                 ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/SteamDeck/test_package_place_audio.py", line 12, in module
+    value=importlib.util.module_from_spec(spec);spec.loader.exec_module(value);return value
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/Tools/SteamDeck/package-place-audio.py'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+FAILED (errors=2)

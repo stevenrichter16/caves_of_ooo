@@ -15,7 +15,7 @@ namespace CavesOfOoo.Rendering
         public WorldAudioEventRouter(WorldAudioPlayer playerAudio)
         {
             audio=playerAudio??throw new ArgumentNullException(nameof(playerAudio));
-            EntityVisualHooks.MovedCallback+=Moved;EntityVisualHooks.AttackCallback+=Attack;
+            EntityVisualHooks.MovedCallback+=Moved;WorldAudioCombat.Callback+=Combat;
             EntityVisualHooks.SelfUseCallback+=SelfUse;WorldAudioHooks.Callback+=Semantic;
         }
         public void SetWorld(Zone current,Entity listener,bool worldVisible)
@@ -59,9 +59,32 @@ namespace CavesOfOoo.Rendering
             }
             return stone?WorldAudioCue.StepStone:WorldAudioCue.StepSoft;
         }
-        void Attack(Entity actor,Entity target,Zone at)
+        void Combat(WorldAudioCombatReceipt receipt)
         {
-            try{if(Current(actor,at,true,out var cell)&&Current(target,at,true,out _))audio.TryPlay(WorldAudioCue.Swing,Pan(cell.X));}catch(Exception){ }
+            try
+            {
+                var attempt=receipt.Attempt;
+                if(!attempt.IsValid||!attempt.TargetWasVisible||attempt.Zone!=zone
+                    ||!Current(attempt.Attacker,attempt.Zone,true,out _)||CombatSystem.IsDeathHandled(attempt.Attacker)
+                    ||attempt.Attacker.GetStatValue("Hitpoints",0)<=0
+                    ||!Current(attempt.Defender,attempt.Zone,true,out var contact)
+                    ||contact.X!=attempt.Contact.X||contact.Y!=attempt.Contact.Y)return;
+                // This callback is at the real HP decrement, before death removal.
+                // A dead/removed-owner fallback would incorrectly bless a lethal
+                // callback that first moved or hid the target.
+                audio.TryPlay(receipt.Cue,Pan(contact.X));
+            }
+            catch(Exception){ }
+        }
+        static bool CombatCue(WorldAudioCue cue)
+        {
+            switch(cue)
+            {
+                case WorldAudioCue.Swing:case WorldAudioCue.Hit:
+                case WorldAudioCue.SwingBlade:case WorldAudioCue.SwingBlunt:case WorldAudioCue.SwingNatural:
+                case WorldAudioCue.HitCutting:case WorldAudioCue.HitPiercing:case WorldAudioCue.HitBlunt:case WorldAudioCue.HitNatural:return true;
+                default:return false;
+            }
         }
         void SelfUse(Entity actor,Zone at)
         {try{if(Current(actor,at,true,out var cell))audio.TryPlay(WorldAudioCue.Use,Pan(cell.X));}catch(Exception){ }}
@@ -69,6 +92,7 @@ namespace CavesOfOoo.Rendering
         {
             try
             {
+                if(CombatCue(cue))return; // Weapon sounds require the actual typed strike receipt.
                 bool localInventory=cue==WorldAudioCue.Pickup||cue==WorldAudioCue.Equip||cue==WorldAudioCue.Use;
                 if(localInventory&&actor!=player)return;
                 if(!Current(actor,at,!localInventory,out _))return;
@@ -79,7 +103,7 @@ namespace CavesOfOoo.Rendering
         }
         public void Dispose()
         {
-            if(disposed)return;disposed=true;EntityVisualHooks.MovedCallback-=Moved;EntityVisualHooks.AttackCallback-=Attack;
+            if(disposed)return;disposed=true;EntityVisualHooks.MovedCallback-=Moved;WorldAudioCombat.Callback-=Combat;
             EntityVisualHooks.SelfUseCallback-=SelfUse;WorldAudioHooks.Callback-=Semantic;zone=null;player=null;
         }
     }
