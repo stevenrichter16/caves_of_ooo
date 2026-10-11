@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="324" result="Failed" start-time="2026-10-11T02:55:31.6965650Z" end-time="2026-10-11T02:55:31.7903530Z" duration="0.093778" total="6" passed="0" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="20" random-seed="153314682">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "test =~ /MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass/" --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration07-legacy-movement-baseline.xml]]></command-line>
+  <filter>
+    <test re="1">MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass</test>
+  </filter>
+  <test-suite type="Assembly" id="1379" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="324" result="Failed" site="Child" start-time="2026-10-11T02:55:31.6965650Z" end-time="2026-10-11T02:55:31.7903530Z" duration="0.093778" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="20">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="25070" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1380" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="324" result="Failed" site="Child" start-time="2026-10-11T02:55:31.6981530Z" end-time="2026-10-11T02:55:31.7903370Z" duration="0.092183" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="20">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1381" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="324" result="Failed" site="Child" start-time="2026-10-11T02:55:31.6983580Z" end-time="2026-10-11T02:55:31.7903030Z" duration="0.091946" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="20">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1245" name="MultiCellAbilityConsumerTests" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-10-11T02:55:31.6987430Z" end-time="2026-10-11T02:55:31.7902970Z" duration="0.091553" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="20">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1301" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11T02:55:31.6993780Z" end-time="2026-10-11T02:55:31.7901340Z" duration="0.090755" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1295" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Vault&quot;,True)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Vault&quot;,True)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="364624204" result="Failed" start-time="2026-10-11T02:55:31.6994460Z" end-time="2026-10-11T02:55:31.7861370Z" duration="0.086717" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1296" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Vault&quot;,False)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Vault&quot;,False)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="1059877617" result="Failed" start-time="2026-10-11T02:55:31.7867200Z" end-time="2026-10-11T02:55:31.7871190Z" duration="0.000399" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1297" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Disengage&quot;,True)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Disengage&quot;,True)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="187513506" result="Failed" start-time="2026-10-11T02:55:31.7871440Z" end-time="2026-10-11T02:55:31.7879030Z" duration="0.000759" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1298" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Disengage&quot;,False)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Disengage&quot;,False)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="1766942277" result="Failed" start-time="2026-10-11T02:55:31.7879230Z" end-time="2026-10-11T02:55:31.7883410Z" duration="0.000418" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1299" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Charge&quot;,True)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Charge&quot;,True)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="2039751731" result="Failed" start-time="2026-10-11T02:55:31.7883560Z" end-time="2026-10-11T02:55:31.7893840Z" duration="0.001028" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1300" name="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Charge&quot;,False)" fullname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(&quot;Charge&quot;,False)" methodname="MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass" classname="CavesOfOoo.Tests.MultiCellAbilityConsumerTests" runstate="Runnable" seed="889432753" result="Failed" start-time="2026-10-11T02:55:31.7894300Z" end-time="2026-10-11T02:55:31.7896480Z" duration="0.000218" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(String name, Boolean body) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellAbilityConsumerTests.cs:line 296
+   at InvokeStub_MultiCellAbilityConsumerTests.MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

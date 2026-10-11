@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="77" result="Failed" start-time="2026-10-11T02:40:22.2818230Z" end-time="2026-10-11T02:40:22.3934660Z" duration="0.111630" total="8" passed="4" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="34" random-seed="1939942983">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration07-red.xml --where "class =~ /FrostbindRetaliationTests/"]]></command-line>
+  <filter>
+    <class re="1">FrostbindRetaliationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1085" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T02:40:22.2818230Z" end-time="2026-10-11T02:40:22.3934660Z" duration="0.111630" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="34">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20558" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1086" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T02:40:22.2832880Z" end-time="2026-10-11T02:40:22.3934630Z" duration="0.110175" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="34">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1087" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T02:40:22.2834420Z" end-time="2026-10-11T02:40:22.3934500Z" duration="0.110008" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="34">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1076" name="FrostbindRetaliationTests" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T02:40:22.2837660Z" end-time="2026-10-11T02:40:22.3933360Z" duration="0.109570" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="34">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1082" name="ExistingHostilityRemainsOnePersonalEnemy" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.ExistingHostilityRemainsOnePersonalEnemy" methodname="ExistingHostilityRemainsOnePersonalEnemy" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="1689771331" result="Passed" start-time="2026-10-11T02:40:22.2846130Z" end-time="2026-10-11T02:40:22.3611460Z" duration="0.076557" asserts="3" />
+          <test-case id="1078" name="MeaningfulExtensionAlsoProvokes" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.MeaningfulExtensionAlsoProvokes" methodname="MeaningfulExtensionAlsoProvokes" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="300456907" result="Failed" start-time="2026-10-11T02:40:22.3617450Z" end-time="2026-10-11T02:40:22.3770870Z" duration="0.015341" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.MeaningfulExtensionAlsoProvokes() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 59
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.MeaningfulExtensionAlsoProvokes() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 59
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1080" name="RecruitedPartyTargetCanBeRestrainedWithoutChangingAllegiance" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.RecruitedPartyTargetCanBeRestrainedWithoutChangingAllegiance" methodname="RecruitedPartyTargetCanBeRestrainedWithoutChangingAllegiance" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="733968471" result="Passed" start-time="2026-10-11T02:40:22.3771530Z" end-time="2026-10-11T02:40:22.3794960Z" duration="0.002343" asserts="6" />
+          <test-case id="1084" name="RootedPassiveNeutralFightsBackThroughOrdinaryBrainTurn" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.RootedPassiveNeutralFightsBackThroughOrdinaryBrainTurn" methodname="RootedPassiveNeutralFightsBackThroughOrdinaryBrainTurn" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="1339417932" result="Failed" start-time="2026-10-11T02:40:22.3795120Z" end-time="2026-10-11T02:40:22.3831240Z" duration="0.003612" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(caster)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.RootedPassiveNeutralFightsBackThroughOrdinaryBrainTurn() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 96
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(caster)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.RootedPassiveNeutralFightsBackThroughOrdinaryBrainTurn() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 96
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1083" name="SavedRestraintAndGrudgeKeepTheSameCasterReference" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.SavedRestraintAndGrudgeKeepTheSameCasterReference" methodname="SavedRestraintAndGrudgeKeepTheSameCasterReference" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="385289502" result="Failed" start-time="2026-10-11T02:40:22.3831400Z" end-time="2026-10-11T02:40:22.3895880Z" duration="0.006448" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.SavedRestraintAndGrudgeKeepTheSameCasterReference() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 88
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.SavedRestraintAndGrudgeKeepTheSameCasterReference() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 88
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1081" name="SelectedEmptyCellRefusesWithoutRetaliationOrCooldown" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.SelectedEmptyCellRefusesWithoutRetaliationOrCooldown" methodname="SelectedEmptyCellRefusesWithoutRetaliationOrCooldown" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="1677867245" result="Passed" start-time="2026-10-11T02:40:22.3896120Z" end-time="2026-10-11T02:40:22.3908890Z" duration="0.001276" asserts="5" />
+          <test-case id="1077" name="SuccessfulNeutralRestraintProvokesWithoutDamageAndPaysOneCooldown" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.SuccessfulNeutralRestraintProvokesWithoutDamageAndPaysOneCooldown" methodname="SuccessfulNeutralRestraintProvokesWithoutDamageAndPaysOneCooldown" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="1865620538" result="Failed" start-time="2026-10-11T02:40:22.3909070Z" end-time="2026-10-11T02:40:22.3918190Z" duration="0.000912" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.SuccessfulNeutralRestraintProvokesWithoutDamageAndPaysOneCooldown() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 49
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FrostbindRetaliationTests.SuccessfulNeutralRestraintProvokesWithoutDamageAndPaysOneCooldown() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/FrostbindRetaliationTests.cs:line 49
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1079" name="VetoedEffectPreservesExistingCastPaymentButDoesNotProvoke" fullname="CavesOfOoo.Tests.FrostbindRetaliationTests.VetoedEffectPreservesExistingCastPaymentButDoesNotProvoke" methodname="VetoedEffectPreservesExistingCastPaymentButDoesNotProvoke" classname="CavesOfOoo.Tests.FrostbindRetaliationTests" runstate="Runnable" seed="333166710" result="Passed" start-time="2026-10-11T02:40:22.3918330Z" end-time="2026-10-11T02:40:22.3930240Z" duration="0.001191" asserts="5" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

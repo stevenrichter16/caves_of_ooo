@@ -58,9 +58,44 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            target.ApplyEffect(new RootedEffect(FROSTBIND_DURATION), actor, ctx.Zone);
-        
+            // Observe the intrinsic install/stack boundary. BeforeApplyEffect
+            // observers can independently add a root; EffectApplied observers
+            // can remove or replace ours. Neither is proof that this cast left
+            // additional restraint on its selected target.
+            var incoming = new RootedEffect(FROSTBIND_DURATION);
+            RootedEffect prior = null, imposed = null;
+            int priorDuration = 0;
+            bool applied = target.ApplyEffectWithReceipt(incoming, actor, ctx.Zone,
+                beforeChange: () =>
+                {
+                    prior = target.GetEffect<RootedEffect>();
+                    priorDuration = prior?.Duration ?? 0;
+                },
+                afterChange: () =>
+                {
+                    var current = target.GetEffect<RootedEffect>();
+                    if (current == incoming || (current != null && current == prior))
+                        imposed = current;
+                });
+            bool meaningful = applied && imposed != null && imposed.Owner == target
+                && target.GetEffect<RootedEffect>() == imposed && priorDuration >= 0
+                && imposed.Duration > priorDuration;
+            if (meaningful && CanProvoke(actor, target, ctx.Zone))
+                target.GetPart<BrainPart>()?.SetPersonallyHostile(actor);
+
+            // Preserve the established committed-cast payment even if an
+            // immunity/lifecycle listener rejects the effect. Only provocation
+            // depends on the actual remaining restraint.
             return true;
+        }
+
+        private static bool CanProvoke(Entity actor, Entity target, Zone zone)
+        {
+            return actor != target && !BrainPart.ArePartyAligned(actor, target)
+                && actor.SpatialZone == zone && target.SpatialZone == zone
+                && zone.GetEntityCell(actor) != null && zone.GetEntityCell(target) != null
+                && actor.GetStatValue("Hitpoints") > 0 && target.GetStatValue("Hitpoints") > 0
+                && !CombatSystem.IsDeathHandled(actor) && !CombatSystem.IsDeathHandled(target);
         }
     }
 }
