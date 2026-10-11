@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="1.0884467">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28192" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="1.088447" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34717" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28192" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="1.002509" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34718" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28192" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="0.995241" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34719" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28192" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="0.990533" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32927" name="WorldAudioDryBrushAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="0.786181" total="22" passed="4" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32949" name="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.181040" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32946" name="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;Grass&quot;)" methodname="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1443184221" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.129834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner (System.String blueprint) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32947" name="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;FireMoss&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;FireMoss&quot;)" methodname="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="863033520" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.024017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner (System.String blueprint) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32948" name="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;unregistered brush&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner(&quot;unregistered brush&quot;)" methodname="DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1095156194" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.024166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.DryPlantMaterialAndVegetationTagAloneNeverInventAnApprovedOwner (System.String blueprint) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32951" name="EmptyDryRegionNeverInventsBrushFromBiomeOrDryWindBed" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.EmptyDryRegionNeverInventsBrushFromBiomeOrDryWindBed" methodname="EmptyDryRegionNeverInventsBrushFromBiomeOrDryWindBed" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="607573943" result="Passed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.024891" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32941" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.419788" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32928" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;hidden&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1965335332" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32929" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;unexplored&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="407631343" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023440" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32930" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;removed&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="2101109465" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.024046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32931" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;render&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;render&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1531134264" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.046154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32932" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;inventory&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1934318100" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.113693" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32933" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;equipped&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1273099092" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32934" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;portable&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;portable&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1338821750" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32935" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;hp&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;hp&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1032007658" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32936" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;gone&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="601589280" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32937" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;foreign-destructible&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;foreign-destructible&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="96590844" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32938" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;material&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;material&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="666555614" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.022941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32939" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;foreign-material&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;foreign-material&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1887825955" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.022980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32940" name="ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;missing-material&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent(&quot;missing-material&quot;)" methodname="ExactVisibleFixedLivingDryMaterialMustRemainCurrent" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="1727345425" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.ExactVisibleFixedLivingDryMaterialMustRemainCurrent (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:13
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32950" name="HiddenNewBrushIsNotDiscoveredByIdleWhenItBecomesVisible" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.HiddenNewBrushIsNotDiscoveredByIdleWhenItBecomesVisible" methodname="HiddenNewBrushIsNotDiscoveredByIdleWhenItBecomesVisible" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="598743608" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.HiddenNewBrushIsNotDiscoveredByIdleWhenItBecomesVisible () [0x0008e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32952" name="MutedBrushDoesNotQueueAnImmediateResumeBurst" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.MutedBrushDoesNotQueueAnImmediateResumeBurst" methodname="MutedBrushDoesNotQueueAnImmediateResumeBurst" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="395519849" result="Failed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.022865" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.MutedBrushDoesNotQueueAnImmediateResumeBurst () [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushAdversarialTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32945" name="StandingBrushStillRequiresTheExistingOutdoorPolicy" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.StandingBrushStillRequiresTheExistingOutdoorPolicy" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="0.072618" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32942" name="StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;interior&quot;)" methodname="StandingBrushStillRequiresTheExistingOutdoorPolicy" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="297587955" result="Passed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32943" name="StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;depth&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;depth&quot;)" methodname="StandingBrushStillRequiresTheExistingOutdoorPolicy" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="530842702" result="Passed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:28Z" duration="0.023625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32944" name="StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;cave&quot;)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests.StandingBrushStillRequiresTheExistingOutdoorPolicy(&quot;cave&quot;)" methodname="StandingBrushStillRequiresTheExistingOutdoorPolicy" classname="CavesOfOoo.Tests.WorldAudioDryBrushAdversarialTests" runstate="Runnable" seed="2019757468" result="Passed" start-time="2026-10-11 18:58:28Z" end-time="2026-10-11 18:58:29Z" duration="0.022908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32953" name="WorldAudioDryBrushTests" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.195444" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32961" name="ExistingSparseMaterialCadenceIsPreserved" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.ExistingSparseMaterialCadenceIsPreserved" methodname="ExistingSparseMaterialCadenceIsPreserved" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1370368783" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.024223" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than or equal to 4
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.ExistingSparseMaterialCadenceIsPreserved () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:37
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32962" name="LeavingActualSourceRangeRetiresKnownPhraseWithoutDiscovery" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.LeavingActualSourceRangeRetiresKnownPhraseWithoutDiscovery" methodname="LeavingActualSourceRangeRetiresKnownPhraseWithoutDiscovery" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1811844885" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushTests.LeavingActualSourceRangeRetiresKnownPhraseWithoutDiscovery () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32959" name="LiteralBrushRatherThanBiomeGuessAlsoWorksAtAnActualGreenRegionMargin" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.LiteralBrushRatherThanBiomeGuessAlsoWorksAtAnActualGreenRegionMargin" methodname="LiteralBrushRatherThanBiomeGuessAlsoWorksAtAnActualGreenRegionMargin" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1742211948" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.LiteralBrushRatherThanBiomeGuessAlsoWorksAtAnActualGreenRegionMargin () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:31
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32960" name="NearestActualBrushOwnsThePan" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.NearestActualBrushOwnsThePan" methodname="NearestActualBrushOwnsThePan" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="2096102745" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushFixture.Start () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:19
+at CavesOfOoo.Tests.WorldAudioDryBrushTests.NearestActualBrushOwnsThePan () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:33
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32958" name="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.098207" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32954" name="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Beating)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Beating)" methodname="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="41898487" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.024570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion (CavesOfOoo.Core.BiomeType biome) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32955" name="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Desert)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Desert)" methodname="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1376249510" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion (CavesOfOoo.Core.BiomeType biome) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32956" name="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Overwrit)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Overwrit)" methodname="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1361502450" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion (CavesOfOoo.Core.BiomeType biome) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32957" name="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Ruins)" fullname="CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion(Ruins)" methodname="RealAuthoredDryBrushSuppliesLocalTextureInDryRegion" classname="CavesOfOoo.Tests.WorldAudioDryBrushTests" runstate="Runnable" seed="1894659364" result="Failed" start-time="2026-10-11 18:58:29Z" end-time="2026-10-11 18:58:29Z" duration="0.023201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioDryBrushTests.RealAuthoredDryBrushSuppliesLocalTextureInDryRegion (CavesOfOoo.Core.BiomeType biome) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioDryBrushTests.cs:27
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,43 @@
+{
+    "runId": "d0c9d8fc5e7d445b9e737f2e47257721",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: actual safe approach step\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:452 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunAudioPolish08Brush>d__210.MoveNext () [0x00380] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish08.cs:31 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__318.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:472 ",
+    "canVerify": "Approach original generated DryBrush through seven actual paid moves from outside all leaf-source range, observe an imported rustle and positive per-source signal, return through seven real moves, and observe28s leaf silence beyond range. Original material/owner, ordinary actor, bounds and preferences are retained. Eleven checks include shared ordinary boot.",
+    "cannotVerify": "One disclosed travel shortcut reaches an unchanged dry-region route start selected from at most48 actual Beating non-POI surfaces plus cached zones. No brush, material, wildlife, wind, clock, inventory, HP, FOV or sound cue is injected. Existing leaf recordings are a designed brush texture, not a simulation or literal recording of this plant's wind. Source-specific output is not subjective listening, global clipping, physical speaker or Deck proof.",
+    "mode": "audio-polish-08",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS brush_original_generated_dry_source",
+        "PASS brush_distant_start_has_no_leaf_voice",
+        "PASS brush_audio_preferences_restored",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/08/d0c9d8fc5e7d445b9e737f2e47257721/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/08/d0c9d8fc5e7d445b9e737f2e47257721/brush-01-distant-original-margin.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Explicit audio-route travel shortcut",
+            "source": "Overworld.16.13.0",
+            "text": "actual Beating brush margin, outside all nearby leaf-source radius @28,4",
+            "units": 0
+        }
+    ],
+    "cases": 5,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 4.998810499999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

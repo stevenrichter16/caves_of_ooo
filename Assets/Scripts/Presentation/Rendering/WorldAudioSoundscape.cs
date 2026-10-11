@@ -200,6 +200,8 @@ namespace CavesOfOoo.Rendering
             {
                 if(owner.BlueprintName=="Reeds")return (int)Kind.Reed;
                 if(owner.BlueprintName=="Tree"||owner.BlueprintName=="Bush")return (int)Kind.Leaf;
+                if(owner.BlueprintName=="DryBrush"&&owner.GetPart<MaterialPart>() is MaterialPart brush
+                    &&brush.ParentEntity==owner&&brush.MaterialID=="DryPlant")return (int)Kind.Leaf;
             }
             var material=owner.GetPart<MaterialPart>();
             if(material?.ParentEntity!=owner)return -1;
