@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-5/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+6/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -34,7 +34,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 | 8 | Actual dry brush adds a restrained local texture in dry regions. | No carried plants/interior brush; approach and leave generated DryBrush. |
 | 9 | Depleted pools sound like their underlying floor when stepped on. | Real positive pool remains wet; actual drainage and movement. |
 | 10 | Drawing, drinking and transferring water have distinct, quiet committed vessel sounds. | Refusal/rollback/cancel silent; actual draw and drink, explicit transfer acquisition. |
-| 11 | Cooking produces a brief preparation sound at the working station. | Cold station and failed recipe silent; harvest and cook through input. |
+| 11 | Cooking produces a brief preparation sound at the working station. | Ineligible station and failed recipe silent; harvest and cook through input. |
 | 12 | Brewing produces restrained preparation feedback without a batch burst or false success flourish. | Reagent/refusal/mishap/partial batch; actual field alembic brewing. |
 | 13 | Handling rigid metal, wood and soft items reflects their actual material. | Merge/split/rollback/unknown fallback; genuine equip, drop and pickup. |
 | 14 | Mineral gathering sounds like loose stone instead of foliage or silence. | Plant counterpart and spent-source/load silence; harvest actual GlowQuartzVein. |
@@ -101,3 +101,11 @@ Iteration5 complete: after correcting two fixture premises (Cell[,] requires Cas
 ### Iteration 6 execution prompt — animal calls follow rest and stasis
 
 Iteration5 now gives actual enclosing structure an indoor voice without admitting exterior wildlife. Preserve that separation and fixed discovery/voice budgets. Approved animals should stop voluntary calls only under current positive Frozen cold or active gas-sleep/hibernation owned by that exact animal; roots, pacification and expired/foreign effects must not silence an otherwise eligible animal. Observe34 behavioral native cases RED before the small predicate change. Revalidate active calls as well as future scheduling. Fresh Play must find a real generated isolated frog with a clear legal ray, observe its imported call, use the original ready Rime Grip through hotbar/direction input, watch28 seconds of actual frozen quiet, then use bounded ordinary waits until actual thaw and verify the same animal calls again. Record the one legal source-travel shortcut, real damage/cooldown/action and unchanged ordinary actor; no effect, ability, HP, clock or cue injection. Gas sleep and hibernation have unit coverage; label the narrower frozen-frog live result.
+
+Iteration6 first actual Play `63ce05e60f804be58a325954f5db913a` retained:10/11, zero unexpected errors. Real imported call, normal Rime cast,28 seconds frozen quiet, actual thaw and same animal call all passed. The scan-budget row sampled before LateUpdate could observe the completed paid turn. Correct the audit measurement boundary with EndOfFrame and exact runtime tick/actor/zone readiness, retain zero idle-scan growth, and record numeric counters. No production rule or budget is relaxed; rerun fresh Play.
+
+Iteration6 complete:34 native RED cases had14 expected failures/20 passes; broad477/477 passed. Fresh actual Play `c19a96152dc4438287049005aa58664f` passed11/11, zero unexpected errors,41.511s. The same generated Reedfrog called, was frozen by original Rime Grip, stayed quiet28 seconds and resumed calling after actual paid waits thawed it. Corrected completed-frame measurement recorded scans3→3, context checks3→3, tick20→20,127 visited owners and16 allocated sources. Screenshot inspected. One disclosed travel shortcut; gas/hibernation have unit evidence only. Independent review found no production defect; the earlier measurement failure remains retained.
+
+### Iteration 7 execution prompt — let valid short phrases finish
+
+Iteration6 proved that physical effects retire and restore the same animal voice and that completed-frame baselines matter. Preserve those source checks. Stop blanket day-band resets from chopping a still-valid stone/wood/fire phrase; retain exact known-source validation after selecting current habitat, and a bounded habitat witness that retires changed bird/insect policy. Keep biome/depth/graph/shelter/mute/loss resets and16 voices. Observe28 native cases RED before the narrow patch. In fresh actual Play, enter a generated stone room through paid steps, approach the real WorldClock boundary with at most80 paid waits, and cross it during an imported stone phrase. These takes last only .50/.65 seconds: wait for >.3 seconds remaining and use ordinary keyboard down/release without the optional post-action dwell, never seek or inject audio. Verify same source/clip advancing samples, real signal, F5/F6 clock preservation and zero completed-frame idle scans. One disclosed travel shortcut; fire and incompatible wildlife remain unit-only live scope. Preserve the original failed receipts.

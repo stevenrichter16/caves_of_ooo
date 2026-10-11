@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="34" result="Failed(Child)" total="34" passed="20" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:41:51Z" end-time="2026-10-11 18:41:54Z" duration="2.1152015">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28134" result="Failed" site="Child" start-time="2026-10-11 18:41:51Z" end-time="2026-10-11 18:41:54Z" duration="2.115202" total="34" passed="20" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34645" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28134" result="Failed" site="Child" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:54Z" duration="1.983516" total="34" passed="20" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34646" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28134" result="Failed" site="Child" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:54Z" duration="1.819824" total="34" passed="20" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34647" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28134" result="Failed" site="Child" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:54Z" duration="1.718770" total="34" passed="20" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32794" name="WorldAudioAnimalRestAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:53Z" duration="1.110827" total="21" passed="18" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32820" name="ARealDamagingWakeEndsSleepEvenBeforeCollectionSweep" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ARealDamagingWakeEndsSleepEvenBeforeCollectionSweep" methodname="ARealDamagingWakeEndsSleepEvenBeforeCollectionSweep" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="113625152" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.161289" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32803" name="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.038429" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32799" name="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;sleep&quot;,0)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;sleep&quot;,0)" methodname="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1545511749" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.001053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32800" name="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;hibernate&quot;,0)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;hibernate&quot;,0)" methodname="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1977043261" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.000758" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32801" name="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;sleep&quot;,-2)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;sleep&quot;,-2)" methodname="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1680323291" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.000655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32802" name="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;hibernate&quot;,-2)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis(&quot;hibernate&quot;,-2)" methodname="ExpiredOrInvalidSleepDurationDoesNotInventActiveStasis" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="2031204648" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.000663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32798" name="ForeignEffectOwnerCannotSilenceTheCurrentAnimal" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ForeignEffectOwnerCannotSilenceTheCurrentAnimal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.099804" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32795" name="ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;sleep&quot;)" methodname="ForeignEffectOwnerCannotSilenceTheCurrentAnimal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="778465467" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.000998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32796" name="ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;hibernate&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;hibernate&quot;)" methodname="ForeignEffectOwnerCannotSilenceTheCurrentAnimal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="365962026" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.000656" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32797" name="ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;freeze&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.ForeignEffectOwnerCannotSilenceTheCurrentAnimal(&quot;freeze&quot;)" methodname="ForeignEffectOwnerCannotSilenceTheCurrentAnimal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1146963741" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:52Z" duration="0.001055" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32809" name="FrozenMagnitudeRatherThanItsNameControlsQuiet" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.FrozenMagnitudeRatherThanItsNameControlsQuiet" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 18:41:52Z" end-time="2026-10-11 18:41:53Z" duration="0.202853" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32807" name="FrozenMagnitudeRatherThanItsNameControlsQuiet(0.0f)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.FrozenMagnitudeRatherThanItsNameControlsQuiet(0.0f)" methodname="FrozenMagnitudeRatherThanItsNameControlsQuiet" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="64422968" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.003139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32808" name="FrozenMagnitudeRatherThanItsNameControlsQuiet(-1.0f)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.FrozenMagnitudeRatherThanItsNameControlsQuiet(-1.0f)" methodname="FrozenMagnitudeRatherThanItsNameControlsQuiet" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1137546419" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32806" name="IndefiniteSleepIsStillActive" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.IndefiniteSleepIsStillActive" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.203211" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32804" name="IndefiniteSleepIsStillActive(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.IndefiniteSleepIsStillActive(&quot;sleep&quot;)" methodname="IndefiniteSleepIsStillActive" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1230997274" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.006719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.IndefiniteSleepIsStillActive (System.String kind) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestAdversarialTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32805" name="IndefiniteSleepIsStillActive(&quot;hibernate&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.IndefiniteSleepIsStillActive(&quot;hibernate&quot;)" methodname="IndefiniteSleepIsStillActive" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="171429095" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.IndefiniteSleepIsStillActive (System.String kind) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestAdversarialTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32819" name="RemovedSleepObjectCannotContinueSuppressingItsOldOwner" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.RemovedSleepObjectCannotContinueSuppressingItsOldOwner" methodname="RemovedSleepObjectCannotContinueSuppressingItsOldOwner" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1119505820" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.003078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32817" name="SleepingNearestFrogDoesNotHideAnAwakeSecondAnimal" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.SleepingNearestFrogDoesNotHideAnAwakeSecondAnimal" methodname="SleepingNearestFrogDoesNotHideAnAwakeSecondAnimal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1698754409" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001607" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32810" name="SleepOnAnotherEntityNeverSilencesTheCurrentWitness" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.SleepOnAnotherEntityNeverSilencesTheCurrentWitness" methodname="SleepOnAnotherEntityNeverSilencesTheCurrentWitness" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="710055740" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001791" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32811" name="WakeDoesNotDiscoverTheFormerOwnerDuringIdle" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakeDoesNotDiscoverTheFormerOwnerDuringIdle" methodname="WakeDoesNotDiscoverTheFormerOwnerDuringIdle" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1556113649" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.002046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakeDoesNotDiscoverTheFormerOwnerDuringIdle () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestAdversarialTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32816" name="WakingDoesNotBypassCurrentSourceAuthority" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingDoesNotBypassCurrentSourceAuthority" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.192177" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32812" name="WakingDoesNotBypassCurrentSourceAuthority(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingDoesNotBypassCurrentSourceAuthority(&quot;hidden&quot;)" methodname="WakingDoesNotBypassCurrentSourceAuthority" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1849399138" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.003763" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32813" name="WakingDoesNotBypassCurrentSourceAuthority(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingDoesNotBypassCurrentSourceAuthority(&quot;dead&quot;)" methodname="WakingDoesNotBypassCurrentSourceAuthority" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1355193100" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32814" name="WakingDoesNotBypassCurrentSourceAuthority(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingDoesNotBypassCurrentSourceAuthority(&quot;removed&quot;)" methodname="WakingDoesNotBypassCurrentSourceAuthority" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="1130093431" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.002881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32815" name="WakingDoesNotBypassCurrentSourceAuthority(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingDoesNotBypassCurrentSourceAuthority(&quot;inventory&quot;)" methodname="WakingDoesNotBypassCurrentSourceAuthority" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="684110069" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32818" name="WakingSilentSpeciesDoesNotInventARecording" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests.WakingSilentSpeciesDoesNotInventARecording" methodname="WakingSilentSpeciesDoesNotInventARecording" classname="CavesOfOoo.Tests.WorldAudioAnimalRestAdversarialTests" runstate="Runnable" seed="627928270" result="Passed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001540" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32821" name="WorldAudioAnimalRestTests" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:54Z" duration="0.506799" total="13" passed="2" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32833" name="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.205903" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32830" name="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;sleep&quot;)" methodname="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1578334245" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.003683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation (System.String kind) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32831" name="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;hibernate&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;hibernate&quot;)" methodname="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1888729972" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation (System.String kind) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32832" name="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;freeze&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation(&quot;freeze&quot;)" methodname="ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="230151911" result="Failed" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:53Z" duration="0.001831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.ActualRestEffectBlocksDiscoveryAndRealRemovalRearmsOnObservation (System.String kind) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32829" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-11 18:41:53Z" end-time="2026-10-11 18:41:54Z" duration="0.206118" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32822" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Bandfrog&quot;,&quot;frog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Bandfrog&quot;,&quot;frog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="2116568333" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.004259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32823" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Reedfrog&quot;,&quot;frog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Reedfrog&quot;,&quot;frog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1942465062" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32824" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;GinFrog&quot;,&quot;frog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;GinFrog&quot;,&quot;frog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="278800328" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32825" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;MawToad&quot;,&quot;frog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;MawToad&quot;,&quot;frog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1474925829" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32826" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;HelmwoodFrog&quot;,&quot;frog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;HelmwoodFrog&quot;,&quot;frog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="329645412" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32827" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;PetDog&quot;,&quot;dog&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;PetDog&quot;,&quot;dog&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="551785305" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001427" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32828" name="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Magpie&quot;,&quot;bird&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen(&quot;Magpie&quot;,&quot;bird&quot;)" methodname="EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1003983996" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.EachApprovedAnimalStopsVoluntaryVoiceWhileFrozen (System.String blueprint, System.String cue) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32834" name="NoMovementRootDoesNotMakeTheAnimalUnconscious" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.NoMovementRootDoesNotMakeTheAnimalUnconscious" methodname="NoMovementRootDoesNotMakeTheAnimalUnconscious" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="282561183" result="Passed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32836" name="OrdinaryDurationExpiryCanBeObservedAsAwakeAgain" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.OrdinaryDurationExpiryCanBeObservedAsAwakeAgain" methodname="OrdinaryDurationExpiryCanBeObservedAsAwakeAgain" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="1534946393" result="Failed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001366" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAnimalRestTests.OrdinaryDurationExpiryCanBeObservedAsAwakeAgain () [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAnimalRestTests.cs:53
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32835" name="RealCalmGoalAndPassiveBrainRemainVocal" fullname="CavesOfOoo.Tests.WorldAudioAnimalRestTests.RealCalmGoalAndPassiveBrainRemainVocal" methodname="RealCalmGoalAndPassiveBrainRemainVocal" classname="CavesOfOoo.Tests.WorldAudioAnimalRestTests" runstate="Runnable" seed="705045091" result="Passed" start-time="2026-10-11 18:41:54Z" end-time="2026-10-11 18:41:54Z" duration="0.001464" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

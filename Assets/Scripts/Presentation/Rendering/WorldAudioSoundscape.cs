@@ -184,6 +184,7 @@ namespace CavesOfOoo.Rendering
             if(Flame(owner))return (int)Kind.Fire;
             if(owner.HasTag("Creature")&&Alive(owner)&&owner.GetPart<BrainPart>()?.ParentEntity==owner)
             {
+                if(!CanCall(owner))return -1;
                 switch(owner.BlueprintName)
                 {
                     case "Bandfrog":case "Reedfrog":case "GinFrog":case "MawToad":case "HelmwoodFrog":return (int)Kind.Frog;
@@ -207,6 +208,16 @@ namespace CavesOfOoo.Rendering
                 &&(material.MaterialID=="Stone"||material.MaterialID=="Masonry"))return (int)Kind.Stone;
             return -1;
         }
+        static bool CanCall(Entity owner)
+        {
+            // Explicit sleep/stasis only: roots and pacification do not stop voluntary calls.
+            var frozen=owner.GetEffect<FrozenEffect>();
+            return !(frozen?.Owner==owner&&frozen.Cold>0)
+                &&!ActiveRest(owner.GetEffect<AsleepByGasEffect>(),owner)
+                &&!ActiveRest(owner.GetEffect<HibernatingEffect>(),owner);
+        }
+        static bool ActiveRest(Effect effect,Entity owner)=>effect?.Owner==owner
+            &&(effect.Duration>0||effect.Duration==Effect.DURATION_INDEFINITE);
         static bool Flame(Entity owner)
         {
             var fuel=owner.GetPart<FuelPart>();
