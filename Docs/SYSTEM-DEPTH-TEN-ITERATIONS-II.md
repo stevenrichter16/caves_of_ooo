@@ -1,7 +1,7 @@
 # System depth: second ten-iteration pass
 
 Status: all ten iterations implemented, reviewed and verified in native Unity
-and actual Play. Requested Steam Deck package pending.
+and actual Play. Requested Steam Deck package built and archive verified.
 Baseline `428cb4be9` on main.
 This is a new slate, not a recount of the ten iterations in
 `SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md`.
@@ -125,10 +125,10 @@ a selected integration suite, not the entire project suite. Fresh compilation
 had no errors. No production edits followed the final suite.
 
 The earlier combined gate passed 1,584/1,584 (`native-first-integration.xml`).
-Review then fixed step-aside rollback admission; its native recheck passed84/84
+Review then fixed step-aside rollback admission; its native recheck passed 84/84
 (`native-step-review.xml`). The tool monitor reported an initialization timeout
-for that short job, but Unity's fresh, complete XML independently records all84
-passes and the new21-case step fixture. No timeout was counted as a success on
+for that short job, but Unity's fresh, complete XML independently records all 84
+passes and the new 21-case step fixture. No timeout was counted as a success on
 its own. These overlapping suites are not added together.
 
 **Actual Play: 14/14 checks pass, zero unexpected errors**, run
@@ -137,9 +137,9 @@ reviewed at original resolution across two reviewers. The pack/equipped reader
 is visible and readable; container coins, pith/tonic outcomes, cleared path and
 Slam knockback/companion attack appear in the actual interface.
 
-The first Play run `b3d7562477b34730ae6b9a3f28f62c4b` retained12/14 passes and
+The first Play run `b3d7562477b34730ae6b9a3f28f62c4b` retained 12/14 passes and
 two failures. Its real Look-mode reader failure led to two observed native RED
-cases and a narrow dispatch fix; the27-case reader regression then passed.
+cases and a narrow dispatch fix; the 27-case reader regression then passed.
 The Slam check initially stopped before a newly inserted enemy received its
 first turn. The route now sends up to three ordinary waits, with exact energy,
 HP/position/goal observations. The final run required one wait; no authored AI
@@ -174,7 +174,37 @@ encounter sources, with an examine warning about their new cudgel shove.
 
 Native EditMode, arranged Play actions, source/content availability, and hardware
 performance are separate evidence. At the user's follow-up request, a new Linux
-Steam Deck package will be built after the final fixes pass, with its extracted
+Steam Deck package was built after the final fixes passed, with its extracted
 folder named `CavesOfOoo-current`. The package does not itself establish physical
 Deck controls/performance, natural discovery rates, or exhaustive whole-project
 verification.
+
+## Steam Deck delivery
+
+Built source commit `95695869e518b5f6000dbf53ca410d69addf45df` after fetch/rebase.
+Unity 6000.3.4f1 built `StandaloneLinux64`, Mono, nondevelopment player, ordinary
+`Assets/Scenes/Main/SampleScene.unity`; job `build-7bb75f2093` succeeded in 22.79 seconds,
+zero errors, four warnings from unchanged source files. Raw build report,
+warning inventory and archive checks are in `Verification/SystemDepthII`.
+
+Local archive:
+`Builds/SteamDeck/2026-10-10-system-depth-ii-current/CavesOfOoo-SteamDeck-system-depth-ii-current.tar.gz`
+
+Extracted executable:
+`Builds/SteamDeck/2026-10-10-system-depth-ii-current/CavesOfOoo-current/CavesOfOoo.x86_64`
+
+Archive: 101,168,808 bytes; SHA-256
+`16c3cd9628728f9a25276109e94ac6bf8f221105ac31cbce00940208c4ee31b0`.
+All 161 payload files were streamed back from the archive and checked against
+their hashes; file list, x86-64 ELF header and executable permissions passed.
+The package includes its README, launcher, build-info and SHA256SUMS. Source
+commit and separate 1,606-test/14-Play evidence are recorded without adding counts.
+The build's generated settings/renderer serialization diff was saved in its
+`audit` directory, then those three previously clean workspace files were
+restored. Preexisting package/log changes and untracked art were preserved.
+
+On Deck, extract the archive and point the non-Steam shortcut at
+`CavesOfOoo-current/CavesOfOoo.x86_64`, with Start In set to its containing folder.
+Keep forced Proton off and use normal Gamepad output. Existing saves live outside
+the build folder. No Linux player runtime or physical Steam Deck execution was
+performed for this package; native Mac Unity evidence is not hardware validation.
