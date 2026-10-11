@@ -8,10 +8,10 @@ namespace CavesOfOoo.Core
     /// <para><b>Behavior:</b> each <see cref="TakeAction"/>, if the
     /// follower is farther than <see cref="CloseEnoughDistance"/>
     /// (Chebyshev) from the leader, take one step toward the
-    /// leader's current cell via the greedy step path
-    /// (<see cref="AIHelpers.TryStepToward"/>). Greedy is the right
-    /// primitive for a moving target — A* would need to re-plan
-    /// every tick since the leader can move.</para>
+    /// leader's current cell via
+    /// <see cref="AIHelpers.TryApproachWithPathfinding"/>. Harmless
+    /// direct steps remain cheap; obstacles and terrain costs use
+    /// the existing actor-aware route search with fresh positions.</para>
     ///
     /// <para><b>Combat assist (Docs/FOLLOWERS.md "Phase F.3.7"):</b>
     /// if the leader is actively mid-fight (has a live <see cref="KillGoal"/>
@@ -187,12 +187,10 @@ namespace CavesOfOoo.Core
             var leaderPos = leaderZone.GetEntityPosition(Leader);
             if (myPos.x < 0 || leaderPos.x < 0) return;
 
-            // Greedy step toward leader. Handles thin obstacles via
-            // diagonal/cardinal fallback internally. For wall-routed
-            // pursuit (around buildings) we'd need A* — but the
-            // typical follow scenario is open ground, so greedy is
-            // the right primitive AND cheaper per tick.
-            AIHelpers.TryStepToward(
+            // Share combat's actor-aware approach: route around settlement
+            // walls and costly terrain, retaining door permissions and the
+            // ability to use a hazardous passage when no clear route exists.
+            AIHelpers.TryApproachWithPathfinding(
                 ParentEntity, CurrentZone,
                 myPos.x, myPos.y,
                 leaderPos.x, leaderPos.y);

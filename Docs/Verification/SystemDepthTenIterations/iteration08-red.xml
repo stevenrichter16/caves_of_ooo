@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="32" result="Failed" start-time="2026-10-11T02:34:30.1654840Z" end-time="2026-10-11T02:34:30.4716010Z" duration="0.306215" total="32" passed="30" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="369" random-seed="2009685864">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration08-red.xml --where "class =~ /CompanionNavigationTests|FollowLeaderGoalTests/"]]></command-line>
+  <filter>
+    <class re="1">CompanionNavigationTests|FollowLeaderGoalTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1036" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:30.1654840Z" end-time="2026-10-11T02:34:30.4716010Z" duration="0.306215" total="32" passed="30" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="369">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="18282" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1037" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:30.1674660Z" end-time="2026-10-11T02:34:30.4715980Z" duration="0.304244" total="32" passed="30" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="369">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1038" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:30.1675860Z" end-time="2026-10-11T02:34:30.4715880Z" duration="0.304113" total="32" passed="30" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="369">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CompanionNavigationTests" fullname="CavesOfOoo.Tests.CompanionNavigationTests" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T02:34:30.1679510Z" end-time="2026-10-11T02:34:30.3165770Z" duration="0.148681" total="10" passed="8" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="328">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1005" name="ActualFollowTurnHonorsActorTerrainCost" fullname="CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T02:34:30.1688520Z" end-time="2026-10-11T02:34:30.2979280Z" duration="0.129124" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="ActualFollowTurnHonorsActorTerrainCost(&quot;acid&quot;,False)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost(&quot;acid&quot;,False)" methodname="ActualFollowTurnHonorsActorTerrainCost" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="2091043144" result="Failed" start-time="2026-10-11T02:34:30.1689300Z" end-time="2026-10-11T02:34:30.2871860Z" duration="0.118325" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost(String liquid, Boolean immune) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionNavigationTests.cs:line 73
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost(String liquid, Boolean immune) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionNavigationTests.cs:line 73
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="ActualFollowTurnHonorsActorTerrainCost(&quot;acid&quot;,True)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost(&quot;acid&quot;,True)" methodname="ActualFollowTurnHonorsActorTerrainCost" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="85867785" result="Passed" start-time="2026-10-11T02:34:30.2879270Z" end-time="2026-10-11T02:34:30.2909980Z" duration="0.003073" asserts="7" />
+            <test-case id="1004" name="ActualFollowTurnHonorsActorTerrainCost(&quot;water&quot;,False)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnHonorsActorTerrainCost(&quot;water&quot;,False)" methodname="ActualFollowTurnHonorsActorTerrainCost" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="486993165" result="Passed" start-time="2026-10-11T02:34:30.2951190Z" end-time="2026-10-11T02:34:30.2962270Z" duration="0.001108" asserts="7" />
+          </test-suite>
+          <test-case id="1001" name="ActualFollowTurnRoutesAroundBuildingWallAndRemainsFollowing" fullname="CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnRoutesAroundBuildingWallAndRemainsFollowing" methodname="ActualFollowTurnRoutesAroundBuildingWallAndRemainsFollowing" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="1161140112" result="Failed" start-time="2026-10-11T02:34:30.3000060Z" end-time="2026-10-11T02:34:30.3019900Z" duration="0.001984" asserts="11">
+            <failure>
+              <message><![CDATA[  Expected: less than or equal to 2
+  But was:  6
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnRoutesAroundBuildingWallAndRemainsFollowing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionNavigationTests.cs:line 60
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: less than or equal to 2
+  But was:  6
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionNavigationTests.ActualFollowTurnRoutesAroundBuildingWallAndRemainsFollowing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionNavigationTests.cs:line 60
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1010" name="FollowingPreservesDoorPermissionAndStationaryOpeningAction" fullname="CavesOfOoo.Tests.CompanionNavigationTests.FollowingPreservesDoorPermissionAndStationaryOpeningAction" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T02:34:30.3082950Z" end-time="2026-10-11T02:34:30.3138450Z" duration="0.005552" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="91">
+            <test-case id="1007" name="FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;capable&quot;)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;capable&quot;)" methodname="FollowingPreservesDoorPermissionAndStationaryOpeningAction" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="981791931" result="Passed" start-time="2026-10-11T02:34:30.3083150Z" end-time="2026-10-11T02:34:30.3108430Z" duration="0.002529" asserts="31" />
+            <test-case id="1008" name="FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;incapable&quot;)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;incapable&quot;)" methodname="FollowingPreservesDoorPermissionAndStationaryOpeningAction" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="119387981" result="Passed" start-time="2026-10-11T02:34:30.3108720Z" end-time="2026-10-11T02:34:30.3119660Z" duration="0.001095" asserts="30" />
+            <test-case id="1009" name="FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.CompanionNavigationTests.FollowingPreservesDoorPermissionAndStationaryOpeningAction(&quot;locked&quot;)" methodname="FollowingPreservesDoorPermissionAndStationaryOpeningAction" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="1739116362" result="Passed" start-time="2026-10-11T02:34:30.3119810Z" end-time="2026-10-11T02:34:30.3138260Z" duration="0.001846" asserts="30" />
+          </test-suite>
+          <test-case id="1012" name="LeaderMoveReplansNextTurnAndCloseFollowerIdles" fullname="CavesOfOoo.Tests.CompanionNavigationTests.LeaderMoveReplansNextTurnAndCloseFollowerIdles" methodname="LeaderMoveReplansNextTurnAndCloseFollowerIdles" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="983594731" result="Passed" start-time="2026-10-11T02:34:30.3138630Z" end-time="2026-10-11T02:34:30.3146050Z" duration="0.000742" asserts="9" />
+          <test-case id="1006" name="SoleHazardousPassageStillPermitsFollowing" fullname="CavesOfOoo.Tests.CompanionNavigationTests.SoleHazardousPassageStillPermitsFollowing" methodname="SoleHazardousPassageStillPermitsFollowing" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="127798154" result="Passed" start-time="2026-10-11T02:34:30.3146180Z" end-time="2026-10-11T02:34:30.3154950Z" duration="0.000878" asserts="166" />
+          <test-case id="1011" name="UnreachableLeaderDoesNotTeleportOrChangePartyOwnership" fullname="CavesOfOoo.Tests.CompanionNavigationTests.UnreachableLeaderDoesNotTeleportOrChangePartyOwnership" methodname="UnreachableLeaderDoesNotTeleportOrChangePartyOwnership" classname="CavesOfOoo.Tests.CompanionNavigationTests" runstate="Runnable" seed="325336740" result="Passed" start-time="2026-10-11T02:34:30.3155110Z" end-time="2026-10-11T02:34:30.3163190Z" duration="0.000808" asserts="31" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1013" name="FollowLeaderGoalTests" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-10-11T02:34:30.3168400Z" end-time="2026-10-11T02:34:30.4715720Z" duration="0.154788" total="22" passed="22" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="41">
+          <test-case id="1015" name="Construction_HasSaneDefaults" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Construction_HasSaneDefaults" methodname="Construction_HasSaneDefaults" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1231073912" result="Passed" start-time="2026-10-11T02:34:30.3168810Z" end-time="2026-10-11T02:34:30.3171360Z" duration="0.000255" asserts="2" />
+          <test-case id="1014" name="Construction_StoresLeader" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Construction_StoresLeader" methodname="Construction_StoresLeader" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="2019796923" result="Passed" start-time="2026-10-11T02:34:30.3171790Z" end-time="2026-10-11T02:34:30.3172810Z" duration="0.000102" asserts="1" />
+          <test-case id="1022" name="Finished_CloseEnough_False_PersistentFollow" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_CloseEnough_False_PersistentFollow" methodname="Finished_CloseEnough_False_PersistentFollow" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1266497776" result="Passed" start-time="2026-10-11T02:34:30.3172940Z" end-time="2026-10-11T02:34:30.3176580Z" duration="0.000364" asserts="1" />
+          <test-case id="1024" name="Finished_LeaderFar_False" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_LeaderFar_False" methodname="Finished_LeaderFar_False" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1286654976" result="Passed" start-time="2026-10-11T02:34:30.3176700Z" end-time="2026-10-11T02:34:30.3177970Z" duration="0.000127" asserts="1" />
+          <test-case id="1018" name="Finished_LeaderInDifferentZone_False_PersistentAcrossZones" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_LeaderInDifferentZone_False_PersistentAcrossZones" methodname="Finished_LeaderInDifferentZone_False_PersistentAcrossZones" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="13984712" result="Passed" start-time="2026-10-11T02:34:30.3378130Z" end-time="2026-10-11T02:34:30.3381380Z" duration="0.000325" asserts="1" />
+          <test-case id="1017" name="Finished_LeaderWithoutBrainPart_True" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_LeaderWithoutBrainPart_True" methodname="Finished_LeaderWithoutBrainPart_True" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="76331793" result="Passed" start-time="2026-10-11T02:34:30.3417270Z" end-time="2026-10-11T02:34:30.3420050Z" duration="0.000278" asserts="1" />
+          <test-case id="1020" name="Finished_LeaderZoneNull_True" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_LeaderZoneNull_True" methodname="Finished_LeaderZoneNull_True" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1084052253" result="Passed" start-time="2026-10-11T02:34:30.3420180Z" end-time="2026-10-11T02:34:30.3421650Z" duration="0.000147" asserts="1" />
+          <test-case id="1021" name="Finished_MaxAgeExceeded_True" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_MaxAgeExceeded_True" methodname="Finished_MaxAgeExceeded_True" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="614224120" result="Passed" start-time="2026-10-11T02:34:30.3421790Z" end-time="2026-10-11T02:34:30.3430830Z" duration="0.000905" asserts="1" />
+          <test-case id="1016" name="Finished_NullLeader_True" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Finished_NullLeader_True" methodname="Finished_NullLeader_True" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1546382330" result="Passed" start-time="2026-10-11T02:34:30.3430940Z" end-time="2026-10-11T02:34:30.3432150Z" duration="0.000121" asserts="1" />
+          <test-case id="1029" name="Goal_RoundTrips_With_LeaderReference" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.Goal_RoundTrips_With_LeaderReference" methodname="Goal_RoundTrips_With_LeaderReference" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="2032238952" result="Passed" start-time="2026-10-11T02:34:30.3432290Z" end-time="2026-10-11T02:34:30.3489630Z" duration="0.005736" asserts="6" />
+          <test-case id="1035" name="TakeAction_AssistFightEnds_FollowerResumesFollowingNextTick" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_AssistFightEnds_FollowerResumesFollowingNextTick" methodname="TakeAction_AssistFightEnds_FollowerResumesFollowingNextTick" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1354842564" result="Passed" start-time="2026-10-11T02:34:30.3690040Z" end-time="2026-10-11T02:34:30.3710440Z" duration="0.002040" asserts="4" />
+          <test-case id="1027" name="TakeAction_CloseEnough_NoMove" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_CloseEnough_NoMove" methodname="TakeAction_CloseEnough_NoMove" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1334796030" result="Passed" start-time="2026-10-11T02:34:30.3915210Z" end-time="2026-10-11T02:34:30.3928950Z" duration="0.001374" asserts="2" />
+          <test-case id="1023" name="TakeAction_CloseEnough_ResetsAge" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_CloseEnough_ResetsAge" methodname="TakeAction_CloseEnough_ResetsAge" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="258808407" result="Passed" start-time="2026-10-11T02:34:30.4136210Z" end-time="2026-10-11T02:34:30.4140350Z" duration="0.000414" asserts="1" />
+          <test-case id="1026" name="TakeAction_LeaderFar_MovesFollowerCloser" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderFar_MovesFollowerCloser" methodname="TakeAction_LeaderFar_MovesFollowerCloser" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="795837838" result="Passed" start-time="2026-10-11T02:34:30.4347160Z" end-time="2026-10-11T02:34:30.4354680Z" duration="0.000752" asserts="1" />
+          <test-case id="1030" name="TakeAction_LeaderFighting_FollowerPushesKillGoalOnSameTarget" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderFighting_FollowerPushesKillGoalOnSameTarget" methodname="TakeAction_LeaderFighting_FollowerPushesKillGoalOnSameTarget" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="8600903" result="Passed" start-time="2026-10-11T02:34:30.4561470Z" end-time="2026-10-11T02:34:30.4565780Z" duration="0.000431" asserts="2" />
+          <test-case id="1032" name="TakeAction_LeaderFightingInDifferentZone_FollowerDoesNotAssist" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderFightingInDifferentZone_FollowerDoesNotAssist" methodname="TakeAction_LeaderFightingInDifferentZone_FollowerDoesNotAssist" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="603692641" result="Passed" start-time="2026-10-11T02:34:30.4627560Z" end-time="2026-10-11T02:34:30.4630330Z" duration="0.000277" asserts="2" />
+          <test-case id="1033" name="TakeAction_LeaderFightingWhileFollowerAlreadyCloseEnough_AssistTakesPriority" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderFightingWhileFollowerAlreadyCloseEnough_AssistTakesPriority" methodname="TakeAction_LeaderFightingWhileFollowerAlreadyCloseEnough_AssistTakesPriority" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="725183458" result="Passed" start-time="2026-10-11T02:34:30.4686920Z" end-time="2026-10-11T02:34:30.4691560Z" duration="0.000464" asserts="1" />
+          <test-case id="1019" name="TakeAction_LeaderInDifferentZone_ResetsAge_NoMove" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderInDifferentZone_ResetsAge_NoMove" methodname="TakeAction_LeaderInDifferentZone_ResetsAge_NoMove" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1954573877" result="Passed" start-time="2026-10-11T02:34:30.4691710Z" end-time="2026-10-11T02:34:30.4696990Z" duration="0.000528" asserts="2" />
+          <test-case id="1031" name="TakeAction_LeaderNotFighting_FollowerDoesNotPushKillGoal" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_LeaderNotFighting_FollowerDoesNotPushKillGoal" methodname="TakeAction_LeaderNotFighting_FollowerDoesNotPushKillGoal" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="1505193379" result="Passed" start-time="2026-10-11T02:34:30.4697190Z" end-time="2026-10-11T02:34:30.4699190Z" duration="0.000201" asserts="2" />
+          <test-case id="1034" name="TakeAction_MultipleFollowers_AllAssistSameTarget" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_MultipleFollowers_AllAssistSameTarget" methodname="TakeAction_MultipleFollowers_AllAssistSameTarget" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="2090565858" result="Passed" start-time="2026-10-11T02:34:30.4699820Z" end-time="2026-10-11T02:34:30.4702180Z" duration="0.000237" asserts="4" />
+          <test-case id="1028" name="TakeAction_NullLeader_NoCrash" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_NullLeader_NoCrash" methodname="TakeAction_NullLeader_NoCrash" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="577136789" result="Passed" start-time="2026-10-11T02:34:30.4707140Z" end-time="2026-10-11T02:34:30.4711940Z" duration="0.000480" asserts="1" />
+          <test-case id="1025" name="TakeAction_RecruitAdjacent_LeaderWalksAway_FollowerPursues" fullname="CavesOfOoo.Tests.FollowLeaderGoalTests.TakeAction_RecruitAdjacent_LeaderWalksAway_FollowerPursues" methodname="TakeAction_RecruitAdjacent_LeaderWalksAway_FollowerPursues" classname="CavesOfOoo.Tests.FollowLeaderGoalTests" runstate="Runnable" seed="447344581" result="Passed" start-time="2026-10-11T02:34:30.4712390Z" end-time="2026-10-11T02:34:30.4715440Z" duration="0.000304" asserts="3" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
