@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="1.1970757">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27872" result="Failed" site="Child" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="1.197076" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34321" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27872" result="Failed" site="Child" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="1.081891" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34322" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27872" result="Failed" site="Child" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="0.902420" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34323" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27872" result="Failed" site="Child" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="0.702100" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32794" name="WorldAudioAtmosphereTests" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-11 15:59:52Z" end-time="2026-10-11 15:59:53Z" duration="0.600487" total="23" passed="11" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32814" name="ActualMaterialsChooseDistinctTextures" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.263239" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32806" name="ActualMaterialsChooseDistinctTextures(&quot;Tree&quot;,0,False,&quot;leaf-rustle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;Tree&quot;,0,False,&quot;leaf-rustle&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1535433281" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.059349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 11 but was 10. Strings differ at index 0.
+  Expected: "leaf-rustle"
+  But was:  "wood-creak"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32807" name="ActualMaterialsChooseDistinctTextures(&quot;Bush&quot;,0,False,&quot;leaf-rustle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;Bush&quot;,0,False,&quot;leaf-rustle&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="787848144" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "leaf-rustle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32808" name="ActualMaterialsChooseDistinctTextures(&quot;Reeds&quot;,0,False,&quot;reed-rustle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;Reeds&quot;,0,False,&quot;reed-rustle&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="219253477" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 11 but was 10. Strings differ at index 0.
+  Expected: "reed-rustle"
+  But was:  "wood-creak"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32809" name="ActualMaterialsChooseDistinctTextures(&quot;timber&quot;,0,True,&quot;wood-settle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;timber&quot;,0,True,&quot;wood-settle&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="647183222" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "wood-settle"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32810" name="ActualMaterialsChooseDistinctTextures(&quot;stone&quot;,1,False,&quot;stone-shift&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;stone&quot;,1,False,&quot;stone-shift&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1012475503" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "stone-shift"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32811" name="ActualMaterialsChooseDistinctTextures(&quot;stone&quot;,0,True,&quot;stone-shift&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;stone&quot;,0,True,&quot;stone-shift&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1923654011" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: "stone-shift"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32812" name="ActualMaterialsChooseDistinctTextures(&quot;pool&quot;,1,False,&quot;water-drop&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;pool&quot;,1,False,&quot;water-drop&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="309805929" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 10 but was 9. Strings differ at index 6.
+  Expected: "water-drop"
+  But was:  "water-lap"
+  -----------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32813" name="ActualMaterialsChooseDistinctTextures(&quot;pool&quot;,0,True,&quot;water-drop&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures(&quot;pool&quot;,0,True,&quot;water-drop&quot;)" methodname="ActualMaterialsChooseDistinctTextures" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1596377435" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 10 but was 9. Strings differ at index 6.
+  Expected: "water-drop"
+  But was:  "water-lap"
+  -----------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ActualMaterialsChooseDistinctTextures (System.String blueprint, System.Int32 level, System.Boolean inside, System.String expected) [0x00150] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32796" name="AllThreeLanesRemainAudibleWithoutContinuousNoise" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.AllThreeLanesRemainAudibleWithoutContinuousNoise" methodname="AllThreeLanesRemainAudibleWithoutContinuousNoise" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1472317830" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.002943" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32804" name="LaneWorkDoesNotRescanIdleWorld" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.LaneWorkDoesNotRescanIdleWorld" methodname="LaneWorkDoesNotRescanIdleWorld" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1829390532" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000704" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32803" name="MutedTimeDoesNotQueueImmediatePhrasesOnResume" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.MutedTimeDoesNotQueueImmediatePhrasesOnResume" methodname="MutedTimeDoesNotQueueImmediatePhrasesOnResume" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="2062409998" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32795" name="NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" methodname="NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1857585807" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000632" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32818" name="NoWindblownVegetationInShelterOrUnderground" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.031231" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32815" name="NoWindblownVegetationInShelterOrUnderground(&quot;Tree&quot;,True,0)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground(&quot;Tree&quot;,True,0)" methodname="NoWindblownVegetationInShelterOrUnderground" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1186230592" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.001182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground (System.String blueprint, System.Boolean inside, System.Int32 level) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32816" name="NoWindblownVegetationInShelterOrUnderground(&quot;Reeds&quot;,False,1)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground(&quot;Reeds&quot;,False,1)" methodname="NoWindblownVegetationInShelterOrUnderground" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1533685136" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground (System.String blueprint, System.Boolean inside, System.Int32 level) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32817" name="NoWindblownVegetationInShelterOrUnderground(&quot;Tree&quot;,False,1)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground(&quot;Tree&quot;,False,1)" methodname="NoWindblownVegetationInShelterOrUnderground" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1422161161" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.NoWindblownVegetationInShelterOrUnderground (System.String blueprint, System.Boolean inside, System.Int32 level) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32797" name="OrdinaryContextRefreshDoesNotRestartWildlifeTimers" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.OrdinaryContextRefreshDoesNotRestartWildlifeTimers" methodname="OrdinaryContextRefreshDoesNotRestartWildlifeTimers" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1527390174" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32819" name="PortableWoodAndDryStoneCannotInventStructuralOrWaterSounds" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.PortableWoodAndDryStoneCannotInventStructuralOrWaterSounds" methodname="PortableWoodAndDryStoneCannotInventStructuralOrWaterSounds" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="889829570" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32805" name="SharedGapPreventsSameFrameLaneBursts" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.SharedGapPreventsSameFrameLaneBursts" methodname="SharedGapPreventsSameFrameLaneBursts" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1080653711" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000725" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32820" name="ThirdCatalogActuallyLoadsDistinctShortTextureRecordings" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.ThirdCatalogActuallyLoadsDistinctShortTextureRecordings" methodname="ThirdCatalogActuallyLoadsDistinctShortTextureRecordings" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="210098141" result="Failed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.042485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  leaf-rustle
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioAtmosphereTests.ThirdCatalogActuallyLoadsDistinctShortTextureRecordings () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAtmosphereTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32798" name="TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" methodname="TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1443333469" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000943" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32802" name="WildlifeLaneDoesNotInventAnimals" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.053640" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32799" name="WildlifeLaneDoesNotInventAnimals(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;hidden&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="318519262" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32800" name="WildlifeLaneDoesNotInventAnimals(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;dead&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="259794713" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000616" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32801" name="WildlifeLaneDoesNotInventAnimals(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;absent&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1188016218" result="Passed" start-time="2026-10-11 15:59:53Z" end-time="2026-10-11 15:59:53Z" duration="0.000546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

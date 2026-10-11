@@ -229,6 +229,8 @@ namespace CavesOfOoo.Rendering
                     var places=Resources.Load<TextAsset>("Audio/World/PLACES-CREDITS");
                     string text=credits!=null?credits.text:"";
                     if(places!=null)text+=(text.Length>0?"\n\n":"")+places.text;
+                    var atmosphere=Resources.Load<TextAsset>("Audio/World/ATMOSPHERIC-CREDITS");
+                    if(atmosphere!=null)text+=(text.Length>0?"\n\n":"")+atmosphere.text;
                     MessageLog.AddAnnouncement(text.Length>0?text:"Audio credits are unavailable.");
                     Close();
                 }

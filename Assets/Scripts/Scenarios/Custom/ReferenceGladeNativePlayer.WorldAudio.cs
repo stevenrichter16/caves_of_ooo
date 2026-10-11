@@ -64,6 +64,16 @@ namespace CavesOfOoo.Scenarios.Custom
                 Check("habitat_and_local_material_both_get_live_phrases",audio.Soundscape.HabitatPhrases>habitatBefore&&audio.Soundscape.MaterialPhrases>materialBefore);
                 Check("independent_phrase_lanes_keep_idle_scan_bound",audio.Soundscape.ScanCount==placeScans&&audio.Player.AllocatedSources==16);
                 _descriptions.Add(new Description{subject="Iteration 1 live phrase lanes",source="Real generated glade",text="Habitat="+audio.Soundscape.HabitatPhrases+"; material="+audio.Soundscape.MaterialPhrases+"; wildlife="+audio.Soundscape.WildlifePhrases+". No animal introduced to force a call; animal fairness has separate native unit counters."});
+                until=Time.realtimeSinceStartupAsDouble+75;string texture=null;
+                while(Time.realtimeSinceStartupAsDouble<until&&texture==null)
+                {
+                    var phrase=audio.Player.Root.GetComponentsInChildren<AudioSource>().FirstOrDefault(s=>!s.loop&&s.priority==200&&s.isPlaying&&s.volume>0&&s.clip!=null
+                        &&(s.clip.name.StartsWith("leaf_rustle_")||s.clip.name.StartsWith("reed_rustle_")));
+                    if(phrase!=null)texture=phrase.clip.name;yield return null;
+                }
+                Check("actual_generated_vegetation_plays_new_texture",texture!=null);
+                Check("new_materials_keep_idle_scan_and_voice_bounds",audio.Soundscape.ScanCount==placeScans&&audio.Player.AllocatedSources==16);
+                _descriptions.Add(new Description{subject="Iteration 2 vegetation texture",source="Real generated glade",text="Observed playing clip="+texture+"; no cue injection. Indoor and underground contrasts have native unit coverage, not a live route claim."});
                 int context=audio.ContextCheckCount,starts=audio.Player.MusicStartCount;
                 yield return new WaitForSecondsRealtime(.6f);
                 Check("idle_does_not_rescan_or_restart_music",audio.ContextCheckCount==context&&audio.Player.MusicStartCount==starts);

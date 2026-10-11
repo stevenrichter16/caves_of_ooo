@@ -1,6 +1,6 @@
 # Sonic atmosphere: cumulative iterations
 
-Status: iteration 1 planned; 2026-10-11. Follow-up to AUDIO-PLACE-DESIGN.md. The user requests meaningful additional sonic atmosphere, a prompt for each iteration building on its predecessor, and actual game testing after EACH iteration. Four bounded iterations are selected; do not implement a later iteration before the preceding live gate has run and its findings are incorporated.
+Status: iterations 1–2 complete; iteration 3 released; 2026-10-11. Follow-up to AUDIO-PLACE-DESIGN.md. The user requests meaningful additional sonic atmosphere, a prompt for each iteration building on its predecessor, and actual game testing after EACH iteration. Four bounded iterations are selected; do not implement a later iteration before the preceding live gate has run and its findings are incorporated.
 
 ## Direction and gates
 
@@ -29,7 +29,7 @@ Read AUDIO-PLACE-DESIGN.md and the actual WorldAudioSoundscape/Player/Runtime co
 
 ## Later prompt status
 
-Iterations 2–4 are directions, not executed prompts. Their exact prompts will be written only after the preceding native game test, including what was learned and any scope correction.
+Iterations 3–4 are directions, not executed prompts. Their exact prompts will be written only after the preceding native game test, including what was learned and any scope correction.
 
 ## Iteration 1 result and review
 
@@ -40,3 +40,19 @@ Actual fresh Play run `5d453ebd33ac413487935210e93d2220`:24/24 checks passed, ze
 ## Iteration 2 prompt — after iteration 1 live gate
 
 Build on iteration1's verified independent phrase lanes and four-second silence gap. Give actual outdoor trees/bushes a leaf texture and reeds their own soft dry rustle; sheltered timber should settle quietly instead of sounding like a woodland canopy. Add sparse dry stone movement only near real stone structure underground, sheltered or in ruins. Give current positive nearby water a drop texture only underground or under shelter; oil/acid and dry stone must never imply water. Do not add generic room crowds or a new room loop merely to remove silence. Use the approved new20-clip CC0 palette through an explicit third catalog, include its credits in-game, and keep all old53 assets unchanged. Action recordings in the same palette remain dormant until iteration3. Keep discovery bounded; expand exact category slots only as needed. Write and observe failing native behavior and actual-resource-binding tests, implement, review source-loss contrasts, then run the actual game again and observe one of the new texture recordings playing near its real generated source. Record the result before composing iteration3's prompt.
+
+### Iteration 2 implementation sweep and initial result
+
+The source sweep found `Reeds` has no MaterialPart, so it uses its exact blueprint identity; tree/bush foliage also uses exact identity. Structural sounds require owned material plus a wall/door and non-takeable physics, rather than sounding every dropped wooden/stone item. Outdoor vegetation is suppressed under shelter and below ground. Nine fixed category witnesses replace seven; all other169-cell/512-owner/16-voice bounds remain. Existing test libraries now include the new material palette so old source-loss invariants still exercise live selection instead of missing-resource silence.
+
+Executed native RED:23 cases,11 passed/12 expected failures (wrong/missing material IDs, unwanted underground vegetation, absent third runtime catalog). Implemented distinct selection and explicit catalog/credits loading; initial affected native sweep136/136 passed. The new ten work recordings are intentionally dormant until iteration3 appends its typed cue values. Material playback remains four seconds apart, with all new detail recordings shorter than2.53 seconds.
+
+### Iteration 2 final gate and self-review
+
+🟡 Independent review found portable foliage could bypass fixed-source refusal. Its dedicated21-case fixture produced18 passes/3 expected portable tree/bush/reed failures; moved the Takeable check before the foliage branch. Final affected native suite157/157 passed. Material removal/foreign ownership, changing shelter, source destruction, positive water vs oil/acid, hidden foliage and the reachable three-file credits all have counters.
+
+Fresh actual Play `337a4038275e494a927b8adaf2caebb1`:26/26 passed, zero errors,63.94s. The generated glade played `leaf_rustle_02` through its real visible vegetation; no injected cue. Lane fairness,16 voices, idle scan bounds, actual movement, controller settings and save/load passed. Arrival screenshot inspected: native world renders with visible vegetation/water/stone and player; no blank viewport. 🧪 Indoor/underground contrasts are native-unit verified, not claimed as traversed here. Acoustic pleasantness/physical Deck speakers remain unverified.
+
+## Iteration 3 prompt — after iteration 2 live gate
+
+The actual glade now plays the new foliage texture without extra voices or idle discovery work. Build on those material distinctions with one-shot committed repairs, explicit field/cultivated harvest and actual visible-forge actions. Use paired WorkForge, WorkRepairWood, WorkRepairStone, WorkRepairMetal and HarvestPlant; Fiber/Leather use existing handling. Work must follow real transaction completion, preserve payment and gameplay, and reject rollback, stale/hidden sources, automatic crop maturity and idle forge presence. Preserve legal single-weapon assembly away from a forge but do not invent an anvil there. An explicit local player's menu completion may sound; hidden remote actors may not. Read AUDIO-ATMOSPHERE-WORK-SWEEP.md, execute missing-API/native RED before production, add counterchecks, implement and run native regressions. Immediately run a fresh actual-input generated-field route with three material repairs and the original ripe crop harvest; record actual imported sound acceptance and signal. Keep the existing disclosed initial travel shortcut and honest live-forge limits. Passive kitchen work is deferred because it needs a dedicated activity predicate and ordinary route. Do not begin iteration4 before this live gate.

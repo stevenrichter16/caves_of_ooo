@@ -31,7 +31,7 @@ namespace CavesOfOoo.Tests
             WorldAudioSettings.MusicVolume = WorldAudioSettings.AmbienceVolume = WorldAudioSettings.SfxVolume = 1;
             AudioListener.pause = false;
             root = new GameObject("place-audio-adversarial"); library = new WorldAudioLibrary();
-            foreach (string id in new[] { "bird", "insect", "frog", "dog", "water-lap", "fire", "wood-creak", "stone-tick" })
+            foreach (string id in new[] { "bird", "insect", "frog", "dog", "water-lap", "fire", "leaf-rustle","reed-rustle","wood-settle","stone-shift","water-drop","wood-creak", "stone-tick" })
                 library.AddDetail(id, Clip("detail-" + id), .3f);
             foreach (string id in new[] { "field", "night-field", "marsh", "water", "cave", "dry-wind" })
                 library.AddAmbience(id, Clip("bed-" + id), .2f);

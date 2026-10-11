@@ -5,14 +5,14 @@ using UnityEngine;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>Cosmetic place detail, never gameplay hearing. Discovery samples at most169 nearby cells
-    /// and512 owners on the existing context boundary. Idle revalidates at most seven known sources.
+    /// and512 owners on the existing context boundary. Idle revalidates at most nine known sources.
     /// Only an already-visible source can produce a positioned cue; habitat texture carries no entity information.</summary>
     public sealed class WorldAudioSoundscape
     {
         const int Radius=6,OwnerBudget=512;
-        enum Kind{Water,Fire,Frog,Dog,Wood,Stone,Bird}
-        readonly Entity[] sources=new Entity[7];
-        readonly int[] distances=new int[7];
+        enum Kind{Water,Fire,Frog,Dog,Wood,Stone,Bird,Leaf,Reed}
+        readonly Entity[] sources=new Entity[9];
+        readonly int[] distances=new int[9];
         readonly WorldAudioPlayer audio;
         Zone zone;Entity actor;BiomeType biome;DayBand band;int depth;
         bool active,interior;float phraseGap;uint random;int laneCursor;
@@ -171,8 +171,19 @@ namespace CavesOfOoo.Rendering
                 }
                 return -1; // CascadeFather is lore-silent; SummitSinger needs a single-note recording.
             }
-            if(owner.BlueprintName=="Tree"||owner.BlueprintName=="Reeds"||owner.GetPart<DoorPart>()!=null&&owner.GetPart<MaterialPart>()?.MaterialID=="Wood")return (int)Kind.Wood;
-            if((biome==BiomeType.Ruins||biome==BiomeType.Stump)&&owner.HasTag("Wall"))return (int)Kind.Stone;
+            if(owner.GetPart<PhysicsPart>().Takeable)return -1;
+            bool outdoors=depth<=0&&biome!=BiomeType.Cave&&!interior;
+            if(outdoors)
+            {
+                if(owner.BlueprintName=="Reeds")return (int)Kind.Reed;
+                if(owner.BlueprintName=="Tree"||owner.BlueprintName=="Bush")return (int)Kind.Leaf;
+            }
+            var material=owner.GetPart<MaterialPart>();
+            if(material?.ParentEntity!=owner)return -1;
+            bool structure=owner.HasTag("Wall")||owner.GetPart<DoorPart>()?.ParentEntity==owner;
+            if(structure&&material.MaterialID=="Wood")return (int)Kind.Wood;
+            if((!outdoors||biome==BiomeType.Ruins||biome==BiomeType.Stump)&&owner.HasTag("Wall")
+                &&(material.MaterialID=="Stone"||material.MaterialID=="Masonry"))return (int)Kind.Stone;
             return -1;
         }
         static bool Flame(Entity owner)
@@ -188,8 +199,8 @@ namespace CavesOfOoo.Rendering
                 &&!owner.HasEffect<SmolderingEffect>()&&!owner.HasEffect<CharredEffect>();
         }
         static bool Alive(Entity entity)=>entity!=null&&entity.GetStatValue("Hitpoints",0)>0&&!CombatSystem.IsDeathHandled(entity);
-        static string Id(Kind kind)
-        {switch(kind){case Kind.Water:return "water-lap";case Kind.Fire:return "fire";case Kind.Frog:return "frog";case Kind.Dog:return "dog";case Kind.Wood:return "wood-creak";case Kind.Stone:return "stone-tick";default:return "bird";}}
+        string Id(Kind kind)
+        {switch(kind){case Kind.Water:return interior||depth>0||biome==BiomeType.Cave?"water-drop":"water-lap";case Kind.Fire:return "fire";case Kind.Frog:return "frog";case Kind.Dog:return "dog";case Kind.Wood:return "wood-settle";case Kind.Stone:return "stone-shift";case Kind.Leaf:return "leaf-rustle";case Kind.Reed:return "reed-rustle";default:return "bird";}}
         static uint Hash(string id){unchecked{uint h=2166136261;foreach(char c in id??"")h=(h^c)*16777619;return h==0?1:h;}}
         float Next(){random=unchecked(random*1664525+1013904223);return (random>>8)*(1f/16777216);}
     }

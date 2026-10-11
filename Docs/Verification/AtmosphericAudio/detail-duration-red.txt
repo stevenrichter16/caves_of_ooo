@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_detail_under_shared_four_second_gap (test_atmospheric_audio_adversarial.AtmosphereSignalCounterchecks.test_detail_under_shared_four_second_gap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio_adversarial.py", line 48, in test_detail_under_shared_four_second_gap
+    self.assertIn('duration',signal_errors(too_long,44100,1,'detail')[0])
+AssertionError: 'duration' not found in []
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)

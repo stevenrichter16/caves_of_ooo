@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
    oldAmbience=WorldAudioSettings.AmbienceVolume;oldMusic=WorldAudioSettings.MusicVolume;oldSfx=WorldAudioSettings.SfxVolume;oldPause=AudioListener.pause;
    WorldAudioSettings.AmbienceVolume=WorldAudioSettings.MusicVolume=WorldAudioSettings.SfxVolume=1;AudioListener.pause=false;
    root=new GameObject("atmosphere test");clip=AudioClip.Create("phrase",24000,1,48000,false);library=new WorldAudioLibrary();
-   foreach(var detail in new[]{"frog","dog","bird","insect","wood-creak","stone-tick","water-lap","fire"})library.AddDetail(detail,clip,.3f);
+   foreach(var detail in new[]{"frog","dog","bird","insect","leaf-rustle","reed-rustle","wood-settle","stone-shift","water-drop","wood-creak","stone-tick","water-lap","fire"})library.AddDetail(detail,clip,.3f);
    foreach(WorldAudioCue cue in Enum.GetValues(typeof(WorldAudioCue)))library.AddSound(cue,clip,.4f);
    player=new WorldAudioPlayer(root.transform,library);scene=new WorldAudioSoundscape(player);zone=new Zone("Overworld.10.10.0");
    actor=WorldAudioAdversarialTests.Actor("listener");Assert.True(zone.AddEntity(actor,10,10));foreach(var c in zone.Cells){c.Explored=c.IsVisible=true;}
@@ -64,6 +64,34 @@ namespace CavesOfOoo.Tests
    Add("PetDog",animal:true);Add("Tree");Observe();int last=-100,previous=0;
    for(int i=0;i<80;i++){scene.Tick(1,true,false);if(player.AcceptedDetailCount>previous){Assert.GreaterOrEqual(i-last,3);last=i;previous=player.AcceptedDetailCount;}player.Update(1);}
    Assert.Greater(previous,5);
+  }
+  [TestCase("Tree",0,false,"leaf-rustle")][TestCase("Bush",0,false,"leaf-rustle")]
+  [TestCase("Reeds",0,false,"reed-rustle")][TestCase("timber",0,true,"wood-settle")]
+  [TestCase("stone",1,false,"stone-shift")][TestCase("stone",0,true,"stone-shift")]
+  [TestCase("pool",1,false,"water-drop")][TestCase("pool",0,true,"water-drop")]
+  public void ActualMaterialsChooseDistinctTextures(string blueprint,int level,bool inside,string expected)
+  {
+   foreach(var name in new[]{"leaf-rustle","reed-rustle","wood-settle","stone-shift","water-drop"})library.AddDetail(name,clip,.3f);
+   var e=Add(blueprint);zone.GetCell(10,10).IsInterior=zone.GetCell(11,10).IsInterior=inside;
+   if(blueprint=="timber"){e.SetTag("Wall");e.AddPart(new MaterialPart{MaterialID="Wood"});}
+   if(blueprint=="stone"){e.SetTag("Wall");e.AddPart(new MaterialPart{MaterialID="Stone"});}
+   if(blueprint=="pool")e.AddPart(new LiquidPoolPart{LiquidId="water",Volume=3});
+   scene.Observe(zone,actor,BiomeType.Sodden,level,DayBand.Dawn,true);scene.Tick(10,true,false);
+   Assert.AreEqual(expected,player.LastDetailId);Assert.AreEqual(1,scene.MaterialPhrases);
+  }
+  [TestCase("Tree",true,0)][TestCase("Reeds",false,1)][TestCase("Tree",false,1)]
+  public void NoWindblownVegetationInShelterOrUnderground(string blueprint,bool inside,int level)
+  {Add(blueprint);zone.GetCell(10,10).IsInterior=zone.GetCell(11,10).IsInterior=inside;scene.Observe(zone,actor,BiomeType.Sodden,level,DayBand.Dawn,true);Seconds(30);Assert.AreEqual(0,scene.MaterialPhrases);}
+  [Test] public void PortableWoodAndDryStoneCannotInventStructuralOrWaterSounds()
+  {
+   var e=Add("timber");e.SetTag("Wall");e.AddPart(new MaterialPart{MaterialID="Wood"});e.GetPart<PhysicsPart>().Takeable=true;
+   zone.GetCell(10,10).IsInterior=zone.GetCell(11,10).IsInterior=true;Observe();Seconds(30);Assert.AreEqual(0,scene.MaterialPhrases);
+  }
+  [Test] public void ThirdCatalogActuallyLoadsDistinctShortTextureRecordings()
+  {
+   var real=WorldAudioLibrary.LoadResources();
+   foreach(var id in new[]{"leaf-rustle","reed-rustle","wood-settle","stone-shift","water-drop"})
+   {var a=real.Detail(id,0);var b=real.Detail(id,1);Assert.NotNull(a,id);Assert.NotNull(b,id);Assert.AreNotSame(a.Clip,b.Clip,id);Assert.Less(a.Clip.length,3.5f);Assert.Less(b.Clip.length,3.5f);}
   }
  }
 }

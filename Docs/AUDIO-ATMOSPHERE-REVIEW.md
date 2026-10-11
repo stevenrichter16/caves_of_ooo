@@ -143,3 +143,30 @@ Additional verified references: [crop stage](../Assets/Scripts/Gameplay/Farming/
 [world sound intent](FELLING-WORLD-DESIGN.md#L259),
 [prior source/authority sweep](AUDIO-PLACE-SWEEP.md),
 [completed native regression](Verification/PlaceAudio/broad-green.xml).
+
+## Coordinated implementation review
+
+The coordinator selected the narrower cumulative sequence in
+[AUDIO-ATMOSPHERE-ITERATIONS.md](AUDIO-ATMOSPHERE-ITERATIONS.md): fair foreground,
+material character, committed work, then mix priorities. The four proposals
+above remain recommendations, not a claim that a room bed or layered river
+implementation has shipped. Iteration 1 deliberately retains non-overlapping
+phrases with a four-second shared gap; this avoids the proposed token API
+while all approved phrases remain shorter than that gap.
+
+Iteration 2 source review confirms nine fixed source categories, separate
+leaf/reed/timber/stone/drop cues, exact fixed-material structure checks, a third
+catalog loaded only during library initialization, and complete third credits
+included in the reachable reader. The independent `WorldAudioMaterialAdversarialTests` fixture
+adds 21 cases, including positive/refused/restored source transitions, active
+leaf-to-reed and shelter changes, enclosed water versus dry/oil/acid sources,
+and complete three-file attribution. Tests and a fresh `.meta` were written
+before any proposed correction; the coordinator owns execution and any fix.
+
+The coordinator's [iteration 2 adversarial RED](Verification/Atmosphere/iteration2-adversarial-red.xml)
+records **21 total, 18 passed, 3 failed**. All three observed failures were the
+portable Tree/Bush/Reeds cases: foliage classified before the portable-source
+refusal, unlike fixed timber/stone. The coordinator moved that refusal ahead
+of foliage selection while leaving actual animal/water/fire authority intact.
+Read-only inspection confirms that narrow change. Final focused GREEN and the
+iteration 2 live gate are still pending; no live quality judgment is claimed.

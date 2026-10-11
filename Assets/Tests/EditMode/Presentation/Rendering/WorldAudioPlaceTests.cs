@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
    oldMusic=WorldAudioSettings.MusicVolume;oldAmbience=WorldAudioSettings.AmbienceVolume;oldSfx=WorldAudioSettings.SfxVolume;oldPause=AudioListener.pause;
    WorldAudioSettings.MusicVolume=WorldAudioSettings.AmbienceVolume=WorldAudioSettings.SfxVolume=1;AudioListener.pause=false;
    root=new GameObject("place audio");clip=AudioClip.Create("detail",48000,1,48000,false);library=new WorldAudioLibrary();
-   foreach(var id in new[]{"bird","insect","frog","dog","water-lap","fire","wood-creak","stone-tick","kitchen"})library.AddDetail(id,clip,.3f);
+   foreach(var id in new[]{"bird","insect","frog","dog","water-lap","fire","leaf-rustle","reed-rustle","wood-settle","stone-shift","water-drop","wood-creak","stone-tick","kitchen"})library.AddDetail(id,clip,.3f);
    foreach(WorldAudioCue cue in Enum.GetValues(typeof(WorldAudioCue)))library.AddSound(cue,clip,.4f);
    player=new WorldAudioPlayer(root.transform,library);scene=new WorldAudioSoundscape(player);
    zone=new Zone("Overworld.10.10.0");actor=WorldAudioAdversarialTests.Actor("listener");Assert.True(zone.AddEntity(actor,10,10));

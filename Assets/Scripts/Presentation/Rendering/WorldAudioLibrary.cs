@@ -36,7 +36,8 @@ namespace CavesOfOoo.Rendering
         public static WorldAudioLibrary LoadResources()
         {
             var result=new WorldAudioLibrary();
-            LoadCatalog(result,"Audio/World/catalog");LoadCatalog(result,"Audio/World/places-catalog");return result;
+            LoadCatalog(result,"Audio/World/catalog");LoadCatalog(result,"Audio/World/places-catalog");
+            LoadCatalog(result,"Audio/World/atmospheric-catalog");return result;
         }
         static void LoadCatalog(WorldAudioLibrary result,string path)
         {

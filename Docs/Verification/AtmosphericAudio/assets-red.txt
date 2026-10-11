@@ -1,0 +1,45 @@
+test_expansion_provenance_credits_and_importers (__main__.AtmosphereAssets.test_expansion_provenance_credits_and_importers) ... FAIL
+test_ids_are_bounded_and_have_two_distinct_takes (__main__.AtmosphereAssets.test_ids_are_bounded_and_have_two_distinct_takes) ... FAIL
+test_new_bytes_and_source_members_are_not_old_renames (__main__.AtmosphereAssets.test_new_bytes_and_source_members_are_not_old_renames) ... FAIL
+test_old53_unchanged (__main__.AtmosphereAssets.test_old53_unchanged) ... ok
+
+======================================================================
+FAIL: test_expansion_provenance_credits_and_importers (__main__.AtmosphereAssets.test_expansion_provenance_credits_and_importers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 32, in test_expansion_provenance_credits_and_importers
+    self.data();spec=json.loads((REPO/'Tools/Audio/atmospheric_audio_sources.json').read_text());proof=json.loads((WORLD/'atmospheric-provenance.json').read_text());credits=(WORLD/'ATMOSPHERIC-CREDITS.txt').read_text()
+    ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 12, in data
+    p=WORLD/'atmospheric-catalog.json';self.assertTrue(p.is_file(),'Third atmosphere catalog missing')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Third atmosphere catalog missing
+
+======================================================================
+FAIL: test_ids_are_bounded_and_have_two_distinct_takes (__main__.AtmosphereAssets.test_ids_are_bounded_and_have_two_distinct_takes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 15, in test_ids_are_bounded_and_have_two_distinct_takes
+    c=self.data();self.assertFalse(c['music']);self.assertFalse(c['ambience'])
+      ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 12, in data
+    p=WORLD/'atmospheric-catalog.json';self.assertTrue(p.is_file(),'Third atmosphere catalog missing')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Third atmosphere catalog missing
+
+======================================================================
+FAIL: test_new_bytes_and_source_members_are_not_old_renames (__main__.AtmosphereAssets.test_new_bytes_and_source_members_are_not_old_renames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 22, in test_new_bytes_and_source_members_are_not_old_renames
+    self.data();spec=json.loads((REPO/'Tools/Audio/atmospheric_audio_sources.json').read_text())
+    ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Audio/test_atmospheric_audio.py", line 12, in data
+    p=WORLD/'atmospheric-catalog.json';self.assertTrue(p.is_file(),'Third atmosphere catalog missing')
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Third atmosphere catalog missing
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.022s
+
+FAILED (failures=3)
