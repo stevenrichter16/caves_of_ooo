@@ -177,12 +177,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, Records(full ? "ItemAcquisitionRejected" : "ItemAcquisitionApplied", item));
         }
         [Test]
-        public void Adversarial_ContainerGoldRemainsAnInventoryTradeGood()
+        public void Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy()
         {
             var sack = Item("Sack"); var item = Item("GoldCoin", 3); sack.GetPart<ContainerPart>().AddItem(item);
             Assert.IsTrue(Run(new TakeFromContainerCommand(sack, item)).Success);
-            Assert.AreEqual(10000, TradeSystem.GetDrams(_actor)); Assert.AreEqual(3, item.GetPart<StackerPart>().StackCount);
-            Assert.IsTrue(Inv.Objects.Contains(item));
+            // System depth II deliberately unifies container acquisition with ground pickup.
+            Assert.AreEqual(10015, TradeSystem.GetDrams(_actor)); Assert.AreEqual(0, item.GetPart<StackerPart>().StackCount);
+            Assert.IsFalse(Inv.Objects.Contains(item));
         }
         [TestCase(false, false)] [TestCase(false, true)] [TestCase(true, false)] [TestCase(true, true)]
         public void Adversarial_IndependentPurchaseCannotSpendProvisionalGold(bool preexistingFunds, bool rollback)

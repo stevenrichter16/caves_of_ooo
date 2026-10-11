@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="99" result="Failed" start-time="2026-10-11T03:48:09.4112460Z" end-time="2026-10-11T03:48:09.6043840Z" duration="0.193122" total="5" passed="0" failed="5" inconclusive="0" skipped="0" warnings="0" asserts="31" random-seed="1644213190">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration05-callback-red.xml --where "class =~ /ContainerCurrencyAdversarialTests/ && test =~ /TakenMutation/"]]></command-line>
+  <filter>
+    <and>
+      <class re="1">ContainerCurrencyAdversarialTests</class>
+      <test re="1">TakenMutation</test>
+    </and>
+  </filter>
+  <test-suite type="Assembly" id="1131" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T03:48:09.4112460Z" end-time="2026-10-11T03:48:09.6043840Z" duration="0.193122" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="41490" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1132" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T03:48:09.4128050Z" end-time="2026-10-11T03:48:09.6043830Z" duration="0.191576" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1133" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T03:48:09.4129060Z" end-time="2026-10-11T03:48:09.6043810Z" duration="0.191473" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1008" name="ContainerCurrencyAdversarialTests" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="33" result="Failed" site="Child" start-time="2026-10-11T03:48:09.4132320Z" end-time="2026-10-11T03:48:09.6043640Z" duration="0.191130" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1047" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11T03:48:09.4140790Z" end-time="2026-10-11T03:48:09.6041530Z" duration="0.190072" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1042" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;quantity&quot;)" methodname="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="311640248" result="Failed" start-time="2026-10-11T03:48:09.4141550Z" end-time="2026-10-11T03:48:09.5102670Z" duration="0.096136" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;readded&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;readded&quot;)" methodname="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="643039124" result="Failed" start-time="2026-10-11T03:48:09.5108350Z" end-time="2026-10-11T03:48:09.5340790Z" duration="0.023245" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1044" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;stack&quot;)" methodname="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1267819291" result="Failed" start-time="2026-10-11T03:48:09.5341130Z" end-time="2026-10-11T03:48:09.5565180Z" duration="0.022404" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1045" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;physics&quot;)" methodname="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="2103611059" result="Failed" start-time="2026-10-11T03:48:09.5565530Z" end-time="2026-10-11T03:48:09.5808250Z" duration="0.024273" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;blueprint&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(&quot;blueprint&quot;)" methodname="TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1899738088" result="Failed" start-time="2026-10-11T03:48:09.5808500Z" end-time="2026-10-11T03:48:09.6037340Z" duration="0.022884" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 37
+   at InvokeStub_ContainerCurrencyAdversarialTests.TakenMutationCannotCommitCurrencyWithAnUnspentOrReplacedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

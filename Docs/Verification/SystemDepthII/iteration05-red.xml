@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="89" result="Failed" start-time="2026-10-11T03:42:04.6156400Z" end-time="2026-10-11T03:42:05.4353410Z" duration="0.819684" total="89" passed="73" failed="16" inconclusive="0" skipped="0" warnings="0" asserts="882" random-seed="1140388008">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration05-red.xml --where "class =~ /ContainerCurrency|GameAuditAcquisitionAdversarial/"]]></command-line>
+  <filter>
+    <class re="1">ContainerCurrency|GameAuditAcquisitionAdversarial</class>
+  </filter>
+  <test-suite type="Assembly" id="1119" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="89" result="Failed" site="Child" start-time="2026-10-11T03:42:04.6156400Z" end-time="2026-10-11T03:42:05.4353410Z" duration="0.819684" total="89" passed="73" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="882">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="39178" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1120" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="89" result="Failed" site="Child" start-time="2026-10-11T03:42:04.6173210Z" end-time="2026-10-11T03:42:05.4353390Z" duration="0.818011" total="89" passed="73" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="882">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1121" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="89" result="Failed" site="Child" start-time="2026-10-11T03:42:04.6174540Z" end-time="2026-10-11T03:42:05.4353340Z" duration="0.817872" total="89" passed="73" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="882">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1008" name="ContainerCurrencyAdversarialTests" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-11T03:42:04.6178120Z" end-time="2026-10-11T03:42:05.2442660Z" duration="0.626450" total="23" passed="13" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="199">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1038" name="CurrencyObserverFailureCannotRefundSpentCoins" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.CurrencyObserverFailureCannotRefundSpentCoins" methodname="CurrencyObserverFailureCannotRefundSpentCoins" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="51357531" result="Failed" start-time="2026-10-11T03:42:04.6187550Z" end-time="2026-10-11T03:42:04.7191620Z" duration="0.100432" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.CurrencyObserverFailureCannotRefundSpentCoins() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.CurrencyObserverFailureCannotRefundSpentCoins() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1037" name="DifferentBlueprintDoesNotConvertByInheritedParts" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.DifferentBlueprintDoesNotConvertByInheritedParts" methodname="DifferentBlueprintDoesNotConvertByInheritedParts" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1771825010" result="Passed" start-time="2026-10-11T03:42:04.7197350Z" end-time="2026-10-11T03:42:04.7434150Z" duration="0.023680" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1019" name="EitherLockRefusesPayment" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.EitherLockRefusesPayment" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:04.7434550Z" end-time="2026-10-11T03:42:04.7900390Z" duration="0.046584" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1017" name="EitherLockRefusesPayment(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.EitherLockRefusesPayment(&quot;legacy&quot;)" methodname="EitherLockRefusesPayment" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1070633534" result="Passed" start-time="2026-10-11T03:42:04.7435250Z" end-time="2026-10-11T03:42:04.7659750Z" duration="0.022450" asserts="8" />
+            <test-case id="1018" name="EitherLockRefusesPayment(&quot;key&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.EitherLockRefusesPayment(&quot;key&quot;)" methodname="EitherLockRefusesPayment" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="915125725" result="Passed" start-time="2026-10-11T03:42:04.7660070Z" end-time="2026-10-11T03:42:04.7895930Z" duration="0.023586" asserts="8" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1022" name="FailedTransactionRestoresExactSourceAndReleasesClaim" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:42:04.7902120Z" end-time="2026-10-11T03:42:04.8405780Z" duration="0.050366" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="FailedTransactionRestoresExactSourceAndReleasesClaim(&quot;taken&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(&quot;taken&quot;)" methodname="FailedTransactionRestoresExactSourceAndReleasesClaim" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1663311561" result="Failed" start-time="2026-10-11T03:42:04.7902520Z" end-time="2026-10-11T03:42:04.8165150Z" duration="0.026263" asserts="14">
+              <failure>
+                <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 19
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 19
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="FailedTransactionRestoresExactSourceAndReleasesClaim(&quot;outer&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(&quot;outer&quot;)" methodname="FailedTransactionRestoresExactSourceAndReleasesClaim" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1712129005" result="Failed" start-time="2026-10-11T03:42:04.8165430Z" end-time="2026-10-11T03:42:04.8405390Z" duration="0.023996" asserts="14">
+              <failure>
+                <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 19
+   at InvokeStub_ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 19
+   at InvokeStub_ContainerCurrencyAdversarialTests.FailedTransactionRestoresExactSourceAndReleasesClaim(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="IndependentCreditRechecksFinalCapacity" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:42:04.8405970Z" end-time="2026-10-11T03:42:04.8939400Z" duration="0.053343" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1026" name="IndependentCreditRechecksFinalCapacity(1)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(1)" methodname="IndependentCreditRechecksFinalCapacity" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="222645624" result="Failed" start-time="2026-10-11T03:42:04.8406100Z" end-time="2026-10-11T03:42:04.8727610Z" duration="0.032152" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: 2147483647
+  But was:  2147483632
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Int32 innerCount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 23
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 2147483647
+  But was:  2147483632
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Int32 innerCount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 23
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="IndependentCreditRechecksFinalCapacity(2)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(2)" methodname="IndependentCreditRechecksFinalCapacity" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1617802125" result="Failed" start-time="2026-10-11T03:42:04.8727870Z" end-time="2026-10-11T03:42:04.8939150Z" duration="0.021128" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Int32 innerCount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 23
+   at InvokeStub_ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Int32 innerCount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 23
+   at InvokeStub_ContainerCurrencyAdversarialTests.IndependentCreditRechecksFinalCapacity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1025" name="IndependentCreditSurvivesOuterRollback" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditSurvivesOuterRollback" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:42:04.8939550Z" end-time="2026-10-11T03:42:04.9380170Z" duration="0.044062" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1023" name="IndependentCreditSurvivesOuterRollback(False)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditSurvivesOuterRollback(False)" methodname="IndependentCreditSurvivesOuterRollback" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="127932213" result="Failed" start-time="2026-10-11T03:42:04.8939640Z" end-time="2026-10-11T03:42:04.9165430Z" duration="0.022579" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: 120
+  But was:  105
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditSurvivesOuterRollback(Boolean rollback) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 21
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 120
+  But was:  105
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditSurvivesOuterRollback(Boolean rollback) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 21
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="IndependentCreditSurvivesOuterRollback(True)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.IndependentCreditSurvivesOuterRollback(True)" methodname="IndependentCreditSurvivesOuterRollback" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="2139949248" result="Passed" start-time="2026-10-11T03:42:04.9165710Z" end-time="2026-10-11T03:42:04.9379920Z" duration="0.021421" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1035" name="InvalidSourceDoesNotChangePurse" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11T03:42:04.9380330Z" end-time="2026-10-11T03:42:05.0560780Z" duration="0.118045" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <test-case id="1030" name="InvalidSourceDoesNotChangePurse(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse(&quot;absent&quot;)" methodname="InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="55053720" result="Passed" start-time="2026-10-11T03:42:04.9380460Z" end-time="2026-10-11T03:42:04.9581240Z" duration="0.020079" asserts="8" />
+            <test-case id="1031" name="InvalidSourceDoesNotChangePurse(&quot;null&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse(&quot;null&quot;)" methodname="InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1719560833" result="Passed" start-time="2026-10-11T03:42:04.9581540Z" end-time="2026-10-11T03:42:04.9816560Z" duration="0.023502" asserts="8" />
+            <test-case id="1032" name="InvalidSourceDoesNotChangePurse(&quot;not-takeable&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse(&quot;not-takeable&quot;)" methodname="InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1640889592" result="Passed" start-time="2026-10-11T03:42:04.9817110Z" end-time="2026-10-11T03:42:05.0056260Z" duration="0.023915" asserts="8" />
+            <test-case id="1033" name="InvalidSourceDoesNotChangePurse(&quot;not-carryable&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse(&quot;not-carryable&quot;)" methodname="InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="19518296" result="Passed" start-time="2026-10-11T03:42:05.0056470Z" end-time="2026-10-11T03:42:05.0301070Z" duration="0.024461" asserts="8" />
+            <test-case id="1034" name="InvalidSourceDoesNotChangePurse(&quot;too-strong&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.InvalidSourceDoesNotChangePurse(&quot;too-strong&quot;)" methodname="InvalidSourceDoesNotChangePurse" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1193877660" result="Passed" start-time="2026-10-11T03:42:05.0301290Z" end-time="2026-10-11T03:42:05.0560540Z" duration="0.025924" asserts="8" />
+          </test-suite>
+          <test-case id="1016" name="MultiplicationCannotOverflowIntoSmallerPayment" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.MultiplicationCannotOverflowIntoSmallerPayment" methodname="MultiplicationCannotOverflowIntoSmallerPayment" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="2012140426" result="Passed" start-time="2026-10-11T03:42:05.0560980Z" end-time="2026-10-11T03:42:05.0782140Z" duration="0.022116" asserts="8" />
+          <test-suite type="ParameterizedMethod" id="1012" name="NonpositiveSourceCannotMintCurrency" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.NonpositiveSourceCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T03:42:05.0782410Z" end-time="2026-10-11T03:42:05.1466910Z" duration="0.068449" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <test-case id="1009" name="NonpositiveSourceCannotMintCurrency(0)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.NonpositiveSourceCannotMintCurrency(0)" methodname="NonpositiveSourceCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1364046263" result="Passed" start-time="2026-10-11T03:42:05.0782550Z" end-time="2026-10-11T03:42:05.1041830Z" duration="0.025927" asserts="9" />
+            <test-case id="1010" name="NonpositiveSourceCannotMintCurrency(-1)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.NonpositiveSourceCannotMintCurrency(-1)" methodname="NonpositiveSourceCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1880064608" result="Passed" start-time="2026-10-11T03:42:05.1042030Z" end-time="2026-10-11T03:42:05.1251310Z" duration="0.020928" asserts="9" />
+            <test-case id="1011" name="NonpositiveSourceCannotMintCurrency(int.MinValue)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.NonpositiveSourceCannotMintCurrency(int.MinValue)" methodname="NonpositiveSourceCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1953665801" result="Passed" start-time="2026-10-11T03:42:05.1251680Z" end-time="2026-10-11T03:42:05.1466670Z" duration="0.021498" asserts="9" />
+          </test-suite>
+          <test-case id="1029" name="ReentrantSameSourceCannotDoubleCredit" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.ReentrantSameSourceCannotDoubleCredit" methodname="ReentrantSameSourceCannotDoubleCredit" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="247490731" result="Failed" start-time="2026-10-11T03:42:05.1467000Z" end-time="2026-10-11T03:42:05.1670170Z" duration="0.020316" asserts="8">
+            <failure>
+              <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.ReentrantSameSourceCannotDoubleCredit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 115
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.ReentrantSameSourceCannotDoubleCredit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1036" name="SingletonCoinWithoutStackerCreditsOneUnit" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.SingletonCoinWithoutStackerCreditsOneUnit" methodname="SingletonCoinWithoutStackerCreditsOneUnit" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="286866822" result="Failed" start-time="2026-10-11T03:42:05.1670380Z" end-time="2026-10-11T03:42:05.1881820Z" duration="0.021144" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: 105
+  But was:  100
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.SingletonCoinWithoutStackerCreditsOneUnit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 105
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.SingletonCoinWithoutStackerCreditsOneUnit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1015" name="WalletBoundaryIsCheckedBeforeSourceRemoval" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:42:05.1882030Z" end-time="2026-10-11T03:42:05.2442070Z" duration="0.056003" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="13">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="WalletBoundaryIsCheckedBeforeSourceRemoval(False)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(False)" methodname="WalletBoundaryIsCheckedBeforeSourceRemoval" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1110441311" result="Failed" start-time="2026-10-11T03:42:05.1882220Z" end-time="2026-10-11T03:42:05.2154120Z" duration="0.027191" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: 2147483647
+  But was:  2147483632
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Boolean overflow) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 13
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 2147483647
+  But was:  2147483632
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Boolean overflow) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 13
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="WalletBoundaryIsCheckedBeforeSourceRemoval(True)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(True)" methodname="WalletBoundaryIsCheckedBeforeSourceRemoval" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1509763840" result="Failed" start-time="2026-10-11T03:42:05.2154430Z" end-time="2026-10-11T03:42:05.2441820Z" duration="0.028738" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Boolean overflow) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 13
+   at InvokeStub_ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Boolean overflow) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 13
+   at InvokeStub_ContainerCurrencyAdversarialTests.WalletBoundaryIsCheckedBeforeSourceRemoval(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="ContainerCurrencyTests" fullname="CavesOfOoo.Tests.ContainerCurrencyTests" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11T03:42:05.2445770Z" end-time="2026-10-11T03:42:05.3833320Z" duration="0.138754" total="6" passed="1" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="63">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1007" name="AuthoredBanditCacheCoinRollUsesNormalContainerAcquisitionAndSave" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.AuthoredBanditCacheCoinRollUsesNormalContainerAcquisitionAndSave" methodname="AuthoredBanditCacheCoinRollUsesNormalContainerAcquisitionAndSave" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="1252995534" result="Failed" start-time="2026-10-11T03:42:05.2446330Z" end-time="2026-10-11T03:42:05.2727120Z" duration="0.028079" asserts="22">
+            <failure>
+              <message><![CDATA[  Expected: 155
+  But was:  100
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.AuthoredBanditCacheCoinRollUsesNormalContainerAcquisitionAndSave() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 53
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 155
+  But was:  100
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.AuthoredBanditCacheCoinRollUsesNormalContainerAcquisitionAndSave() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 53
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1006" name="CoinConversionDoesNotRequireInventoryWeightSpace" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.CoinConversionDoesNotRequireInventoryWeightSpace" methodname="CoinConversionDoesNotRequireInventoryWeightSpace" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="479676015" result="Failed" start-time="2026-10-11T03:42:05.2727370Z" end-time="2026-10-11T03:42:05.2960450Z" duration="0.023308" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.CoinConversionDoesNotRequireInventoryWeightSpace() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.CoinConversionDoesNotRequireInventoryWeightSpace() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1004" name="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:42:05.2960720Z" end-time="2026-10-11T03:42:05.3624700Z" duration="0.066398" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(1)" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(1)" methodname="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="1930514094" result="Failed" start-time="2026-10-11T03:42:05.2960910Z" end-time="2026-10-11T03:42:05.3188320Z" duration="0.022741" asserts="9">
+              <failure>
+                <message><![CDATA[Multiple failures or warnings in test:
+  1)   Expected: 0
+  But was:  1
+
+  2)   Expected: True
+  But was:  False
+
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.<>c__DisplayClass0_0.<ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce>b__0(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 38
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Hook.HandleEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 24
+   at CavesOfOoo.Core.Entity.FireEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 273
+   at CavesOfOoo.Core.Entity.FireEventAndRelease(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 304
+   at CavesOfOoo.Core.Inventory.Commands.TakeFromContainerCommand.Execute(InventoryContext context, InventoryTransaction transaction) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/TakeFromContainerCommand.cs:line 136
+   at CavesOfOoo.Core.Inventory.InventoryCommandExecutor.Execute(IInventoryCommand command, InventoryContext context) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventoryCommandExecutor.cs:line 38
+   at CavesOfOoo.Core.InventorySystem.ExecuteCommand(IInventoryCommand command, Entity actor, Zone zone) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventorySystem.cs:line 27
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Take(Entity item, Boolean rollback) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 23
+   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(3)" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(3)" methodname="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="1379447025" result="Failed" start-time="2026-10-11T03:42:05.3188550Z" end-time="2026-10-11T03:42:05.3391260Z" duration="0.020271" asserts="9">
+              <failure>
+                <message><![CDATA[Multiple failures or warnings in test:
+  1)   Expected: 0
+  But was:  3
+
+  2)   Expected: True
+  But was:  False
+
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.<>c__DisplayClass0_0.<ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce>b__0(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 38
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Hook.HandleEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 24
+   at CavesOfOoo.Core.Entity.FireEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 273
+   at CavesOfOoo.Core.Entity.FireEventAndRelease(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 304
+   at CavesOfOoo.Core.Inventory.Commands.TakeFromContainerCommand.Execute(InventoryContext context, InventoryTransaction transaction) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/TakeFromContainerCommand.cs:line 136
+   at CavesOfOoo.Core.Inventory.InventoryCommandExecutor.Execute(IInventoryCommand command, InventoryContext context) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventoryCommandExecutor.cs:line 38
+   at CavesOfOoo.Core.InventorySystem.ExecuteCommand(IInventoryCommand command, Entity actor, Zone zone) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventorySystem.cs:line 27
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Take(Entity item, Boolean rollback) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 23
+   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(100)" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(100)" methodname="ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="1936015166" result="Failed" start-time="2026-10-11T03:42:05.3391470Z" end-time="2026-10-11T03:42:05.3624470Z" duration="0.023300" asserts="9">
+              <failure>
+                <message><![CDATA[Multiple failures or warnings in test:
+  1)   Expected: 0
+  But was:  100
+
+  2)   Expected: True
+  But was:  False
+
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  100
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.<>c__DisplayClass0_0.<ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce>b__0(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 38
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Hook.HandleEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 24
+   at CavesOfOoo.Core.Entity.FireEvent(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 273
+   at CavesOfOoo.Core.Entity.FireEventAndRelease(GameEvent e) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Entities/Entity.cs:line 304
+   at CavesOfOoo.Core.Inventory.Commands.TakeFromContainerCommand.Execute(InventoryContext context, InventoryTransaction transaction) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/TakeFromContainerCommand.cs:line 136
+   at CavesOfOoo.Core.Inventory.InventoryCommandExecutor.Execute(IInventoryCommand command, InventoryContext context) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventoryCommandExecutor.cs:line 38
+   at CavesOfOoo.Core.InventorySystem.ExecuteCommand(IInventoryCommand command, Entity actor, Zone zone) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Inventory/InventorySystem.cs:line 27
+   at CavesOfOoo.Tests.ContainerCurrencyFixture.Take(Entity item, Boolean rollback) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 23
+   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyTests.cs:line 39
+   at InvokeStub_ContainerCurrencyTests.ContainerCoinsBecomeFiveDramsPerUnitExactlyOnce(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1005" name="OrdinaryLootStillTransfersAsAnItem" fullname="CavesOfOoo.Tests.ContainerCurrencyTests.OrdinaryLootStillTransfersAsAnItem" methodname="OrdinaryLootStillTransfersAsAnItem" classname="CavesOfOoo.Tests.ContainerCurrencyTests" runstate="Runnable" seed="1669391171" result="Passed" start-time="2026-10-11T03:42:05.3624850Z" end-time="2026-10-11T03:42:05.3833060Z" duration="0.020821" asserts="8" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1039" name="GameAuditAcquisitionAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="60" result="Failed" site="Child" start-time="2026-10-11T03:42:05.3833580Z" end-time="2026-10-11T03:42:05.4353200Z" duration="0.051962" total="60" passed="59" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="620">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1115" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11T03:42:05.4088870Z" end-time="2026-10-11T03:42:05.4152020Z" duration="0.006315" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="108">
+            <test-case id="1109" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;pickup&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;pickup&quot;,False)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="207052919" result="Passed" start-time="2026-10-11T03:42:05.4089200Z" end-time="2026-10-11T03:42:05.4117630Z" duration="0.002843" asserts="18" />
+            <test-case id="1110" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;pickup&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;pickup&quot;,True)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="907107609" result="Passed" start-time="2026-10-11T03:42:05.4117770Z" end-time="2026-10-11T03:42:05.4121760Z" duration="0.000398" asserts="18" />
+            <test-case id="1111" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;take&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;take&quot;,False)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="967677401" result="Passed" start-time="2026-10-11T03:42:05.4121880Z" end-time="2026-10-11T03:42:05.4124050Z" duration="0.000217" asserts="18" />
+            <test-case id="1112" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;take&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;take&quot;,True)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1429410635" result="Passed" start-time="2026-10-11T03:42:05.4124160Z" end-time="2026-10-11T03:42:05.4125910Z" duration="0.000175" asserts="18" />
+            <test-case id="1113" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;buy&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;buy&quot;,False)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1735717750" result="Passed" start-time="2026-10-11T03:42:05.4126000Z" end-time="2026-10-11T03:42:05.4147020Z" duration="0.002101" asserts="18" />
+            <test-case id="1114" name="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;buy&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionMergeClaimsProtectDestinationOnly(&quot;buy&quot;,True)" methodname="Adversarial_AcquisitionMergeClaimsProtectDestinationOnly" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="630340999" result="Passed" start-time="2026-10-11T03:42:05.4147150Z" end-time="2026-10-11T03:42:05.4151850Z" duration="0.000470" asserts="18" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1086" name="Adversarial_AcquisitionOutcomesDistinguishWeightRefusal" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionOutcomesDistinguishWeightRefusal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4152090Z" end-time="2026-10-11T03:42:05.4163320Z" duration="0.001123" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1084" name="Adversarial_AcquisitionOutcomesDistinguishWeightRefusal(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionOutcomesDistinguishWeightRefusal(False)" methodname="Adversarial_AcquisitionOutcomesDistinguishWeightRefusal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1741294335" result="Passed" start-time="2026-10-11T03:42:05.4152150Z" end-time="2026-10-11T03:42:05.4160740Z" duration="0.000859" asserts="7" />
+            <test-case id="1085" name="Adversarial_AcquisitionOutcomesDistinguishWeightRefusal(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_AcquisitionOutcomesDistinguishWeightRefusal(True)" methodname="Adversarial_AcquisitionOutcomesDistinguishWeightRefusal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1858116257" result="Passed" start-time="2026-10-11T03:42:05.4160870Z" end-time="2026-10-11T03:42:05.4163210Z" duration="0.000234" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1083" name="Adversarial_BuyCannotOverflowTraderWallet" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyCannotOverflowTraderWallet" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4163350Z" end-time="2026-10-11T03:42:05.4169370Z" duration="0.000602" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1081" name="Adversarial_BuyCannotOverflowTraderWallet(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyCannotOverflowTraderWallet(False)" methodname="Adversarial_BuyCannotOverflowTraderWallet" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="680080497" result="Passed" start-time="2026-10-11T03:42:05.4163390Z" end-time="2026-10-11T03:42:05.4167250Z" duration="0.000386" asserts="6" />
+            <test-case id="1082" name="Adversarial_BuyCannotOverflowTraderWallet(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyCannotOverflowTraderWallet(True)" methodname="Adversarial_BuyCannotOverflowTraderWallet" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1875382465" result="Passed" start-time="2026-10-11T03:42:05.4167360Z" end-time="2026-10-11T03:42:05.4169100Z" duration="0.000174" asserts="6" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1077" name="Adversarial_BuyClaimPrecedesBothCallbacks" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyClaimPrecedesBothCallbacks" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4169400Z" end-time="2026-10-11T03:42:05.4175350Z" duration="0.000595" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1075" name="Adversarial_BuyClaimPrecedesBothCallbacks(&quot;CanBeTraded&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyClaimPrecedesBothCallbacks(&quot;CanBeTraded&quot;)" methodname="Adversarial_BuyClaimPrecedesBothCallbacks" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="418747659" result="Passed" start-time="2026-10-11T03:42:05.4169440Z" end-time="2026-10-11T03:42:05.4173240Z" duration="0.000381" asserts="7" />
+            <test-case id="1076" name="Adversarial_BuyClaimPrecedesBothCallbacks(&quot;BeforeTrade&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyClaimPrecedesBothCallbacks(&quot;BeforeTrade&quot;)" methodname="Adversarial_BuyClaimPrecedesBothCallbacks" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="511510976" result="Passed" start-time="2026-10-11T03:42:05.4173370Z" end-time="2026-10-11T03:42:05.4175240Z" duration="0.000187" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1073" name="Adversarial_BuyRequiresPositiveStock" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyRequiresPositiveStock" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T03:42:05.4175380Z" end-time="2026-10-11T03:42:05.4180770Z" duration="0.000539" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="17">
+            <test-case id="1070" name="Adversarial_BuyRequiresPositiveStock(-1)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyRequiresPositiveStock(-1)" methodname="Adversarial_BuyRequiresPositiveStock" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1272658211" result="Passed" start-time="2026-10-11T03:42:05.4175420Z" end-time="2026-10-11T03:42:05.4177490Z" duration="0.000207" asserts="6" />
+            <test-case id="1071" name="Adversarial_BuyRequiresPositiveStock(0)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyRequiresPositiveStock(0)" methodname="Adversarial_BuyRequiresPositiveStock" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="171900040" result="Passed" start-time="2026-10-11T03:42:05.4177590Z" end-time="2026-10-11T03:42:05.4179240Z" duration="0.000165" asserts="6" />
+            <test-case id="1072" name="Adversarial_BuyRequiresPositiveStock(1)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_BuyRequiresPositiveStock(1)" methodname="Adversarial_BuyRequiresPositiveStock" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1407880119" result="Passed" start-time="2026-10-11T03:42:05.4179340Z" end-time="2026-10-11T03:42:05.4180650Z" duration="0.000131" asserts="5" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1054" name="Adversarial_ClaimPrecedesPickupCallback" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ClaimPrecedesPickupCallback" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4180820Z" end-time="2026-10-11T03:42:05.4185310Z" duration="0.000449" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1052" name="Adversarial_ClaimPrecedesPickupCallback(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ClaimPrecedesPickupCallback(False)" methodname="Adversarial_ClaimPrecedesPickupCallback" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="427500268" result="Passed" start-time="2026-10-11T03:42:05.4180870Z" end-time="2026-10-11T03:42:05.4183450Z" duration="0.000259" asserts="8" />
+            <test-case id="1053" name="Adversarial_ClaimPrecedesPickupCallback(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ClaimPrecedesPickupCallback(True)" methodname="Adversarial_ClaimPrecedesPickupCallback" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1275731010" result="Passed" start-time="2026-10-11T03:42:05.4183550Z" end-time="2026-10-11T03:42:05.4185210Z" duration="0.000167" asserts="8" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1108" name="Adversarial_CombinedGoldCreditChecksItsTotal" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_CombinedGoldCreditChecksItsTotal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4185350Z" end-time="2026-10-11T03:42:05.4193430Z" duration="0.000808" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="19">
+            <test-case id="1106" name="Adversarial_CombinedGoldCreditChecksItsTotal(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_CombinedGoldCreditChecksItsTotal(False)" methodname="Adversarial_CombinedGoldCreditChecksItsTotal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1606961016" result="Passed" start-time="2026-10-11T03:42:05.4185390Z" end-time="2026-10-11T03:42:05.4188610Z" duration="0.000322" asserts="10" />
+            <test-case id="1107" name="Adversarial_CombinedGoldCreditChecksItsTotal(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_CombinedGoldCreditChecksItsTotal(True)" methodname="Adversarial_CombinedGoldCreditChecksItsTotal" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1183259225" result="Passed" start-time="2026-10-11T03:42:05.4188700Z" end-time="2026-10-11T03:42:05.4193330Z" duration="0.000462" asserts="9" />
+          </test-suite>
+          <test-case id="1087" name="Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy" methodname="Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="571369783" result="Failed" start-time="2026-10-11T03:42:05.4193460Z" end-time="2026-10-11T03:42:05.4199240Z" duration="0.000578" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: 10015
+  But was:  10000
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditAcquisitionAdversarialTests.cs:line 185
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 10015
+  But was:  10000
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ContainerGoldUsesTheUnifiedAcquisitionCurrencyPolicy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditAcquisitionAdversarialTests.cs:line 185
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1095" name="Adversarial_DeferredGoldRechecksCapacityBeforeCommit" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_DeferredGoldRechecksCapacityBeforeCommit" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4199360Z" end-time="2026-10-11T03:42:05.4214180Z" duration="0.001481" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <test-case id="1093" name="Adversarial_DeferredGoldRechecksCapacityBeforeCommit(1)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_DeferredGoldRechecksCapacityBeforeCommit(1)" methodname="Adversarial_DeferredGoldRechecksCapacityBeforeCommit" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1151613574" result="Passed" start-time="2026-10-11T03:42:05.4199420Z" end-time="2026-10-11T03:42:05.4211730Z" duration="0.001232" asserts="11" />
+            <test-case id="1094" name="Adversarial_DeferredGoldRechecksCapacityBeforeCommit(2)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_DeferredGoldRechecksCapacityBeforeCommit(2)" methodname="Adversarial_DeferredGoldRechecksCapacityBeforeCommit" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1477742196" result="Passed" start-time="2026-10-11T03:42:05.4211850Z" end-time="2026-10-11T03:42:05.4214060Z" duration="0.000221" asserts="12" />
+          </test-suite>
+          <test-case id="1096" name="Adversarial_EquippedDaggerCannotBePickedUpAsGroundLoot" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_EquippedDaggerCannotBePickedUpAsGroundLoot" methodname="Adversarial_EquippedDaggerCannotBePickedUpAsGroundLoot" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1102729655" result="Passed" start-time="2026-10-11T03:42:05.4214210Z" end-time="2026-10-11T03:42:05.4239590Z" duration="0.002537" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1065" name="Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4239700Z" end-time="2026-10-11T03:42:05.4246930Z" duration="0.000723" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <test-case id="1063" name="Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim(False)" methodname="Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="813516349" result="Passed" start-time="2026-10-11T03:42:05.4239760Z" end-time="2026-10-11T03:42:05.4244830Z" duration="0.000507" asserts="10" />
+            <test-case id="1064" name="Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim(True)" methodname="Adversarial_ExceptionAfterPickupRestoresSourceAndReleasesClaim" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="55325908" result="Passed" start-time="2026-10-11T03:42:05.4244940Z" end-time="2026-10-11T03:42:05.4246820Z" duration="0.000188" asserts="10" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1059" name="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T03:42:05.4247050Z" end-time="2026-10-11T03:42:05.4255200Z" duration="0.000815" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <test-case id="1055" name="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(False,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(False,False)" methodname="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1783481707" result="Passed" start-time="2026-10-11T03:42:05.4247110Z" end-time="2026-10-11T03:42:05.4250070Z" duration="0.000296" asserts="10" />
+            <test-case id="1056" name="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(False,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(False,True)" methodname="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="743732713" result="Passed" start-time="2026-10-11T03:42:05.4250180Z" end-time="2026-10-11T03:42:05.4252130Z" duration="0.000195" asserts="10" />
+            <test-case id="1057" name="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(True,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(True,False)" methodname="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1089037469" result="Passed" start-time="2026-10-11T03:42:05.4252230Z" end-time="2026-10-11T03:42:05.4253610Z" duration="0.000139" asserts="10" />
+            <test-case id="1058" name="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(True,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment(True,True)" methodname="Adversarial_GoldRollbackDoesNotEraseIndependentCoinPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1539326398" result="Passed" start-time="2026-10-11T03:42:05.4253710Z" end-time="2026-10-11T03:42:05.4255090Z" duration="0.000138" asserts="10" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T03:42:05.4255240Z" end-time="2026-10-11T03:42:05.4262370Z" duration="0.000714" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="44">
+            <test-case id="1040" name="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(False,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(False,False)" methodname="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1959628941" result="Passed" start-time="2026-10-11T03:42:05.4255270Z" end-time="2026-10-11T03:42:05.4257780Z" duration="0.000251" asserts="11" />
+            <test-case id="1041" name="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(False,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(False,True)" methodname="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1958250459" result="Passed" start-time="2026-10-11T03:42:05.4257880Z" end-time="2026-10-11T03:42:05.4259550Z" duration="0.000167" asserts="11" />
+            <test-case id="1042" name="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(True,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(True,False)" methodname="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="2071608560" result="Passed" start-time="2026-10-11T03:42:05.4259650Z" end-time="2026-10-11T03:42:05.4260960Z" duration="0.000131" asserts="11" />
+            <test-case id="1043" name="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(True,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters(True,True)" methodname="Adversarial_GoldVetoesAndSuccessHooksHaveRealCounters" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="219265510" result="Passed" start-time="2026-10-11T03:42:05.4261050Z" end-time="2026-10-11T03:42:05.4262280Z" duration="0.000123" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1080" name="Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4262410Z" end-time="2026-10-11T03:42:05.4267600Z" duration="0.000519" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1078" name="Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment(False)" methodname="Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1356754815" result="Passed" start-time="2026-10-11T03:42:05.4262440Z" end-time="2026-10-11T03:42:05.4265610Z" duration="0.000317" asserts="9" />
+            <test-case id="1079" name="Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment(True)" methodname="Adversarial_IndependentBuyMaySpendThePurseBeforeOuterPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1024065929" result="Passed" start-time="2026-10-11T03:42:05.4265700Z" end-time="2026-10-11T03:42:05.4267500Z" duration="0.000180" asserts="9" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1092" name="Adversarial_IndependentPurchaseCannotSpendProvisionalGold" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentPurchaseCannotSpendProvisionalGold" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T03:42:05.4267630Z" end-time="2026-10-11T03:42:05.4276470Z" duration="0.000884" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="44">
+            <test-case id="1088" name="Adversarial_IndependentPurchaseCannotSpendProvisionalGold(False,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentPurchaseCannotSpendProvisionalGold(False,False)" methodname="Adversarial_IndependentPurchaseCannotSpendProvisionalGold" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="600502894" result="Passed" start-time="2026-10-11T03:42:05.4267660Z" end-time="2026-10-11T03:42:05.4271580Z" duration="0.000392" asserts="11" />
+            <test-case id="1089" name="Adversarial_IndependentPurchaseCannotSpendProvisionalGold(False,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentPurchaseCannotSpendProvisionalGold(False,True)" methodname="Adversarial_IndependentPurchaseCannotSpendProvisionalGold" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="763962175" result="Passed" start-time="2026-10-11T03:42:05.4271680Z" end-time="2026-10-11T03:42:05.4273400Z" duration="0.000172" asserts="11" />
+            <test-case id="1090" name="Adversarial_IndependentPurchaseCannotSpendProvisionalGold(True,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentPurchaseCannotSpendProvisionalGold(True,False)" methodname="Adversarial_IndependentPurchaseCannotSpendProvisionalGold" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="843109984" result="Passed" start-time="2026-10-11T03:42:05.4273490Z" end-time="2026-10-11T03:42:05.4274900Z" duration="0.000141" asserts="11" />
+            <test-case id="1091" name="Adversarial_IndependentPurchaseCannotSpendProvisionalGold(True,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_IndependentPurchaseCannotSpendProvisionalGold(True,True)" methodname="Adversarial_IndependentPurchaseCannotSpendProvisionalGold" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="365368311" result="Passed" start-time="2026-10-11T03:42:05.4274990Z" end-time="2026-10-11T03:42:05.4276370Z" duration="0.000138" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1069" name="Adversarial_NullBuyInputsRefuseWithoutPayment" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_NullBuyInputsRefuseWithoutPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T03:42:05.4276510Z" end-time="2026-10-11T03:42:05.4281160Z" duration="0.000466" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1066" name="Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;actor&quot;)" methodname="Adversarial_NullBuyInputsRefuseWithoutPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="610053713" result="Passed" start-time="2026-10-11T03:42:05.4276540Z" end-time="2026-10-11T03:42:05.4278310Z" duration="0.000177" asserts="6" />
+            <test-case id="1067" name="Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;trader&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;trader&quot;)" methodname="Adversarial_NullBuyInputsRefuseWithoutPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="715529461" result="Passed" start-time="2026-10-11T03:42:05.4278400Z" end-time="2026-10-11T03:42:05.4279810Z" duration="0.000141" asserts="6" />
+            <test-case id="1068" name="Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;item&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_NullBuyInputsRefuseWithoutPayment(&quot;item&quot;)" methodname="Adversarial_NullBuyInputsRefuseWithoutPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1282752217" result="Passed" start-time="2026-10-11T03:42:05.4279910Z" end-time="2026-10-11T03:42:05.4281060Z" duration="0.000115" asserts="6" />
+          </test-suite>
+          <test-case id="1105" name="Adversarial_OneRecipientOverflowRefusesEveryQueuedPayment" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_OneRecipientOverflowRefusesEveryQueuedPayment" methodname="Adversarial_OneRecipientOverflowRefusesEveryQueuedPayment" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="87610141" result="Passed" start-time="2026-10-11T03:42:05.4281200Z" end-time="2026-10-11T03:42:05.4284070Z" duration="0.000288" asserts="14" />
+          <test-suite type="ParameterizedMethod" id="1062" name="Adversarial_PickupCallbackCannotDropTheParticipatingItem" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_PickupCallbackCannotDropTheParticipatingItem" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4284160Z" end-time="2026-10-11T03:42:05.4304200Z" duration="0.002004" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1060" name="Adversarial_PickupCallbackCannotDropTheParticipatingItem(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_PickupCallbackCannotDropTheParticipatingItem(False)" methodname="Adversarial_PickupCallbackCannotDropTheParticipatingItem" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1125434921" result="Passed" start-time="2026-10-11T03:42:05.4284190Z" end-time="2026-10-11T03:42:05.4298740Z" duration="0.001455" asserts="8" />
+            <test-case id="1061" name="Adversarial_PickupCallbackCannotDropTheParticipatingItem(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_PickupCallbackCannotDropTheParticipatingItem(True)" methodname="Adversarial_PickupCallbackCannotDropTheParticipatingItem" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1995953526" result="Passed" start-time="2026-10-11T03:42:05.4298850Z" end-time="2026-10-11T03:42:05.4303880Z" duration="0.000503" asserts="8" />
+          </test-suite>
+          <test-case id="1074" name="Adversarial_SelfBuyAndAbsentStockDoNotChangeOwnership" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SelfBuyAndAbsentStockDoNotChangeOwnership" methodname="Adversarial_SelfBuyAndAbsentStockDoNotChangeOwnership" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="826234237" result="Passed" start-time="2026-10-11T03:42:05.4304450Z" end-time="2026-10-11T03:42:05.4306980Z" duration="0.000252" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1118" name="Adversarial_SequentialPartialMergesRestoreEverySource" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SequentialPartialMergesRestoreEverySource" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4307090Z" end-time="2026-10-11T03:42:05.4312780Z" duration="0.000569" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <test-case id="1116" name="Adversarial_SequentialPartialMergesRestoreEverySource(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SequentialPartialMergesRestoreEverySource(False)" methodname="Adversarial_SequentialPartialMergesRestoreEverySource" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1811260627" result="Passed" start-time="2026-10-11T03:42:05.4307170Z" end-time="2026-10-11T03:42:05.4310060Z" duration="0.000290" asserts="14" />
+            <test-case id="1117" name="Adversarial_SequentialPartialMergesRestoreEverySource(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SequentialPartialMergesRestoreEverySource(True)" methodname="Adversarial_SequentialPartialMergesRestoreEverySource" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="515513109" result="Passed" start-time="2026-10-11T03:42:05.4310190Z" end-time="2026-10-11T03:42:05.4312670Z" duration="0.000248" asserts="14" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1051" name="Adversarial_SourceRevalidatesAfterItemHook" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11T03:42:05.4312810Z" end-time="2026-10-11T03:42:05.4326080Z" duration="0.001327" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="52">
+            <test-case id="1045" name="Adversarial_SourceRevalidatesAfterItemHook(False,&quot;remove&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(False,&quot;remove&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1031543798" result="Passed" start-time="2026-10-11T03:42:05.4312850Z" end-time="2026-10-11T03:42:05.4316330Z" duration="0.000348" asserts="9" />
+            <test-case id="1046" name="Adversarial_SourceRevalidatesAfterItemHook(False,&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(False,&quot;foreign&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1429949937" result="Passed" start-time="2026-10-11T03:42:05.4316430Z" end-time="2026-10-11T03:42:05.4318730Z" duration="0.000230" asserts="9" />
+            <test-case id="1047" name="Adversarial_SourceRevalidatesAfterItemHook(False,&quot;same&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(False,&quot;same&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="173746300" result="Passed" start-time="2026-10-11T03:42:05.4318830Z" end-time="2026-10-11T03:42:05.4320590Z" duration="0.000176" asserts="8" />
+            <test-case id="1048" name="Adversarial_SourceRevalidatesAfterItemHook(True,&quot;remove&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(True,&quot;remove&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="850687091" result="Passed" start-time="2026-10-11T03:42:05.4320690Z" end-time="2026-10-11T03:42:05.4322400Z" duration="0.000171" asserts="9" />
+            <test-case id="1049" name="Adversarial_SourceRevalidatesAfterItemHook(True,&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(True,&quot;foreign&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="288562748" result="Passed" start-time="2026-10-11T03:42:05.4322500Z" end-time="2026-10-11T03:42:05.4324160Z" duration="0.000166" asserts="9" />
+            <test-case id="1050" name="Adversarial_SourceRevalidatesAfterItemHook(True,&quot;same&quot;)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_SourceRevalidatesAfterItemHook(True,&quot;same&quot;)" methodname="Adversarial_SourceRevalidatesAfterItemHook" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="687633180" result="Passed" start-time="2026-10-11T03:42:05.4324250Z" end-time="2026-10-11T03:42:05.4325980Z" duration="0.000174" asserts="8" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1101" name="Adversarial_TradePublishesBothWalletsBeforeNotifying" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TradePublishesBothWalletsBeforeNotifying" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T03:42:05.4326110Z" end-time="2026-10-11T03:42:05.4346350Z" duration="0.002023" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="52">
+            <test-case id="1097" name="Adversarial_TradePublishesBothWalletsBeforeNotifying(False,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TradePublishesBothWalletsBeforeNotifying(False,False)" methodname="Adversarial_TradePublishesBothWalletsBeforeNotifying" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1916237" result="Passed" start-time="2026-10-11T03:42:05.4326150Z" end-time="2026-10-11T03:42:05.4337180Z" duration="0.001103" asserts="13" />
+            <test-case id="1098" name="Adversarial_TradePublishesBothWalletsBeforeNotifying(False,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TradePublishesBothWalletsBeforeNotifying(False,True)" methodname="Adversarial_TradePublishesBothWalletsBeforeNotifying" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="58501988" result="Passed" start-time="2026-10-11T03:42:05.4337280Z" end-time="2026-10-11T03:42:05.4342970Z" duration="0.000569" asserts="13" />
+            <test-case id="1099" name="Adversarial_TradePublishesBothWalletsBeforeNotifying(True,False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TradePublishesBothWalletsBeforeNotifying(True,False)" methodname="Adversarial_TradePublishesBothWalletsBeforeNotifying" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1682360124" result="Passed" start-time="2026-10-11T03:42:05.4343100Z" end-time="2026-10-11T03:42:05.4344600Z" duration="0.000151" asserts="13" />
+            <test-case id="1100" name="Adversarial_TradePublishesBothWalletsBeforeNotifying(True,True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TradePublishesBothWalletsBeforeNotifying(True,True)" methodname="Adversarial_TradePublishesBothWalletsBeforeNotifying" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1864045653" result="Passed" start-time="2026-10-11T03:42:05.4344710Z" end-time="2026-10-11T03:42:05.4346240Z" duration="0.000153" asserts="13" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1104" name="Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:42:05.4346390Z" end-time="2026-10-11T03:42:05.4352130Z" duration="0.000574" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <test-case id="1102" name="Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver(False)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver(False)" methodname="Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1555627169" result="Passed" start-time="2026-10-11T03:42:05.4346430Z" end-time="2026-10-11T03:42:05.4349920Z" duration="0.000349" asserts="15" />
+            <test-case id="1103" name="Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver(True)" fullname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests.Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver(True)" methodname="Adversarial_TwoGoldRecipientsArePaidBeforeFirstObserver" classname="CavesOfOoo.Tests.GameAuditAcquisitionAdversarialTests" runstate="Runnable" seed="1393702240" result="Passed" start-time="2026-10-11T03:42:05.4350020Z" end-time="2026-10-11T03:42:05.4352030Z" duration="0.000201" asserts="15" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="94" result="Failed" start-time="2026-10-11T03:47:09.4884320Z" end-time="2026-10-11T03:47:09.6796260Z" duration="0.191178" total="5" passed="0" failed="5" inconclusive="0" skipped="0" warnings="0" asserts="31" random-seed="1133771390">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration05-ownership-red.xml --where "class =~ /ContainerCurrencyAdversarialTests/ && test =~ /AmbiguousContainerCoinOwnership/"]]></command-line>
+  <filter>
+    <and>
+      <class re="1">ContainerCurrencyAdversarialTests</class>
+      <test re="1">AmbiguousContainerCoinOwnership</test>
+    </and>
+  </filter>
+  <test-suite type="Assembly" id="1125" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-10-11T03:47:09.4884320Z" end-time="2026-10-11T03:47:09.6796260Z" duration="0.191178" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="41080" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1126" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-10-11T03:47:09.4899500Z" end-time="2026-10-11T03:47:09.6796250Z" duration="0.189673" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1127" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="94" result="Failed" site="Child" start-time="2026-10-11T03:47:09.4900580Z" end-time="2026-10-11T03:47:09.6796230Z" duration="0.189563" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1008" name="ContainerCurrencyAdversarialTests" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-10-11T03:47:09.4903910Z" end-time="2026-10-11T03:47:09.6796170Z" duration="0.189225" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1041" name="AmbiguousContainerCoinOwnershipCannotMintCurrency" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11T03:47:09.4913710Z" end-time="2026-10-11T03:47:09.6794230Z" duration="0.188051" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="31">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1036" name="AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;foreign-owner&quot;)" methodname="AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="302065552" result="Failed" start-time="2026-10-11T03:47:09.4914520Z" end-time="2026-10-11T03:47:09.5851800Z" duration="0.093753" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;ground-alias&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;ground-alias&quot;)" methodname="AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="1999222151" result="Failed" start-time="2026-10-11T03:47:09.5858100Z" end-time="2026-10-11T03:47:09.6092280Z" duration="0.023417" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;equipped-alias&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;equipped-alias&quot;)" methodname="AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="424457129" result="Failed" start-time="2026-10-11T03:47:09.6092980Z" end-time="2026-10-11T03:47:09.6316180Z" duration="0.022320" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1039" name="AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;duplicate-reference&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;duplicate-reference&quot;)" methodname="AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="963010273" result="Failed" start-time="2026-10-11T03:47:09.6316410Z" end-time="2026-10-11T03:47:09.6560630Z" duration="0.024422" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;carried-alias&quot;)" fullname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(&quot;carried-alias&quot;)" methodname="AmbiguousContainerCoinOwnershipCannotMintCurrency" classname="CavesOfOoo.Tests.ContainerCurrencyAdversarialTests" runstate="Runnable" seed="214128919" result="Failed" start-time="2026-10-11T03:47:09.6560980Z" end-time="2026-10-11T03:47:09.6789720Z" duration="0.022874" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/ContainerCurrencyAdversarialTests.cs:line 31
+   at InvokeStub_ContainerCurrencyAdversarialTests.AmbiguousContainerCoinOwnershipCannotMintCurrency(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
