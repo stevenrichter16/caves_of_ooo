@@ -1,12 +1,12 @@
 # System depth II: companion field management
 
-Status: all three iterations implemented and committed; native integration1584/1584 GREEN. Narrow final rollback fix core129/129 GREEN; native recheck and Play pending. Baseline `428cb4be9`.
+Status: complete. All three iterations committed; native integration1584/1584, rollback recheck84/84 and reader follow-up27/27 GREEN. Final actual Play14/14 passed with zero unexpected errors; original pack screenshots visually reviewed. Baseline `428cb4be9`.
 
 ## Goal and scope
 
 Complete three ordinary recruited-companion loops: inspect and transfer carried supplies, choose real equipment slots and replacements, and ask a blocking ally to move safely. Use the existing nearby world-action menu and its keyboard/controller navigation. Mutations cost one player action only after the shared inventory transaction commits; pack/comparison reading stays free. Saved stay/follow orders remain unchanged. These are CoO extensions, not a claim of Qud parity.
 
-Content readiness: 🟢 existing recruits, inventories, anatomy, gear and movement; 🟢 scrolling action menu and paged announcement reader; 🟡 native input/Play evidence pending; ⚪ no new NPCs, blueprints, copied reference code, automatic best-gear choices or remote management.
+Content readiness: 🟢 existing recruits, inventories, anatomy, gear and movement; 🟢 scrolling action menu and paged announcement reader; 🟢 native input/Play evidence recorded below; ⚪ no new NPCs, blueprints, copied reference code, automatic best-gear choices or remote management.
 
 ## Inspected source sweep and corrections
 
@@ -70,6 +70,20 @@ Files: new `CompanionManagementActions.StepAside.cs` and `CompanionStepAsideTest
 
 Save-agent reviewed stack transfer/receipts and found no additional issue. HUD-agent reviewed gear and movement; its split-unit and physical-occupancy findings are fixed with observed RED/GREEN. Coordinator reviewed visibility/capacity, native timing and rollback; hidden reads and rollback fixed, existing hard/soft capacity semantics documented and tested, tick/action fixture premise corrected. All owned C# metadata GUIDs are exactly32 hex characters. No InventoryUI, save schema, blueprints or combat behavior changed in these three iterations.
 
-Native integration job `ce219ed2daf94eb8914515db8a82e413`: **1584/1584 passed**, raw `Verification/SystemDepthII/native-final-integration.xml`. This includes all32 pack,25 gear,20 step and6 real management input cases. Exact paid-action assertions and free/refused counters are now native GREEN. Historical intermediate failures above remain preserved.
+Native integration job `ce219ed2daf94eb8914515db8a82e413`: **1584/1584 passed**, raw `Verification/SystemDepthII/native-first-integration.xml`. This includes all32 pack,25 gear,20 step and6 real management input cases. Exact paid-action assertions and free/refused counters are now native GREEN. Historical intermediate failures above remain preserved.
 
 After that source freeze, final read-only review reproduced one narrow rollback ownership issue in an isolated `/tmp` test: a BeforeMove callback can independently move to the *same chosen landing*. Before admission, the old rollback recognized only the destination and undid that independent movement. Observed RED1 is retained in `iteration03-admission-red.xml`. Coordinator authorized only this follow-up: rollback now requires a flag set when the post-BeforeMove safety predicate admits our movement. The existing independent-relocation fixture has both different/same chosen landing cases (21 step cases). Core final **129/129 GREEN** is retained in `iteration03-admission-green.xml`; Assets refrozen immediately. The1584-case native result predates this tiny fix; coordinator's targeted native recheck and actual Play remain pending. No other hypotheses or gameplay scope added.
+
+
+## Actual-route reader correction
+
+The post-admission native recheck passed **84/84**, retained in `Verification/SystemDepthII/native-step-review.xml`. Actual Play run `b3d7562477b34730ae6b9a3f28f62c4b` then completed **12/14** checks with zero unexpected errors: companion transfers, equip, unequip, retrieval and step-aside all passed, but the pack reader remained closed. The other failure concerns a separate authored NPC scheduler probe. This historical failed report is preserved; its queued sidebar text is not evidence of a working reader.
+
+Verified route and bounded plan: the real keyboard `L` → direction → Enter menu records LookMode as its return context. The companion transaction correctly queues the committed announcement, but InputHandler's LookMode branch returns before the normal pending-announcement poll. Reuse the existing TryOpenAnnouncement immediately after a successful read-only companion command restores its actual return context. That existing reader already remembers/restores LookMode on close; leave key handling, transaction rules and payment unchanged.
+
+Observed native RED: job `94be149195844342b2cdc3782469ffec`, **10 cases =8 passed /2 failed**, retained in `Verification/SystemDepthII/native-reader-look-red.xml`. The new four-case regression constructs the real AnnouncementUI and checks actual visible pack/comparison text, drained queue, free action cost and return context after native B. Both ordinary-menu counters pass; both real Look-route cases fail specifically because the reader remains closed. The six existing paid/free/refused input checks also pass.
+
+Narrow implementation adds only the success/read-only guarded TryOpenAnnouncement call after restoring `_worldActionMenuReturnState`. Native job `56f9c7ea189d4186879360a0c021432d` passed **27/27** (all10 management input cases plus neighboring sidebar-announcement and clarity-reader fixtures), retained in `Verification/SystemDepthII/native-reader-green.xml`. Repeated actual Play run `78c52afbb3da4f72940713ffabe0a4fd` passed **14/14** with zero unexpected errors and finalized completion. Its original-resolution screenshots02 and03 were independently reviewed: the popup contains the complete carried-supplies/weight text, and the second correctly shows `head: leather cap`. Coordinator owns the raw report, screenshots and scenario commit; evidence is under `Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/`. 🟡 The prior fixture checked only the queue and missed the actual popup; the new assertions require the actual reader state and visible-lines contents; pixel readability is separately confirmed by the final Play screenshots cited above. 🔵 No new modal state, announcement queue, key binding or gameplay policy is introduced. Honest bounds remain: arranged actors/supplies establish the exercised menu route, not organic recruitment, physical Deck feel or build performance.
+
+
+Final reader self-review: Q1–Q4 checked the existing open/close announcement pair, ordinary versus Look return paths, read-only versus paid dispatch, and source/doc claims. The four-line production change runs only after successful read-only commit; both ordinary and Look tests prove text/queue/close behavior and zero cost, while neighboring readers and all six original mutation/refusal cases remain GREEN. The earlier failed Play and native RED receipts remain historical evidence, rather than being overwritten. No additional Assets edits followed final native/Play verification.

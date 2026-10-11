@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Passed" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 04:07:16Z" end-time="2026-10-11 04:07:19Z" duration="2.5743794">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27562" result="Passed" start-time="2026-10-11 04:07:16Z" end-time="2026-10-11 04:07:19Z" duration="2.574379" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="33947" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27562" result="Passed" start-time="2026-10-11 04:07:16Z" end-time="2026-10-11 04:07:19Z" duration="2.352996" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="33948" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27562" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:19Z" duration="2.276811" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="33949" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27562" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:19Z" duration="2.176741" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="24471" name="CompanionManagementInputTests" fullname="CavesOfOoo.Tests.CompanionManagementInputTests" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.625613" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="24476" name="DeliberateGearSelectionUsesActualSlotAndPaysOnce" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.DeliberateGearSelectionUsesActualSlotAndPaysOnce" methodname="DeliberateGearSelectionUsesActualSlotAndPaysOnce" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="560923015" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.146707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24474" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.075908" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24472" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="334995422" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.013850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24473" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1322559862" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.011432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24475" name="PackReaderIsFreeAndStaleTransferIsFree" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.PackReaderIsFreeAndStaleTransferIsFree" methodname="PackReaderIsFreeAndStaleTransferIsFree" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="237338052" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.014383" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24484" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.227163" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24480" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,False)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="2140303760" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.013484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24481" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,True)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1424295504" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.014536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24482" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,False)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1115322342" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.028020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24483" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,True)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1683466563" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.011362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24479" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.058126" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24477" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="2137419491" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.014376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24478" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1561456189" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:17Z" duration="0.011346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24659" name="FiftyClarityReaderInputTests" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-11 04:07:17Z" end-time="2026-10-11 04:07:19Z" duration="1.108436" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="24676" name="ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.314471" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24674" name="ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists(False)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists(False)" methodname="ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1521960030" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.079991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24675" name="ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists(True)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists(True)" methodname="ActualWaterTransferMenuPaysOnceOnlyWhenTheSelectedDestinationStillExists" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1405836125" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.034250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[TransferWater|3] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'TransferWater|3' failed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24672" name="MissingOrForeignSelectedLootCannotOpenAReader" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.MissingOrForeignSelectedLootCannotOpenAReader" methodname="MissingOrForeignSelectedLootCannotOpenAReader" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="180708782" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.033168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24677" name="PauseControlsReaderSurvivesTheSharedPopupCanvasClearAndReturnsToPauseSelection" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.PauseControlsReaderSurvivesTheSharedPopupCanvasClearAndReturnsToPauseSelection" methodname="PauseControlsReaderSurvivesTheSharedPopupCanvasClearAndReturnsToPauseSelection" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="388760861" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.051355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24668" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.374218" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24660" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;controls&quot;,False)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;controls&quot;,False)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1994757169" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.035072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24661" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;controls&quot;,True)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;controls&quot;,True)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="183690291" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.031412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24662" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;status&quot;,False)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;status&quot;,False)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="891692752" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.031964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24663" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;status&quot;,True)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;status&quot;,True)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1251845991" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.034232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24664" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;loot&quot;,False)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;loot&quot;,False)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1301105500" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.038354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24665" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;loot&quot;,True)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;loot&quot;,True)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="586196003" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.034233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24666" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;trade&quot;,False)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;trade&quot;,False)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1809863248" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.034524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24667" name="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;trade&quot;,True)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction(&quot;trade&quot;,True)" methodname="ReaderUsesActualSelectedContextPreservesWorldNoticeAndReturnsWithoutAction" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="1241131577" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.032939" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24671" name="ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.091502" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24669" name="ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory(&quot;actor&quot;)" methodname="ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="772228662" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.032996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24670" name="ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory(&quot;zone&quot;)" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory(&quot;zone&quot;)" methodname="ReplacingTheLiveContextCancelsReaderReturnInsteadOfReopeningStaleInventory" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="309609562" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:18Z" duration="0.032494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24673" name="SearchOwnsDestructiveAndReaderKeysUntilEscape" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.SearchOwnsDestructiveAndReaderKeysUntilEscape" methodname="SearchOwnsDestructiveAndReaderKeysUntilEscape" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="157268071" result="Passed" start-time="2026-10-11 04:07:18Z" end-time="2026-10-11 04:07:19Z" duration="0.033550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24678" name="TradeConfirmationKeepsWholeStackPricePaintedForShortAndLongNames" fullname="CavesOfOoo.Tests.FiftyClarityReaderInputTests.TradeConfirmationKeepsWholeStackPricePaintedForShortAndLongNames" methodname="TradeConfirmationKeepsWholeStackPricePaintedForShortAndLongNames" classname="CavesOfOoo.Tests.FiftyClarityReaderInputTests" runstate="Runnable" seed="2117040798" result="Passed" start-time="2026-10-11 04:07:19Z" end-time="2026-10-11 04:07:19Z" duration="0.036009" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25355" name="SidebarAnnouncementTests" fullname="CavesOfOoo.Tests.SidebarAnnouncementTests" classname="CavesOfOoo.Tests.SidebarAnnouncementTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-11 04:07:19Z" end-time="2026-10-11 04:07:19Z" duration="0.242959" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25356" name="AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" fullname="CavesOfOoo.Tests.SidebarAnnouncementTests.AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" methodname="AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" classname="CavesOfOoo.Tests.SidebarAnnouncementTests" runstate="Runnable" seed="421735172" result="Passed" start-time="2026-10-11 04:07:19Z" end-time="2026-10-11 04:07:19Z" duration="0.178290" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

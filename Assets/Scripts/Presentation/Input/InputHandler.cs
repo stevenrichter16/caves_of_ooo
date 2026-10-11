@@ -3191,6 +3191,10 @@ namespace CavesOfOoo.Rendering
                     RequestZoneRedraw("Companion.Management");
                 }
                 _inputState = _worldActionMenuReturnState;
+                // Look mode handles input before the normal announcement poll.
+                // Open this committed read now, preserving its actual return context.
+                if (result.Success && CompanionManagementActions.IsReadOnlyCommand(action.Command))
+                    TryOpenAnnouncement();
                 return;
             }
 

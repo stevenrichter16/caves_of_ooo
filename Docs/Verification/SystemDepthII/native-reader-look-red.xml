@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="1.5334612">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27562" result="Failed" site="Child" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="1.533461" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="33947" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27562" result="Failed" site="Child" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="1.327764" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="33948" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27562" result="Failed" site="Child" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="1.240702" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="33949" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27562" result="Failed" site="Child" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="1.040707" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24471" name="CompanionManagementInputTests" fullname="CavesOfOoo.Tests.CompanionManagementInputTests" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11 04:04:26Z" end-time="2026-10-11 04:04:27Z" duration="0.838774" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24476" name="DeliberateGearSelectionUsesActualSlotAndPaysOnce" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.DeliberateGearSelectionUsesActualSlotAndPaysOnce" methodname="DeliberateGearSelectionUsesActualSlotAndPaysOnce" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="2141353712" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.156715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24474" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.063570" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24472" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1198940063" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.013218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24473" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="631009543" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.011101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24475" name="PackReaderIsFreeAndStaleTransferIsFree" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.PackReaderIsFreeAndStaleTransferIsFree" methodname="PackReaderIsFreeAndStaleTransferIsFree" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="160425620" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.015771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24484" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.230008" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24480" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,False)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="65295224" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.014233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24481" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionPack&quot;,True)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="991729209" result="Failed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.016144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real announcement reader must open; a queued sidebar log is insufficient.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying (System.String command, System.Boolean looking) [0x0011f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:137
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24482" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,False)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="607765426" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.028378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24483" name="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(&quot;CompanionCompare|&quot;,True)" methodname="RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="734810521" result="Failed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.011770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real announcement reader must open; a queued sidebar log is insufficient.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying (System.String command, System.Boolean looking) [0x0011f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:137
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=7 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24479" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.169499" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24477" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1769407930" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.018483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24478" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="763858088" result="Passed" start-time="2026-10-11 04:04:27Z" end-time="2026-10-11 04:04:27Z" duration="0.022024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

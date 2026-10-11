@@ -110,6 +110,38 @@ namespace CavesOfOoo.Tests
             Open(true); Select("CompanionStepAside"); if(veto) follower.AddPart(new VetoMove()); Confirm();
             Assert.AreEqual(!veto,zone.GetEntityPosition(follower)!=before); AssertCost(tick,energy,speed,veto?0:1);
         }
+        [TestCase("CompanionPack", false)] [TestCase("CompanionPack", true)]
+        [TestCase("CompanionCompare|", false)] [TestCase("CompanionCompare|", true)]
+        public void RealReaderOpensAndReturnsToItsOrdinaryOrLookContextWithoutPaying(string command, bool looking)
+        {
+            var item=Carry(follower,true);
+            var reader=scope.Root.AddComponent<AnnouncementUI>();input.AnnouncementUI=reader;
+            int tick=input.TurnManager.TickCount,energy=input.TurnManager.GetEnergy(player),speed=input.TurnManager.GetSpeed(player);
+            if(looking)
+            {
+                var keyboard=InputSystem.AddDevice<Keyboard>();keyboard.MakeCurrent();
+                void KeyPress(Key key)
+                {
+                    InputSystem.QueueStateEvent(keyboard,new KeyboardState(key));InputSystem.Update();
+                    typeof(InputHandler).GetField("_lastMoveTime",Private).SetValue(input,-999f);Call("Update");
+                    InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
+                    typeof(InputHandler).GetField("_lastMoveTime",Private).SetValue(input,-999f);Call("Update");
+                }
+                KeyPress(Key.L);Assert.AreEqual("LookMode",HotbarSaveFixture.Get(input,"_inputState").ToString());
+                KeyPress(Key.RightArrow);KeyPress(Key.Enter);
+                Assert.True(menu.IsOpen);Assert.AreSame(follower,menu.SelectedTarget);
+                Assert.AreEqual("LookMode",HotbarSaveFixture.Get(input,"_worldActionMenuReturnState").ToString());
+            }
+            else Open(true);
+            Select(command);Confirm();
+            Assert.True(reader.IsOpen,"The real announcement reader must open; a queued sidebar log is insufficient.");
+            Assert.AreEqual("AnnouncementOpen",HotbarSaveFixture.Get(input,"_inputState").ToString());
+            StringAssert.Contains(command=="CompanionPack"?"companion pack":"Equipment comparison",string.Join(" ",reader.VisibleLines));
+            Assert.False(MessageLog.HasPendingAnnouncement);AssertCost(tick,energy,speed,0);
+            State(new GamepadState().WithButton(GamepadButton.East));State(new GamepadState());
+            Assert.False(reader.IsOpen);Assert.AreEqual(looking?"LookMode":"Normal",HotbarSaveFixture.Get(input,"_inputState").ToString());
+            Assert.Contains(item,follower.GetPart<InventoryPart>().Objects);AssertCost(tick,energy,speed,0);
+        }
         public sealed class VetoMove : Part { public override string Name=>"CompanionMenuVetoMove"; public override bool HandleEvent(GameEvent e)=>e.ID!="BeforeMove"; }
     }
 }
