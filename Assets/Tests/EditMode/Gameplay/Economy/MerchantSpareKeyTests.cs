@@ -85,6 +85,18 @@ namespace CavesOfOoo.Tests
                 Assert.AreSame(loaded, items[0].GetPart<PhysicsPart>().InInventory);
             }
         }
+        [Test] public void NativeStumpVisualUsesTheExistingKeyFamily()
+        {
+            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Rendering.StumpVoxelLibrary")).FirstOrDefault(t => t != null);
+            if (type == null) Assert.Ignore("Native Stump presentation is outside the standalone runner.");
+            var family = type.GetMethod("Family");
+            Assert.AreEqual("key", family.Invoke(null, new object[] { "IronKey" }), "existing model-family precondition");
+            Assert.AreEqual("key", family.Invoke(null, new object[] { "SpareIronKey" }), "a purchased spare retains key art when dropped in Stump");
+            Assert.IsNull(family.Invoke(null, new object[] { "UnrelatedSpareIronKey" }), "exact alias only");
+            var model = type.GetMethod("ModelId");
+            for (int variant = 0; variant < 4; variant++)
+                Assert.AreEqual("stump-key-" + variant, model.Invoke(null, new object[] { family.Invoke(null, new object[] { "SpareIronKey" }), variant }));
+        }
         [Test] public void NativeVisualRecipeReusesTheExistingKeyModel()
         {
             var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Rendering.SpreadPortableRecipes")).FirstOrDefault(t => t != null);

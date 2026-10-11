@@ -59,3 +59,23 @@ roundtrip, not Unity runtime behavior. No physical Deck check is claimed.
 Changed: Objects.json, LootTables.json; SpreadPortableRecipes.cs and
 EnvironmentSpriteRenderer.cs; MerchantSpareKeyTests.cs and
 MerchantSpareKeyAdversarialTests.cs plus fresh metadata; this log and receipts.
+
+## Cold-eye follow-up: carried key in Stump
+
+The initial aliases covered Spread portable models and the 2D key body. Native
+Stump uses its own exact family mapping, so a purchased spare dropped there
+could fall back instead of reusing the existing Stump key. Added
+`NativeStumpVisualUsesTheExistingKeyFamily` before the production alias: old-key
+precondition, new spare, unrelated-name refusal and all four existing variants.
+Parent-owned native RED job `2228a9af8fad4b228f1ebdba79828640` executed 1 case:
+1 intended failure, expected `key`, actual null. The compact receipt
+`iteration01-stump-native-red.json` transcribes the root's observed native result;
+it is not presented as the full raw MCP response. Implemented one exact
+`SpareIronKey` case sharing `IronKey`'s existing family. No model, material,
+variant or visual guard changed. Native GREEN remains parent-owned pending.
+
+Independent HUD-agent review of the spare-key, restock and compost changes found
+no actionable regressions: protected original keys and exact stock identities
+remain intact; nested-table membership matches the roller; existing authored
+refill quantities and matching compost fallback are preserved. This Stump
+coverage gap was found by the implementation agent's cross-region review.

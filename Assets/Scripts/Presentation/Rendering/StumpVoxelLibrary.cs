@@ -137,6 +137,7 @@ namespace CavesOfOoo.Rendering
                 case "Bush": return "bush";
                 case "SummitSinger": return "singer";
                 case "BrocchiniaSentinel": return "sentinel";
+                case "SpareIronKey":
                 case "IronKey": return "key";
                 default: return null;
             }
