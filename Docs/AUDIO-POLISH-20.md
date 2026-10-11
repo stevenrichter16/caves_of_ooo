@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-17/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+18/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -187,3 +187,12 @@ Draft only. Root imports tests first and records actual native RED before produc
 
 
 Iteration17 complete:5 behavioral cases failed before implementation;723/723 native audio checks passed afterward. Fresh actual Play `a6c94a88f55a4f6aa4257b5ee7357bbc` passed11/11, zero errors,344.984s. Full Ephemera naturally ended after333.684 observed seconds (expected333.690); latest first PCM14921087/14921748, Meanwhile began at0 and measured peak0.03145733, exactly one completion/start. Native movement before/after passed, fixed16 voices and no idle world rescans. Four captures; next-piece screenshot inspected. No seek, clock acceleration, shortcuts or gameplay grants. Third full licensed track brings regional bytes to16,120,457. Independent source review/counters cover interruption, alias identity, early stop and bounded sequence state; private outgoing live-loop integration and subjective listening are not claimed.
+
+### Iteration 18 execution prompt
+
+Preserve pass17 full-piece sequence and actual sample bookmarks. Add exactly twelve seconds of music rest after the current calm composition naturally finishes. Keep ambient beds/details and ordinary input active, bypass and cancel the rest on genuine danger or context departure, freeze it while music is muted/listener paused, and never add silence on boot. One small context+float state, no new voice/world scan/preferences. Observe native RED, then source and native counters, then a fresh full natural Ephemera ending with12seconds noMusic sources but actual environmental PCM before Meanwhile. No seek, shortened track, accelerated clock or injected completion. Extend only the existing17/18 deadline. Thirteen live checks including common boot/minimumfour screenshots. Test text must not claim a human listening pass.
+
+Draft dependent on pass17; apply the narrow player patch and new intermission class, not the full reference player. All verification remains pending.
+
+
+Iteration18 complete:5 behavioral RED failures preceded implementation;744/744 native audio checks passed. Fresh actual Play `3616bd0c607e41368466b6da3f5d75d3` passed13/13, zero errors,357.088s. Full original Ephemera ended naturally, music was absent for11.999822s while real environmental output continued (peak0.03484246), then Meanwhile began exactly once at sample0 (peak0.03142668). Movement before/after, zero idle rescans,16 voices and preferences passed. Four captures; final gameplay inspected. No seeks/acceleration/shortcuts/grants. Independent review found and removed two stray string arguments in the draft native Check before importing; production required no correction. Danger/context interruption and disabled-time counters are native unit scope, not additional live claims.

@@ -121,6 +121,8 @@ namespace CavesOfOoo.Rendering
             public int Active=>(Sources[0].clip!=null?1:0)+(Sources[1].clip!=null?1:0);
             public void StopAll(){for(int i=0;i<2;i++){Retire(i);Weights[i]=Starts[i]=0;}Age=FadeSeconds;}
         }
+        readonly WorldAudioMusicIntermission intermission=new WorldAudioMusicIntermission();
+        public float MusicQuietRemaining=>intermission.Remaining;
         readonly WorldAudioLibrary library;readonly WorldAudioMusicSequence sequence;readonly LoopBus music=new LoopBus(true),ambience=new LoopBus();
         readonly AudioSource[] sounds=new AudioSource[SoundCapacity];readonly float[] remaining=new float[SoundCapacity],gains=new float[SoundCapacity];
         readonly float[] cooldown=new float[Enum.GetValues(typeof(WorldAudioCue)).Length];readonly int[] variants=new int[Enum.GetValues(typeof(WorldAudioCue)).Length];
@@ -142,7 +144,7 @@ namespace CavesOfOoo.Rendering
         public WorldAudioPlayer(Transform parent,WorldAudioLibrary prepared)
         {
             library=prepared??new WorldAudioLibrary();sequence=new WorldAudioMusicSequence(library);
-            music.Completed=clip=>{sequence.Complete(clip);MusicCompletionCount++;};Root=new GameObject("World audio"){hideFlags=HideFlags.DontSave}.transform;Root.SetParent(parent,false);
+            music.Completed=clip=>{bool current=sequence.Select(CurrentMusicId)?.Clip==clip;sequence.Complete(clip);MusicCompletionCount++;if(current)intermission.Complete(CurrentMusicId);};Root=new GameObject("World audio"){hideFlags=HideFlags.DontSave}.transform;Root.SetParent(parent,false);
             for(int i=0;i<2;i++){music.Sources[i]=Source("Music "+i,false,128);ambience.Sources[i]=Source("Ambience "+i,true,192);}
             for(int i=0;i<SoundCapacity;i++)sounds[i]=Source("Action "+i,false,64);
         }
@@ -152,7 +154,7 @@ namespace CavesOfOoo.Rendering
             source.playOnAwake=false;source.loop=loop;source.spatialBlend=0;source.dopplerLevel=0;source.reverbZoneMix=0;source.pitch=1;source.priority=priority;source.volume=0;return source;
         }
         public void SetContext(WorldAudioContext context)
-        {if(!CheckSources())return;CurrentMusicId=context.MusicId;music.Select(sequence.Select(context.MusicId));ambience.Select(library.Ambience(context.AmbienceId));}
+        {if(!CheckSources())return;CurrentMusicId=context.MusicId;music.Select(intermission.WaitFor(context.MusicId)?null:sequence.Select(context.MusicId));ambience.Select(library.Ambience(context.AmbienceId));}
         /// <summary>Retire a source-dependent bed immediately when that source ceases to exist.</summary>
         public void InvalidateAmbience(string id){if(!disposed)ambience.Invalidate(library.Ambience(id));}
         public bool TryPlay(WorldAudioCue cue,float pan=0)
@@ -216,7 +218,8 @@ namespace CavesOfOoo.Rendering
             {
                 if(!CheckSources())return;float delta=SafeDelta(wallDelta);
                 AdvanceFocus(delta);
-                music.ObserveNaturalEnds();music.Select(sequence.Select(CurrentMusicId));
+                intermission.Advance(delta,WorldAudioSettings.MusicVolume>0&&!AudioListener.pause);
+                music.ObserveNaturalEnds();music.Select(intermission.WaitFor(CurrentMusicId)?null:sequence.Select(CurrentMusicId));
                 music.Tick(delta,WorldAudioSettings.MusicVolume*AtmosphereMix);ambience.Tick(delta,WorldAudioSettings.AmbienceVolume*AtmosphereMix);
                 for(int c=0;c<cooldown.Length;c++)cooldown[c]=Mathf.Max(0,cooldown[c]-delta);
                 for(int i=0;i<SoundCapacity;i++)
@@ -240,7 +243,7 @@ namespace CavesOfOoo.Rendering
         static void Stop(AudioSource source){if(source==null)return;if(Application.isPlaying)source.Stop();source.clip=null;source.volume=0;}
         public void Dispose()
         {
-            if(disposed)return;ClearSounds();music.StopAll();music.ForgetPositions();sequence.Clear();ambience.StopAll();disposed=true;
+            if(disposed)return;ClearSounds();music.StopAll();music.ForgetPositions();sequence.Clear();intermission.Clear();ambience.StopAll();disposed=true;
             if(Root!=null){if(Application.isPlaying)UnityEngine.Object.Destroy(Root.gameObject);else UnityEngine.Object.DestroyImmediate(Root.gameObject);}Root=null;
         }
     }
