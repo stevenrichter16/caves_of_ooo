@@ -1,0 +1,43 @@
+{
+    "runId": "8bb9ce7d8a98498a9b742bddb7bb6ea8",
+    "zone": "Overworld.11.10.0",
+    "fatal": "Play stopped before completion.",
+    "canVerify": "Ordinary original starter steel dagger equipped by its real inventory command, original glade chest torch acquired through actual container UI, wood drop and same-owner recovery, actual imported metal/wood recordings with committed exact-item receipts and fixed16 sources.",
+    "cannotVerify": "Soft materials, split stacks and callback negatives are native unit coverage, not claimed live here. Container transfer deliberately retains its original generic family; no inferred material is taken from an arbitrary item after bulk transfer. No generated items, material rewrites, HP or enemy suppression. Actual local travel retains danger. Source samples are not subjective listening or Deck performance; saved audio preferences remain unchanged.",
+    "mode": "audio-polish-13",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio13_metal_imported",
+        "PASS audio13_original_dagger_equipped",
+        "FAIL native_interrupted",
+        "PASS audio13_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/13/8bb9ce7d8a98498a9b742bddb7bb6ea8/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/13/8bb9ce7d8a98498a9b742bddb7bb6ea8/handling-01-original-steel-dagger.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "audio13_metal_imported",
+            "source": "2697",
+            "text": "Cue=HandleMetal; original source=; exact receipt=True; count=1; imported playing=True; clip=handle_metal_01; sampled peak=0.005515503; floats=135168. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 5,
+    "failures": 1,
+    "unexpectedErrors": 0,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": false,
+    "seconds": 5.9436731,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

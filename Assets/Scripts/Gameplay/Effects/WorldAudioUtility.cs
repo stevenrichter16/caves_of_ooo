@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         public static Action<WorldAudioUtilityReceipt> Callback {get;set;}
         internal static bool IsWater(WorldAudioCue cue)=>cue==WorldAudioCue.WaterFill
             ||cue==WorldAudioCue.WaterDrink||cue==WorldAudioCue.WaterPour;
-        internal static bool IsUtility(WorldAudioCue cue)=>IsWater(cue)||cue==WorldAudioCue.CookPrepare||cue==WorldAudioCue.BrewPrepare;
+        internal static bool IsUtility(WorldAudioCue cue)=>IsWater(cue)||cue==WorldAudioCue.CookPrepare||cue==WorldAudioCue.BrewPrepare||cue==WorldAudioCue.HandleSoft||cue==WorldAudioCue.HandleWood||cue==WorldAudioCue.HandleMetal;
         internal static Capture TakeActor(Entity actor,Zone zone,WorldAudioCue cue,Func<bool> committed)
         {
             if(Callback==null||actor==null||zone==null||!IsUtility(cue)||committed==null)return null;
@@ -79,6 +79,41 @@ namespace CavesOfOoo.Core
                         &&sourcePhysics.InInventory==null&&sourcePhysics.Equipped==null))
                     &&source.GetPart<RenderPart>()==sourceRender&&sourceRender?.ParentEntity==source&&sourceRender.Visible
                     &&!source.HasTag("Creature");
+            }
+            internal void PublishHandling(Entity item,WorldAudioCue fallback)
+            {
+                if(published)return;published=true;
+                try
+                {
+                    if(!Current()||!committed()||item==null)return;
+                    // A coin becomes currency, not a retained handled object.
+                    if(item.BlueprintName=="GoldCoin")
+                    {WorldAudioHooks.Emit(fallback,actor,zone,origin.X,origin.Y);return;}
+                    var physical=item.GetPart<PhysicsPart>();var render=item.GetPart<RenderPart>();
+                    if(physical?.ParentEntity!=item||!physical.Takeable||(render!=null&&(render.ParentEntity!=item||!render.Visible))
+                        ||item.HasTag("Creature")||(item.GetPart<StackerPart>()?.StackCount??1)<=0)return;
+                    bool carried=item.SpatialZone==null&&inventory.Objects.Contains(item)&&physical.InInventory==actor
+                        &&physical.Equipped==null&&!InventorySystem.IsEquipped(actor,item);
+                    bool equipped=item.SpatialZone==null&&!inventory.Objects.Contains(item)&&physical.InInventory==null
+                        &&physical.Equipped==actor&&InventorySystem.IsEquipped(actor,item);
+                    var ground=zone.GetEntityCell(item);
+                    bool dropped=item.SpatialZone==zone&&ground==origin&&origin.Objects.Contains(item)
+                        &&physical.InInventory==null&&physical.Equipped==null;
+                    if(!carried&&!equipped&&!dropped)return;
+                    // Existing nonvisual inventory items still provide generic action feedback.
+                    // Absence is distinct from an explicitly hidden or foreign render part.
+                    if(render==null){WorldAudioHooks.Emit(fallback,actor,zone,origin.X,origin.Y);return;}
+                    var material=item.GetPart<MaterialPart>();WorldAudioCue chosen;
+                    switch(material?.ParentEntity==item?material.MaterialID:null)
+                    {
+                        case "Leather":case "Cloth":chosen=WorldAudioCue.HandleSoft;break;
+                        case "Wood":chosen=WorldAudioCue.HandleWood;break;
+                        case "Steel":case "Iron":case "Copper":case "Brass":case "RustedIron":chosen=WorldAudioCue.HandleMetal;break;
+                        default:WorldAudioHooks.Emit(fallback,actor,zone,origin.X,origin.Y);return;
+                    }
+                    Callback?.Invoke(new WorldAudioUtilityReceipt(actor,item,null,zone,new Point(origin.X,origin.Y),chosen));
+                }
+                catch(Exception){/* A committed item operation remains complete if optional sound refuses. */}
             }
             internal void Publish()
             {

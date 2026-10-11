@@ -1,8 +1,9 @@
 namespace CavesOfOoo.Core.Inventory.Commands
 {
-    public sealed class DropCommand : IInventoryCommand
+    public sealed class DropCommand : IInventoryCommand, IInventoryAudioItem
     {
         private readonly Entity _item;
+        public Entity AudioItem => _item;
 
         public string Name => "Drop";
 

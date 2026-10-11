@@ -4,11 +4,12 @@ using CavesOfOoo.Core.Inventory.Planning;
 
 namespace CavesOfOoo.Core.Inventory.Commands
 {
-    public sealed class EquipCommand : IInventoryCommand
+    public sealed class EquipCommand : IInventoryCommand, IInventoryAudioItem
     {
         private static readonly EquipPlanner Planner = new EquipPlanner();
 
         private readonly Entity _item;
+        public Entity AudioItem { get; private set; }
         private readonly BodyPart _targetBodyPart;
 
         public string Name => "Equip";
@@ -68,13 +69,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            AudioItem=null;
             return ExecuteInternal(
                 context,
                 transaction,
                 _item,
                 _targetBodyPart,
                 allowDisplacements: true,
-                emitPlanFailureMessage: true);
+                emitPlanFailureMessage: true,
+                reportPrepared: prepared=>AudioItem=prepared);
         }
 
         internal static InventoryCommandResult ExecuteInternal(
@@ -85,7 +88,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool allowDisplacements,
             bool emitPlanFailureMessage,
             bool emitSuccessMessage = true,
-            System.Func<Entity, bool> validatePreparedChoice = null)
+            System.Func<Entity, bool> validatePreparedChoice = null,
+            System.Action<Entity> reportPrepared = null)
         {
             if (context == null || context.Actor == null || context.Inventory == null)
             {
@@ -222,6 +226,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () => ItemEnhancementDispatch.DispatchOnUnequip(actor, itemToEquip));
 
+            reportPrepared?.Invoke(itemToEquip);
             return InventoryCommandResult.Ok();
         }
 

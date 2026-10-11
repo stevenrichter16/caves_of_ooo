@@ -1,8 +1,9 @@
 namespace CavesOfOoo.Core.Inventory.Commands
 {
-    public sealed class PickupCommand : IInventoryCommand
+    public sealed class PickupCommand : IInventoryCommand, IInventoryAudioItem
     {
         private readonly Entity _item;
+        public Entity AudioItem => _item;
         private readonly bool _autoEquip = true;
         private readonly bool _retainIdentity;
         private readonly int _expectedQuantity;

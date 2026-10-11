@@ -3,9 +3,10 @@ using CavesOfOoo.Core.Anatomy;
 
 namespace CavesOfOoo.Core.Inventory.Commands
 {
-    public sealed class UnequipCommand : IInventoryCommand
+    public sealed class UnequipCommand : IInventoryCommand, IInventoryAudioItem
     {
         private readonly Entity _item;
+        public Entity AudioItem => _item;
 
         public string Name => "Unequip";
 

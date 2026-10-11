@@ -24,6 +24,9 @@ namespace CavesOfOoo.Core
         public static InventoryCommandResult ExecuteCommand(IInventoryCommand command, Entity actor, Zone zone = null)
         {
             var context = new InventoryContext(actor, zone);
+            var handling=command as IInventoryAudioItem;
+            var handlingAudio=handling==null?null:WorldAudioUtility.TakeActor(actor,zone??actor?.SpatialZone,
+                WorldAudioCue.HandleSoft,()=>true);
             var result = CommandExecutor.Execute(command, context);
             // Sound observes the committed receipt, never an optimistic menu selection.
             // Unknown/custom and read-only actions remain silent.
@@ -33,11 +36,12 @@ namespace CavesOfOoo.Core
                 var cell = currentZone?.GetEntityCell(actor);
                 if (cell != null)
                 {
-                    if (command is PickupCommand || command is TakeFromContainerCommand
-                        || command is DropCommand || command is DropPartialCommand || command is PutInContainerCommand)
+                    if(handling!=null)
+                        handlingAudio?.PublishHandling(handling.AudioItem,command is EquipCommand||command is UnequipCommand?WorldAudioCue.Equip:WorldAudioCue.Pickup);
+                    else if (command is TakeFromContainerCommand
+                        || command is DropPartialCommand || command is PutInContainerCommand)
                         WorldAudioHooks.Emit(WorldAudioCue.Pickup, actor, currentZone, cell.X, cell.Y);
-                    else if (command is EquipCommand || command is UnequipCommand)
-                        WorldAudioHooks.Emit(WorldAudioCue.Equip, actor, currentZone, cell.X, cell.Y);
+
                 }
             }
             return result;

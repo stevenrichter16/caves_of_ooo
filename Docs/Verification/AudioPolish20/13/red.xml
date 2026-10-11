@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Failed(Child)" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:27:01Z" end-time="2026-10-11 19:27:04Z" duration="2.4984001">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28297" result="Failed" site="Child" start-time="2026-10-11 19:27:01Z" end-time="2026-10-11 19:27:04Z" duration="2.498400" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34854" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28297" result="Failed" site="Child" start-time="2026-10-11 19:27:01Z" end-time="2026-10-11 19:27:04Z" duration="2.353215" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34855" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28297" result="Failed" site="Child" start-time="2026-10-11 19:27:01Z" end-time="2026-10-11 19:27:04Z" duration="2.204686" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34856" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28297" result="Failed" site="Child" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:04Z" duration="2.004645" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33068" name="WorldAudioItemHandlingTests" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:04Z" duration="1.804134" total="27" passed="3" failed="24" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="33082" name="ActualDropUsesItsRealGroundOwner" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.423176" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33079" name="ActualDropUsesItsRealGroundOwner(&quot;Wood&quot;,&quot;HandleWood&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner(&quot;Wood&quot;,&quot;HandleWood&quot;)" methodname="ActualDropUsesItsRealGroundOwner" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1494372696" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.172678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleWood take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner (System.String material, System.String cue) [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:21
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33080" name="ActualDropUsesItsRealGroundOwner(&quot;Steel&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner(&quot;Steel&quot;,&quot;HandleMetal&quot;)" methodname="ActualDropUsesItsRealGroundOwner" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1557220745" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.024441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner (System.String material, System.String cue) [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:21
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33081" name="ActualDropUsesItsRealGroundOwner(&quot;Leather&quot;,&quot;HandleSoft&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner(&quot;Leather&quot;,&quot;HandleSoft&quot;)" methodname="ActualDropUsesItsRealGroundOwner" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1434082320" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.024364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleSoft take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualDropUsesItsRealGroundOwner (System.String material, System.String cue) [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:21
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33078" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:03Z" duration="0.304581" total="9" passed="1" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33069" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Wood&quot;,&quot;HandleWood&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Wood&quot;,&quot;HandleWood&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1408878372" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.031025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleWood take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33070" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Steel&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Steel&quot;,&quot;HandleMetal&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1043113108" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:02Z" duration="0.024914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33071" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Iron&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Iron&quot;,&quot;HandleMetal&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="459399804" result="Failed" start-time="2026-10-11 19:27:02Z" end-time="2026-10-11 19:27:03Z" duration="0.024660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33072" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Copper&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Copper&quot;,&quot;HandleMetal&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1689171833" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33073" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Brass&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Brass&quot;,&quot;HandleMetal&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1132269505" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33074" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;RustedIron&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;RustedIron&quot;,&quot;HandleMetal&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1672160668" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 13. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33075" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Cloth&quot;,&quot;HandleSoft&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Cloth&quot;,&quot;HandleSoft&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="2046906286" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleSoft take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33076" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Leather&quot;,&quot;HandleSoft&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;Leather&quot;,&quot;HandleSoft&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1943136981" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleSoft take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback (System.String material, System.String cue) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33077" name="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;unknown&quot;,&quot;Pickup&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback(&quot;unknown&quot;,&quot;Pickup&quot;)" methodname="ActualPickupUsesItsSettledMaterialAndRetainsUnknownFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="414550760" result="Passed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.025716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33086" name="ExplicitEquipAndUnequipEachUseThePhysicalMaterial" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.145558" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33083" name="ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Wood&quot;,&quot;HandleWood&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Wood&quot;,&quot;HandleWood&quot;)" methodname="ExplicitEquipAndUnequipEachUseThePhysicalMaterial" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="588032840" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.026243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 12. Strings differ at index 0.
+  Expected: "HandleWood take 0"
+  But was:  "Equip take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial (System.String material, System.String cue) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33084" name="ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Steel&quot;,&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Steel&quot;,&quot;HandleMetal&quot;)" methodname="ExplicitEquipAndUnequipEachUseThePhysicalMaterial" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1627039621" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 12. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Equip take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial (System.String material, System.String cue) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33085" name="ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Cloth&quot;,&quot;HandleSoft&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial(&quot;Cloth&quot;,&quot;HandleSoft&quot;)" methodname="ExplicitEquipAndUnequipEachUseThePhysicalMaterial" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="839599033" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.024011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 12. Strings differ at index 0.
+  Expected: "HandleSoft take 0"
+  But was:  "Equip take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ExplicitEquipAndUnequipEachUseThePhysicalMaterial (System.String material, System.String cue) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33089" name="FailedPickupKeepsItsSourceAndPublishesNothing" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.FailedPickupKeepsItsSourceAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.179766" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33087" name="FailedPickupKeepsItsSourceAndPublishesNothing(&quot;veto&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.FailedPickupKeepsItsSourceAndPublishesNothing(&quot;veto&quot;)" methodname="FailedPickupKeepsItsSourceAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1057245854" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.028242" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleWood take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.FailedPickupKeepsItsSourceAndPublishesNothing (System.String failure) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33088" name="FailedPickupKeepsItsSourceAndPublishesNothing(&quot;throw&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.FailedPickupKeepsItsSourceAndPublishesNothing(&quot;throw&quot;)" methodname="FailedPickupKeepsItsSourceAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="384517687" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.025854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "HandleWood take 0"
+  But was:  "Pickup take 0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.FailedPickupKeepsItsSourceAndPublishesNothing (System.String failure) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33095" name="ForceRemovedGearAfterEquipHasNoFalseClothingReceipt" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ForceRemovedGearAfterEquipHasNoFalseClothingReceipt" methodname="ForceRemovedGearAfterEquipHasNoFalseClothingReceipt" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="597807229" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.086464" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ForceRemovedGearAfterEquipHasNoFalseClothingReceipt () [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:38
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33101" name="GenericHookCannotForgeMaterialHandling" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.244108" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33098" name="GenericHookCannotForgeMaterialHandling(&quot;HandleSoft&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling(&quot;HandleSoft&quot;)" methodname="GenericHookCannotForgeMaterialHandling" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1498064973" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.062003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33099" name="GenericHookCannotForgeMaterialHandling(&quot;HandleWood&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling(&quot;HandleWood&quot;)" methodname="GenericHookCannotForgeMaterialHandling" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1571515834" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.096910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33100" name="GenericHookCannotForgeMaterialHandling(&quot;HandleMetal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling(&quot;HandleMetal&quot;)" methodname="GenericHookCannotForgeMaterialHandling" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1341085535" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.025652" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.GenericHookCannotForgeMaterialHandling (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33097" name="GoldBecomesCurrencyAndKeepsItsEstablishedGenericFallback" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.GoldBecomesCurrencyAndKeepsItsEstablishedGenericFallback" methodname="GoldBecomesCurrencyAndKeepsItsEstablishedGenericFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1390914579" result="Passed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.026360" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33096" name="PartialStackDropKeepsTheEstablishedGenericFallback" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.PartialStackDropKeepsTheEstablishedGenericFallback" methodname="PartialStackDropKeepsTheEstablishedGenericFallback" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1612075509" result="Passed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.025385" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33093" name="ReentrantAfterPickupCannotPublishStaleOwnership" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:04Z" duration="0.141923" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33090" name="ReentrantAfterPickupCannotPublishStaleOwnership(&quot;move&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership(&quot;move&quot;)" methodname="ReentrantAfterPickupCannotPublishStaleOwnership" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="965891774" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.028401" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership (System.String mutation) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33091" name="ReentrantAfterPickupCannotPublishStaleOwnership(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership(&quot;alias&quot;)" methodname="ReentrantAfterPickupCannotPublishStaleOwnership" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="648743111" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:03Z" duration="0.025439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership (System.String mutation) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33092" name="ReentrantAfterPickupCannotPublishStaleOwnership(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership(&quot;hidden&quot;)" methodname="ReentrantAfterPickupCannotPublishStaleOwnership" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1713287796" result="Failed" start-time="2026-10-11 19:27:03Z" end-time="2026-10-11 19:27:04Z" duration="0.024975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioItemHandlingTests.ReentrantAfterPickupCannotPublishStaleOwnership (System.String mutation) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33094" name="SplitEquipUsesPreparedCloneAfterBeforeEquipMutation" fullname="CavesOfOoo.Tests.WorldAudioItemHandlingTests.SplitEquipUsesPreparedCloneAfterBeforeEquipMutation" methodname="SplitEquipUsesPreparedCloneAfterBeforeEquipMutation" classname="CavesOfOoo.Tests.WorldAudioItemHandlingTests" runstate="Runnable" seed="1234760330" result="Failed" start-time="2026-10-11 19:27:04Z" end-time="2026-10-11 19:27:04Z" duration="0.025412" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected and actual are both <System.String[1]>
+  Values differ at index [0]
+  Expected string length 18 but was 12. Strings differ at index 0.
+  Expected: "HandleMetal take 0"
+  But was:  "Equip take 0"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:13
+at CavesOfOoo.Tests.WorldAudioItemHandlingTests.SplitEquipUsesPreparedCloneAfterBeforeEquipMutation () [0x000c4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioItemHandlingTests.cs:35
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

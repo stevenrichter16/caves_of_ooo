@@ -1,0 +1,54 @@
+{
+    "runId": "2716fc2b98474ca796d42e3313002c12",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Ordinary original starter steel dagger equipped by its real inventory command, original glade chest torch acquired through actual container UI, wood drop and same-owner recovery, actual imported metal/wood recordings with committed exact-item receipts and fixed16 sources.",
+    "cannotVerify": "Soft materials, split stacks and callback negatives are native unit coverage, not claimed live here. Container transfer deliberately retains its original generic family; no inferred material is taken from an arbitrary item after bulk transfer. No generated items, material rewrites, HP or enemy suppression. Actual local travel retains danger. Source samples are not subjective listening or Deck performance; saved audio preferences remain unchanged.",
+    "mode": "audio-polish-13",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio13_metal_imported",
+        "PASS audio13_original_dagger_equipped",
+        "PASS audio13_actual_chest_torch",
+        "PASS audio13_wood_imported",
+        "PASS audio13_wood_dropped",
+        "PASS audio13_same_torch_recovered",
+        "PASS audio13_fixed_pool",
+        "PASS audio13_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/13/2716fc2b98474ca796d42e3313002c12/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/13/2716fc2b98474ca796d42e3313002c12/handling-01-original-steel-dagger.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/13/2716fc2b98474ca796d42e3313002c12/handling-02-original-wooden-torch.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "audio13_metal_imported",
+            "source": "2699",
+            "text": "Cue=HandleMetal; original source=; exact receipt=True; count=1; imported playing=True; clip=handle_metal_01; sampled peak=0.005515503; floats=116736. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        },
+        {
+            "subject": "audio13_wood_imported",
+            "source": "2063",
+            "text": "Cue=HandleWood; original source=; exact receipt=True; count=1; imported playing=True; clip=handle_wood_01; sampled peak=0.04870084; floats=104448. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 9,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 7.8381311,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}
