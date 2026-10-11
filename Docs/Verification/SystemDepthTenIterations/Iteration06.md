@@ -1,6 +1,6 @@
 # Iteration 06 — companion combat participation
 
-Status: standalone RED→GREEN and independent review complete; native verification pending. Iteration09 owns integration of its new Stay order into the responder gate.
+Status: standalone RED→GREEN, independent review and final native Unity EditMode verification complete. Iteration09 integrated its saved Stay order into the responder gate.
 
 The player attacks through `CombatSystem.PerformMeleeAttack`; `FollowLeaderGoal` only watches AI leaders with a `KillGoal`. Connect committed player melee attempts to current recruited allies. Also connect actual hostile HP harm to bounded local self/party defense. This is CoO design, not a new Qud-parity claim.
 
@@ -11,7 +11,7 @@ The player attacks through `CombatSystem.PerformMeleeAttack`; `FollowLeaderGoal`
 - `RecruitedEffect` owns the leader link and persistent `FollowLeaderGoal`; inspect both plus the exact roster before dispatch.
 - Existing `KillGoal` provides bounded six-action last-seen pursuit, target death/departure cleanup and save persistence. Preserve it; do not invent a second target timer.
 - Positive damage already has a canonical post-HP boundary. Restrict reactive defense to existing hostile, nonparty sources and direct player party members. Every responder must independently see the attacker and harmed member. No faction-wide relay, hidden tracking, player FOV dependency or free attack.
-- The navigation/order agent owns `FollowLeaderGoal`, `BrainPart`, `RecruitedEffect` and zone transit. This slice owns a new helper and narrow `CombatSystem` hooks, with its future `CompanionOrders.IsStaying` responder gate added by iteration09 to keep each scoped commit independently compilable.
+- The navigation/order agent owns `FollowLeaderGoal`, `BrainPart`, `RecruitedEffect` and zone transit. This slice owns a new helper and narrow `CombatSystem` hooks, with the `CompanionOrders.IsStaying` responder gate added by iteration09 to keep each scoped commit independently compilable.
 
 ## Acceptance and tests
 
@@ -19,7 +19,7 @@ Actual Player-tagged canonical attacks, misses/veto, exact target, duplicate not
 
 ## Scope and honesty
 
-No general threat scoring, faction alert bus, follower equipment interface, arbitrary neutral-on-neutral retaliation, or spell-assist expansion. Staying companions do not abandon their orders to pursue. Only ordinary scheduled AI actions execute the selected combat goal. Standalone .NET checks can establish gameplay and production save graph behavior; native Unity/input/rendering/feel remain root-owned final gates.
+No general threat scoring, faction alert bus, follower equipment interface, arbitrary neutral-on-neutral retaliation, or spell-assist expansion. Staying companions do not abandon their orders to pursue. Only ordinary scheduled AI actions execute the selected combat goal. Standalone .NET checks can establish gameplay and production save graph behavior; native Unity EditMode is now verified; actual input, Play rendering and feel remain separate evidence.
 
 ## Verification / review / files
 
@@ -27,6 +27,8 @@ No general threat scoring, faction alert bus, follower equipment interface, arbi
 - Initial GREEN: `iteration06-initial-green.xml`, 15/15.
 - Adversarial/companion regression: `iteration06-adversarial-green.xml`, 69/69: 15 new core + 32 dedicated adversarial + 22 existing follow cases. .NET SDK 10.0.105, isolated copy of the tracked .NET 8 runner under `/tmp/system-depth-combat-runner`, `COO_REPO` pointing at this checkout; single worker.
 - Independent cold-eye review by the navigation/order agent found no blocking issue in current ownership/witness flow. Its concrete integration note is accepted: Stay gates responders, not membership, so following allies can still defend a staying victim.
-- Self-review: 🟡 closed player assist disconnect and bounded positive-damage response; 🔵 intentionally exclude current busy/peaceful/conversing followers, hidden witnesses, neutral damage, and lethal victims; 🧪 native runtime/render/feel remain pending.
+- Self-review: 🟡 closed player assist disconnect and bounded positive-damage response; 🔵 intentionally exclude current busy/peaceful/conversing followers, hidden witnesses, neutral damage, and lethal victims; 🧪 actual Play/input/render/feel evidence remains separate from the passed native EditMode suite.
 - Changed files: new `CompanionCombat.cs` + meta, two narrow hooks in `CombatSystem.cs`, new core/adversarial tests + metas, this log and receipts. No shared follower/order file edited.
 - No new resource, timer, static cache or save format was introduced. Existing KillGoal and recruitment references are tested through the production token-graph save pipeline.
+
+- Final native Unity EditMode: [native-final-integration.xml](native-final-integration.xml), job `941ad3a3628542c19f5fda2b0a9e49b4`, **810/810 passed, 0 failed, 0 skipped**. All 47 CompanionCombat core/adversarial cases passed. This is native gameplay/save-graph evidence; it does not claim an organic recruitment/combat playthrough or controller feel.
