@@ -1,5 +1,6 @@
 # Sonic polish: twenty further iterations
 
+Current delivery status: **all20 audio iterations, selected HUD, final3,223 native tests and Linux archive complete**. See the final delivery section for exact source and package evidence.
 Status: all twenty implemented and individually verified,2026-10-11. Final combined HUD/delivery gate pending. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
 
 ## Planning prompt — execute before choosing the twenty
@@ -222,3 +223,11 @@ Iteration20 complete:6 behavioral RED cases had4 expected failures/2 passes;793/
 All20 audio iterations retain individual test-first/native Play receipts. The selected A+B HUD and on-demand World log are implemented with evidence in `HUD-POLISH.md`. Final native EditMode sweep passes3,223/3,223, no skips (159fixtures,195.981s), including793audio cases. Both pointer-hover and thoughts-idle review findings are fixed and covered. Final HUD Play at1080p,800p,720p passes19/19each with zero errors. Supplementary final audio19 town travel passes10/10 (`3d1fd447831248f0889ca01ffbe9f1ae`); final audio20 settings passes12/12 (`ac2eff5bf22543deb8d2a88b0f0c14bb`), selected explicitly for packaging without counting another iteration.
 
 All five final source-palette validators pass:85clips,45,872,441compressed bytes, zero findings. The reviewed manifest assembly preserves20new/4historical routes separately, exact hashes/source/credits/licenses and native limitations. The initial assembly refused a mismatched selected-final field; correcting the selection key to `finalReport` produced the validated artifact, with no bypass or evidence overwrite. Delivery tools pass59synthetic checks. Fresh Linux build/archive remain pending below. No subjective musical-listening, physical Steam Deck performance or player-build runtime claim is made.
+
+## Delivered Linux player — 2026-10-11
+
+Built exact source `8789223c79d5b62b23f5195b90c1c7f8a8bad65a` for Linux x86_64 in32.623s, zero errors. Four existing compiler warnings remain (two Effect.Owner hiding warnings, GameBootstrap unreachable code and unused ShortBlades_Backstab._isFlanked). The three build-mutated settings files were restored byte-for-byte to their pre-build state. Final editor scene is SampleScene, stopped.
+
+Archive: `Builds/SteamDeck/2026-10-11-audio-polish20-current/CavesOfOoo-SteamDeck-audio-polish20-current.tar.gz` (188,152,378bytes). SHA256: `de3e8c355eecd8af28f810fce4eef9ff32976d70990cba565dab0edc703ec0d6`. Readback verifies all335payload files, file-list equality, executable permissions, credits/licenses and exact20new/4historical audio receipt separation. Final evidence is in `Docs/Verification/AudioPolish20/Delivery/`: raw build result, independent manifest review, final3,223-case native XML, package checks and build-info.
+
+The committed README is byte-identical in the archive. Extracted root is `CavesOfOoo-current`; users replacing an older release must update its files or their existing Steam shortcut to the new executable. Save location is unchanged. Build success and Mac-hosted native checks do not establish Linux-runtime or physical Steam Deck performance/controller/audio certification. No new performance percentage or subjective listening claim is made. The later delivery-doc commit changes no player source.

@@ -1,6 +1,6 @@
 # HUD polish — compact skills and grouped world log
 
-Status: **implemented; final3,223 native EditMode tests pass; actual gameplay checks pass at1080p,800p and720p.** The user chose mockup A’s compact skill bar with mockup B’s grouped log. The saved prompt/references are in `Docs/HUD-MOCKUP-DESIGN-PROMPTS.md` and `Docs/Design/HudMockups/` (commit273da934c). Behavioral RED, review corrections and raw evidence are retained below. Matched profile review is complete; final Linux delivery is being finalized.
+Status: **implemented; final3,223 native EditMode tests pass; actual gameplay checks pass at1080p,800p and720p.** The user chose mockup A’s compact skill bar with mockup B’s grouped log. The saved prompt/references are in `Docs/HUD-MOCKUP-DESIGN-PROMPTS.md` and `Docs/Design/HudMockups/` (commit273da934c). Behavioral RED, review corrections and raw evidence are retained below. Matched profile review is complete; the Linux player is built and packaged below.
 
 Implementation was imported after the audio20 sequence. Root owns Unity tests, actual Play, screenshots, profiling, commits and delivery. The reviewed source bundles remain in `/tmp/coo-hud-polish` and `/tmp/coo-hud-polish-history`; the narrow header follow-up is in `/tmp/coo-hud-polish-review`. The helper only performs staged imports and never operates Unity or Git.
 
@@ -86,7 +86,7 @@ Raw data records explicit observer and completed-snapshot frames, scheduler tick
 | Functional Play1280×800 | **19/19, zero unexpected errors** | Final-source `Native/435f30fba2d14461aedc8ff47c052176/report.json`, 13.340s; original pixels reviewed separately. |
 | Functional Play1280×720 | **19/19, zero unexpected errors** | Final-source `Native/2f137a3b306a41098bff85b830f45b6b/report.json`, 12.920s; original pixels reviewed separately. |
 | Matched post-implementation profile | **Complete; no performance-gain claim** | `profile-comparison.json` and `profile-reproduction-comparison.json`; exact unchanged observer/settings/input recipe. One first-run whole-frame allocation anomaly did not recur. See `profile-review.md`. |
-| Final independent review / delivery | **Review complete; Linux package pending** | `cold-eye-review.md`, `visual-review.md`, `profile-review.md`; both material findings fixed, final3,223tests pass. Build evidence follows separately. |
+| Final independent review / delivery | **Complete: review, build and archive verified** | `cold-eye-review.md`, `visual-review.md`, `profile-review.md`; both material findings fixed, final3,223tests pass. Build/archive evidence follows below. |
 
 ## Scope decisions and self-review
 
@@ -185,3 +185,11 @@ Supplementary final-source audio19 town travel passed10/10 (`AudioPolish20/19/3d
 SCOPE DIVERGENCE: actual1080p Play required the small generic menu stationary-pointer fix. Exact stored turn fences and Unicode punctuation needed explicit scoped glyph support after original-pixel review. Full retained history is an on-demand Character/F2 reader; grouping the recent sidebar alone would otherwise conceal access to older messages. No gameplay balance, global font, save-format or camera-reservation change was included. The ordinary-food test pin was stale against existing approved consumption policy; only the test/counters changed.
 
 Final source is ready for a Linux x86_64 build. Packaging records the exact full source commit and native test/build evidence. Until that receipt exists, this document does not claim a delivered player.
+
+## Delivered Linux player — 2026-10-11
+
+Built exact source `8789223c79d5b62b23f5195b90c1c7f8a8bad65a` for Linux x86_64 in32.623s, zero errors. Four existing compiler warnings remain (two Effect.Owner hiding warnings, GameBootstrap unreachable code and unused ShortBlades_Backstab._isFlanked). The three build-mutated settings files were restored byte-for-byte to their pre-build state. Final editor scene is SampleScene, stopped.
+
+Archive: `Builds/SteamDeck/2026-10-11-audio-polish20-current/CavesOfOoo-SteamDeck-audio-polish20-current.tar.gz` (188,152,378bytes). SHA256: `de3e8c355eecd8af28f810fce4eef9ff32976d70990cba565dab0edc703ec0d6`. Readback verifies all335payload files, file-list equality, executable permissions, credits/licenses and exact20new/4historical audio receipt separation. Final evidence is in `Docs/Verification/AudioPolish20/Delivery/`: raw build result, independent manifest review, final3,223-case native XML, package checks and build-info.
+
+The committed README is byte-identical in the archive. Extracted root is `CavesOfOoo-current`; users replacing an older release must update its files or their existing Steam shortcut to the new executable. Save location is unchanged. Build success and Mac-hosted native checks do not establish Linux-runtime or physical Steam Deck performance/controller/audio certification. No new performance percentage or subjective listening claim is made. The later delivery-doc commit changes no player source.
