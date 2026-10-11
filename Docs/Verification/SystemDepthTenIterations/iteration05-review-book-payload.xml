@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="13" result="Failed" start-time="2026-10-11T02:37:27.5171830Z" end-time="2026-10-11T02:37:27.8848750Z" duration="0.367676" total="13" passed="12" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="42" random-seed="1474458502">
+  <command-line><![CDATA[/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/depth-well-green.xml --where "class =~ /WellKeeperPurificationDepthTests/"]]></command-line>
+  <filter>
+    <class re="1">WellKeeperPurificationDepthTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1016" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11T02:37:27.5171830Z" end-time="2026-10-11T02:37:27.8848750Z" duration="0.367676" total="13" passed="12" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="42">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-depth-root-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-depth-root-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="19617" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1017" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11T02:37:27.5186510Z" end-time="2026-10-11T02:37:27.8848730Z" duration="0.366221" total="13" passed="12" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="42">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1018" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11T02:37:27.5187600Z" end-time="2026-10-11T02:37:27.8848680Z" duration="0.366107" total="13" passed="12" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="42">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="WellKeeperPurificationDepthTests" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11T02:37:27.5190870Z" end-time="2026-10-11T02:37:27.8848540Z" duration="0.365766" total="13" passed="12" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="42">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="CorrectCopyIsPaidOnceAndEstablishesPersistentCare" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.CorrectCopyIsPaidOnceAndEstablishesPersistentCare" methodname="CorrectCopyIsPaidOnceAndEstablishesPersistentCare" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1432857468" result="Passed" start-time="2026-10-11T02:37:27.5199170Z" end-time="2026-10-11T02:37:27.5986790Z" duration="0.078786" asserts="8" />
+          <test-case id="1006" name="OriginalBookIsNotPayment" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.OriginalBookIsNotPayment" methodname="OriginalBookIsNotPayment" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="953149746" result="Passed" start-time="2026-10-11T02:37:27.5992280Z" end-time="2026-10-11T02:37:27.6220840Z" duration="0.022857" asserts="3" />
+          <test-case id="1015" name="PredicateOffersOnlyEffectiveTeaching" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.PredicateOffersOnlyEffectiveTeaching" methodname="PredicateOffersOnlyEffectiveTeaching" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1799554586" result="Passed" start-time="2026-10-11T02:37:27.6221090Z" end-time="2026-10-11T02:37:27.6440340Z" duration="0.021925" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1011" name="RepairedWellDoesNotTakeAnUnneededCopy" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.RepairedWellDoesNotTakeAnUnneededCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T02:37:27.6440540Z" end-time="2026-10-11T02:37:27.6870700Z" duration="0.043016" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1009" name="RepairedWellDoesNotTakeAnUnneededCopy(StableRepair)" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.RepairedWellDoesNotTakeAnUnneededCopy(StableRepair)" methodname="RepairedWellDoesNotTakeAnUnneededCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="2144943281" result="Passed" start-time="2026-10-11T02:37:27.6441400Z" end-time="2026-10-11T02:37:27.6664220Z" duration="0.022283" asserts="3" />
+            <test-case id="1010" name="RepairedWellDoesNotTakeAnUnneededCopy(ImprovedWithCaretaker)" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.RepairedWellDoesNotTakeAnUnneededCopy(ImprovedWithCaretaker)" methodname="RepairedWellDoesNotTakeAnUnneededCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="2016624073" result="Passed" start-time="2026-10-11T02:37:27.6664430Z" end-time="2026-10-11T02:37:27.6866910Z" duration="0.020248" asserts="3" />
+          </test-suite>
+          <test-case id="1007" name="RepeatTeachingDoesNotConsumeAnotherCopy" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.RepeatTeachingDoesNotConsumeAnotherCopy" methodname="RepeatTeachingDoesNotConsumeAnotherCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1367075712" result="Passed" start-time="2026-10-11T02:37:27.6872690Z" end-time="2026-10-11T02:37:27.7100080Z" duration="0.022738" asserts="3" />
+          <test-case id="1008" name="SelectsEligibleCopyBehindAnUnrelatedCopy" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.SelectsEligibleCopyBehindAnUnrelatedCopy" methodname="SelectsEligibleCopyBehindAnUnrelatedCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="664611879" result="Failed" start-time="2026-10-11T02:37:27.7100270Z" end-time="2026-10-11T02:37:27.7471630Z" duration="0.037136" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WellKeeperPurificationDepthTests.SelectsEligibleCopyBehindAnUnrelatedCopy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/WellKeeperPurificationDepthTests.cs:line 60
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WellKeeperPurificationDepthTests.SelectsEligibleCopyBehindAnUnrelatedCopy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/WellKeeperPurificationDepthTests.cs:line 60
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1013" name="TrainingDoesNotLeakToAnotherSettlement" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.TrainingDoesNotLeakToAnotherSettlement" methodname="TrainingDoesNotLeakToAnotherSettlement" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="421256684" result="Passed" start-time="2026-10-11T02:37:27.7472450Z" end-time="2026-10-11T02:37:27.7675800Z" duration="0.020335" asserts="2" />
+          <test-case id="1014" name="UnknownSettlementOrUnrelatedSpeakerCannotTakeCopy" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.UnknownSettlementOrUnrelatedSpeakerCannotTakeCopy" methodname="UnknownSettlementOrUnrelatedSpeakerCannotTakeCopy" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="956192879" result="Passed" start-time="2026-10-11T02:37:27.7675990Z" end-time="2026-10-11T02:37:27.7906210Z" duration="0.023022" asserts="3" />
+          <test-case id="1012" name="UntrainedTemporaryWellStillRelapses" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.UntrainedTemporaryWellStillRelapses" methodname="UntrainedTemporaryWellStillRelapses" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="854136598" result="Passed" start-time="2026-10-11T02:37:27.7906440Z" end-time="2026-10-11T02:37:27.8133490Z" duration="0.022705" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1005" name="WrongCopyIsNotConsumed" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.WrongCopyIsNotConsumed" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T02:37:27.8133800Z" end-time="2026-10-11T02:37:27.8848100Z" duration="0.071430" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1002" name="WrongCopyIsNotConsumed(&quot;&quot;)" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.WrongCopyIsNotConsumed(&quot;&quot;)" methodname="WrongCopyIsNotConsumed" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1520756039" result="Passed" start-time="2026-10-11T02:37:27.8134010Z" end-time="2026-10-11T02:37:27.8401320Z" duration="0.026732" asserts="3" />
+            <test-case id="1003" name="WrongCopyIsNotConsumed(&quot;KnowsMendingRite&quot;)" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.WrongCopyIsNotConsumed(&quot;KnowsMendingRite&quot;)" methodname="WrongCopyIsNotConsumed" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1302447300" result="Passed" start-time="2026-10-11T02:37:27.8401530Z" end-time="2026-10-11T02:37:27.8598970Z" duration="0.019745" asserts="3" />
+            <test-case id="1004" name="WrongCopyIsNotConsumed(&quot;KnowsKindleRite&quot;)" fullname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests.WrongCopyIsNotConsumed(&quot;KnowsKindleRite&quot;)" methodname="WrongCopyIsNotConsumed" classname="CavesOfOoo.Tests.WellKeeperPurificationDepthTests" runstate="Runnable" seed="1611320820" result="Passed" start-time="2026-10-11T02:37:27.8599400Z" end-time="2026-10-11T02:37:27.8847730Z" duration="0.024832" asserts="3" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

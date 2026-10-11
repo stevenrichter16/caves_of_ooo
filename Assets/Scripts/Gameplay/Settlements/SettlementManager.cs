@@ -83,6 +83,17 @@ namespace CavesOfOoo.Core
                     && site.RelapseAtTurn.HasValue
                     && currentTurn >= site.RelapseAtTurn.Value)
                 {
+                    if (site.SiteType == RepairableSiteType.Well && state.HasCondition(WellKeeperPurification.Condition))
+                    {
+                        // Reconcile once on entry, rather than simulating one
+                        // refresh for every missed period during a long absence.
+                        site.ResolvedAtTurn = currentTurn;
+                        site.RelapseAtTurn = (int)Math.Min(int.MaxValue, (long)currentTurn + SettlementRepairDefinitions.PurifyRelapseTurns);
+                        state.AddPendingMessage("The well-keeper has renewed the purification rite while you were away. The ring still needs a proper repair.");
+                        changed = true;
+                        RaiseSiteChanged(settlementId, site);
+                        continue;
+                    }
                     site.Stage = RepairStage.Fouled;
                     site.OutcomeTier = RepairOutcomeTier.None;
                     site.ResolvedByMethod = RepairMethodId.None;
@@ -106,6 +117,18 @@ namespace CavesOfOoo.Core
                 SyncConditions(state);
 
             return changed;
+        }
+
+        internal void EstablishPurificationCare(SettlementState state, RepairableSiteState site)
+        {
+            state.SetCondition(WellKeeperPurification.Condition, true);
+            site.Stage = RepairStage.TemporarilyPurified;
+            site.OutcomeTier = RepairOutcomeTier.Temporary;
+            site.ResolvedByMethod = RepairMethodId.PurifySpell;
+            site.ResolvedAtTurn = GetCurrentTurn();
+            site.RelapseAtTurn = (int)Math.Min(int.MaxValue, (long)site.ResolvedAtTurn + SettlementRepairDefinitions.PurifyRelapseTurns);
+            SyncConditions(state);
+            RaiseSiteChanged(state.SettlementId, site);
         }
 
         public bool ApplyRepairMethod(string settlementId, string siteId, RepairMethodId method, Entity player)

@@ -229,6 +229,8 @@ namespace CavesOfOoo.Core
                 return false;
             });
 
+            Register(WellKeeperPurification.Predicate, (speaker, listener, arg) => WellKeeperPurification.CanTeach(speaker, listener));
+
             Register("IfSettlementSiteStage", (speaker, listener, arg) =>
             {
                 if (speaker == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)

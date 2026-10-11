@@ -235,6 +235,8 @@ namespace CavesOfOoo.Core
                 }
             });
 
+            RegisterRequired(WellKeeperPurification.Action, WellKeeperPurification.TryTeach);
+
             RegisterRequired("ResolveSettlementSite", (speaker, listener, arg) =>
             {
                 if (speaker == null || listener == null) return "missing_participant";

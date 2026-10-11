@@ -873,14 +873,14 @@
               "Target": "AfterGiveGrimoire",
               "Predicates": [
                 {
-                  "Key": "IfHaveItemWithTag",
-                  "Value": "GrimoireCopy"
+                  "Key": "IfCanTeachWellPurification",
+                  "Value": ""
                 }
               ],
               "Actions": [
                 {
-                  "Key": "TakeItemWithTag",
-                  "Value": "GrimoireCopy"
+                  "Key": "TeachWellPurification",
+                  "Value": ""
                 }
               ]
             },
@@ -892,7 +892,7 @@
         },
         {
           "ID": "AfterGiveGrimoire",
-          "Text": "A purification rite... I've heard the old keeper mention this. Let me study it. If the water sours again, I'll know what to do before the children start falling sick.",
+          "Text": "A purification rite... I've heard the old keeper mention this. I can keep renewing it before the water turns. The children will have clean water, though the filtration ring still needs rebuilding.",
           "Choices": [
             {
               "Text": "Good. The village needs someone who can act quickly.",
