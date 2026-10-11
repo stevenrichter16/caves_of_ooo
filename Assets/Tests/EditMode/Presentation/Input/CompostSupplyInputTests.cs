@@ -28,7 +28,15 @@ namespace CavesOfOoo.Tests
         static object Call(object owner, string method, params object[] args) => owner.GetType().GetMethod(method, Hidden).Invoke(owner, args);
         static object Field(object owner, string name) => owner.GetType().GetField(name, Hidden | BindingFlags.Public).GetValue(owner);
         static void State(Gamepad pad, InputHandler input, GamepadState value)
-        { InputSystem.QueueStateEvent(pad, value); InputSystem.Update(); Call(input, "Update"); }
+        {
+            InputSystem.QueueStateEvent(pad, value); InputSystem.Update();
+            // EditMode input updates do not advance Unity's frame clock. Model
+            // a new input opportunity, as QudControllerGameplayTests does,
+            // while retaining real device events and the full Update route.
+            typeof(InputHandler).GetField("_lastMoveTime", Hidden).SetValue(input, -999f);
+            typeof(InputHandler).GetField("_lastWaitTime", Hidden).SetValue(input, -999f);
+            Call(input, "Update");
+        }
         [TestCase("valid")] [TestCase("stale")] [TestCase("before")] [TestCase("after")]
         public void RealInventoryPlantTurnLeavesDryCropReadyForPaidWorldCompost(string condition)
         {
@@ -58,7 +66,12 @@ namespace CavesOfOoo.Tests
                     for (int i = 0; i < actions.Count; i++) if (((string)Field(actions[i], "Command")).EndsWith("|5|4", StringComparison.Ordinal)) selected = i;
                     Assert.GreaterOrEqual(selected, 0); popup.GetType().GetField("CursorIndex", Hidden | BindingFlags.Public).SetValue(popup, selected);
                     State(pad, ui.Input, new GamepadState()); int plantingTick = turns.TickCount, plantingEnergy = turns.GetEnergy(player);
+                    Assert.True(inventory.IsOpen); Assert.AreEqual("InventoryOpen", Field(ui.Input, "_inputState").ToString());
+                    Assert.AreSame(popup, Field(inventory, "_itemActionPopup"), "neutral release must retain the selected planting action");
+                    Assert.False(zone.GetCell(5, 4).Objects.Any(e => e.HasPart<CropPart>()), "no crop before controller confirmation");
                     State(pad, ui.Input, new GamepadState().WithButton(GamepadButton.South));
+                    Assert.False(inventory.IsOpen, "controller A must confirm the paid planting action and close inventory");
+                    Assert.AreEqual("Normal", Field(ui.Input, "_inputState").ToString());
                     Assert.Greater(turns.TickCount, plantingTick, "actual inventory confirmation must pay a planting turn");
                     Assert.AreEqual(plantingEnergy - TurnManager.ActionThreshold + (turns.TickCount - plantingTick) * player.GetStatValue("Speed", TurnManager.DefaultSpeed), turns.GetEnergy(player));
                     var crop = zone.GetCell(5, 4).Objects.Single(e => e.HasPart<CropPart>()); var part = crop.GetPart<CropPart>();

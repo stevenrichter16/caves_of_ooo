@@ -1,6 +1,6 @@
 # Iteration 3: discoverable compost supply
 
-Status: implemented; standalone GREEN; native payment/input verification pending. CoO extension, no Qud parity claim.
+Status: implemented; standalone and native payment/input checks GREEN; live review pending. CoO extension, no Qud parity claim.
 
 Add two inert sludge units to the ordinary SeedKeeper and Morrowfast provisioner
 stock. Item examination and the existing allotment notice explain buying sludge,
@@ -39,9 +39,27 @@ The four-case `CompostSupplyInputTests` fixture buys actual stock, uses native
 controller confirmation in the inventory popup to plant, advances the real
 scheduler through InputHandler.Update, then selects the real compost world
 command. It asserts still-dry zero growth/remainder after planting, exactly one
-paid compost action, and free stale/before/after rejection. This fixture is
-parent-owned native execution pending; standalone evidence does not establish
-input timing, native rendering, play feel or physical Deck operation.
+paid compost action, and free stale/before/after rejection. All four passed in
+parent-owned native execution. These are synthetic native input checks, not a
+claim about real-time input cadence, rendered appearance, play feel or physical
+Deck operation.
+
+Native integration correction: `native-first-integration.xml` records all 27
+core compost cases passing, but all four input cases stopped before the planting
+confirmation paid a turn (tick stayed 17). Manual EditMode input updates do not
+advance `Time.time`; InputHandler's repeat-delay gate precedes inventory handling.
+The fixture now expires its input timers for each synthetic event, matching the
+existing `QudControllerGameplayTests` seam. It still queues real gamepad events
+and calls InputHandler.Update, with added checks that neutral release retains the
+popup, no crop exists before A, and A closes inventory. No production timing or
+transaction code changed.
+
+Final native job `941ad3a3628542c19f5fda2b0a9e49b4`, recorded in
+`native-final-integration.xml`, passed 810/810 with no skips. Direct XML checks
+confirm all 27 core compost cases and all 4 native input cases passed. The input
+cases retain the actual gamepad A → inventory confirmation → InputHandler turn
+payment route, with exact energy accounting and zero dry growth after planting;
+valid compost pays once, while stale, vetoed and rolled-back actions pay nothing.
 
 ## Review / files
 

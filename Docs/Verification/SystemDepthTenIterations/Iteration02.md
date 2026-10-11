@@ -1,6 +1,6 @@
 # Iteration 2: useful trader restock
 
-Status: implemented; standalone GREEN; native verification pending. CoO extension, no Qud parity claim.
+Status: implemented; standalone and native EditMode GREEN; live review pending. CoO extension, no Qud parity claim.
 
 A player can sell three unrelated objects to a trader and suppress all future
 shelf refill while those objects remain. Count positive carried units belonging
@@ -32,6 +32,11 @@ adversarial), 18 existing Morrowfast quantity/persistence cases and 9 existing
 TraderStock cases. Added cycle and registry-replacement probes pin correct
 fresh membership without triggering a cyclic roll.
 
+Final native job `941ad3a3628542c19f5fda2b0a9e49b4`, recorded in
+`native-final-integration.xml`, passed 810/810 with no skips. It includes all 31
+new restock cases (8 behavior and 23 adversarial), all 18 existing Morrowfast
+quantity/persistence cases and 7 TraderStockContent cases, each passing.
+
 🔵 Self-review: read the roller and membership traversal side by side. TableRef
 wins over Blueprint; weighted mode ignores Chance; zero-weight weighted entries,
 zero-chance independent entries and zero output counts are excluded. Membership
@@ -40,8 +45,9 @@ roll quantities, purse behavior, and the public return value remain unchanged;
 the latter's comment now admits purse top-ups and shelf attempts both count.
 ⚪ Bound is authored roll size, not three output items. No hostile-table parser
 or loot-generation rewrite is claimed. Full capacity can still prevent refill.
-🧪 Isolated runner proves rules, authored stock quantities and binary graph
-roundtrip, not native zone-entry input or live UI. Those remain parent gates.
+🧪 Standalone and native EditMode checks prove rules, authored stock quantities
+and binary graph roundtrip, not live zone-entry input or UI feel. Those remain
+parent gates.
 
 ## Files changed
 
