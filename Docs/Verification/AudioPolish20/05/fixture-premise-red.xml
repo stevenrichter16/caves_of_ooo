@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:34:46Z" end-time="2026-10-11 18:34:49Z" duration="2.4571015">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28100" result="Failed" site="Child" start-time="2026-10-11 18:34:46Z" end-time="2026-10-11 18:34:49Z" duration="2.457102" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34602" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28100" result="Failed" site="Child" start-time="2026-10-11 18:34:46Z" end-time="2026-10-11 18:34:49Z" duration="2.217515" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34603" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28100" result="Failed" site="Child" start-time="2026-10-11 18:34:46Z" end-time="2026-10-11 18:34:49Z" duration="2.161993" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34604" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28100" result="Failed" site="Child" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:49Z" duration="1.961338" total="36" passed="11" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33135" name="WorldAudioRoomBoundaryAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:48Z" duration="1.140875" total="24" passed="9" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33163" name="AForeignDoorPartCannotQualifyTheBoundary" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.AForeignDoorPartCannotQualifyTheBoundary" methodname="AForeignDoorPartCannotQualifyTheBoundary" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="424810847" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.124900" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.AForeignDoorPartCannotQualifyTheBoundary () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33152" name="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.142660" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33149" name="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(11,11)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(11,11)" methodname="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1921493209" result="Passed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.025480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33150" name="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(12,10)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(12,10)" methodname="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1270397014" result="Passed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.023165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33151" name="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(10,12)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter(10,12)" methodname="DistantOrDiagonalOtherRoomBoundaryCannotCrossShelter" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1506360397" result="Passed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33148" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:48Z" duration="0.298167" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33136" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;hidden&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="540022017" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33137" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;unexplored&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1646656240" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33138" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;render&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;render&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1478214408" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33139" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;removed&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1178479299" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33140" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;inventory&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1072285962" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33141" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;equipped&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="165907493" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33142" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;portable&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;portable&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="379723343" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022717" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33143" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-material&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-material&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1056655100" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022224" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33144" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-physics&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1066296047" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33145" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;foreign-render&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="266971197" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33146" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;destroyed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;destroyed&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="53617184" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:47Z" duration="0.022255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33147" name="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;not-structure&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof(&quot;not-structure&quot;)" methodname="EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1517099756" result="Failed" start-time="2026-10-11 18:34:47Z" end-time="2026-10-11 18:34:48Z" duration="0.022342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.EnclosureExceptionKeepsExactCurrentOwnedVisibleFixedProof (System.String mutation) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:12
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33158" name="ExteriorListenerCannotHearAnInteriorThroughTheReverseException" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.ExteriorListenerCannotHearAnInteriorThroughTheReverseException" methodname="ExteriorListenerCannotHearAnInteriorThroughTheReverseException" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="542788043" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.022299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33157" name="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.101322" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33153" name="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;animal&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;animal&quot;)" methodname="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="364946524" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.023577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33154" name="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;water&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;water&quot;)" methodname="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1374044214" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.022253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33155" name="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;tree&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;tree&quot;)" methodname="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="546379879" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.022280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33156" name="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;fire&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound(&quot;fire&quot;)" methodname="OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1474454648" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.024784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.OutsideNeighborCannotBorrowAnEnclosingWallFlagForAnotherSound (System.String kind) [0x000f1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33159" name="StaleExteriorSnapshotDoesNotRevealNewBoundaryUntilObserved" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.StaleExteriorSnapshotDoesNotRevealNewBoundaryUntilObserved" methodname="StaleExteriorSnapshotDoesNotRevealNewBoundaryUntilObserved" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="557275232" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.088497" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.StaleExteriorSnapshotDoesNotRevealNewBoundaryUntilObserved () [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryAdversarialTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33162" name="UnsupportedBoundaryMaterialsStayQuiet" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.UnsupportedBoundaryMaterialsStayQuiet" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.160719" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33160" name="UnsupportedBoundaryMaterialsStayQuiet(&quot;Steel&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.UnsupportedBoundaryMaterialsStayQuiet(&quot;Steel&quot;)" methodname="UnsupportedBoundaryMaterialsStayQuiet" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="2101494587" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.070747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33161" name="UnsupportedBoundaryMaterialsStayQuiet(&quot;Plant&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests.UnsupportedBoundaryMaterialsStayQuiet(&quot;Plant&quot;)" methodname="UnsupportedBoundaryMaterialsStayQuiet" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryAdversarialTests" runstate="Runnable" seed="1058644976" result="Passed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.071070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="33164" name="WorldAudioRoomBoundaryTests" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:49Z" duration="0.719901" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33175" name="ActualVillageBuilderWallAndItsInsideFloorNeedNoFakeInteriorRetagging" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ActualVillageBuilderWallAndItsInsideFloorNeedNoFakeInteriorRetagging" methodname="ActualVillageBuilderWallAndItsInsideFloorNeedNoFakeInteriorRetagging" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1687929260" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.116524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ActualVillageBuilderWallAndItsInsideFloorNeedNoFakeInteriorRetagging () [0x0022b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33174" name="EveryCardinalEnclosureFaceIsEligible" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.324552" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33170" name="EveryCardinalEnclosureFaceIsEligible(9,10)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible(9,10)" methodname="EveryCardinalEnclosureFaceIsEligible" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1498436853" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.093493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible (System.Int32 x, System.Int32 y) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33171" name="EveryCardinalEnclosureFaceIsEligible(11,10)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible(11,10)" methodname="EveryCardinalEnclosureFaceIsEligible" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1911772564" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.100377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible (System.Int32 x, System.Int32 y) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33172" name="EveryCardinalEnclosureFaceIsEligible(10,9)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible(10,9)" methodname="EveryCardinalEnclosureFaceIsEligible" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="682156233" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.023999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible (System.Int32 x, System.Int32 y) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33173" name="EveryCardinalEnclosureFaceIsEligible(10,11)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible(10,11)" methodname="EveryCardinalEnclosureFaceIsEligible" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1299995549" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.023414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.EveryCardinalEnclosureFaceIsEligible (System.Int32 x, System.Int32 y) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33169" name="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:49Z" duration="0.150422" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33165" name="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Wood&quot;,False,&quot;wood-settle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Wood&quot;,False,&quot;wood-settle&quot;)" methodname="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1374601530" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.023528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag (System.String material, System.Boolean door, System.String cue) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33166" name="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Wood&quot;,True,&quot;wood-settle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Wood&quot;,True,&quot;wood-settle&quot;)" methodname="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="2016996357" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:48Z" duration="0.023090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag (System.String material, System.Boolean door, System.String cue) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33167" name="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Stone&quot;,False,&quot;stone-shift&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Stone&quot;,False,&quot;stone-shift&quot;)" methodname="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1473860078" result="Failed" start-time="2026-10-11 18:34:48Z" end-time="2026-10-11 18:34:49Z" duration="0.022590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag (System.String material, System.Boolean door, System.String cue) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33168" name="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Masonry&quot;,False,&quot;stone-shift&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag(&quot;Masonry&quot;,False,&quot;stone-shift&quot;)" methodname="ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1948167138" result="Failed" start-time="2026-10-11 18:34:49Z" end-time="2026-10-11 18:34:49Z" duration="0.022399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.ImmediateRealStructureCanEncloseInteriorDespiteExteriorBoundaryFlag (System.String material, System.Boolean door, System.String cue) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33177" name="InteriorOwnedStructurePreservesExistingLongerRangeAdmission" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.InteriorOwnedStructurePreservesExistingLongerRangeAdmission" methodname="InteriorOwnedStructurePreservesExistingLongerRangeAdmission" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="1263027062" result="Passed" start-time="2026-10-11 18:34:49Z" end-time="2026-10-11 18:34:49Z" duration="0.022745" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33178" name="KnownBoundaryNeverAddsIdleDiscoveryOrVoices" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.KnownBoundaryNeverAddsIdleDiscoveryOrVoices" methodname="KnownBoundaryNeverAddsIdleDiscoveryOrVoices" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="816481530" result="Passed" start-time="2026-10-11 18:34:49Z" end-time="2026-10-11 18:34:49Z" duration="0.024127" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33176" name="LeavingImmediateEnclosureRetiresTheKnownTailWithoutDiscovery" fullname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.LeavingImmediateEnclosureRetiresTheKnownTailWithoutDiscovery" methodname="LeavingImmediateEnclosureRetiresTheKnownTailWithoutDiscovery" classname="CavesOfOoo.Tests.WorldAudioRoomBoundaryTests" runstate="Runnable" seed="555179145" result="Failed" start-time="2026-10-11 18:34:49Z" end-time="2026-10-11 18:34:49Z" duration="0.022664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioRoomBoundaryFixture.Start (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:31
+at CavesOfOoo.Tests.WorldAudioRoomBoundaryTests.LeavingImmediateEnclosureRetiresTheKnownTailWithoutDiscovery () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioRoomBoundaryTests.cs:60
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

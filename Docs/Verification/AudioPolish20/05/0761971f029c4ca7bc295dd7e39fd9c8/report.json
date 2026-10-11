@@ -1,0 +1,54 @@
+{
+    "runId": "0761971f029c4ca7bc295dd7e39fd9c8",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Enter an unchanged generated stone room through actual paid movement, observe its visible cardinal boundary while the floor is interior and wall is exterior, hear an imported structural phrase through a playing native source with measured signal, retain scan/voice bounds and ordinary actor state. Nine checks include shared ordinary boot.",
+    "cannotVerify": "One recorded travel shortcut reaches a legal exterior approach in a bounded selected existing village. The original room, wall, gap, floor and actor remain unmodified; no furniture, materials, interior tags, clock, FOV or sound cue is injected. Source/cue observations are not subjective listening, physical speaker proof, full-room acoustic modeling or Deck performance. This pass supports immediate cardinal enclosing structure; it does not let distant rooms or outside animals leak through shelter.",
+    "mode": "audio-polish-05",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS room_original_enclosing_structure",
+        "PASS room_entered_by_actual_input",
+        "PASS room_inside_bed_has_no_exterior_habitat",
+        "PASS room_actual_structural_phrase",
+        "PASS room_imported_structure_outputs_signal",
+        "PASS room_idle_keeps_scan_and_voice_bounds",
+        "PASS room_ordinary_finish",
+        "PASS room_audio_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/05/0761971f029c4ca7bc295dd7e39fd9c8/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/05/0761971f029c4ca7bc295dd7e39fd9c8/room-01-outside-original-room.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/05/0761971f029c4ca7bc295dd7e39fd9c8/room-02-inside-original-enclosure.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Explicit audio-route travel shortcut",
+            "source": "Overworld.17.5.0",
+            "text": "actual exterior approach to generated room boundary @44,9",
+            "units": 0
+        },
+        {
+            "subject": "Immediate generated room boundary",
+            "source": "Overworld.17.5.0:6074",
+            "text": "Original material=Stone; room floor interior=true, source boundary interior=false; positive imported structural peak=0.006476717, sampled values=199680. No room or wall tags were rewritten.",
+            "units": 0
+        }
+    ],
+    "cases": 9,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 11.805665,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

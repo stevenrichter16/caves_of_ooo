@@ -53,7 +53,8 @@ namespace CavesOfOoo.Rendering
             for(int y=Mathf.Max(0,origin.Y-Radius);y<=Mathf.Min(Zone.Height-1,origin.Y+Radius)&&LastVisitedOwners<OwnerBudget;y++)
                 for(int x=Mathf.Max(0,origin.X-Radius);x<=Mathf.Min(Zone.Width-1,origin.X+Radius)&&LastVisitedOwners<OwnerBudget;x++)
                 {
-                    var cell=zone.GetCell(x,y);if(!cell.IsVisible||!cell.Explored||cell.IsInterior!=interior)continue;
+                    var cell=zone.GetCell(x,y);if(!cell.IsVisible||!cell.Explored||cell.IsInterior!=interior
+                        &&(!interior||Math.Abs(x-origin.X)+Math.Abs(y-origin.Y)!=1))continue;
                     for(int j=0;j<cell.Objects.Count&&LastVisitedOwners<OwnerBudget;j++)
                     {
                         LastVisitedOwners++;var owner=cell.Objects[j];if(!Current(owner,out _))continue;
@@ -159,10 +160,19 @@ namespace CavesOfOoo.Rendering
         {
             cell=null;if(owner==null||actor==null||zone==null||owner==actor)return false;
             var origin=zone.GetEntityCell(actor);cell=zone.GetEntityCell(owner);
-            if(origin==null||cell==null||origin.ParentZone!=zone||cell.ParentZone!=zone||actor.SpatialZone!=zone||owner.SpatialZone!=zone||!cell.Objects.Contains(owner)||!cell.Explored||!cell.IsVisible||cell.IsInterior!=origin.IsInterior
+            if(origin==null||cell==null||origin.ParentZone!=zone||cell.ParentZone!=zone||actor.SpatialZone!=zone||owner.SpatialZone!=zone||!cell.Objects.Contains(owner)||!cell.Explored||!cell.IsVisible
+                ||cell.IsInterior!=origin.IsInterior&&!EnclosesListener(owner,origin,cell)
                 ||Math.Abs(cell.X-origin.X)>Radius||Math.Abs(cell.Y-origin.Y)>Radius)return false;
             var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
             return render?.ParentEntity==owner&&render.Visible&&physics?.ParentEntity==owner&&physics.InInventory==null&&physics.Equipped==null;
+        }
+        bool EnclosesListener(Entity owner,Cell origin,Cell cell)
+        {
+            // Generated room perimeters are intentionally exterior. Only the immediate
+            // cardinal face around an indoor listener can cross this presentation boundary.
+            if(!origin.IsInterior||cell.IsInterior||Math.Abs(cell.X-origin.X)+Math.Abs(cell.Y-origin.Y)!=1
+                ||owner.GetPart<PhysicsPart>()?.ParentEntity!=owner)return false;
+            int kind=Classify(owner);return kind==(int)Kind.Wood||kind==(int)Kind.Stone;
         }
         int Classify(Entity owner)
         {
