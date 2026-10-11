@@ -1,6 +1,6 @@
 # World audio — music, ambience and grounded action sounds
 
-Status (2026-10-11): runtime and regression fixes implemented; broad native regression **1359/1359 GREEN**, zero skips. All232 focused audio cases also pass after fixture isolation fixes; the actual18-check Play audio route passes. Performance profiling is limited by live NPC workload differences; Linux delivery is pending. This is an original CoO soundscape using licensed recordings/compositions. Atmospheric inspiration is not Qud soundtrack or audio-system parity.
+Status (2026-10-11): runtime and regression fixes implemented; broad native regression **1359/1359 GREEN**, zero skips. All232 focused audio cases also pass after fixture isolation fixes; the actual18-check Play audio route passes. Performance profiling is limited by live NPC workload differences; Linux build and verified transfer archive are complete. This is an original CoO soundscape using licensed recordings/compositions. Atmospheric inspiration is not Qud soundtrack or audio-system parity.
 
 ## Goal and boundaries
 
@@ -101,7 +101,7 @@ not fifty subjective listening sessions.
 | 47 | Can controller users independently adjust/mute/unmute audio while reading menus? | Actual View/D-pad/A/B route passes; muting music preserves ambience, unmute leaves one voice, back returns to normal play. `02-audio-settings.png` visually reviewed: all five rows, percentages and left/right/back hint visible. |
 | 48 | Does replacing a saved world keep exactly one audio owner and restore test preferences? | F5/F6 replaces the real player graph; one runtime and sixteen sources under its owned root remain. Preference key/value presence and synthetic-pad removal pass. `03-audio-after-load.png` shows native world and loaded log. |
 | 49 | What do timing and work-count checks establish about audio and rendering? | The sixty-second runs exposed route drift, then live actor blocking after the corridor fix. Timing comparisons are retained as inconclusive; no percentage improvement is claimed. Final improved-source smoke `66964c81172048a7a7861bf06a15b5f1` passes18/18, but139 moves differ from the control's11. Rendering work counters, idle audio scan/restart counters and fixed source bounds pass independently. See `STEAM-DECK-PERFORMANCE-SLATE3.md`. |
-| 50 | Does the actual Linux delivery include the validated resources and complete usable credits? | Fresh source commit/build and archive verification pending. Packager independently validates22 source assets, all credits/licenses and every archive file hash; that is not Linux runtime listening. |
+| 50 | Does the actual Linux delivery include the validated resources and complete usable credits? | Source `33e79d4012e960d36115fedbf7602c2a94836024`; Linux build succeeds, zero errors, four pre-existing compiler warnings. The115,215,140-byte archive verifies170 payload files, digests, executable bits and all22 source assets/credits/licenses. `Verification/WorldAudio/Delivery/package-checks.json` records results; this is not Linux runtime listening. |
 
 ## In-phase review and scope differences
 
@@ -114,3 +114,11 @@ not fifty subjective listening sessions.
 Owned files: new WorldAudio hooks/context/settings/library/player/router/runtime and catalog; narrow GameBootstrap, InventorySystem, DoorPart, CombatSystem, EmberSpitAudioPlayer, StarterSpellAudioPlayer, PauseMenuController/PauseMenuUI; new audio fixtures and the intentional AlphaOnboarding menu pin. The asset workstream owns recordings/importers/provenance/license files and package preparation. The coordinator owns native scenario/launcher, retained receipts, final profiling and delivery.
 
 Release review: source/test/tool Markdown and code diffs pass whitespace checks. Original license bytes, native failure stack traces and Unity-generated metadata retain their original whitespace for provenance; they are not rewritten merely to silence raw-data whitespace warnings. Packaging validation16/16 passes with bytecode output disabled.
+
+## Delivered build
+
+All50 numbered engineering passes are recorded above and in the asset ledger. The final Linux package is `Builds/SteamDeck/2026-10-10-performance-audio-current/CavesOfOoo-SteamDeck-performance-audio-current.tar.gz` (115,215,140 bytes), SHA256 `d86e9b7ead271dfe95595a935fede72fb0fb24b6d12bbb7976fc6ed1a9e3b855`. It contains the committed source build `33e79d4012e960d36115fedbf7602c2a94836024`,170 verified payload files, the launcher, byte-identical README, credits, full licenses, source provenance and `build-info.json`. The later delivery documentation commit does not change built production code.
+
+Unity6000.3.4f1 built Linux x86_64/Mono with zero errors in22.206seconds. The four existing compiler warnings are member hiding in PoisonedByGasEffect/CoatedInPlasmaEffect, unreachable GameBootstrap code and ShortBlades_Backstab's unused field. Build-created changes to the three previously clean settings assets were captured then restored. Pre-existing local Packages changes and Unity logs remain uncommitted and preserved; their configuration hashes are retained with the build. `build-info.json` explicitly lists that local configuration, so source hash alone is not claimed as a fully clean dependency snapshot.
+
+Physical Steam Deck gameplay/audio/performance, subjective musical quality and long-session listening remain unverified. No frame-rate improvement percentage is inferred from the variable live-NPC profile. On Deck, point the shortcut at the newly extracted executable, apply View → Graphics → Handheld preset if older preferences were saved, and use View → Audio for independent levels.

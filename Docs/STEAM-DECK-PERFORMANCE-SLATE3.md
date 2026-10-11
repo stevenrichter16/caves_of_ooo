@@ -1,6 +1,6 @@
 # Steam Deck performance, third measured slate
 
-Status: correctness gates GREEN; timing comparisons inconclusive, Linux delivery underway (2026-10-11).
+Status: correctness gates GREEN; timing comparisons inconclusive, Linux delivery verified (2026-10-11).
 
 User confirmed current controls work after identifying an old build. Performance remains the priority. Music and world sounds are being added in parallel, with bounded sources and streaming music so they do not add a new recurring world scan.
 
@@ -58,3 +58,5 @@ The temporary control covers only `BiomeCropPlan`, `BiomeCropRecipes`, `NativeZo
 The bounded old-renderer/audio-on control `5c16c11e81ea43098ecf949f979406fa` completed18/18 with zero errors, but recorded only11 successful moves and417 blocked/action attempts. Confinement fixed the drift, not live population variability. It is unsuitable as a matched movement timing baseline. This slate ships independently demonstrated work elimination (zero warmed address parses, zero non-gas authority checks, no unchanged fog upload), not a claimed measured FPS gain. Physical Deck profiling remains open.
 
 Final improved-source smoke `66964c81172048a7a7861bf06a15b5f1`:18/18 checks, zero unexpected errors,60.108s interval,21,101 frames,139 moves and247 blocked/action attempts. Settings match the audio-on control; movement count does not (11 versus139). `bounded-audio-profile.json` records exact positions and raw marker observations without a causal timing claim. Final compile error console is clear; no runtime code changes followed the broad/focused GREEN except the audit-only corridor correction.
+
+Linux delivery is complete at `Builds/SteamDeck/2026-10-10-performance-audio-current/CavesOfOoo-SteamDeck-performance-audio-current.tar.gz`, built from `33e79d4012e960d36115fedbf7602c2a94836024`. Zero build errors;170 packaged payload files and executable permissions verified. Full receipt and audio integration limits: `Verification/WorldAudio/Delivery/`. Older builds remain intact. Hardware Deck performance remains unmeasured.
