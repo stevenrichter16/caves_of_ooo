@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>Cosmetic place detail, never gameplay hearing. Discovery samples at most169 nearby cells
-    /// and512 owners on the existing context boundary. Idle revalidates at most nine known sources.
+    /// and512 owners on the existing context boundary. Idle revalidates at most nine detail sources and one flow witness.
     /// Only an already-visible source can produce a positioned cue; habitat texture carries no entity information.</summary>
     public sealed class WorldAudioSoundscape
     {
@@ -14,7 +14,7 @@ namespace CavesOfOoo.Rendering
         readonly Entity[] sources=new Entity[9];
         readonly int[] distances=new int[9];
         readonly WorldAudioPlayer audio;
-        Zone zone;Entity actor;BiomeType biome;DayBand band;int depth;
+        Zone zone;Entity actor;Entity flowWitness;BiomeType biome;DayBand band;int depth;
         bool active,interior;float phraseGap;uint random;int laneCursor;
         readonly float[] laneRemaining=new float[3];
         readonly int[] sourceCursor=new int[2];
@@ -43,7 +43,7 @@ namespace CavesOfOoo.Rendering
             zone=current;actor=listener;biome=region;depth=level;band=time;
             if(policyChanged)ClearDetails();
             ValidateDetails();
-            Array.Clear(sources,0,sources.Length);LastVisitedOwners=0;
+            Array.Clear(sources,0,sources.Length);flowWitness=null;LastVisitedOwners=0;int flowDistance=int.MaxValue;
             var origin=actor==null?null:zone?.GetEntityCell(actor);
             active=visible&&origin!=null&&Alive(actor)&&zone.ZoneID!=WorldMap.WorldMapZoneID;
             if(!active){habitat=null;SetBed(null);ClearDetails();return;}
@@ -59,6 +59,8 @@ namespace CavesOfOoo.Rendering
                         LastVisitedOwners++;var owner=cell.Objects[j];if(!Current(owner,out _))continue;
                         int kind=Classify(owner);if(kind<0)continue;
                         int distance=Math.Max(Math.Abs(x-origin.X),Math.Abs(y-origin.Y));
+                        if(kind==(int)Kind.Water&&FlowingWater(owner)&&distance<flowDistance)
+                        {flowWitness=owner;flowDistance=distance;}
                         if(distance<distances[kind]){sources[kind]=owner;distances[kind]=distance;}
                     }
                 }
@@ -67,11 +69,15 @@ namespace CavesOfOoo.Rendering
         public void Tick(float wallDelta,bool worldVisible,bool danger)
         {
             if(!active||!worldVisible||!Alive(actor)||zone?.GetEntityCell(actor)==null)
-            {active=false;Array.Clear(sources,0,sources.Length);habitat=null;SetBed(null);ClearDetails();return;}
+            {active=false;Array.Clear(sources,0,sources.Length);flowWitness=null;habitat=null;SetBed(null);ClearDetails();return;}
             if(interior!=zone.GetEntityCell(actor).IsInterior){interior=zone.GetEntityCell(actor).IsInterior;ClearDetails();}
             ValidateDetails();
             for(int i=0;i<sources.Length;i++)if(sources[i]!=null&&(!Current(sources[i],out _)||Classify(sources[i])!=i))
             {ClearDetails();sources[i]=null;}
+            if(flowWitness!=null&&(!Current(flowWitness,out _)||Classify(flowWitness)!=(int)Kind.Water||!FlowingWater(flowWitness)))flowWitness=null;
+            // An already observed water owner may gain flow state without a discovery scan.
+            var knownWater=sources[(int)Kind.Water];
+            if(flowWitness==null&&knownWater!=null&&FlowingWater(knownWater))flowWitness=knownWater;
             SelectBed();
             // Independent restrained lanes: scenery cannot repeatedly win away an animal's turn.
             if(WorldAudioSettings.AmbienceVolume<=0||AudioListener.pause)
@@ -141,9 +147,13 @@ namespace CavesOfOoo.Rendering
             if(green){AmbienceId=night?"night-field":"field";habitat=night?"insect":"bird";}
             else if(biome==BiomeType.Sodden){AmbienceId=night?"night-field":"marsh";habitat=night?"insect":null;}
             else AmbienceId="dry-wind";
-            var water=sources[(int)Kind.Water];
-            if(water!=null&&water.GetPart<LiquidPoolPart>()?.LiquidId=="water"
-                &&(water.HasTag("FlowsEast")||water.HasTag("FlowsSouth")||water.BlueprintName=="SprayPool"||water.BlueprintName=="HelmwoodWaterPassage"))AmbienceId="water";
+            if(flowWitness!=null)AmbienceId="water";
+        }
+        static bool FlowingWater(Entity owner)
+        {
+            var pool=owner.GetPart<LiquidPoolPart>();
+            return pool?.ParentEntity==owner&&pool.Volume>0&&pool.LiquidId=="water"
+                &&(owner.HasTag("FlowsEast")||owner.HasTag("FlowsSouth")||owner.BlueprintName=="SprayPool"||owner.BlueprintName=="HelmwoodWaterPassage");
         }
         bool Current(Entity owner,out Cell cell)
         {

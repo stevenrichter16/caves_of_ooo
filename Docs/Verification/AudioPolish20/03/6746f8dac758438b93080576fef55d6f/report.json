@@ -1,0 +1,66 @@
+{
+    "runId": "6746f8dac758438b93080576fef55d6f",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Ordinary isolated starter; actual Sella stock purchase; unchanged generated river water; native fill, two inland steps, pour and refill; exact liquid conservation, current flow owner, imported resumed river bed and sampled source output. Fourteen total checks include shared ordinary boot.",
+    "cannotVerify": "Two explicitly recorded travel shortcuts reach the unchanged merchant and generated river approach. No items, liquid, HP, terrain, flow tags, visibility, clock or cue are injected. Menus intentionally retire source-dependent water sound; the gate proves correct reacquisition on visible-world return, not uninterrupted menu playback. Script-selected route is not natural discovery/travel balance. Noncontiguous per-source samples are not listening, physical speakers, global clipping proof or Deck performance. Existing in-memory ambience preference is restored; saved preferences are untouched.",
+    "mode": "audio-polish-03",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS river_flask_bought_actual_instance",
+        "PASS river_original_empty_flask",
+        "PASS river_generated_flow_source",
+        "PASS river_fill_conserves_units",
+        "PASS river_flow_bed_before_pour",
+        "PASS river_actual_nearer_puddle",
+        "PASS river_pour_conserves_units",
+        "PASS river_bed_survives_nearer_puddle",
+        "PASS river_imported_bed_outputs_signal",
+        "PASS river_idle_is_bounded",
+        "PASS river_actual_refill_removes_puddle",
+        "PASS river_ordinary_finish",
+        "PASS river_audio_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/03/6746f8dac758438b93080576fef55d6f/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/03/6746f8dac758438b93080576fef55d6f/river-01-purchased-flask.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/03/6746f8dac758438b93080576fef55d6f/river-02-original-visible-flow.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/03/6746f8dac758438b93080576fef55d6f/river-03-nearer-real-puddle.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Explicit audio-route travel shortcut",
+            "source": "Overworld.3.6.0",
+            "text": "actual merchant; no generated stock alteration @48,20",
+            "units": 0
+        },
+        {
+            "subject": "Explicit audio-route travel shortcut",
+            "source": "Overworld.16.1.0",
+            "text": "actual generated river approach; no source/visibility changes @0,19",
+            "units": 0
+        },
+        {
+            "subject": "River and nearer puddle",
+            "source": "Overworld.16.1.0",
+            "text": "Original flow=6897; poured owner=7366; nearest visible flow distance=3; exact resumed clip=water; sampled peak=0.03057625; samples=400384. Menus may silence source-dependent beds by design.",
+            "units": 0
+        }
+    ],
+    "cases": 14,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 15.760974599999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}
