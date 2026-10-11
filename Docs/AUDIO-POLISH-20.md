@@ -1,0 +1,73 @@
+# Sonic polish: twenty further iterations
+
+Status: source sweeps underway,2026-10-11. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
+
+## Planning prompt — execute before choosing the twenty
+
+Audit the current music player, regional policy, physical soundscape, action hooks, actual recordings, content provenance and native routes. Choose twenty player-audible improvements with concrete evidence of a gap. Favor recognizable place identity, useful feedback, restrained natural variation, composition continuity and deliberate quiet. Do not inflate the count with formatting, arbitrary gain changes, renamed tests or repeated versions of the same fix. Reuse accurate existing recordings and mechanics; add licensed recordings only for missing textures or musical roles. Keep hidden-information rules, transactional actions, fixed-source budgets and Steam Deck constraints. Give each iteration a specific prompt, implementation scope, negative counterpart and real Play test. Earlier live results must inform later prompts. A failed unrelated route is retained and bounded honestly, not made safe with world grants or suppressed enemies.
+
+## Evidence and execution contract
+
+- Read the three AUDIO-POLISH-20-*-SWEEP.md reports before freezing the ordered plan.
+- Before each iteration, save its actual execution prompt and source corrections here. A broad candidate list is not twenty executed prompts.
+- Observe a failing behavior test, implement the smallest complete audible improvement, run counters and review.
+- Enter the actual game after EACH iteration. Retain a fresh run ID, source-specific observations, output/voice bounds and screenshots. Source tests alone do not meet the user request.
+- Label authored benches and travel shortcuts; separate actual-source gameplay observations from sound counters or signal analysis. Do not claim subjective listening or physical Steam Deck verification from a Mac/editor run.
+- Save outcomes and meaningful next-step adjustments, commit code with its living documentation, then proceed.
+- A pass counts only when a real improvement ships and its corresponding validation is recorded. Keep the progress ledger explicit if interrupted.
+
+## Progress ledger
+
+1/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+
+## Ordered implementation plan
+
+| Pass | Player-facing result and bounded scope | Counter / fresh game gate |
+| --- | --- | --- |
+| 1 | Opening the world map keeps the current region's music instead of falling back to the Spread. Resolve the actual world position without new per-frame queries. | Invalid address fallback; map ascent/descent from an actual non-Spread region. |
+| 2 | Returning from danger or unmuting continues the composition beyond its introduction. Retain a bounded per-clip playhead within the audio lifetime. | No cross-clip seek; fresh lifetime resets; real interruption longer than the fade. |
+| 3 | A nearby puddle no longer silences a visible river. Retain a separate flowing-water witness in the existing scan. | Drain/hide just the river; actual river approach and a nearer finite poured pool. |
+| 4 | Frozen water is quiet until it thaws. Reuse authoritative liquid phase state. | Unrelated ice/cosmetic names cannot silence water; actual freeze-ground interaction. |
+| 5 | Generated room boundaries produce appropriate structural settling while inside. Admit only immediate visible enclosing structures. | Outside animals/water remain excluded; enter a real generated room. |
+| 6 | Sleeping or frozen animals stop voluntary calls and resume after waking. | Calm/rooted animals remain eligible; real sleep or freeze effect on an approved animal. |
+| 7 | Valid fire/structural phrase tails survive a day-band change, while inappropriate daytime wildlife ends. | Source loss still retires a tail; cross a real saved clock band. |
+| 8 | Actual dry brush adds a restrained local texture in dry regions. | No carried plants/interior brush; approach and leave generated DryBrush. |
+| 9 | Depleted pools sound like their underlying floor when stepped on. | Real positive pool remains wet; actual drainage and movement. |
+| 10 | Drawing, drinking and transferring water have distinct, quiet committed vessel sounds. | Refusal/rollback/cancel silent; actual draw and drink, explicit transfer acquisition. |
+| 11 | Cooking produces a brief preparation sound at the working station. | Cold station and failed recipe silent; harvest and cook through input. |
+| 12 | Brewing produces restrained preparation feedback without a batch burst or false success flourish. | Reagent/refusal/mishap/partial batch; actual field alembic brewing. |
+| 13 | Handling rigid metal, wood and soft items reflects their actual material. | Merge/split/rollback/unknown fallback; genuine equip, drop and pickup. |
+| 14 | Mineral gathering sounds like loose stone instead of foliage or silence. | Plant counterpart and spent-source/load silence; harvest actual GlowQuartzVein. |
+| 15 | Reading and turning a physical document's pages has restrained paper feedback. | Generic announcements, unchanged page and canceled reading remain silent; open a real document and turn a page. |
+| 16 | Sodden and Grovelands gain deliberately selected distinct licensed musical identities. Add full compositions with complete provenance and streamed import. | No copied Qud music; unrelated regions unchanged; visit both actual regions and inspect output. |
+| 17 | Regional music can progress through a small curated sequence without repeating one piece indefinitely. | No per-turn restart or immediate repeated choice; observe a real natural end, with sufficient timeout. |
+| 18 | Deliberate quiet passages let environmental sounds carry exploration between compositions. | Threat can respond promptly; no silence on first boot or accidental stuck state; observe real intermission and return. |
+| 19 | An actual inhabited preparation stop receives an appropriate musical treatment; empty wilderness does not invent a town. | Use existing authored location metadata, not NPC count; enter/leave a real stop. |
+| 20 | Music and ambience setting changes ramp without abrupt level jumps while preserving immediate mute and exact preferences. | Invalid values/pause/zero; adjust actual settings during playback, then final whole-system review. |
+
+### Scope and source corrections
+
+All work is original CoO presentation inspired by the user's desired atmosphere, not Qud parity or borrowed Qud recordings. The existing independent phrase lanes, work cues, melee focus, source ownership, volume settings and sixteen-source pool are retained. Primary source and API links are in the three sweep documents. Music lasts several minutes: natural-end proof must extend the audit deadline rather than seek a track and describe it as natural playback.
+
+Torch ignition is deferred because no appropriate selected/licensed/auditioned transient is ready. Throws are deferred because release/contact/outer transaction and projectile timing deserve a separate focused pass; physical reading is a narrower verified missing action with an existing genuine paper cue. SummitSinger and bat voices remain reserves rather than disguising generic recordings as species-specific sound. Any replacement must document the failed premise and provide an equally meaningful audible result; do not count a deferred row.
+
+## Execution log
+
+The exact prompt for a pass is saved below before its production changes, incorporating the preceding run's findings. Test results and fresh Play receipts will be linked here as they happen.
+
+### Iteration 1 execution prompt — regional music on the travel map
+
+The earlier four passes have completed their fresh live gates and final1786/1786 native regression. Fix the confirmed world-map fallback using the actor's actual occupied map tile. A stored last-surface address becomes historical after movement; use the inverse map coordinate conversion and prefer the current owning OverworldZoneManager map, with safe detached-fixture fallback. Preserve ordinary biome/depth selection, current known-region authority, no map wildlife or threats, fixed16 voices and idle scan bounds. Run the21 RED-ready native cases first, then implement. In a fresh normal game, use actual ascent, paid world-map movement into the Beating, descent and re-ascent, F5/F6 and return. Record imported playing score and output, not just a policy string. Do not alter the world or call audio methods to fake the route. Use its findings to narrow iteration2.
+
+Source correction: ZoneManager has no world-position API. OverworldZoneManager exposes WorldMap; actual occupied map cell and WorldMap.ZoneCellToWorldCell are current authority. WorldMapPart.LastZoneIDOnSurface is deliberately historical. New native adapter distinguishes each audio-polish-XX report from the preceding four modes.
+
+Iteration1 native evidence:21 initial cases produced17 expected failures/4 passes. After the region fix, Unity's raw XML records130/130 passed across the new and affected fixtures. The MCP job incorrectly timed out waiting for its initialization callback; the actual XML names/counts/start-end times were inspected and retained instead of treating a zero-test tool status as success. No compile errors. Fresh Play still pending.
+
+
+Iteration1 fresh actual Play `d33a4de07b7940d683bee9f41bc157b2`:18/18 passed, zero unexpected errors,26.28s. Seven paid map steps reached actual Beating11,17; ground descent/re-ascent retained `dry`/ShadowsAndDust, with positive imported per-source samples. Map had no local ambience or threat; idle scan/source bounds, F5/F6 and return to the original glade all passed. No shortcuts or world grants. Beating screenshot inspected: actual dry terrain and player render. Source cold review found no gameplay mutation or new scan; exact graph ownership, invalid-map fallback, stale last-surface address and current map movement have native counters. The fixed score now follows real travel; artistic suitability and physical Deck output remain unverified.
+
+### Iteration 2 execution prompt — preserve interrupted compositions
+
+Iteration1's actual trip now selects the right score, but retiring an outgoing music voice still discards its progress. Preserve a bounded session-local playhead per distinct music clip after a full fade, including explicit mute. Re-enter only the currently eligible composition; aliases sharing one clip must share progress, and an in-progress reverse fade must keep its existing live voice. Do not bookmark short effects or ambience, serialize music into gameplay saves, allocate voices, read world state per frame or alter combat focus. Observe behavioral RED using genuine AudioSource sample-position readbacks; do not claim a stopped-source test premise that Unity does not support. Then exercise real imported streams through an interruption longer than the full fade and actual menu mute/unmute in a fresh ordinary game. The audit must never seek/accelerate a track to manufacture progress. Record the actual cause of interruption and keep combat-specific claims separate if the bounded route uses regional travel instead. Use this result to begin river/source work.
+
+Iteration1 independent cold review: no actionable issue in active-map authority, ownership/bounds, map threat refusal or unchanged context cadence.

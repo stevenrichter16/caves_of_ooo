@@ -25,6 +25,9 @@ namespace CavesOfOoo.Editor
             if (SessionState.GetBool(Prefix + "restoreScenes", false)) AwaitSceneRestore();
         }
         public static void Run() => LaunchCore(true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 01 World Map Music")]
+        public static void LaunchAudioPolish01()=>LaunchAudioPolish(1);
+        public static void LaunchAudioPolish(int iteration)=>LaunchCore(false,audioPolishIteration:iteration);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/World Audio Audit")]
@@ -69,7 +72,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Combat Audio Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -86,6 +89,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetInt(Prefix+"audioPolishIteration",audioPolishIteration);
             SessionState.SetBool(Prefix+"worldAudioAudit",worldAudioAudit);
             SessionState.SetBool(Prefix+"systemDepthIIAudit",systemDepthIIAudit);
             SessionState.SetBool(Prefix+"systemDepthAudit",systemDepthAudit);
@@ -130,6 +134,8 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            int polish=SessionState.GetInt(Prefix+"audioPolishIteration",0);
+            if(polish>0)runner.ConfigureAudioPolish(polish);
             if (SessionState.GetBool(Prefix+"worldAudioAudit",false)) runner.ConfigureWorldAudioAudit();
             if (SessionState.GetBool(Prefix+"repairWorkAudio",false)) runner.ConfigureRepairWorkAudio();
             if (SessionState.GetBool(Prefix+"systemDepthIIAudit",false)) runner.ConfigureSystemDepthIIAudit();

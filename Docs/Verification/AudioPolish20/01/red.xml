@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:04:49Z" end-time="2026-10-11 18:04:51Z" duration="1.1233312">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27974" result="Failed" site="Child" start-time="2026-10-11 18:04:49Z" end-time="2026-10-11 18:04:51Z" duration="1.123331" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34448" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27974" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.999184" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34449" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27974" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.923978" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34450" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27974" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.824055" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33104" name="WorldAudioWorldMapTests" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.621696" total="21" passed="4" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33114" name="ActiveOverworldManagerIsAuthoritativeOverAStaleInputMap" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.ActiveOverworldManagerIsAuthoritativeOverAStaleInputMap" methodname="ActiveOverworldManagerIsAuthoritativeOverAStaleInputMap" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="126264113" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.128420" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 11 but was 7. Strings differ at index 0.
+  Expected: "underground"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.ActiveOverworldManagerIsAuthoritativeOverAStaleInputMap () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:108
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33113" name="ActualAscendAndDescendPreserveSameRegionWithoutRestartingMusic" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.ActualAscendAndDescendPreserveSameRegionWithoutRestartingMusic" methodname="ActualAscendAndDescendPreserveSameRegionWithoutRestartingMusic" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="847499846" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.003919" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.ActualAscendAndDescendPreserveSameRegionWithoutRestartingMusic () [0x0014f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:93
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33125" name="DetachedActorCannotLeaveAMapMusicContextAlive" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.DetachedActorCannotLeaveAMapMusicContextAlive" methodname="DetachedActorCannotLeaveAMapMusicContextAlive" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="889760664" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.001000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.DetachedActorCannotLeaveAMapMusicContextAlive () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:154
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33121" name="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.064541" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33117" name="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(29,13)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(29,13)" methodname="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1476537443" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.001637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile (System.Int32 x, System.Int32 y) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33118" name="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(50,13)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(50,13)" methodname="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1915484963" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile (System.Int32 x, System.Int32 y) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33119" name="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(40,2)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(40,2)" methodname="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="642466632" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile (System.Int32 x, System.Int32 y) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33120" name="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(40,23)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile(40,23)" methodname="MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1340357599" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000845" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapBorderCellsDoNotInventSpreadOrReadAnInvalidTile (System.Int32 x, System.Int32 y) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33127" name="MapIdleAndMenuKeepTheTrackWithoutLocalDiscoveryOrRepeatedContextWork" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapIdleAndMenuKeepTheTrackWithoutLocalDiscoveryOrRepeatedContextWork" methodname="MapIdleAndMenuKeepTheTrackWithoutLocalDiscoveryOrRepeatedContextWork" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1821125269" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.001290" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapIdleAndMenuKeepTheTrackWithoutLocalDiscoveryOrRepeatedContextWork () [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:175
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33116" name="MapSymbolsAndVisibleHostilesNeverCreateLocalThreatMusic" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapSymbolsAndVisibleHostilesNeverCreateLocalThreatMusic" methodname="MapSymbolsAndVisibleHostilesNeverCreateLocalThreatMusic" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1212439317" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.001466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 3 but was 6. Strings differ at index 1.
+  Expected: "dry"
+  But was:  "danger"
+  ------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapSymbolsAndVisibleHostilesNeverCreateLocalThreatMusic () [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:126
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33111" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.100329" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33105" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Spread,&quot;organic&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Spread,&quot;organic&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1146810173" result="Passed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.002630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33106" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Sodden,&quot;organic&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Sodden,&quot;organic&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1392768582" result="Passed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33107" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Grovelands,&quot;organic&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Grovelands,&quot;organic&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="2034113853" result="Passed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33108" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Beating,&quot;dry&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Beating,&quot;dry&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1867927082" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape (CavesOfOoo.Core.BiomeType biome, System.String expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33109" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Overwrit,&quot;dry&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Overwrit,&quot;dry&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1323327431" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape (CavesOfOoo.Core.BiomeType biome, System.String expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33110" name="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Stump,&quot;underground&quot;)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape(Stump,&quot;underground&quot;)" methodname="MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="101698108" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:50Z" duration="0.000813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 11 but was 7. Strings differ at index 0.
+  Expected: "underground"
+  But was:  "organic"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MapUsesItsOccupiedRegionsExistingScoreAndNoLocalSoundscape (CavesOfOoo.Core.BiomeType biome, System.String expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33124" name="MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.102093" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33122" name="MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart(False)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart(False)" methodname="MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="2088087068" result="Failed" start-time="2026-10-11 18:04:50Z" end-time="2026-10-11 18:04:51Z" duration="0.005422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart (System.Boolean missingTiles) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33123" name="MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart(True)" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart(True)" methodname="MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1295044757" result="Failed" start-time="2026-10-11 18:04:51Z" end-time="2026-10-11 18:04:51Z" duration="0.002214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "organic"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.MissingMapOrTilesIsSilentAndRestoredDataHasAValidCounterpart (System.Boolean missingTiles) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33128" name="OrdinaryGroundAndDepthSelectionKeepTheirExistingRules" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.OrdinaryGroundAndDepthSelectionKeepTheirExistingRules" methodname="OrdinaryGroundAndDepthSelectionKeepTheirExistingRules" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="436964189" result="Passed" start-time="2026-10-11 18:04:51Z" end-time="2026-10-11 18:04:51Z" duration="0.003759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33112" name="RealMapMovementUsesNewTileRatherThanSavedLastSurfaceAddress" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.RealMapMovementUsesNewTileRatherThanSavedLastSurfaceAddress" methodname="RealMapMovementUsesNewTileRatherThanSavedLastSurfaceAddress" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="1975616794" result="Failed" start-time="2026-10-11 18:04:51Z" end-time="2026-10-11 18:04:51Z" duration="0.002082" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.RealMapMovementUsesNewTileRatherThanSavedLastSurfaceAddress () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:72
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33126" name="ReplacedGraphAndMapSelectTheirActualPositionWithoutDuplicatingVoices" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.ReplacedGraphAndMapSelectTheirActualPositionWithoutDuplicatingVoices" methodname="ReplacedGraphAndMapSelectTheirActualPositionWithoutDuplicatingVoices" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="15228860" result="Failed" start-time="2026-10-11 18:04:51Z" end-time="2026-10-11 18:04:51Z" duration="0.003141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 11 but was 7. Strings differ at index 0.
+  Expected: "underground"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.ReplacedGraphAndMapSelectTheirActualPositionWithoutDuplicatingVoices () [0x00092] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:166
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33115" name="UnrelatedManagersActiveGraphCannotOverrideTheCurrentInputMap" fullname="CavesOfOoo.Tests.WorldAudioWorldMapTests.UnrelatedManagersActiveGraphCannotOverrideTheCurrentInputMap" methodname="UnrelatedManagersActiveGraphCannotOverrideTheCurrentInputMap" classname="CavesOfOoo.Tests.WorldAudioWorldMapTests" runstate="Runnable" seed="306139995" result="Failed" start-time="2026-10-11 18:04:51Z" end-time="2026-10-11 18:04:51Z" duration="0.005442" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Equal zone IDs cannot make an old graph authoritative.
+  Expected string length 3 but was 7. Strings differ at index 0.
+  Expected: "dry"
+  But was:  "organic"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioWorldMapTests.UnrelatedManagersActiveGraphCannotOverrideTheCurrentInputMap () [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioWorldMapTests.cs:117
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
