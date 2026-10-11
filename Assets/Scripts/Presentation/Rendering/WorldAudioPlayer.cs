@@ -14,6 +14,9 @@ namespace CavesOfOoo.Rendering
         const float FadeSeconds=2f;
         const float FocusFloor=.6f,FocusHoldSeconds=.3f,FocusRecoverySeconds=1.5f,FocusAttackRate=4f;
         float focusRemaining;
+        readonly WorldAudioGainEnvelope musicVolume,ambienceVolume;
+        public float EffectiveMusicVolume=>musicVolume.Value;
+        public float EffectiveAmbienceVolume=>ambienceVolume.Value;
         /// <summary>Cosmetic background gain only; accepted combat cues refresh a bounded wall-clock envelope.</summary>
         public float AtmosphereMix{get;private set;}=1;
         public int CombatFocusCount{get;private set;}
@@ -143,6 +146,7 @@ namespace CavesOfOoo.Rendering
         public string CurrentMusicId{get;private set;}
         public WorldAudioPlayer(Transform parent,WorldAudioLibrary prepared)
         {
+            musicVolume=new WorldAudioGainEnvelope(WorldAudioSettings.MusicVolume);ambienceVolume=new WorldAudioGainEnvelope(WorldAudioSettings.AmbienceVolume);
             library=prepared??new WorldAudioLibrary();sequence=new WorldAudioMusicSequence(library);
             music.Completed=clip=>{bool current=sequence.Select(CurrentMusicId)?.Clip==clip;sequence.Complete(clip);MusicCompletionCount++;if(current)intermission.Complete(CurrentMusicId);};Root=new GameObject("World audio"){hideFlags=HideFlags.DontSave}.transform;Root.SetParent(parent,false);
             for(int i=0;i<2;i++){music.Sources[i]=Source("Music "+i,false,128);ambience.Sources[i]=Source("Ambience "+i,true,192);}
@@ -207,7 +211,7 @@ namespace CavesOfOoo.Rendering
             Stop(sounds[slot]);remaining[slot]=entry.Clip.length;gains[slot]=entry.Gain*gain;detailVoice[slot]=detail;
             sounds[slot].priority=detail?200:64;sounds[slot].clip=entry.Clip;
             sounds[slot].panStereo=float.IsFinite(pan)?Mathf.Clamp(pan,-.65f,.65f):0;
-            sounds[slot].volume=gains[slot]*(detail?WorldAudioSettings.AmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume);
+            sounds[slot].volume=gains[slot]*(detail?EffectiveAmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume);
             if(Application.isPlaying)sounds[slot].Play();
         }
         public void ClearDetails()
@@ -217,15 +221,17 @@ namespace CavesOfOoo.Rendering
             using(Marker.Auto())
             {
                 if(!CheckSources())return;float delta=SafeDelta(wallDelta);
+                musicVolume.Advance(WorldAudioSettings.MusicVolume,delta,!AudioListener.pause);
+                ambienceVolume.Advance(WorldAudioSettings.AmbienceVolume,delta,!AudioListener.pause);
                 AdvanceFocus(delta);
                 intermission.Advance(delta,WorldAudioSettings.MusicVolume>0&&!AudioListener.pause);
                 music.ObserveNaturalEnds();music.Select(intermission.WaitFor(CurrentMusicId)?null:sequence.Select(CurrentMusicId));
-                music.Tick(delta,WorldAudioSettings.MusicVolume*AtmosphereMix);ambience.Tick(delta,WorldAudioSettings.AmbienceVolume*AtmosphereMix);
+                music.Tick(delta,EffectiveMusicVolume*AtmosphereMix);ambience.Tick(delta,EffectiveAmbienceVolume*AtmosphereMix);
                 for(int c=0;c<cooldown.Length;c++)cooldown[c]=Mathf.Max(0,cooldown[c]-delta);
                 for(int i=0;i<SoundCapacity;i++)
                 {
                     if(remaining[i]<=0)continue;
-                    float volume=detailVoice[i]?WorldAudioSettings.AmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume;
+                    float volume=detailVoice[i]?EffectiveAmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume;
                     remaining[i]=volume<=0||AudioListener.pause?0:Mathf.Max(0,remaining[i]-delta);
                     if(remaining[i]<=0)Stop(sounds[i]);else if(sounds[i]!=null)sounds[i].volume=gains[i]*volume;
                 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 20:09:32Z" end-time="2026-10-11 20:09:33Z" duration="0.9828045">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28431" result="Failed" site="Child" start-time="2026-10-11 20:09:32Z" end-time="2026-10-11 20:09:33Z" duration="0.982805" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="35019" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28431" result="Failed" site="Child" start-time="2026-10-11 20:09:32Z" end-time="2026-10-11 20:09:33Z" duration="0.719766" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="35020" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28431" result="Failed" site="Child" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.590468" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="35021" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28431" result="Failed" site="Child" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.389582" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33068" name="WorldAudioGainRampBehaviorTests" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.287952" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33070" name="AmbientBedAndExistingDetailRampTogetherWhileActionsStayIndependent" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.AmbientBedAndExistingDetailRampTogetherWhileActionsStayIndependent" methodname="AmbientBedAndExistingDetailRampTogetherWhileActionsStayIndependent" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="2063113870" result="Failed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.080580" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.18000000715255737d +/- 9.9999997473787516E-05d
+  But was:  0.060000002384185791d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.AmbientBedAndExistingDetailRampTogetherWhileActionsStayIndependent () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioGainRampBehaviorTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33074" name="GainEditsKeepRequestedPreferenceAndNeverWriteSavedSettings" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.GainEditsKeepRequestedPreferenceAndNeverWriteSavedSettings" methodname="GainEditsKeepRequestedPreferenceAndNeverWriteSavedSettings" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="144044697" result="Passed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.002524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33071" name="NewlyAcceptedDetailStartsAtTheCurrentSmoothedBusGain" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.NewlyAcceptedDetailStartsAtTheCurrentSmoothedBusGain" methodname="NewlyAcceptedDetailStartsAtTheCurrentSmoothedBusGain" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="1547201386" result="Failed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.000626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.11999999731779099d +/- 9.9999997473787516E-05d
+  But was:  0.040000002831220627d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.NewlyAcceptedDetailStartsAtTheCurrentSmoothedBusGain () [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioGainRampBehaviorTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33069" name="PositiveMusicEditHasMidpointThenExactTargetWithoutRestart" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.PositiveMusicEditHasMidpointThenExactTargetWithoutRestart" methodname="PositiveMusicEditHasMidpointThenExactTargetWithoutRestart" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="274916030" result="Failed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.000599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A positive menu edit should ramp, not jump to .08.
+  Expected: 0.23999999463558197d +/- 9.9999997473787516E-05d
+  But was:  0.080000005662441254d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.PositiveMusicEditHasMidpointThenExactTargetWithoutRestart () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioGainRampBehaviorTests.cs:24
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33072" name="SecondPositiveEditCannotMakeAnImmediateEdge" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.SecondPositiveEditCannotMakeAnImmediateEdge" methodname="SecondPositiveEditCannotMakeAnImmediateEdge" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="774256992" result="Failed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.000531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.080000005662441254d +/- 9.9999997473787516E-05d
+  But was:  0.32000002264976501d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.SecondPositiveEditCannotMakeAnImmediateEdge () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioGainRampBehaviorTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33073" name="ZeroImmediatelySilencesItsSourcesEvenAtZeroDelta" fullname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests.ZeroImmediatelySilencesItsSourcesEvenAtZeroDelta" methodname="ZeroImmediatelySilencesItsSourcesEvenAtZeroDelta" classname="CavesOfOoo.Tests.WorldAudioGainRampBehaviorTests" runstate="Runnable" seed="188190222" result="Passed" start-time="2026-10-11 20:09:33Z" end-time="2026-10-11 20:09:33Z" duration="0.000643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

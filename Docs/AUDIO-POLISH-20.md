@@ -1,6 +1,6 @@
 # Sonic polish: twenty further iterations
 
-Status: executing the ordered plan,2026-10-11. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
+Status: all twenty implemented and individually verified,2026-10-11. Final combined HUD/delivery gate pending. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
 
 ## Planning prompt — execute before choosing the twenty
 
@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-19/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+20/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -205,3 +205,14 @@ Draft dependent on16/17. Apply narrow implementation patch and new helper, not c
 
 
 Iteration19 complete:5 behavioral RED failures preceded implementation;768/768 native audio checks passed. Fresh actual Play `9f0a9837a97340baac3b313321cfbaa8` passed10/10, zero errors,19.052s. Twelve paid map steps reached authored Morrowfast3,6; imported Hiraeth output peak0.04652639. Ascent restored the actual Grovelands score; native return resumed town music beyond its pre-exit sample398899 (return590821). Four captures, actual town image inspected;16 voices, zero idle scans/restarts, exact settings, no shortcuts/grants/NPC census. Authored installed scene marker plus current Village/Morrowfast profile selects place identity; danger/depth stay authoritative. Four new full compositions total21,277,194 compressed bytes; full licenses/credits retained. Subjective musical fit and physical Deck output remain unverified.
+
+### Iteration 20 execution prompt
+
+Preserve all nineteen earlier passes, including bookmarks, sequences, quiet periods, source authority and combat ducking. Positive music/ambience changes interpolate from current gain to requested value over350ms; a changed target begins from the current value. Explicitzero immediately stops corresponding loops/details even with zero/invalid delta; pause stops waveforms and freezes the gain. Initial preferences seed the envelope, avoiding extra boot silence. Apply the ambient envelope to existing/new details too, then combat attenuation; leave action-SFX response unchanged. Settings and save files retain exact requested values. Two fixed small envelopes, no extra sources/world queries.
+
+Observe native RED before production:19 cases cover real Player bus volumes, immediatezero, new/existing details, pause, positive unmute, combat multiplication, preference independence, invalid values and frame partition. Then use real audio-menu input on the ordinary glade and observe intermediate source-volume frames, zero retirement, imported PCM return and exact restoration. Twelve total checks including boot/minimumfour screenshots. No subjective listening, DAC click suppression or Deck performance claim. Complete an independent source review plus final broad regression/package evidence after the live gate. Apply narrow patch atop18-dependent player, not a full reference overwrite.
+
+All validation is pending. The prepared native route is not a completed test.
+
+
+Iteration20 complete:6 behavioral RED cases had4 expected failures/2 passes;793/793 native audio checks passed. Fresh actual Play `1c5c49f559874c058025199e55f00d00` passed12/12, zero errors,13.857s. Real Audio menu changes produced148 intermediate music frames and144 ambience frames; first completed-frame zero observation retired music immediately, unmute returned imported Ephemera signal (peak0.001390753). Four captures; actual settings screenshot inspected. No action/stat/gear changes, fixed16 voices, zero idle scans/restarts, exact saved/in-memory preferences restored. Independent source review found no material issue. All20 are now complete with a fresh individual Play receipt; final combined HUD/audio regression and Linux package remain pending. No subjective listening, DAC clicklessness or physical Deck claim.
