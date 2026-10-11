@@ -26,6 +26,9 @@ namespace CavesOfOoo.Core
             if (TryDescribeEquipmentDetails(item, out string equipmentDetails))
                 lines.Add(equipmentDetails);
 
+            var schematic = item.GetPart<SchematicPart>();
+            if (schematic != null) lines.Add(schematic.DescribeAvailability());
+
             var food = item.GetPart<FoodPart>();
             if (food != null)
             {

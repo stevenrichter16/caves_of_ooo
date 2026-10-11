@@ -162,13 +162,16 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void GetInventoryActions_OffersStudy()
+        public void GetInventoryActions_OffersStudyForAuthorizedReader()
         {
+            var reader = CreateReader();
             var schematic = CreateSchematic("craft_thorn_dagger");
+            reader.GetPart<InventoryPart>().AddObject(schematic);
 
             var e = GameEvent.New("GetInventoryActions");
             var actions = new InventoryActionList();
             e.SetParameter("Actions", (object)actions);
+            e.SetParameter("Actor", (object)reader);
             schematic.FireEvent(e);
             e.Release();
 

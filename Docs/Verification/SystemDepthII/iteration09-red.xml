@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="30" result="Failed" start-time="2026-10-11T03:39:51.4563920Z" end-time="2026-10-11T03:39:52.0525510Z" duration="0.596145" total="23" passed="3" failed="20" inconclusive="0" skipped="0" warnings="0" asserts="68" random-seed="145786174">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration09-red.xml --where "class =~ /SchematicAvailability/"]]></command-line>
+  <filter>
+    <class re="1">SchematicAvailability</class>
+  </filter>
+  <test-suite type="Assembly" id="1037" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-11T03:39:51.4563920Z" end-time="2026-10-11T03:39:52.0525510Z" duration="0.596145" total="23" passed="3" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="68">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="38079" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1038" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-11T03:39:51.4579290Z" end-time="2026-10-11T03:39:52.0525500Z" duration="0.594622" total="23" passed="3" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="68">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1039" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-11T03:39:51.4580340Z" end-time="2026-10-11T03:39:52.0525480Z" duration="0.594516" total="23" passed="3" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="68">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1013" name="SchematicAvailabilityAdversarialTests" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11T03:39:51.4583600Z" end-time="2026-10-11T03:39:51.8341000Z" duration="0.375741" total="13" passed="1" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="36">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1025" name="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11T03:39:51.4592690Z" end-time="2026-10-11T03:39:51.6180360Z" duration="0.158767" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1021" name="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;throw&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;throw&quot;)" methodname="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="2064356916" result="Failed" start-time="2026-10-11T03:39:51.4593410Z" end-time="2026-10-11T03:39:51.5448550Z" duration="0.085539" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;recipe&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;recipe&quot;)" methodname="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="1696848969" result="Failed" start-time="2026-10-11T03:39:51.5454260Z" end-time="2026-10-11T03:39:51.5683230Z" duration="0.022897" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;registry&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;registry&quot;)" methodname="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="762758613" result="Failed" start-time="2026-10-11T03:39:51.5683620Z" end-time="2026-10-11T03:39:51.5900000Z" duration="0.021638" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;access&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(&quot;access&quot;)" methodname="AfterActionFailureOrMutationCannotLearnFromRefundedConsumption" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="1250805417" result="Failed" start-time="2026-10-11T03:39:51.5900200Z" end-time="2026-10-11T03:39:51.6176370Z" duration="0.027617" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 35
+   at InvokeStub_SchematicAvailabilityAdversarialTests.AfterActionFailureOrMutationCannotLearnFromRefundedConsumption(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="ChangedAuthorityAfterMenuRejectsWithoutLearning" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11T03:39:51.6182030Z" end-time="2026-10-11T03:39:51.7597390Z" duration="0.141536" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1014" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;lost&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;lost&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="2020129479" result="Failed" start-time="2026-10-11T03:39:51.6182260Z" end-time="2026-10-11T03:39:51.6479630Z" duration="0.029737" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;wrong-owner&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;wrong-owner&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="1939261203" result="Failed" start-time="2026-10-11T03:39:51.6479840Z" end-time="2026-10-11T03:39:51.6682130Z" duration="0.020229" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;equipped-alias&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;equipped-alias&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="914965625" result="Failed" start-time="2026-10-11T03:39:51.6682310Z" end-time="2026-10-11T03:39:51.6920180Z" duration="0.023787" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;empty-stack&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="1271649580" result="Failed" start-time="2026-10-11T03:39:51.6920430Z" end-time="2026-10-11T03:39:51.7121070Z" duration="0.020064" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;no-access&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;no-access&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="772778479" result="Failed" start-time="2026-10-11T03:39:51.7121270Z" end-time="2026-10-11T03:39:51.7392380Z" duration="0.027111" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;registry&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(&quot;registry&quot;)" methodname="ChangedAuthorityAfterMenuRejectsWithoutLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="811613006" result="Failed" start-time="2026-10-11T03:39:51.7392660Z" end-time="2026-10-11T03:39:51.7596980Z" duration="0.020432" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 33
+   at InvokeStub_SchematicAvailabilityAdversarialTests.ChangedAuthorityAfterMenuRejectsWithoutLearning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1027" name="DirectRefusalDoesNotSetHandledOrStopOtherParts" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.DirectRefusalDoesNotSetHandledOrStopOtherParts" methodname="DirectRefusalDoesNotSetHandledOrStopOtherParts" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="1072609373" result="Failed" start-time="2026-10-11T03:39:51.7597530Z" end-time="2026-10-11T03:39:51.7853120Z" duration="0.025560" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.DirectRefusalDoesNotSetHandledOrStopOtherParts() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 37
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.DirectRefusalDoesNotSetHandledOrStopOtherParts() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 37
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1026" name="ReentrantStudyCannotLearnTwiceOrConsumeTwoUnits" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.ReentrantStudyCannotLearnTwiceOrConsumeTwoUnits" methodname="ReentrantStudyCannotLearnTwiceOrConsumeTwoUnits" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="2030773090" result="Passed" start-time="2026-10-11T03:39:51.7853360Z" end-time="2026-10-11T03:39:51.8083850Z" duration="0.023050" asserts="5" />
+          <test-case id="1028" name="RepeatedInspectionDoesNotConsumeOrTeachEvenWithAccess" fullname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.RepeatedInspectionDoesNotConsumeOrTeachEvenWithAccess" methodname="RepeatedInspectionDoesNotConsumeOrTeachEvenWithAccess" classname="CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests" runstate="Runnable" seed="371064797" result="Failed" start-time="2026-10-11T03:39:51.8084120Z" end-time="2026-10-11T03:39:51.8340350Z" duration="0.025624" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.RepeatedInspectionDoesNotConsumeOrTeachEvenWithAccess() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityAdversarialTests.RepeatedInspectionDoesNotConsumeOrTeachEvenWithAccess() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="SchematicAvailabilityTests" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T03:39:51.8344020Z" end-time="2026-10-11T03:39:52.0525430Z" duration="0.218141" total="10" passed="2" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="32">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1011" name="ActorlessMenuCannotPromiseAnExecutableStudy" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.ActorlessMenuCannotPromiseAnExecutableStudy" methodname="ActorlessMenuCannotPromiseAnExecutableStudy" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="285172605" result="Failed" start-time="2026-10-11T03:39:51.8344620Z" end-time="2026-10-11T03:39:51.8544070Z" duration="0.019945" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.ActorlessMenuCannotPromiseAnExecutableStudy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 27
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.ActorlessMenuCannotPromiseAnExecutableStudy() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 27
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1004" name="DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:39:51.8544300Z" end-time="2026-10-11T03:39:51.9022220Z" duration="0.047792" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="13">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(False)" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(False)" methodname="DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="242377550" result="Failed" start-time="2026-10-11T03:39:51.8544480Z" end-time="2026-10-11T03:39:51.8811790Z" duration="0.026732" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(Boolean consume) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 23
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(Boolean consume) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 23
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(True)" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored(True)" methodname="DeveloperAccessCanLearnAndConsumeOnlyWhenAuthored" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="1189192810" result="Passed" start-time="2026-10-11T03:39:51.8812060Z" end-time="2026-10-11T03:39:51.9021720Z" duration="0.020966" asserts="7" />
+          </test-suite>
+          <test-case id="1009" name="InspectionExplainsCurrentScopeAndActualRecipeWithoutMutation" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.InspectionExplainsCurrentScopeAndActualRecipeWithoutMutation" methodname="InspectionExplainsCurrentScopeAndActualRecipeWithoutMutation" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="1989440565" result="Failed" start-time="2026-10-11T03:39:51.9022500Z" end-time="2026-10-11T03:39:51.9238130Z" duration="0.021563" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.InspectionExplainsCurrentScopeAndActualRecipeWithoutMutation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.InspectionExplainsCurrentScopeAndActualRecipeWithoutMutation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1010" name="InvalidPatternInspectionDoesNotPromiseLearning" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.InvalidPatternInspectionDoesNotPromiseLearning" methodname="InvalidPatternInspectionDoesNotPromiseLearning" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="477247139" result="Failed" start-time="2026-10-11T03:39:51.9238320Z" end-time="2026-10-11T03:39:51.9448110Z" duration="0.020979" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.InvalidPatternInspectionDoesNotPromiseLearning() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 26
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.InvalidPatternInspectionDoesNotPromiseLearning() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 26
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1012" name="LearnedDeveloperRecipeAndSchematicRoundTripWithoutGrantingOrdinaryAccess" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.LearnedDeveloperRecipeAndSchematicRoundTripWithoutGrantingOrdinaryAccess" methodname="LearnedDeveloperRecipeAndSchematicRoundTripWithoutGrantingOrdinaryAccess" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="1402228018" result="Passed" start-time="2026-10-11T03:39:51.9448380Z" end-time="2026-10-11T03:39:51.9744290Z" duration="0.029591" asserts="4" />
+          <test-case id="1001" name="OrdinaryActorCanInspectButHasNoStudyActionOrTinkeringGrant" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.OrdinaryActorCanInspectButHasNoStudyActionOrTinkeringGrant" methodname="OrdinaryActorCanInspectButHasNoStudyActionOrTinkeringGrant" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="979638065" result="Failed" start-time="2026-10-11T03:39:51.9744530Z" end-time="2026-10-11T03:39:51.9955390Z" duration="0.021086" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.OrdinaryActorCanInspectButHasNoStudyActionOrTinkeringGrant() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 22
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.OrdinaryActorCanInspectButHasNoStudyActionOrTinkeringGrant() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 22
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1008" name="UnavailableRecipeNeverAdvertisesOrReportsSuccess" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:39:51.9955680Z" end-time="2026-10-11T03:39:52.0525280Z" duration="0.056960" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;missing&quot;)" methodname="UnavailableRecipeNeverAdvertisesOrReportsSuccess" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="802128270" result="Failed" start-time="2026-10-11T03:39:51.9955930Z" end-time="2026-10-11T03:39:52.0149800Z" duration="0.019388" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;&quot;)" methodname="UnavailableRecipeNeverAdvertisesOrReportsSuccess" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="1253135568" result="Failed" start-time="2026-10-11T03:39:52.0150040Z" end-time="2026-10-11T03:39:52.0336790Z" duration="0.018675" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+   at InvokeStub_SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+   at InvokeStub_SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;known&quot;)" fullname="CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(&quot;known&quot;)" methodname="UnavailableRecipeNeverAdvertisesOrReportsSuccess" classname="CavesOfOoo.Tests.SchematicAvailabilityTests" runstate="Runnable" seed="2105342849" result="Failed" start-time="2026-10-11T03:39:52.0337010Z" end-time="2026-10-11T03:39:52.0525050Z" duration="0.018804" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+   at InvokeStub_SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(String reason) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Tinkering/SchematicAvailabilityTests.cs:line 24
+   at InvokeStub_SchematicAvailabilityTests.UnavailableRecipeNeverAdvertisesOrReportsSuccess(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
