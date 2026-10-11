@@ -1,0 +1,54 @@
+{
+    "runId": "9d9de2a1b6dd4631b28a4e16eaf03627",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Ordinary glade actor and originally placed waterskin/draw point. Real keyboard pickup, finite water fill, refused full fill and one drink through existing inventory UI. Exact owned vessel/source/contact receipts, actual imported water clip playback and sampled per-source signal,16-source pool and temporary in-memory audio restoration.",
+    "cannotVerify": "This phase does not live-exercise general flask pouring or vessel-to-vessel transfer; separate native tests cover them. No vessel, water, HP, enemy, turn or RNG grants. Script-selected local route keeps ordinary scheduling; it can fail from actual danger. Source samples do not establish subjective listening, continuous unclipped output, physical speakers or Steam Deck performance. WaterDrink is a quieter shared water-movement recording, not a human gulp. Saved audio preferences are untouched.",
+    "mode": "audio-polish-10",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio10_original_vessel_acquired",
+        "PASS audio10_fill_imported_recording",
+        "PASS audio10_finite_fill_conserved",
+        "PASS audio10_refused_full_fill_silent",
+        "PASS audio10_drink_imported_recording",
+        "PASS audio10_drink_one_unit",
+        "PASS audio10_fixed_pool",
+        "PASS audio10_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/10/9d9de2a1b6dd4631b28a4e16eaf03627/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/10/9d9de2a1b6dd4631b28a4e16eaf03627/water-01-actual-filled-vessel.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/10/9d9de2a1b6dd4631b28a4e16eaf03627/water-02-after-real-drink.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "audio10_fill_imported_recording",
+            "source": "2124",
+            "text": "Cue=WaterFill; original source=2123; exact receipt=True; count=1; imported playing=True; clip=water_fill_01; sampled peak=0.06398441; floats=54272. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        },
+        {
+            "subject": "audio10_drink_imported_recording",
+            "source": "2124",
+            "text": "Cue=WaterDrink; original source=; exact receipt=True; count=1; imported playing=True; clip=water_pour_01; sampled peak=0.0004182615; floats=49152. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 9,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 14.727351599999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

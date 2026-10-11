@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Failed(Child)" total="43" passed="5" failed="38" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:11:20Z" end-time="2026-10-11 19:11:24Z" duration="3.6756117">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28244" result="Failed" site="Child" start-time="2026-10-11 19:11:20Z" end-time="2026-10-11 19:11:24Z" duration="3.675612" total="43" passed="5" failed="38" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34786" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28244" result="Failed" site="Child" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:24Z" duration="3.426614" total="43" passed="5" failed="38" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34787" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28244" result="Failed" site="Child" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:24Z" duration="3.379769" total="43" passed="5" failed="38" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34788" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28244" result="Failed" site="Child" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:24Z" duration="3.179220" total="43" passed="5" failed="38" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33332" name="WorldAudioUtilityWaterResourceTests" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:21Z" duration="0.247814" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33333" name="ReachableCreditsIncludeTheCompleteUtilitySourceNotice" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests.ReachableCreditsIncludeTheCompleteUtilitySourceNotice" methodname="ReachableCreditsIncludeTheCompleteUtilitySourceNotice" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests" runstate="Runnable" seed="1137912793" result="Failed" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:21Z" duration="0.143720" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests.ReachableCreditsIncludeTheCompleteUtilitySourceNotice () [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterResourceTests.cs:17
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33334" name="WaterUsesTwoRealShortClipsAndAnExplicitQuieterDrinkAlias" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests.WaterUsesTwoRealShortClipsAndAnExplicitQuieterDrinkAlias" methodname="WaterUsesTwoRealShortClipsAndAnExplicitQuieterDrinkAlias" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests" runstate="Runnable" seed="396895928" result="Failed" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:21Z" duration="0.000687" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterResourceTests.WaterUsesTwoRealShortClipsAndAnExplicitQuieterDrinkAlias () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterResourceTests.cs:22
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="33335" name="WorldAudioUtilityWaterTests" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:24Z" duration="2.730202" total="41" passed="5" failed="36" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33344" name="ActualDrinkUsesWaterRatherThanClothAndSpendsOnlyOne" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualDrinkUsesWaterRatherThanClothAndSpendsOnlyOne" methodname="ActualDrinkUsesWaterRatherThanClothAndSpendsOnlyOne" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="185242815" result="Failed" start-time="2026-10-11 19:11:21Z" end-time="2026-10-11 19:11:22Z" duration="0.178764" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualDrinkUsesWaterRatherThanClothAndSpendsOnlyOne () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33350" name="ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.076970" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33348" name="ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool(False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool(False)" methodname="ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="964910236" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.031092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool (System.Boolean exhaust) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33349" name="ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool(True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool(True)" methodname="ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1310807851" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.024930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualFreshWaterFlaskFillSoundsWithRetainedOrRetiredPool (System.Boolean exhaust) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33336" name="ActualSkinFillHasOneWaterCueAndConservesTheSource" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualSkinFillHasOneWaterCueAndConservesTheSource" methodname="ActualSkinFillHasOneWaterCueAndConservesTheSource" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="404699276" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.039407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualSkinFillHasOneWaterCueAndConservesTheSource () [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33356" name="ActualTransferBetweenCarriedVesselsSoundsOnce" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualTransferBetweenCarriedVesselsSoundsOnce" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.271031" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33354" name="ActualTransferBetweenCarriedVesselsSoundsOnce(False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualTransferBetweenCarriedVesselsSoundsOnce(False)" methodname="ActualTransferBetweenCarriedVesselsSoundsOnce" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1872247422" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.061290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterPour take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualTransferBetweenCarriedVesselsSoundsOnce (System.Boolean toSkin) [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33355" name="ActualTransferBetweenCarriedVesselsSoundsOnce(True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualTransferBetweenCarriedVesselsSoundsOnce(True)" methodname="ActualTransferBetweenCarriedVesselsSoundsOnce" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1881251176" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.104897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterPour take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.ActualTransferBetweenCarriedVesselsSoundsOnce (System.Boolean toSkin) [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33384" name="AnotherActorsVesselActionCannotUseTheHiddenWorldMenuAllowance" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.AnotherActorsVesselActionCannotUseTheHiddenWorldMenuAllowance" methodname="AnotherActorsVesselActionCannotUseTheHiddenWorldMenuAllowance" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1367903511" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.025326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.AnotherActorsVesselActionCannotUseTheHiddenWorldMenuAllowance () [0x00092] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:149
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33376" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.134223" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33371" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;source-hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;source-hidden&quot;)" methodname="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="912595530" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.026099" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt (System.String change) [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33372" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;source-moved&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;source-moved&quot;)" methodname="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1072148141" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.026228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt (System.String change) [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33373" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;actor-moved&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;actor-moved&quot;)" methodname="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="907246619" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.024704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt (System.String change) [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33374" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;vessel-alias&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;vessel-alias&quot;)" methodname="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1538669153" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.024274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt (System.String change) [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33375" name="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;actor-hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt(&quot;actor-hidden&quot;)" methodname="CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="31899005" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.024824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CallbackChangingCurrentEvidenceSuppressesTheStaleReceipt (System.String change) [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33379" name="CommittedPlayerVesselWorkMayFinishInItsMenu" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CommittedPlayerVesselWorkMayFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.126883" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33377" name="CommittedPlayerVesselWorkMayFinishInItsMenu(False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CommittedPlayerVesselWorkMayFinishInItsMenu(False)" methodname="CommittedPlayerVesselWorkMayFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="232623778" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.027843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CommittedPlayerVesselWorkMayFinishInItsMenu (System.Boolean menu) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33378" name="CommittedPlayerVesselWorkMayFinishInItsMenu(True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CommittedPlayerVesselWorkMayFinishInItsMenu(True)" methodname="CommittedPlayerVesselWorkMayFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="186021109" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.025132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.CommittedPlayerVesselWorkMayFinishInItsMenu (System.Boolean menu) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33347" name="FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.206251" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33345" name="FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt(&quot;refund&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt(&quot;refund&quot;)" methodname="FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1109937919" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.033467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt (System.String change) [0x0015c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33346" name="FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt(&quot;relocate&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt(&quot;relocate&quot;)" methodname="FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="849460114" result="Failed" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:22Z" duration="0.025903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FinalParchedRemovalCannotRedefineTheOriginalDrinkReceipt (System.String change) [0x0015c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33353" name="FreshWaterPourUsesTheActualCommittedGroundAmount" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FreshWaterPourUsesTheActualCommittedGroundAmount" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:11:22Z" end-time="2026-10-11 19:11:23Z" duration="0.244773" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33351" name="FreshWaterPourUsesTheActualCommittedGroundAmount(False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FreshWaterPourUsesTheActualCommittedGroundAmount(False)" methodname="FreshWaterPourUsesTheActualCommittedGroundAmount" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="2070490778" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.079645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterPour take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FreshWaterPourUsesTheActualCommittedGroundAmount (System.Boolean one) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33352" name="FreshWaterPourUsesTheActualCommittedGroundAmount(True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FreshWaterPourUsesTheActualCommittedGroundAmount(True)" methodname="FreshWaterPourUsesTheActualCommittedGroundAmount" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="897781993" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.024344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterPour take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.FreshWaterPourUsesTheActualCommittedGroundAmount (System.Boolean one) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33370" name="NonWaterFlasksDoNotPretendToBeTheWaterFamily" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.175001" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33367" name="NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;oil&quot;)" methodname="NonWaterFlasksDoNotPretendToBeTheWaterFamily" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1204694303" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.029828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily (System.String liquid) [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33368" name="NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;acid&quot;)" methodname="NonWaterFlasksDoNotPretendToBeTheWaterFamily" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="672337014" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.025383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily (System.String liquid) [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33369" name="NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily(&quot;brine&quot;)" methodname="NonWaterFlasksDoNotPretendToBeTheWaterFamily" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="652869342" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.024085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NonWaterFlasksDoNotPretendToBeTheWaterFamily (System.String liquid) [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33363" name="NoWaterSoundUntilTheOwningTransactionCommits" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.164302" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33357" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;fill&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;fill&quot;,False)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1286527682" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.025617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33358" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;fill&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;fill&quot;,True)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="116858133" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.023971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits (System.String kind, System.Boolean commit) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33359" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;drink&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;drink&quot;,False)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="436266094" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.023508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33360" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;drink&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;drink&quot;,True)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="254094940" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.023555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits (System.String kind, System.Boolean commit) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33361" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;transfer&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;transfer&quot;,False)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="854417849" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.023270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33362" name="NoWaterSoundUntilTheOwningTransactionCommits(&quot;transfer&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits(&quot;transfer&quot;,True)" methodname="NoWaterSoundUntilTheOwningTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1250771096" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.023541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.NoWaterSoundUntilTheOwningTransactionCommits (System.String kind, System.Boolean commit) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33366" name="OuterCommandFailureRollsBackWaterAndPublishesNothing" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.OuterCommandFailureRollsBackWaterAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.187216" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33364" name="OuterCommandFailureRollsBackWaterAndPublishesNothing(&quot;FillWaterskin&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.OuterCommandFailureRollsBackWaterAndPublishesNothing(&quot;FillWaterskin&quot;)" methodname="OuterCommandFailureRollsBackWaterAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="716820549" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.026540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33365" name="OuterCommandFailureRollsBackWaterAndPublishesNothing(&quot;DrinkWaterskin&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.OuterCommandFailureRollsBackWaterAndPublishesNothing(&quot;DrinkWaterskin&quot;)" methodname="OuterCommandFailureRollsBackWaterAndPublishesNothing" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1815126480" result="Passed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.103785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33383" name="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:24Z" duration="0.293933" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33380" name="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;mute&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;mute&quot;)" methodname="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="2037453843" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.074285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay (System.String refusal) [0x000f4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33381" name="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;pause&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;pause&quot;)" methodname="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="547766816" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:23Z" duration="0.075218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay (System.String refusal) [0x000f4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33382" name="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;detached-listener&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay(&quot;detached-listener&quot;)" methodname="PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1194748140" result="Failed" start-time="2026-10-11 19:11:23Z" end-time="2026-10-11 19:11:24Z" duration="0.075275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterDrink take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.PresentationRefusalDoesNotUndoTheDrinkOrQueueAReplay (System.String refusal) [0x000f4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33343" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.378289" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33337" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;pool&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;pool&quot;,False)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="378487585" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.093068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33338" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;pool&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;pool&quot;,True)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1770338776" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.109033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33339" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;well&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;well&quot;,False)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="966408848" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.025156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33340" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;well&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;well&quot;,True)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="877404911" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.025250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33341" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;spring&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;spring&quot;,False)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1085203226" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.025439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33342" name="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;spring&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract(&quot;spring&quot;,True)" methodname="RenderedLiteralWaterSourcesRetainOptionalPhysicsContract" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="616548198" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.024753" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "WaterFill take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:17
+at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.RenderedLiteralWaterSourcesRetainOptionalPhysicsContract (System.String kind, System.Boolean physical) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33388" name="WaterCuesCannotBeForgedThroughTheGenericSemanticHook" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.175847" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33385" name="WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterFill&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterFill&quot;)" methodname="WaterCuesCannotBeForgedThroughTheGenericSemanticHook" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="1386572042" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.030785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  new water cue exists
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33386" name="WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterDrink&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterDrink&quot;)" methodname="WaterCuesCannotBeForgedThroughTheGenericSemanticHook" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="56831955" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.024775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  new water cue exists
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33387" name="WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterPour&quot;)" fullname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook(&quot;WaterPour&quot;)" methodname="WaterCuesCannotBeForgedThroughTheGenericSemanticHook" classname="CavesOfOoo.Tests.WorldAudioUtilityWaterTests" runstate="Runnable" seed="367725790" result="Failed" start-time="2026-10-11 19:11:24Z" end-time="2026-10-11 19:11:24Z" duration="0.023728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  new water cue exists
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioUtilityWaterTests.WaterCuesCannotBeForgedThroughTheGenericSemanticHook (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioUtilityWaterTests.cs:154
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

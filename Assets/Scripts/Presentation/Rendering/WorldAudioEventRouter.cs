@@ -17,7 +17,7 @@ namespace CavesOfOoo.Rendering
             audio=playerAudio??throw new ArgumentNullException(nameof(playerAudio));
             EntityVisualHooks.MovedCallback+=Moved;WorldAudioCombat.Callback+=Combat;
             EntityVisualHooks.SelfUseCallback+=SelfUse;WorldAudioHooks.Callback+=Semantic;
-            WorldAudioWork.Callback+=Work;
+            WorldAudioWork.Callback+=Work;WorldAudioUtility.Callback+=Utility;
         }
         public void SetWorld(Zone current,Entity listener,bool worldVisible)
         {
@@ -100,13 +100,24 @@ namespace CavesOfOoo.Rendering
             }
             catch(Exception){ }
         }
+        void Utility(WorldAudioUtilityReceipt receipt)
+        {
+            try
+            {
+                if(!WorldAudioUtility.IsWater(receipt.Cue)||!Current(receipt.Actor,receipt.Zone,receipt.Actor!=player,out _))return;
+                var contact=zone.GetCell(receipt.Contact.X,receipt.Contact.Y);
+                if(contact==null||!contact.Explored||!contact.IsVisible)return;
+                audio.TryPlay(receipt.Cue,receipt.Actor==player?0:Pan(contact.X));
+            }
+            catch(Exception){ }
+        }
         void SelfUse(Entity actor,Zone at)
         {try{if(Current(actor,at,true,out var cell))audio.TryPlay(WorldAudioCue.Use,Pan(cell.X));}catch(Exception){ }}
         void Semantic(WorldAudioCue cue,Entity actor,Zone at,int x,int y)
         {
             try
             {
-                if(CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
+                if(WorldAudioUtility.IsWater(cue)||CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
                     ||cue==WorldAudioCue.WorkRepairStone||cue==WorldAudioCue.WorkRepairMetal||cue==WorldAudioCue.HarvestPlant)return;
                 // Weapon and work sounds require their actual typed committed receipt.
                 bool localInventory=cue==WorldAudioCue.Pickup||cue==WorldAudioCue.Equip||cue==WorldAudioCue.Use;
@@ -121,7 +132,7 @@ namespace CavesOfOoo.Rendering
         {
             if(disposed)return;disposed=true;EntityVisualHooks.MovedCallback-=Moved;WorldAudioCombat.Callback-=Combat;
             EntityVisualHooks.SelfUseCallback-=SelfUse;WorldAudioHooks.Callback-=Semantic;zone=null;player=null;
-            WorldAudioWork.Callback-=Work;
+            WorldAudioWork.Callback-=Work;WorldAudioUtility.Callback-=Utility;
         }
     }
 }

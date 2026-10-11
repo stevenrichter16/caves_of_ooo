@@ -41,6 +41,15 @@ namespace CavesOfOoo.Core
                 if (!tx.TryClaim(actor, actor, command) || !tx.TryClaim(source, actor, command) || !tx.TryClaim(target, actor, command)) return false;
                 int amount = Math.Min(from, cap - to);
                 tx.Do(() => { SetUnits(source, from - amount); SetUnits(target, to + amount); }, () => { SetUnits(source, from); SetUnits(target, to); });
+                Vessel(actor,source,out _,out int sourceCapacity);
+                Part sourcePart=(Part)source.GetPart<WaterskinPart>()??source.GetPart<LiquidVesselPart>();
+                Part targetPart=(Part)target.GetPart<WaterskinPart>()??target.GetPart<LiquidVesselPart>();
+                var audio=WorldAudioUtility.Take(actor,source,zone,WorldAudioCue.WaterPour,target,true,
+                    ()=>sourcePart?.ParentEntity==source&&((Part)source.GetPart<WaterskinPart>()??source.GetPart<LiquidVesselPart>())==sourcePart
+                        &&targetPart?.ParentEntity==target&&((Part)target.GetPart<WaterskinPart>()??target.GetPart<LiquidVesselPart>())==targetPart
+                        &&Vessel(actor,source,out int currentFrom,out int currentSourceCap)&&currentFrom==from-amount&&currentSourceCap==sourceCapacity
+                        &&Vessel(actor,target,out int currentTo,out int currentCap)&&currentTo==to+amount&&currentCap==cap);
+                tx.AfterCommit(()=>audio?.Publish());
                 tx.AfterCommit(() => MessageLog.Add("You transfer " + amount + " water to " + target.GetDisplayName() + "."));
                 if (own) tx.Commit(); return true;
             }

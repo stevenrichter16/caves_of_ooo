@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "sourceVerificationDate": "2026-10-11",
+  "throughIteration": 10,
+  "tool": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers",
+  "sources": {
+    "tinysized.zip": {
+      "url": "https://opengameart.org/sites/default/files/tinysized.zip",
+      "bytes": 13235099,
+      "sha256": "7f00e2b1dae15e68db0e1d6096767f03755e9e7c247128afc3e935e63774d7db"
+    }
+  },
+  "clips": [
+    {
+      "id": "water_fill_01",
+      "path": "Utility/water_fill_01.ogg",
+      "kind": "sfx",
+      "cue": "WaterFill",
+      "gain": 0.27,
+      "source": "tinysized.zip",
+      "author": "Vehicle (Jan Schupke)",
+      "title": "Fantasy Sound Effects / Tinysized SFX / sfx-cc0/water-vial-fill-01.wav",
+      "page": "https://opengameart.org/content/fantasy-sound-effects-tinysized-sfx",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "credit": "Fantasy Sound Effects / Tinysized SFX by Vehicle (Jan Schupke), CC0 1.0.",
+      "changes": "Complete selected water recording; mono44.1kHz Vorbis, guarded exterior-silence trim,5ms edge fades,10ms pads and fixed peak headroom. No pitch shift or synthetic sound generation. Vessel material and a human gulp are not asserted.",
+      "member": "sfx-cc0/water-vial-fill-01.wav",
+      "memberSha256": "6f1b325dcb28e726296185fcd3462b08ed77373559e4f6afd61ac0529e67d6d3",
+      "iteration": 10,
+      "approvedOutputSha256": "9ecaa83bdcea85976d61584eb16bafbfd68cd7062c2531a7498dbb5cbead1af0",
+      "outputSha256": "9ecaa83bdcea85976d61584eb16bafbfd68cd7062c2531a7498dbb5cbead1af0",
+      "outputBytes": 26404,
+      "sourceDecodedFrames": 101047,
+      "preparedFrames": 91881,
+      "preparationGain": 0.2474949297900576,
+      "decodedPeak": 0.34650498628616333,
+      "decodedRms": 0.026065272910439582
+    },
+    {
+      "id": "water_pour_01",
+      "path": "Utility/water_pour_01.ogg",
+      "kind": "sfx",
+      "cue": "WaterPour",
+      "gain": 0.27,
+      "source": "tinysized.zip",
+      "author": "Vehicle (Jan Schupke)",
+      "title": "Fantasy Sound Effects / Tinysized SFX / sfx-cc0/water-pour-01.wav",
+      "page": "https://opengameart.org/content/fantasy-sound-effects-tinysized-sfx",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "credit": "Fantasy Sound Effects / Tinysized SFX by Vehicle (Jan Schupke), CC0 1.0.",
+      "changes": "Complete selected water recording; mono44.1kHz Vorbis, guarded exterior-silence trim,5ms edge fades,10ms pads and fixed peak headroom. No pitch shift or synthetic sound generation. Vessel material and a human gulp are not asserted.",
+      "member": "sfx-cc0/water-pour-01.wav",
+      "memberSha256": "c2c1ad4d138873a803feade2d5e080ae169ba24edc2d9c388cdfc002f766d9f6",
+      "iteration": 10,
+      "approvedOutputSha256": "2722151914a7c5654fc0444423e8217b61dd72eb438e04dcc4d4cfbfd09d10aa",
+      "outputSha256": "2722151914a7c5654fc0444423e8217b61dd72eb438e04dcc4d4cfbfd09d10aa",
+      "outputBytes": 25323,
+      "sourceDecodedFrames": 71010,
+      "preparedFrames": 67290,
+      "preparationGain": 0.2474949297900576,
+      "decodedPeak": 0.3523752689361572,
+      "decodedRms": 0.017667907662021098
+    }
+  ],
+  "soundAliases": [
+    {
+      "id": "WaterDrink",
+      "target": "water_pour_01",
+      "gain": 0.18,
+      "meaning": "Quieter water movement design alias; not a human gulp recording.",
+      "iteration": 10
+    }
+  ]
+}

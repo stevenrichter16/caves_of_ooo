@@ -1,0 +1,21 @@
+setUpClass (__main__.UtilityPipeline) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.UtilityPipeline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-audio-polish20-sfx/repo-tools/test_utility_audio.py", line 10, in setUpClass
+    cls.prep=load('prepare_utility_audio');cls.verify=load('verify_utility_audio');cls.spec=HERE/'utility_audio_sources.json'
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-audio-polish20-sfx/repo-tools/test_utility_audio.py", line 5, in load
+    s=importlib.util.spec_from_file_location(name,HERE/(name+'.py'));m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
+                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/private/tmp/coo-audio-polish20-sfx/repo-tools/prepare_utility_audio.py'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+FAILED (errors=1)

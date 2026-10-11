@@ -39,6 +39,13 @@ namespace CavesOfOoo.Core
                     transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
                     skin.Charges += amount;
                     if (pool != null) pool.Volume -= amount;
+                    int expectedCharges=skin.Charges, capacity=skin.Capacity;
+                    Part sourcePart=(Part)pool??(Part)source.GetPart<WellPart>()??(Part)source.GetPart<TileStateSourcePart>();
+                    var audio=WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterFill,source,false,
+                        ()=>vessel.GetPart<WaterskinPart>()==skin&&skin.ParentEntity==vessel&&skin.Capacity==capacity&&skin.Charges==expectedCharges
+                            &&sourcePart?.ParentEntity==source&&source.Parts.Contains(sourcePart)
+                            &&(pool==null||(source.GetPart<LiquidPoolPart>()==pool&&pool.LiquidId=="water"&&pool.Volume==oldVolume-amount)));
+                    transaction.AfterCommit(()=>audio?.Publish());
                     transaction.AfterCommit(() => LiquidVesselService.PublishCommittedPoolDraw(zone, source, pool, sourceCell));
                     int filled = skin.Charges;
                     transaction.AfterCommit(() => Diag.Record("event", "WaterskinFilled", actor, vessel,
@@ -80,6 +87,10 @@ namespace CavesOfOoo.Core
                         if (actor.GetStat("Strength") != null) actor.GetStat("Strength").Penalty += penalty;
                         if (actor.GetStat("Agility") != null) actor.GetStat("Agility").Penalty += penalty;
                     });
+                    int expectedCharges=before-1, capacity=skin.Capacity;
+                    var audio=WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterDrink,null,false,
+                        ()=>vessel.GetPart<WaterskinPart>()==skin&&skin.ParentEntity==vessel&&skin.Capacity==capacity&&skin.Charges==expectedCharges);
+                    transaction.AfterCommit(()=>audio?.Publish());
                     skin.Charges--;
                     ParchedEffect.ReduceOneStack(actor);
                     int remaining = skin.Charges;

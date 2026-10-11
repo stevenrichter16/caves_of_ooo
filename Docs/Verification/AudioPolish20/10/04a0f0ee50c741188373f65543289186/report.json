@@ -1,0 +1,45 @@
+{
+    "runId": "04a0f0ee50c741188373f65543289186",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: native item actions\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:452 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<ItemAction>d__331.MoveNext () [0x001a9] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:407 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__340.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:472 ",
+    "canVerify": "Ordinary glade actor and originally placed waterskin/draw point. Real keyboard pickup, finite water fill, refused full fill and one drink through existing inventory UI. Exact owned vessel/source/contact receipts, actual imported water clip playback and sampled per-source signal,16-source pool and temporary in-memory audio restoration.",
+    "cannotVerify": "This phase does not live-exercise general flask pouring or vessel-to-vessel transfer; separate native tests cover them. No vessel, water, HP, enemy, turn or RNG grants. Script-selected local route keeps ordinary scheduling; it can fail from actual danger. Source samples do not establish subjective listening, continuous unclipped output, physical speakers or Steam Deck performance. WaterDrink is a quieter shared water-movement recording, not a human gulp. Saved audio preferences are untouched.",
+    "mode": "audio-polish-10",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio10_original_vessel_acquired",
+        "PASS audio10_fill_imported_recording",
+        "PASS audio10_finite_fill_conserved",
+        "PASS audio10_refused_full_fill_silent",
+        "PASS audio10_preferences_restored",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/10/04a0f0ee50c741188373f65543289186/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/10/04a0f0ee50c741188373f65543289186/water-01-actual-filled-vessel.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "audio10_fill_imported_recording",
+            "source": "2123",
+            "text": "Cue=WaterFill; original source=2122; exact receipt=True; count=1; imported playing=True; clip=water_fill_01; sampled peak=0.06398441; floats=51200. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 7,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 8.8429556,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

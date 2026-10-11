@@ -99,6 +99,11 @@ namespace CavesOfOoo.Core
             int amount = Math.Min(part.Capacity - before, oldPool);
             transaction.Do(null, () => { part.Volume = before; part.LiquidId = oldId; pool.Volume = oldPool; });
             part.Volume += amount; part.LiquidId = liquidId; pool.Volume -= amount;
+            int capacity=part.Capacity;
+            var audio=liquidId=="water"?WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterFill,source,false,
+                ()=>vessel.GetPart<LiquidVesselPart>()==part&&part.ParentEntity==vessel&&part.Capacity==capacity&&part.Volume==before+amount&&part.LiquidId=="water"
+                    &&source.GetPart<LiquidPoolPart>()==pool&&pool.ParentEntity==source&&pool.Volume==oldPool-amount&&pool.LiquidId=="water"):null;
+            transaction.AfterCommit(()=>audio?.Publish());
             transaction.AfterCommit(() => PublishCommittedPoolDraw(zone, source, pool, sourceCell));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselFilled", actor, vessel,
                 new { source = source.ID, liquidId, amount, remaining = oldPool - amount }));
@@ -197,6 +202,12 @@ namespace CavesOfOoo.Core
             }
             part.Volume = before - amount; if (part.Volume == 0) part.LiquidId = "";
             irrigation?.Apply(actor, zone, recipient, transaction);
+            int capacity=part.Capacity;
+            var audio=liquidId=="water"?WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterPour,recipient,false,
+                ()=>vessel.GetPart<LiquidVesselPart>()==part&&part.ParentEntity==vessel&&part.Capacity==capacity&&part.Volume==before-amount
+                    &&part.LiquidId==(before==amount?"":"water")&&recipient.GetPart<LiquidPoolPart>()==pool
+                    &&pool.ParentEntity==recipient&&pool.Volume==oldPool+amount&&pool.LiquidId=="water"):null;
+            transaction.AfterCommit(()=>audio?.Publish());
             transaction.AfterCommit(() => ApplyContact(zone, actor, recipient, x, y, liquidId));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselPoured", actor, vessel,
                 new { destination = recipient.ID, liquidId, amount, x, y }));
