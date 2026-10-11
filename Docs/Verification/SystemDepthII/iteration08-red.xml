@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="45" result="Failed" start-time="2026-10-11T03:35:16.6519630Z" end-time="2026-10-11T03:35:17.4558510Z" duration="0.803865" total="28" passed="0" failed="28" inconclusive="0" skipped="0" warnings="0" asserts="92" random-seed="375355445">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration08-red.xml --where "class =~ /DitchMateSlam/"]]></command-line>
+  <filter>
+    <class re="1">DitchMateSlam</class>
+  </filter>
+  <test-suite type="Assembly" id="1056" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-10-11T03:35:16.6519630Z" end-time="2026-10-11T03:35:17.4558510Z" duration="0.803865" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="92">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="36408" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1057" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-10-11T03:35:16.6536290Z" end-time="2026-10-11T03:35:17.4558490Z" duration="0.802212" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="92">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1058" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-10-11T03:35:16.6537660Z" end-time="2026-10-11T03:35:17.4558450Z" duration="0.802070" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="92">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1037" name="DitchMateSlamAdversarialTests" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-11T03:35:16.6541470Z" end-time="2026-10-11T03:35:17.1359640Z" duration="0.481812" total="16" passed="0" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="54">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1041" name="FriendInAnyPredictedCollisionCellPreventsSlam" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:35:16.6550710Z" end-time="2026-10-11T03:35:16.7971340Z" duration="0.142062" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="15">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1038" name="FriendInAnyPredictedCollisionCellPreventsSlam(12)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(12)" methodname="FriendInAnyPredictedCollisionCellPreventsSlam" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="877033997" result="Failed" label="Error" start-time="2026-10-11T03:35:16.6551490Z" end-time="2026-10-11T03:35:16.7442980Z" duration="0.089175" asserts="5">
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(Int32 x) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 31
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1039" name="FriendInAnyPredictedCollisionCellPreventsSlam(13)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(13)" methodname="FriendInAnyPredictedCollisionCellPreventsSlam" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1238391400" result="Failed" label="Error" start-time="2026-10-11T03:35:16.7450030Z" end-time="2026-10-11T03:35:16.7709940Z" duration="0.025991" asserts="5">
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(Int32 x) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 31
+   at InvokeStub_DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1040" name="FriendInAnyPredictedCollisionCellPreventsSlam(14)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(14)" methodname="FriendInAnyPredictedCollisionCellPreventsSlam" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="593470581" result="Failed" label="Error" start-time="2026-10-11T03:35:16.7710200Z" end-time="2026-10-11T03:35:16.7967050Z" duration="0.025684" asserts="5">
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(Int32 x) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 31
+   at InvokeStub_DitchMateSlamAdversarialTests.FriendInAnyPredictedCollisionCellPreventsSlam(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-case id="1042" name="HostileCollisionStillUsesExistingImpactMechanic" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.HostileCollisionStillUsesExistingImpactMechanic" methodname="HostileCollisionStillUsesExistingImpactMechanic" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1514969344" result="Failed" start-time="2026-10-11T03:35:16.7972980Z" end-time="2026-10-11T03:35:16.8339180Z" duration="0.036619" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.HostileCollisionStillUsesExistingImpactMechanic() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 33
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.HostileCollisionStillUsesExistingImpactMechanic() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 33
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1053" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-11T03:35:16.8339440Z" end-time="2026-10-11T03:35:17.0563570Z" duration="0.222410" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1044" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;no-weapon&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;no-weapon&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1585404884" result="Failed" start-time="2026-10-11T03:35:16.8339540Z" end-time="2026-10-11T03:35:16.8630060Z" duration="0.029052" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1045" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;wrong-weapon&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;wrong-weapon&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1484136916" result="Failed" start-time="2026-10-11T03:35:16.8630310Z" end-time="2026-10-11T03:35:16.8855790Z" duration="0.022548" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;out-of-range&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;out-of-range&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1195974578" result="Failed" start-time="2026-10-11T03:35:16.8855950Z" end-time="2026-10-11T03:35:16.9174650Z" duration="0.031869" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1047" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;hidden&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="39730859" result="Failed" start-time="2026-10-11T03:35:16.9174870Z" end-time="2026-10-11T03:35:16.9422000Z" duration="0.024713" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1048" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;dead&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1716013661" result="Failed" start-time="2026-10-11T03:35:16.9422170Z" end-time="2026-10-11T03:35:16.9660560Z" duration="0.023839" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1049" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;removed&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="255801361" result="Failed" start-time="2026-10-11T03:35:16.9660760Z" end-time="2026-10-11T03:35:16.9898190Z" duration="0.023742" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1050" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;party&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;party&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="351569755" result="Failed" start-time="2026-10-11T03:35:16.9898380Z" end-time="2026-10-11T03:35:17.0120420Z" duration="0.022205" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1051" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;cooldown&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;cooldown&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1803079211" result="Failed" start-time="2026-10-11T03:35:17.0120650Z" end-time="2026-10-11T03:35:17.0345960Z" duration="0.022531" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;chance&quot;)" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(&quot;chance&quot;)" methodname="IneligibleAttemptDoesNotSpendCooldownOrMoveTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="1356176369" result="Failed" start-time="2026-10-11T03:35:17.0346170Z" end-time="2026-10-11T03:35:17.0563170Z" duration="0.021700" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(String failure) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 39
+   at InvokeStub_DitchMateSlamAdversarialTests.IneligibleAttemptDoesNotSpendCooldownOrMoveTarget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1055" name="SavedOwnedSlamRetainsCooldownAndRegistration" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.SavedOwnedSlamRetainsCooldownAndRegistration" methodname="SavedOwnedSlamRetainsCooldownAndRegistration" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="535613628" result="Failed" start-time="2026-10-11T03:35:17.0563730Z" end-time="2026-10-11T03:35:17.0838670Z" duration="0.027494" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.SavedOwnedSlamRetainsCooldownAndRegistration() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.SavedOwnedSlamRetainsCooldownAndRegistration() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1043" name="UnrelatedAdjacentFriendCannotStealTheSelectedTarget" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.UnrelatedAdjacentFriendCannotStealTheSelectedTarget" methodname="UnrelatedAdjacentFriendCannotStealTheSelectedTarget" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="990514143" result="Failed" start-time="2026-10-11T03:35:17.0838960Z" end-time="2026-10-11T03:35:17.1070840Z" duration="0.023188" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.UnrelatedAdjacentFriendCannotStealTheSelectedTarget() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.UnrelatedAdjacentFriendCannotStealTheSelectedTarget() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1054" name="WallStopsPreviewBeforeFriendBehindIt" fullname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests.WallStopsPreviewBeforeFriendBehindIt" methodname="WallStopsPreviewBeforeFriendBehindIt" classname="CavesOfOoo.Tests.DitchMateSlamAdversarialTests" runstate="Runnable" seed="820284956" result="Failed" start-time="2026-10-11T03:35:17.1071300Z" end-time="2026-10-11T03:35:17.1358980Z" duration="0.028768" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.WallStopsPreviewBeforeFriendBehindIt() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamAdversarialTests.WallStopsPreviewBeforeFriendBehindIt() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1022" name="DitchMateSlamTests" fullname="CavesOfOoo.Tests.DitchMateSlamTests" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-11T03:35:17.1362810Z" end-time="2026-10-11T03:35:17.4558310Z" duration="0.319547" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="38">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1023" name="AuthoredDitchMateHasActualCudgelSkillAndTruthfulWarning" fullname="CavesOfOoo.Tests.DitchMateSlamTests.AuthoredDitchMateHasActualCudgelSkillAndTruthfulWarning" methodname="AuthoredDitchMateHasActualCudgelSkillAndTruthfulWarning" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="1865044193" result="Failed" start-time="2026-10-11T03:35:17.1363340Z" end-time="2026-10-11T03:35:17.1673450Z" duration="0.031011" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.AuthoredDitchMateHasActualCudgelSkillAndTruthfulWarning() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 19
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.AuthoredDitchMateHasActualCudgelSkillAndTruthfulWarning() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 19
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1033" name="OrdinaryBrainUsesOneSlamInsteadOfAdditionalMelee" fullname="CavesOfOoo.Tests.DitchMateSlamTests.OrdinaryBrainUsesOneSlamInsteadOfAdditionalMelee" methodname="OrdinaryBrainUsesOneSlamInsteadOfAdditionalMelee" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="948849118" result="Failed" start-time="2026-10-11T03:35:17.1673710Z" end-time="2026-10-11T03:35:17.2102990Z" duration="0.042928" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: (14, 10)
+  But was:  (11, 10)
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.OrdinaryBrainUsesOneSlamInsteadOfAdditionalMelee() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 24
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: (14, 10)
+  But was:  (11, 10)
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.OrdinaryBrainUsesOneSlamInsteadOfAdditionalMelee() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 24
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1032" name="RealSkillPushesExactEnemyInAllDirections" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T03:35:17.2103680Z" end-time="2026-10-11T03:35:17.4037580Z" duration="0.193387" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1024" name="RealSkillPushesExactEnemyInAllDirections(-1,-1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(-1,-1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="1564306013" result="Failed" start-time="2026-10-11T03:35:17.2104060Z" end-time="2026-10-11T03:35:17.2352310Z" duration="0.024825" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="RealSkillPushesExactEnemyInAllDirections(0,-1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(0,-1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="345382303" result="Failed" start-time="2026-10-11T03:35:17.2352620Z" end-time="2026-10-11T03:35:17.2601190Z" duration="0.024856" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="RealSkillPushesExactEnemyInAllDirections(1,-1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(1,-1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="783734974" result="Failed" start-time="2026-10-11T03:35:17.2601480Z" end-time="2026-10-11T03:35:17.2837620Z" duration="0.023614" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="RealSkillPushesExactEnemyInAllDirections(-1,0)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(-1,0)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="123212896" result="Failed" start-time="2026-10-11T03:35:17.2838480Z" end-time="2026-10-11T03:35:17.3067290Z" duration="0.022882" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="RealSkillPushesExactEnemyInAllDirections(1,0)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(1,0)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="1586013671" result="Failed" start-time="2026-10-11T03:35:17.3067470Z" end-time="2026-10-11T03:35:17.3308850Z" duration="0.024138" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="RealSkillPushesExactEnemyInAllDirections(-1,1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(-1,1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="1130240155" result="Failed" start-time="2026-10-11T03:35:17.3309340Z" end-time="2026-10-11T03:35:17.3548860Z" duration="0.023952" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="RealSkillPushesExactEnemyInAllDirections(0,1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(0,1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="641270964" result="Failed" start-time="2026-10-11T03:35:17.3549030Z" end-time="2026-10-11T03:35:17.3796010Z" duration="0.024698" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="RealSkillPushesExactEnemyInAllDirections(1,1)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(1,1)" methodname="RealSkillPushesExactEnemyInAllDirections" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="822585914" result="Failed" start-time="2026-10-11T03:35:17.3796170Z" end-time="2026-10-11T03:35:17.4037410Z" duration="0.024124" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Int32 dx, Int32 dy) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 22
+   at InvokeStub_DitchMateSlamTests.RealSkillPushesExactEnemyInAllDirections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1036" name="RealWornBootBraceStopsPushButNotSlamStun" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:35:17.4037690Z" end-time="2026-10-11T03:35:17.4558090Z" duration="0.052040" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1034" name="RealWornBootBraceStopsPushButNotSlamStun(False)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(False)" methodname="RealWornBootBraceStopsPushButNotSlamStun" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="245482752" result="Failed" start-time="2026-10-11T03:35:17.4037780Z" end-time="2026-10-11T03:35:17.4346590Z" duration="0.030881" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Boolean braced) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 26
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Boolean braced) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 26
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="RealWornBootBraceStopsPushButNotSlamStun(True)" fullname="CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(True)" methodname="RealWornBootBraceStopsPushButNotSlamStun" classname="CavesOfOoo.Tests.DitchMateSlamTests" runstate="Runnable" seed="1293130207" result="Failed" start-time="2026-10-11T03:35:17.4346880Z" end-time="2026-10-11T03:35:17.4557790Z" duration="0.021091" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Boolean braced) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 26
+   at InvokeStub_DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Boolean braced) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DitchMateSlamTests.cs:line 26
+   at InvokeStub_DitchMateSlamTests.RealWornBootBraceStopsPushButNotSlamStun(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

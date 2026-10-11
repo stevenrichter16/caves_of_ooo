@@ -1,0 +1,155 @@
+{
+  "changedBlueprints": [
+    "SpreadDitchMate"
+  ],
+  "before": {
+    "Name": "SpreadDitchMate",
+    "Inherits": "MarlbackScrabbler",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "ditch-cutter mate"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "s"
+          }
+        ]
+      },
+      {
+        "Name": "Loadout",
+        "Params": [
+          {
+            "Key": "Equip",
+            "Value": "Cudgel"
+          },
+          {
+            "Key": "Carry",
+            "Value": ""
+          },
+          {
+            "Key": "Pick",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.35"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": ""
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "35"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "4"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Parallel rake marks cross this short-faced marlback's shoulder plates. It is accustomed to fighting beside a willing companion; separation and cover can break their coordination."
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "Name": "SpreadDitchMate",
+    "Inherits": "MarlbackScrabbler",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "ditch-cutter mate"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "s"
+          }
+        ]
+      },
+      {
+        "Name": "Loadout",
+        "Params": [
+          {
+            "Key": "Equip",
+            "Value": "Cudgel"
+          },
+          {
+            "Key": "Carry",
+            "Value": ""
+          },
+          {
+            "Key": "Pick",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.35"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Cudgel_Slam"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "35"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "4"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Parallel rake marks cross this short-faced marlback's shoulder plates. It is accustomed to fighting beside a willing companion; separation and cover can break their coordination. Its cudgel can shove you into obstacles; brace with suitable equipment before its blow, or keep your distance. Bracing stops the shove, not its stun or collision damage."
+          }
+        ]
+      }
+    ]
+  }
+}

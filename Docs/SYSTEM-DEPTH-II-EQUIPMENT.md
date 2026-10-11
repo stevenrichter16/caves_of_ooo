@@ -29,10 +29,18 @@ Files: `EquipmentComparisonService.cs`, `SlotArmorComparisonTests.cs` (+ meta), 
 
 Plan: grant the existing ditch mate Cudgel_Slam through CombatTacticsPart. Exact adjacent contact and actual equipped cudgel are required; preview the bounded push path conservatively to avoid colliding with a nonhostile creature. One registered skill action/cooldown; reject unsupported/hidden/party targets. Existing physical brace is a real counter, not damage/stun immunity. Modify only this blueprint's skill and warning, with parsed before/after proof.
 
-Status: observed isolated RED: all 28 new cases fail before production because Slam is not granted/eligible; receipt `iteration08-red.xml`. Tests cover scheduler replacement, authored content, collision friend/hostile/solid, no gear/chance/cooldown, brace, eight directions, stale/multicell owners and save.
+Status: implemented; isolated GREEN113/113 (32 new plus81 existing AI cases). Observed RED28/28 before production (`iteration08-red.xml`). Independent review found personally hostile party collision partners needed the same explicit party protection as the primary target: dedicated review RED1/1, then the 113-case GREEN (`iteration08-review-red.xml`, `iteration08-green.xml`). Parsed content proof records only SpreadDitchMate's kit and warning (`iteration08-content-diff.json`). Native pending.
+
+Implementation: registered owned Cudgel_Slam, existing exact-adjacent selection, actual equipped cudgel, locally visible contact, then the same three prospective footprint placements as the skill. At the first obstruction, any nonhostile or party-aligned creature vetoes the AI cast; terrain and hostile collision remain real. No traversal past a blocking wall, no temporary movement, no new skill behavior. Existing chance/cooldown/normal-action fallback are preserved.
+
+Sweep correction: the boot brace requires authored Terrain underfoot; an empty fixture zone cannot establish it. The corrected positive setup asserts a current brace before the real Slam; the unbraced control moves three cells. A nonexistent Dirt blueprint was corrected to the real Terrain base and its insertion is asserted. These fixture repairs do not change production brace behavior.
+
+Self-review: 🟡 fixed party-hostility asymmetry after independent review with executed RED. 🔵 remote body-edge selection and a collision in another footprint row have positive/negative coverage; duplicate grants, removed actor, eight directions, saved cooldown and no-extra-melee schedule are checked. 🧪 preview is conservative at invocation time; arbitrary later movement callbacks can alter the world. No broad invalidation or collision rewrite added. Player feel/encounter frequency and native rendering remain root-owned. No scope divergence.
+
+Files: `CombatTacticsPart.cs`, only SpreadDitchMate in `Objects.json`, `DitchMateSlamTests.cs` (+meta), this log and raw receipts.
 
 ## Iteration 9 — schematic availability
 
 Plan: read actual actor access and recipe availability before advertising Study; inspection explains dev-only unavailable use without granting access. Preserve authorized developer learning, known/missing recipes and consumable ownership. A refused command must not report successful study. Keep schematic sale/ownership and ordinary loot unchanged.
 
-Status: queued after8. Tests cover actual ordinary/dev actors, readable reason, no item/recipe/BitLocker mutation from inspection, known/missing recipe, positive consumption, stale ownership and registry changes.
+Status: observed isolated RED20 failed /3 passed across23 new cases (`iteration09-red.xml`), before production. Tests cover actual ordinary/dev actors, readable reason, no item/recipe/BitLocker mutation from inspection, known/missing recipe, positive consumption, stale ownership and registry changes.

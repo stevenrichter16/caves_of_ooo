@@ -71,6 +71,7 @@ namespace CavesOfOoo.Core
         {
             switch (name)
             {
+                case nameof(Cudgel_Slam): return new Cudgel_Slam();
                 case nameof(ShortBlades_Shank): return new ShortBlades_Shank();
                 case nameof(LongBlades_Lunge): return new LongBlades_Lunge();
                 case nameof(Axe_Berserk): return new Axe_Berserk();
@@ -153,7 +154,8 @@ namespace CavesOfOoo.Core
         {
             var actor = ParentEntity;
             string weaponClass = skill is ShortBlades_Shank ? "Piercing"
-                : skill is LongBlades_Lunge ? "LongBlades" : skill is Axe_Berserk ? "Axe" : null;
+                : skill is LongBlades_Lunge ? "LongBlades" : skill is Axe_Berserk ? "Axe"
+                : skill is Cudgel_Slam ? "Cudgel" : null;
             bool projectile = IsProjectile(skill);
             if (weaponClass == null && !projectile) { Reject(target, ability, "unsupported-skill"); return null; }
             if (weaponClass != null && SkillCombatHelpers.FindEquippedWeaponOfClass(actor, weaponClass) == null)
@@ -165,13 +167,14 @@ namespace CavesOfOoo.Core
                 if (actor.HasEffect<BerserkEffect>()) { Reject(target, ability, "already-berserk"); return null; }
                 return new Candidate { Ability = ability };
             }
-            if (skill is ShortBlades_Shank)
+            if (skill is ShortBlades_Shank || skill is Cudgel_Slam)
             {
                 // Preview the same chosen-cell policy the skill executes. An
                 // ally in another direction no longer steals the selection;
                 // an earlier occupant of this exact cell still blocks it.
                 foreach (var cell in MultiCellAbilityQueries.AdjacentCells(zone, actor))
-                    if (SkillCombatHelpers.FindAdjacentSkillTarget(actor, zone, cell, out var contact) == target)
+                    if (SkillCombatHelpers.FindAdjacentSkillTarget(actor, zone, cell, out var contact) == target
+                        && (!(skill is Cudgel_Slam) || SafeSlamContact(target, zone, contact)))
                         return new Candidate { Ability = ability, TargetCell = contact };
                 Reject(target, ability, "adjacent-target-mismatch"); return null;
             }
@@ -198,6 +201,38 @@ namespace CavesOfOoo.Core
                     return new Candidate { Ability = ability, Dx = dx, Dy = dy };
             }
             Reject(target, ability, "no-clear-target-ray"); return null;
+        }
+
+        // Match Slam's bounded footprint placement without moving anything.
+        // Stop at the first obstruction; do not inspect a friend beyond a wall.
+        // A brace may stop sooner, but never makes an otherwise unsafe aim eligible.
+        private bool SafeSlamContact(Entity target, Zone zone, Cell contact)
+        {
+            var actor = ParentEntity;
+            if (target.GetPart<RenderPart>()?.Visible == false || BrainPart.ArePartyAligned(actor, target)) return false;
+            var eye = SpatialQuery.ClosestCell(zone, actor, contact.X, contact.Y);
+            if (eye == null || !AIHelpers.HasLineOfSight(zone, eye.X, eye.Y, contact.X, contact.Y)
+                || AIHelpers.ChebyshevDistance(eye.X, eye.Y, contact.X, contact.Y) > (actor.GetPart<BrainPart>()?.SightRadius ?? 10)) return false;
+            int direction = MultiCellAbilityQueries.ContactDirection(zone, actor, contact);
+            if (direction < 0) return false;
+            var position = zone.GetEntityPosition(target);
+            for (int step = 0; step < Cudgel_Slam.SLAM_DISTANCE; step++)
+            {
+                var next = zone.GetCellInDirection(position.x, position.y, direction);
+                if (next == null) return true;
+                if (!zone.CanPlaceFootprint(target, next.X, next.Y)
+                    || MultiCellAbilityQueries.CreatureAtPlacement(zone, target, next.X, next.Y) != null)
+                {
+                    foreach (var cell in zone.GetOccupiedCells(target, next.X, next.Y))
+                        if (cell != null)
+                            foreach (var occupant in cell.Occupants)
+                                if (occupant != null && occupant != target && occupant.HasTag("Creature")
+                                    && (BrainPart.ArePartyAligned(actor, occupant) || !FactionManager.IsHostile(actor, occupant))) return false;
+                    return true;
+                }
+                position = (next.X, next.Y);
+            }
+            return true;
         }
 
         private bool VisibleContactOnRay(Zone zone, Cell source, int dx, int dy, int range, Entity target)
