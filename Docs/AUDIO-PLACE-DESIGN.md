@@ -1,6 +1,6 @@
 # Place soundscape and combat variety
 
-Status: implemented and native-verified, 2026-10-11; fresh Linux delivery pending below. Builds on the shipped world audio system; preserve its music and the nature recordings the player likes. Implementation proceeds through observed RED, native GREEN, adverse review and a real gameplay route. Qud is an atmospheric reference, not a source of copied recordings or a claimed hearing-system port.
+Status: implemented and native-verified, 2026-10-11; fresh Linux delivery packaged and verified below. Builds on the shipped world audio system; preserve its music and the nature recordings the player likes. Implementation proceeds through observed RED, native GREEN, adverse review and a real gameplay route. Qud is an atmospheric reference, not a source of copied recordings or a claimed hearing-system port.
 
 ## Player experience
 
@@ -60,3 +60,11 @@ Follows `PERF-FOUNDATION.md`: discovery runs inside the existing context boundar
 - Real isolated Play route: **22/22 passed**, zero unexpected errors, run `c0fd56e92d294e4b8593d3c2eb5a234a`. Receipt and three screenshots: `Docs/Verification/WorldAudio/Native/c0fd56e92d294e4b8593d3c2eb5a234a/`. A real wood detail played from the generated glade, snapshot visited222 owners and retained2 sources; idle did not rescan or grow the16-source pool. Music/ambience mute controls, footsteps, music continuity, save/load, exact preference restoration and synthetic-device removal passed. The settings screenshot was visually reviewed.
 -31 new clips (2 beds,15 place phrases,14 attack takes) add1,319,315 compressed bytes and5,344,120 decoded short PCM bytes. All31 decode/import contracts,5 offline asset tests,16 offline adversarial checks and15 packaging checks pass. Original22 clips remain unchanged; rebuilds match with the same codec. Credits include original and expansion sources both in-game and in the package.
 - Limits: native signal windows show nonzero, below-full-scale output in those windows only. They do not establish subjective listening quality, all-biome transitions, physical speakers, overall clipping or Deck performance. SummitSinger needs a suitable single-note recording; CascadeFather stays silent per lore. Working-smith/cooking sounds are deferred until an authoritative active-work event exists. No synthetic crowds, hidden-enemy radar or new hearing system.
+
+## Linux delivery
+
+Built after source commit `b3df9c78bdd4ea99fd5601b6aa86363b31006a79`, with Unity6000.3.4f1, native Linux x86_64/Mono. Build succeeded in22.04s, zero errors; the four pre-existing warnings remain (two inherited Owner fields, unreachable bootstrap code, unused Backstab field). Temporary build changes to the three graphics/project settings files were captured in `build-settings-transient.diff`, then their exact original bytes restored.
+
+Archive: `Builds/SteamDeck/2026-10-11-place-audio-current/CavesOfOoo-SteamDeck-place-audio-current.tar.gz` (115,999,099 bytes). SHA256: `1517aab7e3c277c4bce3bd311819b54934c8a96b52cb0d53070fc3fa33cd17a2`.
+
+`Docs/Verification/PlaceAudio/package-checks.json` confirms174 payload files read back and hashed from the archive, exact archive membership, executable permissions,53 approved audio assets, full original/expansion credits and licenses, and final1478-test/22-case receipts. The package retains both original and expansion provenance. Prior delivery is untouched. This Linux executable cannot run on the macOS host; physical Deck runtime, speaker mix and performance still need hardware feedback. Existing unrelated Packages changes are listed honestly in build-info and were preserved.
