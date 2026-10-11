@@ -281,25 +281,52 @@ namespace CavesOfOoo.Tests
         [TestCase("Vault", true)] [TestCase("Vault", false)]
         [TestCase("Disengage", true)] [TestCase("Disengage", false)]
         [TestCase("Charge", true)] [TestCase("Charge", false)]
-        public void MovementSkill_DispatchesEntryAtBodyEdgeAndPreservesMoveVetoBypass(string name, bool body)
+        public void UnvetoedMovementSkill_DispatchesEntryAtBodyEdgeAndEachActualStep(string name, bool body)
         {
             var z = new Zone();
             var actor = ArmedActor(name == "Disengage" ? "Piercing" : "Cudgel", body ? "0,0;0,1" : null);
             Place(z, actor, 10, 10);
             var actorProbe = actor.GetPart<MultiCellAbilityProbePart>();
-            actorProbe.VetoBeforeMove = true;
             var entry = Owner(); Place(z, entry, name == "Vault" ? 12 : 11, 11);
             if (name == "Charge") Place(z, Owner(null, true), 13, 10);
             BaseSkillPart skill = name == "Vault" ? (BaseSkillPart)new Acrobatics_Vault()
                 : name == "Disengage" ? new ShortBlades_Disengage() : new Cudgel_ChargingStrike();
 
             Assert.IsTrue(skill.OnCommand(Context(z, actor)));
-            Assert.AreEqual((name == "Disengage" ? 13 : 12, 10), z.GetEntityPosition(actor),
-                "These existing movement skills intentionally bypass the ordinary BeforeMove veto.");
+            Assert.AreEqual((name == "Disengage" ? 13 : 12, 10), z.GetEntityPosition(actor));
             Assert.AreEqual(body ? 1 : 0, entry.GetPart<MultiCellAbilityProbePart>().EntryCalls,
                 "Only physical newly entered body cells activate a field beside the anchor lane.");
             Assert.AreEqual(name == "Vault" ? 1 : name == "Disengage" ? 3 : 2, actorProbe.AfterMoveCalls,
                 "Every actual landing or walked step uses the shared movement event path.");
+        }
+
+        [TestCase("Vault", true)] [TestCase("Vault", false)]
+        [TestCase("Disengage", true)] [TestCase("Disengage", false)]
+        [TestCase("Charge", true)] [TestCase("Charge", false)]
+        public void VoluntaryMovementVetoRefusesBeforeBodyEntryAndRemovingItRestoresTravel(string name, bool body)
+        {
+            var z = new Zone();
+            var actor = ArmedActor(name == "Disengage" ? "Piercing" : "Cudgel", body ? "0,0;0,1" : null);
+            Place(z, actor, 10, 10);
+            var actorProbe = actor.GetPart<MultiCellAbilityProbePart>(); actorProbe.VetoBeforeMove = true;
+            var entry = Owner(); Place(z, entry, name == "Vault" ? 12 : 11, 11);
+            var target = Owner(null, true); if (name == "Charge") Place(z, target, 13, 10);
+            BaseSkillPart skill = name == "Vault" ? (BaseSkillPart)new Acrobatics_Vault()
+                : name == "Disengage" ? new ShortBlades_Disengage() : new Cudgel_ChargingStrike();
+
+            // These are self-directed moves. The later voluntary-movement fix
+            // preserves Rooted/BeforeMove; external ForceMoveTo remains separate.
+            Assert.IsFalse(skill.OnCommand(Context(z, actor)));
+            Assert.AreEqual((10, 10), z.GetEntityPosition(actor));
+            Assert.Zero(actorProbe.AfterMoveCalls); Assert.Zero(entry.GetPart<MultiCellAbilityProbePart>().EntryCalls);
+            Assert.AreEqual(1000, target.GetStatValue("Hitpoints"));
+            Assert.False(actor.HasEffect<VaultPoiseEffect>());
+
+            actorProbe.VetoBeforeMove = false;
+            Assert.IsTrue(skill.OnCommand(Context(z, actor)), "The same valid route succeeds when permission is restored.");
+            Assert.AreEqual((name == "Disengage" ? 13 : 12, 10), z.GetEntityPosition(actor));
+            Assert.AreEqual(body ? 1 : 0, entry.GetPart<MultiCellAbilityProbePart>().EntryCalls);
+            Assert.AreEqual(name == "Vault" ? 1 : name == "Disengage" ? 3 : 2, actorProbe.AfterMoveCalls);
         }
 
         [TestCase("Disengage", "relocate", true)] [TestCase("Disengage", "relocate", false)]
