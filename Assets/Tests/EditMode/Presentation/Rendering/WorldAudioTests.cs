@@ -11,8 +11,8 @@ namespace CavesOfOoo.Tests
     {
         [TestCase(BiomeType.Spread, "organic", "field")]
         [TestCase(BiomeType.Jungle, "organic", "field")]
-        [TestCase(BiomeType.Grovelands, "organic", "field")]
-        [TestCase(BiomeType.Sodden, "organic", "water")]
+        [TestCase(BiomeType.Grovelands, "grovelands", "field")]
+        [TestCase(BiomeType.Sodden, "sodden", "water")]
         [TestCase(BiomeType.Desert, "dry", null)]
         [TestCase(BiomeType.Beating, "dry", null)]
         [TestCase(BiomeType.Overwrit, "dry", null)]
@@ -30,7 +30,7 @@ namespace CavesOfOoo.Tests
         {
             var above = WorldAudioContext.Select(BiomeType.Sodden, 0, false);
             var below = WorldAudioContext.Select(BiomeType.Sodden, 2, false);
-            Assert.AreEqual("organic", above.MusicId); Assert.AreEqual("underground", below.MusicId);
+            Assert.AreEqual("sodden", above.MusicId); Assert.AreEqual("underground", below.MusicId);
             Assert.AreEqual("cave", below.AmbienceId); Assert.False(below.Danger);
         }
     }

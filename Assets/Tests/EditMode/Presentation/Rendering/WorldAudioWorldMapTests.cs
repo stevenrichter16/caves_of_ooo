@@ -53,8 +53,8 @@ namespace CavesOfOoo.Tests
         {Assert.Null(runtime.Context.AmbienceId);Assert.False(runtime.Context.Danger);Assert.AreEqual(0,runtime.Soundscape.SourceCount);}
 
         [TestCase(BiomeType.Spread,"organic")]
-        [TestCase(BiomeType.Sodden,"organic")]
-        [TestCase(BiomeType.Grovelands,"organic")]
+        [TestCase(BiomeType.Sodden,"sodden")]
+        [TestCase(BiomeType.Grovelands,"grovelands")]
         [TestCase(BiomeType.Beating,"dry")]
         [TestCase(BiomeType.Overwrit,"dry")]
         [TestCase(BiomeType.Stump,"underground")]

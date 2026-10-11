@@ -16,7 +16,7 @@ namespace CavesOfOoo.Rendering
             {music="underground";ambience="cave";}
             else if(biome==BiomeType.Desert||biome==BiomeType.Beating||biome==BiomeType.Overwrit)
             {music="dry";ambience=null;}
-            else {music="organic";ambience=biome==BiomeType.Sodden?"water":"field";}
+            else {music=biome==BiomeType.Sodden?"sodden":biome==BiomeType.Grovelands?"grovelands":"organic";ambience=biome==BiomeType.Sodden?"water":"field";}
             return new WorldAudioContext(danger?"danger":music,ambience,danger);
         }
     }

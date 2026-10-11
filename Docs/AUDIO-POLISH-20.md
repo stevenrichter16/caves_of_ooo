@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-15/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+16/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -169,3 +169,12 @@ Iteration14 now proves original mineral depletion across a real checkpoint, afte
 Iteration15 first actual Play `9d87a90223294bec8bc18fd99c1e8728` passed all11 behavioral checks but remains failed overall due to two unexpected log entries. Console includes Unity Test Framework RestoreSceneSetupTask’s “This cannot be used during play mode”: the native route began while post-test scene restoration was still finishing, despite the job reporting completion. Preserve the receipt. Wait for actual idle editor state before a fresh unchanged route; no error exclusion or production adjustment.680/680 native checks passed beforehand;20 initial RED cases had15 expected failures/5 passes.
 
 Iteration15 complete: unchanged fresh route `aba4ae959aeb4b1799ff0a6378102ec2` passed11/11 with zero unexpected errors,6.330s, after the test runner finished its scene cleanup. Real merchant book purchased atOverworld.16.1.0, canonical multipage text unchanged, keyboard forward and native gamepad LB backward correlated imported Page output; reading spent no action and B closed silently. Previous gamepad and preferences restored. Four captures, next-page screenshot inspected, one disclosed travel shortcut, no book/text grants.680/680 native checks passed; the first11-behavior-pass/two-error receipt stays failed. Physical context arms only after commit and is never reconstructed from save strings; reviewed history changes remain additive.
+
+### Iteration 16 execution prompt — regional music
+
+Iteration15 has passed with physical reading isolated from generic messages.
+
+Preserve passes1–15 and existing gains/credits. RED first: Sodden and Grovelands must no longer reuse Spread music; danger and depth dominate. Import only stage16 verified full streamed tracks and append the regional credits to the real menu. No world scans or source growth. Prove both with paid native world-map movement, real ground visits, source sample progression and PCM; the route observes the actual regional stream after returning to the map so random ground danger cannot silently defeat the premise. Document no human-listening or Deck claim.
+
+
+Iteration16 complete:13 native RED cases had5 expected failures;693/693 audio regression and15/15 portable music counters passed. Fresh actual Play `875807c31d584ea5b285b3fde5fc61ee` passed12/12, zero errors,26.039s. Paid map travel entered actual Sodden15,8 and Grovelands7,5, then returned to the original region; imported full SignalToNoiseNoPiano/Cirrus streams measured peaks0.02484891/0.02593077. Four captures; Sodden ground image inspected. No shortcuts/grants,16 voices, zero idle rescans and exact preferences. Two complete licensed recordings add11,260,151 compressed bytes; original81 audio assets and utility credits/catalog retained. Independent review found no music-core defect; phase18 draft native typo fixed before import. Source output is not subjective listening or physical Deck proof.

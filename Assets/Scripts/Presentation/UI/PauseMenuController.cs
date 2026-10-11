@@ -233,6 +233,8 @@ namespace CavesOfOoo.Rendering
                     if(atmosphere!=null)text+=(text.Length>0?"\n\n":"")+atmosphere.text;
                     var utility=Resources.Load<TextAsset>("Audio/World/UTILITY-CREDITS");
                     if(utility!=null)text+=(text.Length>0?"\n\n":"")+utility.text;
+                    var regional=Resources.Load<TextAsset>("Audio/World/REGIONAL-MUSIC-CREDITS");
+                    if(regional!=null)text+=(text.Length>0?"\n\n":"")+regional.text;
                     MessageLog.AddAnnouncement(text.Length>0?text:"Audio credits are unavailable.");
                     Close();
                 }

@@ -36,6 +36,7 @@ namespace CavesOfOoo.Tests
             foreach (string id in new[] { "field", "night-field", "marsh", "water", "cave", "dry-wind" })
                 library.AddAmbience(id, Clip("bed-" + id), .2f);
             library.AddMusic("organic", Clip("music-organic"), .25f);
+            library.AddMusic("sodden", library.Music("organic").Clip, .25f); // Synthetic same-score fixture; this suite tests source ownership, not regional identity.
             foreach (WorldAudioCue cue in Enum.GetValues(typeof(WorldAudioCue))) library.AddSound(cue, Clip("action-" + cue), .4f);
             player = new WorldAudioPlayer(root.transform, library); scene = new WorldAudioSoundscape(player);
             zone = new Zone("Overworld.10.10.0"); actor = WorldAudioAdversarialTests.Actor("listener");

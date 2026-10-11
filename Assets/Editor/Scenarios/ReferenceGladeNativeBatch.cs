@@ -60,6 +60,9 @@ namespace CavesOfOoo.Editor
 
         [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 15 Physical Reading")]
         public static void LaunchAudioPolish15()=>LaunchAudioPolish(15);
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 16 Regions")]
+        public static void LaunchAudioPolish16()=>LaunchAudioPolish(16);
         public static void LaunchAudioPolish(int iteration)=>LaunchCore(false,audioPolishIteration:iteration);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "sourceVerificationDate": "2026-10-11",
+  "throughIteration": 16,
+  "tool": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers",
+  "sources": {
+    "signal-no-melody.mp3": {
+      "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/04/sb_signaltonoise_nomelody.mp3",
+      "bytes": 14178456,
+      "sha256": "8e20b496b0614053565d4f43c80f469c84abd2aefb3ba01e29dfa813f49b9594",
+      "decodedFrames": 15626982
+    },
+    "cirrus.mp3": {
+      "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2023/03/Cirrus.mp3",
+      "bytes": 16739494,
+      "sha256": "020b1e913bfc263cb9ce732fb277fa777afba5e755e7165023a559068171d04b",
+      "decodedFrames": 18450559
+    }
+  },
+  "clips": [
+    {
+      "id": "SignalToNoiseNoPiano",
+      "path": "Music/SignalToNoiseNoPiano.ogg",
+      "kind": "music",
+      "source": "signal-no-melody.mp3",
+      "author": "Scott Buckley",
+      "title": "Signal to Noise",
+      "mix": "No Piano Melody",
+      "page": "https://www.scottbuckley.com.au/library/signal-to-noise/",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "credit": "'Signal to Noise' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "changes": "Complete author-supplied No Piano Melody retained; transcoded to stereo Ogg Vorbis. Peak attenuation only if required for headroom; no excerpts, timing changes, loudness normalization or added instruments.",
+      "context": "sodden",
+      "runtimeGain": 0.3,
+      "iteration": 16,
+      "outputSha256": "76498deeb8e9877bcd7ff6e7403e39ff785b75f00b111946d78f13b38e28176c",
+      "outputBytes": 5036660,
+      "sourceDecodedFrames": 15626982,
+      "preparedFrames": 15626982,
+      "preparationGain": 0.8507144854980325,
+      "sampleRate": 44100,
+      "channels": 2,
+      "decodedPeak": 0.7672927379608154,
+      "decodedRms": 0.1016196066990638
+    },
+    {
+      "id": "Cirrus",
+      "path": "Music/Cirrus.ogg",
+      "kind": "music",
+      "source": "cirrus.mp3",
+      "author": "Scott Buckley",
+      "title": "Cirrus",
+      "mix": "Full Mix",
+      "page": "https://www.scottbuckley.com.au/library/cirrus/",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "credit": "'Cirrus' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "changes": "Complete author-supplied Full Mix retained; transcoded to stereo Ogg Vorbis. Peak attenuation only if required for headroom; no excerpts, timing changes, loudness normalization or added instruments.",
+      "context": "grovelands",
+      "runtimeGain": 0.3,
+      "iteration": 16,
+      "outputSha256": "4f479c373191f8b1fc5954da67ea372c2692a39540b2afd1428f27532df06dbe",
+      "outputBytes": 6223491,
+      "sourceDecodedFrames": 18450559,
+      "preparedFrames": 18450559,
+      "preparationGain": 0.7486177277582589,
+      "sampleRate": 44100,
+      "channels": 2,
+      "decodedPeak": 0.786194384098053,
+      "decodedRms": 0.12361078537190782
+    }
+  ]
+}
