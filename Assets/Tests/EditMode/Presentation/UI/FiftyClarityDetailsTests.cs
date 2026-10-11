@@ -89,7 +89,7 @@ namespace CavesOfOoo.Tests
             next.GetPart<EquippablePart>().EquipBonuses = "";
             Assert.True(Pack.AddObject(next));
             Assert.True(EquipmentComparisonService.TryDescribe(actor, next, out var text, out var reason), reason);
-            StringAssert.Contains("AV change: +3", text);
+            StringAssert.Contains("body: AV 1 -> 4 (change: +3)", text);
             StringAssert.Contains("DV change: -3", text);
             StringAssert.Contains("Speed change: -2", text);
             Assert.True(InventorySystem.IsEquipped(actor, current));
@@ -102,8 +102,9 @@ namespace CavesOfOoo.Tests
             Assert.True(InventorySystem.Equip(actor, current));
             var next = Carry("Dagger"); next.AddPart(new ArmorPart { AV = 5 });
             Assert.True(EquipmentComparisonService.TryDescribe(actor, next, out var text, out var reason), reason);
-            StringAssert.Contains("AV change: +2", text);
-            StringAssert.DoesNotContain("AV change: -1", text);
+            StringAssert.Contains(": AV 3 -> 5 (change: +2)", text);
+            StringAssert.Contains(": AV 3 -> 0 (change: -3)", text);
+            StringAssert.DoesNotContain("AV change:", text);
         }
 
         [Test] public void InventorySearchMatchesDisplayedNamesAndPreservesInputOrdering()

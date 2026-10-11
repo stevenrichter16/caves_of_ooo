@@ -1,0 +1,1212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="63" result="Failed" start-time="2026-10-11T03:30:07.9372330Z" end-time="2026-10-11T03:30:08.5751560Z" duration="0.637891" total="25" passed="4" failed="21" inconclusive="0" skipped="0" warnings="0" asserts="88" random-seed="97649635">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration07-red.xml --where "class =~ /SlotArmorComparison/"]]></command-line>
+  <filter>
+    <class re="1">SlotArmorComparison</class>
+  </filter>
+  <test-suite type="Assembly" id="1076" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T03:30:07.9372330Z" end-time="2026-10-11T03:30:08.5751560Z" duration="0.637891" total="25" passed="4" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="88">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="33942" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1077" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T03:30:07.9388390Z" end-time="2026-10-11T03:30:08.5751540Z" duration="0.636309" total="25" passed="4" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="88">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1078" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T03:30:07.9389490Z" end-time="2026-10-11T03:30:08.5751520Z" duration="0.636196" total="25" passed="4" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="88">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1010" name="SlotArmorComparisonAdversarialTests" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-11T03:30:07.9392820Z" end-time="2026-10-11T03:30:08.4137740Z" duration="0.474488" total="17" passed="3" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="60">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1015" name="AbstractClaimNeverPromisesPhysicalProtection" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.AbstractClaimNeverPromisesPhysicalProtection" methodname="AbstractClaimNeverPromisesPhysicalProtection" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="56149578" result="Passed" start-time="2026-10-11T03:30:07.9401220Z" end-time="2026-10-11T03:30:08.0156280Z" duration="0.075532" asserts="3" />
+          <test-case id="1026" name="AlreadyWornCloakStillExplainsItsCoverage" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.AlreadyWornCloakStillExplainsItsCoverage" methodname="AlreadyWornCloakStillExplainsItsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="658395911" result="Failed" start-time="2026-10-11T03:30:08.0162360Z" end-time="2026-10-11T03:30:08.0539380Z" duration="0.037703" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Currently equipped: back.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornCloakStillExplainsItsCoverage() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Currently equipped: back.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornCloakStillExplainsItsCoverage() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1027" name="AlreadyWornPhysicalArmorNamesItsHitLocation" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.AlreadyWornPhysicalArmorNamesItsHitLocation" methodname="AlreadyWornPhysicalArmorNamesItsHitLocation" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1447820339" result="Failed" start-time="2026-10-11T03:30:08.0540140Z" end-time="2026-10-11T03:30:08.0791430Z" duration="0.025129" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: String containing "feet: worn AV +2 applies only when this part is struck"
+  But was:  "Equipment comparison
+
+Candidate: ironshod boots
+Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet.
+Weight per item: 4.
+
+Currently equipped: feet.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornPhysicalArmorNamesItsHitLocation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "feet: worn AV +2 applies only when this part is struck"
+  But was:  "Equipment comparison
+
+Candidate: ironshod boots
+Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet.
+Weight per item: 4.
+
+Currently equipped: feet.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornPhysicalArmorNamesItsHitLocation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1029" name="BodylessComparisonKeepsHonestUnavailableSlots" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.BodylessComparisonKeepsHonestUnavailableSlots" methodname="BodylessComparisonKeepsHonestUnavailableSlots" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1300034246" result="Passed" start-time="2026-10-11T03:30:08.0791630Z" end-time="2026-10-11T03:30:08.1008910Z" duration="0.021728" asserts="3" />
+          <test-case id="1021" name="CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" methodname="CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="562924809" result="Failed" start-time="2026-10-11T03:30:08.1009180Z" end-time="2026-10-11T03:30:08.1301410Z" duration="0.029223" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 18
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 18
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="CoverageMetadataChangedByDescriptionCallbackRefusesStaleSnapshot" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CoverageMetadataChangedByDescriptionCallbackRefusesStaleSnapshot" methodname="CoverageMetadataChangedByDescriptionCallbackRefusesStaleSnapshot" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="476634907" result="Failed" start-time="2026-10-11T03:30:08.1301650Z" end-time="2026-10-11T03:30:08.1533890Z" duration="0.023225" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CoverageMetadataChangedByDescriptionCallbackRefusesStaleSnapshot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CoverageMetadataChangedByDescriptionCallbackRefusesStaleSnapshot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1014" name="CurrentTargetWeightControlsCoverage" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:30:08.1534120Z" end-time="2026-10-11T03:30:08.2279240Z" duration="0.074511" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1011" name="CurrentTargetWeightControlsCoverage(0,False)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(0,False)" methodname="CurrentTargetWeightControlsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1073171280" result="Failed" start-time="2026-10-11T03:30:08.1535170Z" end-time="2026-10-11T03:30:08.1794110Z" duration="0.025894" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="CurrentTargetWeightControlsCoverage(5,True)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(5,True)" methodname="CurrentTargetWeightControlsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1897594857" result="Failed" start-time="2026-10-11T03:30:08.1794400Z" end-time="2026-10-11T03:30:08.2044420Z" duration="0.025002" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "back: AV 0 -> 1"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+   at InvokeStub_SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "back: AV 0 -> 1"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+   at InvokeStub_SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="CurrentTargetWeightControlsCoverage(-1,False)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(-1,False)" methodname="CurrentTargetWeightControlsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="734017361" result="Failed" start-time="2026-10-11T03:30:08.2044660Z" end-time="2026-10-11T03:30:08.2274920Z" duration="0.023027" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+   at InvokeStub_SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Int32 weight, Boolean covered) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 35
+   at InvokeStub_SlotArmorComparisonAdversarialTests.CurrentTargetWeightControlsCoverage(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1019" name="DisplacedMultiSlotArmorLosesCoverageOutsideCandidateClaim" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.DisplacedMultiSlotArmorLosesCoverageOutsideCandidateClaim" methodname="DisplacedMultiSlotArmorLosesCoverageOutsideCandidateClaim" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1295730244" result="Failed" start-time="2026-10-11T03:30:08.2281380Z" end-time="2026-10-11T03:30:08.2552950Z" duration="0.027156" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0"
+  But was:  "Equipment comparison
+
+Candidate: dagger
+Damage: 1d4 per penetration.
+Hit bonus: +0; Penetration bonus: +1.
+Penetration uses Strength modifier (cap 3).
+Attributes: Piercing.
+On damaging hits, independent attempts (targets may resist):
+  10%: Confused - staggers unpredictably for 2 turns.
+Equip slots: Hand.
+Weight per item: 4.
+
+Auto equip: left hand.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand, right hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: right hand.
+  right hand now: buckler.
+  Displaced: buckler (left hand, right hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand,Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.DisplacedMultiSlotArmorLosesCoverageOutsideCandidateClaim() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0"
+  But was:  "Equipment comparison
+
+Candidate: dagger
+Damage: 1d4 per penetration.
+Hit bonus: +0; Penetration bonus: +1.
+Penetration uses Strength modifier (cap 3).
+Attributes: Piercing.
+On damaging hits, independent attempts (targets may resist):
+  10%: Confused - staggers unpredictably for 2 turns.
+Equip slots: Hand.
+Weight per item: 4.
+
+Auto equip: left hand.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand, right hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: right hand.
+  right hand now: buckler.
+  Displaced: buckler (left hand, right hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand,Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.DisplacedMultiSlotArmorLosesCoverageOutsideCandidateClaim() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="ExtremeArmorDeltaDoesNotOverflow" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.ExtremeArmorDeltaDoesNotOverflow" methodname="ExtremeArmorDeltaDoesNotOverflow" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1577188869" result="Failed" start-time="2026-10-11T03:30:08.2553210Z" end-time="2026-10-11T03:30:08.2773660Z" duration="0.022046" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: String containing "change: +4294967295"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +2147483647; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: leather cap.
+  Displaced: leather cap (head).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+
+Current: leather cap
+Armor contribution - AV: -2147483648; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.ExtremeArmorDeltaDoesNotOverflow() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 47
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "change: +4294967295"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +2147483647; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: leather cap.
+  Displaced: leather cap (head).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+
+Current: leather cap
+Armor contribution - AV: -2147483648; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.ExtremeArmorDeltaDoesNotOverflow() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 47
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1018" name="InspectionDoesNotEquipOrChangeStats" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.InspectionDoesNotEquipOrChangeStats" methodname="InspectionDoesNotEquipOrChangeStats" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1066609577" result="Passed" start-time="2026-10-11T03:30:08.2773990Z" end-time="2026-10-11T03:30:08.3031260Z" duration="0.025727" asserts="5" />
+          <test-case id="1017" name="NaturalArmorAndEffectsAreNotAddedToItemContribution" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.NaturalArmorAndEffectsAreNotAddedToItemContribution" methodname="NaturalArmorAndEffectsAreNotAddedToItemContribution" classname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests" runstate="Runnable" seed="1735671534" result="Failed" start-time="2026-10-11T03:30:08.3031450Z" end-time="2026-10-11T03:30:08.3246600Z" duration="0.021516" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: String containing "body: AV 0 -> 3"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.NaturalArmorAndEffectsAreNotAddedToItemContribution() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "body: AV 0 -> 3"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.NaturalArmorAndEffectsAreNotAddedToItemContribution() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1025" name="PhysicalSlotReportsOnlyItsActualArmorChange" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:30:08.3246830Z" end-time="2026-10-11T03:30:08.3931850Z" duration="0.068502" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherArmor&quot;,&quot;Body&quot;,3)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherArmor&quot;,&quot;Body&quot;,3)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="2000346285" result="Failed" start-time="2026-10-11T03:30:08.3247010Z" end-time="2026-10-11T03:30:08.3478750Z" duration="0.023175" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "body: AV 0 -> 3 (change: +3)"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "body: AV 0 -> 3 (change: +3)"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherCap&quot;,&quot;Head&quot;,1)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherCap&quot;,&quot;Head&quot;,1)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="787642403" result="Failed" start-time="2026-10-11T03:30:08.3478970Z" end-time="2026-10-11T03:30:08.3687810Z" duration="0.020883" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "head: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "head: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;GripfrondWrap&quot;,&quot;Handwear&quot;,1)" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;GripfrondWrap&quot;,&quot;Handwear&quot;,1)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="624568260" result="Failed" start-time="2026-10-11T03:30:08.3688040Z" end-time="2026-10-11T03:30:08.3931470Z" duration="0.024343" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "handwear: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: gripfrond wrap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Handwear.
+Weight per item: 1.
+
+Auto equip: handwear.
+  handwear now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "handwear: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: gripfrond wrap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Handwear.
+Weight per item: 1.
+
+Auto equip: handwear.
+  handwear now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1028" name="TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" fullname="CavesOfOoo.Tests.SlotArmorComparisonAdversarialTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" methodname="TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1474966674" result="Failed" start-time="2026-10-11T03:30:08.3932040Z" end-time="2026-10-11T03:30:08.4137270Z" duration="0.020523" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0 (change: -1)"
+  But was:  "Equipment comparison
+
+Candidate: dissolution maul
+Damage: 2d6+2 per penetration.
+Hit bonus: +0; Penetration bonus: +5.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Cudgel Acid.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+  40%: Corroding acid - 5 damage a turn while the coating lasts.
+Equip slots: Hand,Hand.
+Weight per item: 18.
+
+Auto equip: right hand, left hand.
+  right hand now: empty; natural attack: fist.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: left hand, right hand.
+  left hand now: buckler; natural attack: fist.
+  right hand now: empty; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 27
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0 (change: -1)"
+  But was:  "Equipment comparison
+
+Candidate: dissolution maul
+Damage: 2d6+2 per penetration.
+Hit bonus: +0; Penetration bonus: +5.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Cudgel Acid.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+  40%: Corroding acid - 5 damage a turn while the coating lasts.
+Equip slots: Hand,Hand.
+Weight per item: 18.
+
+Auto equip: right hand, left hand.
+  right hand now: empty; natural attack: fist.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: left hand, right hand.
+  left hand now: buckler; natural attack: fist.
+  right hand now: empty; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 27
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="SlotArmorComparisonTests" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T03:30:08.4140490Z" end-time="2026-10-11T03:30:08.5751350Z" duration="0.161084" total="8" passed="1" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="28">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1006" name="AlreadyWornCloakStillExplainsItsCoverage" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornCloakStillExplainsItsCoverage" methodname="AlreadyWornCloakStillExplainsItsCoverage" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="217845095" result="Failed" start-time="2026-10-11T03:30:08.4140810Z" end-time="2026-10-11T03:30:08.4357300Z" duration="0.021648" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Currently equipped: back.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornCloakStillExplainsItsCoverage() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Currently equipped: back.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornCloakStillExplainsItsCoverage() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1007" name="AlreadyWornPhysicalArmorNamesItsHitLocation" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornPhysicalArmorNamesItsHitLocation" methodname="AlreadyWornPhysicalArmorNamesItsHitLocation" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1380016781" result="Failed" start-time="2026-10-11T03:30:08.4357530Z" end-time="2026-10-11T03:30:08.4558910Z" duration="0.020139" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: String containing "feet: worn AV +2 applies only when this part is struck"
+  But was:  "Equipment comparison
+
+Candidate: ironshod boots
+Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet.
+Weight per item: 4.
+
+Currently equipped: feet.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornPhysicalArmorNamesItsHitLocation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "feet: worn AV +2 applies only when this part is struck"
+  But was:  "Equipment comparison
+
+Candidate: ironshod boots
+Armor contribution - AV: +2; DV: +0.
+Speed: -5 while equipped.
+Equip slots: Feet.
+Weight per item: 4.
+
+Currently equipped: feet.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.AlreadyWornPhysicalArmorNamesItsHitLocation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1009" name="BodylessComparisonKeepsHonestUnavailableSlots" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.BodylessComparisonKeepsHonestUnavailableSlots" methodname="BodylessComparisonKeepsHonestUnavailableSlots" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="20189372" result="Passed" start-time="2026-10-11T03:30:08.4559210Z" end-time="2026-10-11T03:30:08.4774830Z" duration="0.021561" asserts="3" />
+          <test-case id="1001" name="CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" methodname="CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="230123660" result="Failed" start-time="2026-10-11T03:30:08.4774940Z" end-time="2026-10-11T03:30:08.4965910Z" duration="0.019097" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 18
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "back: not a normal hit location"
+  But was:  "Equipment comparison
+
+Candidate: cloak
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Back.
+Weight per item: 3.
+
+Auto equip: back.
+  back now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+  DV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.CloakExplainsItsUntargetableBackWithoutGlobalArmorPromise() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 18
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1005" name="PhysicalSlotReportsOnlyItsActualArmorChange" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:30:08.4966130Z" end-time="2026-10-11T03:30:08.5560310Z" duration="0.059417" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherArmor&quot;,&quot;Body&quot;,3)" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherArmor&quot;,&quot;Body&quot;,3)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1440206305" result="Failed" start-time="2026-10-11T03:30:08.4966330Z" end-time="2026-10-11T03:30:08.5154500Z" duration="0.018817" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "body: AV 0 -> 3 (change: +3)"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "body: AV 0 -> 3 (change: +3)"
+  But was:  "Equipment comparison
+
+Candidate: leather armor
+Armor contribution - AV: +3; DV: -1.
+Equip slots: Body.
+Weight per item: 15.
+
+Auto equip: body.
+  body now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +3
+  DV change: -1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherCap&quot;,&quot;Head&quot;,1)" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;LeatherCap&quot;,&quot;Head&quot;,1)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="1075035689" result="Failed" start-time="2026-10-11T03:30:08.5154720Z" end-time="2026-10-11T03:30:08.5351020Z" duration="0.019630" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "head: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "head: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: leather cap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Head.
+Weight per item: 1.
+
+Auto equip: head.
+  head now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="PhysicalSlotReportsOnlyItsActualArmorChange(&quot;GripfrondWrap&quot;,&quot;Handwear&quot;,1)" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(&quot;GripfrondWrap&quot;,&quot;Handwear&quot;,1)" methodname="PhysicalSlotReportsOnlyItsActualArmorChange" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="203541708" result="Failed" start-time="2026-10-11T03:30:08.5351310Z" end-time="2026-10-11T03:30:08.5560020Z" duration="0.020872" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "handwear: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: gripfrond wrap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Handwear.
+Weight per item: 1.
+
+Auto equip: handwear.
+  handwear now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "handwear: AV 0 -> 1 (change: +1)"
+  But was:  "Equipment comparison
+
+Candidate: gripfrond wrap
+Armor contribution - AV: +1; DV: +0.
+Equip slots: Handwear.
+Weight per item: 1.
+
+Auto equip: handwear.
+  handwear now: empty.
+  No equipped items displaced.
+  Equipment contributions (other effects not totaled):
+  AV change: +1
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(String blueprint, String slot, Int32 av) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 21
+   at InvokeStub_SlotArmorComparisonTests.PhysicalSlotReportsOnlyItsActualArmorChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1008" name="TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" fullname="CavesOfOoo.Tests.SlotArmorComparisonTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" methodname="TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand" classname="CavesOfOoo.Tests.SlotArmorComparisonTests" runstate="Runnable" seed="393524505" result="Failed" start-time="2026-10-11T03:30:08.5560440Z" end-time="2026-10-11T03:30:08.5751100Z" duration="0.019066" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0 (change: -1)"
+  But was:  "Equipment comparison
+
+Candidate: dissolution maul
+Damage: 2d6+2 per penetration.
+Hit bonus: +0; Penetration bonus: +5.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Cudgel Acid.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+  40%: Corroding acid - 5 damage a turn while the coating lasts.
+Equip slots: Hand,Hand.
+Weight per item: 18.
+
+Auto equip: right hand, left hand.
+  right hand now: empty; natural attack: fist.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: left hand, right hand.
+  left hand now: buckler; natural attack: fist.
+  right hand now: empty; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 27
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "left hand: AV 1 -> 0 (change: -1)"
+  But was:  "Equipment comparison
+
+Candidate: dissolution maul
+Damage: 2d6+2 per penetration.
+Hit bonus: +0; Penetration bonus: +5.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Cudgel Acid.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+  40%: Corroding acid - 5 damage a turn while the coating lasts.
+Equip slots: Hand,Hand.
+Weight per item: 18.
+
+Auto equip: right hand, left hand.
+  right hand now: empty; natural attack: fist.
+  left hand now: buckler; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+Manual equip: left hand, right hand.
+  left hand now: buckler; natural attack: fist.
+  right hand now: empty; natural attack: fist.
+  Displaced: buckler (left hand).
+  Equipment contributions (other effects not totaled):
+  AV change: -1
+  DV change: -1
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: fist
+Damage: 1d2 per penetration.
+Hit bonus: +0; Penetration bonus: +0.
+Penetration uses Strength modifier (cap 50).
+Attributes: Bludgeoning Unarmed.
+On damaging hits, independent attempts (targets may resist):
+  15%: Stunned - can't act for 2 turns (Toughness may shake it off, save 16).
+Weight per item: 0.
+
+Current: buckler
+Armor contribution - AV: +1; DV: +1.
+Equip slots: Hand.
+Weight per item: 5.
+
+Item contributions only. Other effects are not totaled; targets, skills and conditions can change results.
+Inspection snapshot. Equipping rechecks current slots and restrictions."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SlotArmorComparisonTests.TwoSlotReplacementReportsLostShieldProtectionOnItsActualHand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/SlotArmorComparisonTests.cs:line 27
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

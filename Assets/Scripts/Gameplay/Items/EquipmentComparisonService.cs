@@ -41,7 +41,7 @@ namespace CavesOfOoo.Core
             var equipmentBefore = inventory.EquippedItems.ToArray();
             var slotsBefore = parts.Select(p => new { Part = p, Item = p._Equipped,
                 Natural = p._DefaultBehavior, First = p.FirstSlotForEquipped,
-                FirstNatural = p.FirstSlotForDefaultBehavior }).ToArray();
+                FirstNatural = p.FirstSlotForDefaultBehavior, p.Abstract, p.TargetWeight }).ToArray();
             int quantityBefore = candidate.GetPart<StackerPart>()?.StackCount ?? 1;
             var lines = new List<string> { "Equipment comparison", "", "Candidate: " + candidate.GetDisplayName() };
             AddFacts(candidate, lines);
@@ -52,6 +52,7 @@ namespace CavesOfOoo.Core
                 var equippedParts = parts.Where(p => p._Equipped == candidate).ToList();
                 lines.Add("Currently equipped: " + (equippedParts.Count > 0 ? PartNames(equippedParts)
                     : string.Join(", ", inventory.EquippedItems.Where(p => p.Value == candidate).Select(p => p.Key))) + ".");
+                AddWornArmorCoverage(candidate, equippedParts, lines);
             }
             else
             {
@@ -95,7 +96,7 @@ namespace CavesOfOoo.Core
                 || !equipmentBefore.SequenceEqual(inventory.EquippedItems)
                 || !slotsBefore.SequenceEqual(currentParts.Select(p => new { Part = p, Item = p._Equipped,
                     Natural = p._DefaultBehavior, First = p.FirstSlotForEquipped,
-                    FirstNatural = p.FirstSlotForDefaultBehavior })))
+                    FirstNatural = p.FirstSlotForDefaultBehavior, p.Abstract, p.TargetWeight })))
             {
                 reason = "Equipment changed while reading. Inspect it again.";
                 return false;
@@ -190,7 +191,8 @@ namespace CavesOfOoo.Core
                 AddDistinct(facts, group.Key);
             }
             if (plan.Displacements.Count == 0) lines.Add("  No equipped items displaced.");
-            var deltas = new SortedDictionary<string, int>(StringComparer.Ordinal);
+            AddArmorChanges(plan, lines);
+            var deltas = new SortedDictionary<string, long>(StringComparer.Ordinal);
             AddContributions(plan.Actor, plan.Item, 1, deltas);
             foreach (var old in plan.Displacements.Select(d => d.Item).Distinct()) AddContributions(plan.Actor, old, -1, deltas);
             lines.Add("  Equipment contributions (other effects not totaled):");
@@ -200,11 +202,43 @@ namespace CavesOfOoo.Core
             if (!changed) lines.Add("  No numeric contribution change.");
         }
 
-        private static void AddContributions(Entity actor, Entity item, int sign, IDictionary<string, int> values)
+        private static bool Targetable(BodyPart part) => !part.Abstract && part.TargetWeight > 0;
+
+        private static void AddWornArmorCoverage(Entity item, IEnumerable<BodyPart> parts, List<string> lines)
         {
-            void Add(string stat, int amount) { values.TryGetValue(stat, out int prior); values[stat] = prior + sign * amount; }
             var armor = item.GetPart<ArmorPart>();
-            if (armor != null) { Add("AV", armor.AV); Add("DV", armor.DV); if (actor.GetStat("Speed") != null) Add("Speed", -armor.SpeedPenalty); }
+            if (armor == null || armor.AV == 0) return;
+            foreach (var part in parts)
+                lines.Add("  " + part.GetDisplayName() + (Targetable(part)
+                    ? ": worn AV " + Signed(armor.AV) + " applies only when this part is struck."
+                    : ": not a normal hit location; listed item AV does not protect other parts."));
+        }
+
+        private static void AddArmorChanges(EquipPlan plan, List<string> lines)
+        {
+            // A displaced multi-slot item also leaves any released slots that
+            // the new item does not claim. AV belongs to each physical location;
+            // it is neither an item-total nor a projection of natural armor.
+            foreach (var part in plan.ClaimedParts.Concat(plan.Displacements.Select(d => d.BodyPart)).Distinct())
+            {
+                long before = part._Equipped?.GetPart<ArmorPart>()?.AV ?? 0;
+                long after = plan.ClaimedParts.Contains(part) ? plan.Item.GetPart<ArmorPart>()?.AV ?? 0 : 0;
+                if (before == 0 && after == 0) continue;
+                if (!Targetable(part))
+                    lines.Add("  " + part.GetDisplayName() + ": not a normal hit location; listed item AV does not protect other parts.");
+                else
+                    lines.Add("  " + part.GetDisplayName() + ": AV " + before + " -> " + after
+                        + " (change: " + Signed(after - before) + "). Equipment armor at this hit location only.");
+            }
+        }
+
+        private static string Signed(long value) => (value >= 0 ? "+" : "") + value.ToString(CultureInfo.InvariantCulture);
+
+        private static void AddContributions(Entity actor, Entity item, int sign, IDictionary<string, long> values)
+        {
+            void Add(string stat, long amount) { values.TryGetValue(stat, out long prior); values[stat] = prior + sign * amount; }
+            var armor = item.GetPart<ArmorPart>();
+            if (armor != null) { Add("DV", armor.DV); if (actor.GetStat("Speed") != null) Add("Speed", -(long)armor.SpeedPenalty); }
             string raw = item.GetPart<EquippablePart>()?.EquipBonuses;
             foreach (string pair in (raw ?? "").Split(','))
             {
