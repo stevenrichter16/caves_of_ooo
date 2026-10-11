@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using CavesOfOoo.Data;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -26,8 +29,9 @@ namespace CavesOfOoo.Core
         public const string LastRestockProp = "LastRestockTurn";
 
         /// <summary>STARTING TOWN — shop-shelf restock threshold: a
-        /// keeper whose inventory has fewer items than this re-rolls
-        /// their stock table on the restock tick.</summary>
+        /// keeper with fewer positive units from their stock table than this
+        /// receives one full authored roll on the restock tick. Sold unrelated
+        /// items are retained but do not block useful stock.</summary>
         public const int ShelfLowWaterMark = 3;
         public const string ShopStockTableProp = "ShopStockTable";
 
@@ -39,7 +43,8 @@ namespace CavesOfOoo.Core
         public static CavesOfOoo.Data.EntityFactory Factory;
 
         /// <summary>Restock eligible traders in the zone. Returns the
-        /// number of traders whose drams were topped up.</summary>
+        /// number of purse top-ups plus shelf refill attempts; one trader
+        /// may contribute both.</summary>
         public static int RestockZone(Zone zone, int currentTurn)
         {
             if (zone == null) return 0;
@@ -64,7 +69,7 @@ namespace CavesOfOoo.Core
                     continue;
 
                 int last = e.GetIntProperty(LastRestockProp, int.MinValue);
-                if (last != int.MinValue && currentTurn - last <= RestockIntervalTurns)
+                if (last != int.MinValue && (long)currentTurn - last <= RestockIntervalTurns)
                     continue;
 
                 if (drams < DramsFloor)
@@ -80,7 +85,7 @@ namespace CavesOfOoo.Core
                 if (Factory != null && !string.IsNullOrEmpty(stockTable))
                 {
                     var inv = e.GetPart<InventoryPart>();
-                    if (inv != null && inv.Objects.Count < ShelfLowWaterMark)
+                    if (inv != null && CountStockUnits(inv, stockTable) < ShelfLowWaterMark)
                     {
                         var rng = new System.Random(
                             unchecked(currentTurn * 31 + e.ID.GetHashCode()));
@@ -97,6 +102,41 @@ namespace CavesOfOoo.Core
                 e.SetIntProperty(LastRestockProp, currentTurn);
             }
             return restocked;
+        }
+        // Membership is rebuilt per refill check: registry replacement and a keeper's
+        // current authored table remain authoritative, with no persisted cache.
+        private static int CountStockUnits(InventoryPart inventory, string stockTable)
+        {
+            var names = new HashSet<string>(System.StringComparer.Ordinal);
+            var visited = new HashSet<string>(System.StringComparer.Ordinal);
+            var pending = new Stack<string>(); pending.Push(stockTable);
+            while (pending.Count > 0)
+            {
+                string name = pending.Pop();
+                if (!visited.Add(name)) continue;
+                var table = LootTableRegistry.Get(name);
+                if (table?.Entries == null || (table.PickOne && System.Math.Max(table.MinPicks, table.MaxPicks) <= 0)) continue;
+                foreach (var entry in table.Entries)
+                {
+                    if (entry == null || System.Math.Max(entry.MinCount, entry.MaxCount) <= 0
+                        || (table.PickOne ? entry.Weight <= 0 : entry.Chance <= 0)) continue;
+                    // The roller ignores Chance in weighted mode and prefers TableRef
+                    // when an entry contains both fields. Match that exact contract.
+                    if (!string.IsNullOrEmpty(entry.TableRef)) pending.Push(entry.TableRef);
+                    else if (!string.IsNullOrEmpty(entry.Blueprint)) names.Add(entry.Blueprint);
+                }
+            }
+            int units = 0;
+            var seen = new HashSet<Entity>();
+            foreach (var item in inventory.Objects)
+            {
+                if (item == null || !seen.Add(item) || !names.Contains(item.BlueprintName)) continue;
+                int count = item.GetPart<StackerPart>()?.StackCount ?? 1;
+                if (count <= 0) continue;
+                if (count >= ShelfLowWaterMark - units) return ShelfLowWaterMark;
+                units += count;
+            }
+            return units;
         }
     }
 }

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="38" result="Failed" start-time="2026-10-11T02:38:40.5446440Z" end-time="2026-10-11T02:38:41.3209060Z" duration="0.776249" total="38" passed="31" failed="7" inconclusive="0" skipped="0" warnings="0" asserts="129" random-seed="1426575886">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration02-red.xml --where "class =~ /UsefulTraderRestock|TraderStockTests/"]]></command-line>
+  <filter>
+    <class re="1">UsefulTraderRestock|TraderStockTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1045" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-11T02:38:40.5446440Z" end-time="2026-10-11T02:38:41.3209060Z" duration="0.776249" total="38" passed="31" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="129">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20107" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1046" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-11T02:38:40.5461100Z" end-time="2026-10-11T02:38:41.3209050Z" duration="0.774793" total="38" passed="31" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="129">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-11T02:38:40.5462020Z" end-time="2026-10-11T02:38:41.3209030Z" duration="0.774698" total="38" passed="31" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="129">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1035" name="TraderStockTests" fullname="CavesOfOoo.Tests.TraderStockTests" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-11T02:38:40.5465590Z" end-time="2026-10-11T02:38:40.5928070Z" duration="0.046248" total="9" passed="9" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+          <test-case id="1039" name="AlreadyStockedTrader_IsNotDoubleStocked" fullname="CavesOfOoo.Tests.TraderStockTests.AlreadyStockedTrader_IsNotDoubleStocked" methodname="AlreadyStockedTrader_IsNotDoubleStocked" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="436500455" result="Passed" start-time="2026-10-11T02:38:40.5474840Z" end-time="2026-10-11T02:38:40.5897140Z" duration="0.042255" asserts="1" />
+          <test-case id="1041" name="CanTrade_FalseForAnEmptyHandedNPC" fullname="CavesOfOoo.Tests.TraderStockTests.CanTrade_FalseForAnEmptyHandedNPC" methodname="CanTrade_FalseForAnEmptyHandedNPC" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="406433404" result="Passed" start-time="2026-10-11T02:38:40.5903010Z" end-time="2026-10-11T02:38:40.5909790Z" duration="0.000678" asserts="1" />
+          <test-case id="1043" name="CanTrade_FalseForNullOrInventorylessSpeaker" fullname="CavesOfOoo.Tests.TraderStockTests.CanTrade_FalseForNullOrInventorylessSpeaker" methodname="CanTrade_FalseForNullOrInventorylessSpeaker" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="702491281" result="Passed" start-time="2026-10-11T02:38:40.5909990Z" end-time="2026-10-11T02:38:40.5912110Z" duration="0.000212" asserts="2" />
+          <test-case id="1042" name="CanTrade_TrueForASoldOutMerchantWithCoin" fullname="CavesOfOoo.Tests.TraderStockTests.CanTrade_TrueForASoldOutMerchantWithCoin" methodname="CanTrade_TrueForASoldOutMerchantWithCoin" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="2000780286" result="Passed" start-time="2026-10-11T02:38:40.5912240Z" end-time="2026-10-11T02:38:40.5915030Z" duration="0.000279" asserts="1" />
+          <test-case id="1040" name="CanTrade_TrueForATrader" fullname="CavesOfOoo.Tests.TraderStockTests.CanTrade_TrueForATrader" methodname="CanTrade_TrueForATrader" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="2114220240" result="Passed" start-time="2026-10-11T02:38:40.5915150Z" end-time="2026-10-11T02:38:40.5916850Z" duration="0.000170" asserts="1" />
+          <test-case id="1038" name="Merchant_CarriesTheStockTableProperty_ForRestocking" fullname="CavesOfOoo.Tests.TraderStockTests.Merchant_CarriesTheStockTableProperty_ForRestocking" methodname="Merchant_CarriesTheStockTableProperty_ForRestocking" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="1229992909" result="Passed" start-time="2026-10-11T02:38:40.5916940Z" end-time="2026-10-11T02:38:40.5918540Z" duration="0.000161" asserts="1" />
+          <test-case id="1037" name="Merchant_GetsAPurse_SoRestockAndSellingBothWork" fullname="CavesOfOoo.Tests.TraderStockTests.Merchant_GetsAPurse_SoRestockAndSellingBothWork" methodname="Merchant_GetsAPurse_SoRestockAndSellingBothWork" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="2038004777" result="Passed" start-time="2026-10-11T02:38:40.5918660Z" end-time="2026-10-11T02:38:40.5920360Z" duration="0.000171" asserts="1" />
+          <test-case id="1036" name="Merchant_SpawnsWithStockOnTheShelf" fullname="CavesOfOoo.Tests.TraderStockTests.Merchant_SpawnsWithStockOnTheShelf" methodname="Merchant_SpawnsWithStockOnTheShelf" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="228957534" result="Passed" start-time="2026-10-11T02:38:40.5920880Z" end-time="2026-10-11T02:38:40.5922740Z" duration="0.000186" asserts="2" />
+          <test-case id="1044" name="NullFactory_IsAGracefulNoOp_ButThePurseStillLands" fullname="CavesOfOoo.Tests.TraderStockTests.NullFactory_IsAGracefulNoOp_ButThePurseStillLands" methodname="NullFactory_IsAGracefulNoOp_ButThePurseStillLands" classname="CavesOfOoo.Tests.TraderStockTests" runstate="Runnable" seed="1911359356" result="Passed" start-time="2026-10-11T02:38:40.5922900Z" end-time="2026-10-11T02:38:40.5924930Z" duration="0.000204" asserts="2" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1010" name="UsefulTraderRestockAdversarialTests" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-11T02:38:40.5931810Z" end-time="2026-10-11T02:38:41.1234120Z" duration="0.530230" total="21" passed="19" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="77">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1027" name="EmptyMatchingStacksDoNotSuppressSupply" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.EmptyMatchingStacksDoNotSuppressSupply" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T02:38:40.5932320Z" end-time="2026-10-11T02:38:40.6564370Z" duration="0.063204" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1025" name="EmptyMatchingStacksDoNotSuppressSupply(0)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.EmptyMatchingStacksDoNotSuppressSupply(0)" methodname="EmptyMatchingStacksDoNotSuppressSupply" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1730987756" result="Passed" start-time="2026-10-11T02:38:40.5932980Z" end-time="2026-10-11T02:38:40.6285250Z" duration="0.035227" asserts="4" />
+            <test-case id="1026" name="EmptyMatchingStacksDoNotSuppressSupply(-1)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.EmptyMatchingStacksDoNotSuppressSupply(-1)" methodname="EmptyMatchingStacksDoNotSuppressSupply" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="511781224" result="Passed" start-time="2026-10-11T02:38:40.6285460Z" end-time="2026-10-11T02:38:40.6564020Z" duration="0.027856" asserts="4" />
+          </test-suite>
+          <test-case id="1028" name="FullCapacityDoesNotDeleteSoldGoods" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.FullCapacityDoesNotDeleteSoldGoods" methodname="FullCapacityDoesNotDeleteSoldGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="726228245" result="Passed" start-time="2026-10-11T02:38:40.6564520Z" end-time="2026-10-11T02:38:40.6840330Z" duration="0.027581" asserts="6" />
+          <test-suite type="ParameterizedMethod" id="1017" name="IntervalBoundaryDoesNotRefillEarly" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11T02:38:40.6840550Z" end-time="2026-10-11T02:38:40.8308130Z" duration="0.146757" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1011" name="IntervalBoundaryDoesNotRefillEarly(99,False)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(99,False)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="461106371" result="Passed" start-time="2026-10-11T02:38:40.6840790Z" end-time="2026-10-11T02:38:40.7104160Z" duration="0.026337" asserts="2" />
+            <test-case id="1012" name="IntervalBoundaryDoesNotRefillEarly(100,False)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(100,False)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="476757282" result="Passed" start-time="2026-10-11T02:38:40.7104380Z" end-time="2026-10-11T02:38:40.7339060Z" duration="0.023468" asserts="2" />
+            <test-case id="1013" name="IntervalBoundaryDoesNotRefillEarly(399,False)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(399,False)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1894954207" result="Passed" start-time="2026-10-11T02:38:40.7339260Z" end-time="2026-10-11T02:38:40.7601360Z" duration="0.026210" asserts="2" />
+            <test-case id="1014" name="IntervalBoundaryDoesNotRefillEarly(400,False)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(400,False)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="37491888" result="Passed" start-time="2026-10-11T02:38:40.7601560Z" end-time="2026-10-11T02:38:40.7826310Z" duration="0.022475" asserts="2" />
+            <test-case id="1015" name="IntervalBoundaryDoesNotRefillEarly(401,True)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(401,True)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="172443407" result="Passed" start-time="2026-10-11T02:38:40.7826510Z" end-time="2026-10-11T02:38:40.8074300Z" duration="0.024779" asserts="2" />
+            <test-case id="1016" name="IntervalBoundaryDoesNotRefillEarly(int.MaxValue,True)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.IntervalBoundaryDoesNotRefillEarly(int.MaxValue,True)" methodname="IntervalBoundaryDoesNotRefillEarly" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="169223047" result="Passed" start-time="2026-10-11T02:38:40.8074530Z" end-time="2026-10-11T02:38:40.8307900Z" duration="0.023338" asserts="2" />
+          </test-suite>
+          <test-case id="1018" name="LargeForwardElapsedDoesNotOverflowIntoEarlyRefusal" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.LargeForwardElapsedDoesNotOverflowIntoEarlyRefusal" methodname="LargeForwardElapsedDoesNotOverflowIntoEarlyRefusal" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="958606409" result="Failed" start-time="2026-10-11T02:38:40.8308210Z" end-time="2026-10-11T02:38:40.8662050Z" duration="0.035385" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 5
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.LargeForwardElapsedDoesNotOverflowIntoEarlyRefusal() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockAdversarialTests.cs:line 12
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 5
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.LargeForwardElapsedDoesNotOverflowIntoEarlyRefusal() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockAdversarialTests.cs:line 12
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1024" name="MissingRequirementsDoNotGrantGoods" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11T02:38:40.8662950Z" end-time="2026-10-11T02:38:40.9731210Z" duration="0.106825" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <test-case id="1019" name="MissingRequirementsDoNotGrantGoods(&quot;factory&quot;)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods(&quot;factory&quot;)" methodname="MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="980372799" result="Passed" start-time="2026-10-11T02:38:40.8663200Z" end-time="2026-10-11T02:38:40.8888750Z" duration="0.022555" asserts="2" />
+            <test-case id="1020" name="MissingRequirementsDoNotGrantGoods(&quot;table&quot;)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods(&quot;table&quot;)" methodname="MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1708720747" result="Passed" start-time="2026-10-11T02:38:40.8888950Z" end-time="2026-10-11T02:38:40.9094340Z" duration="0.020539" asserts="2" />
+            <test-case id="1021" name="MissingRequirementsDoNotGrantGoods(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods(&quot;inventory&quot;)" methodname="MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="574405713" result="Passed" start-time="2026-10-11T02:38:40.9094550Z" end-time="2026-10-11T02:38:40.9291760Z" duration="0.019721" asserts="2" />
+            <test-case id="1022" name="MissingRequirementsDoNotGrantGoods(&quot;purse&quot;)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods(&quot;purse&quot;)" methodname="MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1178998386" result="Passed" start-time="2026-10-11T02:38:40.9291950Z" end-time="2026-10-11T02:38:40.9488470Z" duration="0.019652" asserts="2" />
+            <test-case id="1023" name="MissingRequirementsDoNotGrantGoods(&quot;faction&quot;)" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.MissingRequirementsDoNotGrantGoods(&quot;faction&quot;)" methodname="MissingRequirementsDoNotGrantGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1989585520" result="Passed" start-time="2026-10-11T02:38:40.9488670Z" end-time="2026-10-11T02:38:40.9730920Z" duration="0.024226" asserts="2" />
+          </test-suite>
+          <test-case id="1032" name="NestedReferenceTakesPrecedenceOverBlueprint" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.NestedReferenceTakesPrecedenceOverBlueprint" methodname="NestedReferenceTakesPrecedenceOverBlueprint" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1203619480" result="Passed" start-time="2026-10-11T02:38:40.9731390Z" end-time="2026-10-11T02:38:40.9963610Z" duration="0.023222" asserts="8" />
+          <test-case id="1029" name="NoRollRetryForZeroChance" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.NoRollRetryForZeroChance" methodname="NoRollRetryForZeroChance" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1531894946" result="Passed" start-time="2026-10-11T02:38:40.9963840Z" end-time="2026-10-11T02:38:41.0242090Z" duration="0.027826" asserts="3" />
+          <test-case id="1031" name="UnselectableWeightedEntryDoesNotCountAsStock" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.UnselectableWeightedEntryDoesNotCountAsStock" methodname="UnselectableWeightedEntryDoesNotCountAsStock" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1026327312" result="Passed" start-time="2026-10-11T02:38:41.0242260Z" end-time="2026-10-11T02:38:41.0488440Z" duration="0.024618" asserts="8" />
+          <test-case id="1033" name="WeightedModeIgnoresChanceLikeTheExistingRoller" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.WeightedModeIgnoresChanceLikeTheExistingRoller" methodname="WeightedModeIgnoresChanceLikeTheExistingRoller" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="135458043" result="Failed" start-time="2026-10-11T02:38:41.0488690Z" end-time="2026-10-11T02:38:41.0756770Z" duration="0.026808" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: 3
+  But was:  4
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.WeightedModeIgnoresChanceLikeTheExistingRoller() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockAdversarialTests.cs:line 56
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 3
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.WeightedModeIgnoresChanceLikeTheExistingRoller() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockAdversarialTests.cs:line 56
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1030" name="ZeroChanceResidentDoesNotCountAsStock" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.ZeroChanceResidentDoesNotCountAsStock" methodname="ZeroChanceResidentDoesNotCountAsStock" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="1453769467" result="Passed" start-time="2026-10-11T02:38:41.0756950Z" end-time="2026-10-11T02:38:41.1006020Z" duration="0.024907" asserts="8" />
+          <test-case id="1034" name="ZeroYieldResidentDoesNotCountAsStock" fullname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests.ZeroYieldResidentDoesNotCountAsStock" methodname="ZeroYieldResidentDoesNotCountAsStock" classname="CavesOfOoo.Tests.UsefulTraderRestockAdversarialTests" runstate="Runnable" seed="512491412" result="Passed" start-time="2026-10-11T02:38:41.1006270Z" end-time="2026-10-11T02:38:41.1233870Z" duration="0.022760" asserts="8" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="UsefulTraderRestockTests" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T02:38:41.1234240Z" end-time="2026-10-11T02:38:41.3208870Z" duration="0.197462" total="8" passed="3" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="40">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="ActualPlayerSalesDoNotJamUsefulShelfRefill" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.ActualPlayerSalesDoNotJamUsefulShelfRefill" methodname="ActualPlayerSalesDoNotJamUsefulShelfRefill" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="292470617" result="Failed" start-time="2026-10-11T02:38:41.1234780Z" end-time="2026-10-11T02:38:41.1653790Z" duration="0.041901" asserts="13">
+            <failure>
+              <message><![CDATA[  one full authored roll reaches a shelf holding only sold junk
+  Expected: 5
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.ActualPlayerSalesDoNotJamUsefulShelfRefill() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 51
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  one full authored roll reaches a shelf holding only sold junk
+  Expected: 5
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.ActualPlayerSalesDoNotJamUsefulShelfRefill() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 51
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1008" name="NestedStockRecognizesItsExistingGoods" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.NestedStockRecognizesItsExistingGoods" methodname="NestedStockRecognizesItsExistingGoods" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="2108597698" result="Failed" start-time="2026-10-11T02:38:41.1654150Z" end-time="2026-10-11T02:38:41.1879520Z" duration="0.022537" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: 3
+  But was:  8
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.NestedStockRecognizesItsExistingGoods() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 67
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 3
+  But was:  8
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.NestedStockRecognizesItsExistingGoods() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 67
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1007" name="PositiveMatchingUnitsDefineLowStock" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11T02:38:41.1879810Z" end-time="2026-10-11T02:38:41.2936820Z" duration="0.105701" total="5" passed="3" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="PositiveMatchingUnitsDefineLowStock(0,5)" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(0,5)" methodname="PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="540467840" result="Passed" start-time="2026-10-11T02:38:41.1880040Z" end-time="2026-10-11T02:38:41.2106690Z" duration="0.022665" asserts="2" />
+            <test-case id="1003" name="PositiveMatchingUnitsDefineLowStock(1,6)" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(1,6)" methodname="PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="498777176" result="Passed" start-time="2026-10-11T02:38:41.2107020Z" end-time="2026-10-11T02:38:41.2306280Z" duration="0.019926" asserts="4" />
+            <test-case id="1004" name="PositiveMatchingUnitsDefineLowStock(2,7)" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(2,7)" methodname="PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="244803076" result="Passed" start-time="2026-10-11T02:38:41.2306460Z" end-time="2026-10-11T02:38:41.2510570Z" duration="0.020411" asserts="4" />
+            <test-case id="1005" name="PositiveMatchingUnitsDefineLowStock(3,3)" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(3,3)" methodname="PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="1973153370" result="Failed" start-time="2026-10-11T02:38:41.2510800Z" end-time="2026-10-11T02:38:41.2716270Z" duration="0.020548" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  8
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Int32 held, Int32 expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 61
+   at InvokeStub_UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 3
+  But was:  8
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Int32 held, Int32 expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 61
+   at InvokeStub_UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="PositiveMatchingUnitsDefineLowStock(50,50)" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(50,50)" methodname="PositiveMatchingUnitsDefineLowStock" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="428650707" result="Failed" start-time="2026-10-11T02:38:41.2716490Z" end-time="2026-10-11T02:38:41.2936560Z" duration="0.022007" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: 50
+  But was:  55
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Int32 held, Int32 expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 61
+   at InvokeStub_UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 50
+  But was:  55
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Int32 held, Int32 expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 61
+   at InvokeStub_UsefulTraderRestockTests.PositiveMatchingUnitsDefineLowStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1009" name="StockAndTimestampRoundTripCloseTheGate" fullname="CavesOfOoo.Tests.UsefulTraderRestockTests.StockAndTimestampRoundTripCloseTheGate" methodname="StockAndTimestampRoundTripCloseTheGate" classname="CavesOfOoo.Tests.UsefulTraderRestockTests" runstate="Runnable" seed="510771741" result="Failed" start-time="2026-10-11T02:38:41.2936930Z" end-time="2026-10-11T02:38:41.3208580Z" duration="0.027165" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: 5
+  But was:  10
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.StockAndTimestampRoundTripCloseTheGate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 78
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 5
+  But was:  10
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.UsefulTraderRestockTests.StockAndTimestampRoundTripCloseTheGate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/UsefulTraderRestockTests.cs:line 78
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
