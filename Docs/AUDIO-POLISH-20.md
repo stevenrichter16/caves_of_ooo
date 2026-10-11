@@ -1,6 +1,6 @@
 # Sonic polish: twenty further iterations
 
-Status: source sweeps underway,2026-10-11. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
+Status: executing the ordered plan,2026-10-11. This is a new twenty-iteration request, additional to the four-pass atmosphere work documented in AUDIO-ATMOSPHERE-ITERATIONS.md. Finish its open work-sound and combat-mix gates first. Do not silently count those earlier passes as part of these twenty.
 
 ## Planning prompt — execute before choosing the twenty
 
@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-1/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+2/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -71,3 +71,11 @@ Iteration1 fresh actual Play `d33a4de07b7940d683bee9f41bc157b2`:18/18 passed, ze
 Iteration1's actual trip now selects the right score, but retiring an outgoing music voice still discards its progress. Preserve a bounded session-local playhead per distinct music clip after a full fade, including explicit mute. Re-enter only the currently eligible composition; aliases sharing one clip must share progress, and an in-progress reverse fade must keep its existing live voice. Do not bookmark short effects or ambience, serialize music into gameplay saves, allocate voices, read world state per frame or alter combat focus. Observe behavioral RED using genuine AudioSource sample-position readbacks; do not claim a stopped-source test premise that Unity does not support. Then exercise real imported streams through an interruption longer than the full fade and actual menu mute/unmute in a fresh ordinary game. The audit must never seek/accelerate a track to manufacture progress. Record the actual cause of interruption and keep combat-specific claims separate if the bounded route uses regional travel instead. Use this result to begin river/source work.
 
 Iteration1 independent cold review: no actionable issue in active-map authority, ownership/bounds, map threat refusal or unchanged context cadence.
+
+Iteration2 evidence:18 native RED cases observed14 reset-to-zero failures and4 correct counters; final affected regression73/73 passed. Fresh actual Play `1b79b7cd1297437eb37356cf0d449760` passed13/13, zero unexpected errors,27.505s. The imported Ephemera stream stopped at observed sample651974 and resumed at651974 after three seconds muted through the real Audio menu. Output peak0.01534232; F5/F6 continued the same audio lifetime. All temporary persisted setting keys/values and effective volumes restored. Native screenshot inspected. Live proof covers explicit mute, while full region/danger retirement, shared-clip identity, FIFO eviction and fresh-lifetime reset have separate native tests. No subjective listening or physical Deck claim.
+
+### Iteration 3 execution prompt — river identity beside a puddle
+
+Iteration2 now preserves the actual streamed composition through menu mute and save/load; keep that lifetime and the fixed source budget. In the existing bounded discovery scan, retain an independent exact flowing-water witness so the nearest standing puddle cannot suppress a visible river. Keep nearest water detail, same visibility/ownership checks and depth/interior precedence. Observe the37 river tests RED before applying the small production change. Idle may revalidate the nine known detail owners plus this one exact flow owner; no new world scan. Test actual Sella purchase, generated village river, real fill, two inland steps, pour and refill through native input with liquid conservation. Document the two source-travel shortcuts. Menus deliberately retire source-dependent beds; prove river reacquisition after returning to visible play rather than claiming uninterrupted menu sound. Keep freeze-state work for iteration4. A nonexistent ordinary RiverChunk POI is not a valid test premise: choose an existing generated village river from a bounded32-POI search. Do not create sources or suppress enemies for the audit.
+
+Iteration2 independent cold review: no actionable issue in bounded clip identity, fade reversal, mute/context changes, disposal or ambience isolation; actual streaming seek was proven by the fresh Play report above.

@@ -1,0 +1,53 @@
+{
+    "runId": "1b79b7cd1297437eb37356cf0d449760",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Fresh ordinary glade boot, actual imported streamed composition advances, native keyboard audio-menu mute retires its waveform for more than two seconds, native unmute resumes near its previously observed PCM position with nonzero per-source output. Actual F5/F6 replaces the gameplay graph while the same score continues. Fixed16-source pool, idle sampling bounds, no menu turn and exact restoration of temporary audio preferences.",
+    "cannotVerify": "Live gate exercises an actual settings interruption, not a combat encounter or region change. Completed danger fades, alias identity, independent clips, bounded eviction and new lifetime reset have separate native unit coverage. Frame observations allow scheduling tolerance; no audit playhead seek, direct audio context/cue call, forced game outcome or travel shortcut. No subjective listening, physical speakers, continuous clipping guarantee or Deck performance claim. Audio-menu keys temporarily persist settings; exact prior key presence/values and effective levels are restored.",
+    "mode": "audio-polish-02",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS polish02_imported_initial_progress",
+        "PASS polish02_native_audio_menu",
+        "PASS polish02_mute_retires_waveform",
+        "PASS polish02_long_interruption_stays_silent",
+        "PASS polish02_unmute_resumes_bookmark",
+        "PASS polish02_imported_return_signal",
+        "PASS polish02_fixed_audio_owner_and_pool",
+        "PASS polish02_idle_resume_work_bound",
+        "PASS polish02_menu_costs_no_game_turn",
+        "PASS polish02_loaded_composition_continues",
+        "PASS polish02_ordinary_finish",
+        "PASS polish02_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/02/1b79b7cd1297437eb37356cf0d449760/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/02/1b79b7cd1297437eb37356cf0d449760/polish02-02-actual-music-mute.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/02/1b79b7cd1297437eb37356cf0d449760/polish02-03-real-resumed-composition.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/02/1b79b7cd1297437eb37356cf0d449760/polish02-04-loaded-world-continuation.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Actual imported score continuation",
+            "source": "Ephemera",
+            "text": "Last observed pre-mute PCM sample=651974; first observed resumed sample=651974; sample rate=44100; muted wall seconds>=3; return sampled peak=0.01534232; sampled floats=1226752; source count=16. Actual menu keys and F5/F6; no playhead assignment or direct sound/context call. Combat interruption has unit coverage only in this pass.",
+            "units": 0
+        }
+    ],
+    "cases": 13,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 27.505167399999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

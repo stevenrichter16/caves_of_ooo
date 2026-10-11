@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:12:04Z" end-time="2026-10-11 18:12:06Z" duration="1.2980567">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27992" result="Failed" site="Child" start-time="2026-10-11 18:12:04Z" end-time="2026-10-11 18:12:06Z" duration="1.298057" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34469" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27992" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:06Z" duration="1.015501" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34470" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27992" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:06Z" duration="0.906878" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34471" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27992" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:06Z" duration="0.806015" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32946" name="WorldAudioMusicBookmarkTests" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:06Z" duration="0.605474" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32959" name="AmbientLoopsAndOneShotsNeverReuseMusicBookmarks" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.AmbientLoopsAndOneShotsNeverReuseMusicBookmarks" methodname="AmbientLoopsAndOneShotsNeverReuseMusicBookmarks" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="57431401" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.150316" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 144000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.AmbientLoopsAndOneShotsNeverReuseMusicBookmarks () [0x00066] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32960" name="ANewAudioLifetimeStartsAtTheBeginning" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ANewAudioLifetimeStartsAtTheBeginning" methodname="ANewAudioLifetimeStartsAtTheBeginning" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="918878360" result="Passed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.008268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32965" name="BookmarkStorageIsBoundedWhenRegisteredMusicBindingsAreReplacedRepeatedly" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.BookmarkStorageIsBoundedWhenRegisteredMusicBindingsAreReplacedRepeatedly" methodname="BookmarkStorageIsBoundedWhenRegisteredMusicBindingsAreReplacedRepeatedly" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="679832163" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.013209" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1019
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.BookmarkStorageIsBoundedWhenRegisteredMusicBindingsAreReplacedRepeatedly () [0x000a2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:147
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32947" name="CompletedDangerInterruptionResumesRegionalComposition" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.CompletedDangerInterruptionResumesRegionalComposition" methodname="CompletedDangerInterruptionResumesRegionalComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="579267696" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.004514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 96000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.CompletedDangerInterruptionResumesRegionalComposition () [0x00082] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:50
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32953" name="ContextChangedSeveralTimesWhileMutedDoesNotEraseExistingBookmarks" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ContextChangedSeveralTimesWhileMutedDoesNotEraseExistingBookmarks" methodname="ContextChangedSeveralTimesWhileMutedDoesNotEraseExistingBookmarks" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1755070510" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.004294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 96000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ContextChangedSeveralTimesWhileMutedDoesNotEraseExistingBookmarks () [0x0012a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:82
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32956" name="DistinctMusicAliasesResumeTheSameRetiredClip" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.DistinctMusicAliasesResumeTheSameRetiredClip" methodname="DistinctMusicAliasesResumeTheSameRetiredClip" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="107010355" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.003672" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 120000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.DistinctMusicAliasesResumeTheSameRetiredClip () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:102
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32958" name="GraphSoundCleanupKeepsCurrentMusicAndItsRetiredBookmark" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.GraphSoundCleanupKeepsCurrentMusicAndItsRetiredBookmark" methodname="GraphSoundCleanupKeepsCurrentMusicAndItsRetiredBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="323660383" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.005193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 120000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.GraphSoundCleanupKeepsCurrentMusicAndItsRetiredBookmark () [0x000f2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:114
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32951" name="ImmediateMusicMuteOrListenerPauseResumesCurrentComposition" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ImmediateMusicMuteOrListenerPauseResumesCurrentComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.105097" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32949" name="ImmediateMusicMuteOrListenerPauseResumesCurrentComposition(False)" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ImmediateMusicMuteOrListenerPauseResumesCurrentComposition(False)" methodname="ImmediateMusicMuteOrListenerPauseResumesCurrentComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1137355872" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.003364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 120000
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ImmediateMusicMuteOrListenerPauseResumesCurrentComposition (System.Boolean listenerPause) [0x000a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32950" name="ImmediateMusicMuteOrListenerPauseResumesCurrentComposition(True)" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ImmediateMusicMuteOrListenerPauseResumesCurrentComposition(True)" methodname="ImmediateMusicMuteOrListenerPauseResumesCurrentComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="623356033" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.002580" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 120000
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ImmediateMusicMuteOrListenerPauseResumesCurrentComposition (System.Boolean listenerPause) [0x000a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32952" name="MutedContextChangeResumesOnlyTheCurrentRegionsOwnBookmark" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.MutedContextChangeResumesOnlyTheCurrentRegionsOwnBookmark" methodname="MutedContextChangeResumesOnlyTheCurrentRegionsOwnBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="495633066" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.003818" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 96000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.MutedContextChangeResumesOnlyTheCurrentRegionsOwnBookmark () [0x000d0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:73
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32961" name="RebindingAnIdToANewClipDoesNotTransferTheOldClipsPosition" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.RebindingAnIdToANewClipDoesNotTransferTheOldClipsPosition" methodname="RebindingAnIdToANewClipDoesNotTransferTheOldClipsPosition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="752337310" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.003485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 96000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.RebindingAnIdToANewClipDoesNotTransferTheOldClipsPosition () [0x000c6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:132
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32954" name="ReturningBeforeFadeCompletesKeepsTheLiveVoiceInsteadOfSeekingOldBookmark" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.ReturningBeforeFadeCompletesKeepsTheLiveVoiceInsteadOfSeekingOldBookmark" methodname="ReturningBeforeFadeCompletesKeepsTheLiveVoiceInsteadOfSeekingOldBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="2017858981" result="Passed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.002228" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32966" name="SameContextTicksDoNotSeekOrRestartAnAdvancingComposition" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.SameContextTicksDoNotSeekOrRestartAnAdvancingComposition" methodname="SameContextTicksDoNotSeekOrRestartAnAdvancingComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1084505395" result="Passed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.002022" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32955" name="SharedUndergroundDangerClipHasOnePositionAndNoDuplicateVoice" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.SharedUndergroundDangerClipHasOnePositionAndNoDuplicateVoice" methodname="SharedUndergroundDangerClipHasOnePositionAndNoDuplicateVoice" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1121211432" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.002491" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 144000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.SharedUndergroundDangerClipHasOnePositionAndNoDuplicateVoice () [0x000ab] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32957" name="SilentContextRetiresButDoesNotForgetTheCurrentComposition" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.SilentContextRetiresButDoesNotForgetTheCurrentComposition" methodname="SilentContextRetiresButDoesNotForgetTheCurrentComposition" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="605016770" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.001866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 96000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.SilentContextRetiresButDoesNotForgetTheCurrentComposition () [0x0005b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:107
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32948" name="UnvisitedCompositionStartsAtZeroRatherThanOtherClipsSample" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.UnvisitedCompositionStartsAtZeroRatherThanOtherClipsSample" methodname="UnvisitedCompositionStartsAtZeroRatherThanOtherClipsSample" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1620159547" result="Failed" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:05Z" duration="0.002112" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 144000
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.UnvisitedCompositionStartsAtZeroRatherThanOtherClipsSample () [0x00062] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32964" name="WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 18:12:05Z" end-time="2026-10-11 18:12:06Z" duration="0.076880" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32962" name="WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark(0)" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark(0)" methodname="WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="1912657578" result="Passed" start-time="2026-10-11 18:12:06Z" end-time="2026-10-11 18:12:06Z" duration="0.001779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32963" name="WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark(383999)" fullname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark(383999)" methodname="WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark" classname="CavesOfOoo.Tests.WorldAudioMusicBookmarkTests" runstate="Runnable" seed="2109388975" result="Failed" start-time="2026-10-11 18:12:06Z" end-time="2026-10-11 18:12:06Z" duration="0.003911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 383999
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicBookmarkTests.WrappedZeroAndLastValidPcmSampleReplaceAnOlderBookmark (System.Int32 sample) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicBookmarkTests.cs:138
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
