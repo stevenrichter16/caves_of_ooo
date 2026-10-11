@@ -106,5 +106,14 @@ namespace CavesOfOoo.Tests
             var pool=Pool(blueprint); var thermal=pool.GetPart<ThermalPart>(); thermal.Temperature=thermal.FreezeTemperature;
             Assert.False(InventorySystem.PerformAction(actor,flask,Command(pool),zone)); Assert.Zero(flask.GetPart<LiquidVesselPart>().Volume);
         }
+
+        [TestCase("BrinePool")][TestCase("MirePool")]
+        public void GroundSolutionStillCarriesChargeAcrossTheWetSheet(string blueprint)
+        {
+            Pool(blueprint); var next=factory.CreateEntity(blueprint); zone.AddEntity(next,12,10); next.GetPart<TileStateSourcePart>().Seed(zone,12,10);
+            zone.TileState.AddCharge(10,10,1); Assert.True(TilePropagationSystem.IsConductive(zone,11,10));
+            Assert.Greater(TilePropagationSystem.PropagateCharge(zone),0); Assert.Greater(zone.TileState.Charge(12,10),0);
+            Assert.AreEqual(0,zone.TileState.Charge(13,10),"dry empty ground does not inherit the family");
+        }
     }
 }

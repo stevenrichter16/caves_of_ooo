@@ -49,9 +49,11 @@ namespace CavesOfOoo.Core
                 || CombatSystem.IsDeathHandled(keeper) || CombatSystem.IsDeathHandled(player)
                 || keeper.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
                 || player.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true) return false;
-            if (keeper.SpatialZone != null && (player.SpatialZone != keeper.SpatialZone || SpatialQuery.Distance(keeper.SpatialZone, keeper, player) > 1)) return false;
+            var zone = keeper.SpatialZone;
+            if (zone == null || player.SpatialZone != zone || zone.GetEntityCell(keeper) == null
+                || zone.GetEntityCell(player) == null || SpatialQuery.Distance(zone, keeper, player) > 1) return false;
             string id = keeper.GetProperty("SettlementId");
-            if (string.IsNullOrEmpty(id)) return false;
+            if (string.IsNullOrEmpty(id) || id != zone.ZoneID) return false;
             site = manager.GetSite(id, SettlementSiteDefinitions.MainWellSiteId);
             if (site == null || site.SiteType != RepairableSiteType.Well
                 || (site.Stage != RepairStage.Fouled && site.Stage != RepairStage.TemporarilyPurified)) return false;
@@ -65,10 +67,20 @@ namespace CavesOfOoo.Core
             foreach (var item in inventory.Objects)
                 if (item != null && item.SpatialZone == null && item.GetPart<PhysicsPart>() is PhysicsPart physical
                     && physical.ParentEntity == item && physical.Takeable && physical.InInventory == player && physical.Equipped == null
+                    && !inventory.EquippedItems.ContainsValue(item) && !HasBodyEquipmentAlias(player, item)
                     && item.HasTag("GrimoireCopy") && item.GetPart<GrimoirePart>() is GrimoirePart book
                     && book.ParentEntity == item && book.KnowledgeProperty == SettlementSiteDefinitions.StartingVillageKnowledgeProperty
                     && string.IsNullOrEmpty(book.SkillClassName) && inventory.CanConsumeOne(item)) return item;
             return null;
+        }
+
+        static bool HasBodyEquipmentAlias(Entity player, Entity item)
+        {
+            var parts = player.GetPart<Body>()?.GetParts();
+            if (parts != null)
+                foreach (var part in parts)
+                    if (ReferenceEquals(part._Equipped, item)) return true;
+            return false;
         }
     }
 }

@@ -33,3 +33,16 @@ provenance. Generic fluid mixtures and distillation remain unimplemented.
   refusal, freeze phase and suppression of duplicate dry-conductor shock checked.
 - 🧪 Native Unity and Play sanity are pending the final synchronized run.
 - ⚪ Original CoO extension; no new Qud parity claim. No graphics change.
+
+### Propagation counter-review
+
+A further whole-sheet test exposed one real regression: literal bog mire has body
+conductivity 0 and its pool material is below the propagation threshold, so
+removing fictitious water also removed ground charge travel. Observed RED26:
+25 pass, MirePool propagation fails. Ground propagation now consults the same
+explicit reaction family; body coating resistance/conductivity remains unchanged.
+Dry adjacent cells remain nonconductive. Final native sweep will include this fix.
+
+Standalone confirmation: 102/102 combined cases pass after the propagation fix;
+26 are natural-liquid cases. Cryogel ground-action review is recorded separately
+in ReviewLiquidFreeze.md. Native verification remains the final gate.

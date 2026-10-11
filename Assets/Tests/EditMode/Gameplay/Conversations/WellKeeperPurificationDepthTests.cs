@@ -11,13 +11,14 @@ namespace CavesOfOoo.Tests
     {
         const string Id = SettlementSiteDefinitions.StartingVillageZoneId;
         const string Condition = "WellKeeperKnowsPurification";
-        EntityFactory factory; Entity keeper,player; SettlementManager manager,prior; int turn;
+        EntityFactory factory; Entity keeper,player; SettlementManager manager,prior; int turn; Zone zone;
         [SetUp] public void Setup()
         {
             prior=SettlementManager.Current; ConversationActions.Reset(); ConversationPredicates.Reset();
             factory=new EntityFactory(); factory.LoadBlueprints(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
             keeper=factory.CreateEntity("WellKeeper"); keeper.Properties["SettlementId"]=Id;
             player=factory.CreateEntity("Player");
+            zone=new Zone(Id); Assert.True(zone.AddEntity(player,10,10)); Assert.True(zone.AddEntity(keeper,11,10));
             manager=new SettlementManager(()=>turn,_=>new PointOfInterest(POIType.Village,"Sill","Villagers",1));
             manager.GetOrCreateSettlement(Id,new PointOfInterest(POIType.Village,"Sill","Villagers",1));
         }
@@ -116,14 +117,30 @@ namespace CavesOfOoo.Tests
             Assert.False(first.GetPart<StackerPart>().CanStackWith(other)); Assert.False(other.GetPart<StackerPart>().CanStackWith(first));
         }
         [TestCase("empty")][TestCase("equipped")][TestCase("wrong-owner")][TestCase("no-copy-tag")][TestCase("skill-overrides")]
+        [TestCase("equipment-cache")][TestCase("body-equipment")]
         public void UnavailableOrAmbiguousCopyCannotPay(string mode)
         {
             var copy=Copy(); if(mode=="empty")copy.GetPart<StackerPart>().StackCount=0;
             if(mode=="equipped") copy.GetPart<PhysicsPart>().Equipped=player;
+            if(mode=="equipment-cache") player.GetPart<InventoryPart>().EquippedItems["Hand"]=copy;
+            if(mode=="body-equipment") player.GetPart<Body>().GetPartsByType("Hand").First()._Equipped=copy;
             if(mode=="wrong-owner") copy.GetPart<PhysicsPart>().InInventory=keeper;
             if(mode=="no-copy-tag") copy.Tags.Remove("GrimoireCopy");
             if(mode=="skill-overrides") copy.GetPart<GrimoirePart>().SkillClassName="Cryomancy_Frostbind";
             Assert.False(Teach()); Assert.True(player.GetPart<InventoryPart>().Objects.Contains(copy)); Assert.False(manager.HasCondition(Id,Condition));
+        }
+        [TestCase("keeper-removed")][TestCase("player-removed")][TestCase("different-zone")][TestCase("distant")]
+        [TestCase("foreign-settlement")]
+        public void StaleConversationCannotTeachOrTakePayment(string mode)
+        {
+            var copy=Copy(); Assert.True(WellKeeperPurification.CanTeach(keeper,player));
+            if(mode=="keeper-removed") zone.RemoveEntity(keeper);
+            if(mode=="player-removed") zone.RemoveEntity(player);
+            if(mode=="different-zone") {zone.RemoveEntity(keeper); new Zone("elsewhere").AddEntity(keeper,11,10);}
+            if(mode=="distant") {zone.RemoveEntity(keeper); zone.AddEntity(keeper,20,10);}
+            if(mode=="foreign-settlement") zone.ZoneID="elsewhere";
+            Assert.False(WellKeeperPurification.CanTeach(keeper,player)); Assert.False(Teach());
+            Assert.True(player.GetPart<InventoryPart>().Objects.Contains(copy)); Assert.False(manager.HasCondition(Id,Condition));
         }
         [Test] public void ManualRepairAfterTrainingRemainsPermanentAndDistinct()
         {

@@ -75,7 +75,9 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < state.Coatings.Count; i++)
                 {
                     var def = LiquidRegistry.Get(state.Coatings[i].Id);
-                    if (def != null && def.Conductivity >= ConductiveThreshold) return true;
+                    if (def != null && (def.Conductivity >= ConductiveThreshold
+                        || (!string.IsNullOrEmpty(def.GroundReactionFamily)
+                            && LiquidRegistry.Get(def.GroundReactionFamily)?.Conductivity >= ConductiveThreshold))) return true;
                 }
             }
 

@@ -37,3 +37,14 @@ result and uses a required action, so refusal cannot advance to success text.
 - 🧪 Native Unity and Play sanity remain pending final synchronized verification.
 - ⚪ No promise of an NPC performing an animated rite while absent; renewal uses
   the existing entry-time settlement reconciliation. No new Qud parity claim.
+
+### Independent stale-conversation review
+
+A cold review found that an unbound keeper could pass a test-only permissive
+proximity check. The fixture now uses real adjacent zone members. Executed
+review RED: 109 combined cases, 4 failures (removed keeper, foreign settlement,
+equipment cache alias and body equipment alias). Teaching now requires current
+adjacent membership in the keeper's declared settlement and rejects any carried
+copy still referenced by equipment. This includes secondary body slots, which
+FindEquippedBodyPart intentionally omits. Final standalone: 109/109 pass, with
+32 caretaker cases. Native and in-game verification follows.
