@@ -41,7 +41,7 @@ namespace CavesOfOoo.Core
                 case "SparkRoot":
                     return Hint("Spend one root to discharge into a nearby conductor. The electrical route can endanger you and companions. Plain dry ground is unsuitable.");
                 case "PrismreedPith":
-                    return Hint("Spend one pith to wick one temporary thin liquid coating from nearby ground. Pools, permanent sources and ice remain.");
+                    return Hint("Spend one pith to wick one temporary thin liquid coating from nearby ground, or up to 20 oil, pitch or honey from yourself or a willing adjacent companion. Body wicking leaves Wet, poison and burning unchanged. Pools, permanent sources and ice remain.");
                 case "LampOil":
                     return Hint("Spend one oil to spread an eight-turn flammable, slippery ground film. Anyone crossing may slip; fire remains dangerous. This competes with refueling and brewing.");
                 case "SlipsedgeGel":

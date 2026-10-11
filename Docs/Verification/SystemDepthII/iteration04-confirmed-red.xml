@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="10" result="Failed" start-time="2026-10-11T03:31:22.9465460Z" end-time="2026-10-11T03:31:23.2738340Z" duration="0.327269" total="10" passed="0" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="87" random-seed="617698511">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/iteration04-confirmed-red.xml --where "class =~ /BodyCoatingCleanupTests/"]]></command-line>
+  <filter>
+    <class re="1">BodyCoatingCleanupTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1013" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T03:31:22.9465460Z" end-time="2026-10-11T03:31:23.2738340Z" duration="0.327269" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="87">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="34715" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1014" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T03:31:22.9480790Z" end-time="2026-10-11T03:31:23.2738260Z" duration="0.325743" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="87">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T03:31:22.9481920Z" end-time="2026-10-11T03:31:23.2738140Z" duration="0.325619" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="87">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="BodyCoatingCleanupTests" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-11T03:31:22.9485260Z" end-time="2026-10-11T03:31:23.2738020Z" duration="0.325272" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="87">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1012" name="AuthoredCropYieldIsUsablePithAndCleanupPersistsAcrossBinarySave" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.AuthoredCropYieldIsUsablePithAndCleanupPersistsAcrossBinarySave" methodname="AuthoredCropYieldIsUsablePithAndCleanupPersistsAcrossBinarySave" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="2027831276" result="Failed" start-time="2026-10-11T03:31:22.9494040Z" end-time="2026-10-11T03:31:23.0582570Z" duration="0.108877" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.AuthoredCropYieldIsUsablePithAndCleanupPersistsAcrossBinarySave() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.AuthoredCropYieldIsUsablePithAndCleanupPersistsAcrossBinarySave() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1007" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11T03:31:23.0588210Z" end-time="2026-10-11T03:31:23.2012290Z" duration="0.142406" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="45">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;oil&quot;,False)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;oil&quot;,False)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="349822907" result="Failed" start-time="2026-10-11T03:31:23.0588930Z" end-time="2026-10-11T03:31:23.0829710Z" duration="0.024078" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;pitch&quot;,False)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;pitch&quot;,False)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="2117451697" result="Failed" start-time="2026-10-11T03:31:23.0830040Z" end-time="2026-10-11T03:31:23.1132550Z" duration="0.030251" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;honey&quot;,False)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;honey&quot;,False)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="171652047" result="Failed" start-time="2026-10-11T03:31:23.1132790Z" end-time="2026-10-11T03:31:23.1349110Z" duration="0.021632" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;oil&quot;,True)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;oil&quot;,True)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="1795879617" result="Failed" start-time="2026-10-11T03:31:23.1349370Z" end-time="2026-10-11T03:31:23.1585340Z" duration="0.023597" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;pitch&quot;,True)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;pitch&quot;,True)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="830926252" result="Failed" start-time="2026-10-11T03:31:23.1585710Z" end-time="2026-10-11T03:31:23.1804330Z" duration="0.021862" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;honey&quot;,True)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(&quot;honey&quot;,True)" methodname="CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="1426455530" result="Failed" start-time="2026-10-11T03:31:23.1804620Z" end-time="2026-10-11T03:31:23.2008410Z" duration="0.020379" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(String liquid, Boolean friend) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 32
+   at InvokeStub_BodyCoatingCleanupTests.CarriedPithRemovesTwentyUnitsFromExactSelfOrPartyCoat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1011" name="CleanupPreservesWetInternalPoisonBurningAndGroundFilm" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.CleanupPreservesWetInternalPoisonBurningAndGroundFilm" methodname="CleanupPreservesWetInternalPoisonBurningAndGroundFilm" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="1290711659" result="Failed" start-time="2026-10-11T03:31:23.2014340Z" end-time="2026-10-11T03:31:23.2270530Z" duration="0.025619" asserts="12">
+            <failure>
+              <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CleanupPreservesWetInternalPoisonBurningAndGroundFilm() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.CleanupPreservesWetInternalPoisonBurningAndGroundFilm() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1010" name="ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:31:23.2270770Z" end-time="2026-10-11T03:31:23.2737290Z" duration="0.046651" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1008" name="ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(1)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(1)" methodname="ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="1872507699" result="Failed" start-time="2026-10-11T03:31:23.2270860Z" end-time="2026-10-11T03:31:23.2485120Z" duration="0.021426" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Int32 amount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 40
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Int32 amount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 40
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(20)" fullname="CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(20)" methodname="ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties" classname="CavesOfOoo.Tests.BodyCoatingCleanupTests" runstate="Runnable" seed="2069774383" result="Failed" start-time="2026-10-11T03:31:23.2485460Z" end-time="2026-10-11T03:31:23.2737020Z" duration="0.025156" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Int32 amount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 40
+   at InvokeStub_BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for WickBody|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.BodyCoatingCleanupFixture.Pick(Entity pith, Entity target) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 15
+   at CavesOfOoo.Tests.BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Int32 amount) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/BodyCoatingCleanupTests.cs:line 40
+   at InvokeStub_BodyCoatingCleanupTests.ExhaustingCoatUsesNormalRemovalAndRestoresItsActualPenalties(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
