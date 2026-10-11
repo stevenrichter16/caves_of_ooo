@@ -56,7 +56,14 @@ namespace CavesOfOoo.Core
         /// door action. ActionPerformed never implies the actor moved.</summary>
         public static MoveResult TryMoveDetailed(Entity entity,Zone zone,int dx,int dy)
             =>TryMoveDetailedCore(entity,zone,dx,dy,true);
-        private static MoveResult TryMoveDetailedCore(Entity entity, Zone zone, int dx, int dy,bool allowDoorAction)
+        /// <summary>Voluntary movement with an additional caller-owned safety
+        /// check after BeforeMove callbacks and before relocation. Does not
+        /// open a door, swap bodies, or bypass ordinary movement vetoes.</summary>
+        internal static bool TryMoveChecked(Entity entity, Zone zone, int dx, int dy, System.Func<bool> currentChoice)
+            => TryMoveDetailedCore(entity, zone, dx, dy, false, currentChoice).Moved;
+
+        private static MoveResult TryMoveDetailedCore(Entity entity, Zone zone, int dx, int dy,bool allowDoorAction,
+            System.Func<bool> currentChoice = null)
         {
             var currentCell = zone.GetEntityCell(entity);
             if (currentCell == null) return new MoveResult(false,false,null);
@@ -89,6 +96,8 @@ namespace CavesOfOoo.Core
                 return new MoveResult(false,performed,blocker);
             }
             beforeMove.Release();
+
+            if (currentChoice != null && !currentChoice()) return new MoveResult(false,false,null);
 
             // Perform the move
             int oldX = currentCell.X;

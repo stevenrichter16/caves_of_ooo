@@ -1,6 +1,6 @@
 # System depth II: companion field management
 
-Status: iterations 1–2 core implemented and reviewed; iteration 3 underway. Final native integration pending. Baseline `428cb4be9`.
+Status: all three iterations core implemented, independently reviewed and committed; final native integration/Play pending coordinator evidence. Baseline `428cb4be9`.
 
 ## Goal and scope
 
@@ -54,4 +54,20 @@ Files: new `CompanionManagementActions.Gear.cs` and `CompanionGearTests.cs` plus
 
 ## Iteration 3 log
 
-Pending.
+Implemented the nearby `CompanionStepAside` action through the same paid-on-commit input branch. It chooses a visible, explored neighboring cell away from the leader, refuses physical creature occupancy, liquid/gas/step-trigger owners (including remote footprint anchors), and any tile coating/state. Multi-cell and dragging companions are excluded. The existing voluntary movement path preserves movement vetoes/root/stun and saved Stay; no body swap or door action is introduced.
+
+A narrow internal `MovementSystem.TryMoveChecked` delegates to the unchanged voluntary core and checks the caller's safety predicate after BeforeMove callbacks, before relocation. This prevents a callback introducing a trap after the initial safe-cell choice. The action's commit condition accepts exactly the selected landing even if it is now two cells from the leader; it still pins actor cell, recruit, brain and inventory identities. An outer failure restores this landing only when the original cell remains unoccupied and placeable. Independent relocation/death or a new occupant is preserved, rather than forcibly rewound; in that exceptional failed transaction no action payment commits.
+
+Observed first core RED: 15 step cases, 14 missing-behavior failures and one enclosed refusal counter pass, selected beside the gear-reader RED in `iteration02-reader-and03-step-red.xml`. Trigger test setup was corrected before this observed behavioral run: TriggerOnStepPart is abstract, so the fixture uses a concrete damaging StepTrap. Initial combined GREEN72/72. Cold reviews then reproduced two genuine defects: physical footprint trap missed by anchor-only Objects (19 step cases,18 pass/1 fail); rollback MoveEntity deliberately bypassing ordinary collision (1/1 fail). Fixed with physical Occupants and explicit rollback collision/creature/footprint checks.
+
+Final standalone **128/128 GREEN =32 pack +25 gear +20 step +51 existing order/navigation/follow tests**. Receipts: `iteration03-physical-red.xml`, `iteration03-rollback-red.xml`, `iteration03-companions-regression-green.xml`. Six native management input cases are ready: pack transfer keyboard/Deck2, free read/stale1, gear1, step/veto2. Payment assertions use exact energy accounting. Final native execution/Play remains pending; the core runner does not establish rendered readability, ordinary organic recruitment or Steam Deck hardware feel.
+
+Self-review: 🟡 HUD-agent remote physical hazard finding reproduced/fixed, with positive removal counter; 🟡 coordinator occupied rollback finding reproduced/fixed; 🔵 BeforeMove hazard insertion, independent callback relocation, rooted/stunned/enclosed refusals and Stay/follow preservation covered. Q1–Q4: movement remains voluntary; all mutations share the same paid classifier and current-owner rule; safety branches pair actual safe choices with refusals; docs explicitly state rollback limits and native evidence bounds. No further Assets edits planned before the synchronized native run.
+
+Files: new `CompanionManagementActions.StepAside.cs` and `CompanionStepAsideTests.cs` plus metas; narrow management routing/landing validation, MovementSystem checked entry point, native input fixture additions; this doc and focused receipts.
+
+## Independent review and final gate
+
+Save-agent reviewed stack transfer/receipts and found no additional issue. HUD-agent reviewed gear and movement; its split-unit and physical-occupancy findings are fixed with observed RED/GREEN. Coordinator reviewed visibility/capacity, native timing and rollback; hidden reads and rollback fixed, existing hard/soft capacity semantics documented and tested, tick/action fixture premise corrected. All owned C# metadata GUIDs are exactly32 hex characters. No InventoryUI, save schema, blueprints or combat behavior changed in these three iterations.
+
+Final native Unity and actual Play evidence: pending coordinator run. Historical intermediate failures above are retained, not relabeled as passing.

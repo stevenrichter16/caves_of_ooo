@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="76" result="Failed" start-time="2026-10-11T03:53:46.7886660Z" end-time="2026-10-11T03:53:46.8590260Z" duration="0.070287" total="19" passed="18" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="251" random-seed="619730288">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-step-physical-red.xml --where "class == CavesOfOoo.Tests.CompanionStepAsideTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.CompanionStepAsideTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1098" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-10-11T03:53:46.7886660Z" end-time="2026-10-11T03:53:46.8590260Z" duration="0.070287" total="19" passed="18" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="251">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43444" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1099" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-10-11T03:53:46.7902890Z" end-time="2026-10-11T03:53:46.8590250Z" duration="0.068735" total="19" passed="18" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="251">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1100" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="76" result="Failed" site="Child" start-time="2026-10-11T03:53:46.7904340Z" end-time="2026-10-11T03:53:46.8590230Z" duration="0.068588" total="19" passed="18" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="251">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1074" name="CompanionStepAsideTests" fullname="CavesOfOoo.Tests.CompanionStepAsideTests" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-11T03:53:46.7907710Z" end-time="2026-10-11T03:53:46.8590110Z" duration="0.068239" total="19" passed="18" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="251">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1077" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:53:46.7916870Z" end-time="2026-10-11T03:53:46.8389020Z" duration="0.047214" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="31">
+            <test-case id="1075" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(False)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(False)" methodname="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1395812516" result="Passed" start-time="2026-10-11T03:53:46.7917630Z" end-time="2026-10-11T03:53:46.8371400Z" duration="0.045400" asserts="15" />
+            <test-case id="1076" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(True)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(True)" methodname="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1165165628" result="Passed" start-time="2026-10-11T03:53:46.8377350Z" end-time="2026-10-11T03:53:46.8385590Z" duration="0.000824" asserts="16" />
+          </test-suite>
+          <test-case id="1089" name="BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" methodname="BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="603730169" result="Passed" start-time="2026-10-11T03:53:46.8390520Z" end-time="2026-10-11T03:53:46.8400260Z" duration="0.000974" asserts="13" />
+          <test-case id="1084" name="FullyEnclosedCompanionIsNotSwappedWithItsLeader" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.FullyEnclosedCompanionIsNotSwappedWithItsLeader" methodname="FullyEnclosedCompanionIsNotSwappedWithItsLeader" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1254805661" result="Passed" start-time="2026-10-11T03:53:46.8400380Z" end-time="2026-10-11T03:53:46.8402400Z" duration="0.000202" asserts="14" />
+          <test-case id="1097" name="IndependentBeforeMoveRelocationIsNotRewoundOrMovedAgain" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.IndependentBeforeMoveRelocationIsNotRewoundOrMovedAgain" methodname="IndependentBeforeMoveRelocationIsNotRewoundOrMovedAgain" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="897173605" result="Passed" start-time="2026-10-11T03:53:46.8402510Z" end-time="2026-10-11T03:53:46.8416270Z" duration="0.001376" asserts="13" />
+          <test-case id="1088" name="LateOuterFailureRestoresOriginalCellAndStayOrder" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.LateOuterFailureRestoresOriginalCellAndStayOrder" methodname="LateOuterFailureRestoresOriginalCellAndStayOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="531548874" result="Passed" start-time="2026-10-11T03:53:46.8416430Z" end-time="2026-10-11T03:53:46.8419430Z" duration="0.000300" asserts="14" />
+          <test-case id="1096" name="MultiCellCompanionIsNotMovedBySingleCellCourtesy" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.MultiCellCompanionIsNotMovedBySingleCellCourtesy" methodname="MultiCellCompanionIsNotMovedBySingleCellCourtesy" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="696344621" result="Passed" start-time="2026-10-11T03:53:46.8419550Z" end-time="2026-10-11T03:53:46.8438070Z" duration="0.001853" asserts="9" />
+          <test-case id="1094" name="NonSolidFootprintTriggerAtRemoteAnchorStillMakesLandingUnsafe" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.NonSolidFootprintTriggerAtRemoteAnchorStillMakesLandingUnsafe" methodname="NonSolidFootprintTriggerAtRemoteAnchorStillMakesLandingUnsafe" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="2007525134" result="Failed" start-time="2026-10-11T03:53:46.8438210Z" end-time="2026-10-11T03:53:46.8556100Z" duration="0.011789" asserts="14">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.NonSolidFootprintTriggerAtRemoteAnchorStillMakesLandingUnsafe() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.NonSolidFootprintTriggerAtRemoteAnchorStillMakesLandingUnsafe() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1083" name="OnlyAvailableHazardOrOccupiedCellIsRefused" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11T03:53:46.8556600Z" end-time="2026-10-11T03:53:46.8572450Z" duration="0.001585" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="83">
+            <test-case id="1078" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;water&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;water&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1816945041" result="Passed" start-time="2026-10-11T03:53:46.8556740Z" end-time="2026-10-11T03:53:46.8563980Z" duration="0.000724" asserts="17" />
+            <test-case id="1079" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;gas&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;gas&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1713317437" result="Passed" start-time="2026-10-11T03:53:46.8564230Z" end-time="2026-10-11T03:53:46.8567490Z" duration="0.000326" asserts="17" />
+            <test-case id="1080" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;trigger&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;trigger&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="241218690" result="Passed" start-time="2026-10-11T03:53:46.8567660Z" end-time="2026-10-11T03:53:46.8569070Z" duration="0.000141" asserts="17" />
+            <test-case id="1081" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;friend&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;friend&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="678279332" result="Passed" start-time="2026-10-11T03:53:46.8569240Z" end-time="2026-10-11T03:53:46.8570660Z" duration="0.000142" asserts="17" />
+            <test-case id="1082" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;unknown&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1475543598" result="Passed" start-time="2026-10-11T03:53:46.8570820Z" end-time="2026-10-11T03:53:46.8572090Z" duration="0.000127" asserts="15" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1093" name="StaleOrUnauthorizedOrderCannotMoveAnyone" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11T03:53:46.8572630Z" end-time="2026-10-11T03:53:46.8583450Z" duration="0.001083" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1090" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dismiss&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dismiss&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1278993634" result="Passed" start-time="2026-10-11T03:53:46.8572860Z" end-time="2026-10-11T03:53:46.8581040Z" duration="0.000819" asserts="7" />
+            <test-case id="1091" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;far&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;far&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1353336938" result="Passed" start-time="2026-10-11T03:53:46.8581170Z" end-time="2026-10-11T03:53:46.8582420Z" duration="0.000126" asserts="8" />
+            <test-case id="1092" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dead&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="357882385" result="Passed" start-time="2026-10-11T03:53:46.8582550Z" end-time="2026-10-11T03:53:46.8583330Z" duration="0.000078" asserts="7" />
+          </test-suite>
+          <test-case id="1095" name="StunnedCompanionCannotPerformStepAside" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StunnedCompanionCannotPerformStepAside" methodname="StunnedCompanionCannotPerformStepAside" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="73191666" result="Passed" start-time="2026-10-11T03:53:46.8583500Z" end-time="2026-10-11T03:53:46.8585670Z" duration="0.000217" asserts="13" />
+          <test-suite type="ParameterizedMethod" id="1087" name="VoluntaryVetoAndRootingPreventMovement" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T03:53:46.8585800Z" end-time="2026-10-11T03:53:46.8589870Z" duration="0.000407" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="25">
+            <test-case id="1085" name="VoluntaryVetoAndRootingPreventMovement(False)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(False)" methodname="VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="500708969" result="Passed" start-time="2026-10-11T03:53:46.8585870Z" end-time="2026-10-11T03:53:46.8587980Z" duration="0.000211" asserts="12" />
+            <test-case id="1086" name="VoluntaryVetoAndRootingPreventMovement(True)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(True)" methodname="VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1318018449" result="Passed" start-time="2026-10-11T03:53:46.8588080Z" end-time="2026-10-11T03:53:46.8589730Z" duration="0.000165" asserts="13" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="77" result="Failed" start-time="2026-10-11T03:54:15.5177620Z" end-time="2026-10-11T03:54:15.5776460Z" duration="0.059862" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="14" random-seed="1107582943">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-step-rollback-red.xml --where "test =~ /RollbackDoesNotOverlap/"]]></command-line>
+  <filter>
+    <test re="1">RollbackDoesNotOverlap</test>
+  </filter>
+  <test-suite type="Assembly" id="1099" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T03:54:15.5177620Z" end-time="2026-10-11T03:54:15.5776460Z" duration="0.059862" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43583" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1100" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T03:54:15.5194200Z" end-time="2026-10-11T03:54:15.5776440Z" duration="0.058223" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1101" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-10-11T03:54:15.5195340Z" end-time="2026-10-11T03:54:15.5776370Z" duration="0.058102" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1074" name="CompanionStepAsideTests" fullname="CavesOfOoo.Tests.CompanionStepAsideTests" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-11T03:54:15.5198910Z" end-time="2026-10-11T03:54:15.5775450Z" duration="0.057653" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1098" name="RollbackDoesNotOverlapANewOccupantOfTheOriginalCell" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.RollbackDoesNotOverlapANewOccupantOfTheOriginalCell" methodname="RollbackDoesNotOverlapANewOccupantOfTheOriginalCell" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="279455001" result="Failed" start-time="2026-10-11T03:54:15.5207320Z" end-time="2026-10-11T03:54:15.5767560Z" duration="0.056048" asserts="14">
+            <failure>
+              <message><![CDATA[  Expected: (12, 10)
+  But was:  (11, 10)
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.RollbackDoesNotOverlapANewOccupantOfTheOriginalCell() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 70
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: (12, 10)
+  But was:  (11, 10)
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.RollbackDoesNotOverlapANewOccupantOfTheOriginalCell() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 70
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

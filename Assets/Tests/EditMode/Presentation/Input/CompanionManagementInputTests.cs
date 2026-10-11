@@ -36,7 +36,7 @@ namespace CavesOfOoo.Tests
             follower.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Max = 20 };
             Assert.True(zone.AddEntity(follower, 4, 4));
             Assert.True(follower.ApplyEffect(new RecruitedEffect(player), player, zone));
-            zone.GetCell(4, 4).IsVisible = zone.GetCell(4, 4).Explored = true;
+            for(int y=3;y<=5;y++)for(int x=3;x<=5;x++)zone.GetCell(x,y).IsVisible=zone.GetCell(x,y).Explored=true;
             menu = scope.Root.AddComponent<WorldActionMenuUI>(); input.WorldActionMenuUI = menu;
             pad = InputSystem.AddDevice<Gamepad>(); pad.MakeCurrent(); State(new GamepadState());
         }
@@ -104,5 +104,12 @@ namespace CavesOfOoo.Tests
             Open(true); Select("CompanionEquip|"); Confirm();
             Assert.True(InventorySystem.IsEquipped(follower,item)); AssertCost(tick,energy,speed,1);
         }
+        [TestCase(false)] [TestCase(true)] public void StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(bool veto)
+        {
+            int tick=input.TurnManager.TickCount,energy=input.TurnManager.GetEnergy(player),speed=input.TurnManager.GetSpeed(player); var before=zone.GetEntityPosition(follower);
+            Open(true); Select("CompanionStepAside"); if(veto) follower.AddPart(new VetoMove()); Confirm();
+            Assert.AreEqual(!veto,zone.GetEntityPosition(follower)!=before); AssertCost(tick,energy,speed,veto?0:1);
+        }
+        public sealed class VetoMove : Part { public override string Name=>"CompanionMenuVetoMove"; public override bool HandleEvent(GameEvent e)=>e.ID!="BeforeMove"; }
     }
 }

@@ -11,9 +11,10 @@ namespace CavesOfOoo.Core
     public static partial class CompanionManagementActions
     {
         public const string PackCommand = "CompanionPack";
+        public const string StepAsideCommand = "CompanionStepAside";
         const string Give = "CompanionGive", Take = "CompanionTake";
         /// <summary>Recognizes only this service's commands, for native paid dispatch.</summary>
-        public static bool IsCommand(string command) => IsReadOnlyCommand(command) || Prefix(command, Give) || Prefix(command, Take) || GearCommand(command);
+        public static bool IsCommand(string command) => IsReadOnlyCommand(command) || Prefix(command, Give) || Prefix(command, Take) || GearCommand(command) || command == StepAsideCommand;
         /// <summary>Pack inspection is a free, current-owner read.</summary>
         public static bool IsReadOnlyCommand(string command) => command == PackCommand || Prefix(command, Compare);
         static bool Prefix(string command, string verb) => command?.StartsWith(verb + "|", StringComparison.Ordinal) == true;
@@ -36,6 +37,7 @@ namespace CavesOfOoo.Core
                 foreach (var item in follower.GetPart<InventoryPart>().Objects.ToArray())
                     if (Supply(follower, item)) Offer(actions, "retrieve whole stack: " + item.GetDisplayName(), Choice(Take, item));
                 OfferGear(actor, follower, actions);
+                if (AsideCell(actor, follower, zone) != null) Offer(actions, "ask companion to step aside", StepAsideCommand);
                 return true;
             }
             string command = e.GetStringParameter("Command");
@@ -56,7 +58,8 @@ namespace CavesOfOoo.Core
             {
                 if (actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
                     || follower.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !scope.Current()) return true;
-                if (!(GearCommand(command) ? ChangeGear(scope, command, tx) : Transfer(scope, command, tx))) return true;
+                if (!(command == StepAsideCommand ? StepAside(scope, tx)
+                    : GearCommand(command) ? ChangeGear(scope, command, tx) : Transfer(scope, command, tx))) return true;
             }
             e.Handled = true; return false;
         }
@@ -112,16 +115,16 @@ namespace CavesOfOoo.Core
             bool Current() => scope.Current() && carried.SequenceEqual(pack.Objects) && worn.SequenceEqual(pack.EquippedItems)
                 && quantities.SequenceEqual(carried.Select(Units));
             if (!Current()) return false;
-            tx.BeforeCommit(Current); string text = string.Join("\n", lines); tx.AfterCommit(() => MessageLog.AddAnnouncement(text)); return true;
+            tx.BeforeCommit(() => Current()); string text = string.Join("\n", lines); tx.AfterCommit(() => MessageLog.AddAnnouncement(text)); return true;
         }
-        static bool Eligible(Entity actor, Entity follower, Zone zone)
+        static bool Eligible(Entity actor, Entity follower, Zone zone, bool adjacent = true)
         {
             var effect = follower?.GetEffect<RecruitedEffect>(); var brain = follower?.GetPart<BrainPart>();
             return actor != null && follower != null && actor != follower && zone != null
                 && actor.HasTag("Creature") && follower.HasTag("Creature") && actor.GetStatValue("Hitpoints") > 0 && follower.GetStatValue("Hitpoints") > 0
                 && WorldResourceActions.ActorCurrent(actor, zone) && WorldResourceActions.ActorCurrent(follower, zone)
                 && zone.GetEntityCell(follower)?.IsVisible == true && follower.GetPart<RenderPart>()?.Visible != false
-                && SpatialQuery.Distance(zone, actor, follower) <= 1
+                && (!adjacent || SpatialQuery.Distance(zone, actor, follower) <= 1)
                 && effect?.Owner == follower && effect.Duration != 0 && effect.Recruiter == actor
                 && brain?.ParentEntity == follower && brain.CurrentZone == zone && brain.PartyLeader == actor && brain.Target == null
                 && actor.GetPart<BrainPart>()?.PartyMembers.Contains(follower) == true
@@ -135,9 +138,9 @@ namespace CavesOfOoo.Core
             readonly Cell actorCell, followerCell;
             internal OwnerScope(Entity actor, Entity follower, Zone zone)
             { Actor=actor; Follower=follower; Zone=zone; brain=follower.GetPart<BrainPart>(); effect=follower.GetEffect<RecruitedEffect>(); source=actor.GetPart<InventoryPart>(); destination=follower.GetPart<InventoryPart>(); actorCell=zone.GetEntityCell(actor); followerCell=zone.GetEntityCell(follower); }
-            internal bool Current() => Eligible(Actor,Follower,Zone) && Follower.GetPart<BrainPart>()==brain && Follower.GetEffect<RecruitedEffect>()==effect
+            internal bool Current(Cell expectedFollowerCell = null) => Eligible(Actor,Follower,Zone,expectedFollowerCell == null) && Follower.GetPart<BrainPart>()==brain && Follower.GetEffect<RecruitedEffect>()==effect
                 && Actor.GetPart<InventoryPart>()==source && Follower.GetPart<InventoryPart>()==destination
-                && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Follower)==followerCell;
+                && Zone.GetEntityCell(Actor)==actorCell && Zone.GetEntityCell(Follower)==(expectedFollowerCell ?? followerCell);
         }
     }
 }
