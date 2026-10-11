@@ -29,7 +29,7 @@ re-read every Markdown file or exhaustively tested every system.
 | A cudgel enemy can already shove | `CombatTacticsPart` lacks Slam; ordinary `SpreadDitchMate` carries a Cudgel but has no skills. | Connect this one existing kit to audited Slam behavior. |
 | Direct player spell hits rally followers | `CompanionCombat` handles committed basic melee and party-as-victim damage, not direct spell hits. | Extend at direct spell/strike boundaries, not anonymous or delayed world damage. |
 | Pith can wipe off body coatings | `MaterialFieldActions` only wicks ground coatings; `LiquidCoveredEffect` already models body amount and stat consequences. | Add finite, paid body wicking; reuse effect lifecycle. |
-| Gold pickup is consistent | Ground `PickupCommand` credits 5 drams per coin; `TakeFromContainerCommand` puts coins in the pack. | Unify ordinary container acquisition with ground purse semantics atomically. |
+| Gold pickup is consistent | Ground `PickupCommand` credits 5 drams per coin; container take puts coins in the pack, explicitly pinned by an old adversarial test. | Deliberate policy unification: ordinary container acquisition follows ground purse semantics atomically; update that exact historical pin. |
 | Self-use consumables always cost time | InventoryUI has an explicit FieldMeal Eat turn path; generic food/tonics rebuild the open inventory. Historical Spread expedition docs explicitly call eating free. | Deliberate timing-policy change, not a regression claim: make successful self-consumption pay one turn, with exact success contracts. |
 | Schematics can be studied in normal play | Study is advertised without BitLocker; execution rejects it. User explicitly keeps BitLocker dev-only. | Explain unavailability and suppress an unusable action; preserve sale/ownership and authorized developer behavior. |
 | Shrines lack all functionality | `SanctuaryPart` already accepts a paid blessing; adjacent passive healing remains a historical polish wish. Campfire/inn recovery is already implemented. | Defer new shrine healing; current priorities have stronger missing connections. |
@@ -69,11 +69,34 @@ test runners and disjoint source ownership; only the coordinator uses Unity.
 
 ## Iteration 10: direct combat assistance
 
-Pending detailed RED/implementation/review log. Existing local party helper is
-the sole owner of eligibility and target selection. The direct spell helper and
-single-strike damage path are the candidate signal boundaries; inspect actual
-commit semantics before choosing exact placement. Ground/status/retort damage
-must not accidentally become an offensive command.
+Implemented; initial native tests pass, final integration and independent review pending. The existing
+local party helper owns eligibility and target selection. `PerformSingleAttack`
+and `SkillCombatHelpers.DealGuaranteedHitDamage` signal actual HP loss. Direct
+spells collect unique damaged creatures only inside the existing active `Cast`
+scope and signal on successful commit. A failed/throwing resolver cannot issue
+an offensive order; ordinary `ApplyDamage` and an out-of-cast spell helper do not
+issue one. First eligible witnessed survivor in resolver order wins per recruit;
+an existing fight is retained. No free attack or movement occurs.
+
+Observed RED: 9/9 cases fail at missing assistance, including actual Ember Spit
+command/cooldown and positive Lunge damage. Initial Lunge fixture used unsupported
+constant dice `1`; correcting it to `1d1` was necessary to reach the real missing
+assistance assertion. A constant-maximum RNG was also discarded because the
+penetration algorithm can keep rolling; seeded ordinary randomness is used.
+GREEN: 78/78 core cases (31 new direct-combat cases plus 47 existing party cases),
+zero failures in the isolated runner. Raw XML is under
+`Verification/SystemDepthII/iteration10-{red,green}.xml`.
+
+Self-review: 🟡 included the separate guaranteed-hit weapon path after source
+inspection, so Slam/GroundPound are not left behind. 🔵 direct spell recipients
+are revalidated at commit, including death, removal, dismissal and Stay changes;
+repeated hits retain one goal. ⚪ no exact Qud parity or physical Deck claim.
+Initial native Unity run `866b889a3949440f9283936f0cb810b8` passed all 31 new
+direct-combat cases (the combined run also intentionally captured six companion
+UI RED assertions). Per-cast allocation is lazy and only for a player with a nonempty party; no
+per-frame work or zone scan was added. Save tests use the existing goal graph.
+Changed files: CompanionCombat, CombatSystem, SkillCombatHelpers,
+SpellDamageHelpers and two new test fixtures with unique .meta files.
 
 ## Remaining larger gaps
 

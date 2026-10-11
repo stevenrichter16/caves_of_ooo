@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="56" result="Failed" start-time="2026-10-11T03:32:33.8676940Z" end-time="2026-10-11T03:32:33.9553420Z" duration="0.087633" total="9" passed="0" failed="9" inconclusive="0" skipped="0" warnings="0" asserts="35" random-seed="31256984">
+  <command-line><![CDATA[/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-depth-ii10-red.xml --where "class =~ /CompanionDirectCombatTests/"]]></command-line>
+  <filter>
+    <class re="1">CompanionDirectCombatTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1063" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-10-11T03:32:33.8676940Z" end-time="2026-10-11T03:32:33.9553420Z" duration="0.087633" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="35">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-depth-root-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-depth-root-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="35326" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1064" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-10-11T03:32:33.8693030Z" end-time="2026-10-11T03:32:33.9553100Z" duration="0.086006" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="35">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1065" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-10-11T03:32:33.8694080Z" end-time="2026-10-11T03:32:33.9553040Z" duration="0.085895" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="35">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1053" name="CompanionDirectCombatTests" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-11T03:32:33.8697340Z" end-time="2026-10-11T03:32:33.9551740Z" duration="0.085439" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="35">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1058" name="AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" methodname="AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1103560941" result="Failed" start-time="2026-10-11T03:32:33.8706340Z" end-time="2026-10-11T03:32:33.9209980Z" duration="0.050389" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 69
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 69
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1054" name="CommittedDirectSpellRalliesWithoutFreeAttack" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.CommittedDirectSpellRalliesWithoutFreeAttack" methodname="CommittedDirectSpellRalliesWithoutFreeAttack" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="606764909" result="Failed" start-time="2026-10-11T03:32:33.9215480Z" end-time="2026-10-11T03:32:33.9246080Z" duration="0.003060" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.CommittedDirectSpellRalliesWithoutFreeAttack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.CommittedDirectSpellRalliesWithoutFreeAttack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1057" name="DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" methodname="DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="172654781" result="Failed" start-time="2026-10-11T03:32:33.9246400Z" end-time="2026-10-11T03:32:33.9250110Z" duration="0.000371" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 64
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 64
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1056" name="FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" methodname="FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="415436120" result="Failed" start-time="2026-10-11T03:32:33.9250180Z" end-time="2026-10-11T03:32:33.9270960Z" duration="0.002078" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1061" name="GuaranteedWeaponSkillDamageAlsoRallies" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.GuaranteedWeaponSkillDamageAlsoRallies" methodname="GuaranteedWeaponSkillDamageAlsoRallies" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="316231823" result="Failed" start-time="2026-10-11T03:32:33.9271090Z" end-time="2026-10-11T03:32:33.9278030Z" duration="0.000694" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.GuaranteedWeaponSkillDamageAlsoRallies() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 88
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.GuaranteedWeaponSkillDamageAlsoRallies() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 88
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1060" name="HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" methodname="HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1186734182" result="Failed" start-time="2026-10-11T03:32:33.9278240Z" end-time="2026-10-11T03:32:33.9280500Z" duration="0.000225" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(other)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 82
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(other)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 82
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1059" name="MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" methodname="MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1401932675" result="Failed" start-time="2026-10-11T03:32:33.9280660Z" end-time="2026-10-11T03:32:33.9283400Z" duration="0.000274" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 75
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 75
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1062" name="PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" methodname="PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1705566929" result="Failed" start-time="2026-10-11T03:32:33.9283530Z" end-time="2026-10-11T03:32:33.9378000Z" duration="0.009447" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 102
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 102
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1055" name="RealEmberSpitCommandRalliesAndPaysItsCooldown" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.RealEmberSpitCommandRalliesAndPaysItsCooldown" methodname="RealEmberSpitCommandRalliesAndPaysItsCooldown" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1152119722" result="Failed" start-time="2026-10-11T03:32:33.9378220Z" end-time="2026-10-11T03:32:33.9548300Z" duration="0.017008" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.RealEmberSpitCommandRalliesAndPaysItsCooldown() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 49
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(enemy)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionDirectCombatTests.RealEmberSpitCommandRalliesAndPaysItsCooldown() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionDirectCombatTests.cs:line 49
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

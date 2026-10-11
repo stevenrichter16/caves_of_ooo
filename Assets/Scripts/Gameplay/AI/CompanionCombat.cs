@@ -19,6 +19,14 @@ namespace CavesOfOoo.Core
             Rally(player, target, player, zone);
         }
 
+        /// <summary>A completed direct spell or weapon hit can request the
+        /// same assistance. Call only at the direct action boundary: ordinary
+        /// attributed poison, terrain and reflected damage are not orders.</summary>
+        public static void AfterPlayerDirectDamage(Entity player, Entity target, Zone zone, int actualDamage)
+        {
+            if (actualDamage > 0) AfterPlayerMelee(player, target, zone);
+        }
+
         /// <summary>Actual HP loss may prompt local defense of a living player
         /// or direct recruit against an existing hostile. This is not a general
         /// NPC retaliation/alert rule. Each responder must see both participants.</summary>

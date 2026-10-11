@@ -204,6 +204,7 @@ namespace CavesOfOoo.Skills
             CombatSystem.ApplyDamage(target, damage, attacker, zone);
             int hpAfter = target.GetStatValue("Hitpoints", 0);
             int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+            CompanionCombat.AfterPlayerDirectDamage(attacker, target, zone, actualDamage);
 
             OnHitClassEffects.Apply(damage, actualDamage, target, attacker, zone, rng);
             OnHitWeaponEffects.Apply(weapon, damage, actualDamage, target, attacker, zone, rng);

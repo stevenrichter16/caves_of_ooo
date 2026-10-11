@@ -88,7 +88,10 @@ namespace CavesOfOoo.Skills
             // Hitpoints stat, so ApplyDamage early-outs on it and a fire
             // bolt aimed at a hedgerow did nothing at all. Structural HP is
             // a separate pool with a separate death path.
-            return DestructionSystem.RouteDamage(target, dmg, attacker, zone);
+            int landed = DestructionSystem.RouteDamage(target, dmg, attacker, zone);
+            if (landed > 0 && _cast != null && _cast.Actor == attacker)
+                _cast.RecordDirectTarget(target, zone);
+            return landed;
         }
 
         [System.ThreadStatic] private static Cast _cast;
@@ -112,6 +115,7 @@ namespace CavesOfOoo.Skills
             private readonly LeyTapEffect _ley;
             private readonly HeartFlameEffect _heart;
             private bool _usedLey, _usedHeart, _committed;
+            private System.Collections.Generic.List<(Entity target, Zone zone)> _damagedTargets;
 
             internal Cast(Entity actor)
             {
@@ -129,6 +133,19 @@ namespace CavesOfOoo.Skills
                 if (HeartReady && (element == "Heat" || element == "Fire")) _usedHeart = true;
             }
 
+            internal void RecordDirectTarget(Entity target, Zone zone)
+            {
+                // Only a player with a party needs this per-cast receipt. Keep
+                // resolver order; each follower chooses its first eligible
+                // witnessed survivor when the spell actually completes.
+                if (Actor?.HasTag("Player") != true || Actor.GetPart<BrainPart>()?.PartyMembers.Count is not > 0
+                    || target?.HasTag("Creature") != true) return;
+                _damagedTargets ??= new System.Collections.Generic.List<(Entity, Zone)>();
+                for (int i = 0; i < _damagedTargets.Count; i++)
+                    if (_damagedTargets[i].target == target && _damagedTargets[i].zone == zone) return;
+                _damagedTargets.Add((target, zone));
+            }
+
             internal void Commit()
             {
                 if (_committed) return;
@@ -141,6 +158,9 @@ namespace CavesOfOoo.Skills
                     _heart.ChargesRemaining = System.Math.Max(0, _heart.ChargesRemaining - 1);
                     if (_heart.ChargesRemaining == 0) Actor.RemoveEffect<HeartFlameEffect>();
                 }
+                if (_damagedTargets != null)
+                    foreach (var hit in _damagedTargets)
+                        CompanionCombat.AfterPlayerDirectDamage(Actor, hit.target, hit.zone, 1);
             }
 
             public void Dispose() { _cast = _previous; }

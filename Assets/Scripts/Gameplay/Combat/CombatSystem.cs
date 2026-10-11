@@ -480,6 +480,7 @@ namespace CavesOfOoo.Core
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
             int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+            CompanionCombat.AfterPlayerDirectDamage(attacker, defender, zone, actualDamage);
 
             // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player
             // sees the crit happen, not just the silent "Critical" attribute on
