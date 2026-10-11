@@ -1,5 +1,11 @@
 # Quest Log UI (Q1) — implementation
 
+> **2026-10-10 update:** The journal now pages wrapped objective and history rows
+> with keyboard navigation and native controller shoulders. Field notes retain
+> an independent page. See [iteration 10](Verification/SystemDepthTenIterations/Iteration10.md)
+> for current evidence; the original Q1 log and counts below are historical.
+
+
 > Phase Q1 of `Docs/QUEST-SYSTEM-QUD-PARITY.md`. Closes the
 > "quests are simulated but invisible to the player" gap (same class as
 > the gas-visibility bug). Foundation (`QuestLogStateBuilder` +

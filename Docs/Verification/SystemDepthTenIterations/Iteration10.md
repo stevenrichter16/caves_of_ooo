@@ -50,3 +50,7 @@ Journal rows are rebuilt only on opening/rebuild/input, never per-frame. Reuse a
 ## Files
 
 `QuestLogUI.cs`; `QuestJournalPagingTests.cs` and meta; `ReferenceGladeNativePlayer.SystemDepth.cs` and meta; narrow mode/launcher hooks in `ReferenceGladeNativePlayer.cs` and `ReferenceGladeNativeBatch.cs`; this log, native RED/GREEN receipts, the raw Play report and eight PNGs. Final native updates to the iteration 8/9 logs and the verified fixture-only elapsed-input correction accompany this acceptance commit; core order behavior remains in its separate iteration 9 commit.
+
+Final report wording correction: new-game bootstrap writes an isolated checkpoint, so the probe cannot claim no save is written at all. The honesty text now specifies that no explicit save/load round trip is tested and normal checkpoint writes stay within the isolated root. No gameplay or probe action changed.
+
+Wording-only final rerun `9ea47b4346314b75a9b7c65cc9997598` also passes 14/14, zero unexpected errors, with the corrected explicit save-root limitation. The first 14/14 report and its captured frames remain preserved.

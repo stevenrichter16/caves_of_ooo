@@ -1,5 +1,14 @@
 # Followers System
 
+> **2026-10-10 update:** Player melee assistance, witnessed local party defense,
+> terrain-aware following, and saved stay/follow world actions are now implemented.
+> See [the ten-iteration living plan](SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md)
+> and its iteration 6, 8 and 9 evidence for current verification. This closes
+> selected F.4/polish gaps; it does not implement the entire historical pursuit,
+> Beguile/Rebuke or companion-management wishlist. Older phase totals below
+> remain historical.
+
+
 > **Single source of truth.** This file consolidates the multi-phase
 > Followers feature development — plans, progress, cold-eye reviews,
 > adversarial sweeps, audit findings, and Qud-parity tracking.

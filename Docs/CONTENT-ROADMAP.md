@@ -1,5 +1,12 @@
 # Content Roadmap — Tiers 1-5
 
+> **Current audit, 2026-10-10:** Historical “closed” and “deferred” lists below
+> describe their original tranches. The [ten-iteration system depth plan](SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md)
+> verifies present player paths and connects useful shop stock, compost supply,
+> collectible solutions, wellkeeper care, companions, restraint hostility and
+> journal navigation. It distinguishes shipped work from remaining gaps.
+
+
 > **Living document.** Update on every content ship. Refer to before
 > picking the next task. Status emoji + commit/PR hash = source of
 > truth for what's done.

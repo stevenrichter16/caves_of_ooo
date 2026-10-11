@@ -31,7 +31,7 @@ provenance. Generic fluid mixtures and distillation remain unimplemented.
   pure water; their live electrical reaction test remains unchanged.
 - Heat/cold consequences, exact volume, outer rollback, unlike liquids, drinking
   refusal, freeze phase and suppression of duplicate dry-conductor shock checked.
-- 🧪 Native Unity and Play sanity are pending the final synchronized run.
+- 🟢 Final native Unity verification passes; details below.
 - ⚪ Original CoO extension; no new Qud parity claim. No graphics change.
 
 ### Propagation counter-review
@@ -46,3 +46,12 @@ Dry adjacent cells remain nonconductive. Final native sweep will include this fi
 Standalone confirmation: 102/102 combined cases pass after the propagation fix;
 26 are natural-liquid cases. Cryogel ground-action review is recorded separately
 in ReviewLiquidFreeze.md. Native verification remains the final gate.
+
+### Final native verification
+
+Unity EditMode job `941ad3a3628542c19f5fda2b0a9e49b4` passes **810/810**,
+zero failed/skipped, across 45 selected fixtures. This includes all 26 dedicated
+iteration 4 cases and the related liquid, settlement, inventory and companion
+regressions. Raw result: `native-final-integration.xml`; selection:
+`native-selection.json`. This establishes actual Unity gameplay/serialization
+execution, not a full-campaign economy or physical Steam Deck playthrough.

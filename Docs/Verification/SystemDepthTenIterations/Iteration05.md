@@ -34,7 +34,7 @@ result and uses a required action, so refusal cannot advance to success text.
 - 🟡 Corrected payload loss and ownership admission before commit.
 - 🔵 Conditions survive the actual settlement serializer and maintain separate
   sites; the unrepaired well still has a temporary outcome, not a repair reward.
-- 🧪 Native Unity and Play sanity remain pending final synchronized verification.
+- 🟢 Final native Unity verification passes; details below.
 - ⚪ No promise of an NPC performing an animated rite while absent; renewal uses
   the existing entry-time settlement reconciliation. No new Qud parity claim.
 
@@ -48,3 +48,12 @@ adjacent membership in the keeper's declared settlement and rejects any carried
 copy still referenced by equipment. This includes secondary body slots, which
 FindEquippedBodyPart intentionally omits. Final standalone: 109/109 pass, with
 32 caretaker cases. Native and in-game verification follows.
+
+### Final native verification
+
+Unity EditMode job `941ad3a3628542c19f5fda2b0a9e49b4` passes **810/810**,
+zero failed/skipped, across 45 selected fixtures. This includes all 32 dedicated
+iteration 5 cases and the related liquid, settlement, inventory and companion
+regressions. Raw result: `native-final-integration.xml`; selection:
+`native-selection.json`. This establishes actual Unity gameplay/serialization
+execution, not a full-campaign economy or physical Steam Deck playthrough.
