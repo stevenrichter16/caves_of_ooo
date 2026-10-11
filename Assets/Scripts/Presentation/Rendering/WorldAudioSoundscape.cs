@@ -15,7 +15,12 @@ namespace CavesOfOoo.Rendering
         readonly int[] distances=new int[7];
         readonly WorldAudioPlayer audio;
         Zone zone;Entity actor;BiomeType biome;DayBand band;int depth;
-        bool active,interior;float remaining;uint random;int cursor;
+        bool active,interior;float phraseGap;uint random;int laneCursor;
+        readonly float[] laneRemaining=new float[3];
+        readonly int[] sourceCursor=new int[2];
+        public int WildlifePhrases{get;private set;}
+        public int MaterialPhrases{get;private set;}
+        public int HabitatPhrases{get;private set;}
         string habitat;
         readonly Entity[] detailWitnesses=new Entity[2];
         readonly int[] detailKinds=new int[2];
@@ -30,8 +35,9 @@ namespace CavesOfOoo.Rendering
             bool graphChanged=current!=zone||listener!=actor;
             if(graphChanged)
             {
-                ClearDetails();random=Hash(current?.ZoneID);cursor=(int)(random%7);
-                remaining=5+Next()*5;
+                ClearDetails();random=Hash(current?.ZoneID);laneCursor=0;phraseGap=0;
+                sourceCursor[0]=sourceCursor[1]=(int)(random%(uint)sources.Length);
+                laneRemaining[0]=3+Next()*2;laneRemaining[1]=6+Next()*3;laneRemaining[2]=11+Next()*4;
             }
             bool policyChanged=biome!=region||depth!=level||band!=time;
             zone=current;actor=listener;biome=region;depth=level;band=time;
@@ -67,23 +73,44 @@ namespace CavesOfOoo.Rendering
             for(int i=0;i<sources.Length;i++)if(sources[i]!=null&&(!Current(sources[i],out _)||Classify(sources[i])!=i))
             {ClearDetails();sources[i]=null;}
             SelectBed();
-            // Muting/menus never accumulate a backlog to replay at once.
-            if(WorldAudioSettings.AmbienceVolume<=0||AudioListener.pause){remaining=Math.Max(remaining,5);ClearDetails();return;}
-            remaining-=WorldAudioPlayer.SafeDelta(wallDelta);if(remaining>0)return;
-            remaining=(10+Next()*12)*(biome==BiomeType.Overwrit?2:1)*(danger?1.8f:1);
-            int choices=SourceCount+HabitatDetailCount;if(choices==0)return;
-            int chosen=(cursor+++(int)(Next()*choices))%choices;
-            for(int i=0;i<sources.Length;i++)
+            // Independent restrained lanes: scenery cannot repeatedly win away an animal's turn.
+            if(WorldAudioSettings.AmbienceVolume<=0||AudioListener.pause)
+            {for(int i=0;i<3;i++)laneRemaining[i]=Math.Max(laneRemaining[i],5);phraseGap=4;ClearDetails();return;}
+            float delta=WorldAudioPlayer.SafeDelta(wallDelta);phraseGap=Math.Max(0,phraseGap-delta);
+            for(int i=0;i<3;i++)laneRemaining[i]=Math.Max(-30,laneRemaining[i]-delta);
+            if(phraseGap>0)return;
+            for(int offset=0;offset<3;offset++)
             {
-                var owner=sources[i];if(owner==null)continue;if(chosen-->0)continue;
-                if(!Current(owner,out var cell))return;
+                int lane=(laneCursor+offset)%3;
+                if(laneRemaining[lane]>0||!PlayLane(lane,danger))continue;
+                laneRemaining[lane]=((lane==0?8:lane==1?12:20)+Next()*(lane==2?12:8))
+                    *(biome==BiomeType.Overwrit?2:1)*(danger?1.8f:1);
+                // Four seconds exceeds every shipped environmental phrase (<=3.02s).
+                // No overlapping source witness can be displaced by a later phrase.
+                phraseGap=4;laneCursor=(lane+1)%3;return;
+            }
+        }
+        static bool Wildlife(int kind)=>kind==(int)Kind.Frog||kind==(int)Kind.Dog||kind==(int)Kind.Bird;
+        bool PlayLane(int lane,bool danger)
+        {
+            if(lane==2)
+            {
+                if(habitat==null||habitat=="bird"&&sources[(int)Kind.Bird]!=null)return false;
+                if(!audio.TryPlayDetail(habitat,(Next()-.5f)*.7f,danger?.2f:.38f))return false;
+                HabitatPhrases++;return true;
+            }
+            for(int offset=0;offset<sources.Length;offset++)
+            {
+                int i=(sourceCursor[lane]+offset)%sources.Length;var owner=sources[i];
+                if(owner==null||Wildlife(i)!=(lane==0)||!Current(owner,out var cell))continue;
                 var origin=zone.GetEntityCell(actor);int distance=Math.Max(Math.Abs(origin.X-cell.X),Math.Abs(origin.Y-cell.Y));
                 float gain=(interior?.65f:.7f)*(1f-distance/9f)*(danger?.45f:1);
-                if(audio.TryPlayDetail(Id((Kind)i),(cell.X-origin.X)/10f,gain))
-                    for(int w=0;w<detailWitnesses.Length;w++)if(detailWitnesses[w]==null){detailWitnesses[w]=owner;detailKinds[w]=i;break;}
-                return;
+                if(!audio.TryPlayDetail(Id((Kind)i),(cell.X-origin.X)/10f,gain))return false;
+                for(int w=0;w<detailWitnesses.Length;w++)if(detailWitnesses[w]==null){detailWitnesses[w]=owner;detailKinds[w]=i;break;}
+                sourceCursor[lane]=(i+1)%sources.Length;
+                if(lane==0)WildlifePhrases++;else MaterialPhrases++;return true;
             }
-            if(habitat!=null)audio.TryPlayDetail(habitat,(Next()-.5f)*.7f,danger?.2f:.38f);
+            return false;
         }
         void ClearDetails(){audio.ClearDetails();Array.Clear(detailWitnesses,0,detailWitnesses.Length);}
         void ValidateDetails()

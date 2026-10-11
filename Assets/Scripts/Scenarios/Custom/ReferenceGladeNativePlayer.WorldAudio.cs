@@ -58,6 +58,12 @@ namespace CavesOfOoo.Scenarios.Custom
                 Check("real_place_detail_recording_plays",heardDetail&&audio.Player.AcceptedDetailCount>detailStart);
                 Check("place_idle_wait_never_rescans_or_grows_pool",audio.Soundscape.ScanCount==placeScans&&audio.Player.AllocatedSources==16);
                 _descriptions.Add(new Description{subject="Place soundscape",source="Real generated glade and audio output",text="Bed="+audio.Context.AmbienceId+"; retained sources="+audio.Soundscape.SourceCount+"; last detail="+audio.Player.LastDetailId+"; visited owners="+audio.Soundscape.LastVisitedOwners+". No direct cue injection or world edits."});
+                int habitatBefore=audio.Soundscape.HabitatPhrases,materialBefore=audio.Soundscape.MaterialPhrases;
+                until=Time.realtimeSinceStartupAsDouble+45;
+                while(Time.realtimeSinceStartupAsDouble<until&&(audio.Soundscape.HabitatPhrases==habitatBefore||audio.Soundscape.MaterialPhrases==materialBefore))yield return null;
+                Check("habitat_and_local_material_both_get_live_phrases",audio.Soundscape.HabitatPhrases>habitatBefore&&audio.Soundscape.MaterialPhrases>materialBefore);
+                Check("independent_phrase_lanes_keep_idle_scan_bound",audio.Soundscape.ScanCount==placeScans&&audio.Player.AllocatedSources==16);
+                _descriptions.Add(new Description{subject="Iteration 1 live phrase lanes",source="Real generated glade",text="Habitat="+audio.Soundscape.HabitatPhrases+"; material="+audio.Soundscape.MaterialPhrases+"; wildlife="+audio.Soundscape.WildlifePhrases+". No animal introduced to force a call; animal fairness has separate native unit counters."});
                 int context=audio.ContextCheckCount,starts=audio.Player.MusicStartCount;
                 yield return new WaitForSecondsRealtime(.6f);
                 Check("idle_does_not_rescan_or_restart_music",audio.ContextCheckCount==context&&audio.Player.MusicStartCount==starts);

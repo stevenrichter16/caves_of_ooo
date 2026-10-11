@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="123" result="Passed" total="123" passed="123" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:56:00Z" duration="4.908188">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27859" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:56:00Z" duration="4.908188" total="123" passed="123" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="34306" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27859" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:56:00Z" duration="4.789253" total="123" passed="123" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="34307" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27859" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:56:00Z" duration="4.610043" total="123" passed="123" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="34308" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27859" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:56:00Z" duration="4.509728" total="123" passed="123" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="32741" name="WorldAudioAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:58Z" duration="1.488868" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="32746" name="DestroyedRootCannotThrowOnNewContextOrDispose" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.DestroyedRootCannotThrowOnNewContextOrDispose" methodname="DestroyedRootCannotThrowOnNewContextOrDispose" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1907191676" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:56Z" duration="0.014961" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32745" name="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:56Z" duration="0.090610" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32742" name="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Music 0&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Music 0&quot;)" methodname="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="2069801443" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:56Z" duration="0.007617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32743" name="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Ambience 0&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Ambience 0&quot;)" methodname="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="308994509" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:56Z" duration="0.000559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32744" name="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Action 0&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair(&quot;Action 0&quot;)" methodname="DestroyedSourceFailsClosedWithoutExceptionOrUnboundedRepair" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1779086746" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:56Z" duration="0.000454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32766" name="FailedOrCustomReadOnlyCommandsNeverPublishInventorySound" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.FailedOrCustomReadOnlyCommandsNeverPublishInventorySound" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:55:56Z" end-time="2026-10-11 15:55:57Z" duration="0.244396" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32764" name="FailedOrCustomReadOnlyCommandsNeverPublishInventorySound(False)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.FailedOrCustomReadOnlyCommandsNeverPublishInventorySound(False)" methodname="FailedOrCustomReadOnlyCommandsNeverPublishInventorySound" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1326040745" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.053655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32765" name="FailedOrCustomReadOnlyCommandsNeverPublishInventorySound(True)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.FailedOrCustomReadOnlyCommandsNeverPublishInventorySound(True)" methodname="FailedOrCustomReadOnlyCommandsNeverPublishInventorySound" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="976148174" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.001165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32757" name="FirstUnassignedCueCannotIndexPoolOrConsumeValidCue" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.FirstUnassignedCueCannotIndexPoolOrConsumeValidCue" methodname="FirstUnassignedCueCannotIndexPoolOrConsumeValidCue" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="2079198082" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32756" name="InvalidCueCannotIndexPoolOrConsumeValidCue" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.InvalidCueCannotIndexPoolOrConsumeValidCue" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.145788" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32754" name="InvalidCueCannotIndexPoolOrConsumeValidCue(-1)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.InvalidCueCannotIndexPoolOrConsumeValidCue(-1)" methodname="InvalidCueCannotIndexPoolOrConsumeValidCue" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1141464058" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32755" name="InvalidCueCannotIndexPoolOrConsumeValidCue(int.MaxValue)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.InvalidCueCannotIndexPoolOrConsumeValidCue(int.MaxValue)" methodname="InvalidCueCannotIndexPoolOrConsumeValidCue" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1852482588" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32767" name="LoadedCatalogBindsEveryRealFamilyAndCreditsAreReadable" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.LoadedCatalogBindsEveryRealFamilyAndCreditsAreReadable" methodname="LoadedCatalogBindsEveryRealFamilyAndCreditsAreReadable" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="808102569" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.037761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32753" name="MalformedGainCannotEnterPreparedLibrary" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MalformedGainCannotEnterPreparedLibrary" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.166221" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32749" name="MalformedGainCannotEnterPreparedLibrary(float.NaN)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MalformedGainCannotEnterPreparedLibrary(float.NaN)" methodname="MalformedGainCannotEnterPreparedLibrary" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="2138433302" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.002115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32750" name="MalformedGainCannotEnterPreparedLibrary(-0.1f)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MalformedGainCannotEnterPreparedLibrary(-0.1f)" methodname="MalformedGainCannotEnterPreparedLibrary" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1918976112" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32751" name="MalformedGainCannotEnterPreparedLibrary(1.1f)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MalformedGainCannotEnterPreparedLibrary(1.1f)" methodname="MalformedGainCannotEnterPreparedLibrary" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="707206344" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.001010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32752" name="MalformedGainCannotEnterPreparedLibrary(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MalformedGainCannotEnterPreparedLibrary(float.PositiveInfinity)" methodname="MalformedGainCannotEnterPreparedLibrary" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1831062444" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32762" name="MutedContextChangeUnmutesCurrentPlaceWithoutOldQueuedMusic" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.MutedContextChangeUnmutesCurrentPlaceWithoutOldQueuedMusic" methodname="MutedContextChangeUnmutesCurrentPlaceWithoutOldQueuedMusic" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="56933402" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32761" name="PanCannotPoisonSourceProperties" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.PanCannotPoisonSourceProperties" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.198413" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32758" name="PanCannotPoisonSourceProperties(float.NaN)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.PanCannotPoisonSourceProperties(float.NaN)" methodname="PanCannotPoisonSourceProperties" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="613998472" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.002119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32759" name="PanCannotPoisonSourceProperties(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.PanCannotPoisonSourceProperties(float.PositiveInfinity)" methodname="PanCannotPoisonSourceProperties" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="202373843" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32760" name="PanCannotPoisonSourceProperties(-100.0f)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.PanCannotPoisonSourceProperties(-100.0f)" methodname="PanCannotPoisonSourceProperties" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1803273585" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:57Z" duration="0.000495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32771" name="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:58Z" duration="0.379312" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32768" name="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;StoneFloor&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;StoneFloor&quot;,True)" methodname="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="490688136" result="Passed" start-time="2026-10-11 15:55:57Z" end-time="2026-10-11 15:55:58Z" duration="0.119186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32769" name="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;SandstoneFloor&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;SandstoneFloor&quot;,True)" methodname="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="1709771793" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.031872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32770" name="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;Grass&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart(&quot;Grass&quot;,False)" methodname="RealFloorBlueprintSelectsStoneCueWithoutInventedMaterialPart" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="357474316" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.031317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32748" name="ReversingPlaceFadeReusesOutgoingTrackInsteadOfStartingDuplicateAtZero" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.ReversingPlaceFadeReusesOutgoingTrackInsteadOfStartingDuplicateAtZero" methodname="ReversingPlaceFadeReusesOutgoingTrackInsteadOfStartingDuplicateAtZero" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="644376563" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000506" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32747" name="SameClipContextChangesGainSmoothlyWithoutRestartingMusic" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.SameClipContextChangesGainSmoothlyWithoutRestartingMusic" methodname="SameClipContextChangesGainSmoothlyWithoutRestartingMusic" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="279667075" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000998" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32763" name="SemanticObserverFailureCannotUndoSuccessfulInventoryTransfer" fullname="CavesOfOoo.Tests.WorldAudioAdversarialTests.SemanticObserverFailureCannotUndoSuccessfulInventoryTransfer" methodname="SemanticObserverFailureCannotUndoSuccessfulInventoryTransfer" classname="CavesOfOoo.Tests.WorldAudioAdversarialTests" runstate="Runnable" seed="230991125" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.004676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32794" name="WorldAudioAtmosphereTests" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.111596" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="32796" name="AllThreeLanesRemainAudibleWithoutContinuousNoise" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.AllThreeLanesRemainAudibleWithoutContinuousNoise" methodname="AllThreeLanesRemainAudibleWithoutContinuousNoise" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="984272588" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002587" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32804" name="LaneWorkDoesNotRescanIdleWorld" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.LaneWorkDoesNotRescanIdleWorld" methodname="LaneWorkDoesNotRescanIdleWorld" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1337584173" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000671" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32803" name="MutedTimeDoesNotQueueImmediatePhrasesOnResume" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.MutedTimeDoesNotQueueImmediatePhrasesOnResume" methodname="MutedTimeDoesNotQueueImmediatePhrasesOnResume" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1345872002" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000633" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32795" name="NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" methodname="NearbyWildlifeGetsAnEarlyVoiceDespiteScenery" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="773516005" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32797" name="OrdinaryContextRefreshDoesNotRestartWildlifeTimers" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.OrdinaryContextRefreshDoesNotRestartWildlifeTimers" methodname="OrdinaryContextRefreshDoesNotRestartWildlifeTimers" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="2119129086" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000529" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32805" name="SharedGapPreventsSameFrameLaneBursts" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.SharedGapPreventsSameFrameLaneBursts" methodname="SharedGapPreventsSameFrameLaneBursts" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="2134068039" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000716" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32798" name="TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" methodname="TwoAnimalKindsAlternateInsteadOfLosingRandomRolls" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="1582673816" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000816" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32802" name="WildlifeLaneDoesNotInventAnimals" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.095443" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32799" name="WildlifeLaneDoesNotInventAnimals(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;hidden&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="292935132" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32800" name="WildlifeLaneDoesNotInventAnimals(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;dead&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="692769878" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32801" name="WildlifeLaneDoesNotInventAnimals(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.WorldAudioAtmosphereTests.WildlifeLaneDoesNotInventAnimals(&quot;absent&quot;)" methodname="WildlifeLaneDoesNotInventAnimals" classname="CavesOfOoo.Tests.WorldAudioAtmosphereTests" runstate="Runnable" seed="198160626" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32882" name="WorldAudioPlaceAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:59Z" duration="0.906433" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="32908" name="AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.207661" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32906" name="AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal(&quot;missing-hitpoints&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal(&quot;missing-hitpoints&quot;)" methodname="AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1459646182" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.006079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32907" name="AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal(&quot;missing-brain&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal(&quot;missing-brain&quot;)" methodname="AnAnimalNameAndCreatureTagAreNotProofOfALivingAnimal" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1505949335" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32915" name="ChangingDayBandRetiresAPreviouslyAudibleDaytimeAnimal" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.ChangingDayBandRetiresAPreviouslyAudibleDaytimeAnimal" methodname="ChangingDayBandRetiresAPreviouslyAudibleDaytimeAnimal" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="404412928" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32916" name="DenseVisiblePileCannotExceedBoundedOwnerBudgetOrRescanDuringIdle" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DenseVisiblePileCannotExceedBoundedOwnerBudgetOrRescanDuringIdle" methodname="DenseVisiblePileCannotExceedBoundedOwnerBudgetOrRescanDuringIdle" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="271351833" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.018274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32898" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.081886" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32892" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;water&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;water&quot;,True)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="644084861" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32893" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;water&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;water&quot;,False)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="464261256" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32894" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;fire&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;fire&quot;,True)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="987370207" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002254" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32895" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;fire&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;fire&quot;,False)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="879058942" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32896" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;wood&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;wood&quot;,True)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1540955837" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32897" name="DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;wood&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.DestroyedStructureCannotRetainWaterFireOrWoodAudio(&quot;wood&quot;,False)" methodname="DestroyedStructureCannotRetainWaterFireOrWoodAudio" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1211235070" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32918" name="HiddenMenuRetiresDetailsAndResumptionRequiresFreshObservation" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.HiddenMenuRetiresDetailsAndResumptionRequiresFreshObservation" methodname="HiddenMenuRetiresDetailsAndResumptionRequiresFreshObservation" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="544798383" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001074" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32905" name="IdleNeverDiscoversAnAnimalWhoseHiddenCellJustBecameVisible" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.IdleNeverDiscoversAnAnimalWhoseHiddenCellJustBecameVisible" methodname="IdleNeverDiscoversAnAnimalWhoseHiddenCellJustBecameVisible" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1006545057" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000993" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32913" name="LosingFlowingWaterDoesNotKeepItsSourceDependentBedInACrossfadeTail" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.LosingFlowingWaterDoesNotKeepItsSourceDependentBedInACrossfadeTail" methodname="LosingFlowingWaterDoesNotKeepItsSourceDependentBedInACrossfadeTail" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1361367031" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32917" name="MutingOrClearingDetailsPreservesIndependentActionsAndMusic" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.MutingOrClearingDetailsPreservesIndependentActionsAndMusic" methodname="MutingOrClearingDetailsPreservesIndependentActionsAndMusic" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="709918091" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000978" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32914" name="RawInteriorChangeSuppressesExteriorTextureWithoutDiscoveringRoomSources" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawInteriorChangeSuppressesExteriorTextureWithoutDiscoveringRoomSources" methodname="RawInteriorChangeSuppressesExteriorTextureWithoutDiscoveringRoomSources" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1270643391" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.000811" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32904" name="RawOwnerMismatchRefusesThenExactRestorationRecovers" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.098357" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32899" name="RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;render&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;render&quot;)" methodname="RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="140433097" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.004636" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32900" name="RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;physics&quot;)" methodname="RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="464077172" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32901" name="RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;pool&quot;)" methodname="RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="353199124" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32902" name="RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;spatial-zone&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;spatial-zone&quot;)" methodname="RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="879062430" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32903" name="RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;cell-zone&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.RawOwnerMismatchRefusesThenExactRestorationRecovers(&quot;cell-zone&quot;)" methodname="RawOwnerMismatchRefusesThenExactRestorationRecovers" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="340563364" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.002517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32891" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.102494" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32883" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;hide&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;hide&quot;,False)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="396318802" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.003096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32884" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;death&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;death&quot;,False)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1262680329" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32885" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;remove&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;remove&quot;,False)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="852091400" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32886" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;range&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;range&quot;,False)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="602276851" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32887" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;hide&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;hide&quot;,True)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="148998230" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32888" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;death&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;death&quot;,True)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1152096365" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32889" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;remove&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;remove&quot;,True)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1998122445" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32890" name="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;range&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh(&quot;range&quot;,True)" methodname="SourceLossStopsAnAlreadyPlayingDetailOnBothIdleAndTurnRefresh" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1526752154" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:58Z" duration="0.001714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32912" name="StandingWaterIsAudibleButNeverClaimsAFlowingRiver" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.StandingWaterIsAudibleButNeverClaimsAFlowingRiver" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:58Z" end-time="2026-10-11 15:55:59Z" duration="0.190487" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32909" name="StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;water&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;water&quot;)" methodname="StandingWaterIsAudibleButNeverClaimsAFlowingRiver" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1599403000" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.004219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32910" name="StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;brine&quot;)" methodname="StandingWaterIsAudibleButNeverClaimsAFlowingRiver" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1137700466" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.002029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32911" name="StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests.StandingWaterIsAudibleButNeverClaimsAFlowingRiver(&quot;bog-mire&quot;)" methodname="StandingWaterIsAudibleButNeverClaimsAFlowingRiver" classname="CavesOfOoo.Tests.WorldAudioPlaceAdversarialTests" runstate="Runnable" seed="1658110870" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32919" name="WorldAudioPlaceTests" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="36" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:56:00Z" duration="0.902355" total="36" passed="36" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="32946" name="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.106352" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32943" name="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;Bandfrog&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;Bandfrog&quot;,True)" methodname="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="2062267290" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.004104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32944" name="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;Reedfrog&quot;,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;Reedfrog&quot;,True)" methodname="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1459222849" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32945" name="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;CascadeFather&quot;,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent(&quot;CascadeFather&quot;,False)" methodname="ActualLivingAnimalsOnlyAndLoreSilentSpeciesStaysSilent" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="29450922" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32949" name="AtMostTwoDetailsAndActionsMayPreemptThem" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.AtMostTwoDetailsAndActionsMayPreemptThem" methodname="AtMostTwoDetailsAndActionsMayPreemptThem" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="513048646" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001449" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32928" name="BedsFollowActualBiomeAndDayWithoutInventingWater" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.202763" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32920" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Spread,&quot;field&quot;,&quot;night-field&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Spread,&quot;field&quot;,&quot;night-field&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1439679112" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.002490" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32921" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Grovelands,&quot;field&quot;,&quot;night-field&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Grovelands,&quot;field&quot;,&quot;night-field&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="643990114" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32922" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Jungle,&quot;field&quot;,&quot;night-field&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Jungle,&quot;field&quot;,&quot;night-field&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="2126748376" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32923" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Sodden,&quot;marsh&quot;,&quot;night-field&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Sodden,&quot;marsh&quot;,&quot;night-field&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1252045729" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32924" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Beating,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Beating,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="2051768656" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32925" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Overwrit,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Overwrit,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1873757865" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32926" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Stump,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Stump,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1883473643" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32927" name="BedsFollowActualBiomeAndDayWithoutInventingWater(Ruins,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.BedsFollowActualBiomeAndDayWithoutInventingWater(Ruins,&quot;dry-wind&quot;,&quot;dry-wind&quot;)" methodname="BedsFollowActualBiomeAndDayWithoutInventingWater" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1065979941" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32960" name="CreditsReaderContainsBothOriginalAndExpansionAttribution" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.CreditsReaderContainsBothOriginalAndExpansionAttribution" methodname="CreditsReaderContainsBothOriginalAndExpansionAttribution" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="263958556" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.016481" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32948" name="DetailsUseAmbienceAndKeepSameSixteenSources" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.DetailsUseAmbienceAndKeepSameSixteenSources" methodname="DetailsUseAmbienceAndKeepSameSixteenSources" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="518243364" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000631" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32957" name="FarOrUnexploredSourcesCannotEnterSnapshot" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.FarOrUnexploredSourcesCannotEnterSnapshot" methodname="FarOrUnexploredSourcesCannotEnterSnapshot" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="633795640" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000494" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32947" name="FiniteStoredHeatDoesNotPretendToBeBurning" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.FiniteStoredHeatDoesNotPretendToBeBurning" methodname="FiniteStoredHeatDoesNotPretendToBeBurning" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="290918295" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32956" name="HiddenWorldAndGraphResetDoNotReplayOldDetails" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.HiddenWorldAndGraphResetDoNotReplayOldDetails" methodname="HiddenWorldAndGraphResetDoNotReplayOldDetails" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="611696937" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32955" name="IdleSchedulingIsSparseAndNeverRescans" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.IdleSchedulingIsSparseAndNeverRescans" methodname="IdleSchedulingIsSparseAndNeverRescans" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="2109017400" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000569" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32953" name="InvalidDetailGainCannotConsumeVoice" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.InvalidDetailGainCannotConsumeVoice" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.174341" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32950" name="InvalidDetailGainCannotConsumeVoice(float.NaN)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.InvalidDetailGainCannotConsumeVoice(float.NaN)" methodname="InvalidDetailGainCannotConsumeVoice" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1301983209" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.002123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32951" name="InvalidDetailGainCannotConsumeVoice(-1.0f)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.InvalidDetailGainCannotConsumeVoice(-1.0f)" methodname="InvalidDetailGainCannotConsumeVoice" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="707586405" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32952" name="InvalidDetailGainCannotConsumeVoice(2.0f)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.InvalidDetailGainCannotConsumeVoice(2.0f)" methodname="InvalidDetailGainCannotConsumeVoice" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1790037610" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32942" name="KnownWaterLosesEligibilityWithoutAnotherFullScan" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.204910" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32937" name="KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;hidden&quot;)" methodname="KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="616145780" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.002836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32938" name="KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;removed&quot;)" methodname="KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="275986138" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.002162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32939" name="KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;empty&quot;)" methodname="KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="658642349" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32940" name="KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;render&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;render&quot;)" methodname="KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1981195072" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32941" name="KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.KnownWaterLosesEligibilityWithoutAnotherFullScan(&quot;inventory&quot;)" methodname="KnownWaterLosesEligibilityWithoutAnotherFullScan" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="30361988" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32954" name="MissingDetailsAndPausedListenerNeverAllocateOrQueue" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.MissingDetailsAndPausedListenerNeverAllocateOrQueue" methodname="MissingDetailsAndPausedListenerNeverAllocateOrQueue" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="818056381" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32959" name="RuntimeMenuRetiresSourceDependentWaterButRetainsMusic" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.RuntimeMenuRetiresSourceDependentWaterButRetainsMusic" methodname="RuntimeMenuRetiresSourceDependentWaterButRetainsMusic" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1985112513" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.004597" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32958" name="RuntimeUsesRealClockAndShelterAndKeepsItsBedWhileMenuIsHidden" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.RuntimeUsesRealClockAndShelterAndKeepsItsBedWhileMenuIsHidden" methodname="RuntimeUsesRealClockAndShelterAndKeepsItsBedWhileMenuIsHidden" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="448640918" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.001930" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32929" name="UndergroundAndInteriorSuppressSurfaceAnimals" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.UndergroundAndInteriorSuppressSurfaceAnimals" methodname="UndergroundAndInteriorSuppressSurfaceAnimals" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1123360974" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:55:59Z" duration="0.000576" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32936" name="WaterNeedsActualPositiveWaterLikeVolume" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 15:55:59Z" end-time="2026-10-11 15:56:00Z" duration="0.091548" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32930" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;water&quot;,20,True)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;water&quot;,20,True)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="941536944" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.003445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32931" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;brackish_water&quot;,20,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;brackish_water&quot;,20,False)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="429385252" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32932" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;water&quot;,0,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;water&quot;,0,False)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="80441449" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32933" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;oil&quot;,20,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;oil&quot;,20,False)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1045237685" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32934" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;acid&quot;,20,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;acid&quot;,20,False)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1433436220" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32935" name="WaterNeedsActualPositiveWaterLikeVolume(&quot;honey&quot;,20,False)" fullname="CavesOfOoo.Tests.WorldAudioPlaceTests.WaterNeedsActualPositiveWaterLikeVolume(&quot;honey&quot;,20,False)" methodname="WaterNeedsActualPositiveWaterLikeVolume" classname="CavesOfOoo.Tests.WorldAudioPlaceTests" runstate="Runnable" seed="1495745982" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32974" name="WorldAudioPlayerTests" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.398685" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="32975" name="FixedPoolAndSameContextNeverRestartTracks" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.FixedPoolAndSameContextNeverRestartTracks" methodname="FixedPoolAndSameContextNeverRestartTracks" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="1502034037" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.002175" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32978" name="IndependentMutesDoNotStopOtherBusesOrReplayMutedActions" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.IndependentMutesDoNotStopOtherBusesOrReplayMutedActions" methodname="IndependentMutesDoNotStopOtherBusesOrReplayMutedActions" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="956901959" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001020" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32985" name="MalformedTimeDoesNotCorruptAudioGain" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MalformedTimeDoesNotCorruptAudioGain" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.199120" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32982" name="MalformedTimeDoesNotCorruptAudioGain(float.NaN)" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MalformedTimeDoesNotCorruptAudioGain(float.NaN)" methodname="MalformedTimeDoesNotCorruptAudioGain" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="271221889" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.000761" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32983" name="MalformedTimeDoesNotCorruptAudioGain(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MalformedTimeDoesNotCorruptAudioGain(float.PositiveInfinity)" methodname="MalformedTimeDoesNotCorruptAudioGain" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="788265124" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.000896" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32984" name="MalformedTimeDoesNotCorruptAudioGain(-1.0f)" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MalformedTimeDoesNotCorruptAudioGain(-1.0f)" methodname="MalformedTimeDoesNotCorruptAudioGain" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="624593992" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32986" name="MissingCueIsSilentAndDoesNotAllocateReplacement" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MissingCueIsSilentAndDoesNotAllocateReplacement" methodname="MissingCueIsSilentAndDoesNotAllocateReplacement" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="650989753" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32977" name="MusicAndAmbienceIgnoreSpellModeSpeedAndSfxMute" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.MusicAndAmbienceIgnoreSpellModeSpeedAndSfxMute" methodname="MusicAndAmbienceIgnoreSpellModeSpeedAndSfxMute" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="411800507" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001560" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32981" name="PausedListenerAndDisposeCannotLeakLateSounds" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.PausedListenerAndDisposeCannotLeakLateSounds" methodname="PausedListenerAndDisposeCannotLeakLateSounds" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="1761581446" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.000541" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32976" name="PlaceChangeCrossfadesAndRetiresOldVoice" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.PlaceChangeCrossfadesAndRetiresOldVoice" methodname="PlaceChangeCrossfadesAndRetiresOldVoice" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="1080439153" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.000531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32980" name="RepeatedIdenticalCueIsRateLimitedButCanRearm" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.RepeatedIdenticalCueIsRateLimitedButCanRearm" methodname="RepeatedIdenticalCueIsRateLimitedButCanRearm" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="291677938" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.000459" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32979" name="SoundBurstIsBoundedAndReleasesWithoutSourceGrowth" fullname="CavesOfOoo.Tests.WorldAudioPlayerTests.SoundBurstIsBoundedAndReleasesWithoutSourceGrowth" methodname="SoundBurstIsBoundedAndReleasesWithoutSourceGrowth" classname="CavesOfOoo.Tests.WorldAudioPlayerTests" runstate="Runnable" seed="91402870" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001982" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="32772" name="WorldAudioRuntimeTests" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.499836" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="32779" name="FirstRenderPhaseUsesCurrentVisibilityRatherThanInitializeSnapshot" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.FirstRenderPhaseUsesCurrentVisibilityRatherThanInitializeSnapshot" methodname="FirstRenderPhaseUsesCurrentVisibilityRatherThanInitializeSnapshot" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="1636888778" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.006880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32774" name="HiddenHostileNeverCreatesDangerButSameVisibleOwnerDoes" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.HiddenHostileNeverCreatesDangerButSameVisibleOwnerDoes" methodname="HiddenHostileNeverCreatesDangerButSameVisibleOwnerDoes" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="340449284" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001719" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32778" name="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.197707" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32775" name="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;paused&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;paused&quot;)" methodname="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="900340902" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.003670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32776" name="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;disabled-input&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;disabled-input&quot;)" methodname="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="559380304" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32777" name="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;disabled-renderer&quot;)" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn(&quot;disabled-renderer&quot;)" methodname="HiddenWorldDoesNotAcquireThreatAndResumeResamplesWithoutNewTurn" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="1283927428" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32773" name="IdleFramesDoNotRescanWorldAndNewTickDoesExactlyOneCheck" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.IdleFramesDoNotRescanWorldAndNewTickDoesExactlyOneCheck" methodname="IdleFramesDoNotRescanWorldAndNewTickDoesExactlyOneCheck" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="139244399" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32780" name="KnownThreatHiddenWithoutNewTickEventuallyReleasesWithoutWorldRescan" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.KnownThreatHiddenWithoutNewTickEventuallyReleasesWithoutWorldRescan" methodname="KnownThreatHiddenWithoutNewTickEventuallyReleasesWithoutWorldRescan" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="808570307" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32783" name="MissingLoadGraphDoesNotThrowOrKeepOldSound" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.MissingLoadGraphDoesNotThrowOrKeepOldSound" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.094673" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32781" name="MissingLoadGraphDoesNotThrowOrKeepOldSound(True)" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.MissingLoadGraphDoesNotThrowOrKeepOldSound(True)" methodname="MissingLoadGraphDoesNotThrowOrKeepOldSound" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="2112761602" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.002522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32782" name="MissingLoadGraphDoesNotThrowOrKeepOldSound(False)" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.MissingLoadGraphDoesNotThrowOrKeepOldSound(False)" methodname="MissingLoadGraphDoesNotThrowOrKeepOldSound" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="1006070067" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32785" name="RepeatedInitializeRetainsExactlyOneObserverAndFixedPool" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.RepeatedInitializeRetainsExactlyOneObserverAndFixedPool" methodname="RepeatedInitializeRetainsExactlyOneObserverAndFixedPool" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="1520151209" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.001695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32784" name="ReplacementGraphWithSameZoneIdClearsThreatWithoutDuplicatingPool" fullname="CavesOfOoo.Tests.WorldAudioRuntimeTests.ReplacementGraphWithSameZoneIdClearsThreatWithoutDuplicatingPool" methodname="ReplacementGraphWithSameZoneIdClearsThreatWithoutDuplicatingPool" classname="CavesOfOoo.Tests.WorldAudioRuntimeTests" runstate="Runnable" seed="2064617245" result="Passed" start-time="2026-10-11 15:56:00Z" end-time="2026-10-11 15:56:00Z" duration="0.002102" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
