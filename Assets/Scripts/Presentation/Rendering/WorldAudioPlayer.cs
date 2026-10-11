@@ -31,6 +31,8 @@ namespace CavesOfOoo.Rendering
             readonly AudioClip[] bookmarkedClips;
             readonly int[] bookmarkedSamples;
             int nextBookmark;
+            readonly WorldAudioPlaybackWatch[] playback={new WorldAudioPlaybackWatch(),new WorldAudioPlaybackWatch()};
+            public Action<AudioClip> Completed;
             public LoopBus(bool preservePosition=false)
             {if(preservePosition){bookmarkedClips=new AudioClip[BookmarkCapacity];bookmarkedSamples=new int[BookmarkCapacity];}}
             int RememberedPosition(AudioClip clip)
@@ -39,8 +41,20 @@ namespace CavesOfOoo.Rendering
                     for(int i=0;i<BookmarkCapacity;i++)if(bookmarkedClips[i]==clip)return bookmarkedSamples[i];
                 return 0;
             }
+            bool FinishIfNatural(int index)
+            {
+                var source=Sources[index];
+                if(bookmarkedClips==null||!Application.isPlaying||WorldAudioSettings.MusicVolume<=0||AudioListener.pause
+                    ||source==null||source.clip==null||!playback[index].Observe(source.clip,source.isPlaying,source.timeSamples,AudioSettings.dspTime))return false;
+                var finished=source.clip;
+                for(int i=0;i<BookmarkCapacity;i++)if(bookmarkedClips[i]==finished)bookmarkedSamples[i]=0;
+                if(Target?.Clip==finished)Target=null;
+                Stop(source);Weights[index]=Starts[index]=0;playback[index].Reset();Completed?.Invoke(finished);return true;
+            }
+            public void ObserveNaturalEnds(){for(int i=0;i<2;i++)FinishIfNatural(i);}
             void Retire(int index)
             {
+                if(FinishIfNatural(index))return;
                 var source=Sources[index];
                 if(bookmarkedClips!=null&&source!=null&&source.clip!=null)
                 {
@@ -53,7 +67,7 @@ namespace CavesOfOoo.Rendering
                         bookmarkedClips[slot]=clip;bookmarkedSamples[slot]=sample;
                     }
                 }
-                Stop(source);
+                Stop(source);playback[index].Reset();
             }
             public void ForgetPositions()
             {if(bookmarkedClips!=null){Array.Clear(bookmarkedClips,0,BookmarkCapacity);Array.Clear(bookmarkedSamples,0,BookmarkCapacity);nextBookmark=0;}}
@@ -76,7 +90,7 @@ namespace CavesOfOoo.Rendering
             void StartTarget()
             {
                 if(Target?.Clip==null)return;
-                var source=Sources[Incoming];source.clip=Target.Clip;
+                var source=Sources[Incoming];playback[Incoming].Reset();source.clip=Target.Clip;
                 // Assign before Play so a resumed stream never emits its introduction first.
                 if(bookmarkedClips!=null)source.timeSamples=RememberedPosition(Target.Clip);
                 Gains[Incoming]=GainTargets[Incoming]=Target.Gain;StartCount++;
@@ -107,7 +121,7 @@ namespace CavesOfOoo.Rendering
             public int Active=>(Sources[0].clip!=null?1:0)+(Sources[1].clip!=null?1:0);
             public void StopAll(){for(int i=0;i<2;i++){Retire(i);Weights[i]=Starts[i]=0;}Age=FadeSeconds;}
         }
-        readonly WorldAudioLibrary library;readonly LoopBus music=new LoopBus(true),ambience=new LoopBus();
+        readonly WorldAudioLibrary library;readonly WorldAudioMusicSequence sequence;readonly LoopBus music=new LoopBus(true),ambience=new LoopBus();
         readonly AudioSource[] sounds=new AudioSource[SoundCapacity];readonly float[] remaining=new float[SoundCapacity],gains=new float[SoundCapacity];
         readonly float[] cooldown=new float[Enum.GetValues(typeof(WorldAudioCue)).Length];readonly int[] variants=new int[Enum.GetValues(typeof(WorldAudioCue)).Length];
         readonly bool[] detailVoice=new bool[SoundCapacity];
@@ -122,11 +136,14 @@ namespace CavesOfOoo.Rendering
         public string LastDetailId{get;private set;}
         public int AcceptedSoundCount{get;private set;}
         public int MusicStartCount=>music.StartCount;
+        /// <summary>Observed natural music endings, never mute, loading or context switches.</summary>
+        public int MusicCompletionCount{get;private set;}
         public string CurrentMusicId{get;private set;}
         public WorldAudioPlayer(Transform parent,WorldAudioLibrary prepared)
         {
-            library=prepared??new WorldAudioLibrary();Root=new GameObject("World audio"){hideFlags=HideFlags.DontSave}.transform;Root.SetParent(parent,false);
-            for(int i=0;i<2;i++){music.Sources[i]=Source("Music "+i,true,128);ambience.Sources[i]=Source("Ambience "+i,true,192);}
+            library=prepared??new WorldAudioLibrary();sequence=new WorldAudioMusicSequence(library);
+            music.Completed=clip=>{sequence.Complete(clip);MusicCompletionCount++;};Root=new GameObject("World audio"){hideFlags=HideFlags.DontSave}.transform;Root.SetParent(parent,false);
+            for(int i=0;i<2;i++){music.Sources[i]=Source("Music "+i,false,128);ambience.Sources[i]=Source("Ambience "+i,true,192);}
             for(int i=0;i<SoundCapacity;i++)sounds[i]=Source("Action "+i,false,64);
         }
         AudioSource Source(string name,bool loop,int priority)
@@ -135,7 +152,7 @@ namespace CavesOfOoo.Rendering
             source.playOnAwake=false;source.loop=loop;source.spatialBlend=0;source.dopplerLevel=0;source.reverbZoneMix=0;source.pitch=1;source.priority=priority;source.volume=0;return source;
         }
         public void SetContext(WorldAudioContext context)
-        {if(!CheckSources())return;CurrentMusicId=context.MusicId;music.Select(library.Music(context.MusicId));ambience.Select(library.Ambience(context.AmbienceId));}
+        {if(!CheckSources())return;CurrentMusicId=context.MusicId;music.Select(sequence.Select(context.MusicId));ambience.Select(library.Ambience(context.AmbienceId));}
         /// <summary>Retire a source-dependent bed immediately when that source ceases to exist.</summary>
         public void InvalidateAmbience(string id){if(!disposed)ambience.Invalidate(library.Ambience(id));}
         public bool TryPlay(WorldAudioCue cue,float pan=0)
@@ -199,6 +216,7 @@ namespace CavesOfOoo.Rendering
             {
                 if(!CheckSources())return;float delta=SafeDelta(wallDelta);
                 AdvanceFocus(delta);
+                music.ObserveNaturalEnds();music.Select(sequence.Select(CurrentMusicId));
                 music.Tick(delta,WorldAudioSettings.MusicVolume*AtmosphereMix);ambience.Tick(delta,WorldAudioSettings.AmbienceVolume*AtmosphereMix);
                 for(int c=0;c<cooldown.Length;c++)cooldown[c]=Mathf.Max(0,cooldown[c]-delta);
                 for(int i=0;i<SoundCapacity;i++)
@@ -222,7 +240,7 @@ namespace CavesOfOoo.Rendering
         static void Stop(AudioSource source){if(source==null)return;if(Application.isPlaying)source.Stop();source.clip=null;source.volume=0;}
         public void Dispose()
         {
-            if(disposed)return;ClearSounds();music.StopAll();music.ForgetPositions();ambience.StopAll();disposed=true;
+            if(disposed)return;ClearSounds();music.StopAll();music.ForgetPositions();sequence.Clear();ambience.StopAll();disposed=true;
             if(Root!=null){if(Application.isPlaying)UnityEngine.Object.Destroy(Root.gameObject);else UnityEngine.Object.DestroyImmediate(Root.gameObject);}Root=null;
         }
     }

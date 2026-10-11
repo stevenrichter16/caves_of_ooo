@@ -106,7 +106,7 @@ namespace CavesOfOoo.Scenarios.Custom
                     window.ImportedCuePlaying = true;
                     if (!window.ImportedClips.Contains(source.clip.name)) window.ImportedClips.Add(source.clip.name);
                 }
-                if (mix < .95f && source.loop && source.name.StartsWith("Music ", StringComparison.Ordinal))
+                if (mix < .95f && source.name.StartsWith("Music ", StringComparison.Ordinal))
                 { music = true; window.FocusedMusicVolume = Mathf.Max(window.FocusedMusicVolume, source.volume); }
                 if (mix < .95f && source.loop && source.name.StartsWith("Ambience ", StringComparison.Ordinal))
                 { bed = true; window.FocusedBedVolume = Mathf.Max(window.FocusedBedVolume, source.volume); }

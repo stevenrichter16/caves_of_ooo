@@ -428,7 +428,7 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private IEnumerator Tap(params Key[] keys)
         {
-            Require(_clock.Elapsed.TotalSeconds < 240, "finite native content-completion deadline");
+            Require(_clock.Elapsed.TotalSeconds < (_audioPolishIteration==17||_audioPolishIteration==18?900:240), "finite native content-completion deadline");
             double began = Time.realtimeSinceStartupAsDouble;
             while (_input != null && Time.time - (float)Field(_input, "_lastMoveTime") < _input.MoveRepeatDelay)
             { Require(Time.realtimeSinceStartupAsDouble - began < 3, "input rate gate reopens"); yield return null; }

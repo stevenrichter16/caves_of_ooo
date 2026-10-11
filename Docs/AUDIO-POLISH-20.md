@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-16/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+17/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -178,3 +178,12 @@ Preserve passes1–15 and existing gains/credits. RED first: Sodden and Grovelan
 
 
 Iteration16 complete:13 native RED cases had5 expected failures;693/693 audio regression and15/15 portable music counters passed. Fresh actual Play `875807c31d584ea5b285b3fde5fc61ee` passed12/12, zero errors,26.039s. Paid map travel entered actual Sodden15,8 and Grovelands7,5, then returned to the original region; imported full SignalToNoiseNoPiano/Cirrus streams measured peaks0.02484891/0.02593077. Four captures; Sodden ground image inspected. No shortcuts/grants,16 voices, zero idle rescans and exact preferences. Two complete licensed recordings add11,260,151 compressed bytes; original81 audio assets and utility credits/catalog retained. Independent review found no music-core defect; phase18 draft native typo fixed before import. Source output is not subjective listening or physical Deck proof.
+
+### Iteration 17 execution prompt
+
+Preserve pass16 identity and pass2 bookmarks. RED first with explicit AddMusic replacement versus AddMusicChoice append, stable cursors, early-stop/loading/mute counters and nonlooping source contracts. Append full Meanwhile to Spread; rotate only on an observed natural ending, never a turn/context/mute switch. Bound session state, use no simulation randomness and no world queries. Extend only phases17/18 native wall deadline; wait out the actual full Ephemera composition, observe distinct imported Meanwhile PCM and unchanged idle world-work/16-source counts. No seeks, track shortening or accelerated clocks. Preserve all old fixtures except the exact Music-loop witness assumption.
+
+Draft only. Root imports tests first and records actual native RED before production. A prepared route or offline signal inspection is not a completed live gate.
+
+
+Iteration17 complete:5 behavioral cases failed before implementation;723/723 native audio checks passed afterward. Fresh actual Play `a6c94a88f55a4f6aa4257b5ee7357bbc` passed11/11, zero errors,344.984s. Full Ephemera naturally ended after333.684 observed seconds (expected333.690); latest first PCM14921087/14921748, Meanwhile began at0 and measured peak0.03145733, exactly one completion/start. Native movement before/after passed, fixed16 voices and no idle world rescans. Four captures; next-piece screenshot inspected. No seek, clock acceleration, shortcuts or gameplay grants. Third full licensed track brings regional bytes to16,120,457. Independent source review/counters cover interruption, alias identity, early stop and bounded sequence state; private outgoing live-loop integration and subjective listening are not claimed.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceVerificationDate": "2026-10-11",
-  "throughIteration": 16,
+  "throughIteration": 17,
   "tool": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers",
   "sources": {
     "signal-no-melody.mp3": {
@@ -15,6 +15,12 @@
       "bytes": 16739494,
       "sha256": "020b1e913bfc263cb9ce732fb277fa777afba5e755e7165023a559068171d04b",
       "decodedFrames": 18450559
+    },
+    "meanwhile.mp3": {
+      "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2025/01/Meanwhile.mp3",
+      "bytes": 13036146,
+      "sha256": "39fd49bfb138bcee806fb99d8f2c9b7bf89fc72bb7b730125ef20f0c6b2635b7",
+      "decodedFrames": 14369100
     }
   },
   "clips": [
@@ -69,6 +75,32 @@
       "channels": 2,
       "decodedPeak": 0.786194384098053,
       "decodedRms": 0.12361078537190782
+    },
+    {
+      "id": "Meanwhile",
+      "path": "Music/Meanwhile.ogg",
+      "kind": "music",
+      "source": "meanwhile.mp3",
+      "author": "Scott Buckley",
+      "title": "Meanwhile",
+      "mix": "Full Mix",
+      "page": "https://www.scottbuckley.com.au/library/meanwhile/",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "credit": "'Meanwhile' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "changes": "Complete author-supplied Full Mix retained; transcoded to stereo Ogg Vorbis. Peak attenuation only if required for headroom; no excerpts, timing changes, loudness normalization or added instruments.",
+      "context": "organic",
+      "runtimeGain": 0.3,
+      "iteration": 17,
+      "outputSha256": "86d63fb8bac6cc303d968181f6107bc8162f68ab23aa5c7903488a2f30393bab",
+      "outputBytes": 4860306,
+      "sourceDecodedFrames": 14369100,
+      "preparedFrames": 14369100,
+      "preparationGain": 0.8400476192765138,
+      "sampleRate": 44100,
+      "channels": 2,
+      "decodedPeak": 0.7977075576782227,
+      "decodedRms": 0.11643162575036345
     }
   ]
 }

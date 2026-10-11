@@ -63,6 +63,9 @@ namespace CavesOfOoo.Editor
 
         [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 16 Regions")]
         public static void LaunchAudioPolish16()=>LaunchAudioPolish(16);
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 17 Score Sequence")]
+        public static void LaunchAudioPolish17()=>LaunchAudioPolish(17);
         public static void LaunchAudioPolish(int iteration)=>LaunchCore(false,audioPolishIteration:iteration);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);
@@ -147,7 +150,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
             SessionState.SetInt(Prefix + "errors", 0);
-            SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + 270);
+            SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + (audioPolishIteration==17||audioPolishIteration==18?960:270));
             try
             {
                 Configure1080p();

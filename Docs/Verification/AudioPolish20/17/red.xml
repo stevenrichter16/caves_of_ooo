@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:48:37Z" end-time="2026-10-11 19:48:38Z" duration="0.8631485">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28355" result="Failed" site="Child" start-time="2026-10-11 19:48:37Z" end-time="2026-10-11 19:48:38Z" duration="0.863149" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34929" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28355" result="Failed" site="Child" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.613136" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34930" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28355" result="Failed" site="Child" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.568947" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34931" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28355" result="Failed" site="Child" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.368057" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33200" name="WorldAudioMusicSequenceBehaviorTests" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.167892" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33201" name="ActualMusicVoicesCanEndWhileAmbienceStillLoops" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.ActualMusicVoicesCanEndWhileAmbienceStillLoops" methodname="ActualMusicVoicesCanEndWhileAmbienceStillLoops" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" seed="1930508974" result="Failed" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.063586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Looping a single waveform prevents the next full composition from beginning.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.ActualMusicVoicesCanEndWhileAmbienceStillLoops () [0x000de] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:24
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33203" name="AnUnfinishedPieceSurvivesAnotherContext" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.AnUnfinishedPieceSurvivesAnotherContext" methodname="AnUnfinishedPieceSurvivesAnotherContext" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" seed="819918249" result="Failed" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.001031" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required playback behavior is absent: WorldAudioLibrary.AddMusicChoice
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Method (System.Type t, System.String name, System.Type[] args) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:16
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Append () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:17
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.AnUnfinishedPieceSurvivesAnotherContext () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:28
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33202" name="AppendingAChoicePreservesTheFirstCompatibilityBinding" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.AppendingAChoicePreservesTheFirstCompatibilityBinding" methodname="AppendingAChoicePreservesTheFirstCompatibilityBinding" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" seed="356003627" result="Failed" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.000353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required playback behavior is absent: WorldAudioLibrary.AddMusicChoice
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Method (System.Type t, System.String name, System.Type[] args) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:16
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Append () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:17
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.AppendingAChoicePreservesTheFirstCompatibilityBinding () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33205" name="ExistingReplacementRemainsAReplacement" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.ExistingReplacementRemainsAReplacement" methodname="ExistingReplacementRemainsAReplacement" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" seed="160283820" result="Failed" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.000338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required playback behavior is absent: WorldAudioLibrary.AddMusicChoice
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Method (System.Type t, System.String name, System.Type[] args) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:16
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Append () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:17
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.ExistingReplacementRemainsAReplacement () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33204" name="OnlyCompletionAdvancesAndDuplicateCompletionCannotSkip" fullname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.OnlyCompletionAdvancesAndDuplicateCompletionCannotSkip" methodname="OnlyCompletionAdvancesAndDuplicateCompletionCannotSkip" classname="CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests" runstate="Runnable" seed="740055446" result="Failed" start-time="2026-10-11 19:48:38Z" end-time="2026-10-11 19:48:38Z" duration="0.000330" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required playback behavior is absent: WorldAudioLibrary.AddMusicChoice
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Method (System.Type t, System.String name, System.Type[] args) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:16
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.Append () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:17
+at CavesOfOoo.Tests.WorldAudioMusicSequenceBehaviorTests.OnlyCompletionAdvancesAndDuplicateCompletionCannotSkip () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMusicSequenceBehaviorTests.cs:29
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
