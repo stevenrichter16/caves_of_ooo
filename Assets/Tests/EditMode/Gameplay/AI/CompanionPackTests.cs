@@ -21,7 +21,7 @@ namespace CavesOfOoo.Tests
             e.AddPart(new PhysicsPart { Solid = true }); e.AddPart(new RenderPart { DisplayName = id });
             e.AddPart(new InventoryPart()); e.AddPart(new StatusEffectsPart()); e.AddPart(new BrainPart { CurrentZone = Zone, Rng = new Random(4) });
             e.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Max = 20 };
-            Assert.True(Zone.AddEntity(e, x, y)); return e;
+            Assert.True(Zone.AddEntity(e, x, y)); Zone.GetCell(x,y).IsVisible=Zone.GetCell(x,y).Explored=true; return e;
         }
         protected Entity Item(Entity owner, string id = "supply", int count = 1)
         {
@@ -109,5 +109,9 @@ namespace CavesOfOoo.Tests
             if(engaged) Follower.GetPart<BrainPart>().Target=other; else Follower.GetEffect<RecruitedEffect>().Dismiss(Leader);
             Assert.Null(Choice("CompanionPack")); Assert.Null(Choice("CompanionGive|")); Assert.False(Run("CompanionPack")); Assert.False(MessageLog.HasPendingAnnouncement);
         }
+        [TestCase(false)] [TestCase(true)] public void HiddenCompanionCannotRevealItsPackOrAcceptTransfer(bool renderHidden)
+        {Item(Leader);Item(Follower,"private");string give=Choice("CompanionGive|");Assert.NotNull(give);if(renderHidden)Follower.GetPart<RenderPart>().Visible=false;else Zone.GetEntityCell(Follower).IsVisible=false;Assert.Null(Choice("CompanionPack"));Assert.False(Run("CompanionPack"));Assert.False(Run(give));Assert.False(MessageLog.HasPendingAnnouncement);}
+        [Test] public void SoftStrengthAllowanceDoesNotBecomeAnInventedHardTransferCap()
+        {Follower.Statistics["Strength"]=new Stat{Name="Strength",BaseValue=1,Max=100};var item=Item(Leader,"heavy",10);Assert.AreEqual(15,Pack(Follower).GetMaxCarryWeight());Assert.AreEqual(-1,Pack(Follower).MaxWeight);Assert.True(Run(Choice("CompanionGive|")));Assert.Contains(item,Pack(Follower).Objects);Assert.AreEqual(20,Pack(Follower).GetCarriedWeight());}
     }
 }

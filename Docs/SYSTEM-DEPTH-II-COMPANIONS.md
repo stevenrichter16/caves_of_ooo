@@ -1,6 +1,6 @@
 # System depth II: companion field management
 
-Status: iteration 1 core implemented and reviewed; iterations 2–3 underway. Native integration pending. Baseline `428cb4be9`.
+Status: iterations 1–2 core implemented and reviewed; iteration 3 underway. Final native integration pending. Baseline `428cb4be9`.
 
 ## Goal and scope
 
@@ -42,7 +42,15 @@ Files: new `CompanionManagementActions.cs`, `CompanionPackTests.cs`, `CompanionM
 
 ## Iteration 2 log
 
-Pending.
+Implemented explicit physical-slot equip/replacement, unequip into the companion pack, and free comparison using the existing comparison service. Menu rows name the chosen slot and displaced gear. The command retains the preview's slot/displacement signature and uses the native EquipCommand and UnequipCommand in its outer transaction. A narrowly optional internal EquipCommand precondition runs after BeforeEquip and stack split, before equipment changes; existing callers are unchanged. It validates the actual prepared unit, original source, current anatomy and expected displacements. Save graph coverage checks equipped owner/backreferences and retained displaced item.
+
+Observed core RED: initial 12/12 missing choices. Initial GREEN 41/41 (29 pack +12 gear). Review/adversarial RED: 54 cases, 51 passed and three failed (hidden owner twice; moved source during BeforeEquip). Further RED: retained comparison after callback once; split prepared-unit requirement/bound mutation twice. Reviewed GREEN: **57/57 =32 pack +25 gear**. Raw receipts are `iteration02-gear-red.xml`, `iteration02-ownership-red.xml`, `iteration02-split-red.xml`, `iteration02-reader-and03-step-red.xml` (one gear reader +15 step cases), and `iteration02-gear-green.xml`.
+
+Native intermediate job `95265fe24ccb4cfbb232cc1c4d5c0819` exercised actual pack and gear mutations successfully; three paid assertions incorrectly equated one action with one scheduler tick (expected18/actual27). Fixture correction uses the existing ControllerCost energy equation: delta ticks × current speed + previous energy − current energy equals exactly one ActionThreshold, and pins speed unchanged. The free reader/stale check passed. Final corrected native run pending.
+
+Review findings fixed: 🟡 original stack versus prepared clone mismatch, with two observed failing tests and restored positive counters; 🟡 stale comparison now pins inventory and slot state without rerunning description callbacks; 🟡 hidden world owner cannot leak a pack through direct dispatch. 🔵 hard MaxWeight capacity remains distinct from soft Strength allowance; explicit positive counter and clearer reader wording. 🔵 pack equipment rows use physical slot names. Independent HUD-agent review supplied the split-clone finding; save-agent reviewed pack receipts. Q1–Q4 complete for core rules. Native UI rendering/actual Play remain pending, not established by the standalone runner.
+
+Files: new `CompanionManagementActions.Gear.cs` and `CompanionGearTests.cs` plus metas; modified management core, narrow EquipCommand hook, pack adverse tests, native input fixture, this log and focused receipts.
 
 ## Iteration 3 log
 

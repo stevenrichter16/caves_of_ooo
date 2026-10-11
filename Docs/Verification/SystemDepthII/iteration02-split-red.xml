@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="72" result="Failed" start-time="2026-10-11T03:48:42.7927440Z" end-time="2026-10-11T03:48:42.8577080Z" duration="0.064950" total="2" passed="0" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="18" random-seed="124320465">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-gear-split-red.xml --where "test =~ /SplitPreparedGearCannot/"]]></command-line>
+  <filter>
+    <test re="1">SplitPreparedGearCannot</test>
+  </filter>
+  <test-suite type="Assembly" id="1094" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-11T03:48:42.7927440Z" end-time="2026-10-11T03:48:42.8577080Z" duration="0.064950" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="41663" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1095" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-11T03:48:42.7941980Z" end-time="2026-10-11T03:48:42.8577060Z" duration="0.063508" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1096" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="72" result="Failed" site="Child" start-time="2026-10-11T03:48:42.7943100Z" end-time="2026-10-11T03:48:42.8577040Z" duration="0.063394" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1042" name="CompanionGearTests" fullname="CavesOfOoo.Tests.CompanionGearTests" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-11T03:48:42.7946360Z" end-time="2026-10-11T03:48:42.8576910Z" duration="0.063055" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1073" name="SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound" fullname="CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:48:42.7955450Z" end-time="2026-10-11T03:48:42.8575240Z" duration="0.061979" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1071" name="SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(False)" fullname="CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(False)" methodname="SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1369937289" result="Failed" start-time="2026-10-11T03:48:42.7956240Z" end-time="2026-10-11T03:48:42.8546880Z" duration="0.059088" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Boolean bind) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 99
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Boolean bind) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 99
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1072" name="SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(True)" fullname="CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(True)" methodname="SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1545250220" result="Failed" start-time="2026-10-11T03:48:42.8552750Z" end-time="2026-10-11T03:48:42.8572170Z" duration="0.001942" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Boolean bind) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 99
+   at InvokeStub_CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Boolean bind) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 99
+   at InvokeStub_CompanionGearTests.SplitPreparedGearCannotChangeItsRequirementsOrBecomeBound(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

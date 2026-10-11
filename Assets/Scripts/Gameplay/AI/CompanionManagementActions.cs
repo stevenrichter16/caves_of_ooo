@@ -8,14 +8,14 @@ namespace CavesOfOoo.Core
     /// <summary>Local, explicit management of an exact current recruit. Mutating
     /// commands join the caller's inventory receipt; input pays only on commit.
     /// Whole selected stacks retain their identity rather than merging invisibly.</summary>
-    public static class CompanionManagementActions
+    public static partial class CompanionManagementActions
     {
         public const string PackCommand = "CompanionPack";
         const string Give = "CompanionGive", Take = "CompanionTake";
         /// <summary>Recognizes only this service's commands, for native paid dispatch.</summary>
-        public static bool IsCommand(string command) => IsReadOnlyCommand(command) || Prefix(command, Give) || Prefix(command, Take);
+        public static bool IsCommand(string command) => IsReadOnlyCommand(command) || Prefix(command, Give) || Prefix(command, Take) || GearCommand(command);
         /// <summary>Pack inspection is a free, current-owner read.</summary>
-        public static bool IsReadOnlyCommand(string command) => command == PackCommand;
+        public static bool IsReadOnlyCommand(string command) => command == PackCommand || Prefix(command, Compare);
         static bool Prefix(string command, string verb) => command?.StartsWith(verb + "|", StringComparison.Ordinal) == true;
         static int Units(Entity item) => item.GetPart<StackerPart>()?.StackCount ?? 1;
         static bool Supply(Entity owner, Entity item) => WorldResourceActions.Carried(owner, item, false)
@@ -35,6 +35,7 @@ namespace CavesOfOoo.Core
                     if (Supply(actor, item)) Offer(actions, "give whole stack: " + item.GetDisplayName(), Choice(Give, item));
                 foreach (var item in follower.GetPart<InventoryPart>().Objects.ToArray())
                     if (Supply(follower, item)) Offer(actions, "retrieve whole stack: " + item.GetDisplayName(), Choice(Take, item));
+                OfferGear(actor, follower, actions);
                 return true;
             }
             string command = e.GetStringParameter("Command");
@@ -47,11 +48,15 @@ namespace CavesOfOoo.Core
             {
                 if (!ReadPack(scope, tx)) return true;
             }
+            else if (Prefix(command, Compare))
+            {
+                if (!ReadGear(scope, command, tx)) return true;
+            }
             else
             {
                 if (actor.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true
                     || follower.GetPart<StatusEffectsPart>()?.IsActionBlocked() == true || !scope.Current()) return true;
-                if (!Transfer(scope, command, tx)) return true;
+                if (!(GearCommand(command) ? ChangeGear(scope, command, tx) : Transfer(scope, command, tx))) return true;
             }
             e.Handled = true; return false;
         }
@@ -91,13 +96,19 @@ namespace CavesOfOoo.Core
             var carried = pack.Objects.ToArray(); var worn = pack.EquippedItems.ToArray();
             var quantities = carried.Select(Units).ToArray();
             var lines = new List<string> { scope.Follower.GetDisplayName() + " — companion pack", "",
-                "Carried weight (including equipment): " + pack.GetCarriedWeight() + ". Carry allowance: " + pack.GetMaxCarryWeight() + ".",
+                "Carried weight (including equipment): " + pack.GetCarriedWeight() + ". Strength allowance (soft limit): " + pack.GetMaxCarryWeight() + ".",
+                "Hard pack limit: " + (pack.MaxWeight < 0 ? "none" : pack.MaxWeight.ToString()) + ".",
                 "Transfer choices move the complete selected stack. Equipped and bound items cannot be retrieved.", "", "Carried:" };
             if (carried.Length == 0) lines.Add("(empty)");
             foreach (var item in carried) lines.Add("- " + item.GetDisplayName() + " [" + Units(item) + "]" + (Supply(scope.Follower, item) ? "" : " (not transferable)"));
             lines.Add(""); lines.Add("Equipment:");
             if (worn.Length == 0) lines.Add("(none)");
-            foreach (var entry in worn) lines.Add("- " + entry.Key + ": " + entry.Value.GetDisplayName());
+            var body = scope.Follower.GetPart<Body>();
+            foreach (var entry in worn)
+            {
+                string slot = body?.GetParts().FirstOrDefault(p => p.ID.ToString() == entry.Key)?.GetDisplayName() ?? entry.Key;
+                lines.Add("- " + slot + ": " + entry.Value.GetDisplayName());
+            }
             bool Current() => scope.Current() && carried.SequenceEqual(pack.Objects) && worn.SequenceEqual(pack.EquippedItems)
                 && quantities.SequenceEqual(carried.Select(Units));
             if (!Current()) return false;
@@ -109,6 +120,7 @@ namespace CavesOfOoo.Core
             return actor != null && follower != null && actor != follower && zone != null
                 && actor.HasTag("Creature") && follower.HasTag("Creature") && actor.GetStatValue("Hitpoints") > 0 && follower.GetStatValue("Hitpoints") > 0
                 && WorldResourceActions.ActorCurrent(actor, zone) && WorldResourceActions.ActorCurrent(follower, zone)
+                && zone.GetEntityCell(follower)?.IsVisible == true && follower.GetPart<RenderPart>()?.Visible != false
                 && SpatialQuery.Distance(zone, actor, follower) <= 1
                 && effect?.Owner == follower && effect.Duration != 0 && effect.Recruiter == actor
                 && brain?.ParentEntity == follower && brain.CurrentZone == zone && brain.PartyLeader == actor && brain.Target == null

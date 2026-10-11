@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="41" result="Failed" start-time="2026-10-11T03:38:36.0148390Z" end-time="2026-10-11T03:38:36.0744000Z" duration="0.059550" total="12" passed="0" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="70" random-seed="1114628053">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-gear-red.xml --where "class == CavesOfOoo.Tests.CompanionGearTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.CompanionGearTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1053" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0148390Z" end-time="2026-10-11T03:38:36.0744000Z" duration="0.059550" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="70">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="37584" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1054" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0164920Z" end-time="2026-10-11T03:38:36.0743970Z" duration="0.057905" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="70">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1055" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0165990Z" end-time="2026-10-11T03:38:36.0743860Z" duration="0.057787" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="70">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1038" name="CompanionGearTests" fullname="CavesOfOoo.Tests.CompanionGearTests" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0169400Z" end-time="2026-10-11T03:38:36.0743700Z" duration="0.057430" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="70">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1051" name="BeforeEquipCallbackCannotIntroduceAnUnpreviewedReplacement" fullname="CavesOfOoo.Tests.CompanionGearTests.BeforeEquipCallbackCannotIntroduceAnUnpreviewedReplacement" methodname="BeforeEquipCallbackCannotIntroduceAnUnpreviewedReplacement" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="322903173" result="Failed" start-time="2026-10-11T03:38:36.0177640Z" end-time="2026-10-11T03:38:36.0651940Z" duration="0.047455" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.BeforeEquipCallbackCannotIntroduceAnUnpreviewedReplacement() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.BeforeEquipCallbackCannotIntroduceAnUnpreviewedReplacement() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1050" name="ChangedDisplacementAfterMenuDoesNotReplaceUnpreviewedGear" fullname="CavesOfOoo.Tests.CompanionGearTests.ChangedDisplacementAfterMenuDoesNotReplaceUnpreviewedGear" methodname="ChangedDisplacementAfterMenuDoesNotReplaceUnpreviewedGear" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="440027829" result="Failed" start-time="2026-10-11T03:38:36.0657220Z" end-time="2026-10-11T03:38:36.0660870Z" duration="0.000366" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ChangedDisplacementAfterMenuDoesNotReplaceUnpreviewedGear() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ChangedDisplacementAfterMenuDoesNotReplaceUnpreviewedGear() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1040" name="ComparisonUsesActualFollowerGearAndDoesNotEquip" fullname="CavesOfOoo.Tests.CompanionGearTests.ComparisonUsesActualFollowerGearAndDoesNotEquip" methodname="ComparisonUsesActualFollowerGearAndDoesNotEquip" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1684796421" result="Failed" start-time="2026-10-11T03:38:36.0661070Z" end-time="2026-10-11T03:38:36.0663650Z" duration="0.000258" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ComparisonUsesActualFollowerGearAndDoesNotEquip() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 37
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ComparisonUsesActualFollowerGearAndDoesNotEquip() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 37
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1049" name="EquipmentVetoPreservesOldAndNewOwners" fullname="CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0663860Z" end-time="2026-10-11T03:38:36.0724230Z" duration="0.006037" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1047" name="EquipmentVetoPreservesOldAndNewOwners(&quot;BeforeEquip&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(&quot;BeforeEquip&quot;)" methodname="EquipmentVetoPreservesOldAndNewOwners" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="680807254" result="Failed" start-time="2026-10-11T03:38:36.0664570Z" end-time="2026-10-11T03:38:36.0704070Z" duration="0.003953" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(String veto) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 46
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(String veto) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 46
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1048" name="EquipmentVetoPreservesOldAndNewOwners(&quot;BeforeUnequip&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(&quot;BeforeUnequip&quot;)" methodname="EquipmentVetoPreservesOldAndNewOwners" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1109124781" result="Failed" start-time="2026-10-11T03:38:36.0704240Z" end-time="2026-10-11T03:38:36.0721440Z" duration="0.001720" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(String veto) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 46
+   at InvokeStub_CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(String veto) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 46
+   at InvokeStub_CompanionGearTests.EquipmentVetoPreservesOldAndNewOwners(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1046" name="InvalidGearOrAnatomyCannotBeEquipped" fullname="CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11T03:38:36.0725820Z" end-time="2026-10-11T03:38:36.0734270Z" duration="0.000845" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1042" name="InvalidGearOrAnatomyCannotBeEquipped(&quot;incompatible&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(&quot;incompatible&quot;)" methodname="InvalidGearOrAnatomyCannotBeEquipped" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="625738732" result="Failed" start-time="2026-10-11T03:38:36.0725980Z" end-time="2026-10-11T03:38:36.0728410Z" duration="0.000243" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="InvalidGearOrAnatomyCannotBeEquipped(&quot;bound&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(&quot;bound&quot;)" methodname="InvalidGearOrAnatomyCannotBeEquipped" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1777739737" result="Failed" start-time="2026-10-11T03:38:36.0728550Z" end-time="2026-10-11T03:38:36.0730490Z" duration="0.000194" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1044" name="InvalidGearOrAnatomyCannotBeEquipped(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(&quot;foreign&quot;)" methodname="InvalidGearOrAnatomyCannotBeEquipped" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1998326776" result="Failed" start-time="2026-10-11T03:38:36.0730640Z" end-time="2026-10-11T03:38:36.0732550Z" duration="0.000190" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1045" name="InvalidGearOrAnatomyCannotBeEquipped(&quot;missing-limb&quot;)" fullname="CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(&quot;missing-limb&quot;)" methodname="InvalidGearOrAnatomyCannotBeEquipped" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="715289788" result="Failed" start-time="2026-10-11T03:38:36.0732660Z" end-time="2026-10-11T03:38:36.0734030Z" duration="0.000137" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 42
+   at InvokeStub_CompanionGearTests.InvalidGearOrAnatomyCannotBeEquipped(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1039" name="MenuDeliberatelyReplacesChosenHandAndLeavesOldGearInCompanionPack" fullname="CavesOfOoo.Tests.CompanionGearTests.MenuDeliberatelyReplacesChosenHandAndLeavesOldGearInCompanionPack" methodname="MenuDeliberatelyReplacesChosenHandAndLeavesOldGearInCompanionPack" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="743662177" result="Failed" start-time="2026-10-11T03:38:36.0734380Z" end-time="2026-10-11T03:38:36.0736680Z" duration="0.000230" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.MenuDeliberatelyReplacesChosenHandAndLeavesOldGearInCompanionPack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 32
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.MenuDeliberatelyReplacesChosenHandAndLeavesOldGearInCompanionPack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 32
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1052" name="OuterFailureRestoresEquipmentAndCarriedItem" fullname="CavesOfOoo.Tests.CompanionGearTests.OuterFailureRestoresEquipmentAndCarriedItem" methodname="OuterFailureRestoresEquipmentAndCarriedItem" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1671154090" result="Failed" start-time="2026-10-11T03:38:36.0736790Z" end-time="2026-10-11T03:38:36.0739580Z" duration="0.000279" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.OuterFailureRestoresEquipmentAndCarriedItem() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 52
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.OuterFailureRestoresEquipmentAndCarriedItem() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 52
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1041" name="UnequipIsExplicitAndDoesNotRetrieveIntoPlayerPack" fullname="CavesOfOoo.Tests.CompanionGearTests.UnequipIsExplicitAndDoesNotRetrieveIntoPlayerPack" methodname="UnequipIsExplicitAndDoesNotRetrieveIntoPlayerPack" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="1357187769" result="Failed" start-time="2026-10-11T03:38:36.0739670Z" end-time="2026-10-11T03:38:36.0743390Z" duration="0.000372" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.UnequipIsExplicitAndDoesNotRetrieveIntoPlayerPack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.UnequipIsExplicitAndDoesNotRetrieveIntoPlayerPack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -77,20 +77,32 @@ namespace CavesOfOoo.Tests
             var row = WorldInteractionSystem.GatherActions(follower, player).FirstOrDefault(a => a.Command.StartsWith(prefix, StringComparison.Ordinal));
             Assert.NotNull(row, "A current real companion menu choice must exist."); menu.RestoreHighlight(row); Assert.AreEqual(row.Command, menu.HighlightedAction.Command);
         }
+        void AssertCost(int tick,int energy,int speed,int actions)
+        {
+            Assert.AreEqual(speed,input.TurnManager.GetSpeed(player));
+            long spent=(long)(input.TurnManager.TickCount-tick)*speed+energy-input.TurnManager.GetEnergy(player);
+            Assert.AreEqual((long)actions*TurnManager.ActionThreshold,spent,"Exact energy accounting must show one committed action, not one scheduler tick.");
+        }
         [TestCase(false)] [TestCase(true)] public void NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(bool controller)
         {
-            var item = Carry(player); int tick=input.TurnManager.TickCount;
+            var item = Carry(player); int tick=input.TurnManager.TickCount, energy=input.TurnManager.GetEnergy(player), speed=input.TurnManager.GetSpeed(player);
             Open(controller); Select("CompanionGive|"); Confirm();
             Assert.Contains(item,follower.GetPart<InventoryPart>().Objects); Assert.False(player.GetPart<InventoryPart>().Objects.Contains(item));
-            Assert.AreEqual(tick+1,input.TurnManager.TickCount);
+            AssertCost(tick,energy,speed,1);
         }
         [Test] public void PackReaderIsFreeAndStaleTransferIsFree()
         {
-            var item=Carry(player); int tick=input.TurnManager.TickCount;
+            var item=Carry(player); int tick=input.TurnManager.TickCount, energy=input.TurnManager.GetEnergy(player), speed=input.TurnManager.GetSpeed(player);
             Open(true); Select("CompanionPack"); Confirm(); Assert.AreEqual(tick,input.TurnManager.TickCount);
             Assert.True(MessageLog.HasPendingAnnouncement); MessageLog.ConsumeAnnouncement();
             Open(true); Select("CompanionGive|"); follower.GetEffect<RecruitedEffect>().Dismiss(player); Confirm();
             Assert.Contains(item,player.GetPart<InventoryPart>().Objects); Assert.AreEqual(tick,input.TurnManager.TickCount);
+        }
+        [Test] public void DeliberateGearSelectionUsesActualSlotAndPaysOnce()
+        {
+            var item=Carry(follower,true); int tick=input.TurnManager.TickCount, energy=input.TurnManager.GetEnergy(player), speed=input.TurnManager.GetSpeed(player);
+            Open(true); Select("CompanionEquip|"); Confirm();
+            Assert.True(InventorySystem.IsEquipped(follower,item)); AssertCost(tick,energy,speed,1);
         }
     }
 }

@@ -84,7 +84,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             BodyPart targetBodyPart,
             bool allowDisplacements,
             bool emitPlanFailureMessage,
-            bool emitSuccessMessage = true)
+            bool emitSuccessMessage = true,
+            System.Func<Entity, bool> validatePreparedChoice = null)
         {
             if (context == null || context.Actor == null || context.Inventory == null)
             {
@@ -143,6 +144,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Equip was cancelled.");
             }
+
+            // An explicit external slot/replacement picker can reject stale
+            // anatomy or displacements after veto callbacks, before any gear
+            // moves. Ordinary auto/planned equip keeps its existing behavior.
+            if (validatePreparedChoice != null && !validatePreparedChoice(itemToEquip))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "The selected equipment placement changed.");
 
             bool equipped = context.Body != null
                 ? TryEquipBodyPartAware(

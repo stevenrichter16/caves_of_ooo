@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="70" result="Failed" start-time="2026-10-11T03:47:41.2811790Z" end-time="2026-10-11T03:47:41.3555680Z" duration="0.074374" total="16" passed="1" failed="15" inconclusive="0" skipped="0" warnings="0" asserts="145" random-seed="661033248">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-step-and-reader-red.xml --where "class == CavesOfOoo.Tests.CompanionStepAsideTests or test == CavesOfOoo.Tests.CompanionGearTests.ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent"]]></command-line>
+  <filter>
+    <or>
+      <class>CavesOfOoo.Tests.CompanionStepAsideTests</class>
+      <test>CavesOfOoo.Tests.CompanionGearTests.ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent</test>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1091" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="70" result="Failed" site="Child" start-time="2026-10-11T03:47:41.2811790Z" end-time="2026-10-11T03:47:41.3555680Z" duration="0.074374" total="16" passed="1" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="145">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="41360" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1092" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="70" result="Failed" site="Child" start-time="2026-10-11T03:47:41.2826500Z" end-time="2026-10-11T03:47:41.3555660Z" duration="0.072915" total="16" passed="1" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="145">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1093" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="70" result="Failed" site="Child" start-time="2026-10-11T03:47:41.2827580Z" end-time="2026-10-11T03:47:41.3555650Z" duration="0.072806" total="16" passed="1" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="145">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1042" name="CompanionGearTests" fullname="CavesOfOoo.Tests.CompanionGearTests" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-11T03:47:41.2831920Z" end-time="2026-10-11T03:47:41.3462130Z" duration="0.063020" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="7">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1070" name="ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent" fullname="CavesOfOoo.Tests.CompanionGearTests.ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent" methodname="ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent" classname="CavesOfOoo.Tests.CompanionGearTests" runstate="Runnable" seed="139092593" result="Failed" start-time="2026-10-11T03:47:41.2840520Z" end-time="2026-10-11T03:47:41.3453220Z" duration="0.061296" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 93
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionGearTests.ComparisonChangedByOuterCallbackIsNotPublishedAsCurrent() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionGearTests.cs:line 93
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1071" name="CompanionStepAsideTests" fullname="CavesOfOoo.Tests.CompanionStepAsideTests" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-11T03:47:41.3466020Z" end-time="2026-10-11T03:47:41.3555630Z" duration="0.008961" total="15" passed="1" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="138">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1074" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:47:41.3466770Z" end-time="2026-10-11T03:47:41.3482340Z" duration="0.001557" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="21">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1072" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(False)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(False)" methodname="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="407101312" result="Failed" start-time="2026-10-11T03:47:41.3467570Z" end-time="2026-10-11T03:47:41.3474940Z" duration="0.000737" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Boolean stay) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 25
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Boolean stay) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 25
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1073" name="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(True)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(True)" methodname="AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1026247292" result="Failed" start-time="2026-10-11T03:47:41.3475080Z" end-time="2026-10-11T03:47:41.3482100Z" duration="0.000702" asserts="11">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Boolean stay) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 25
+   at InvokeStub_CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Boolean stay) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 25
+   at InvokeStub_CompanionStepAsideTests.AskMovesOnlyCompanionOneSafeCellAndPreservesSavedOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1086" name="BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" methodname="BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="177516931" result="Failed" start-time="2026-10-11T03:47:41.3482460Z" end-time="2026-10-11T03:47:41.3499640Z" duration="0.001717" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.BeforeMoveCallbackCannotIntroduceAHazardAfterSafeChoice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1081" name="FullyEnclosedCompanionIsNotSwappedWithItsLeader" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.FullyEnclosedCompanionIsNotSwappedWithItsLeader" methodname="FullyEnclosedCompanionIsNotSwappedWithItsLeader" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="724784239" result="Passed" start-time="2026-10-11T03:47:41.3499760Z" end-time="2026-10-11T03:47:41.3533630Z" duration="0.003387" asserts="14" />
+          <test-case id="1085" name="LateOuterFailureRestoresOriginalCellAndStayOrder" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.LateOuterFailureRestoresOriginalCellAndStayOrder" methodname="LateOuterFailureRestoresOriginalCellAndStayOrder" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="892314164" result="Failed" start-time="2026-10-11T03:47:41.3533780Z" end-time="2026-10-11T03:47:41.3536690Z" duration="0.000291" asserts="11">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.LateOuterFailureRestoresOriginalCellAndStayOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.LateOuterFailureRestoresOriginalCellAndStayOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1080" name="OnlyAvailableHazardOrOccupiedCellIsRefused" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11T03:47:41.3536830Z" end-time="2026-10-11T03:47:41.3546150Z" duration="0.000932" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="50">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1075" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;water&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;water&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="81971843" result="Failed" start-time="2026-10-11T03:47:41.3536910Z" end-time="2026-10-11T03:47:41.3539720Z" duration="0.000282" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1076" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;gas&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;gas&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="325072401" result="Failed" start-time="2026-10-11T03:47:41.3539840Z" end-time="2026-10-11T03:47:41.3541790Z" duration="0.000195" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1077" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;trigger&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;trigger&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="2026120165" result="Failed" start-time="2026-10-11T03:47:41.3541900Z" end-time="2026-10-11T03:47:41.3543230Z" duration="0.000134" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1078" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;friend&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;friend&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="176229793" result="Failed" start-time="2026-10-11T03:47:41.3543340Z" end-time="2026-10-11T03:47:41.3544670Z" duration="0.000133" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1079" name="OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(&quot;unknown&quot;)" methodname="OnlyAvailableHazardOrOccupiedCellIsRefused" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1705189926" result="Failed" start-time="2026-10-11T03:47:41.3544770Z" end-time="2026-10-11T03:47:41.3546030Z" duration="0.000126" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(String hazard) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 32
+   at InvokeStub_CompanionStepAsideTests.OnlyAvailableHazardOrOccupiedCellIsRefused(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1090" name="StaleOrUnauthorizedOrderCannotMoveAnyone" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T03:47:41.3546200Z" end-time="2026-10-11T03:47:41.3551530Z" duration="0.000534" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1087" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dismiss&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dismiss&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="1632226709" result="Failed" start-time="2026-10-11T03:47:41.3546240Z" end-time="2026-10-11T03:47:41.3548390Z" duration="0.000215" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1088" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;far&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;far&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="727506819" result="Failed" start-time="2026-10-11T03:47:41.3548480Z" end-time="2026-10-11T03:47:41.3550090Z" duration="0.000160" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+   at InvokeStub_CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+   at InvokeStub_CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1089" name="StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(&quot;dead&quot;)" methodname="StaleOrUnauthorizedOrderCannotMoveAnyone" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="845408983" result="Failed" start-time="2026-10-11T03:47:41.3550180Z" end-time="2026-10-11T03:47:41.3551420Z" duration="0.000124" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+   at InvokeStub_CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 52
+   at InvokeStub_CompanionStepAsideTests.StaleOrUnauthorizedOrderCannotMoveAnyone(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1084" name="VoluntaryVetoAndRootingPreventMovement" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:47:41.3551570Z" end-time="2026-10-11T03:47:41.3555570Z" duration="0.000400" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1082" name="VoluntaryVetoAndRootingPreventMovement(False)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(False)" methodname="VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="2125186010" result="Failed" start-time="2026-10-11T03:47:41.3551610Z" end-time="2026-10-11T03:47:41.3553670Z" duration="0.000206" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Boolean root) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 46
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Boolean root) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 46
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1083" name="VoluntaryVetoAndRootingPreventMovement(True)" fullname="CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(True)" methodname="VoluntaryVetoAndRootingPreventMovement" classname="CavesOfOoo.Tests.CompanionStepAsideTests" runstate="Runnable" seed="192800892" result="Failed" start-time="2026-10-11T03:47:41.3553750Z" end-time="2026-10-11T03:47:41.3555480Z" duration="0.000173" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Boolean root) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 46
+   at InvokeStub_CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Boolean root) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionStepAsideTests.cs:line 46
+   at InvokeStub_CompanionStepAsideTests.VoluntaryVetoAndRootingPreventMovement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
