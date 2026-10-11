@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-18/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+19/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -196,3 +196,12 @@ Draft dependent on pass17; apply the narrow player patch and new intermission cl
 
 
 Iteration18 complete:5 behavioral RED failures preceded implementation;744/744 native audio checks passed. Fresh actual Play `3616bd0c607e41368466b6da3f5d75d3` passed13/13, zero errors,357.088s. Full original Ephemera ended naturally, music was absent for11.999822s while real environmental output continued (peak0.03484246), then Meanwhile began exactly once at sample0 (peak0.03142668). Movement before/after, zero idle rescans,16 voices and preferences passed. Four captures; final gameplay inspected. No seeks/acceleration/shortcuts/grants. Independent review found and removed two stray string arguments in the draft native Check before importing; production required no correction. Danger/context interruption and disabled-time counters are native unit scope, not additional live claims.
+
+### Iteration 19 execution prompt
+
+Build on16 regional identity,17 complete sequences and18 quiet rests. The existing authored Morrowfast village has residents, service/equipment preparation and durable installed scene state. Bind Hiraeth only when exact surface address, current world Village/Morrowfast profile, and its existing installed state marker agree. No generic town guess, NPC count, new inhabitant scan or hidden work cues; the music expresses known authored place identity, not whether every resident survived. Danger and depth remain authoritative. Import only complete verified stage19 asset/credits (preserving16/17), make native tests fail before production, then enter/leave/reenter this actual town by paid native map input and observe imported output and bookmark return. Keep16 sources, constant metadata query and unchanged idle scan counts; restore exact settings. Ten live checks including boot/min4 screenshots. No direct selection, cue, seek, grants or shortcuts.
+
+Draft dependent on16/17. Apply narrow implementation patch and new helper, not complete reference snapshots. Existing generation/save format unchanged. All verification pending.
+
+
+Iteration19 complete:5 behavioral RED failures preceded implementation;768/768 native audio checks passed. Fresh actual Play `9f0a9837a97340baac3b313321cfbaa8` passed10/10, zero errors,19.052s. Twelve paid map steps reached authored Morrowfast3,6; imported Hiraeth output peak0.04652639. Ascent restored the actual Grovelands score; native return resumed town music beyond its pre-exit sample398899 (return590821). Four captures, actual town image inspected;16 voices, zero idle scans/restarts, exact settings, no shortcuts/grants/NPC census. Authored installed scene marker plus current Village/Morrowfast profile selects place identity; danger/depth stay authoritative. Four new full compositions total21,277,194 compressed bytes; full licenses/credits retained. Subjective musical fit and physical Deck output remain unverified.

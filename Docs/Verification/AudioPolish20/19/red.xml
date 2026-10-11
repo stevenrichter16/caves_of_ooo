@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 20:06:05Z" end-time="2026-10-11 20:06:06Z" duration="0.9968349">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28406" result="Failed" site="Child" start-time="2026-10-11 20:06:05Z" end-time="2026-10-11 20:06:06Z" duration="0.996835" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34990" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28406" result="Failed" site="Child" start-time="2026-10-11 20:06:05Z" end-time="2026-10-11 20:06:06Z" duration="0.732353" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34991" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28406" result="Failed" site="Child" start-time="2026-10-11 20:06:05Z" end-time="2026-10-11 20:06:06Z" duration="0.702152" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34992" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28406" result="Failed" site="Child" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.501362" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33503" name="WorldAudioSettlementMusicBehaviorTests" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.399756" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33504" name="CalmTownHasOwnMusicAndKeepsNaturalAmbience" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.CalmTownHasOwnMusicAndKeepsNaturalAmbience" methodname="CalmTownHasOwnMusicAndKeepsNaturalAmbience" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" seed="1882790916" result="Failed" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.010269" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Known inhabited preparation stops cannot yet select their own score.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.Select (System.Int32 depth, System.Boolean danger, System.Boolean stop) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:10
+at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.CalmTownHasOwnMusicAndKeepsNaturalAmbience () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:13
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33509" name="OnlyCurrentInstalledTownMarkerAuthorizesThePlace" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.OnlyCurrentInstalledTownMarkerAuthorizesThePlace" methodname="OnlyCurrentInstalledTownMarkerAuthorizesThePlace" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" seed="1655508597" result="Failed" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.074017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Preparation music must require the actual installed authored settlement.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.Town (CavesOfOoo.Core.Zone zone, CavesOfOoo.Core.WorldMap map) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:12
+at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.OnlyCurrentInstalledTownMarkerAuthorizesThePlace () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:20
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33508" name="TownCannotOverrideDangerOrUnderground" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.109428" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33505" name="TownCannotOverrideDangerOrUnderground(True,0,&quot;danger&quot;)" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground(True,0,&quot;danger&quot;)" methodname="TownCannotOverrideDangerOrUnderground" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" seed="5944819" result="Failed" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.000541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Known inhabited preparation stops cannot yet select their own score.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.Select (System.Int32 depth, System.Boolean danger, System.Boolean stop) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:10
+at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground (System.Boolean danger, System.Int32 depth, System.String expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33506" name="TownCannotOverrideDangerOrUnderground(False,1,&quot;underground&quot;)" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground(False,1,&quot;underground&quot;)" methodname="TownCannotOverrideDangerOrUnderground" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" seed="703490960" result="Failed" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.000218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Known inhabited preparation stops cannot yet select their own score.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.Select (System.Int32 depth, System.Boolean danger, System.Boolean stop) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:10
+at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground (System.Boolean danger, System.Int32 depth, System.String expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33507" name="TownCannotOverrideDangerOrUnderground(True,1,&quot;danger&quot;)" fullname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground(True,1,&quot;danger&quot;)" methodname="TownCannotOverrideDangerOrUnderground" classname="CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests" runstate="Runnable" seed="1358656440" result="Failed" start-time="2026-10-11 20:06:06Z" end-time="2026-10-11 20:06:06Z" duration="0.000189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Known inhabited preparation stops cannot yet select their own score.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.Select (System.Int32 depth, System.Boolean danger, System.Boolean stop) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:10
+at CavesOfOoo.Tests.WorldAudioSettlementMusicBehaviorTests.TownCannotOverrideDangerOrUnderground (System.Boolean danger, System.Int32 depth, System.String expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioSettlementMusicBehaviorTests.cs:15
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

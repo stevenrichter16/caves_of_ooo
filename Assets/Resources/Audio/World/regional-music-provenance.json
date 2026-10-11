@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceVerificationDate": "2026-10-11",
-  "throughIteration": 17,
+  "throughIteration": 19,
   "tool": "ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers",
   "sources": {
     "signal-no-melody.mp3": {
@@ -21,6 +21,12 @@
       "bytes": 13036146,
       "sha256": "39fd49bfb138bcee806fb99d8f2c9b7bf89fc72bb7b730125ef20f0c6b2635b7",
       "decodedFrames": 14369100
+    },
+    "hiraeth.mp3": {
+      "url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2020/06/sb_hiraeth.mp3",
+      "bytes": 13851302,
+      "sha256": "f790c7d53b8d802981ff7cdd8c59e22cdfe103ea66aba296c6cf1a65fe7fcf01",
+      "decodedFrames": 15267357
     }
   },
   "clips": [
@@ -101,6 +107,32 @@
       "channels": 2,
       "decodedPeak": 0.7977075576782227,
       "decodedRms": 0.11643162575036345
+    },
+    {
+      "id": "Hiraeth",
+      "path": "Music/Hiraeth.ogg",
+      "kind": "music",
+      "source": "hiraeth.mp3",
+      "author": "Scott Buckley",
+      "title": "Hiraeth",
+      "mix": "Full Mix",
+      "page": "https://www.scottbuckley.com.au/library/hiraeth/",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "credit": "'Hiraeth' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "changes": "Complete author-supplied Full Mix retained; transcoded to stereo Ogg Vorbis. Peak attenuation only if required for headroom; no excerpts, timing changes, loudness normalization or added instruments.",
+      "context": "village",
+      "runtimeGain": 0.3,
+      "iteration": 19,
+      "outputSha256": "787e1b3b74b5c209bd5211de5924e3340901fadda3d9cd49a4898dacda079692",
+      "outputBytes": 5156737,
+      "sourceDecodedFrames": 15267357,
+      "preparedFrames": 15267357,
+      "preparationGain": 0.8339011451425598,
+      "sampleRate": 44100,
+      "channels": 2,
+      "decodedPeak": 0.7507835030555725,
+      "decodedRms": 0.12277449609028701
     }
   ]
 }

@@ -62,7 +62,7 @@ namespace CavesOfOoo.Rendering
             if(!observedDanger)dangerHold=Mathf.Max(0,dangerHold-delta);
             bool alive=actor!=null&&actor.GetStatValue("Hitpoints",1)>0&&!CombatSystem.IsDeathHandled(actor)&&zone?.GetEntityCell(actor)!=null;
             string priorBed=Context.AmbienceId;
-            Context=alive&&regionalContextValid?WorldAudioContext.Select(biome,depth,observedDanger||dangerHold>0):default;
+            Context=alive&&regionalContextValid?WorldAudioContext.Select(biome,depth,observedDanger||dangerHold>0,WorldAudioSettlement.IsPreparationStop(zone,map)):default;
             Soundscape.Tick(delta,worldVisible&&alive,Context.Danger);
             // Menus preserve the established bed but cannot discover new object/animal sources.
             if(alive)Context=Context.WithAmbience(worldVisible?Soundscape.AmbienceId:changed||priorBed=="water"?null:priorBed);

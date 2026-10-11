@@ -9,7 +9,7 @@ namespace CavesOfOoo.Rendering
         public readonly bool Danger;
         WorldAudioContext(string music,string ambience,bool danger){MusicId=music;AmbienceId=ambience;Danger=danger;}
         public WorldAudioContext WithAmbience(string id)=>new WorldAudioContext(MusicId,id,Danger);
-        public static WorldAudioContext Select(BiomeType biome,int depth,bool danger)
+        public static WorldAudioContext Select(BiomeType biome,int depth,bool danger,bool inhabitedStop=false)
         {
             string music,ambience;
             if(depth>0||biome==BiomeType.Cave||biome==BiomeType.Ruins||biome==BiomeType.Stump)
@@ -17,6 +17,7 @@ namespace CavesOfOoo.Rendering
             else if(biome==BiomeType.Desert||biome==BiomeType.Beating||biome==BiomeType.Overwrit)
             {music="dry";ambience=null;}
             else {music=biome==BiomeType.Sodden?"sodden":biome==BiomeType.Grovelands?"grovelands":"organic";ambience=biome==BiomeType.Sodden?"water":"field";}
+            if(inhabitedStop&&depth==0&&music!="underground")music="village";
             return new WorldAudioContext(danger?"danger":music,ambience,danger);
         }
     }
