@@ -1,0 +1,114 @@
+{
+    "runId": "f960c8915203426084b29babd8723a55",
+    "zone": "Overworld.2.6.0",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 actor in the real generated west-of-Morrowfast field. Actual keyboard gathering of clay, timber and cord, three material repairs, restored well drinking and gate operation, the original ripe knotflax harvest and physical produce/seed pickup. Four committed work receipts correlate exact actor/source/contact to actual imported short recordings, accepted playback and nonzero per-source PCM windows. Native F5/F6 graph replacement preserves repaired flags, remaining crops, spent sources and inventory without replaying work. The fixed16-source pool and restored in-memory SFX preference are checked.",
+    "cannotVerify": "One explicitly logged initial player travel shortcut reaches the unchanged generated field; every local action and movement uses ordinary keys with live NPC scheduling. No HP, inventory, materials, crop-stage, time or RNG grants, forced repairs or removed enemies. Up to two exact original starting HealingTonic units may be consumed through ordinary inventory keys at or below two-thirds HP; use, identity and actual consumed units are recorded. No healing is injected. This distinct work-audio route deliberately ends after its first real harvest and checkpoint: it does not claim live planting, rain, growth, a repeat crop harvest, forge work or portable repair. The separate full farming attempt stopped at real enemy danger and remains a failed receipt. Sampled per-source PCM is not subjective listening, continuous recording, physical speaker output, global clipping proof or Deck performance. Saved preferences are untouched; only in-memory SFX is initialized and exactly restored. Screenshots need visual review.",
+    "mode": "native-work-audio",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.2.6.0@60,9 real west-of-Morrowfast repair and cultivated field; all faults, materials and plants left as generated",
+        "drawn owner=5240 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5240 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5242 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5241 blueprint=RepairRopeWell current=True drawn=True",
+        "drawn owner=5242 blueprint=RepairWoodenGate current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS work_audio_fixed_pool",
+        "PASS repair_generated_field",
+        "PASS repair_gather_clay",
+        "PASS repair_gather_timber",
+        "PASS repair_gather_cord",
+        "PASS work_sound_repair_lining",
+        "PASS repair_lining",
+        "PASS work_sound_repair_frame",
+        "PASS repair_frame",
+        "PASS work_sound_repair_line",
+        "PASS repair_line",
+        "PASS repair_draw_restored_water",
+        "PASS repair_operate_restored_gate",
+        "PASS work_sound_crop_original",
+        "PASS crop_harvest_original",
+        "PASS crop_pickup_original",
+        "PASS repair_crop_native_checkpoint",
+        "PASS work_audio_checkpoint_silent",
+        "PASS repair_crop_ordinary_finish",
+        "PASS work_audio_settings_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-01-generated-field.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-02-cracked-lining-and-material.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-03-gathered-world-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-04-restored-gate-closed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-05-restored-gate-open.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/crop-01-harvest-on-preserved-bed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/f960c8915203426084b29babd8723a55/repair-06-restored-and-saved-field.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "clay-lined catch well",
+            "source": "5240",
+            "text": "You see a clay-lined catch well.\nA split in the fired lining lets the drawn water drain through the rim. Pack the gap with fire clay.\nRepair: 2 fire clay. Composition: Masonry.\n\nA shallow catch well beside the growing beds. Its fired-clay lining forms a basin beneath a broad stone rim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_lining",
+            "source": "5240",
+            "text": "Cue=WorkRepairStone; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_stone_01; sampledSourcePeak=0.02967463; sampledFloats=60416. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_frame",
+            "source": "5242",
+            "text": "Cue=WorkRepairWood; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_wood_01; sampledSourcePeak=0.07093299; sampledFloats=60416. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_line",
+            "source": "5241",
+            "text": "Cue=Use; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=use; sampledSourcePeak=0.1116898; sampledFloats=62464. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "Native route healing",
+            "source": "2699",
+            "text": "Original starting tonic consumed via inventory; HP 26 -> 34",
+            "units": 1
+        },
+        {
+            "subject": "Native route healing",
+            "source": "2699",
+            "text": "Original starting tonic consumed via inventory; HP 26 -> 35",
+            "units": 1
+        },
+        {
+            "subject": "work_sound_crop_original",
+            "source": "5246",
+            "text": "Cue=HarvestPlant; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=harvest_plant_01; sampledSourcePeak=0.06501863; sampledFloats=52224. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "Native repair and cultivated checkpoint",
+            "source": "e45e707164ad441da69301a2bbb3a678",
+            "text": "F5, real step, F6; unchanged saved bytes dd8f785d2d1c315f6f9dda06645c0eae04c6066988d4bd6a9027755abb99b7da; exact repaired flags, remaining crop clocks, prepared terrain IDs and carried quantities restored; all three harvested sources remain absent.",
+            "units": 0
+        }
+    ],
+    "cases": 21,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 23.162651999999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

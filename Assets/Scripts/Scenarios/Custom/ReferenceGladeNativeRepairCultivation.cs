@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,17 +15,32 @@ namespace CavesOfOoo.Scenarios.Custom
     public sealed partial class ReferenceGladeNativePlayer
     {
         private bool _repairCultivationOnly;
+        private bool _repairWorkAudioOnly;
+        public void ConfigureRepairWorkAudio() => _repairWorkAudioOnly=true;
         private const string RepairNativeZone = "Overworld.2.6.0";
         private static readonly string[] RepairCultivationChecks = {
             "repair_generated_field", "repair_gather_clay", "repair_gather_timber", "repair_gather_cord",
             "repair_lining", "repair_frame", "repair_line", "repair_draw_restored_water", "repair_operate_restored_gate",
             "crop_harvest_original", "crop_pickup_original", "crop_plant_returned_seed", "crop_learn_rain",
             "crop_water_planted", "crop_grow_sprout", "crop_grow_ripe", "crop_harvest_grown", "crop_pickup_grown",
-            "repair_crop_native_checkpoint", "repair_crop_ordinary_finish" };
+            "repair_crop_native_checkpoint", "repair_crop_ordinary_finish",
+            "work_audio_fixed_pool", "work_sound_repair_lining", "work_sound_repair_frame", "work_sound_repair_line",
+            "work_sound_crop_original", "work_sound_crop_grown", "work_audio_checkpoint_silent", "work_audio_settings_restored" };
         private bool RepairCultivationComplete => RepairCultivationChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1)
             && _audit.Count == RepairCultivationChecks.Length + 1 && _biomeShortcuts == 1 && _screenshots.Count >= 9;
-        private const string RepairCultivationCanVerify = "Isolated ordinary seed64 player in the real generated west-of-Morrowfast field. Actual keyboard gathering, three material repairs, restored well drinking and gate operation; actual ripe knotflax harvest, physical produce/seed pickup, planting its returned seed on the preserved cultivated bed, original watering-book learning, Conjure Rain and paid player waits through sprout and ripe stages, a second harvest/pickup, and native F5/F6 graph replacement preserving repairs, remaining crop states and spent sources. Exact source/owner IDs and quantities are observed; native screenshots require visual inspection.";
-        private const string RepairCultivationCannotVerify = "One explicitly logged player travel shortcut reaches the generated field from the isolated glade launch. All local movement and actions use ordinary keys and live NPC scheduling. No inventory, HP, stat, material, moisture, crop-stage, clock or RNG grants/edits, forced harvests or direct repair calls. A dangerous field stops the route honestly; no enemies are removed or suppressed. No natural discovery, all-seed terrain success, offscreen farming, economic balance or subjective model-quality claim. Wells supply drinking water; this route does not claim they water crops. Crops grow only while their area is active. The visual review is separate from these state checks.";
+        private static readonly string[] RepairWorkAudioChecks = {
+            "repair_generated_field", "repair_gather_clay", "repair_gather_timber", "repair_gather_cord",
+            "repair_lining", "repair_frame", "repair_line", "repair_draw_restored_water", "repair_operate_restored_gate",
+            "crop_harvest_original", "crop_pickup_original", "repair_crop_native_checkpoint", "repair_crop_ordinary_finish",
+            "work_audio_fixed_pool", "work_sound_repair_lining", "work_sound_repair_frame", "work_sound_repair_line",
+            "work_sound_crop_original", "work_audio_checkpoint_silent", "work_audio_settings_restored" };
+        private bool RepairWorkAudioComplete => RepairWorkAudioChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1)
+            && _audit.Count(a => a == "PASS ordinary_player_and_native_zone") == 1
+            && _audit.Count == RepairWorkAudioChecks.Length + 1 && _biomeShortcuts == 1 && _screenshots.Count >= 8;
+        private const string RepairWorkAudioCanVerify = "Isolated ordinary seed64 actor in the real generated west-of-Morrowfast field. Actual keyboard gathering of clay, timber and cord, three material repairs, restored well drinking and gate operation, the original ripe knotflax harvest and physical produce/seed pickup. Four committed work receipts correlate exact actor/source/contact to actual imported short recordings, accepted playback and nonzero per-source PCM windows. Native F5/F6 graph replacement preserves repaired flags, remaining crops, spent sources and inventory without replaying work. The fixed16-source pool and restored in-memory SFX preference are checked.";
+        private const string RepairWorkAudioCannotVerify = "One explicitly logged initial player travel shortcut reaches the unchanged generated field; every local action and movement uses ordinary keys with live NPC scheduling. No HP, inventory, materials, crop-stage, time or RNG grants, forced repairs or removed enemies. Up to two exact original starting HealingTonic units may be consumed through ordinary inventory keys at or below two-thirds HP; use, identity and actual consumed units are recorded. No healing is injected. This distinct work-audio route deliberately ends after its first real harvest and checkpoint: it does not claim live planting, rain, growth, a repeat crop harvest, forge work or portable repair. The separate full farming attempt stopped at real enemy danger and remains a failed receipt. Sampled per-source PCM is not subjective listening, continuous recording, physical speaker output, global clipping proof or Deck performance. Saved preferences are untouched; only in-memory SFX is initialized and exactly restored. Screenshots need visual review.";
+        private const string RepairCultivationCanVerify = "Isolated ordinary seed64 player in the real generated west-of-Morrowfast field. Actual keyboard gathering, three material repairs, restored well drinking and gate operation; actual ripe knotflax harvest, physical produce/seed pickup, planting its returned seed on the preserved cultivated bed, original watering-book learning, Conjure Rain and paid player waits through sprout and ripe stages, a second harvest/pickup, and native F5/F6 graph replacement preserving repairs, remaining crop states and spent sources. Exact source/owner IDs and quantities are observed. Five committed work receipts correlate the live current actor/source/contact to the expected imported short recording, accepted playback and nonzero per-source PCM windows; the fixed audio pool and silent loaded work are checked. Native screenshots require visual inspection.";
+        private const string RepairCultivationCannotVerify = "One explicitly logged player travel shortcut reaches the generated field from the isolated glade launch. All local movement and actions use ordinary keys and live NPC scheduling. No inventory, HP, stat, material, moisture, crop-stage, clock or RNG grants/edits, forced harvests or direct repair calls. A dangerous field stops the route honestly; no enemies are removed or suppressed. No natural discovery, all-seed terrain success, offscreen farming, economic balance or subjective model-quality claim. Wells supply drinking water; this route does not claim they water crops. Crops grow only while their area is active. Only the in-memory SFX level is temporarily set to1 and restored; saved preferences are not modified. This route does not exercise a forge or portable gear repair; their transaction behavior has separate native unit coverage. Sampled per-source PCM is not subjective listening, physical speaker output, continuous capture, a clipping guarantee or a Steam Deck performance claim. The visual review is separate from these state checks.";
 
         private Entity RepairNativeOwner(string blueprint)
         {
@@ -42,14 +58,40 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             bool oldFurniture = Diag.IsChannelEnabled("furniture"), oldCrop = Diag.IsChannelEnabled("crop");
             Diag.SetChannel("furniture", true); Diag.SetChannel("crop", true);
-            try { yield return RepairCultivationRoute(); }
-            finally { Diag.SetChannel("furniture", oldFurniture); Diag.SetChannel("crop", oldCrop); }
+            var oldSfx=WorldAudioSettings.SfxVolume;
+            Coroutine monitor=null;
+            _repairWorkCleanup=()=>{
+                WorldAudioWork.Callback-=ObserveRepairNativeWork;
+                if(monitor!=null)StopCoroutine(monitor);
+                _repairWorkPending=null; WorldAudioSettings.SfxVolume=oldSfx;
+                Diag.SetChannel("furniture",oldFurniture); Diag.SetChannel("crop",oldCrop);
+                Check("work_audio_settings_restored",WorldAudioSettings.SfxVolume==oldSfx);
+            };
+            try
+            {
+                _repairWorkRuntime=FindFirstObjectByType<WorldAudioRuntime>();
+                Require(_repairWorkRuntime?.Player!=null,"actual bootstrap world audio for handwork");
+                _repairWorkLibrary=WorldAudioLibrary.LoadResources();
+                _repairWorkSamples=new float[1024];
+                WorldAudioSettings.SfxVolume=1;
+                WorldAudioWork.Callback+=ObserveRepairNativeWork;
+                monitor=StartCoroutine(RepairNativeAudioMonitor());
+                Check("work_audio_fixed_pool",_repairWorkRuntime.Player.AllocatedSources==16
+                    &&_repairWorkRuntime.Player.Root.GetComponentsInChildren<AudioSource>().Length==16);
+                yield return RepairCultivationRoute();
+            }
+            finally { _repairWorkCleanup?.Invoke(); _repairWorkCleanup=null; }
         }
         private IEnumerator RepairCultivationRoute()
         {
             var actor = _input.PlayerEntity; string actorID = actor.ID;
             Require(BiomeManager != null && BiomeManager.WorldSeed == 64 && actor.GetStat("Hitpoints").Max == 40
                 && !DevMode.Enabled && !actor.HasPart<BitLockerPart>(), "ordinary isolated farming actor");
+            if (_repairWorkAudioOnly)
+            {
+                _discoveryTonics.AddRange(actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic"));
+                Require(_discoveryTonics.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)==2,"two original starting tonic units, no grants");
+            }
             var zone = BiomeManager.GetZone(RepairNativeZone);
             var lined = zone.GetReadOnlyEntities().SingleOrDefault(e => e.BlueprintName == "RepairLinedWell");
             Require(lined != null, "actual cold-generated west field, no replacement setup");
@@ -92,7 +134,9 @@ namespace CavesOfOoo.Scenarios.Custom
             int yieldCount = originalPart.YieldCount, seedCount = originalPart.SeedYieldCount;
             yield return RepairNativeApproach(original);
             int units = ResidentUnits(actor, yieldBlueprint), seeds = ResidentUnits(actor, seedBlueprint);
+            BeginRepairNativeWork(original,WorldAudioCue.HarvestPlant,true);
             yield return ResidentWorldAction(original, "HarvestCultivatedCrop"); yield return ResidentCloseMenus();
+            yield return FinishRepairNativeWork("work_sound_crop_original");
             var harvest = bed.Objects.Where(e => e.BlueprintName == yieldBlueprint || e.BlueprintName == seedBlueprint).ToArray();
             Check("crop_harvest_original", zone.GetEntityCell(original) == null && harvest.Count(e => e.BlueprintName == yieldBlueprint) == yieldCount
                 && harvest.Count(e => e.BlueprintName == seedBlueprint) == seedCount && CultivatedSoilPart.IsCultivated(zone, bed));
@@ -100,6 +144,11 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return WalkTo(bed.X, bed.Y); yield return RepairNativePickup();
             Check("crop_pickup_original", ResidentUnits(actor, yieldBlueprint) == units + yieldCount && ResidentUnits(actor, seedBlueprint) == seeds + seedCount
                 && harvest.All(e => zone.GetEntityCell(e) == null));
+            if (_repairWorkAudioOnly)
+            {
+                yield return RepairNativeFinish(actorID,sourceIDs);
+                yield break;
+            }
             var seed = actor.GetPart<InventoryPart>().Objects.First(e => e.BlueprintName == seedBlueprint);
             seeds = ResidentUnits(actor, seedBlueprint);
             yield return ItemAction(seed, "PlantSeed"); yield return ResidentCloseMenus();
@@ -148,16 +197,26 @@ namespace CavesOfOoo.Scenarios.Custom
                 text = "Ordinary waits: " + waits + "; real rain casts: " + casts + "; ticks per stage: " + crop.TicksPerStage + ". No offscreen progress or manual growth changes." });
             yield return Capture("crop-05-standing-ripe-plant");
             units = ResidentUnits(actor, yieldBlueprint); seeds = ResidentUnits(actor, seedBlueprint);
+            BeginRepairNativeWork(planted,WorldAudioCue.HarvestPlant,true);
             yield return ResidentWorldAction(planted, "HarvestCultivatedCrop"); yield return ResidentCloseMenus();
+            yield return FinishRepairNativeWork("work_sound_crop_grown");
             Check("crop_harvest_grown", zone.GetEntityCell(planted) == null && CultivatedSoilPart.IsCultivated(zone, bed)
                 && bed.Objects.Count(e => e.BlueprintName == yieldBlueprint) == yieldCount && bed.Objects.Count(e => e.BlueprintName == seedBlueprint) == seedCount);
             yield return RepairNativePickup();
             Check("crop_pickup_grown", ResidentUnits(actor, yieldBlueprint) == units + yieldCount && ResidentUnits(actor, seedBlueprint) == seeds + seedCount);
             yield return Capture("crop-06-earned-repeat-crop-yield");
+            yield return RepairNativeFinish(actorID,sourceIDs);
+        }
+        private IEnumerator RepairNativeFinish(string actorID,string[] sourceIDs)
+        {
+            int workBeforeLoad=_repairWorkReceiptCount;
             yield return RepairNativeCheckpoint(sourceIDs);
+            Check("work_audio_checkpoint_silent",_repairWorkReceiptCount==workBeforeLoad
+                &&_repairWorkRuntime.Player.AllocatedSources==16);
             Check("repair_crop_ordinary_finish", _input.PlayerEntity.ID == actorID && State() == "Normal"
                 && _input.PlayerEntity.GetStatValue("Hitpoints") > 0 && _input.PlayerEntity.GetStat("Hitpoints").Max == 40
-                && !DevMode.Enabled && !_input.PlayerEntity.HasPart<BitLockerPart>() && _discoveryTonicsUsed == 0);
+                && !DevMode.Enabled && !_input.PlayerEntity.HasPart<BitLockerPart>()
+                && (_repairWorkAudioOnly ? _discoveryTonicsUsed>=0&&_discoveryTonicsUsed<=2 : _discoveryTonicsUsed==0));
             yield return Capture("repair-06-restored-and-saved-field");
         }
         private IEnumerator RepairNativeGather(Entity source, string check)
@@ -179,9 +238,73 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(recipe != null && !fault.Repaired, "actual defined field fault");
             int before = ResidentUnits(_input.PlayerEntity, recipe.MaterialBlueprint);
             Require(before >= recipe.Quantity, "gathered real repair supplies");
+            var cue=recipe.Composition=="Masonry"?WorldAudioCue.WorkRepairStone:recipe.Composition=="Wood"?WorldAudioCue.WorkRepairWood:WorldAudioCue.Use;
+            BeginRepairNativeWork(target,cue,false);
             yield return ResidentWorldAction(target, RepairablePart.RepairCommand); yield return ResidentCloseMenus();
+            yield return FinishRepairNativeWork("work_sound_"+check);
             Check(check, fault.Repaired && ResidentUnits(_input.PlayerEntity, recipe.MaterialBlueprint) == before - recipe.Quantity
                 && !RepairablePart.BlocksFunction(target) && BiomeDrawn(target));
+        }
+        private Action _repairWorkCleanup;
+        private WorldAudioRuntime _repairWorkRuntime;
+        private WorldAudioLibrary _repairWorkLibrary;
+        private RepairNativeWorkEvidence _repairWorkPending;
+        private float[] _repairWorkSamples;
+        private int _repairWorkReceiptCount;
+        private sealed class RepairNativeWorkEvidence
+        {
+            public Entity Actor,Source; public Zone Zone; public Point Contact; public WorldAudioCue Cue;
+            public bool Consumed,ExactReceipt,ImportedPlaying; public int BeforeAccepted,ReceiptCount;
+            public AudioSource Voice; public AudioClip Clip; public float Peak; public int SampleCount;
+            public double Began;
+        }
+        private void BeginRepairNativeWork(Entity source,WorldAudioCue cue,bool consumed)
+        {
+            var cell=_input.CurrentZone.GetEntityCell(source); Require(cell!=null,"current physical work target");
+            _repairWorkPending=new RepairNativeWorkEvidence { Actor=_input.PlayerEntity,Source=source,Zone=_input.CurrentZone,
+                Contact=new Point(cell.X,cell.Y),Cue=cue,Consumed=consumed,BeforeAccepted=_repairWorkRuntime.Player.AcceptedSoundCount };
+        }
+        private void ObserveRepairNativeWork(WorldAudioWorkReceipt receipt)
+        {
+            _repairWorkReceiptCount++;
+            var e=_repairWorkPending;if(e==null)return;
+            e.ReceiptCount++;
+            e.ExactReceipt=receipt.Actor==e.Actor&&receipt.Source==e.Source&&receipt.Zone==e.Zone
+                &&receipt.Contact.Equals(e.Contact)&&receipt.Cue==e.Cue&&receipt.SourceConsumed==e.Consumed;
+            if(!e.ExactReceipt)return;
+            var first=_repairWorkLibrary.Sound(e.Cue,0)?.Clip;var second=_repairWorkLibrary.Sound(e.Cue,1)?.Clip;
+            e.Voice=_repairWorkRuntime.Player.Root.GetComponentsInChildren<AudioSource>().FirstOrDefault(s=>!s.loop
+                &&s.priority==64&&s.isPlaying&&s.volume>0&&s.clip!=null&&(s.clip==first||s.clip==second));
+            e.Clip=e.Voice?.clip;e.Began=Time.realtimeSinceStartupAsDouble;
+            e.ImportedPlaying=e.Clip!=null&&e.Clip.loadState==AudioDataLoadState.Loaded
+                &&e.Clip.loadType==AudioClipLoadType.DecompressOnLoad&&_repairWorkRuntime.Player.AcceptedSoundCount>e.BeforeAccepted;
+        }
+        private IEnumerator RepairNativeAudioMonitor()
+        {
+            while(true)
+            {
+                var e=_repairWorkPending;
+                if(e?.Voice!=null&&e.Voice.clip==e.Clip&&e.Voice.isPlaying&&e.ImportedPlaying
+                    &&Time.realtimeSinceStartupAsDouble-e.Began<1)
+                {
+                    e.Voice.GetOutputData(_repairWorkSamples,0);
+                    foreach(float value in _repairWorkSamples){e.Peak=Mathf.Max(e.Peak,Mathf.Abs(value));e.SampleCount++;}
+                }
+                yield return null;
+            }
+        }
+        private IEnumerator FinishRepairNativeWork(string check)
+        {
+            var e=_repairWorkPending; Require(e!=null,"pending physical work observation");
+            double until=Time.realtimeSinceStartupAsDouble+.25;
+            while(e.Peak<=.000001f&&Time.realtimeSinceStartupAsDouble<until)yield return null;
+            Check(check,e.ReceiptCount==1&&e.ExactReceipt&&e.ImportedPlaying&&e.SampleCount>0&&e.Peak>.000001f
+                &&_repairWorkRuntime.Player.AllocatedSources==16);
+            _descriptions.Add(new Description { subject=check,source=e.Source.ID,text="Cue="+e.Cue+"; receiptCount="+e.ReceiptCount
+                +"; exactOwnerContact="+e.ExactReceipt+"; importedPlaying="+e.ImportedPlaying+"; clip="+e.Clip?.name
+                +"; sampledSourcePeak="+e.Peak+"; sampledFloats="+e.SampleCount
+                +". Noncontiguous per-source playback windows, not a listening or physical-output claim." });
+            _repairWorkPending=null;
         }
         private IEnumerator RepairNativePickup()
         { yield return Tap(Key.G); if (State() == "PickupOpen") yield return Tap(Key.Tab); yield return ResidentCloseMenus(); }

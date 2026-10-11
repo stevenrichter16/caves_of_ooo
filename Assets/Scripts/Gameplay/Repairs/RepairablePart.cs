@@ -119,6 +119,7 @@ namespace CavesOfOoo.Core
         {
             var recipe=RepairRecipeRegistry.Get(RecipeId); string reason=Context(actor,zone,recipe);
             if(reason!=null)return Reject(actor,reason);
+            var workAudio=WorldAudioWork.Repair(actor,this,zone,recipe);
             if(!tx.TryClaim(ParentEntity,actor,RepairCommand) || !tx.TryClaim(actor,actor,RepairCommand))return Reject(actor,"owner-busy");
             var inventory=actor.GetPart<InventoryPart>(); var units=new List<Entity>(); int remaining=recipe.Quantity;
             foreach(var item in inventory.Objects)
@@ -157,6 +158,7 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(recipe.RepairedText);
                 Diag.Record("furniture","ObjectRepaired",actor,ParentEntity,new{recipeId=recipe.Id,material=recipe.MaterialBlueprint,quantity=recipe.Quantity,zoneId=zone.ZoneID});
                 var cell=zone.GetEntityCell(ParentEntity); if(cell!=null)ZoneRenderHooks.MarkCellDirty(cell.X,cell.Y,"Repair.Completed");
+                workAudio?.Publish();
             });
             return true;
         }

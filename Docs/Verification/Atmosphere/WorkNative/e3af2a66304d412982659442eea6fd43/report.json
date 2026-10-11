@@ -1,0 +1,83 @@
+{
+    "runId": "e3af2a66304d412982659442eea6fd43",
+    "zone": "Overworld.2.6.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: live safe field approach without healing grants\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:451 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RepairNativeApproach>d__306.MoveNext () [0x0007c] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeRepairCultivation.cs:55 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__217.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:471 ",
+    "canVerify": "Isolated ordinary seed64 actor in the real generated west-of-Morrowfast field. Actual keyboard gathering of clay, timber and cord, three material repairs, restored well drinking and gate operation, the original ripe knotflax harvest and physical produce/seed pickup. Four committed work receipts correlate exact actor/source/contact to actual imported short recordings, accepted playback and nonzero per-source PCM windows. Native F5/F6 graph replacement preserves repaired flags, remaining crops, spent sources and inventory without replaying work. The fixed16-source pool and restored in-memory SFX preference are checked.",
+    "cannotVerify": "One explicitly logged initial player travel shortcut reaches the unchanged generated field; every local action and movement uses ordinary keys with live NPC scheduling. No HP, inventory, materials, crop-stage, time or RNG grants, forced repairs or removed enemies. This distinct work-audio route deliberately ends after its first real harvest and checkpoint: it does not claim live planting, rain, growth, a repeat crop harvest, forge work or portable repair. The separate full farming attempt stopped at real enemy danger and remains a failed receipt. Sampled per-source PCM is not subjective listening, continuous recording, physical speaker output, global clipping proof or Deck performance. Saved preferences are untouched; only in-memory SFX is initialized and exactly restored. Screenshots need visual review.",
+    "mode": "native-work-audio",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.2.6.0@60,9 real west-of-Morrowfast repair and cultivated field; all faults, materials and plants left as generated",
+        "drawn owner=5233 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5233 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5235 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5234 blueprint=RepairRopeWell current=True drawn=True",
+        "drawn owner=5235 blueprint=RepairWoodenGate current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS work_audio_fixed_pool",
+        "PASS repair_generated_field",
+        "PASS repair_gather_clay",
+        "PASS repair_gather_timber",
+        "PASS repair_gather_cord",
+        "PASS work_sound_repair_lining",
+        "PASS repair_lining",
+        "PASS work_sound_repair_frame",
+        "PASS repair_frame",
+        "PASS work_sound_repair_line",
+        "PASS repair_line",
+        "PASS repair_draw_restored_water",
+        "PASS repair_operate_restored_gate",
+        "PASS work_audio_settings_restored",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/repair-01-generated-field.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/repair-02-cracked-lining-and-material.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/repair-03-gathered-world-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/repair-04-restored-gate-closed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/e3af2a66304d412982659442eea6fd43/repair-05-restored-gate-open.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "clay-lined catch well",
+            "source": "5233",
+            "text": "You see a clay-lined catch well.\nA split in the fired lining lets the drawn water drain through the rim. Pack the gap with fire clay.\nRepair: 2 fire clay. Composition: Masonry.\n\nA shallow catch well beside the growing beds. Its fired-clay lining forms a basin beneath a broad stone rim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_lining",
+            "source": "5233",
+            "text": "Cue=WorkRepairStone; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_stone_01; sampledSourcePeak=0.02967463; sampledFloats=60416. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_frame",
+            "source": "5235",
+            "text": "Cue=WorkRepairWood; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_wood_01; sampledSourcePeak=0.07093299; sampledFloats=59392. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_line",
+            "source": "5234",
+            "text": "Cue=Use; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=use; sampledSourcePeak=0.1116898; sampledFloats=62464. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 16,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 14.2292332,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

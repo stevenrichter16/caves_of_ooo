@@ -17,6 +17,7 @@ namespace CavesOfOoo.Core
             if (gather && actor?.GetPart<InventoryPart>() == null) return false;
             var source = new Source(crop, zone, actor, seedsOnly);
             if (!source.Current() || !source.ValidRecipe()) return Reject(crop, actor, "invalid-source-or-yield");
+            var workAudio = WorldAudioWork.Crop(actor, crop, zone);
             var gathering = LocalGatheringClaims.CaptureHarvest(actor, source.Owner, zone);
             var factory = CropSystem.Factory;
             if (factory == null) return Reject(crop, actor, "no_factory");
@@ -112,6 +113,7 @@ namespace CavesOfOoo.Core
                         actor: actor, target: source.Owner, payload: new { yieldBlueprint = source.YieldBlueprint,
                             yieldCount = source.YieldCount, seedBlueprint = source.SeedBlueprint, seedCount = source.SeedCount,
                             x = source.Cell.X, y = source.Cell.Y });
+                    workAudio?.Publish();
                 });
                 if (own) transaction.Commit();
                 return true;

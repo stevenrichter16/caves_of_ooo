@@ -97,6 +97,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            var workAudio = WorldAudioWork.Forge(context.Actor, context.Zone);
             bool any = WeaponForgingService.TryForgeBatch(
                 context.Actor,
                 _factory,
@@ -129,6 +130,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "(Requested " + _requestedCount + ", made " + madeCount
                     + " - ran out of components.)");
             }
+
+            if (madeCount > 0) transaction.AfterCommit(() => workAudio?.Publish());
 
             return InventoryCommandResult.Ok();
         }

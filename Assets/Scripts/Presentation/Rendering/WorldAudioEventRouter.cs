@@ -17,6 +17,7 @@ namespace CavesOfOoo.Rendering
             audio=playerAudio??throw new ArgumentNullException(nameof(playerAudio));
             EntityVisualHooks.MovedCallback+=Moved;WorldAudioCombat.Callback+=Combat;
             EntityVisualHooks.SelfUseCallback+=SelfUse;WorldAudioHooks.Callback+=Semantic;
+            WorldAudioWork.Callback+=Work;
         }
         public void SetWorld(Zone current,Entity listener,bool worldVisible)
         {
@@ -86,13 +87,28 @@ namespace CavesOfOoo.Rendering
                 default:return false;
             }
         }
+        void Work(WorldAudioWorkReceipt receipt)
+        {
+            try
+            {
+                // Only this player's explicit committed action can finish while
+                // their menu temporarily hides the world; NPC work needs visibility.
+                if(!Current(receipt.Actor,receipt.Zone,receipt.Actor!=player,out _))return;
+                var contact=zone.GetCell(receipt.Contact.X,receipt.Contact.Y);
+                if(contact==null||!contact.Explored||!contact.IsVisible)return;
+                audio.TryPlay(receipt.Cue,Pan(contact.X));
+            }
+            catch(Exception){ }
+        }
         void SelfUse(Entity actor,Zone at)
         {try{if(Current(actor,at,true,out var cell))audio.TryPlay(WorldAudioCue.Use,Pan(cell.X));}catch(Exception){ }}
         void Semantic(WorldAudioCue cue,Entity actor,Zone at,int x,int y)
         {
             try
             {
-                if(CombatCue(cue))return; // Weapon sounds require the actual typed strike receipt.
+                if(CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
+                    ||cue==WorldAudioCue.WorkRepairStone||cue==WorldAudioCue.WorkRepairMetal||cue==WorldAudioCue.HarvestPlant)return;
+                // Weapon and work sounds require their actual typed committed receipt.
                 bool localInventory=cue==WorldAudioCue.Pickup||cue==WorldAudioCue.Equip||cue==WorldAudioCue.Use;
                 if(localInventory&&actor!=player)return;
                 if(!Current(actor,at,!localInventory,out _))return;
@@ -105,6 +121,7 @@ namespace CavesOfOoo.Rendering
         {
             if(disposed)return;disposed=true;EntityVisualHooks.MovedCallback-=Moved;WorldAudioCombat.Callback-=Combat;
             EntityVisualHooks.SelfUseCallback-=SelfUse;WorldAudioHooks.Callback-=Semantic;zone=null;player=null;
+            WorldAudioWork.Callback-=Work;
         }
     }
 }

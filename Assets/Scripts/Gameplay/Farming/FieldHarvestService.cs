@@ -18,6 +18,7 @@ namespace CavesOfOoo.Core
                 && owner.GetPart<PhysicsPart>() == physical && !physical.Takeable && !owner.HasTag("Creature");
             var factory = HarvestablePart.Factory;
             if (!Current() || factory == null || count < 1 || count > 32 || string.IsNullOrEmpty(blueprint) || !factory.Blueprints.ContainsKey(blueprint)) return WorldResourceActions.Reject(actor, owner, "Harvest", "invalid_source_or_yield");
+            var workAudio = WorldAudioWork.Field(actor, harvest, zone);
             bool own = tx == null; tx ??= new InventoryTransaction();
             var products = new List<Entity>(); var ids = new HashSet<string>(StringComparer.Ordinal); var receipts = new List<InventoryTransferSnapshot>();
             var render = owner.GetPart<RenderPart>(); var examine = owner.GetPart<ExaminablePart>();
@@ -52,7 +53,7 @@ namespace CavesOfOoo.Core
                     if (!receipt.ClaimChanges(tx, actor, "Harvest")) return false;
                     zone.RemoveEntity(product); packed++;
                 }
-                tx.AfterCommit(() => { ZoneRenderHooks.MarkCellDirty(cell, "FieldHarvested"); MessageLog.Add("You gather the grain: " + packed + " packed, " + (count - packed) + " left on the cut row."); });
+                tx.AfterCommit(() => { ZoneRenderHooks.MarkCellDirty(cell, "FieldHarvested"); MessageLog.Add("You gather the grain: " + packed + " packed, " + (count - packed) + " left on the cut row."); workAudio?.Publish(); });
                 if (own) tx.Commit(); return true;
             }
             finally { if (own) tx.Rollback(); }

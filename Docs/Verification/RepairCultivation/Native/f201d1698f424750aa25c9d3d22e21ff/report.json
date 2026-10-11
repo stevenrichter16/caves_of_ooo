@@ -1,0 +1,99 @@
+{
+    "runId": "f201d1698f424750aa25c9d3d22e21ff",
+    "zone": "Overworld.2.6.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: safe actual crop growth wait; no skipped danger\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:451 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RepairCultivationRoute>d__301.MoveNext () [0x00f81] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeRepairCultivation.cs:155 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__217.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:471 ",
+    "canVerify": "Isolated ordinary seed64 player in the real generated west-of-Morrowfast field. Actual keyboard gathering, three material repairs, restored well drinking and gate operation; actual ripe knotflax harvest, physical produce/seed pickup, planting its returned seed on the preserved cultivated bed, original watering-book learning, Conjure Rain and paid player waits through sprout and ripe stages, a second harvest/pickup, and native F5/F6 graph replacement preserving repairs, remaining crop states and spent sources. Exact source/owner IDs and quantities are observed. Five committed work receipts correlate the live current actor/source/contact to the expected imported short recording, accepted playback and nonzero per-source PCM windows; the fixed audio pool and silent loaded work are checked. Native screenshots require visual inspection.",
+    "cannotVerify": "One explicitly logged player travel shortcut reaches the generated field from the isolated glade launch. All local movement and actions use ordinary keys and live NPC scheduling. No inventory, HP, stat, material, moisture, crop-stage, clock or RNG grants/edits, forced harvests or direct repair calls. A dangerous field stops the route honestly; no enemies are removed or suppressed. No natural discovery, all-seed terrain success, offscreen farming, economic balance or subjective model-quality claim. Wells supply drinking water; this route does not claim they water crops. Crops grow only while their area is active. Only the in-memory SFX level is temporarily set to1 and restored; saved preferences are not modified. This route does not exercise a forge or portable gear repair; their transaction behavior has separate native unit coverage. Sampled per-source PCM is not subjective listening, physical speaker output, continuous capture, a clipping guarantee or a Steam Deck performance claim. The visual review is separate from these state checks.",
+    "mode": "native-repair-and-cultivation",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.2.6.0@60,9 real west-of-Morrowfast repair and cultivated field; all faults, materials and plants left as generated",
+        "drawn owner=5233 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5233 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5235 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5234 blueprint=RepairRopeWell current=True drawn=True",
+        "drawn owner=5235 blueprint=RepairWoodenGate current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS work_audio_fixed_pool",
+        "PASS repair_generated_field",
+        "PASS repair_gather_clay",
+        "PASS repair_gather_timber",
+        "PASS repair_gather_cord",
+        "PASS work_sound_repair_lining",
+        "PASS repair_lining",
+        "PASS work_sound_repair_frame",
+        "PASS repair_frame",
+        "PASS work_sound_repair_line",
+        "PASS repair_line",
+        "PASS repair_draw_restored_water",
+        "PASS repair_operate_restored_gate",
+        "PASS work_sound_crop_original",
+        "PASS crop_harvest_original",
+        "PASS crop_pickup_original",
+        "PASS crop_plant_returned_seed",
+        "PASS crop_learn_rain",
+        "PASS crop_water_planted",
+        "PASS work_audio_settings_restored",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/repair-01-generated-field.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/repair-02-cracked-lining-and-material.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/repair-03-gathered-world-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/repair-04-restored-gate-closed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/repair-05-restored-gate-open.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/crop-01-harvest-on-preserved-bed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/crop-02-actual-planted-seed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/crop-03a-native-conjured-rain.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/f201d1698f424750aa25c9d3d22e21ff/crop-03-rain-watered-soil.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "clay-lined catch well",
+            "source": "5233",
+            "text": "You see a clay-lined catch well.\nA split in the fired lining lets the drawn water drain through the rim. Pack the gap with fire clay.\nRepair: 2 fire clay. Composition: Masonry.\n\nA shallow catch well beside the growing beds. Its fired-clay lining forms a basin beneath a broad stone rim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_lining",
+            "source": "5233",
+            "text": "Cue=WorkRepairStone; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_stone_01; sampledSourcePeak=0.02967463; sampledFloats=58368. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_frame",
+            "source": "5235",
+            "text": "Cue=WorkRepairWood; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=work_repair_wood_01; sampledSourcePeak=0.07093299; sampledFloats=59392. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_repair_line",
+            "source": "5234",
+            "text": "Cue=Use; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=use; sampledSourcePeak=0.1116898; sampledFloats=59392. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        },
+        {
+            "subject": "work_sound_crop_original",
+            "source": "5239",
+            "text": "Cue=HarvestPlant; receiptCount=1; exactOwnerContact=True; importedPlaying=True; clip=harvest_plant_01; sampledSourcePeak=0.06501863; sampledFloats=53248. Noncontiguous per-source playback windows, not a listening or physical-output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 22,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 20.0855748,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}
