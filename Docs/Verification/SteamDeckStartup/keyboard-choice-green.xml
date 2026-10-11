@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="104" result="Passed" total="104" passed="104" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:58Z" duration="3.2187158">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27568" result="Passed" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:58Z" duration="3.218716" total="104" passed="104" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="33954" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27568" result="Passed" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:58Z" duration="3.001076" total="104" passed="104" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="33955" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27568" result="Passed" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:58Z" duration="2.924296" total="104" passed="104" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="33956" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27568" result="Passed" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:58Z" duration="2.723984" total="104" passed="104" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="25145" name="NativeGamepadInputAdversarialTests" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-11 04:33:55Z" end-time="2026-10-11 04:33:56Z" duration="0.843845" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25167" name="Adversarial_ContextRoundTripCannotReviveSamePress" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ContextRoundTripCannotReviveSamePress" methodname="Adversarial_ContextRoundTripCannotReviveSamePress" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2062589836" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.026658" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25180" name="Adversarial_DirectionChangeCanInterruptWithoutRequestingMovement" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_DirectionChangeCanInterruptWithoutRequestingMovement" methodname="Adversarial_DirectionChangeCanInterruptWithoutRequestingMovement" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="966831188" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25177" name="Adversarial_DisconnectClearsGamepadButPreservesKeyboard" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_DisconnectClearsGamepadButPreservesKeyboard" methodname="Adversarial_DisconnectClearsGamepadButPreservesKeyboard" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1058006877" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25169" name="Adversarial_DriftAndPartialTriggersHaveNoIntent" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_DriftAndPartialTriggersHaveNoIntent" methodname="Adversarial_DriftAndPartialTriggersHaveNoIntent" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1222646413" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001331" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25162" name="Adversarial_HeldMenuConfirmCannotInteractOnReturnToWorld" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldMenuConfirmCannotInteractOnReturnToWorld" methodname="Adversarial_HeldMenuConfirmCannotInteractOnReturnToWorld" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="54876275" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001414" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25161" name="Adversarial_HeldModifierMustRearmAfterContextChange" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldModifierMustRearmAfterContextChange" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.169922" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25159" name="Adversarial_HeldModifierMustRearmAfterContextChange(X,Abilities)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldModifierMustRearmAfterContextChange(X,Abilities)" methodname="Adversarial_HeldModifierMustRearmAfterContextChange" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1399872082" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.003373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25160" name="Adversarial_HeldModifierMustRearmAfterContextChange(Y,AutoExplore)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldModifierMustRearmAfterContextChange(Y,AutoExplore)" methodname="Adversarial_HeldModifierMustRearmAfterContextChange" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1080425274" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25157" name="Adversarial_HeldWorldButtonCannotCascadeIntoMenu" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldButtonCannotCascadeIntoMenu" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.108098" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25153" name="Adversarial_HeldWorldButtonCannotCascadeIntoMenu(A,Return)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldButtonCannotCascadeIntoMenu(A,Return)" methodname="Adversarial_HeldWorldButtonCannotCascadeIntoMenu" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2105544207" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.006053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25154" name="Adversarial_HeldWorldButtonCannotCascadeIntoMenu(Circle,Escape)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldButtonCannotCascadeIntoMenu(Circle,Escape)" methodname="Adversarial_HeldWorldButtonCannotCascadeIntoMenu" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="659448443" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.003008" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25155" name="Adversarial_HeldWorldButtonCannotCascadeIntoMenu(X,I)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldButtonCannotCascadeIntoMenu(X,I)" methodname="Adversarial_HeldWorldButtonCannotCascadeIntoMenu" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1240095131" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25156" name="Adversarial_HeldWorldButtonCannotCascadeIntoMenu(Y,Tab)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldButtonCannotCascadeIntoMenu(Y,Tab)" methodname="Adversarial_HeldWorldButtonCannotCascadeIntoMenu" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1776642884" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25164" name="Adversarial_HeldWorldDirectionCannotPickFreshTarget" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HeldWorldDirectionCannotPickFreshTarget" methodname="Adversarial_HeldWorldDirectionCannotPickFreshTarget" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1977095687" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25158" name="Adversarial_HighlightChordCannotConfirmTargetOrThrow" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_HighlightChordCannotConfirmTargetOrThrow" methodname="Adversarial_HighlightChordCannotConfirmTargetOrThrow" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1133237586" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25185" name="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.086117" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25181" name="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(A,Return)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(A,Return)" methodname="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2013931841" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25182" name="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(Circle,Escape)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(Circle,Escape)" methodname="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1578024321" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001231" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25183" name="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(X,I)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(X,I)" methodname="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="86234251" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25184" name="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(Y,Tab)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease(Y,Tab)" methodname="Adversarial_MenuModifiedFaceButtonCannotLeakAfterModifierRelease" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1933243574" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25176" name="Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.104384" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25174" name="Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand(DpadUp,PreviousAbilityPage,Ascend)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand(DpadUp,PreviousAbilityPage,Ascend)" methodname="Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="970954093" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.005990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25175" name="Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand(DpadRight,ZoomOut,NextAbility)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand(DpadRight,ZoomOut,NextAbility)" methodname="Adversarial_ModifiedDpadReleaseCannotLeakBaseCommand" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="62790832" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.003009" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25152" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.108679" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25146" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(A,Interact,InteractDirection)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(A,Interact,InteractDirection)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="364466608" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.005136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25147" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(Circle,WaitUntilHealed,WaitMenu)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(Circle,WaitUntilHealed,WaitMenu)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="654228072" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25148" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(X,ActivateAbility,Abilities)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(X,ActivateAbility,Abilities)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1567328657" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25149" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(Y,Walk,AutoExplore)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(Y,Walk,AutoExplore)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1515693020" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25150" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(LeftShoulder,AttackNearest,ForceAttack)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(LeftShoulder,AttackNearest,ForceAttack)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="931893873" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25151" name="Adversarial_ModifierAfterButtonCannotCreateAlternateAction(RightShoulder,Fire,Throw)" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierAfterButtonCannotCreateAlternateAction(RightShoulder,Fire,Throw)" methodname="Adversarial_ModifierAfterButtonCannotCreateAlternateAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1836148331" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25168" name="Adversarial_ModifierDuringMovementStopsUntilTriggerRearmed" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_ModifierDuringMovementStopsUntilTriggerRearmed" methodname="Adversarial_ModifierDuringMovementStopsUntilTriggerRearmed" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="184894809" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001329" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25178" name="Adversarial_NewDeviceHeldStateRequiresNeutralBeforeWorldAction" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_NewDeviceHeldStateRequiresNeutralBeforeWorldAction" methodname="Adversarial_NewDeviceHeldStateRequiresNeutralBeforeWorldAction" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1781906917" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001533" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25165" name="Adversarial_QuarantineIsPerControlRatherThanAllControlsNeutral" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_QuarantineIsPerControlRatherThanAllControlsNeutral" methodname="Adversarial_QuarantineIsPerControlRatherThanAllControlsNeutral" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1515559111" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25179" name="Adversarial_QueriesAreStableWithinOneInputUpdate" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_QueriesAreStableWithinOneInputUpdate" methodname="Adversarial_QueriesAreStableWithinOneInputUpdate" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2103722773" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25166" name="Adversarial_RepeatedSameContextDoesNotSuppressHeldMovement" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_RepeatedSameContextDoesNotSuppressHeldMovement" methodname="Adversarial_RepeatedSameContextDoesNotSuppressHeldMovement" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="107524857" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25170" name="Adversarial_StickHysteresisDoesNotChatterAtActivationBoundary" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_StickHysteresisDoesNotChatterAtActivationBoundary" methodname="Adversarial_StickHysteresisDoesNotChatterAtActivationBoundary" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2119540912" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25171" name="Adversarial_TargetDpadPriorityPreservesDiagonalAgainstOtherSticks" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_TargetDpadPriorityPreservesDiagonalAgainstOtherSticks" methodname="Adversarial_TargetDpadPriorityPreservesDiagonalAgainstOtherSticks" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1802147262" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.014792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25163" name="Adversarial_TargetingTriggerAndStickCannotStepWhenTargetingCloses" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_TargetingTriggerAndStickCannotStepWhenTargetingCloses" methodname="Adversarial_TargetingTriggerAndStickCannotStepWhenTargetingCloses" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="2009819224" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001398" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25172" name="Adversarial_TargetRightStickWorksWithoutLeftStick" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_TargetRightStickWorksWithoutLeftStick" methodname="Adversarial_TargetRightStickWorksWithoutLeftStick" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="767975238" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25173" name="Adversarial_WorldDpadAndTriggerCannotAccidentallyMove" fullname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests.Adversarial_WorldDpadAndTriggerCannotAccidentallyMove" methodname="Adversarial_WorldDpadAndTriggerCannotAccidentallyMove" classname="CavesOfOoo.Tests.NativeGamepadInputAdversarialTests" runstate="Runnable" seed="1460446230" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25186" name="NativeGamepadInputTests" fullname="CavesOfOoo.Tests.NativeGamepadInputTests" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="69" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:58Z" duration="1.679322" total="69" passed="69" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25254" name="ControllerCanChooseAStartingBuildExactlyOnce" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ControllerCanChooseAStartingBuildExactlyOnce" methodname="ControllerCanChooseAStartingBuildExactlyOnce" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="276393440" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.002331" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25235" name="HighlightChordDoesNotBecomeMovementWhenLeftTriggerReleased" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.HighlightChordDoesNotBecomeMovementWhenLeftTriggerReleased" methodname="HighlightChordDoesNotBecomeMovementWhenLeftTriggerReleased" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="974207354" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25253" name="KeyboardOnlyFallbackNeverReadsGamepadArrows" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.KeyboardOnlyFallbackNeverReadsGamepadArrows" methodname="KeyboardOnlyFallbackNeverReadsGamepadArrows" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="858942728" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:56Z" duration="0.001640" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25195" name="MenuButtonHasOnePressHeldAndRelease" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:33:56Z" end-time="2026-10-11 04:33:57Z" duration="0.215870" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25187" name="MenuButtonHasOnePressHeldAndRelease(A,Return)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(A,Return)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="624525457" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.004875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25188" name="MenuButtonHasOnePressHeldAndRelease(Circle,Escape)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(Circle,Escape)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="440636372" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.003056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25189" name="MenuButtonHasOnePressHeldAndRelease(X,I)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(X,I)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="2079987481" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25190" name="MenuButtonHasOnePressHeldAndRelease(Y,Tab)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(Y,Tab)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="32876110" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002763" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25191" name="MenuButtonHasOnePressHeldAndRelease(Start,Tab)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(Start,Tab)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="353151702" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25192" name="MenuButtonHasOnePressHeldAndRelease(Select,Escape)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(Select,Escape)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="457797191" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25193" name="MenuButtonHasOnePressHeldAndRelease(LeftShoulder,LeftArrow)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(LeftShoulder,LeftArrow)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1237107475" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25194" name="MenuButtonHasOnePressHeldAndRelease(RightShoulder,RightArrow)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuButtonHasOnePressHeldAndRelease(RightShoulder,RightArrow)" methodname="MenuButtonHasOnePressHeldAndRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1362784509" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25252" name="MenuDetailChordUsesHelpWithoutConfirmation" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuDetailChordUsesHelpWithoutConfirmation" methodname="MenuDetailChordUsesHelpWithoutConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1187920643" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001234" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25251" name="MenuStickNavigatesAndRightStickPages" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.MenuStickNavigatesAndRightStickPages" methodname="MenuStickNavigatesAndRightStickPages" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1821346850" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001204" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25215" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.198332" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25207" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(A,InteractDirection,Interact)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(A,InteractDirection,Interact)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1429041983" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.005359" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25208" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Circle,WaitMenu,WaitUntilHealed)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Circle,WaitMenu,WaitUntilHealed)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="572977752" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25209" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(X,Abilities,ActivateAbility)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(X,Abilities,ActivateAbility)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1657428373" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25210" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Y,AutoExplore,Walk)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Y,AutoExplore,Walk)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1190408705" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25211" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(LeftShoulder,ForceAttack,AttackNearest)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(LeftShoulder,ForceAttack,AttackNearest)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="710553786" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25212" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(RightShoulder,Throw,Fire)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(RightShoulder,Throw,Fire)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1631773106" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002242" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25213" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Start,Help,Character)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(Start,Help,Character)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1197607375" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25214" name="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(RightStick,ReplaceCell,Reload)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.ModifiedWorldPressRetainsItsMeaningUntilButtonRelease(RightStick,ReplaceCell,Reload)" methodname="ModifiedWorldPressRetainsItsMeaningUntilButtonRelease" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1293432611" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25234" name="RightTriggerWithoutDirectionRequestsStepForCallerToWait" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.RightTriggerWithoutDirectionRequestsStepForCallerToWait" methodname="RightTriggerWithoutDirectionRequestsStepForCallerToWait" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1884477761" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25264" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.185375" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25258" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,Enter)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,Enter)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="922365486" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25259" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,I)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,I)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="776827414" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25260" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,X)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(False,X)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="472961248" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25261" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,Enter)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,Enter)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="463243184" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25262" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,I)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,I)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1819378458" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25263" name="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,X)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(True,X)" methodname="SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="248187128" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001222" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25257" name="SavedGameMenusAcceptControllerConfirmAndNewGame" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameMenusAcceptControllerConfirmAndNewGame" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.094416" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25255" name="SavedGameMenusAcceptControllerConfirmAndNewGame(False)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameMenusAcceptControllerConfirmAndNewGame(False)" methodname="SavedGameMenusAcceptControllerConfirmAndNewGame" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1171200282" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25256" name="SavedGameMenusAcceptControllerConfirmAndNewGame(True)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.SavedGameMenusAcceptControllerConfirmAndNewGame(True)" methodname="SavedGameMenusAcceptControllerConfirmAndNewGame" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="2119488518" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.001264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25248" name="TargetingButtonsConfirmCancelOrChooseUnderfoot" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingButtonsConfirmCancelOrChooseUnderfoot" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.207992" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25245" name="TargetingButtonsConfirmCancelOrChooseUnderfoot(A,Return)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingButtonsConfirmCancelOrChooseUnderfoot(A,Return)" methodname="TargetingButtonsConfirmCancelOrChooseUnderfoot" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="863711742" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.005711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25246" name="TargetingButtonsConfirmCancelOrChooseUnderfoot(Circle,Escape)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingButtonsConfirmCancelOrChooseUnderfoot(Circle,Escape)" methodname="TargetingButtonsConfirmCancelOrChooseUnderfoot" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1849869259" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.003137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25247" name="TargetingButtonsConfirmCancelOrChooseUnderfoot(X,Period)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingButtonsConfirmCancelOrChooseUnderfoot(X,Period)" methodname="TargetingButtonsConfirmCancelOrChooseUnderfoot" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="294936575" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:57Z" duration="0.002917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25244" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:33:57Z" end-time="2026-10-11 04:33:58Z" duration="0.197205" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25236" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,-1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1611143251" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25237" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(0,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(0,-1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="342803545" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25238" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,-1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="301690675" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25239" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,0)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,0)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="881917870" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25240" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,0)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,0)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="280974142" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25241" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(-1,1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="819785362" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25242" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(0,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(0,1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1503270410" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25243" name="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation(1,1)" methodname="TargetingDirectionsPreserveDiagonalsAndSeparateConfirmation" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="691634481" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25249" name="TargetingRightTriggerConfirmsWithoutWorldMovement" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.TargetingRightTriggerConfirmsWithoutWorldMovement" methodname="TargetingRightTriggerConfirmsWithoutWorldMovement" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="663539934" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25206" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.106496" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25196" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(A,Interact)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(A,Interact)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="94217999" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25197" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(Circle,WaitUntilHealed)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(Circle,WaitUntilHealed)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="587105454" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25198" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(X,ActivateAbility)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(X,ActivateAbility)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="571967480" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25199" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(Y,Walk)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(Y,Walk)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="522978725" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25200" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(LeftShoulder,AttackNearest)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(LeftShoulder,AttackNearest)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1097021354" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001401" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25201" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(RightShoulder,Fire)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(RightShoulder,Fire)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="767534838" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25202" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(Start,Character)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(Start,Character)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="179999164" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25203" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(Select,Pause)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(Select,Pause)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1506531545" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25204" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(LeftStick,PointOfInterest)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(LeftStick,PointOfInterest)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="15928866" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25205" name="WorldButtonProducesTypedCommandWithoutKeyboardLeak(RightStick,Reload)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldButtonProducesTypedCommandWithoutKeyboardLeak(RightStick,Reload)" methodname="WorldButtonProducesTypedCommandWithoutKeyboardLeak" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="942527183" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25224" name="WorldDpadUsesCommandsInsteadOfWalking" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.103086" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25216" name="WorldDpadUsesCommandsInsteadOfWalking(DpadLeft,False,PreviousAbility)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadLeft,False,PreviousAbility)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1366343024" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.004493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25217" name="WorldDpadUsesCommandsInsteadOfWalking(DpadRight,False,NextAbility)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadRight,False,NextAbility)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="790101803" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25218" name="WorldDpadUsesCommandsInsteadOfWalking(DpadUp,False,Ascend)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadUp,False,Ascend)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="296831741" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25219" name="WorldDpadUsesCommandsInsteadOfWalking(DpadDown,False,Descend)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadDown,False,Descend)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1836626451" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.002312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25220" name="WorldDpadUsesCommandsInsteadOfWalking(DpadUp,True,PreviousAbilityPage)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadUp,True,PreviousAbilityPage)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="932970111" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25221" name="WorldDpadUsesCommandsInsteadOfWalking(DpadDown,True,NextAbilityPage)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadDown,True,NextAbilityPage)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1993076966" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25222" name="WorldDpadUsesCommandsInsteadOfWalking(DpadLeft,True,ZoomIn)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadLeft,True,ZoomIn)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="355120375" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25223" name="WorldDpadUsesCommandsInsteadOfWalking(DpadRight,True,ZoomOut)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldDpadUsesCommandsInsteadOfWalking(DpadRight,True,ZoomOut)" methodname="WorldDpadUsesCommandsInsteadOfWalking" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="831261712" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25250" name="WorldRightStickLooksWithoutChangingFacingOrCasting" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldRightStickLooksWithoutChangingFacingOrCasting" methodname="WorldRightStickLooksWithoutChangingFacingOrCasting" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="734657298" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001525" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25233" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.202654" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25225" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,-1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="840867114" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.007047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25226" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(0,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(0,-1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="619139758" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25227" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,-1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,-1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="866040350" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25228" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,0)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,0)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="2056349996" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.003251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25229" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,0)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,0)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="311226448" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25230" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(-1,1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1914843027" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25231" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(0,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(0,1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="2109652171" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25232" name="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,1)" fullname="CavesOfOoo.Tests.NativeGamepadInputTests.WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld(1,1)" methodname="WorldSelectsEightDirectionsButMovesOnlyWhileRightTriggerHeld" classname="CavesOfOoo.Tests.NativeGamepadInputTests" runstate="Runnable" seed="1131011804" result="Passed" start-time="2026-10-11 04:33:58Z" end-time="2026-10-11 04:33:58Z" duration="0.001384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

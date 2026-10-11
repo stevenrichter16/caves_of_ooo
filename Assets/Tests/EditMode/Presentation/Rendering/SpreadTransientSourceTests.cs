@@ -23,6 +23,25 @@ namespace CavesOfOoo.Tests
    zone=new Zone("Overworld.4.9.0");manager.SetActiveZone(zone);foreach(var cell in zone.Cells){cell.IsVisible=true;cell.Explored=true;}
   }
   [TearDown] public void Cleanup(){var map=(Dictionary<string,GasDefinition>)Registry.GetValue(null);map.Clear();foreach(var p in prior)map[p.Key]=p.Value;Initialized.SetValue(null,initialized);}
+  static int AuthorityChecks()
+  {
+   var p=typeof(SpreadTransientSource).GetProperty("GasAuthorityCheckCount",BindingFlags.Static|BindingFlags.NonPublic);
+   Assert.NotNull(p,"Count the actual regional checks in the live gas query.");return (int)p.GetValue(null);
+  }
+  [TestCase(false)][TestCase(true)]
+  public void OrdinaryOwnersNeverPayForGasWorldAuthority(bool misleadingTag)
+  {
+   var owner=new Entity();if(misleadingTag)owner.SetTag("Gas");zone.AddEntity(owner,20,10);
+   int n=AuthorityChecks();for(int i=0;i<2000;i++)Assert.False(SpreadTransientSource.TryGas(zone,owner,out _));
+   Assert.AreEqual(n,AuthorityChecks());
+  }
+  [Test]public void RawGasTagRestorationAndWorldChangesAreObservedImmediately()
+  {
+   var gas=Gas();int n=AuthorityChecks();Assert.True(SpreadTransientSource.TryGas(zone,gas,out _));Assert.AreEqual(n+1,AuthorityChecks());
+   gas.Tags.Remove("Gas");n=AuthorityChecks();Assert.False(SpreadTransientSource.TryGas(zone,gas,out _));Assert.AreEqual(n,AuthorityChecks());
+   gas.Tags["Gas"]="";Assert.True(SpreadTransientSource.TryGas(zone,gas,out _));Assert.AreEqual(n+1,AuthorityChecks());
+   manager.WorldMap.Tiles[4,9]=BiomeType.Beating;Assert.False(SpreadTransientSource.TryGas(zone,gas,out _));Assert.AreEqual(n+2,AuthorityChecks());
+  }
   Entity Gas(string id="poison-vapor",int density=80)=>GasFactory.SpawnGas(zone,20,10,id,density);
   [TestCase("bloom-spores","&m")][TestCase("confusion-vapor","&M")][TestCase("cryo-mist","&C")]
   [TestCase("fungal-spores","&G")][TestCase("marsh-gas","&g")][TestCase("plasma-gas","&R")]

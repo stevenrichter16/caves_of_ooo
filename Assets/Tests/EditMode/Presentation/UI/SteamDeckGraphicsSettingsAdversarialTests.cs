@@ -49,6 +49,77 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(handheld ? SpellFxMode.Reduced : SpellFxMode.Full, SpellFxSettings.Mode);
         }
 
+        [TestCase(null, null, false)]
+        [TestCase(null, "0", false)]
+        [TestCase(null, "true", false)]
+        [TestCase(null, "01", false)]
+        [TestCase(null, " 1", false)]
+        [TestCase(null, "1", true)]
+        [TestCase("0", "1", false)]
+        [TestCase("1", "0", true)]
+        [TestCase("1", null, true)]
+        [TestCase("true", "1", true)]
+        [TestCase(" 0", "1", true)]
+        public void Adversarial_DeckHint_ExactValueAndApplicationOverridePrecedence(
+            string applicationHint, string deckHint, bool handheld)
+        {
+            Environment.SetEnvironmentVariable("COO_HANDHELD", applicationHint);
+            Environment.SetEnvironmentVariable("SteamDeck", deckHint);
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.AreEqual(handheld, Village3DSettings.LowDetail);
+            Assert.AreEqual(handheld ? .75f : 1f, Village3DSettings.WorldResolutionScale);
+            Assert.AreEqual(!handheld, Village3DSettings.ShadowsEnabled);
+            Assert.AreEqual(handheld ? SpellFxMode.Reduced : SpellFxMode.Full, SpellFxSettings.Mode);
+        }
+
+        [TestCase(0, SpellFxMode.Full)]
+        [TestCase(1, SpellFxMode.Off)]
+        public void Adversarial_DeckHint_SavedDetailAndEffectsRemainAuthoritative(int detail, SpellFxMode effects)
+        {
+            Environment.SetEnvironmentVariable("SteamDeck", "1");
+            PlayerPrefs.SetInt(Village3DSettings.LowDetailPreferenceKey, detail);
+            PlayerPrefs.SetInt(SpellFxSettings.ModePreferenceKey, (int)effects);
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.AreEqual(detail == 1, Village3DSettings.LowDetail);
+            Assert.AreEqual(effects, SpellFxSettings.Mode);
+        }
+
+        [Test]
+        public void Adversarial_DeckHint_ReloadReturnsToDesktopDefaultsWithoutStaleOverrides()
+        {
+            Environment.SetEnvironmentVariable("SteamDeck", "1");
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.IsTrue(Village3DSettings.LowDetail, "The first load must really use Deck defaults.");
+            Village3DSettings.WorldResolutionScale = .5f;
+            Village3DSettings.ShadowsEnabled = false;
+            Environment.SetEnvironmentVariable("SteamDeck", null);
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.IsFalse(Village3DSettings.LowDetail);
+            Assert.AreEqual(1f, Village3DSettings.WorldResolutionScale);
+            Assert.IsTrue(Village3DSettings.ShadowsEnabled);
+            Assert.AreEqual(SpellFxMode.Full, SpellFxSettings.Mode);
+        }
+
+        [TestCase("SteamGamepadUI")]
+        [TestCase("SteamOS")]
+        public void Adversarial_OtherSteamEnvironmentFlags_DoNotIdentifyDeck(string variable)
+        {
+            string previous = Environment.GetEnvironmentVariable(variable);
+            try
+            {
+                Environment.SetEnvironmentVariable(variable, "1");
+                Village3DSettings.Load();
+                SpellFxSettings.Load();
+                Assert.IsFalse(Village3DSettings.LowDetail);
+                Assert.AreEqual(SpellFxMode.Full, SpellFxSettings.Mode);
+            }
+            finally { Environment.SetEnvironmentVariable(variable, previous); }
+        }
+
         [Test]
         public void Adversarial_Hint_IndependentSavedFullResolutionAndShadowsWin()
         {

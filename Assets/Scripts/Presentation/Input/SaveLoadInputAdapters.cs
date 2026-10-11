@@ -15,6 +15,7 @@ namespace CavesOfOoo.Rendering
     }
 
     /// <summary>Maps A and X only inside a saved-game choice prompt. Keyboard
+    /// output from Steam Input keyboard layouts is accepted too. Keyboard
     /// bindings and modifier-latched controller actions retain their meanings.</summary>
     internal sealed class GamepadChoiceInputProbe : IInputProbe
     {
@@ -23,8 +24,8 @@ namespace CavesOfOoo.Rendering
         public GamepadChoiceInputProbe(IInputProbe fallback, KeyCode resume, KeyCode restart)
         { this.fallback = fallback; this.resume = resume; this.restart = restart; }
         public bool GetKeyDown(KeyCode key) => fallback.GetKeyDown(key)
-            || (key == resume && NativeGamepadInput.GetKeyDown(KeyCode.Return))
-            || (key == restart && NativeGamepadInput.GetKeyDown(KeyCode.I));
+            || (key == resume && fallback.GetKeyDown(KeyCode.Return))
+            || (key == restart && (fallback.GetKeyDown(KeyCode.I) || fallback.GetKeyDown(KeyCode.X)));
     }
 
     /// <summary>

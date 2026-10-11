@@ -61,7 +61,7 @@ namespace CavesOfOoo.Core
 
         public static BiomeCropSite ForZone(OverworldZoneManager manager,string zoneID)
         {
-            if(!Canonical(zoneID,out int x,out int y,out int depth)||manager?.WorldMap==null)return null;
+            if(!TryParseCanonicalAddress(zoneID,out int x,out int y,out int depth)||manager?.WorldMap==null)return null;
             if(depth==0)return SurfaceSites(manager).FirstOrDefault(s=>s.ZoneID==zoneID);
             if(depth>5 || !IsOrdinaryCave(manager,zoneID) || !CaveColumns(manager).Contains(WorldMap.ToZoneID(x,y,0)))return null;
             int rotate=(int)(Rank(manager.WorldSeed,WorldMap.ToZoneID(x,y,0),"cave-species")%5);
@@ -72,9 +72,15 @@ namespace CavesOfOoo.Core
         /// This read-only predicate does not grant placement in authored columns.</summary>
         public static bool IsOrdinaryCave(OverworldZoneManager manager,string zoneID)
         {
-            if(!Canonical(zoneID,out int x,out int y,out int depth)||depth<=0
-                ||manager?.WorldMap?.Tiles==null||manager.WorldMap.POIs==null)return false;
-            string surface=WorldMap.ToZoneID(x,y,0);
+            if(!TryParseCanonicalAddress(zoneID,out int x,out int y,out int depth)||depth<=0)return false;
+            return IsOrdinaryCaveAtCanonicalAddress(manager,x,y,depth,WorldMap.ToZoneID(x,y,0));
+        }
+
+        /// <summary>Live world authority for an already validated canonical
+        /// address. Presentation may cache parsing, but never this result.</summary>
+        internal static bool IsOrdinaryCaveAtCanonicalAddress(OverworldZoneManager manager,int x,int y,int depth,string surface)
+        {
+            if(depth<=0||manager?.WorldMap?.Tiles==null||manager.WorldMap.POIs==null)return false;
             return manager.WorldMap.GetPOI(x,y)==null && !LairStacks.HasSavedColumn(manager,surface) && !Protected(surface)
                 && !WorldMapAuthoring.PlaceAt(x,y).HasValue && !SinkholeSites.IsMouth(x,y);
         }
@@ -108,7 +114,9 @@ namespace CavesOfOoo.Core
             foreach(var d in RegionalSituations.Definitions)if(surface==d.SourceZoneId||surface==d.RecipientZoneId)return true;
             return false;
         }
-        static bool Canonical(string id,out int x,out int y,out int depth)
+        /// <summary>Strict canonical coordinates shared with the presentation
+        /// address cache. This parses only the string, never world authority.</summary>
+        internal static bool TryParseCanonicalAddress(string id,out int x,out int y,out int depth)
         {
             x=y=depth=-1;if(string.IsNullOrEmpty(id)||!WorldMap.IsOverworldZoneID(id))return false;
             var p=WorldMap.FromZoneID(id);x=p.x;y=p.y;depth=p.z;

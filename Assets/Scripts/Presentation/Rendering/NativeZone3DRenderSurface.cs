@@ -34,6 +34,8 @@ namespace CavesOfOoo.Rendering
         // Independent ownership survives external destruction of the hierarchy.
         private RenderTexture target;
         private bool disposed;
+        private uint fogUpdateVersion;
+        internal int FogUploadCount { get; private set; }
         private float cameraAltitude = CameraAltitude;
         private FilterMode targetFilter = FilterMode.Bilinear;
         private SphericalHarmonicsL2[] ownedAmbientProbe;
@@ -65,7 +67,7 @@ namespace CavesOfOoo.Rendering
             {
                 FogTexture = new Texture2D(Zone.Width, Zone.Height, TextureFormat.RGBA32, false, true)
                 { name = "Native zone fog and light", filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp, hideFlags = HideFlags.DontSave };
-                FogTexture.SetPixels32(pixels); FogTexture.Apply(false, false);
+                UploadFog();
                 foreach (var source in worldMaterialSources)
                 {
                     if (families.ContainsKey(source)) continue;
@@ -197,10 +199,25 @@ namespace CavesOfOoo.Rendering
         public void UpdateFog(Zone zone, LightMap light, bool fullReveal)
         {
             if (disposed || FogTexture == null) return;
+            // Continue observing every current cell: raw fog, light and reveal
+            // changes do not all carry a shared revision. Only avoid an identical
+            // GPU submission. Texture's native revision also detects outside edits.
+            bool changed = FogTexture.updateCount != fogUpdateVersion;
             for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
-                pixels[(Zone.Height - 1 - y) * Zone.Width + x] =
-                    zone == null ? Color.clear : Village3DVisibility.SampleCell(zone.GetCell(x, y), light, fullReveal);
+            {
+                int index = (Zone.Height - 1 - y) * Zone.Width + x;
+                Color32 next = zone == null ? Color.clear : Village3DVisibility.SampleCell(zone.GetCell(x, y), light, fullReveal);
+                var previous = pixels[index];
+                changed |= next.r != previous.r || next.g != previous.g || next.b != previous.b || next.a != previous.a;
+                pixels[index] = next;
+            }
+            if (changed) UploadFog();
+        }
+        private void UploadFog()
+        {
             FogTexture.SetPixels32(pixels); FogTexture.Apply(false, false);
+            fogUpdateVersion = FogTexture.updateCount;
+            FogUploadCount++;
         }
         private void CreateCamera(Transform parent, int rendererIndex)
         {

@@ -76,6 +76,49 @@ namespace CavesOfOoo.Tests
                 }
             }
         }
+        [Test] public void FogCacheObservesAllDirectVisibilityCombinations([Values] bool explored,[Values] bool visible,[Values] bool reveal)
+        {
+            using(var f=new Fixture())
+            {
+                var s=f.Create();var z=new Zone("fog-cache");var c=z.GetCell(0,0);c.Explored=explored;c.IsVisible=visible;
+                s.UpdateFog(z,null,reveal);int n=SteamDeckFogUploadTests.Uploads(s);
+                s.UpdateFog(z,null,reveal);Assert.AreEqual(n,SteamDeckFogUploadTests.Uploads(s));SteamDeckFogUploadTests.Exact(s,z,null,reveal);
+                c.Explored=!explored;c.IsVisible=!visible;s.UpdateFog(z,null,!reveal);SteamDeckFogUploadTests.Exact(s,z,null,!reveal);
+                n=SteamDeckFogUploadTests.Uploads(s);s.UpdateFog(z,null,!reveal);Assert.AreEqual(n,SteamDeckFogUploadTests.Uploads(s));
+            }
+        }
+        [TestCase(0,0,false)][TestCase(79,0,false)][TestCase(0,24,false)][TestCase(79,24,false)][TestCase(40,12,false)]
+        [TestCase(0,0,true)][TestCase(79,0,true)][TestCase(0,24,true)][TestCase(79,24,true)][TestCase(40,12,true)]
+        public void FogCacheRepairsPublishedExternalPixelEditsAtCorrectCoordinate(int x,int y,bool reveal)
+        {
+            using(var f=new Fixture())
+            {
+                var s=f.Create();var z=new Zone("external-fog");s.UpdateFog(z,null,reveal);int n=SteamDeckFogUploadTests.Uploads(s);
+                s.FogTexture.SetPixel(x,y,Color.magenta);s.FogTexture.Apply(false,false);
+                s.UpdateFog(z,null,reveal);Assert.AreEqual(n+1,SteamDeckFogUploadTests.Uploads(s));SteamDeckFogUploadTests.Exact(s,z,null,reveal);
+                s.UpdateFog(z,null,reveal);Assert.AreEqual(n+1,SteamDeckFogUploadTests.Uploads(s));
+            }
+        }
+        [Test] public void FogCacheDoesNotSharePixelsOrUploadVersionBetweenSurfaces()
+        {
+            using(var f=new Fixture())
+            {
+                var a=f.Create();var b=f.Create();var z=new Zone("independent-fog");z.GetCell(2,3).Explored=true;z.GetCell(2,3).IsVisible=true;
+                a.UpdateFog(z,null,false);b.UpdateFog(null,null,false);int n=SteamDeckFogUploadTests.Uploads(b);
+                a.UpdateFog(z,null,true);b.UpdateFog(null,null,false);Assert.AreEqual(n,SteamDeckFogUploadTests.Uploads(b));
+                SteamDeckFogUploadTests.Exact(a,z,null,true);SteamDeckFogUploadTests.Exact(b,null,null,false);
+                b.UpdateFog(z,null,true);SteamDeckFogUploadTests.Exact(b,z,null,true);
+            }
+        }
+        [Test] public void DisposedFogCacheDoesNotSubmitOrResurrectTexture()
+        {
+            using(var f=new Fixture())
+            {
+                var s=f.Create();int n=SteamDeckFogUploadTests.Uploads(s);s.Dispose();
+                Assert.DoesNotThrow(()=>s.UpdateFog(new Zone("after-disposal"),null,true));Assert.AreEqual(n,SteamDeckFogUploadTests.Uploads(s));
+                Assert.True(s.FogTexture==null);
+            }
+        }
         static Renderer[] Renderers(GameObject go) => go.GetComponentsInChildren<Renderer>(true);
         static MaterialPropertyBlock Block(Renderer renderer, int slot = -1)
         {

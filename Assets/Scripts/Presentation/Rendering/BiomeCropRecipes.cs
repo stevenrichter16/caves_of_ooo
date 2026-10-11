@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using CavesOfOoo.Core;
 namespace CavesOfOoo.Rendering
 {
@@ -7,13 +8,32 @@ namespace CavesOfOoo.Rendering
  public static class BiomeCropRecipes
  {
   public const string Prefix="biome-crop-";
+  private sealed class CaveAddress
+  {
+   internal string Id, Surface;
+   internal int X, Y, Depth;
+   internal bool Canonical;
+  }
+  private static readonly ConditionalWeakTable<Zone,CaveAddress> CaveAddresses=new ConditionalWeakTable<Zone,CaveAddress>();
+  /// <summary>Cumulative actual string parses by the ordinary-cave presentation
+  /// predicate. Repeated queries of an unchanged zone address add no work.</summary>
+  internal static int OrdinaryCaveAddressParseCount { get; private set; }
   /// <summary>Only the current graph of an ordinary receiving-world cave may
   /// widen the native renderer. Address strings and detached clones gain nothing.</summary>
   public static bool IsOrdinaryCave(Zone zone)
   {
-   if(zone==null)return false;var manager=WorldLocationContext.For(zone);
-   return manager!=null&&manager.CachedZones.TryGetValue(zone.ZoneID,out var current)&&current==zone
-    &&BiomeCropPlan.IsOrdinaryCave(manager,zone.ZoneID);
+   if(zone==null||string.IsNullOrEmpty(zone.ZoneID))return false;
+   var manager=WorldLocationContext.For(zone);
+   if(manager?.CachedZones==null||!manager.CachedZones.TryGetValue(zone.ZoneID,out var current)||current!=zone)return false;
+   var address=CaveAddresses.GetValue(zone,_=>new CaveAddress());
+   if(address.Id!=zone.ZoneID)
+   {
+    OrdinaryCaveAddressParseCount++;
+    address.Id=zone.ZoneID;
+    address.Canonical=BiomeCropPlan.TryParseCanonicalAddress(address.Id,out address.X,out address.Y,out address.Depth);
+    address.Surface=address.Canonical&&address.Depth>0?WorldMap.ToZoneID(address.X,address.Y,0):null;
+   }
+   return address.Canonical&&BiomeCropPlan.IsOrdinaryCaveAtCanonicalAddress(manager,address.X,address.Y,address.Depth,address.Surface);
   }
   public static bool Handles(string blueprint)=>BiomeCropCatalog.ByBlueprint(blueprint)!=null;
   public static string ResolveModel(Zone zone,Entity entity)

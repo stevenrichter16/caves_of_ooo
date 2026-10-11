@@ -15,13 +15,18 @@ namespace CavesOfOoo.Rendering
  }
  public static class SpreadTransientSource
  {
+  // Diagnostic work counter: increments only when a gas candidate needs live world authority.
+  internal static int GasAuthorityCheckCount { get; private set; }
   /// <summary>Exact live standard GasFactory owner only. Malformed/custom owners
   /// retain their existing fallback; no definition or RenderPart is repaired.</summary>
   public static bool TryGas(Zone zone,Entity owner,out SpreadTransientSample sample)
   {
    sample=default;
-   if(owner==null||(!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone)))return false;
-   var cell=zone.GetEntityCell(owner);var gas=owner.GetPart<GasPoolPart>();var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
+   if(owner==null||!owner.HasTag("Gas"))return false;
+   var gas=owner.GetPart<GasPoolPart>();if(gas==null)return false;
+   GasAuthorityCheckCount++;
+   if(!SpreadPresentationScope.IsActive(zone)&&!SoddenPresentationScope.IsActive(zone))return false;
+   var cell=zone.GetEntityCell(owner);var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
    if(cell==null||!cell.Objects.Contains(owner)||!cell.IsVisible||!cell.Explored||gas==null||!ReferenceEquals(gas.ParentEntity,owner)
       ||gas.Density<=0||GasRegistry.Get(gas.GasId)==null||owner.BlueprintName!=gas.GasId+"Cloud"||!owner.HasTag("Gas")
       ||owner.HasTag("Creature")||owner.HasTag("Item")||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()

@@ -286,6 +286,27 @@ namespace CavesOfOoo.Tests
             tick(); Assert.AreEqual(1, service.NewGames + restarter.Calls);
         }
 
+        [TestCase(false, Key.Enter)] [TestCase(false, Key.I)] [TestCase(false, Key.X)]
+        [TestCase(true, Key.Enter)] [TestCase(true, Key.I)] [TestCase(true, Key.X)]
+        public void SavedGameChoicesAcceptKeyboardOutputWithoutAGamepad(bool death, Key key)
+        {
+            InputSystem.RemoveDevice(pad);
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState()); InputSystem.Update();
+            var field = typeof(InputHandler).GetField(death ? "_deathGamepadProbe" : "_bootGamepadProbe",
+                BindingFlags.Static | BindingFlags.NonPublic);
+            var probe = (IInputProbe)field.GetValue(null);
+            var saves = new Saves(); var restarter = new Restarter();
+            var boot = new BootMenuController(); var dead = new DeathScreenController();
+            if (death) dead.Activate(null); else boot.TryActivate(true, null);
+            void Tick() { if (death) dead.Tick(probe, saves, restarter, null); else boot.Tick(probe, saves, null); }
+            Tick(); Assert.AreEqual(0, saves.Loads + saves.NewGames + restarter.Calls);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(key)); InputSystem.Update(); Tick();
+            Assert.AreEqual(key == Key.Enter ? 1 : 0, saves.Loads);
+            Assert.AreEqual(key == Key.Enter ? 0 : 1, saves.NewGames + restarter.Calls);
+            Tick(); Assert.AreEqual(1, saves.Loads + saves.NewGames + restarter.Calls, "A held choice cannot run twice.");
+        }
+
         static void AssertNoGamepadKeys()
         {
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))

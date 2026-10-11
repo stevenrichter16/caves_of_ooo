@@ -20,7 +20,7 @@ namespace CavesOfOoo.Tests
         private SpellFxMode _oldFx;
         private float _oldSpeed, _oldFlash, _oldShake, _oldVolume;
         private object _oldResolutionOverride, _oldShadowsOverride;
-        private string _oldHint;
+        private string _oldHint, _oldDeckHint;
         private Action<string> _oldDirty;
 
         [SetUp]
@@ -31,7 +31,9 @@ namespace CavesOfOoo.Tests
             foreach (var key in new[] { ResolutionKey, "CavesOfOoo.Fx.Speed", "CavesOfOoo.Fx.Flash", "CavesOfOoo.Fx.Shake", "CavesOfOoo.Fx.SoundVolume" })
                 _floats[key] = PlayerPrefs.HasKey(key) ? PlayerPrefs.GetFloat(key) : (float?)null;
             _oldHint = Environment.GetEnvironmentVariable(Hint);
+            _oldDeckHint = Environment.GetEnvironmentVariable("SteamDeck");
             Environment.SetEnvironmentVariable(Hint, null);
+            Environment.SetEnvironmentVariable("SteamDeck", null);
             _oldEnabled = Village3DSettings.Enabled;
             _oldLow = Village3DSettings.LowDetail;
             _oldFx = SpellFxSettings.Mode;
@@ -69,6 +71,7 @@ namespace CavesOfOoo.Tests
                 if (pair.Value.HasValue) PlayerPrefs.SetFloat(pair.Key, pair.Value.Value); else PlayerPrefs.DeleteKey(pair.Key);
             PlayerPrefs.Save();
             Environment.SetEnvironmentVariable(Hint, _oldHint);
+            Environment.SetEnvironmentVariable("SteamDeck", _oldDeckHint);
             ZoneRenderHooks.FullDirtyCallback = _oldDirty;
         }
 
@@ -201,6 +204,51 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1f, Setting<float>("WorldResolutionScale"));
             Assert.IsTrue(Setting<bool>("ShadowsEnabled"));
             Assert.AreEqual(SpellFxMode.Full, SpellFxSettings.Mode);
+        }
+
+        [Test]
+        public void DirectDeckLaunch_DefaultsWorldAndEffectsWithoutWritingPreferences()
+        {
+            Environment.SetEnvironmentVariable("SteamDeck", "1");
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.IsTrue(Village3DSettings.LowDetail);
+            Assert.AreEqual(.75f, Village3DSettings.WorldResolutionScale);
+            Assert.IsFalse(Village3DSettings.ShadowsEnabled);
+            Assert.AreEqual(SpellFxMode.Reduced, SpellFxSettings.Mode);
+            foreach (string key in new[] { Village3DSettings.LowDetailPreferenceKey, ResolutionKey, ShadowsKey, FxKey })
+                Assert.IsFalse(PlayerPrefs.HasKey(key), "Load must not persist the default: " + key);
+        }
+
+        [Test]
+        public void DirectDeckLaunch_ExplicitDesktopOverrideRetainsFullDefaults()
+        {
+            Environment.SetEnvironmentVariable("SteamDeck", "1");
+            Environment.SetEnvironmentVariable(Hint, "0");
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.IsFalse(Village3DSettings.LowDetail);
+            Assert.AreEqual(1f, Village3DSettings.WorldResolutionScale);
+            Assert.IsTrue(Village3DSettings.ShadowsEnabled);
+            Assert.AreEqual(SpellFxMode.Full, SpellFxSettings.Mode);
+        }
+
+        [Test]
+        public void DirectDeckLaunch_SavedChoicesOverrideAllDefaultDimensions()
+        {
+            Environment.SetEnvironmentVariable("SteamDeck", "1");
+            PlayerPrefs.SetInt(Village3DSettings.LowDetailPreferenceKey, 0);
+            PlayerPrefs.SetFloat(ResolutionKey, .5f);
+            PlayerPrefs.SetInt(ShadowsKey, 1);
+            PlayerPrefs.SetInt(FxKey, (int)SpellFxMode.Off);
+            PlayerPrefs.SetFloat("CavesOfOoo.Fx.SoundVolume", .3f);
+            Village3DSettings.Load();
+            SpellFxSettings.Load();
+            Assert.IsFalse(Village3DSettings.LowDetail);
+            Assert.AreEqual(.5f, Village3DSettings.WorldResolutionScale);
+            Assert.IsTrue(Village3DSettings.ShadowsEnabled);
+            Assert.AreEqual(SpellFxMode.Off, SpellFxSettings.Mode);
+            Assert.AreEqual(.3f, SpellFxSettings.SoundVolume);
         }
 
         [Test]

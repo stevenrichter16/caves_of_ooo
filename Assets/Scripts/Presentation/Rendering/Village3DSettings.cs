@@ -11,15 +11,25 @@ namespace CavesOfOoo.Rendering
         public const string WorldResolutionPreferenceKey = "CavesOfOoo.Village3D.WorldResolutionScale";
         public const string ShadowsPreferenceKey = "CavesOfOoo.Village3D.Shadows";
         public const string HandheldEnvironmentVariable = "COO_HANDHELD";
+        public const string SteamDeckEnvironmentVariable = "SteamDeck";
         private static bool enabled = true;
         private static bool lowDetail;
         private static float? resolutionOverride;
         private static bool? shadowsOverride;
 
-        // The Deck distribution launcher supplies this explicit hint. It is not
-        // OS/hardware detection, and saved preferences always override defaults.
-        internal static bool UseHandheldDefaults =>
-            Environment.GetEnvironmentVariable(HandheldEnvironmentVariable) == "1";
+        // The application override also works outside Steam. Steam's Deck hint
+        // covers a shortcut directly to the executable, bypassing our launcher.
+        // Only exact 0/1 overrides are meaningful; saved preferences still win.
+        internal static bool UseHandheldDefaults
+        {
+            get
+            {
+                string applicationHint = Environment.GetEnvironmentVariable(HandheldEnvironmentVariable);
+                if (applicationHint == "1") return true;
+                if (applicationHint == "0") return false;
+                return Environment.GetEnvironmentVariable(SteamDeckEnvironmentVariable) == "1";
+            }
+        }
 
         /// <summary>Runtime display mode. Assignment redraws the map without changing
         /// gameplay or saved preferences; the player control explicitly persists choices.</summary>
