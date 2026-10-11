@@ -127,6 +127,7 @@ namespace CavesOfOoo.Core
                     return false;
                 }
 
+                CompanionCombat.AfterPlayerMelee(attacker, defender, zone);
                 FaceToward(attacker, defender, zone);
                 EntityVisualHooks.EmitAttack(attacker, defender, zone);
 
@@ -1061,7 +1062,10 @@ namespace CavesOfOoo.Core
                 // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
                 hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
                 if (hpStat.BaseValue < hpBefore)
+                {
                     target.GetPart<BrainPart>()?.BreakDamageSensitivePeace();
+                    CompanionCombat.AfterHostileDamage(target, source, zone);
+                }
                 SpellFxCapture.RecordDamage(zone, target, Math.Max(0, hpBefore - hpStat.BaseValue),
                     resisted: damage.Amount < amountBeforeResistance);
 
