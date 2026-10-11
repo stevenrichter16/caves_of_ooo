@@ -1,6 +1,6 @@
 # System depth II: companion field management
 
-Status: all three iterations core implemented, independently reviewed and committed; final native integration/Play pending coordinator evidence. Baseline `428cb4be9`.
+Status: all three iterations implemented and committed; native integration1584/1584 GREEN. Narrow final rollback fix core129/129 GREEN; native recheck and Play pending. Baseline `428cb4be9`.
 
 ## Goal and scope
 
@@ -70,4 +70,6 @@ Files: new `CompanionManagementActions.StepAside.cs` and `CompanionStepAsideTest
 
 Save-agent reviewed stack transfer/receipts and found no additional issue. HUD-agent reviewed gear and movement; its split-unit and physical-occupancy findings are fixed with observed RED/GREEN. Coordinator reviewed visibility/capacity, native timing and rollback; hidden reads and rollback fixed, existing hard/soft capacity semantics documented and tested, tick/action fixture premise corrected. All owned C# metadata GUIDs are exactly32 hex characters. No InventoryUI, save schema, blueprints or combat behavior changed in these three iterations.
 
-Final native Unity and actual Play evidence: pending coordinator run. Historical intermediate failures above are retained, not relabeled as passing.
+Native integration job `ce219ed2daf94eb8914515db8a82e413`: **1584/1584 passed**, raw `Verification/SystemDepthII/native-final-integration.xml`. This includes all32 pack,25 gear,20 step and6 real management input cases. Exact paid-action assertions and free/refused counters are now native GREEN. Historical intermediate failures above remain preserved.
+
+After that source freeze, final read-only review reproduced one narrow rollback ownership issue in an isolated `/tmp` test: a BeforeMove callback can independently move to the *same chosen landing*. Before admission, the old rollback recognized only the destination and undid that independent movement. Observed RED1 is retained in `iteration03-admission-red.xml`. Coordinator authorized only this follow-up: rollback now requires a flag set when the post-BeforeMove safety predicate admits our movement. The existing independent-relocation fixture has both different/same chosen landing cases (21 step cases). Core final **129/129 GREEN** is retained in `iteration03-admission-green.xml`; Assets refrozen immediately. The1584-case native result predates this tiny fix; coordinator's targeted native recheck and actual Play remain pending. No other hypotheses or gameplay scope added.

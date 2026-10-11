@@ -62,8 +62,8 @@ namespace CavesOfOoo.Tests
         {Enclose(true);Assert.True(Offered());Assert.True(follower.ApplyEffect(new StunnedEffect(2),leader,zone));Assert.False(Run());Assert.AreEqual((11,10),zone.GetEntityPosition(follower));}
         [Test] public void MultiCellCompanionIsNotMovedBySingleCellCourtesy()
         {Assert.True(Offered());Assert.True(zone.RemoveEntity(follower));follower.AddPart(new SpatialFootprintPart{CellsRaw="0,0;1,0"});Assert.True(zone.AddEntity(follower,11,10));Assert.False(Offered());Assert.False(Run());Assert.AreEqual((11,10),zone.GetEntityPosition(follower));}
-        [Test] public void IndependentBeforeMoveRelocationIsNotRewoundOrMovedAgain()
-        {Enclose(true);Assert.True(Offered());follower.AddPart(new Callback{Event="BeforeMove",Change=()=>Assert.True(zone.MoveEntity(follower,13,10))});Assert.False(Run());Assert.AreEqual((13,10),zone.GetEntityPosition(follower));}
+        [TestCase(false)] [TestCase(true)] public void IndependentBeforeMoveRelocationIsNotRewoundOrMovedAgain(bool toChosenDestination)
+        {Enclose(true);Assert.True(Offered());int landing=toChosenDestination?12:13;follower.AddPart(new Callback{Event="BeforeMove",Change=()=>Assert.True(zone.MoveEntity(follower,landing,10))});Assert.False(Run());Assert.AreEqual((landing,10),zone.GetEntityPosition(follower));}
         [Test] public void RollbackDoesNotOverlapANewOccupantOfTheOriginalCell()
         {
             Enclose(true);Assert.True(Offered());Entity newcomer=null;leader.AddPart(new Callback{Event="AfterInventoryAction",Change=()=>{newcomer=Creature("newcomer",11,10);throw new InvalidOperationException("occupied rollback");}});

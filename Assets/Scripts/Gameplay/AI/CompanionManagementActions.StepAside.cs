@@ -33,15 +33,20 @@ namespace CavesOfOoo.Core
             // Undo only this landing. Independent relocation/death during a
             // callback remains independent; never pull an owner out of another
             // zone or force it into a newly occupied original cell.
+            bool movementAdmitted = false;
             tx.Do(null, () =>
             {
-                if (zone.GetEntityCell(follower)==destination && WorldResourceActions.ActorCurrent(follower,zone)
+                if (movementAdmitted && zone.GetEntityCell(follower)==destination && WorldResourceActions.ActorCurrent(follower,zone)
                     && !from.BlocksMovement(follower) && !from.Occupants.Any(e => e.HasTag("Creature"))
                     && zone.CanPlaceFootprint(follower,from.X,from.Y))
                     zone.MoveEntity(follower,from.X,from.Y);
             });
-            bool CurrentChoice() => scope.Current() && !follower.HasPart<SpatialFootprintPart>()
-                && !DragSystem.IsDragging(follower) && SafeAside(follower,zone,destination);
+            bool CurrentChoice()
+            {
+                movementAdmitted = scope.Current() && !follower.HasPart<SpatialFootprintPart>()
+                    && !DragSystem.IsDragging(follower) && SafeAside(follower,zone,destination);
+                return movementAdmitted;
+            }
             if (!MovementSystem.TryMoveChecked(follower,zone,destination.X-from.X,destination.Y-from.Y,CurrentChoice)) return false;
             tx.BeforeCommit(() => scope.Current(destination));
             tx.AfterCommit(() => MessageLog.Add(follower.GetDisplayName()+" steps aside."));
