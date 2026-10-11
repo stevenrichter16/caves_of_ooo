@@ -120,6 +120,7 @@ namespace CavesOfOoo.Core
             {
                 if (!transaction.TryClaim(actor, actor, "Harvest") || !transaction.TryClaim(ParentEntity, actor, "Harvest"))
                     return Reject(actor, "in-progress");
+                var audio=WorldAudioWork.Harvest(actor,this,zone);
                 // Claim before factory/weight callbacks. Rollback restores this flag;
                 // success leaves it durable even if an old source reference survives.
                 transaction.Do(() => Harvested = true, restore);
@@ -181,6 +182,7 @@ namespace CavesOfOoo.Core
                 bool applied = receipt == null ? Transfer() : receipt.Apply(Transfer);
                 if (!applied || (receipt != null && !receipt.ClaimChanges(transaction, actor, "Harvest"))) return Fail("transfer-refused");
                 int dropped = droppedItems.Count;
+                transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() =>
                 {
                     if (dropCell != null) ZoneRenderHooks.MarkCellDirty(dropCell.X, dropCell.Y, "Harvested");

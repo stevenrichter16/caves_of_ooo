@@ -118,7 +118,7 @@ namespace CavesOfOoo.Rendering
             try
             {
                 if(WorldAudioUtility.IsUtility(cue)||CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
-                    ||cue==WorldAudioCue.WorkRepairStone||cue==WorldAudioCue.WorkRepairMetal||cue==WorldAudioCue.HarvestPlant)return;
+                    ||cue==WorldAudioCue.WorkRepairStone||cue==WorldAudioCue.WorkRepairMetal||(cue==WorldAudioCue.HarvestPlant||cue==WorldAudioCue.HarvestMineral))return;
                 // Weapon and work sounds require their actual typed committed receipt.
                 bool localInventory=cue==WorldAudioCue.Pickup||cue==WorldAudioCue.Equip||cue==WorldAudioCue.Use;
                 if(localInventory&&actor!=player)return;

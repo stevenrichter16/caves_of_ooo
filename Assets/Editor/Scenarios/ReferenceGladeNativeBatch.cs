@@ -54,6 +54,9 @@ namespace CavesOfOoo.Editor
 
         [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 13 Material Handling")]
         public static void LaunchAudioPolish13()=>LaunchAudioPolish(13);
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 14 Mineral Harvest")]
+        public static void LaunchAudioPolish14()=>LaunchAudioPolish(14);
         public static void LaunchAudioPolish(int iteration)=>LaunchCore(false,audioPolishIteration:iteration);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);

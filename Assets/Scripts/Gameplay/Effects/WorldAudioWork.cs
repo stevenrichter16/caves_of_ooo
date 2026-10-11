@@ -38,6 +38,25 @@ namespace CavesOfOoo.Core
         internal static Capture Crop(Entity actor, CropPart part, Zone zone)
             => Take(actor,part,zone,WorldAudioCue.HarvestPlant,false,true,null);
 
+        internal static Capture Harvest(Entity actor,HarvestablePart part,Zone zone)
+        {
+            var source=part?.ParentEntity;var material=source?.GetPart<MaterialPart>();
+            if(source==null||part==null||(material!=null&&material.ParentEntity!=source))return null;
+            // These authored sources intentionally have no MaterialPart. Keep
+            // that content contract; unknown sources need real material evidence.
+            string family=material?.MaterialID;
+            if(material==null)
+                switch(source.BlueprintName)
+                {case "GlowQuartzVein":family="Crystal";break;case "StoneburrPatch":case "FrostLichenPatch":family="Plant";break;}
+            WorldAudioCue cue;
+            switch(family)
+            {
+                case "Stone":case "Crystal":cue=WorldAudioCue.HarvestMineral;break;
+                case "Plant":case "DryPlant":case "Fungal":cue=WorldAudioCue.HarvestPlant;break;
+                default:return null;
+            }
+            return Take(actor,part,zone,cue,false,true,null);
+        }
         internal static Capture Forge(Entity actor, Zone zone)
         {
             var origin=zone?.GetEntityCell(actor);
@@ -70,7 +89,8 @@ namespace CavesOfOoo.Core
         {
             readonly Entity actor,source;
             readonly Zone zone;
-            readonly Cell origin,contact;
+            readonly Cell origin,contact,sourceAnchor;
+            readonly MaterialPart harvestMaterial;readonly string harvestMaterialId,harvestBlueprint;
             readonly PhysicsPart actorPhysics,physics;
             readonly RenderPart actorRender,render;
             readonly Part part;
@@ -82,7 +102,9 @@ namespace CavesOfOoo.Core
             internal Capture(Entity actor, Part part, Zone zone, WorldAudioCue cue, bool carried, bool consumed, RepairRecipe recipe)
             {
                 this.actor=actor;this.part=part;this.zone=zone;this.cue=cue;this.carried=carried;this.consumed=consumed;this.recipe=recipe;
-                source=part.ParentEntity; origin=zone.GetEntityCell(actor); contact=carried?origin:zone.GetEntityCell(source);
+                source=part.ParentEntity; origin=zone.GetEntityCell(actor);sourceAnchor=zone.GetEntityCell(source);
+                contact=carried?origin:part is HarvestablePart&&origin!=null?SpatialQuery.ClosestCell(zone,source,origin.X,origin.Y):sourceAnchor;
+                if(part is HarvestablePart){harvestMaterial=source.GetPart<MaterialPart>();harvestMaterialId=harvestMaterial?.MaterialID;harvestBlueprint=source.BlueprintName;}
                 actorPhysics=actor.GetPart<PhysicsPart>();actorRender=actor.GetPart<RenderPart>();
                 physics=source.GetPart<PhysicsPart>();render=source.GetPart<RenderPart>();inventory=actor.GetPart<InventoryPart>();
             }
@@ -110,12 +132,19 @@ namespace CavesOfOoo.Core
                         || Math.Abs(origin.X-contact.X)>1 || Math.Abs(origin.Y-contact.Y)>1)return false;
                     if(after&&consumed)
                     { if(source.SpatialZone!=null || zone.GetEntityCell(source)!=null || contact.Objects.Contains(source))return false; }
+                    else if(part is HarvestablePart)
+                    {if(source.SpatialZone!=zone||zone.GetEntityCell(source)!=sourceAnchor||sourceAnchor==null||!sourceAnchor.Objects.Contains(source)
+                        ||!contact.Occupants.Contains(source)||(source.HasPart<SpatialFootprintPart>()&&!zone.IsFootprintCurrent(source)))return false;}
                     else if(source.SpatialZone!=zone || zone.GetEntityCell(source)!=contact || !contact.Objects.Contains(source))return false;
                 }
                 if(part is RepairablePart repair)
                     return source.GetPart<RepairablePart>()==repair && repair.PortableEquipment==carried
                         && RepairRecipeRegistry.Get(repair.RecipeId)==recipe
                         && (!after || (repair.RepairedBy==actor && (carried?!source.HasEffect<BrokenEffect>():repair.Repaired)));
+                if(part is HarvestablePart harvest)return source.GetPart<HarvestablePart>()==harvest
+                    &&source.BlueprintName==harvestBlueprint&&source.GetPart<MaterialPart>()==harvestMaterial
+                    &&(harvestMaterial==null||(harvestMaterial.ParentEntity==source&&harvestMaterial.MaterialID==harvestMaterialId))
+                    &&(!after||harvest.Harvested);
                 if(part is FieldHarvestPart field)return source.GetPart<FieldHarvestPart>()==field && (!after || field.Harvested);
                 if(part is CropPart crop)return source.GetPart<CropPart>()==crop;
                 return part is ForgePart forge && source.GetPart<ForgePart>()==forge;

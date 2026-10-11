@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.9875359">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28317" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.987536" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34882" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28317" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.730273" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34883" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28317" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.693243" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34884" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28317" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.592652" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33131" name="WorldAudioMineralHarvestTests" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:58Z" duration="1.491898" total="18" passed="2" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="33135" name="ActualPlantPatchUsesThePlantFamilyNotStone" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlantPatchUsesThePlantFamilyNotStone" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:57Z" duration="0.475547" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33133" name="ActualPlantPatchUsesThePlantFamilyNotStone(&quot;StoneburrPatch&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlantPatchUsesThePlantFamilyNotStone(&quot;StoneburrPatch&quot;)" methodname="ActualPlantPatchUsesThePlantFamilyNotStone" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="1511484667" result="Failed" start-time="2026-10-11 19:31:56Z" end-time="2026-10-11 19:31:57Z" duration="0.246945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestPlant take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlantPatchUsesThePlantFamilyNotStone (System.String name) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33134" name="ActualPlantPatchUsesThePlantFamilyNotStone(&quot;FrostLichenPatch&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlantPatchUsesThePlantFamilyNotStone(&quot;FrostLichenPatch&quot;)" methodname="ActualPlantPatchUsesThePlantFamilyNotStone" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="418727799" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.025239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestPlant take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlantPatchUsesThePlantFamilyNotStone (System.String name) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:15
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33151" name="ActualPlayerHarvestCanFinishInItsMenu" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlayerHarvestCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.073022" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33149" name="ActualPlayerHarvestCanFinishInItsMenu(False)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlayerHarvestCanFinishInItsMenu(False)" methodname="ActualPlayerHarvestCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="1408331668" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.026072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlayerHarvestCanFinishInItsMenu (System.Boolean menu) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33150" name="ActualPlayerHarvestCanFinishInItsMenu(True)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlayerHarvestCanFinishInItsMenu(True)" methodname="ActualPlayerHarvestCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="963208172" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.024436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ActualPlayerHarvestCanFinishInItsMenu (System.Boolean menu) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33140" name="AValidUnproductiveAttemptSoundsOnceButDoesNotInventAReward" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.AValidUnproductiveAttemptSoundsOnceButDoesNotInventAReward" methodname="AValidUnproductiveAttemptSoundsOnceButDoesNotInventAReward" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="992869098" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.024667" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.AValidUnproductiveAttemptSoundsOnceButDoesNotInventAReward () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:21
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33155" name="GenericSemanticCannotInventAMineralHarvest" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.GenericSemanticCannotInventAMineralHarvest" methodname="GenericSemanticCannotInventAMineralHarvest" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="48645647" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.025319" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.GenericSemanticCannotInventAMineralHarvest () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:41
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33145" name="LaterCallbackCannotPublishStaleConsumedSourceEvidence" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.208557" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33141" name="LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;hidden&quot;)" methodname="LaterCallbackCannotPublishStaleConsumedSourceEvidence" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="1852929948" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.032704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence (System.String mutation) [0x000b5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33142" name="LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;material&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;material&quot;)" methodname="LaterCallbackCannotPublishStaleConsumedSourceEvidence" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="2077895645" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.025393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence (System.String mutation) [0x000b5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33143" name="LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;relocated-actor&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;relocated-actor&quot;)" methodname="LaterCallbackCannotPublishStaleConsumedSourceEvidence" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="151803787" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.025414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence (System.String mutation) [0x000b5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33144" name="LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;restored-source&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence(&quot;restored-source&quot;)" methodname="LaterCallbackCannotPublishStaleConsumedSourceEvidence" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="1858455248" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.024516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.LaterCallbackCannotPublishStaleConsumedSourceEvidence (System.String mutation) [0x000b5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33139" name="OuterFailureRestoresTheActualSeamAndIsSilent" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.OuterFailureRestoresTheActualSeamAndIsSilent" methodname="OuterFailureRestoresTheActualSeamAndIsSilent" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="1120662127" result="Passed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.026575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33138" name="ParentTransactionControlsPublicationAndSpentState" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ParentTransactionControlsPublicationAndSpentState" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.121507" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33136" name="ParentTransactionControlsPublicationAndSpentState(False)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ParentTransactionControlsPublicationAndSpentState(False)" methodname="ParentTransactionControlsPublicationAndSpentState" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="731833097" result="Passed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.028972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33137" name="ParentTransactionControlsPublicationAndSpentState(True)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ParentTransactionControlsPublicationAndSpentState(True)" methodname="ParentTransactionControlsPublicationAndSpentState" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="2015623834" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.027460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.ParentTransactionControlsPublicationAndSpentState (System.Boolean commit) [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33154" name="PhysicalEdgeContactMustItselfBeVisible" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.PhysicalEdgeContactMustItselfBeVisible" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.208578" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33152" name="PhysicalEdgeContactMustItselfBeVisible(False)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.PhysicalEdgeContactMustItselfBeVisible(False)" methodname="PhysicalEdgeContactMustItselfBeVisible" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="2008809946" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.039797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.PhysicalEdgeContactMustItselfBeVisible (System.Boolean visible) [0x0013e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33153" name="PhysicalEdgeContactMustItselfBeVisible(True)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.PhysicalEdgeContactMustItselfBeVisible(True)" methodname="PhysicalEdgeContactMustItselfBeVisible" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="2133100734" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.026288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.PhysicalEdgeContactMustItselfBeVisible (System.Boolean visible) [0x000ef] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33132" name="RealQuartzHarvestUsesStoneHandlingAfterConsumingItsOriginalSeam" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.RealQuartzHarvestUsesStoneHandlingAfterConsumingItsOriginalSeam" methodname="RealQuartzHarvestUsesStoneHandlingAfterConsumingItsOriginalSeam" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="60202214" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.025407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.RealQuartzHarvestUsesStoneHandlingAfterConsumingItsOriginalSeam () [0x00054] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:12
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33148" name="UnsupportedSourceDoesNotPretendToBeMineralOrPlant" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.UnsupportedSourceDoesNotPretendToBeMineralOrPlant" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:58Z" duration="0.200606" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33146" name="UnsupportedSourceDoesNotPretendToBeMineralOrPlant(&quot;Flesh&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.UnsupportedSourceDoesNotPretendToBeMineralOrPlant(&quot;Flesh&quot;)" methodname="UnsupportedSourceDoesNotPretendToBeMineralOrPlant" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="931073412" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:57Z" duration="0.117665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.UnsupportedSourceDoesNotPretendToBeMineralOrPlant (System.String material) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33147" name="UnsupportedSourceDoesNotPretendToBeMineralOrPlant(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests.UnsupportedSourceDoesNotPretendToBeMineralOrPlant(&quot;unknown&quot;)" methodname="UnsupportedSourceDoesNotPretendToBeMineralOrPlant" classname="CavesOfOoo.Tests.WorldAudioMineralHarvestTests" runstate="Runnable" seed="86412571" result="Failed" start-time="2026-10-11 19:31:57Z" end-time="2026-10-11 19:31:58Z" duration="0.073573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "HarvestMineral take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:10
+at CavesOfOoo.Tests.WorldAudioMineralHarvestTests.UnsupportedSourceDoesNotPretendToBeMineralOrPlant (System.String material) [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioMineralHarvestTests.cs:30
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
