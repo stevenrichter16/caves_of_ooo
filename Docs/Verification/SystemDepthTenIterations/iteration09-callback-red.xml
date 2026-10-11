@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="64" result="Failed" start-time="2026-10-11T02:45:57.8572350Z" end-time="2026-10-11T02:45:57.9092130Z" duration="0.051961" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="5" random-seed="1518783846">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration09-callback-red.xml --where "method == BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner"]]></command-line>
+  <filter>
+    <method>BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner</method>
+  </filter>
+  <test-suite type="Assembly" id="1073" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-11T02:45:57.8572350Z" end-time="2026-10-11T02:45:57.9092130Z" duration="0.051961" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22679" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1074" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-11T02:45:57.8588230Z" end-time="2026-10-11T02:45:57.9092000Z" duration="0.050377" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1075" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-11T02:45:57.8589320Z" end-time="2026-10-11T02:45:57.9091760Z" duration="0.050244" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CompanionOrderTests" fullname="CavesOfOoo.Tests.CompanionOrderTests" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-11T02:45:57.8592700Z" end-time="2026-10-11T02:45:57.9090730Z" duration="0.049802" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1017" name="BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner" fullname="CavesOfOoo.Tests.CompanionOrderTests.BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner" methodname="BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1199629186" result="Failed" start-time="2026-10-11T02:45:57.8601280Z" end-time="2026-10-11T02:45:57.9082180Z" duration="0.048115" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 136
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.BrainReplacementDuringInventoryCallbackRejectsCapturedOrderOwner() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 136
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

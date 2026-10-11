@@ -215,6 +215,7 @@ namespace CavesOfOoo.Core
             {
                 var member = members[i];
                 if (member == null) continue;
+                if (CompanionOrders.IsStaying(member)) continue;
                 var memberBrain = member.GetPart<BrainPart>();
                 if (memberBrain == null) continue;
                 // Only transit followers currently in the OLD zone.

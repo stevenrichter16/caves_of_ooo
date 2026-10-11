@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="60" result="Failed" start-time="2026-10-11T02:38:07.7692180Z" end-time="2026-10-11T02:38:07.8291510Z" duration="0.059917" total="15" passed="0" failed="15" inconclusive="0" skipped="0" warnings="0" asserts="64" random-seed="1437398950">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration09-red.xml --where "class =~ /CompanionOrderTests/"]]></command-line>
+  <filter>
+    <class re="1">CompanionOrderTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1068" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="60" result="Failed" site="Child" start-time="2026-10-11T02:38:07.7692180Z" end-time="2026-10-11T02:38:07.8291510Z" duration="0.059917" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="64">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="19835" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1069" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="60" result="Failed" site="Child" start-time="2026-10-11T02:38:07.7707690Z" end-time="2026-10-11T02:38:07.8291490Z" duration="0.058379" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="64">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1070" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="60" result="Failed" site="Child" start-time="2026-10-11T02:38:07.7708800Z" end-time="2026-10-11T02:38:07.8291470Z" duration="0.058266" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="64">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CompanionOrderTests" fullname="CavesOfOoo.Tests.CompanionOrderTests" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-11T02:38:07.7712220Z" end-time="2026-10-11T02:38:07.8291360Z" duration="0.057914" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="64">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1015" name="DismissalAndNewRecruitmentDoNotInheritOldStayOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.DismissalAndNewRecruitmentDoNotInheritOldStayOrder" methodname="DismissalAndNewRecruitmentDoNotInheritOldStayOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="48460070" result="Failed" start-time="2026-10-11T02:38:07.7720690Z" end-time="2026-10-11T02:38:07.8169060Z" duration="0.044862" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.DismissalAndNewRecruitmentDoNotInheritOldStayOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 101
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.DismissalAndNewRecruitmentDoNotInheritOldStayOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 101
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1017" name="InventoryTransactionFailureRestoresThePreviousOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.InventoryTransactionFailureRestoresThePreviousOrder" methodname="InventoryTransactionFailureRestoresThePreviousOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="891444657" result="Failed" start-time="2026-10-11T02:38:07.8175360Z" end-time="2026-10-11T02:38:07.8183460Z" duration="0.000809" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.InventoryTransactionFailureRestoresThePreviousOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 121
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.InventoryTransactionFailureRestoresThePreviousOrder() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 121
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" fullname="CavesOfOoo.Tests.CompanionOrderTests.NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" methodname="NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="666353268" result="Failed" start-time="2026-10-11T02:38:07.8183600Z" end-time="2026-10-11T02:38:07.8186440Z" duration="0.000284" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" fullname="CavesOfOoo.Tests.CompanionOrderTests.ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" methodname="ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1691303868" result="Failed" start-time="2026-10-11T02:38:07.8186550Z" end-time="2026-10-11T02:38:07.8202280Z" duration="0.001573" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 108
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 108
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1009" name="StaleOrUnauthorizedChoiceCannotSetAnOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-11T02:38:07.8202430Z" end-time="2026-10-11T02:38:07.8219390Z" duration="0.001696" total="7" passed="0" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;stranger&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;stranger&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1286366812" result="Failed" start-time="2026-10-11T02:38:07.8203190Z" end-time="2026-10-11T02:38:07.8207170Z" duration="0.000398" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;far&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;far&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="463431670" result="Failed" start-time="2026-10-11T02:38:07.8207260Z" end-time="2026-10-11T02:38:07.8209680Z" duration="0.000242" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-leader&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-leader&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="447052763" result="Failed" start-time="2026-10-11T02:38:07.8209780Z" end-time="2026-10-11T02:38:07.8211050Z" duration="0.000127" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-follower&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-follower&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1068311984" result="Failed" start-time="2026-10-11T02:38:07.8211140Z" end-time="2026-10-11T02:38:07.8212410Z" duration="0.000127" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;detached&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1172750029" result="Failed" start-time="2026-10-11T02:38:07.8212500Z" end-time="2026-10-11T02:38:07.8213680Z" duration="0.000118" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;changed-leader&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;changed-leader&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="2061799908" result="Failed" start-time="2026-10-11T02:38:07.8213770Z" end-time="2026-10-11T02:38:07.8214970Z" duration="0.000120" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;no-effect&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;no-effect&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="205857630" result="Failed" start-time="2026-10-11T02:38:07.8215060Z" end-time="2026-10-11T02:38:07.8216300Z" duration="0.000124" asserts="4">
+              <failure>
+                <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An authorized real menu choice must have existed before mutation.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(String mutation) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 51
+   at InvokeStub_CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1010" name="StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" fullname="CavesOfOoo.Tests.CompanionOrderTests.StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" methodname="StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="881377016" result="Failed" start-time="2026-10-11T02:38:07.8221040Z" end-time="2026-10-11T02:38:07.8223470Z" duration="0.000243" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 64
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 64
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1011" name="StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" methodname="StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="2143370007" result="Failed" start-time="2026-10-11T02:38:07.8223540Z" end-time="2026-10-11T02:38:07.8226010Z" duration="0.000246" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 74
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 74
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1014" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:38:07.8226360Z" end-time="2026-10-11T02:38:07.8291010Z" duration="0.006465" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1012" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(False)" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(False)" methodname="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1553667050" result="Failed" start-time="2026-10-11T02:38:07.8226460Z" end-time="2026-10-11T02:38:07.8287850Z" duration="0.006140" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 95
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 95
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(True)" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(True)" methodname="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1651103040" result="Failed" start-time="2026-10-11T02:38:07.8288040Z" end-time="2026-10-11T02:38:07.8290630Z" duration="0.000258" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 87
+   at InvokeStub_CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 87
+   at InvokeStub_CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

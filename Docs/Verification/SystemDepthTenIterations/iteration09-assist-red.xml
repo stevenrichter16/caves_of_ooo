@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="63" result="Failed" start-time="2026-10-11T02:43:26.1842150Z" end-time="2026-10-11T02:43:26.2640350Z" duration="0.079806" total="18" passed="16" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="162" random-seed="366529586">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration09-assist-red.xml --where "class =~ /CompanionOrderTests/"]]></command-line>
+  <filter>
+    <class re="1">CompanionOrderTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1072" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T02:43:26.1842150Z" end-time="2026-10-11T02:43:26.2640350Z" duration="0.079806" total="18" passed="16" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="162">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="21757" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1073" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T02:43:26.1856860Z" end-time="2026-10-11T02:43:26.2640330Z" duration="0.078347" total="18" passed="16" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="162">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1074" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-11T02:43:26.1857950Z" end-time="2026-10-11T02:43:26.2640290Z" duration="0.078234" total="18" passed="16" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="162">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CompanionOrderTests" fullname="CavesOfOoo.Tests.CompanionOrderTests" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11T02:43:26.1861180Z" end-time="2026-10-11T02:43:26.2640160Z" duration="0.077897" total="18" passed="16" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="162">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1015" name="DismissalAndNewRecruitmentDoNotInheritOldStayOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.DismissalAndNewRecruitmentDoNotInheritOldStayOrder" methodname="DismissalAndNewRecruitmentDoNotInheritOldStayOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="858517931" result="Passed" start-time="2026-10-11T02:43:26.1869930Z" end-time="2026-10-11T02:43:26.2231280Z" duration="0.036159" asserts="10" />
+          <test-case id="1021" name="FollowingAllyDefendsAStayingVictimWithoutOverridingTheVictimsStay" fullname="CavesOfOoo.Tests.CompanionOrderTests.FollowingAllyDefendsAStayingVictimWithoutOverridingTheVictimsStay" methodname="FollowingAllyDefendsAStayingVictimWithoutOverridingTheVictimsStay" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="391856655" result="Failed" start-time="2026-10-11T02:43:26.2237040Z" end-time="2026-10-11T02:43:26.2421750Z" duration="0.018470" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.FollowingAllyDefendsAStayingVictimWithoutOverridingTheVictimsStay() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 142
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.FollowingAllyDefendsAStayingVictimWithoutOverridingTheVictimsStay() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 142
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1017" name="InventoryTransactionFailureRestoresThePreviousOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.InventoryTransactionFailureRestoresThePreviousOrder" methodname="InventoryTransactionFailureRestoresThePreviousOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="988977231" result="Passed" start-time="2026-10-11T02:43:26.2422460Z" end-time="2026-10-11T02:43:26.2449930Z" duration="0.002747" asserts="7" />
+          <test-case id="1001" name="NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" fullname="CavesOfOoo.Tests.CompanionOrderTests.NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" methodname="NormalWorldMenuOffersOnlyTheCurrentOrderAndPreservesRecruitment" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="932585250" result="Passed" start-time="2026-10-11T02:43:26.2450060Z" end-time="2026-10-11T02:43:26.2468330Z" duration="0.001827" asserts="16" />
+          <test-case id="1016" name="ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" fullname="CavesOfOoo.Tests.CompanionOrderTests.ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" methodname="ResumeRestoresAMissingFollowGoalWithoutDuplicatingExistingOne" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="514045515" result="Passed" start-time="2026-10-11T02:43:26.2468490Z" end-time="2026-10-11T02:43:26.2476480Z" duration="0.000799" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1009" name="StaleOrUnauthorizedChoiceCannotSetAnOrder" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-11T02:43:26.2476640Z" end-time="2026-10-11T02:43:26.2495310Z" duration="0.001867" total="7" passed="7" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="47">
+            <test-case id="1002" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;stranger&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;stranger&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="288067820" result="Passed" start-time="2026-10-11T02:43:26.2477340Z" end-time="2026-10-11T02:43:26.2479300Z" duration="0.000195" asserts="7" />
+            <test-case id="1003" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;far&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;far&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1169967128" result="Passed" start-time="2026-10-11T02:43:26.2479450Z" end-time="2026-10-11T02:43:26.2483880Z" duration="0.000443" asserts="7" />
+            <test-case id="1004" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-leader&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-leader&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="2077356094" result="Passed" start-time="2026-10-11T02:43:26.2484010Z" end-time="2026-10-11T02:43:26.2484650Z" duration="0.000064" asserts="6" />
+            <test-case id="1005" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-follower&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;dead-follower&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1594140555" result="Passed" start-time="2026-10-11T02:43:26.2484760Z" end-time="2026-10-11T02:43:26.2485420Z" duration="0.000066" asserts="6" />
+            <test-case id="1006" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;detached&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1302560301" result="Passed" start-time="2026-10-11T02:43:26.2485530Z" end-time="2026-10-11T02:43:26.2491030Z" duration="0.000550" asserts="7" />
+            <test-case id="1007" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;changed-leader&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;changed-leader&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="540001683" result="Passed" start-time="2026-10-11T02:43:26.2491130Z" end-time="2026-10-11T02:43:26.2491750Z" duration="0.000062" asserts="8" />
+            <test-case id="1008" name="StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;no-effect&quot;)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaleOrUnauthorizedChoiceCannotSetAnOrder(&quot;no-effect&quot;)" methodname="StaleOrUnauthorizedChoiceCannotSetAnOrder" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1053489032" result="Passed" start-time="2026-10-11T02:43:26.2491860Z" end-time="2026-10-11T02:43:26.2492520Z" duration="0.000066" asserts="6" />
+          </test-suite>
+          <test-case id="1010" name="StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" fullname="CavesOfOoo.Tests.CompanionOrderTests.StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" methodname="StayHoldsForMoreThanFollowTimeoutThenResumeUsesTheSameParty" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1196287671" result="Passed" start-time="2026-10-11T02:43:26.2496830Z" end-time="2026-10-11T02:43:26.2534040Z" duration="0.003721" asserts="12" />
+          <test-suite type="ParameterizedMethod" id="1020" name="StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes" fullname="CavesOfOoo.Tests.CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:43:26.2534250Z" end-time="2026-10-11T02:43:26.2575420Z" duration="0.004118" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="13">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1018" name="StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(False)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(False)" methodname="StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="80376730" result="Passed" start-time="2026-10-11T02:43:26.2534340Z" end-time="2026-10-11T02:43:26.2567120Z" duration="0.003279" asserts="6" />
+            <test-case id="1019" name="StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(True)" fullname="CavesOfOoo.Tests.CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(True)" methodname="StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1155331431" result="Failed" start-time="2026-10-11T02:43:26.2567290Z" end-time="2026-10-11T02:43:26.2575160Z" duration="0.000787" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 132
+   at InvokeStub_CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(Boolean staying) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionOrderTests.cs:line 132
+   at InvokeStub_CompanionOrderTests.StayingResponderDoesNotJoinPlayerAttackButFollowingResponderDoes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1011" name="StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" fullname="CavesOfOoo.Tests.CompanionOrderTests.StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" methodname="StaySurvivesLeaveAndReturnThenFollowAllowsNormalTransit" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="559569494" result="Passed" start-time="2026-10-11T02:43:26.2575550Z" end-time="2026-10-11T02:43:26.2582950Z" duration="0.000740" asserts="15" />
+          <test-suite type="ParameterizedMethod" id="1014" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T02:43:26.2583070Z" end-time="2026-10-11T02:43:26.2639970Z" duration="0.005690" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <test-case id="1012" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(False)" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(False)" methodname="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="1511853813" result="Passed" start-time="2026-10-11T02:43:26.2583150Z" end-time="2026-10-11T02:43:26.2637220Z" duration="0.005408" asserts="11" />
+            <test-case id="1013" name="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(True)" fullname="CavesOfOoo.Tests.CompanionOrderTests.TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter(True)" methodname="TokenGraphSavePreservesTheOrderAndExactLoadedRecruiter" classname="CavesOfOoo.Tests.CompanionOrderTests" runstate="Runnable" seed="886524390" result="Passed" start-time="2026-10-11T02:43:26.2637340Z" end-time="2026-10-11T02:43:26.2639850Z" duration="0.000250" asserts="12" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

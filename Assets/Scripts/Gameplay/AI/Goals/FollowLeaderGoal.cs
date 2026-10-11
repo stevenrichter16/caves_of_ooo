@@ -109,7 +109,7 @@ namespace CavesOfOoo.Core
         public override bool Finished()
         {
             if (Leader == null) return true;
-            if (Age > MaxAgeBeforeGiveUp) return true;
+            if (Age > MaxAgeBeforeGiveUp && !CompanionOrders.IsStaying(ParentEntity)) return true;
 
             var leaderBrain = Leader.GetPart<BrainPart>();
             if (leaderBrain == null) return true;
@@ -137,6 +137,14 @@ namespace CavesOfOoo.Core
             if (leaderBrain == null) return;
             var leaderZone = leaderBrain.CurrentZone;
             if (leaderZone == null) return;
+
+            // Stay is an explicit saved travel order. It suppresses both
+            // following and AI-leader assistance without expiring recruitment.
+            if (CompanionOrders.IsStaying(ParentEntity))
+            {
+                Age = 0;
+                return;
+            }
 
             // Cross-zone: idle (stay on stack) and reset Age. Goal
             // resumes naturally if zones realign — e.g. F.2.7 transit

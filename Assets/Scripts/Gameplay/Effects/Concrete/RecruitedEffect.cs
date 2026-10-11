@@ -46,6 +46,10 @@ namespace CavesOfOoo.Core
         /// other ref to that entity (e.g. <see cref="BrainPart.PartyLeader"/>).</summary>
         public Entity Recruiter;
 
+        /// <summary>Saved travel order; false preserves old-save behavior.
+        /// The order belongs to this recruitment and disappears on dismissal.</summary>
+        public bool StayHere;
+
         public RecruitedEffect() { Duration = DURATION_INDEFINITE; }
 
         public RecruitedEffect(Entity recruiter) : this()

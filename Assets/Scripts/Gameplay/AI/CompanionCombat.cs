@@ -42,7 +42,7 @@ namespace CavesOfOoo.Core
             // lifecycle changes without a zone scan or recursive party relay.
             foreach (var member in new List<Entity>(roster))
             {
-                if (!CurrentRecruit(member, player, zone) || member == target) continue;
+                if (!CurrentRecruit(member, player, zone) || member == target || CompanionOrders.IsStaying(member)) continue;
                 var brain = member.GetPart<BrainPart>();
                 if (brain.InConversation || brain.HasGoal<NoFightGoal>()
                     || !(brain.PeekGoal() is FollowLeaderGoal follow) || follow.ParentBrain != brain

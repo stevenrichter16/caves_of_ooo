@@ -31,7 +31,7 @@ namespace CavesOfOoo.Tests
             var e = new Entity { ID = id, BlueprintName = id };
             e.SetTag("Creature"); e.SetTag("Faction", "Villagers");
             e.AddPart(new PhysicsPart { Solid = true });
-            e.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(17) });
+            e.AddPart(new BrainPart { CurrentZone = zone, Rng = new System.Random(17) });
             e.AddPart(new StatusEffectsPart());
             e.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100, Max = 100 };
             foreach (string stat in new[] { "Strength", "Toughness", "Agility" })
