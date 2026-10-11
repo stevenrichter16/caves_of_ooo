@@ -113,7 +113,12 @@ missing turn handoff. The existing FieldMeal control passed. The full mixed
 receipt is retained without claiming all of it passed. Core tests then produced
 executed missing-type compile RED (`iteration06-core-red.txt`) before the new
 proof implementation. `iteration06-first-green.xml` passes 37/37: ten behavior
-cases and 27 dedicated adversarial cases.
+cases and 27 dedicated adversarial cases. A broader 115-case run
+(`iteration06-regression-attempt.xml`) passed 111 and exposed four old schematic
+policy pins conflicting with iteration 9: unsuccessful study had counted as
+handled, and nonconsuming ground study had been allowed. The schematic owner
+is updating those pins; this receipt is not presented as all GREEN. All 37 new
+consumption cases still passed.
 
 Implementation: capture `SelfConsumptionTurnProof` immediately before a selected
 action. Only typed Food/FieldMeal Eat and Tonic ApplyTonic are supported; command
@@ -130,7 +135,7 @@ handled inventory action costs time was introduced.
 🧪 The expanded native fixture has 19 cases: seven successful/control cases
 (including keyboard Enter and a registered TakeTurn observer), twelve cancelled,
 stale, empty, veto, outer failure and handled-without-consumption counters.
-Execution remains pending. Independent renderer-agent review of the source proof
+Execution remains pending. Independent renderer-agent and HUD-agent reviews of the source proof
 and UI predicate found no actionable loophole.
 
 Changed files: new `Gameplay/Items/SelfConsumptionTurnProof.cs` and metadata;

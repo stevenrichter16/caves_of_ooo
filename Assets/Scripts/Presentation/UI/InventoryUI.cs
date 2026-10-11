@@ -1334,6 +1334,7 @@ namespace CavesOfOoo.Rendering
             ClearActionStatus();
             var action = _itemActionPopup.Actions[index];
             var item = _itemActionPopup.Item;
+            var consumption = SelfConsumptionTurnProof.Capture(PlayerEntity, item, action.Command);
             bool completed;
             switch (action.Command)
             {
@@ -1435,7 +1436,7 @@ namespace CavesOfOoo.Rendering
                 || action.Command == "DrinkWaterskin" || action.Command == "Cook"
                 || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
                 || action.Command == "Harvest"
-                || (action.Command == "Eat" && item.HasPart<FieldMealPart>())
+                || consumption.ShouldSpendTurn(completed)
                 || (action.Command == SoddenDressingPart.ApplyCommand && item.HasPart<SoddenDressingPart>())
                 || action.Command == GrimoireChargePart.ReinkCommand
                 || action.Command == BotanicalProcessingPart.Command
