@@ -246,7 +246,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("known")] [TestCase("unknown")] [TestCase("no_locker")]
-        public void SingleUseSchematic_UnsuccessfulStudyDoesNotSpend(string reason)
+        public void SingleUseSchematic_UnsuccessfulStudyReportsFailureAndDoesNotSpend(string reason)
         {
             TinkerRecipeRegistry.ResetForTests();
             try
@@ -257,7 +257,8 @@ namespace CavesOfOoo.Tests
                 var item = new Entity(); item.AddPart(new PhysicsPart()); item.AddPart(new StackerPart { StackCount = 3 });
                 item.AddPart(new SchematicPart { RecipeID = reason == "unknown" ? "missing" : "audit_recipe", ConsumeOnStudy = true });
                 Inventory.AddObject(item);
-                Assert.IsTrue(InventorySystem.PerformAction(_actor, item, "StudySchematic"), "The explanatory study response is handled.");
+                Assert.IsFalse(InventorySystem.PerformAction(_actor, item, "StudySchematic"), "A refusal must not report a completed study.");
+                Assert.IsFalse(InventorySystem.GetActions(_actor, item).Exists(a => a.Command == "StudySchematic"));
                 Assert.AreEqual(3, item.GetPart<StackerPart>().StackCount);
                 Assert.IsTrue(Inventory.Objects.Contains(item));
             }

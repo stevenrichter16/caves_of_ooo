@@ -52,3 +52,11 @@ Review/counters: independent read-only review confirmed ownership and transactio
 Self-review: 🟡 bound learned ID to the selected recipe through callback validation and publication. 🔵 missing/known recipes, no reader/access, stale carriage, replaced part/physics/stack, callback throws, registry replacement, post-action return, consumption flag changes, reentrancy, real persistence and read-only economic ownership are checked. Existing actorless Study advertisement test intentionally now supplies an authorized reader with the carried schematic. 🧪 final native callbacks/UI and player feel remain root-owned. No scope divergence: BitLocker stays an explicit developer fixture facility, never an ordinary unlock.
 
 Files: `SchematicPart.cs`, `ItemExamineService.cs`, `SchematicAvailabilityTests.cs` (+meta), intentional eligibility setup in `SchematicPartTests.cs`, this log and raw receipts.
+
+### Iteration 9 — legacy consumable policy pins
+
+The wider material regression sweep surfaced four older schematic expectations from `a0dd91c4a`: failed known/missing/no-access Study returned handled success, and a nonconsuming ground schematic could be studied. These are deliberate policies replaced by iteration9, not evidence that the old tests were originally incorrect. Root explicitly approved aligning the pins with current carried-access eligibility and honest refusal.
+
+Reproduced unchanged pins: isolated114 total,110 passed, exactly4 failed (`iteration09-legacy-pins-red.xml`). Updated only the two named schematic test methods in `GameAuditConsumableTests` and `GameAuditConsumableAdversarialTests`. The carriage matrix now includes the missing carried/nonconsuming positive, separately proving that eligibility requires carriage while consumption remains conditional. Refused known/missing/no-access cases now assert false and absent Study action, retaining unchanged supply assertions. No production changes.
+
+GREEN: all115 combined legacy consumable and new/existing schematic cases pass (`iteration09-legacy-pins-green.xml`). Final native integration must include both GameAuditConsumable fixtures so these pins cannot be silently omitted. 🔵 Self-review: all other consumable policy/assertions remain unchanged; ordinary and authorized schematic counterchecks retained.

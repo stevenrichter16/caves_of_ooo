@@ -114,8 +114,8 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
         }
 
-        [TestCase(true, false)] [TestCase(true, true)] [TestCase(false, false)]
-        public void Schematic_RequiresCarriageOnlyWhenStudyConsumes(bool consumes, bool carried)
+        [TestCase(true, false)] [TestCase(true, true)] [TestCase(false, false)] [TestCase(false, true)]
+        public void Schematic_RequiresCarriageAndConsumesOnlyWhenAuthored(bool consumes, bool carried)
         {
             TinkerRecipeRegistry.ResetForTests();
             try
@@ -127,12 +127,14 @@ namespace CavesOfOoo.Tests
                 item.AddPart(new SchematicPart { RecipeID = "audit_recipe", ConsumeOnStudy = consumes });
                 if (carried) _actor.GetPart<InventoryPart>().AddObject(item);
                 else _zone.AddEntity(item, 10, 10);
-                bool allowed = !consumes || carried;
+                // System depth II deliberately requires actual carried access for
+                // every study. ConsumeOnStudy controls payment, not eligibility.
+                bool allowed = carried;
                 Assert.AreEqual(allowed, WorldInteractionSystem.GatherActions(item, _actor)
                     .Exists(a => a.Command == "StudySchematic"));
                 Assert.AreEqual(allowed, InventorySystem.PerformAction(_actor, item, "StudySchematic", _zone));
                 Assert.AreEqual(allowed, _actor.GetPart<BitLockerPart>().KnowsRecipe("audit_recipe"));
-                Assert.IsFalse(_actor.GetPart<InventoryPart>().Contains(item));
+                Assert.AreEqual(carried && !consumes, _actor.GetPart<InventoryPart>().Contains(item));
                 if (!carried) Assert.NotNull(_zone.GetEntityCell(item));
             }
             finally { TinkerRecipeRegistry.ResetForTests(); }
