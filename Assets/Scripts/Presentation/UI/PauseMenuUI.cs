@@ -157,7 +157,7 @@ namespace CavesOfOoo.Rendering
             DrawPopupBorder(0, 0, POPUP_W, borderHeight, contentRows);
 
             // Title row
-            DrawText(2, 1, Controller.IsGraphicsOpen ? "Graphics" : "Pause", QudColorParser.BrightYellow);
+            DrawText(2, 1, Controller.IsGraphicsOpen ? "Graphics" : Controller.IsAudioOpen ? "Audio" : "Pause", QudColorParser.BrightYellow);
 
             // Current page rows
             const int contentY = 3;
@@ -174,9 +174,11 @@ namespace CavesOfOoo.Rendering
             }
 
             // Hint at bottom (outside the border)
-            string hint = Controller.IsGraphicsOpen
+            string hint = Controller.IsGraphicsOpen || Controller.IsAudioOpen
                 ? (NativeGamepadInput.IsConnected ? "[A]change [B]back" : "[Enter]change [Esc]back")
                 : (NativeGamepadInput.IsConnected ? "[A]select [B]close" : "[Enter]select [Tab]close");
+            if(Controller.IsAudioOpen&&Controller.SelectedIndex<=PauseMenuController.SfxVolumeIndex)
+                hint=NativeGamepadInput.IsConnected?"[Left/Right]volume [B]back":"[Left/Right]volume [Esc]back";
             DrawText(0, borderHeight, hint, QudColorParser.DarkGray);
         }
 

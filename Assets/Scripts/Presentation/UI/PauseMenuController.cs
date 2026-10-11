@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Core;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
@@ -15,8 +16,11 @@ namespace CavesOfOoo.Rendering
         public const int LoadIndex = 1;
         public const int ControlsIndex = 2;
         public const int GraphicsIndex = 3;
-        public const int QuitIndex = 4;
-        public const int ItemCount = 5;
+        public const int AudioIndex = 4;
+        public const int QuitIndex = 5;
+        public const int ItemCount = 6;
+        public const int MusicVolumeIndex = 0, AmbienceVolumeIndex = 1, SfxVolumeIndex = 2, AudioCreditsIndex = 3, AudioBackIndex = 4;
+        public const int AudioItemCount = 5;
         public const int HandheldPresetIndex = 0;
         public const int FullPresetIndex = 1;
         public const int WorldResolutionIndex = 2;
@@ -26,7 +30,7 @@ namespace CavesOfOoo.Rendering
         public const int GraphicsBackIndex = 6;
         public const int GraphicsItemCount = 7;
         private static readonly float[] ResolutionChoices = { 1f, .75f, .5f };
-        private static readonly string[] MainLabels = { "Save game", "Load game", "Controls", "Graphics", "Quit" };
+        private static readonly string[] MainLabels = { "Save game", "Load game", "Controls", "Graphics", "Audio", "Quit" };
 
         /// <summary>Invoked by the Controls entry (host wires this to
         /// the ControlsReference help dump).</summary>
@@ -50,8 +54,9 @@ namespace CavesOfOoo.Rendering
         public int SelectedIndex { get; private set; }
         /// <summary>True only while the graphics page of the open menu is active.</summary>
         public bool IsGraphicsOpen { get; private set; }
+        public bool IsAudioOpen { get; private set; }
         /// <summary>Navigation and rendering bounds for the active menu page.</summary>
-        public int VisibleItemCount => IsGraphicsOpen ? GraphicsItemCount : ItemCount;
+        public int VisibleItemCount => IsGraphicsOpen ? GraphicsItemCount : IsAudioOpen ? AudioItemCount : ItemCount;
         /// <summary>Changes when the page, open state or a chosen preference changes.
         /// Selection changes are exposed separately through SelectedIndex.</summary>
         public int ViewRevision { get; private set; }
@@ -60,6 +65,7 @@ namespace CavesOfOoo.Rendering
         {
             IsOpen = true;
             IsGraphicsOpen = false;
+            IsAudioOpen = false;
             SelectedIndex = SaveIndex;
             ViewRevision++;
         }
@@ -68,6 +74,7 @@ namespace CavesOfOoo.Rendering
         {
             IsOpen = false;
             IsGraphicsOpen = false;
+            IsAudioOpen = false;
             ViewRevision++;
         }
 
@@ -76,6 +83,8 @@ namespace CavesOfOoo.Rendering
         public void Back()
         {
             if (!IsOpen) return;
+            if (IsAudioOpen)
+            {IsAudioOpen=false;SelectedIndex=AudioIndex;ViewRevision++;return;}
             if (!IsGraphicsOpen) { Close(); return; }
             IsGraphicsOpen = false;
             SelectedIndex = GraphicsIndex;
@@ -87,6 +96,17 @@ namespace CavesOfOoo.Rendering
         public string GetItemLabel(int index)
         {
             if (index < 0 || index >= VisibleItemCount) return string.Empty;
+            if (IsAudioOpen)
+            {
+                switch(index)
+                {
+                    case MusicVolumeIndex:return "Music: "+Mathf.RoundToInt(WorldAudioSettings.MusicVolume*100)+"%";
+                    case AmbienceVolumeIndex:return "Ambience: "+Mathf.RoundToInt(WorldAudioSettings.AmbienceVolume*100)+"%";
+                    case SfxVolumeIndex:return "Sound effects: "+Mathf.RoundToInt(WorldAudioSettings.SfxVolume*100)+"%";
+                    case AudioCreditsIndex:return "Audio credits";
+                    default:return "Back";
+                }
+            }
             if (!IsGraphicsOpen) return MainLabels[index];
             switch (index)
             {
@@ -181,6 +201,11 @@ namespace CavesOfOoo.Rendering
                 if (input.GetKeyDown(KeyCode.LeftArrow)) { ChangeGraphics(-1); return true; }
                 if (input.GetKeyDown(KeyCode.RightArrow)) { ChangeGraphics(1); return true; }
             }
+            if(IsAudioOpen&&SelectedIndex<=SfxVolumeIndex)
+            {
+                if(input.GetKeyDown(KeyCode.LeftArrow)){ChangeAudio(-1);return true;}
+                if(input.GetKeyDown(KeyCode.RightArrow)){ChangeAudio(1);return true;}
+            }
 
             if (input.GetKeyDown(ConfirmKey))
             {
@@ -195,6 +220,18 @@ namespace CavesOfOoo.Rendering
 
         private void DispatchSelection(ISaveLoadService service, Action<string> log)
         {
+            if(IsAudioOpen)
+            {
+                if(SelectedIndex==AudioBackIndex)Back();
+                else if(SelectedIndex==AudioCreditsIndex)
+                {
+                    var credits=Resources.Load<TextAsset>("Audio/World/CREDITS");
+                    MessageLog.AddAnnouncement(credits!=null?credits.text:"Audio credits are unavailable.");
+                    Close();
+                }
+                else ChangeAudio(1);
+                return;
+            }
             if (IsGraphicsOpen)
             {
                 if (SelectedIndex == GraphicsBackIndex) Back();
@@ -203,6 +240,8 @@ namespace CavesOfOoo.Rendering
             }
             switch (SelectedIndex)
             {
+                case AudioIndex:
+                    IsAudioOpen=true;SelectedIndex=MusicVolumeIndex;ViewRevision++;break;
                 case GraphicsIndex:
                     IsGraphicsOpen = true;
                     SelectedIndex = HandheldPresetIndex;
@@ -237,6 +276,18 @@ namespace CavesOfOoo.Rendering
                     Close();
                     break;
             }
+        }
+
+        private void ChangeAudio(int direction)
+        {
+            switch(SelectedIndex)
+            {
+                case MusicVolumeIndex:WorldAudioSettings.MusicVolume=Mathf.Round((WorldAudioSettings.MusicVolume+direction*.1f)*100)/100;break;
+                case AmbienceVolumeIndex:WorldAudioSettings.AmbienceVolume=Mathf.Round((WorldAudioSettings.AmbienceVolume+direction*.1f)*100)/100;break;
+                case SfxVolumeIndex:WorldAudioSettings.SfxVolume=Mathf.Round((WorldAudioSettings.SfxVolume+direction*.1f)*100)/100;break;
+                default:return;
+            }
+            WorldAudioSettings.Save();ViewRevision++;
         }
 
         private void ChangeGraphics(int direction)

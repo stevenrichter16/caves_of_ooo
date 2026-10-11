@@ -89,7 +89,7 @@ namespace CavesOfOoo.Rendering
             if(disposed || sequence==null || sequence.SpellId!="Pyromancy_EmberSpit" || zone==null || sequence.Zone!=zone
                 || zone.GetCell(sequence.Source.X,sequence.Source.Y)==null || !AnyVisible(sequence)
                 || !float.IsFinite(contactSeconds) || contactSeconds<0 || contactSeconds>=HardTimeout
-                || SpellFxSettings.Mode==SpellFxMode.Off || SpellFxSettings.SoundVolume<=0 || AudioListener.pause || !Prepare()) return false;
+                || SpellFxSettings.Mode==SpellFxMode.Off || SpellFxSettings.SoundVolume<=0 || WorldAudioSettings.SfxVolume<=0 || AudioListener.pause || !Prepare()) return false;
             Voice free=null;
             for(int i=0;i<Capacity;i++)
             {
@@ -120,7 +120,7 @@ namespace CavesOfOoo.Rendering
         void Tick(float wallDelta,float normalDelta,float nativeDelta)
         {
             if(disposed) return;
-            if(!IsPrepared || SpellFxSettings.Mode==SpellFxMode.Off || SpellFxSettings.SoundVolume<=0 || AudioListener.pause)
+            if(!IsPrepared || SpellFxSettings.Mode==SpellFxMode.Off || SpellFxSettings.SoundVolume<=0 || WorldAudioSettings.SfxVolume<=0 || AudioListener.pause)
             { ClearAll(); return; }
             wallDelta=WorldFxPlayback.SanitizeDelta(wallDelta);
             normalDelta=WorldFxPlayback.SanitizeDelta(normalDelta); nativeDelta=WorldFxPlayback.SanitizeDelta(nativeDelta);
@@ -151,7 +151,7 @@ namespace CavesOfOoo.Rendering
         public void SetMixVoiceCount(int total) { mixVoiceCount=Math.Max(0,total); RefreshMix(); }
         void RefreshMix()
         {
-            float volume=SpellFxSettings.SoundVolume/Math.Max(1,Math.Max(ActiveVoices,mixVoiceCount));
+            float volume=SpellFxSettings.SoundVolume*WorldAudioSettings.SfxVolume/Math.Max(1,Math.Max(ActiveVoices,mixVoiceCount));
             float pitch=Mathf.Min(3,SpellFxSettings.AnimationSpeed);
             for(int i=0;i<Capacity;i++)
                 if(voices[i]?.Sequence!=null) for(int k=0;k<3;k++)

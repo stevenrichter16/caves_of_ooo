@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "count": 13,
+  "command": "python3 Tools/Audio/verify_world_audio.py --counterchecks",
+  "cases": [
+    "valid mono short cue",
+    "silence rejected",
+    "clipping rejected",
+    "NaN rejected",
+    "wrong rate rejected",
+    "overlong cue rejected",
+    "valid periodic stereo bed",
+    "bad seam rejected",
+    "valid streaming importer",
+    "decompressed music rejected",
+    "preloaded music rejected",
+    "PCM music rejected",
+    "33-character GUID rejected"
+  ],
+  "unityImportVerified": false,
+  "subjectiveListeningVerified": false
+}

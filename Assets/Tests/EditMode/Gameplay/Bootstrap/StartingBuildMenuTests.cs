@@ -121,7 +121,8 @@ namespace CavesOfOoo.Tests
             string text = System.Text.RegularExpressions.Regex.Replace(string.Join("\n", m.CardLines(_h.Factory)), "\\s+", " ");
 
             StringAssert.Contains("Weakness", text);
-            StringAssert.Contains("you cannot choose who gets stunned", text);
+            StringAssert.Contains("Nothing at range; controlling one foe leaves the others free.", text);
+            StringAssert.DoesNotContain("you cannot choose who gets stunned", text, "chosen-target control replaced the old first-adjacent limitation");
             foreach (var label in new[] { "Cudgel", "Expertise", "Conk", "Slam", "Ground Pound", "Shattering Blows" })
                 StringAssert.Contains(label, text);
             StringAssert.DoesNotContain("Cudgel_Conk", text, "class names are for code, not for the player");

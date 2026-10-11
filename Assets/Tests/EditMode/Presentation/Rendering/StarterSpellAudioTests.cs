@@ -17,12 +17,12 @@ namespace CavesOfOoo.Tests
         public readonly GameObject Host = new GameObject("Starter audio test");
         public readonly Zone Zone = new Zone("starter-audio");
         public readonly StarterSpellAudioPlayer Audio;
-        readonly float volume = SpellFxSettings.SoundVolume, speed = SpellFxSettings.AnimationSpeed;
+        readonly float volume = SpellFxSettings.SoundVolume, speed = SpellFxSettings.AnimationSpeed, globalSfx = WorldAudioSettings.SfxVolume;
         readonly SpellFxMode mode = SpellFxSettings.Mode;
         readonly bool pause = AudioListener.pause;
         public StarterAudioFixture()
         {
-            SpellFxSettings.SoundVolume = 1; SpellFxSettings.AnimationSpeed = 1;
+            WorldAudioSettings.SfxVolume = 1; SpellFxSettings.SoundVolume = 1; SpellFxSettings.AnimationSpeed = 1;
             SpellFxSettings.Mode = SpellFxMode.Full; AudioListener.pause = false;
             foreach (var cell in Zone.Cells) { cell.Explored = true; cell.IsVisible = true; }
             Audio = new StarterSpellAudioPlayer(Host.transform); Audio.SetZone(Zone);
@@ -62,7 +62,7 @@ namespace CavesOfOoo.Tests
         public void Dispose()
         {
             Audio.Dispose(); UnityEngine.Object.DestroyImmediate(Host);
-            SpellFxSettings.SoundVolume = volume; SpellFxSettings.AnimationSpeed = speed;
+            WorldAudioSettings.SfxVolume = globalSfx; SpellFxSettings.SoundVolume = volume; SpellFxSettings.AnimationSpeed = speed;
             SpellFxSettings.Mode = mode; AudioListener.pause = pause;
         }
     }

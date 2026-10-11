@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="1.097178">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27730" result="Failed" site="Child" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="1.097178" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34152" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27730" result="Failed" site="Child" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="0.879253" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34153" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27730" result="Failed" site="Child" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="0.803921" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34154" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27730" result="Failed" site="Child" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="0.605600" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32786" name="WorldAudioLegacyBusTests" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11 05:17:06Z" end-time="2026-10-11 05:17:07Z" duration="0.502267" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32793" name="GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.297466" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32791" name="GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay(False)" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay(False)" methodname="GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" seed="418316998" result="Passed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.088374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32792" name="GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay(True)" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay(True)" methodname="GlobalBusMutesNewLegacyCastsAttenuatesActiveLayersAndClearsTailsWithoutReplay" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" seed="357143518" result="Passed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.007796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32790" name="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.103629" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32787" name="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;starter&quot;)" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;starter&quot;)" methodname="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" seed="940221400" result="Failed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.002342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0.0f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus (System.String fixture) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAdversarialTests.cs:241
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32788" name="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;ember&quot;)" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;ember&quot;)" methodname="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" seed="117808509" result="Failed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.000786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0.0f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus (System.String fixture) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAdversarialTests.cs:243
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32789" name="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;ember-adversarial&quot;)" fullname="CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus(&quot;ember-adversarial&quot;)" methodname="LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus" classname="CavesOfOoo.Tests.WorldAudioLegacyBusTests" runstate="Runnable" seed="848167022" result="Failed" start-time="2026-10-11 05:17:07Z" end-time="2026-10-11 05:17:07Z" duration="0.000675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0.0f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioLegacyBusTests.LegacyFixtureStartsAudibleThenRestoresPreviouslyMutedGlobalBus (System.String fixture) [0x00081] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioAdversarialTests.cs:245
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

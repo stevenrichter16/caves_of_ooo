@@ -13,12 +13,12 @@ namespace CavesOfOoo.Tests
         GameObject root;
         Zone zone;
         EmberSpitAudioPlayer audio;
-        float oldVolume, oldSpeed;
+        float oldVolume, oldSpeed, oldGlobalSfx;
         SpellFxMode oldMode;
         [SetUp] public void Setup()
         {
-            oldVolume=SpellFxSettings.SoundVolume;oldSpeed=SpellFxSettings.AnimationSpeed;oldMode=SpellFxSettings.Mode;
-            SpellFxSettings.SoundVolume=1;SpellFxSettings.AnimationSpeed=1;SpellFxSettings.Mode=SpellFxMode.Full;
+            oldGlobalSfx=WorldAudioSettings.SfxVolume;oldVolume=SpellFxSettings.SoundVolume;oldSpeed=SpellFxSettings.AnimationSpeed;oldMode=SpellFxSettings.Mode;
+            WorldAudioSettings.SfxVolume=1;SpellFxSettings.SoundVolume=1;SpellFxSettings.AnimationSpeed=1;SpellFxSettings.Mode=SpellFxMode.Full;
             root=new GameObject("Ember audio test");zone=new Zone("EmberAudio");
             foreach(var c in zone.Cells){c.IsVisible=true;c.Explored=true;}
             audio=new EmberSpitAudioPlayer(root.transform);audio.SetZone(zone);
@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
         [TearDown] public void Cleanup()
         {
             audio.Dispose();UnityEngine.Object.DestroyImmediate(root);
-            SpellFxSettings.SoundVolume=oldVolume;SpellFxSettings.AnimationSpeed=oldSpeed;SpellFxSettings.Mode=oldMode;
+            WorldAudioSettings.SfxVolume=oldGlobalSfx;SpellFxSettings.SoundVolume=oldVolume;SpellFxSettings.AnimationSpeed=oldSpeed;SpellFxSettings.Mode=oldMode;
         }
         SpellFxSequence Sequence(bool hit=true,int seed=0,string spell="Pyromancy_EmberSpit",bool duplicate=false)
         {

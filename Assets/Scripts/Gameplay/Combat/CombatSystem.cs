@@ -458,6 +458,7 @@ namespace CavesOfOoo.Core
             // while the actual entity lost only 6 HP and sat at 194/200 —
             // the HP bar told the truth, the log lied.
             int hpBefore = defender.GetStatValue("Hitpoints", 0);
+            var audioContact = zone?.GetEntityCell(defender);
 
             // Apply damage (typed overload — preferred path). Internally:
             //   Phase F BeforeTakeDamage event (listeners can veto/mutate)
@@ -480,6 +481,8 @@ namespace CavesOfOoo.Core
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
             int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+            if (actualDamage > 0 && audioContact != null)
+                WorldAudioHooks.Emit(WorldAudioCue.Hit, attacker, zone, audioContact.X, audioContact.Y);
             CompanionCombat.AfterPlayerDirectDamage(attacker, defender, zone, actualDamage);
 
             // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player

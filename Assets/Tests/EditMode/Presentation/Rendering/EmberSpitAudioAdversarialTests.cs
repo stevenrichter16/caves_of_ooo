@@ -11,16 +11,16 @@ namespace CavesOfOoo.Tests
 {
     public sealed class EmberSpitAudioAdversarialTests
     {
-        EmberSpitAudioPlayer audio; Zone zone; float volume,speed; SpellFxMode mode; bool pause;
+        EmberSpitAudioPlayer audio; Zone zone; float volume,speed,globalSfx; SpellFxMode mode; bool pause;
         [SetUp] public void Setup()
         {
-            volume=SpellFxSettings.SoundVolume;speed=SpellFxSettings.AnimationSpeed;mode=SpellFxSettings.Mode;pause=AudioListener.pause;
-            SpellFxSettings.SoundVolume=1;SpellFxSettings.AnimationSpeed=1;SpellFxSettings.Mode=SpellFxMode.Full;AudioListener.pause=false;
+            globalSfx=WorldAudioSettings.SfxVolume;volume=SpellFxSettings.SoundVolume;speed=SpellFxSettings.AnimationSpeed;mode=SpellFxSettings.Mode;pause=AudioListener.pause;
+            WorldAudioSettings.SfxVolume=1;SpellFxSettings.SoundVolume=1;SpellFxSettings.AnimationSpeed=1;SpellFxSettings.Mode=SpellFxMode.Full;AudioListener.pause=false;
             zone=new Zone("audio-adversarial");foreach(var c in zone.Cells){c.Explored=true;c.IsVisible=true;}
             audio=new EmberSpitAudioPlayer();audio.SetZone(zone);
         }
         [TearDown] public void Teardown()
-        {audio.Dispose();SpellFxSettings.SoundVolume=volume;SpellFxSettings.AnimationSpeed=speed;SpellFxSettings.Mode=mode;AudioListener.pause=pause;}
+        {audio.Dispose();WorldAudioSettings.SfxVolume=globalSfx;SpellFxSettings.SoundVolume=volume;SpellFxSettings.AnimationSpeed=speed;SpellFxSettings.Mode=mode;AudioListener.pause=pause;}
         SpellFxSequence Sequence(bool died=false,bool resisted=false)=>new SpellFxSequence("Pyromancy_EmberSpit",zone,null,new Point(10,10),
             new[]{new Point(11,10)},targets:new[]{new SpellFxTargetResult("target",new Point(11,10),new Point(-1,-1),resisted?0:3,resisted,died)});
         bool Play()=>audio.Play(Sequence(),.245f,new Point(11,10),true);

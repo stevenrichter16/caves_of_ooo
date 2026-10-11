@@ -38,7 +38,13 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(2, hit.Damage); Assert.IsTrue(hit.Moved);
                 Assert.Contains("WetEffect", hit.AppliedEffects.ToArray());
                 Assert.Contains(hit.Cell, sequence.AffectedCells.ToArray());
-                Assert.AreEqual(new Point(12, 12), sequence.Path.Last());
+                Assert.IsEmpty(sequence.Path,
+                    "Jet records a reachable fan, not a line (WetTheGround switched to GetConeCells in c7e154dbc).");
+                CollectionAssert.IsSubsetOf(new[] { new Point(11, 11), new Point(13, 11),
+                    new Point(12, 12), new Point(11, 13) }, sequence.AffectedCells.ToArray(),
+                    "The diagonal centre and both reachable wings must retain actual area provenance.");
+                Assert.IsFalse(sequence.AffectedCells.Contains(new Point(10, 12)),
+                    "A nearby cell outside the fan must not acquire affected provenance.");
                 Assert.IsTrue(f.Play(sequence)); f.Contact();
                 Assert.AreEqual(4, f.Audio.ContactLayerCount);
                 Assert.IsTrue(f.Post.Any(s => s.clip.name.Contains("wet_slap")),

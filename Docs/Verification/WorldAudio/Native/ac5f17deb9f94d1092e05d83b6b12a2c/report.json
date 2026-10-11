@@ -1,0 +1,57 @@
+{
+    "runId": "ac5f17deb9f94d1092e05d83b6b12a2c",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Isolated normal boot; actual imported streamed music playback, sampled listener signal, keyboard movement and committed footstep cues, idle context work, same-biome music continuity, save/load replacement and native gamepad audio settings.",
+    "cannotVerify": "Noncontiguous output windows prove a nonzero signal below full scale only in those sampled windows. They do not prove globally unclipped audio, subjective listening quality, physical speakers, all biome transitions, or Deck performance. Tests separately cover hidden-source refusals and crossfades. Three audio preferences are temporarily initialized and exactly restored; no gameplay state is injected.",
+    "mode": "world-audio",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio_fixed_pool_live",
+        "PASS imported_streamed_music_plays",
+        "PASS ambience_plays",
+        "PASS observed_audio_windows_nonzero_and_below_full_scale",
+        "PASS idle_does_not_rescan_or_restart_music",
+        "PASS real_walk_emits_two_player_steps",
+        "PASS same_biome_steps_do_not_restart_music",
+        "PASS imported_music_playhead_advances_during_walk",
+        "PASS gamepad_opens_audio_page",
+        "PASS gamepad_adjusts_only_music",
+        "PASS audio_page_keeps_music_running",
+        "PASS music_mute_keeps_ambience",
+        "PASS music_unmute_resumes_a_single_voice",
+        "PASS audio_back_returns_to_game",
+        "PASS loaded_world_has_one_audio_owner",
+        "PASS audio_preferences_restored",
+        "PASS audio_synthetic_gamepad_removed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/ac5f17deb9f94d1092e05d83b6b12a2c/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/ac5f17deb9f94d1092e05d83b6b12a2c/02-audio-settings.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/WorldAudio/Native/ac5f17deb9f94d1092e05d83b6b12a2c/03-audio-after-load.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Mixed output samples",
+            "source": "AudioListener.GetOutputData",
+            "text": "RMS=0.0035938935840727 peak=0.0137136 samples=930816; noncontiguous observer windows, not a continuous recording or listening review.",
+            "units": 0
+        }
+    ],
+    "cases": 18,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 14.5280718,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

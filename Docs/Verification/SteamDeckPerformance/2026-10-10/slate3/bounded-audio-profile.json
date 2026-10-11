@@ -1,0 +1,492 @@
+{
+  "baseline": {
+    "run": "5c16c11e81ea43098ecf949f979406fa",
+    "complete": true,
+    "cases": 18,
+    "frames": 23615,
+    "wallMs": {
+      "count": 23615,
+      "median": 2.3516651708632708,
+      "p95": 3.057291731238365,
+      "maximum": 900.9297490119934
+    },
+    "positions": {
+      "40,12": 297,
+      "41,12": 23318
+    },
+    "corridorOnly": true,
+    "startTick": 1724,
+    "endTick": 1834,
+    "seconds": 60.081469291006215,
+    "before": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 13338,
+      "gc1": 13338,
+      "gc2": 13338,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "after": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 13353,
+      "gc1": 13353,
+      "gc2": 13353,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "rawSha256": "fecc47ee7e39a391f8f01261613c9213aa6880048cbe7bef1f6105a2ae7d8576",
+    "activeMarkers": {
+      "COO.ZoneRenderer.LateUpdate": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.152125,
+        "p95": 0.189791,
+        "maximum": 77.61875
+      },
+      "COO.Input.Update": {
+        "unit": "ms",
+        "count": 23613,
+        "median": 0.009625,
+        "p95": 0.016375,
+        "maximum": 2.010417
+      },
+      "COO.ZoneRenderer.RenderZone": {
+        "unit": "ms",
+        "count": 11,
+        "median": 37.7525,
+        "p95": 42.238083,
+        "maximum": 42.823917
+      },
+      "COO.ZoneRenderer.RenderCells": {
+        "unit": "ms",
+        "count": 11,
+        "median": 4.999,
+        "p95": 5.404209,
+        "maximum": 5.498042
+      },
+      "COO.NativePresenter.Refresh": {
+        "unit": "ms",
+        "count": 11,
+        "median": 11.939792,
+        "p95": 14.515708,
+        "maximum": 15.047
+      },
+      "COO.GroundContact.Refresh": {
+        "unit": "ms",
+        "count": 11,
+        "median": 9.579875,
+        "p95": 11.882167,
+        "maximum": 12.496542
+      },
+      "COO.GroundContact.Rasterize": {
+        "unit": "ms",
+        "count": 11,
+        "median": 8.489583,
+        "p95": 10.400083,
+        "maximum": 11.341958
+      },
+      "COO.GroundContact.Upload": {
+        "unit": "ms",
+        "count": 11,
+        "median": 0.355667,
+        "p95": 0.408833,
+        "maximum": 0.535292
+      },
+      "COO.ZoneRenderer.ComputeFOV": {
+        "unit": "ms",
+        "count": 11,
+        "median": 4.058041,
+        "p95": 4.21475,
+        "maximum": 5.06025
+      },
+      "COO.ZoneRenderer.ComputeLightMap": {
+        "unit": "ms",
+        "count": 11,
+        "median": 1.18125,
+        "p95": 1.273417,
+        "maximum": 1.290125
+      },
+      "COO.ZoneRenderer.UpdateAmbientAnimations": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.000917,
+        "p95": 0.001667,
+        "maximum": 0.021959
+      },
+      "COO.ZoneRenderer.RenderSidebar": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.050333,
+        "p95": 0.06125,
+        "maximum": 43.743834
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.006334,
+        "p95": 0.008667,
+        "maximum": 0.071166
+      },
+      "COO.EnvSprites.PostRender": {
+        "unit": "ms",
+        "count": 11,
+        "median": 9.174375,
+        "p95": 9.853292,
+        "maximum": 9.857084
+      },
+      "COO.UI.Sidebar.Render": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.002083,
+        "p95": 0.00275,
+        "maximum": 2.280959
+      },
+      "COO.UI.Hotbar.Render": {
+        "unit": "ms",
+        "count": 23614,
+        "median": 0.000917,
+        "p95": 0.001375,
+        "maximum": 0.011167
+      },
+      "COO.Turns.ProcessUntilPlayerTurn": {
+        "unit": "ms",
+        "count": 11,
+        "median": 0.861917,
+        "p95": 0.9,
+        "maximum": 1.009833
+      },
+      "COO.Turns.Tick": {
+        "unit": "ms",
+        "count": 11,
+        "median": 0.002665,
+        "p95": 0.002834,
+        "maximum": 0.003042
+      },
+      "COO.Turns.AI.TakeTurn": {
+        "unit": "ms",
+        "count": 11,
+        "median": 0.822208,
+        "p95": 0.865792,
+        "maximum": 0.971292
+      },
+      "COO.Turns.EndTurn": {
+        "unit": "ms",
+        "count": 11,
+        "median": 0.062541,
+        "p95": 0.073542,
+        "maximum": 0.086499
+      },
+      "Main Thread": {
+        "unit": "ms",
+        "count": 23613,
+        "median": 2.359709,
+        "p95": 3.050125,
+        "maximum": 900.557541
+      },
+      "GC Allocated In Frame": {
+        "unit": "Bytes",
+        "count": 23614,
+        "median": 22087.0,
+        "p95": 30373.0,
+        "maximum": 589400838.0
+      },
+      "GC.Collect": {
+        "unit": "ms",
+        "count": 15,
+        "median": 26.721583,
+        "p95": 54.348416,
+        "maximum": 85.698293
+      },
+      "Draw Calls Count": {
+        "unit": "Count",
+        "count": 23613,
+        "median": 129.0,
+        "p95": 130.0,
+        "maximum": 131.0
+      },
+      "Triangles Count": {
+        "unit": "Count",
+        "count": 23613,
+        "median": 607238.0,
+        "p95": 607274.0,
+        "maximum": 607308.0
+      },
+      "GPU Frame Time": {
+        "unit": "ms",
+        "count": 23609,
+        "median": 1.709791598841548,
+        "p95": 1.8717916682362556,
+        "maximum": 8.723208447918296
+      }
+    }
+  },
+  "after": {
+    "run": "66964c81172048a7a7861bf06a15b5f1",
+    "complete": true,
+    "cases": 18,
+    "frames": 21101,
+    "wallMs": {
+      "count": 21101,
+      "median": 2.335579600185156,
+      "p95": 3.3214993309229612,
+      "maximum": 899.3250131607056
+    },
+    "positions": {
+      "40,12": 3564,
+      "41,12": 17537
+    },
+    "corridorOnly": true,
+    "startTick": 1724,
+    "endTick": 3114,
+    "seconds": 60.108234791026916,
+    "before": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 13419,
+      "gc1": 13419,
+      "gc2": 13419,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "after": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 13439,
+      "gc1": 13439,
+      "gc2": 13439,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "rawSha256": "6f2ee74f55bd17a522c98fed2bacc2a5ca76bf34d9b25b71ef2ee9aa10f1b58c",
+    "activeMarkers": {
+      "COO.ZoneRenderer.LateUpdate": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.14175,
+        "p95": 0.185541,
+        "maximum": 390.994542
+      },
+      "COO.Input.Update": {
+        "unit": "ms",
+        "count": 21099,
+        "median": 0.009667,
+        "p95": 0.017167,
+        "maximum": 12.591417
+      },
+      "COO.ZoneRenderer.RenderZone": {
+        "unit": "ms",
+        "count": 139,
+        "median": 32.490042,
+        "p95": 40.362584,
+        "maximum": 388.335792
+      },
+      "COO.ZoneRenderer.RenderCells": {
+        "unit": "ms",
+        "count": 139,
+        "median": 5.329667,
+        "p95": 6.484333,
+        "maximum": 33.858167
+      },
+      "COO.NativePresenter.Refresh": {
+        "unit": "ms",
+        "count": 139,
+        "median": 11.249375,
+        "p95": 14.407708,
+        "maximum": 82.101459
+      },
+      "COO.GroundContact.Refresh": {
+        "unit": "ms",
+        "count": 139,
+        "median": 9.805625,
+        "p95": 11.878708,
+        "maximum": 46.665292
+      },
+      "COO.GroundContact.Rasterize": {
+        "unit": "ms",
+        "count": 139,
+        "median": 8.678334,
+        "p95": 10.689125,
+        "maximum": 34.970792
+      },
+      "COO.GroundContact.Upload": {
+        "unit": "ms",
+        "count": 139,
+        "median": 0.366542,
+        "p95": 0.437333,
+        "maximum": 10.9685
+      },
+      "COO.ZoneRenderer.ComputeFOV": {
+        "unit": "ms",
+        "count": 139,
+        "median": 4.090125,
+        "p95": 4.770125,
+        "maximum": 7.808292
+      },
+      "COO.ZoneRenderer.ComputeLightMap": {
+        "unit": "ms",
+        "count": 139,
+        "median": 1.225125,
+        "p95": 1.459625,
+        "maximum": 7.0955
+      },
+      "COO.ZoneRenderer.UpdateAmbientAnimations": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.00075,
+        "p95": 0.001541,
+        "maximum": 0.043083
+      },
+      "COO.ZoneRenderer.RenderSidebar": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.050791,
+        "p95": 0.066625,
+        "maximum": 68.662916
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.006625,
+        "p95": 0.008959,
+        "maximum": 2.113375
+      },
+      "COO.EnvSprites.PostRender": {
+        "unit": "ms",
+        "count": 139,
+        "median": 5.650833,
+        "p95": 6.352625,
+        "maximum": 12.890333
+      },
+      "COO.UI.Sidebar.Render": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.002292,
+        "p95": 0.00325,
+        "maximum": 3.944667
+      },
+      "COO.UI.Hotbar.Render": {
+        "unit": "ms",
+        "count": 21100,
+        "median": 0.000792,
+        "p95": 0.001083,
+        "maximum": 0.035041
+      },
+      "COO.Turns.ProcessUntilPlayerTurn": {
+        "unit": "ms",
+        "count": 139,
+        "median": 1.698375,
+        "p95": 2.078,
+        "maximum": 4.352042
+      },
+      "COO.Turns.Tick": {
+        "unit": "ms",
+        "count": 139,
+        "median": 0.003626,
+        "p95": 0.004294,
+        "maximum": 0.008832
+      },
+      "COO.Turns.AI.TakeTurn": {
+        "unit": "ms",
+        "count": 139,
+        "median": 1.647958,
+        "p95": 2.019792,
+        "maximum": 4.231584
+      },
+      "COO.Turns.EndTurn": {
+        "unit": "ms",
+        "count": 139,
+        "median": 0.074333,
+        "p95": 0.1355,
+        "maximum": 10.010542
+      },
+      "Main Thread": {
+        "unit": "ms",
+        "count": 21099,
+        "median": 2.31475,
+        "p95": 3.305458,
+        "maximum": 899.228875
+      },
+      "GC Allocated In Frame": {
+        "unit": "Bytes",
+        "count": 21100,
+        "median": 17351.0,
+        "p95": 29169.0,
+        "maximum": 551695821.0
+      },
+      "GC.Collect": {
+        "unit": "ms",
+        "count": 24,
+        "median": 26.4185835,
+        "p95": 28.422376,
+        "maximum": 55.9525
+      },
+      "Draw Calls Count": {
+        "unit": "Count",
+        "count": 21099,
+        "median": 112.0,
+        "p95": 114.0,
+        "maximum": 115.0
+      },
+      "Triangles Count": {
+        "unit": "Count",
+        "count": 21099,
+        "median": 579538.0,
+        "p95": 579556.0,
+        "maximum": 579584.0
+      },
+      "GPU Frame Time": {
+        "unit": "ms",
+        "count": 21073,
+        "median": 1.6957916086539626,
+        "p95": 1.880083349533379,
+        "maximum": 10.45645831618458
+      }
+    }
+  },
+  "settingDifferences": [],
+  "bothConfinedToCorridor": true,
+  "context": "Audio enabled in both; same settings and bounded corridor, but successful movement differs 11 versus139. Live unseeded NPC decisions cause different workloads. Timing comparison inconclusive; no causal speedup claim.",
+  "scope": "Positive per-marker observations; latest completed native sample may be the preceding frame. Nested markers are not additive. Editor timing includes scheduling and GC, and does not prove Steam Deck performance. Exact population/AI outcome equivalence is not asserted by matching render settings."
+}

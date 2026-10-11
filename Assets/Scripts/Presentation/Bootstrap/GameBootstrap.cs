@@ -539,6 +539,10 @@ namespace CavesOfOoo
                     inputHandler.CameraFollow = cameraFollow;
                     inputHandler.EntityFactory = _factory;
 
+                    var worldAudio = GetComponent<WorldAudioRuntime>();
+                    if (worldAudio == null) worldAudio = gameObject.AddComponent<WorldAudioRuntime>();
+                    worldAudio.Initialize(inputHandler);
+
                     var screenFade = GetComponent<ScreenFade>();
                     if (screenFade == null)
                         screenFade = gameObject.AddComponent<ScreenFade>();

@@ -59,6 +59,8 @@ namespace CavesOfOoo.Core
                     foreach(var other in cell.Occupants)
                         if(other!=ParentEntity&&!IsBareGround(other))return Reject(actor,"doorway-occupied");
             IsOpen=open;RefreshGlyph();zone.MarkDoorOcclusionChanged();
+            var soundCell=zone.GetEntityCell(ParentEntity);
+            if(soundCell!=null)WorldAudioHooks.Emit(open?WorldAudioCue.DoorOpen:WorldAudioCue.DoorClose,actor,zone,soundCell.X,soundCell.Y);
             ZoneRenderHooks.MarkFullDirty("Door.State");
             MessageLog.Add(actor.HasTag("Player")?(open?"You open the door.":"You close the door.")
                 :actor.GetDisplayName()+(open?" opens the door.":" closes the door."));

@@ -63,10 +63,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PauseMenu_HasControlsAndQuitEntries()
         {
-            Assert.AreEqual(5, PauseMenuController.ItemCount);
+            Assert.AreEqual(6, PauseMenuController.ItemCount);
             Assert.AreEqual(2, PauseMenuController.ControlsIndex);
             Assert.AreEqual(3, PauseMenuController.GraphicsIndex);
-            Assert.AreEqual(4, PauseMenuController.QuitIndex);
+            Assert.AreEqual(4, PauseMenuController.AudioIndex);
+            Assert.AreEqual(5, PauseMenuController.QuitIndex);
         }
 
         [Test]
