@@ -12,6 +12,11 @@ namespace CavesOfOoo.Rendering
     {
         public const int SoundCapacity=12;
         const float FadeSeconds=2f;
+        const float FocusFloor=.6f,FocusHoldSeconds=.3f,FocusRecoverySeconds=1.5f,FocusAttackRate=4f;
+        float focusRemaining;
+        /// <summary>Cosmetic background gain only; accepted combat cues refresh a bounded wall-clock envelope.</summary>
+        public float AtmosphereMix{get;private set;}=1;
+        public int CombatFocusCount{get;private set;}
         static readonly ProfilerMarker Marker=new ProfilerMarker("COO.WorldAudio.Update");
         sealed class LoopBus
         {
@@ -106,6 +111,27 @@ namespace CavesOfOoo.Rendering
             variants[c]++;cooldown[c]=c<=2?.12f:.06f;
             StartSound(slot,entry,pan,1,false);AcceptedSoundCount++;return true;
         }
+        /// <summary>Only the typed perceived combat route calls this. Refused audio never creates a background dip.</summary>
+        public bool TryPlayCombat(WorldAudioCue cue,float pan=0)
+        {
+            switch(cue)
+            {
+                case WorldAudioCue.Swing:case WorldAudioCue.Hit:case WorldAudioCue.SwingBlade:
+                case WorldAudioCue.SwingBlunt:case WorldAudioCue.SwingNatural:case WorldAudioCue.HitCutting:
+                case WorldAudioCue.HitPiercing:case WorldAudioCue.HitBlunt:case WorldAudioCue.HitNatural:break;
+                default:return false;
+            }
+            if(!CheckSources()||!TryPlay(cue,pan))return false;
+            focusRemaining=FocusHoldSeconds;CombatFocusCount++;return true;
+        }
+        void AdvanceFocus(float delta)
+        {
+            if(AudioListener.pause||WorldAudioSettings.SfxVolume<=0){focusRemaining=0;AtmosphereMix=1;return;}
+            // Split at hold expiry so one slow frame and several fast frames recover identically.
+            float held=Mathf.Min(delta,focusRemaining);
+            if(held>0){AtmosphereMix=Mathf.MoveTowards(AtmosphereMix,FocusFloor,held*FocusAttackRate);focusRemaining=Mathf.Max(0,focusRemaining-held);}
+            if(delta>held)AtmosphereMix=Mathf.MoveTowards(AtmosphereMix,1,(delta-held)*(1-FocusFloor)/FocusRecoverySeconds);
+        }
         /// <summary>Sparse environmental details share the existing pool, use the ambience bus,
         /// and occupy at most two voices. Cosmetic selection never touches simulation randomness.</summary>
         public bool TryPlayDetail(string id,float pan=0,float gain=1)
@@ -123,7 +149,7 @@ namespace CavesOfOoo.Rendering
             Stop(sounds[slot]);remaining[slot]=entry.Clip.length;gains[slot]=entry.Gain*gain;detailVoice[slot]=detail;
             sounds[slot].priority=detail?200:64;sounds[slot].clip=entry.Clip;
             sounds[slot].panStereo=float.IsFinite(pan)?Mathf.Clamp(pan,-.65f,.65f):0;
-            sounds[slot].volume=gains[slot]*(detail?WorldAudioSettings.AmbienceVolume:WorldAudioSettings.SfxVolume);
+            sounds[slot].volume=gains[slot]*(detail?WorldAudioSettings.AmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume);
             if(Application.isPlaying)sounds[slot].Play();
         }
         public void ClearDetails()
@@ -133,12 +159,13 @@ namespace CavesOfOoo.Rendering
             using(Marker.Auto())
             {
                 if(!CheckSources())return;float delta=SafeDelta(wallDelta);
-                music.Tick(delta,WorldAudioSettings.MusicVolume);ambience.Tick(delta,WorldAudioSettings.AmbienceVolume);
+                AdvanceFocus(delta);
+                music.Tick(delta,WorldAudioSettings.MusicVolume*AtmosphereMix);ambience.Tick(delta,WorldAudioSettings.AmbienceVolume*AtmosphereMix);
                 for(int c=0;c<cooldown.Length;c++)cooldown[c]=Mathf.Max(0,cooldown[c]-delta);
                 for(int i=0;i<SoundCapacity;i++)
                 {
                     if(remaining[i]<=0)continue;
-                    float volume=detailVoice[i]?WorldAudioSettings.AmbienceVolume:WorldAudioSettings.SfxVolume;
+                    float volume=detailVoice[i]?WorldAudioSettings.AmbienceVolume*AtmosphereMix:WorldAudioSettings.SfxVolume;
                     remaining[i]=volume<=0||AudioListener.pause?0:Mathf.Max(0,remaining[i]-delta);
                     if(remaining[i]<=0)Stop(sounds[i]);else if(sounds[i]!=null)sounds[i].volume=gains[i]*volume;
                 }
@@ -152,7 +179,7 @@ namespace CavesOfOoo.Rendering
             for(int i=0;i<SoundCapacity&&complete;i++)complete=sounds[i]!=null;
             if(!complete)Dispose();return complete;
         }
-        public void ClearSounds(){for(int i=0;i<SoundCapacity;i++){Stop(sounds[i]);remaining[i]=0;detailVoice[i]=false;}Array.Clear(cooldown,0,cooldown.Length);}
+        public void ClearSounds(){focusRemaining=0;AtmosphereMix=1;for(int i=0;i<SoundCapacity;i++){Stop(sounds[i]);remaining[i]=0;detailVoice[i]=false;}Array.Clear(cooldown,0,cooldown.Length);}
         static void Stop(AudioSource source){if(source==null)return;if(Application.isPlaying)source.Stop();source.clip=null;source.volume=0;}
         public void Dispose()
         {

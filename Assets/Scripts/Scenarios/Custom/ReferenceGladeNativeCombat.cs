@@ -32,13 +32,16 @@ namespace CavesOfOoo.Scenarios.Custom
             "starting_dagger_equipped_by_keyboard", "keyboard_reaches_original_target",
             "actual_player_attack_dispatch", "actual_player_damage", "actual_target_retaliation",
             "player_attributed_defeat_and_owned_drop", "real_attack_pose_and_frame",
-            "dead_native_view_removed", "ordinary_combat_finish"
+            "dead_native_view_removed", "ordinary_combat_finish",
+            "combat_audio_imported_melee_plays", "combat_audio_atmosphere_dips", "combat_audio_quiet_recovery",
+            "combat_audio_observation_no_turn", "combat_audio_pool_preferences_unchanged", "combat_audio_preferences_restored"
         };
         private bool CombatComplete => _audit.Count == CombatChecks.Length
             && CombatChecks.All(name => _audit.Contains("PASS " + name)) && _screenshots.Count >= 4;
 
         private IEnumerator RunCombatAudit()
         {
+            BeginCombatAudio();
             var actor = _input.PlayerEntity;
             Check("ordinary_combat_start", actor.GetStatValue("Hitpoints") == 40
                 && actor.GetStatValue("Strength") == 18 && actor.GetStatValue("Agility") == 18
@@ -158,6 +161,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 yield return CombatKey(Direction(Math.Sign(to.X - from.X), Math.Sign(to.Y - from.Y)), true);
                 _combatAttacks++;
             }
+            yield return ObserveCombatAudioRecovery();
             yield return CombatDismissEarnedAdvancement();
             Check("actual_player_attack_dispatch", _combatAttempt && _combatAttacks > 0);
             Check("actual_player_damage", _combatDamage);
@@ -345,6 +349,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Diag.Record("scenario", ReferenceGladeCombatEvidence.MarkerKind, _input.PlayerEntity, _combatTarget,
                 new { runId = RunId, key = key.ToString(), attack, before });
             string marker = Diag.Snapshot(1).Single().TraceId;
+            var combatAudio = BeginCombatAudioWindow(attack);
             _keyboard.MakeCurrent();
             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(key));
             double began = Time.realtimeSinceStartupAsDouble;
@@ -354,6 +359,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 yield return null;
                 if (!released) { InputSystem.QueueStateEvent(_keyboard, new KeyboardState()); released = true; }
                 yield return new WaitForEndOfFrame();
+                SampleCombatAudioWindow(combatAudio);
                 if (attack && animator != null && animator.isActiveAndEnabled
                     && animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")
                     && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0
@@ -380,8 +386,9 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return CombatWaitForFx();
             var rows = Diag.Snapshot(Diag.BufferCapacity);
             var witness = ReferenceGladeCombatEvidence.Inspect(rows, marker, _input.PlayerEntity.ID, _combatTargetID);
+            CompleteCombatAudioWindow(combatAudio, witness.PlayerAttempt);
             _combatSteps.Add(JsonConvert.SerializeObject(new { marker, key = key.ToString(), attack, before,
-                after = CombatState(), witness, windowPose, windowCapture, records = rows.SkipWhile(r => r.TraceId != marker).ToArray() }));
+                after = CombatState(), witness, windowPose, windowCapture, audio = combatAudio, records = rows.SkipWhile(r => r.TraceId != marker).ToArray() }));
             Require(witness.WindowValid, "actual keyboard diagnostic marker retained in ring");
             _combatPoseObserved |= witness.PlayerAttempt && windowPose;
             _combatPoseCaptured |= witness.PlayerAttempt && windowCapture;

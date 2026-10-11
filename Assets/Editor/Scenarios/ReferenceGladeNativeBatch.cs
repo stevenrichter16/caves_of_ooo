@@ -37,6 +37,7 @@ namespace CavesOfOoo.Editor
         public static void LaunchSystemDepth() => LaunchCore(false, systemDepthAudit: true);
         [MenuItem("Caves Of Ooo/Scenarios/World/System Depth II Connections Audit")]
         public static void LaunchSystemDepthII() => LaunchCore(false, systemDepthIIAudit: true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Combat Audio Audit")]
         public static void LaunchCombat() => LaunchCore(false,false,true);
         public static void LaunchBiome() => LaunchCore(false,false,false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Specialist Content Audit")]
@@ -65,6 +66,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Public Audit", true)]
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Quarantine Audit", true)]
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Annex Audit", true)]
+        [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Combat Audio Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
         private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false)

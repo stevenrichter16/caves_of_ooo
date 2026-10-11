@@ -1,6 +1,6 @@
 # Sonic atmosphere: cumulative iterations
 
-Status: iterations 1–2 complete; iteration 3 released; 2026-10-11. Follow-up to AUDIO-PLACE-DESIGN.md. The user requests meaningful additional sonic atmosphere, a prompt for each iteration building on its predecessor, and actual game testing after EACH iteration. Four bounded iterations are selected; do not implement a later iteration before the preceding live gate has run and its findings are incorporated.
+Status: all four iterations implemented and individually checked in fresh Play; final broader regression1786/1786 passed, 2026-10-11. Follow-up to AUDIO-PLACE-DESIGN.md. The user requests meaningful additional sonic atmosphere, a prompt for each iteration building on its predecessor, and actual game testing after EACH iteration. The additional twenty requested later are separate in AUDIO-POLISH-20.md.
 
 ## Direction and gates
 
@@ -29,7 +29,7 @@ Read AUDIO-PLACE-DESIGN.md and the actual WorldAudioSoundscape/Player/Runtime co
 
 ## Later prompt status
 
-Iterations 3–4 are directions, not executed prompts. Their exact prompts will be written only after the preceding native game test, including what was learned and any scope correction.
+All four exact prompts were saved before their corresponding production changes and after the preceding native game test, including source and live-route corrections.
 
 ## Iteration 1 result and review
 
@@ -74,3 +74,15 @@ Fresh `native-work-audio` Play `f960c8915203426084b29babd8723a55`:21/21 passed, 
 ## Iteration 4 prompt — after iteration 3 live gate
 
 The real work route confirms that contextual sounds can accompany paid actions, and its danger interruption shows why the combat demonstration should use a separate finite encounter. Add one bounded background-mix envelope triggered only by an accepted typed nearby melee sound. Lower music, bed and decorative details smoothly to60 percent over0.1s, hold until0.3s from the latest accepted cue, then restore over1.5s. Preserve action gains and user preferences. Refused/hidden/muted attacks, generic visual/raw-damage hooks, repairs and walking must never duck the background. Repeated attacks refresh the hold without compounding attenuation; graph resets and mute/pause cannot leave a queued dip. Use the existing16 voices, no new world queries. Execute native RED and integration/counter tests, then run the actual standalone northern-Scrabbler combat route and a separate fresh world-audio regression. Observe imported weapon sounds, actual mix dip/recovery and unchanged game time during the quiet recovery window; do not claim subjective audibility from counters. Preserve all earlier failure evidence and the fixed-pool limits. After this fourth earlier pass, begin the newly requested twenty additional iterations in AUDIO-POLISH-20.md; do not count this pass among them.
+
+### Iteration 4 implementation and live gates
+
+Observed native compiler RED for missing mix API, followed by20/20 focused native tests. Only accepted typed nearby melee refreshes the cosmetic envelope. Its hold-boundary split preserves recovery under different frame intervals; a refused cue, full action pool, mute, hidden target, generic hook or graph reset cannot queue a dip. Independent cold review found no material issue. Source count remains16, and there are no new scans, action gains, save fields or preference writes.
+
+Fresh actual combat `31c75a02fa28427683af96e871bc3414`:18/18 checks passed, zero errors,10.84s. Six correlated keyboard attack windows,28 accepted local combat cues including ordinary retaliation, minimum background multiplier0.6; passive recovery0.6→1 over2.202s without a game turn, position, equipment or stat change. Player defeated the original northern scrabbler using the ordinary dagger and one actual starting Rime cast; no tonic/grant. Imported melee source observations,16 voices and preference restoration passed. Attack screenshot inspected: native world and original encounter render. The screenshot named `04-player-defeat-outcome` refers to the player's victory outcome; it is not evidence of player death.
+
+Separate fresh actual world-audio regression `4141d504f1944c64aa9fd83651440406`:26/26 passed, zero errors,64.28s. Imported music, ambience, new generated vegetation texture, independent lanes, actual walk, controller settings/mutes and F5/F6 all passed. These are source and sampled-signal checks, not a subjective listening or physical Steam Deck verdict.
+
+🧪 Previous full cultivation route remains unsafe during a long live growth wait; retained as separate failed evidence. The bounded work route covers this feature's actual repair/harvest sound requirements. 🧪 Newer twenty-pass request supersedes immediate delivery of a four-pass-only archive: finish the requested polish before producing the next current build. The four-pass packager remains prepared and tested, not falsely reported as a completed build.
+
+Final native regression:1786/1786 passed (67 fixtures,286.19s). The extra20 are the new combat-mix tests. Cold review covered all four passes; prior portable-foliage issue fixed in iteration2, no additional material finding. Final work-harvest screenshot inspected: actual crop harvest and attacking rotlings visible; no safety/balance claim.

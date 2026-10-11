@@ -73,7 +73,7 @@ namespace CavesOfOoo.Rendering
                 // This callback is at the real HP decrement, before death removal.
                 // A dead/removed-owner fallback would incorrectly bless a lethal
                 // callback that first moved or hid the target.
-                audio.TryPlay(receipt.Cue,Pan(contact.X));
+                audio.TryPlayCombat(receipt.Cue,Pan(contact.X));
             }
             catch(Exception){ }
         }
