@@ -627,7 +627,7 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions" || e.ID == "InventoryAction")
-                return CompanionOrders.HandleEvent(ParentEntity, e);
+                return CompanionOrders.HandleEvent(ParentEntity, e) && CompanionManagementActions.HandleEvent(ParentEntity, e);
             if (e.ID == "TakeTurn")
                 return HandleTakeTurn();
             return true;

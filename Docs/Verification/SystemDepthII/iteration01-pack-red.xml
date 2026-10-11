@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="16" result="Failed" start-time="2026-10-11T03:33:05.4506260Z" end-time="2026-10-11T03:33:05.5075180Z" duration="0.056878" total="16" passed="0" failed="16" inconclusive="0" skipped="0" warnings="0" asserts="119" random-seed="1552653376">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/companion-pack-red.xml --where "class == CavesOfOoo.Tests.CompanionPackTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.CompanionPackTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1022" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-render-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-11T03:33:05.4506260Z" end-time="2026-10-11T03:33:05.5075180Z" duration="0.056878" total="16" passed="0" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="119">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-render-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-render-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="35515" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1023" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-11T03:33:05.4521660Z" end-time="2026-10-11T03:33:05.5075160Z" duration="0.055350" total="16" passed="0" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="119">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1024" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-11T03:33:05.4522770Z" end-time="2026-10-11T03:33:05.5075140Z" duration="0.055237" total="16" passed="0" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="119">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CompanionPackTests" fullname="CavesOfOoo.Tests.CompanionPackTests" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-11T03:33:05.4526120Z" end-time="2026-10-11T03:33:05.5075040Z" duration="0.054892" total="16" passed="0" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="119">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1009" name="BoundSuppliesAreNotOfferedOrAccepted" fullname="CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11T03:33:05.4534520Z" end-time="2026-10-11T03:33:05.5031480Z" duration="0.049688" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="BoundSuppliesAreNotOfferedOrAccepted(&quot;QuestItem&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(&quot;QuestItem&quot;)" methodname="BoundSuppliesAreNotOfferedOrAccepted" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1233530982" result="Failed" start-time="2026-10-11T03:33:05.4535520Z" end-time="2026-10-11T03:33:05.5014840Z" duration="0.047957" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="BoundSuppliesAreNotOfferedOrAccepted(&quot;NoTrade&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(&quot;NoTrade&quot;)" methodname="BoundSuppliesAreNotOfferedOrAccepted" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1201893573" result="Failed" start-time="2026-10-11T03:33:05.5020870Z" end-time="2026-10-11T03:33:05.5024310Z" duration="0.000344" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="BoundSuppliesAreNotOfferedOrAccepted(&quot;NoTake&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(&quot;NoTake&quot;)" methodname="BoundSuppliesAreNotOfferedOrAccepted" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="225085635" result="Failed" start-time="2026-10-11T03:33:05.5024510Z" end-time="2026-10-11T03:33:05.5026580Z" duration="0.000206" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="BoundSuppliesAreNotOfferedOrAccepted(&quot;Owned&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(&quot;Owned&quot;)" methodname="BoundSuppliesAreNotOfferedOrAccepted" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1127059763" result="Failed" start-time="2026-10-11T03:33:05.5026760Z" end-time="2026-10-11T03:33:05.5028390Z" duration="0.000164" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(String tag) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 51
+   at InvokeStub_CompanionPackTests.BoundSuppliesAreNotOfferedOrAccepted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1004" name="FullPackInspectionIncludesLateItemsAndRealWeightWithoutChangingOwnership" fullname="CavesOfOoo.Tests.CompanionPackTests.FullPackInspectionIncludesLateItemsAndRealWeightWithoutChangingOwnership" methodname="FullPackInspectionIncludesLateItemsAndRealWeightWithoutChangingOwnership" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1020162097" result="Failed" start-time="2026-10-11T03:33:05.5032980Z" end-time="2026-10-11T03:33:05.5050520Z" duration="0.001755" asserts="44">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.FullPackInspectionIncludesLateItemsAndRealWeightWithoutChangingOwnership() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.FullPackInspectionIncludesLateItemsAndRealWeightWithoutChangingOwnership() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1012" name="HardCapacityRefusalLeavesSourceAndQuantityIntact" fullname="CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:33:05.5050670Z" end-time="2026-10-11T03:33:05.5057290Z" duration="0.000662" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="HardCapacityRefusalLeavesSourceAndQuantityIntact(False)" fullname="CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(False)" methodname="HardCapacityRefusalLeavesSourceAndQuantityIntact" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1870048382" result="Failed" start-time="2026-10-11T03:33:05.5050840Z" end-time="2026-10-11T03:33:05.5054970Z" duration="0.000413" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 53
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 53
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="HardCapacityRefusalLeavesSourceAndQuantityIntact(True)" fullname="CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(True)" methodname="HardCapacityRefusalLeavesSourceAndQuantityIntact" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="171670783" result="Failed" start-time="2026-10-11T03:33:05.5055200Z" end-time="2026-10-11T03:33:05.5057060Z" duration="0.000187" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 53
+   at InvokeStub_CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 53
+   at InvokeStub_CompanionPackTests.HardCapacityRefusalLeavesSourceAndQuantityIntact(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1021" name="PostActionFailureOrDismissalRollsBackTransfer" fullname="CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:33:05.5057430Z" end-time="2026-10-11T03:33:05.5062400Z" duration="0.000497" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1019" name="PostActionFailureOrDismissalRollsBackTransfer(False)" fullname="CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(False)" methodname="PostActionFailureOrDismissalRollsBackTransfer" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="100425467" result="Failed" start-time="2026-10-11T03:33:05.5057480Z" end-time="2026-10-11T03:33:05.5059730Z" duration="0.000224" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Boolean dismiss) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 67
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Boolean dismiss) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 67
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="PostActionFailureOrDismissalRollsBackTransfer(True)" fullname="CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(True)" methodname="PostActionFailureOrDismissalRollsBackTransfer" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="652669790" result="Failed" start-time="2026-10-11T03:33:05.5059950Z" end-time="2026-10-11T03:33:05.5062300Z" duration="0.000234" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Boolean dismiss) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 67
+   at InvokeStub_CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Boolean dismiss) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 67
+   at InvokeStub_CompanionPackTests.PostActionFailureOrDismissalRollsBackTransfer(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1003" name="RealMenuTransfersOneExactWholeStackInEitherDirection" fullname="CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T03:33:05.5062440Z" end-time="2026-10-11T03:33:05.5066640Z" duration="0.000421" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealMenuTransfersOneExactWholeStackInEitherDirection(False)" fullname="CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(False)" methodname="RealMenuTransfersOneExactWholeStackInEitherDirection" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="2072936100" result="Failed" start-time="2026-10-11T03:33:05.5062470Z" end-time="2026-10-11T03:33:05.5064630Z" duration="0.000215" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealMenuTransfersOneExactWholeStackInEitherDirection(True)" fullname="CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(True)" methodname="RealMenuTransfersOneExactWholeStackInEitherDirection" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="431801867" result="Failed" start-time="2026-10-11T03:33:05.5064730Z" end-time="2026-10-11T03:33:05.5066510Z" duration="0.000178" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 37
+   at InvokeStub_CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Boolean retrieve) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 37
+   at InvokeStub_CompanionPackTests.RealMenuTransfersOneExactWholeStackInEitherDirection(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1018" name="StaleSelectionRefusesChangedAuthorityOrItem" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-11T03:33:05.5066700Z" end-time="2026-10-11T03:33:05.5074780Z" duration="0.000808" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="25">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="StaleSelectionRefusesChangedAuthorityOrItem(&quot;far&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(&quot;far&quot;)" methodname="StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="575412971" result="Failed" start-time="2026-10-11T03:33:05.5066730Z" end-time="2026-10-11T03:33:05.5068930Z" duration="0.000220" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="StaleSelectionRefusesChangedAuthorityOrItem(&quot;dismissed&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(&quot;dismissed&quot;)" methodname="StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="2079590753" result="Failed" start-time="2026-10-11T03:33:05.5069020Z" end-time="2026-10-11T03:33:05.5070580Z" duration="0.000155" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="StaleSelectionRefusesChangedAuthorityOrItem(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(&quot;dead&quot;)" methodname="StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1730875289" result="Failed" start-time="2026-10-11T03:33:05.5070660Z" end-time="2026-10-11T03:33:05.5071860Z" duration="0.000120" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="StaleSelectionRefusesChangedAuthorityOrItem(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(&quot;quantity&quot;)" methodname="StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="190621365" result="Failed" start-time="2026-10-11T03:33:05.5071950Z" end-time="2026-10-11T03:33:05.5073160Z" duration="0.000121" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="StaleSelectionRefusesChangedAuthorityOrItem(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(&quot;foreign&quot;)" methodname="StaleSelectionRefusesChangedAuthorityOrItem" classname="CavesOfOoo.Tests.CompanionPackTests" runstate="Runnable" seed="1928948572" result="Failed" start-time="2026-10-11T03:33:05.5073470Z" end-time="2026-10-11T03:33:05.5074660Z" duration="0.000118" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CompanionPackTests.cs:line 57
+   at InvokeStub_CompanionPackTests.StaleSelectionRefusesChangedAuthorityOrItem(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

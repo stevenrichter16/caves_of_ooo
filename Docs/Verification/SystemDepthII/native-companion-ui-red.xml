@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="37" result="Failed(Child)" total="37" passed="31" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="1.8236676">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="27359" result="Failed" site="Child" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="1.823668" total="37" passed="31" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="33693" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="27359" result="Failed" site="Child" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="1.608869" total="37" passed="31" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="33694" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27359" result="Failed" site="Child" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="1.431223" total="37" passed="31" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="33695" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27359" result="Failed" site="Child" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="1.230044" total="37" passed="31" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1487" name="CompanionDirectCombatAdversarialTests" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="0.528146" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1511" name="GuaranteedWeaponHitRefusalDoesNotRally" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.GuaranteedWeaponHitRefusalDoesNotRally" methodname="GuaranteedWeaponHitRefusalDoesNotRally" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="420003101" result="Passed" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:11Z" duration="0.052927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1501" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-11 03:36:11Z" end-time="2026-10-11 03:36:12Z" duration="0.175299" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1488" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;veto&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;veto&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="2038833990" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.008661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1489" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;zeroed&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;zeroed&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="507775103" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.010638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1490" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;resisted&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;resisted&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1710163992" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1491" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;lethal&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;lethal&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1185738470" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.003023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1492" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;stay&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;stay&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="329822941" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1493" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;hidden-target&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;hidden-target&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1203358227" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1494" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;hidden-player&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;hidden-player&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="946412155" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1495" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;party-target&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;party-target&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="208916588" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1496" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;busy&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;busy&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1074454124" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1497" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;peace&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;peace&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="920215029" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1498" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;dismissed&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;dismissed&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1688253978" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1499" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;different-zone&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;different-zone&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="5605812" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1500" name="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;sight&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes(&quot;sight&quot;)" methodname="IneligibleDirectSpellDoesNotRallyButEquivalentValidOneDoes" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1477428719" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1510" name="NeutralTargetCanBeDeliberatelyAttackedButPartyTargetCannot" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.NeutralTargetCanBeDeliberatelyAttackedButPartyTargetCannot" methodname="NeutralTargetCanBeDeliberatelyAttackedButPartyTargetCannot" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="890530579" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1509" name="NonPlayerDirectSpellDoesNotIssuePlayerOrders" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.NonPlayerDirectSpellDoesNotIssuePlayerOrders" methodname="NonPlayerDirectSpellDoesNotIssuePlayerOrders" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="28772851" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1506" name="PostDamageChangesAreRevalidatedWhenCastCommits" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.PostDamageChangesAreRevalidatedWhenCastCommits" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.172032" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1502" name="PostDamageChangesAreRevalidatedWhenCastCommits(&quot;target-removed&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.PostDamageChangesAreRevalidatedWhenCastCommits(&quot;target-removed&quot;)" methodname="PostDamageChangesAreRevalidatedWhenCastCommits" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="783320933" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.002957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1503" name="PostDamageChangesAreRevalidatedWhenCastCommits(&quot;player-dead&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.PostDamageChangesAreRevalidatedWhenCastCommits(&quot;player-dead&quot;)" methodname="PostDamageChangesAreRevalidatedWhenCastCommits" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="847245857" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.002069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1504" name="PostDamageChangesAreRevalidatedWhenCastCommits(&quot;stay&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.PostDamageChangesAreRevalidatedWhenCastCommits(&quot;stay&quot;)" methodname="PostDamageChangesAreRevalidatedWhenCastCommits" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="329368109" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1505" name="PostDamageChangesAreRevalidatedWhenCastCommits(&quot;dismissed&quot;)" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.PostDamageChangesAreRevalidatedWhenCastCommits(&quot;dismissed&quot;)" methodname="PostDamageChangesAreRevalidatedWhenCastCommits" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1443448258" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001720" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1508" name="RepeatedTargetsRemainOneGoalAndRestoredGoalHasExactSavedTarget" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.RepeatedTargetsRemainOneGoalAndRestoredGoalHasExactSavedTarget" methodname="RepeatedTargetsRemainOneGoalAndRestoredGoalHasExactSavedTarget" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="632682346" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.010448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1507" name="ThrowingResolverDoesNotLeakReceiptIntoNextCast" fullname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests.ThrowingResolverDoesNotLeakReceiptIntoNextCast" methodname="ThrowingResolverDoesNotLeakReceiptIntoNextCast" classname="CavesOfOoo.Tests.CompanionDirectCombatAdversarialTests" runstate="Runnable" seed="1611803898" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.011712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1512" name="CompanionDirectCombatTests" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.108567" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1517" name="AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" methodname="AttributedEnvironmentalDamageDoesNotCreateOffensiveOrder" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="2010626256" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001344" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1513" name="CommittedDirectSpellRalliesWithoutFreeAttack" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.CommittedDirectSpellRalliesWithoutFreeAttack" methodname="CommittedDirectSpellRalliesWithoutFreeAttack" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="886375795" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.002243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1516" name="DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" methodname="DamageHelperOutsideActiveCastDoesNotCreateOffensiveOrder" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="346297348" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.001060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1515" name="FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" methodname="FailedSpellDoesNotRallyEvenIfItsResolverDamagedSomeone" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="799157279" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000966" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1520" name="GuaranteedWeaponSkillDamageAlsoRallies" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.GuaranteedWeaponSkillDamageAlsoRallies" methodname="GuaranteedWeaponSkillDamageAlsoRallies" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="239382158" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000579" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1519" name="HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" methodname="HiddenFirstTargetDoesNotPreventAssistingAgainstVisibleSecondTarget" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="455962405" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000538" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1518" name="MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" methodname="MultipleTargetsChooseFirstEligibleAndNeverReplaceExistingFight" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="1831315788" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.000547" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1521" name="PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" methodname="PositiveLungeHitRalliesWhereASingleStrikeMissDoesNot" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="2142303470" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.008060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1514" name="RealEmberSpitCommandRalliesAndPaysItsCooldown" fullname="CavesOfOoo.Tests.CompanionDirectCombatTests.RealEmberSpitCommandRalliesAndPaysItsCooldown" methodname="RealEmberSpitCommandRalliesAndPaysItsCooldown" classname="CavesOfOoo.Tests.CompanionDirectCombatTests" runstate="Runnable" seed="284817813" result="Passed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.022163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24250" name="CompanionManagementInputTests" fullname="CavesOfOoo.Tests.CompanionManagementInputTests" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.492245" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24255" name="DeliberateGearSelectionUsesActualSlotAndPaysOnce" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.DeliberateGearSelectionUsesActualSlotAndPaysOnce" methodname="DeliberateGearSelectionUsesActualSlotAndPaysOnce" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="660510189" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.060953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.DeliberateGearSelectionUsesActualSlotAndPaysOnce () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:98
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24253" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.161944" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24251" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(False)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="556243804" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.012084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction (System.Boolean controller) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:83
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24252" name="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction(True)" methodname="NearbyPackGiveUsesNativeConfirmationAndOnePaidAction" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="42120099" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.010846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.NearbyPackGiveUsesNativeConfirmationAndOnePaidAction (System.Boolean controller) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:83
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24254" name="PackReaderIsFreeAndStaleTransferIsFree" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.PackReaderIsFreeAndStaleTransferIsFree" methodname="PackReaderIsFreeAndStaleTransferIsFree" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="824084622" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.010646" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.PackReaderIsFreeAndStaleTransferIsFree () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:90
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24258" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.196806" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24256" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(False)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1738971366" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.019853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement (System.Boolean veto) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:104
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="24257" name="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" fullname="CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement(True)" methodname="StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement" classname="CavesOfOoo.Tests.CompanionManagementInputTests" runstate="Runnable" seed="1589898532" result="Failed" start-time="2026-10-11 03:36:12Z" end-time="2026-10-11 03:36:12Z" duration="0.010610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A current real companion menu choice must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CompanionManagementInputTests.Select (System.String prefix) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:78
+at CavesOfOoo.Tests.CompanionManagementInputTests.StepAsidePaysOnlyAfterSuccessfulVoluntaryMovement (System.Boolean veto) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CompanionManagementInputTests.cs:104
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

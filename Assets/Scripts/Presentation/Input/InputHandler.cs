@@ -3179,6 +3179,21 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Companion inspection is free. Transfers and equipment use the
+            // same receipt as ordinary inventory actions and pay only on commit.
+            if (CompanionManagementActions.IsCommand(action.Command))
+            {
+                var result = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (result.Success && !CompanionManagementActions.IsReadOnlyCommand(action.Command))
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("Companion.Management");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // World resource actions join the same inventory transaction.
             // Only committed harvesting, repair, work or watering costs a turn.
             if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
