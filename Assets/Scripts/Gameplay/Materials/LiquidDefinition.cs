@@ -26,6 +26,10 @@ namespace CavesOfOoo.Core
         /// <summary>Human-readable noun ("water").</summary>
         public string DisplayName;
 
+        /// <summary>Optional ground-reaction family. Aqueous solutions retain
+        /// their literal identity for collection but share water's tile reactions.</summary>
+        public string GroundReactionFamily = "";
+
         /// <summary>Coat adjective shown on the creature ("wet",
         /// "oily", "acid-covered").</summary>
         public string Adjective;

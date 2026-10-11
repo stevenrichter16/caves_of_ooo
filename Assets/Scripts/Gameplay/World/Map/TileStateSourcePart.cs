@@ -42,6 +42,21 @@ namespace CavesOfOoo.Core
         /// "oil", "brine". Empty for none.</summary>
         public string Coating = "";
 
+        /// <summary>Legacy water sources on literal aqueous pools describe the
+        /// reaction family, not a second liquid. Resolve their actual identity
+        /// without treating an independent water spill as pure brine or mire.</summary>
+        public string EffectiveCoating
+        {
+            get
+            {
+                var pool = ParentEntity?.GetPart<LiquidPoolPart>();
+                return Coating == "water" && pool != null
+                    && LiquidRegistry.Get(pool.LiquidId)?.GroundReactionFamily == "water"
+                    ? pool.LiquidId : Coating;
+            }
+        }
+
+
         /// <summary>Turns of coating asserted per refresh. Kept short:
         /// this is a lease the terrain renews, not a permanent stamp, so
         /// destroying the terrain lets the tile dry out on its own.</summary>
@@ -111,8 +126,9 @@ namespace CavesOfOoo.Core
         {
             if (zone?.TileState == null) return;
 
-            if (!string.IsNullOrEmpty(Coating) && CoatingTurns > 0)
-                zone.TileState.WriteCoating(x, y, Coating, CoatingTurns);
+            string coating = EffectiveCoating;
+            if (!string.IsNullOrEmpty(coating) && CoatingTurns > 0)
+                zone.TileState.WriteCoating(x, y, coating, CoatingTurns);
 
             if (!string.IsNullOrEmpty(Residue) && ResidueTurns > 0)
                 zone.TileState.WriteResidue(x, y, Residue, ResidueTurns);

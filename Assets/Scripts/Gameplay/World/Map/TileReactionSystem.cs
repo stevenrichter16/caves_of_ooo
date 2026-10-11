@@ -285,10 +285,10 @@ namespace CavesOfOoo.Core
                 && !TilePropagationSystem.IsConductive(zone, x, y)) return false;
 
             if (!string.IsNullOrEmpty(r.ForbidCoating)
-                && state.HasCoating(x, y, r.ForbidCoating)) return false;
+                && FindInputCoating(state, x, y, r.ForbidCoating) != null) return false;
 
             if (!string.IsNullOrEmpty(r.InputCoating)
-                && !state.HasCoating(x, y, r.InputCoating)) return false;
+                && FindInputCoating(state, x, y, r.InputCoating) == null) return false;
             if (!string.IsNullOrEmpty(r.InputResidue)
                 && !state.HasResidue(x, y, r.InputResidue)) return false;
 
@@ -306,6 +306,19 @@ namespace CavesOfOoo.Core
             return !string.IsNullOrEmpty(r.InputCoating)
                 || !string.IsNullOrEmpty(r.InputResidue)
                 || !string.IsNullOrEmpty(r.InputEnergy);
+        }
+
+        // Match reaction families without writing fictitious pure water to the
+        // tile. Consume the exact matched coat; collection still checks identity.
+        private static string FindInputCoating(ZoneTileState state, int x, int y, string required)
+        {
+            if (state.HasCoating(x, y, required)) return required;
+            var coatings = state.Get(x, y)?.Coatings;
+            if (coatings == null) return null;
+            foreach (var coating in coatings)
+                if (coating.Turns > 0 && LiquidRegistry.Get(coating.Id)?.GroundReactionFamily == required)
+                    return coating.Id;
+            return null;
         }
 
         private static int EnergyOf(ZoneTileState state, int x, int y, string channel)
@@ -326,8 +339,9 @@ namespace CavesOfOoo.Core
 
             // Consume inputs first, so an output of the same id is a
             // replacement rather than a no-op refresh.
-            if (r.ConsumeCoating && !string.IsNullOrEmpty(r.InputCoating))
-                state.RemoveCoating(x, y, r.InputCoating);
+            string consumedCoating = r.ConsumeCoating && !string.IsNullOrEmpty(r.InputCoating)
+                ? FindInputCoating(state, x, y, r.InputCoating) : null;
+            if (consumedCoating != null) state.RemoveCoating(x, y, consumedCoating);
             if (r.ConsumeResidue && !string.IsNullOrEmpty(r.InputResidue))
                 state.RemoveResidue(x, y, r.InputResidue);
             if (r.ConsumeEnergy > 0 && !string.IsNullOrEmpty(r.InputEnergy))
@@ -359,7 +373,7 @@ namespace CavesOfOoo.Core
                 new
                 {
                     reaction = r.ID, x, y,
-                    consumedCoating = r.ConsumeCoating ? r.InputCoating : "",
+                    consumedCoating = consumedCoating ?? "",
                     consumedEnergy = r.ConsumeEnergy,
                     outputCoating = r.OutputCoating,
                     outputCloud = r.OutputCloud,

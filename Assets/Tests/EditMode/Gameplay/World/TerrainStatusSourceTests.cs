@@ -70,7 +70,7 @@ namespace CavesOfOoo.Tests
 
             ZoneTileStateSystem.SeedTerrainSources(zone);
 
-            Assert.IsTrue(zone.TileState.HasCoating(10, 10, "water"),
+            Assert.IsTrue(zone.TileState.HasCoating(10, 10, "brine"),
                 "the pool is a puddle the world authored");
         }
 
@@ -123,7 +123,7 @@ namespace CavesOfOoo.Tests
             for (int turn = 0; turn < 12; turn++)
                 ZoneTileStateSystem.OnPlayerTurnEnd(zone);
 
-            Assert.IsTrue(zone.TileState.HasCoating(8, 8, "water"),
+            Assert.IsTrue(zone.TileState.HasCoating(8, 8, "brine"),
                 "twelve turns later the pool is still a pool");
         }
 

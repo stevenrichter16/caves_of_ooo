@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="18" result="Failed" start-time="2026-10-11T02:34:41.5263580Z" end-time="2026-10-11T02:34:42.0557580Z" duration="0.529479" total="18" passed="12" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="54" random-seed="28695853">
+  <command-line><![CDATA[/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/depth-liquid-red.xml --where "class =~ /NaturalLiquidSourceDepthTests/"]]></command-line>
+  <filter>
+    <class re="1">NaturalLiquidSourceDepthTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1026" name="EditModeRunner.dll" fullname="/private/tmp/coo-depth-root-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11T02:34:41.5263580Z" end-time="2026-10-11T02:34:42.0557580Z" duration="0.529479" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="54">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-depth-root-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-depth-root-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="18463" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1027" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11T02:34:41.5279370Z" end-time="2026-10-11T02:34:42.0557330Z" duration="0.527889" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="54">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1028" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11T02:34:41.5280360Z" end-time="2026-10-11T02:34:42.0557160Z" duration="0.527773" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="54">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="NaturalLiquidSourceDepthTests" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-11T02:34:41.5283700Z" end-time="2026-10-11T02:34:42.0557080Z" duration="0.527431" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="54">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1003" name="AuthoredNaturalPoolCanFillAndPourItsActualLiquid" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:34:41.5292510Z" end-time="2026-10-11T02:34:41.6495310Z" duration="0.120302" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="AuthoredNaturalPoolCanFillAndPourItsActualLiquid(&quot;BrinePool&quot;,&quot;brine&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(&quot;BrinePool&quot;,&quot;brine&quot;)" methodname="AuthoredNaturalPoolCanFillAndPourItsActualLiquid" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1146801685" result="Failed" start-time="2026-10-11T02:34:41.5293280Z" end-time="2026-10-11T02:34:41.6181200Z" duration="0.088834" asserts="2">
+              <failure>
+                <message><![CDATA[  collectible source must be offered
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(String blueprint, String id) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 44
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  collectible source must be offered
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(String blueprint, String id) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 44
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="AuthoredNaturalPoolCanFillAndPourItsActualLiquid(&quot;MirePool&quot;,&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(&quot;MirePool&quot;,&quot;bog-mire&quot;)" methodname="AuthoredNaturalPoolCanFillAndPourItsActualLiquid" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="631669868" result="Failed" start-time="2026-10-11T02:34:41.6186740Z" end-time="2026-10-11T02:34:41.6491960Z" duration="0.030527" asserts="2">
+              <failure>
+                <message><![CDATA[  collectible source must be offered
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(String blueprint, String id) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 44
+   at InvokeStub_NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  collectible source must be offered
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(String blueprint, String id) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 44
+   at InvokeStub_NaturalLiquidSourceDepthTests.AuthoredNaturalPoolCanFillAndPourItsActualLiquid(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1025" name="FrozenNaturalPoolCannotBeCollected" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.FrozenNaturalPoolCannotBeCollected" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T02:34:41.6496950Z" end-time="2026-10-11T02:34:41.7160890Z" duration="0.066405" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1023" name="FrozenNaturalPoolCannotBeCollected(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.FrozenNaturalPoolCannotBeCollected(&quot;BrinePool&quot;)" methodname="FrozenNaturalPoolCannotBeCollected" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1323166399" result="Passed" start-time="2026-10-11T02:34:41.6497150Z" end-time="2026-10-11T02:34:41.6875060Z" duration="0.037798" asserts="3" />
+            <test-case id="1024" name="FrozenNaturalPoolCannotBeCollected(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.FrozenNaturalPoolCannotBeCollected(&quot;MirePool&quot;)" methodname="FrozenNaturalPoolCannotBeCollected" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="975262536" result="Passed" start-time="2026-10-11T02:34:41.6875280Z" end-time="2026-10-11T02:34:41.7160580Z" duration="0.028535" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1011" name="IndependentUnlikeCoatingStillBlocksSampling" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.IndependentUnlikeCoatingStillBlocksSampling" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T02:34:41.7161070Z" end-time="2026-10-11T02:34:41.8047640Z" duration="0.088673" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1007" name="IndependentUnlikeCoatingStillBlocksSampling(&quot;BrinePool&quot;,&quot;water&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.IndependentUnlikeCoatingStillBlocksSampling(&quot;BrinePool&quot;,&quot;water&quot;)" methodname="IndependentUnlikeCoatingStillBlocksSampling" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="737188124" result="Passed" start-time="2026-10-11T02:34:41.7161170Z" end-time="2026-10-11T02:34:41.7383050Z" duration="0.022192" asserts="4" />
+            <test-case id="1008" name="IndependentUnlikeCoatingStillBlocksSampling(&quot;MirePool&quot;,&quot;water&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.IndependentUnlikeCoatingStillBlocksSampling(&quot;MirePool&quot;,&quot;water&quot;)" methodname="IndependentUnlikeCoatingStillBlocksSampling" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1261767832" result="Passed" start-time="2026-10-11T02:34:41.7383250Z" end-time="2026-10-11T02:34:41.7599910Z" duration="0.021670" asserts="4" />
+            <test-case id="1009" name="IndependentUnlikeCoatingStillBlocksSampling(&quot;BrinePool&quot;,&quot;acid&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.IndependentUnlikeCoatingStillBlocksSampling(&quot;BrinePool&quot;,&quot;acid&quot;)" methodname="IndependentUnlikeCoatingStillBlocksSampling" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="2056334246" result="Passed" start-time="2026-10-11T02:34:41.7600100Z" end-time="2026-10-11T02:34:41.7820570Z" duration="0.022051" asserts="4" />
+            <test-case id="1010" name="IndependentUnlikeCoatingStillBlocksSampling(&quot;MirePool&quot;,&quot;oil&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.IndependentUnlikeCoatingStillBlocksSampling(&quot;MirePool&quot;,&quot;oil&quot;)" methodname="IndependentUnlikeCoatingStillBlocksSampling" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1433075639" result="Passed" start-time="2026-10-11T02:34:41.7820800Z" end-time="2026-10-11T02:34:41.8047330Z" duration="0.022657" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1017" name="NaturalChemicalPoolDoesNotFillDrinkingWaterskin" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalChemicalPoolDoesNotFillDrinkingWaterskin" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11T02:34:41.8047800Z" end-time="2026-10-11T02:34:41.8588370Z" duration="0.054067" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1015" name="NaturalChemicalPoolDoesNotFillDrinkingWaterskin(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalChemicalPoolDoesNotFillDrinkingWaterskin(&quot;BrinePool&quot;)" methodname="NaturalChemicalPoolDoesNotFillDrinkingWaterskin" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="281835916" result="Passed" start-time="2026-10-11T02:34:41.8047880Z" end-time="2026-10-11T02:34:41.8313870Z" duration="0.026604" asserts="3" />
+            <test-case id="1016" name="NaturalChemicalPoolDoesNotFillDrinkingWaterskin(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalChemicalPoolDoesNotFillDrinkingWaterskin(&quot;MirePool&quot;)" methodname="NaturalChemicalPoolDoesNotFillDrinkingWaterskin" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="217526111" result="Passed" start-time="2026-10-11T02:34:41.8314110Z" end-time="2026-10-11T02:34:41.8588140Z" duration="0.027408" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1022" name="NaturalPoolRetainsWaterWorldReactions" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalPoolRetainsWaterWorldReactions" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T02:34:41.8588550Z" end-time="2026-10-11T02:34:41.9660910Z" duration="0.107255" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1018" name="NaturalPoolRetainsWaterWorldReactions(&quot;BrinePool&quot;,&quot;heat&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalPoolRetainsWaterWorldReactions(&quot;BrinePool&quot;,&quot;heat&quot;)" methodname="NaturalPoolRetainsWaterWorldReactions" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1112214014" result="Passed" start-time="2026-10-11T02:34:41.8588710Z" end-time="2026-10-11T02:34:41.8916270Z" duration="0.032762" asserts="3" />
+            <test-case id="1019" name="NaturalPoolRetainsWaterWorldReactions(&quot;MirePool&quot;,&quot;heat&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalPoolRetainsWaterWorldReactions(&quot;MirePool&quot;,&quot;heat&quot;)" methodname="NaturalPoolRetainsWaterWorldReactions" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1324441647" result="Passed" start-time="2026-10-11T02:34:41.8916480Z" end-time="2026-10-11T02:34:41.9195500Z" duration="0.027907" asserts="3" />
+            <test-case id="1020" name="NaturalPoolRetainsWaterWorldReactions(&quot;BrinePool&quot;,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalPoolRetainsWaterWorldReactions(&quot;BrinePool&quot;,&quot;cold&quot;)" methodname="NaturalPoolRetainsWaterWorldReactions" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1839093991" result="Passed" start-time="2026-10-11T02:34:41.9195680Z" end-time="2026-10-11T02:34:41.9428940Z" duration="0.023330" asserts="3" />
+            <test-case id="1021" name="NaturalPoolRetainsWaterWorldReactions(&quot;MirePool&quot;,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.NaturalPoolRetainsWaterWorldReactions(&quot;MirePool&quot;,&quot;cold&quot;)" methodname="NaturalPoolRetainsWaterWorldReactions" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1134015537" result="Passed" start-time="2026-10-11T02:34:41.9429130Z" end-time="2026-10-11T02:34:41.9660680Z" duration="0.023159" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1014" name="OuterRollbackConservesNaturalSource" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:34:41.9661060Z" end-time="2026-10-11T02:34:42.0083590Z" duration="0.042261" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1012" name="OuterRollbackConservesNaturalSource(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(&quot;BrinePool&quot;)" methodname="OuterRollbackConservesNaturalSource" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="2032787350" result="Failed" start-time="2026-10-11T02:34:41.9661140Z" end-time="2026-10-11T02:34:41.9866250Z" duration="0.020515" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 67
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 67
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="OuterRollbackConservesNaturalSource(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(&quot;MirePool&quot;)" methodname="OuterRollbackConservesNaturalSource" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="890938236" result="Failed" start-time="2026-10-11T02:34:41.9866440Z" end-time="2026-10-11T02:34:42.0083370Z" duration="0.021697" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 67
+   at InvokeStub_NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 67
+   at InvokeStub_NaturalLiquidSourceDepthTests.OuterRollbackConservesNaturalSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1006" name="PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:34:42.0083680Z" end-time="2026-10-11T02:34:42.0556190Z" duration="0.047259" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(&quot;BrinePool&quot;)" methodname="PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1198313482" result="Failed" start-time="2026-10-11T02:34:42.0083800Z" end-time="2026-10-11T02:34:42.0310230Z" duration="0.022648" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 55
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 55
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(&quot;MirePool&quot;)" methodname="PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture" classname="CavesOfOoo.Tests.NaturalLiquidSourceDepthTests" runstate="Runnable" seed="1795818207" result="Failed" start-time="2026-10-11T02:34:42.0310430Z" end-time="2026-10-11T02:34:42.0555410Z" duration="0.024503" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 55
+   at InvokeStub_NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidSourceDepthTests.cs:line 55
+   at InvokeStub_NaturalLiquidSourceDepthTests.PoolHasOneLiteralCoatingInsteadOfAFalseWaterMixture(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

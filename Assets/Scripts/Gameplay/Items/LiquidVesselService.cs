@@ -237,7 +237,8 @@ namespace CavesOfOoo.Core
                 || source.GetPart<PhysicsPart>()?.Takeable == true || source.GetPart<PhysicsPart>()?.InInventory != null
                 || source.GetPart<PhysicsPart>()?.Equipped != null || SpatialQuery.Distance(zone, actor, source) > 1) return "source-unavailable";
             if (LiquidRegistry.Get(pool.LiquidId) == null) return "unknown-liquid";
-            if (pool.LiquidId == "water" && !LiquidSourcePhase.CanDrawWater(zone, source)) return "frozen-water";
+            if ((pool.LiquidId == "water" || LiquidRegistry.Get(pool.LiquidId)?.GroundReactionFamily == "water")
+                && !LiquidSourcePhase.CanDrawWater(zone, source)) return "frozen-water";
             if (vessel.Volume > 0 && vessel.LiquidId != pool.LiquidId) return "unlike-liquids";
             if (!LiquidSourceSafety.IsUnmixedPool(zone, source)) return "mixed-source";
             return null;
@@ -298,7 +299,7 @@ namespace CavesOfOoo.Core
                 var pool = entity.GetPart<LiquidPoolPart>();
                 if (pool != null && (pool.Volume < 0 || (pool.Volume > 0 && pool.LiquidId != liquidId))) return false;
                 var source = entity.GetPart<TileStateSourcePart>();
-                if (source != null && source.CoatingTurns > 0 && !string.IsNullOrEmpty(source.Coating) && source.Coating != liquidId) return false;
+                if (source != null && source.CoatingTurns > 0 && !string.IsNullOrEmpty(source.EffectiveCoating) && source.EffectiveCoating != liquidId) return false;
             }
             var coatings = zone.TileState.Get(x, y)?.Coatings;
             return coatings == null || !coatings.Any(c => c.Turns > 0 && c.Id != liquidId);
