@@ -128,6 +128,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            // Preparation belongs to one completed player command, not every
+            // independently committed batch unit. No service transaction changes.
+            var liquidAudio=WorldAudioUtility.TakeActor(context.Actor,context.Zone,WorldAudioCue.BrewPrepare,()=>true);
+            var foodAudio=WorldAudioUtility.TakeActor(context.Actor,context.Zone,WorldAudioCue.CookPrepare,()=>true);
             bool any = BrewingService.TryBrewBatch(
                 context.Actor,
                 _factory,
@@ -144,6 +148,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     InventoryCommandErrorCode.ExecutionFailed,
                     reason);
             }
+
+            bool foodOnly=results.Count>0;
+            foreach(var result in results)foodOnly&=result.Kind==BrewOutcomeKind.Brew
+                &&string.Equals(result.Form,"Food",StringComparison.OrdinalIgnoreCase);
+            var audio=foodOnly?foodAudio:liquidAudio;
+            transaction.AfterCommit(()=>audio?.Publish());
 
             // One mishap application PER mishap iteration in the batch -
             // each call re-reads current HP and floors at 1, so a run of

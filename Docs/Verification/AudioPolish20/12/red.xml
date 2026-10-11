@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:22:58Z" end-time="2026-10-11 19:23:00Z" duration="1.3739353">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28270" result="Failed" site="Child" start-time="2026-10-11 19:22:58Z" end-time="2026-10-11 19:23:00Z" duration="1.373935" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34820" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28270" result="Failed" site="Child" start-time="2026-10-11 19:22:58Z" end-time="2026-10-11 19:23:00Z" duration="1.232027" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34821" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28270" result="Failed" site="Child" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:23:00Z" duration="1.078419" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34822" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28270" result="Failed" site="Child" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:23:00Z" duration="0.977607" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32864" name="WorldAudioBrewingTests" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:23:00Z" duration="0.776559" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32872" name="ActualMishapConsumesAndUsesNeutralPreparationWithoutCombatFocus" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.ActualMishapConsumesAndUsesNeutralPreparationWithoutCombatFocus" methodname="ActualMishapConsumesAndUsesNeutralPreparationWithoutCombatFocus" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1117809102" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.161760" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.ActualMishapConsumesAndUsesNeutralPreparationWithoutCombatFocus () [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32876" name="ActualPlayerPackBrewCanFinishInItsMenu" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.ActualPlayerPackBrewCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.088218" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32874" name="ActualPlayerPackBrewCanFinishInItsMenu(False)" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.ActualPlayerPackBrewCanFinishInItsMenu(False)" methodname="ActualPlayerPackBrewCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1461249165" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.026750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.ActualPlayerPackBrewCanFinishInItsMenu (System.Boolean menu) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32875" name="ActualPlayerPackBrewCanFinishInItsMenu(True)" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.ActualPlayerPackBrewCanFinishInItsMenu(True)" methodname="ActualPlayerPackBrewCanFinishInItsMenu" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1221330380" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.025662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.ActualPlayerPackBrewCanFinishInItsMenu (System.Boolean menu) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32868" name="CommittedBatchHasOnePhraseNotOnePerUnit" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.CommittedBatchHasOnePhraseNotOnePerUnit" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.098568" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32866" name="CommittedBatchHasOnePhraseNotOnePerUnit(1)" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.CommittedBatchHasOnePhraseNotOnePerUnit(1)" methodname="CommittedBatchHasOnePhraseNotOnePerUnit" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1817025810" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.025344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.CommittedBatchHasOnePhraseNotOnePerUnit (System.Int32 count) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32867" name="CommittedBatchHasOnePhraseNotOnePerUnit(3)" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.CommittedBatchHasOnePhraseNotOnePerUnit(3)" methodname="CommittedBatchHasOnePhraseNotOnePerUnit" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="214787681" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.026182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.CommittedBatchHasOnePhraseNotOnePerUnit (System.Int32 count) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32873" name="EmptySelectionHasNoPreparationCue" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.EmptySelectionHasNoPreparationCue" methodname="EmptySelectionHasNoPreparationCue" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="91930378" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.024902" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.EmptySelectionHasNoPreparationCue () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:38
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32871" name="FoodOnlyFieldBatchUsesPreparationRatherThanPretendGlass" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.FoodOnlyFieldBatchUsesPreparationRatherThanPretendGlass" methodname="FoodOnlyFieldBatchUsesPreparationRatherThanPretendGlass" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="383936729" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.024429" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "CookPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.FoodOnlyFieldBatchUsesPreparationRatherThanPretendGlass () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32877" name="GenericSemanticCannotForgeTheBrewingReceipt" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.GenericSemanticCannotForgeTheBrewingReceipt" methodname="GenericSemanticCannotForgeTheBrewingReceipt" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1411604949" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.024530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioBrewingTests.GenericSemanticCannotForgeTheBrewingReceipt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32870" name="MissingBatchStationRefusesBeforeAnyMaterialOrSound" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.MissingBatchStationRefusesBeforeAnyMaterialOrSound" methodname="MissingBatchStationRefusesBeforeAnyMaterialOrSound" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="104549907" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:22:59Z" duration="0.024807" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.MissingBatchStationRefusesBeforeAnyMaterialOrSound () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32869" name="PaidPartialBatchSoundsOnceAndKeepsItsRealYield" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.PaidPartialBatchSoundsOnceAndKeepsItsRealYield" methodname="PaidPartialBatchSoundsOnceAndKeepsItsRealYield" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="595856505" result="Failed" start-time="2026-10-11 19:22:59Z" end-time="2026-10-11 19:23:00Z" duration="0.148210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.PaidPartialBatchSoundsOnceAndKeepsItsRealYield () [0x000a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32865" name="SingleFieldBrewDoesNotNeedAStationToHaveARealVesselCue" fullname="CavesOfOoo.Tests.WorldAudioBrewingTests.SingleFieldBrewDoesNotNeedAStationToHaveARealVesselCue" methodname="SingleFieldBrewDoesNotNeedAStationToHaveARealVesselCue" classname="CavesOfOoo.Tests.WorldAudioBrewingTests" runstate="Runnable" seed="1020061425" result="Failed" start-time="2026-10-11 19:23:00Z" end-time="2026-10-11 19:23:00Z" duration="0.078973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[1]>, actual is <System.String[0]>
+  Values differ at index [0]
+  Missing:  < "BrewPrepare take 0" >]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.WorldAudioBrewingTests.One (System.String cue) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:24
+at CavesOfOoo.Tests.WorldAudioBrewingTests.SingleFieldBrewDoesNotNeedAStationToHaveARealVesselCue () [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioBrewingTests.cs:26
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
