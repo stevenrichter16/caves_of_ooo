@@ -24384,6 +24384,23 @@
       ]
     },
     {
+      "Name": "SpareIronKey",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "spare iron key" },
+          { "Key": "RenderString", "Value": "/" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" } ] },
+        { "Name": "Key", "Params": [ { "Key": "KeyId", "Value": "iron" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "5" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A shop-cut spare for ordinary iron locks. Bound doors and the Stillleaf keeper's lock need their own keys." } ] }
+      ],
+      "Tags": []
+    },
+    {
       "Name": "StillleafKey",
       "Inherits": "IronKey",
       "Parts": [

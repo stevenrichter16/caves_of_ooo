@@ -1875,7 +1875,7 @@ namespace CavesOfOoo.Rendering
                 // deliberate tradeoff: a future non-weapon '/' painter
                 // needs a row here, but a future WEAPON works with no
                 // edit (weapons outnumber exceptions ~6:1).
-                case '/': return blueprintName != "Torch" && blueprintName != "IronKey"
+                case '/': return blueprintName != "Torch" && blueprintName != "IronKey" && blueprintName != "SpareIronKey"
                     && blueprintName != "OldWorldPipe" && blueprintName != "TemporalShard";
                 default: return true;
             }
@@ -1912,6 +1912,7 @@ namespace CavesOfOoo.Rendering
                 case "GlowQuartz":
                 case "FireClay":        return "item_gem";
                 case "Torch":           return "item_torch";
+                case "SpareIronKey":
                 case "IronKey":         return "item_key";
                 case "Bone":            return "item_bone";
                 case "DriedMeat":

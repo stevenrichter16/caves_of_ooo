@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="32" result="Failed" start-time="2026-10-11T02:34:09.0770930Z" end-time="2026-10-11T02:34:09.5805050Z" duration="0.504128" total="32" passed="4" failed="28" inconclusive="0" skipped="0" warnings="0" asserts="56" random-seed="1856771266">
+  <command-line><![CDATA[/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/iteration01-red.xml --where "class =~ /MerchantSpareKey/"]]></command-line>
+  <filter>
+    <class re="1">MerchantSpareKey</class>
+  </filter>
+  <test-suite type="Assembly" id="1041" name="EditModeRunner.dll" fullname="/private/tmp/coo-system-depth-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:09.0770930Z" end-time="2026-10-11T02:34:09.5805050Z" duration="0.504128" total="32" passed="4" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="56">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-system-depth-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-system-depth-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="18141" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1042" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:09.0786110Z" end-time="2026-10-11T02:34:09.5805030Z" duration="0.502616" total="32" passed="4" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="56">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1043" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-11T02:34:09.0787530Z" end-time="2026-10-11T02:34:09.5805020Z" duration="0.502471" total="32" passed="4" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="56">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1009" name="MerchantSpareKeyAdversarialTests" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-11T02:34:09.0790840Z" end-time="2026-10-11T02:34:09.5272180Z" duration="0.448781" total="26" passed="4" failed="22" warnings="0" inconclusive="0" skipped="0" asserts="50">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1035" name="AuthoredShopRollsSpareThatCanActuallyBeBought" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:34:09.0800250Z" end-time="2026-10-11T02:34:09.1756420Z" duration="0.095761" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1033" name="AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;TinkerStock&quot;,&quot;Tinker&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;TinkerStock&quot;,&quot;Tinker&quot;)" methodname="AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="246018134" result="Failed" start-time="2026-10-11T02:34:09.0801240Z" end-time="2026-10-11T02:34:09.1518190Z" duration="0.071828" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;MerchantStock&quot;,&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;MerchantStock&quot;,&quot;Merchant&quot;)" methodname="AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="694123470" result="Failed" start-time="2026-10-11T02:34:09.1523710Z" end-time="2026-10-11T02:34:09.1752890Z" duration="0.022952" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+   at InvokeStub_MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+   at InvokeStub_MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1023" name="FailedPurchaseDoesNotMoveMoneyOrKey" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T02:34:09.1758330Z" end-time="2026-10-11T02:34:09.3675980Z" duration="0.192042" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1015" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;poor&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;poor&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="822266882" result="Failed" start-time="2026-10-11T02:34:09.1758530Z" end-time="2026-10-11T02:34:09.2099900Z" duration="0.034189" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;full&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;full&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1735111758" result="Failed" start-time="2026-10-11T02:34:09.2100150Z" end-time="2026-10-11T02:34:09.2327610Z" duration="0.022781" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;stale&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1359418593" result="Failed" start-time="2026-10-11T02:34:09.2327840Z" end-time="2026-10-11T02:34:09.2627110Z" duration="0.029970" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;self&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;self&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1894002954" result="Failed" start-time="2026-10-11T02:34:09.2627300Z" end-time="2026-10-11T02:34:09.2838970Z" duration="0.021197" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingBuyer&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingBuyer&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="674446502" result="Failed" start-time="2026-10-11T02:34:09.2839220Z" end-time="2026-10-11T02:34:09.3074940Z" duration="0.023605" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingTrader&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingTrader&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1404067701" result="Failed" start-time="2026-10-11T02:34:09.3075160Z" end-time="2026-10-11T02:34:09.3309200Z" duration="0.023437" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingKey&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;missingKey&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="639471717" result="Failed" start-time="2026-10-11T02:34:09.3309430Z" end-time="2026-10-11T02:34:09.3538730Z" duration="0.022963" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="FailedPurchaseDoesNotMoveMoneyOrKey(&quot;cancel&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(&quot;cancel&quot;)" methodname="FailedPurchaseDoesNotMoveMoneyOrKey" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="634488201" result="Failed" start-time="2026-10-11T02:34:09.3538970Z" end-time="2026-10-11T02:34:09.3675700Z" duration="0.013692" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 24
+   at InvokeStub_MerchantSpareKeyAdversarialTests.FailedPurchaseDoesNotMoveMoneyOrKey(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1014" name="ProtectedKeysRemainUntradeable" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.ProtectedKeysRemainUntradeable" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T02:34:09.3676560Z" end-time="2026-10-11T02:34:09.4177940Z" duration="0.050208" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <test-case id="1010" name="ProtectedKeysRemainUntradeable(&quot;IronKey&quot;,&quot;buy&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.ProtectedKeysRemainUntradeable(&quot;IronKey&quot;,&quot;buy&quot;)" methodname="ProtectedKeysRemainUntradeable" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="94769938" result="Passed" start-time="2026-10-11T02:34:09.3676750Z" end-time="2026-10-11T02:34:09.3932050Z" duration="0.025567" asserts="7" />
+            <test-case id="1011" name="ProtectedKeysRemainUntradeable(&quot;StillleafKey&quot;,&quot;buy&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.ProtectedKeysRemainUntradeable(&quot;StillleafKey&quot;,&quot;buy&quot;)" methodname="ProtectedKeysRemainUntradeable" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="309570514" result="Passed" start-time="2026-10-11T02:34:09.3932310Z" end-time="2026-10-11T02:34:09.4014080Z" duration="0.008189" asserts="7" />
+            <test-case id="1012" name="ProtectedKeysRemainUntradeable(&quot;IronKey&quot;,&quot;sell&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.ProtectedKeysRemainUntradeable(&quot;IronKey&quot;,&quot;sell&quot;)" methodname="ProtectedKeysRemainUntradeable" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1376260986" result="Passed" start-time="2026-10-11T02:34:09.4014380Z" end-time="2026-10-11T02:34:09.4114940Z" duration="0.010071" asserts="7" />
+            <test-case id="1013" name="ProtectedKeysRemainUntradeable(&quot;StillleafKey&quot;,&quot;sell&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.ProtectedKeysRemainUntradeable(&quot;StillleafKey&quot;,&quot;sell&quot;)" methodname="ProtectedKeysRemainUntradeable" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="723664056" result="Passed" start-time="2026-10-11T02:34:09.4115210Z" end-time="2026-10-11T02:34:09.4177690Z" duration="0.006257" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1039" name="PurchasedSpareOnlyUnlocksMatchingLocks" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T02:34:09.4178100Z" end-time="2026-10-11T02:34:09.4414820Z" duration="0.023705" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1036" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;iron&quot;,True)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;iron&quot;,True)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="353304358" result="Failed" start-time="2026-10-11T02:34:09.4178280Z" end-time="2026-10-11T02:34:09.4246620Z" duration="0.006844" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;coo.sealed-library.stillleaf&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;coo.sealed-library.stillleaf&quot;,False)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="1713091331" result="Failed" start-time="2026-10-11T02:34:09.4246830Z" end-time="2026-10-11T02:34:09.4336230Z" duration="0.008953" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;wayhouse:bound-door&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;wayhouse:bound-door&quot;,False)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="458237587" result="Failed" start-time="2026-10-11T02:34:09.4336360Z" end-time="2026-10-11T02:34:09.4414440Z" duration="0.007818" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1040" name="SpareCanBeSoldBackAtTheQuotedPrice" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareCanBeSoldBackAtTheQuotedPrice" methodname="SpareCanBeSoldBackAtTheQuotedPrice" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="1204581635" result="Failed" start-time="2026-10-11T02:34:09.4414910Z" end-time="2026-10-11T02:34:09.4538090Z" duration="0.012335" asserts="1">
+            <failure>
+              <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.SpareCanBeSoldBackAtTheQuotedPrice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 71
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.SpareCanBeSoldBackAtTheQuotedPrice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 71
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1032" name="SpareUsesExactCaseSensitiveIdentity" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-11T02:34:09.4538280Z" end-time="2026-10-11T02:34:09.5271360Z" duration="0.073411" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1024" name="SpareUsesExactCaseSensitiveIdentity(&quot;iron&quot;,True)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;iron&quot;,True)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="966250531" result="Failed" start-time="2026-10-11T02:34:09.4538410Z" end-time="2026-10-11T02:34:09.4641530Z" duration="0.010327" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="SpareUsesExactCaseSensitiveIdentity(&quot;Iron&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;Iron&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="412499436" result="Failed" start-time="2026-10-11T02:34:09.4641720Z" end-time="2026-10-11T02:34:09.4739580Z" duration="0.009798" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="SpareUsesExactCaseSensitiveIdentity(&quot;IRON&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;IRON&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1468031965" result="Failed" start-time="2026-10-11T02:34:09.4739740Z" end-time="2026-10-11T02:34:09.4834280Z" duration="0.009467" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="SpareUsesExactCaseSensitiveIdentity(&quot;iron &quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;iron &quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1329724614" result="Failed" start-time="2026-10-11T02:34:09.4834470Z" end-time="2026-10-11T02:34:09.4905530Z" duration="0.007116" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="SpareUsesExactCaseSensitiveIdentity(&quot;coo.sealed-library.stillleaf&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;coo.sealed-library.stillleaf&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1060549400" result="Failed" start-time="2026-10-11T02:34:09.4905720Z" end-time="2026-10-11T02:34:09.5017070Z" duration="0.011150" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="SpareUsesExactCaseSensitiveIdentity(&quot;iron:site&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;iron:site&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="884857918" result="Failed" start-time="2026-10-11T02:34:09.5017250Z" end-time="2026-10-11T02:34:09.5086820Z" duration="0.006967" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="SpareUsesExactCaseSensitiveIdentity(&quot;brass&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;brass&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="1121129741" result="Failed" start-time="2026-10-11T02:34:09.5087000Z" end-time="2026-10-11T02:34:09.5191710Z" duration="0.010486" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="SpareUsesExactCaseSensitiveIdentity(&quot;other&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(&quot;other&quot;,False)" methodname="SpareUsesExactCaseSensitiveIdentity" classname="CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests" runstate="Runnable" seed="63008086" result="Failed" start-time="2026-10-11T02:34:09.5191890Z" end-time="2026-10-11T02:34:09.5271100Z" duration="0.007932" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(String lockId, Boolean opens) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyAdversarialTests.cs:line 40
+   at InvokeStub_MerchantSpareKeyAdversarialTests.SpareUsesExactCaseSensitiveIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="MerchantSpareKeyTests" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11T02:34:09.5275360Z" end-time="2026-10-11T02:34:09.5804970Z" duration="0.053036" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1003" name="AuthoredShopRollsSpareThatCanActuallyBeBought" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:34:09.5275780Z" end-time="2026-10-11T02:34:09.5480540Z" duration="0.020505" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;TinkerStock&quot;,&quot;Tinker&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;TinkerStock&quot;,&quot;Tinker&quot;)" methodname="AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="504188341" result="Failed" start-time="2026-10-11T02:34:09.5275990Z" end-time="2026-10-11T02:34:09.5397610Z" duration="0.012179" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;MerchantStock&quot;,&quot;Merchant&quot;)" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(&quot;MerchantStock&quot;,&quot;Merchant&quot;)" methodname="AuthoredShopRollsSpareThatCanActuallyBeBought" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="1649096456" result="Failed" start-time="2026-10-11T02:34:09.5397880Z" end-time="2026-10-11T02:34:09.5480320Z" duration="0.008256" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+   at InvokeStub_MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(String table, String npc) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 43
+   at InvokeStub_MerchantSpareKeyTests.AuthoredShopRollsSpareThatCanActuallyBeBought(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1007" name="PurchasedSpareOnlyUnlocksMatchingLocks" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11T02:34:09.5480660Z" end-time="2026-10-11T02:34:09.5713400Z" duration="0.023307" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;iron&quot;,True)" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;iron&quot;,True)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="2017164116" result="Failed" start-time="2026-10-11T02:34:09.5480790Z" end-time="2026-10-11T02:34:09.5544510Z" duration="0.006381" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;coo.sealed-library.stillleaf&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;coo.sealed-library.stillleaf&quot;,False)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="840585064" result="Failed" start-time="2026-10-11T02:34:09.5544720Z" end-time="2026-10-11T02:34:09.5633080Z" duration="0.008848" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="PurchasedSpareOnlyUnlocksMatchingLocks(&quot;wayhouse:bound-door&quot;,False)" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(&quot;wayhouse:bound-door&quot;,False)" methodname="PurchasedSpareOnlyUnlocksMatchingLocks" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="1473012236" result="Failed" start-time="2026-10-11T02:34:09.5633630Z" end-time="2026-10-11T02:34:09.5712610Z" duration="0.007910" asserts="1">
+              <failure>
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(String keyId, Boolean expected) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 64
+   at InvokeStub_MerchantSpareKeyTests.PurchasedSpareOnlyUnlocksMatchingLocks(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1008" name="SpareCanBeSoldBackAtTheQuotedPrice" fullname="CavesOfOoo.Tests.MerchantSpareKeyTests.SpareCanBeSoldBackAtTheQuotedPrice" methodname="SpareCanBeSoldBackAtTheQuotedPrice" classname="CavesOfOoo.Tests.MerchantSpareKeyTests" runstate="Runnable" seed="600996013" result="Failed" start-time="2026-10-11T02:34:09.5713580Z" end-time="2026-10-11T02:34:09.5804640Z" duration="0.009119" asserts="1">
+            <failure>
+              <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.SpareCanBeSoldBackAtTheQuotedPrice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 71
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'SpareIronKey'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  authored key must exist
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MerchantSpareKeyTests.Trader(Entity& key, String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 37
+   at CavesOfOoo.Tests.MerchantSpareKeyTests.SpareCanBeSoldBackAtTheQuotedPrice() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Economy/MerchantSpareKeyTests.cs:line 71
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

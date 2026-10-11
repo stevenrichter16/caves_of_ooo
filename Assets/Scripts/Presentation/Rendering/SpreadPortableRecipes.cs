@@ -164,6 +164,7 @@ namespace CavesOfOoo.Rendering
             "PruningWrit",
             "BreacherCleaver",
             "IronKey",
+            "SpareIronKey",
             "StillleafKey",
             "StillleafRegister",
             "FrogOil",
@@ -392,7 +393,7 @@ namespace CavesOfOoo.Rendering
                     return true;
                 }
             }
-            modelId = "spread-portable-" + owner.BlueprintName.ToLowerInvariant();
+            modelId = "spread-portable-" + (owner.BlueprintName == "SpareIronKey" ? "ironkey" : owner.BlueprintName.ToLowerInvariant());
             return true;
         }
     }
