@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="99" result="Failed" start-time="2026-10-11T02:58:26.6969430Z" end-time="2026-10-11T02:58:26.9658560Z" duration="0.268895" total="7" passed="5" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="52" random-seed="1584813762">
+  <command-line><![CDATA[/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthTenIterations/review-liquid-freeze-red.xml --where "class =~ /NaturalLiquidFreezeReviewTests/"]]></command-line>
+  <filter>
+    <class re="1">NaturalLiquidFreezeReviewTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1127" name="EditModeRunner.dll" fullname="/private/tmp/system-depth-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T02:58:26.6969430Z" end-time="2026-10-11T02:58:26.9658560Z" duration="0.268895" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="52">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/system-depth-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/system-depth-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26093" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1128" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T02:58:26.6984960Z" end-time="2026-10-11T02:58:26.9658400Z" duration="0.267344" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="52">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1129" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-10-11T02:58:26.6985990Z" end-time="2026-10-11T02:58:26.9657920Z" duration="0.267191" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="52">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="NaturalLiquidFreezeReviewTests" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-11T02:58:26.6989300Z" end-time="2026-10-11T02:58:26.9657830Z" duration="0.266852" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="52">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1009" name="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11T02:58:26.6998780Z" end-time="2026-10-11T02:58:26.8638680Z" duration="0.163990" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <test-case id="1005" name="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;&quot;)" methodname="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="1319621316" result="Passed" start-time="2026-10-11T02:58:26.6999640Z" end-time="2026-10-11T02:58:26.7843970Z" duration="0.084457" asserts="7" />
+            <test-case id="1006" name="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;oil&quot;)" methodname="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="249218714" result="Passed" start-time="2026-10-11T02:58:26.7849590Z" end-time="2026-10-11T02:58:26.8140880Z" duration="0.029129" asserts="7" />
+            <test-case id="1007" name="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;acid&quot;)" methodname="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="1292836093" result="Passed" start-time="2026-10-11T02:58:26.8141240Z" end-time="2026-10-11T02:58:26.8381250Z" duration="0.024001" asserts="7" />
+            <test-case id="1008" name="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;gel&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze(&quot;gel&quot;)" methodname="DryOrUnrelatedLiquidDoesNotOfferOrSpendFreeze" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="280843858" result="Passed" start-time="2026-10-11T02:58:26.8381680Z" end-time="2026-10-11T02:58:26.8634360Z" duration="0.025268" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1003" name="ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11T02:58:26.8640790Z" end-time="2026-10-11T02:58:26.9255080Z" duration="0.061429" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(&quot;BrinePool&quot;)" methodname="ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="1868962242" result="Failed" start-time="2026-10-11T02:58:26.8641010Z" end-time="2026-10-11T02:58:26.9033580Z" duration="0.039257" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialField|Freeze|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.Freeze(Entity source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 35
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 43
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for MaterialField|Freeze|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.Freeze(Entity source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 35
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 43
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(&quot;MirePool&quot;)" methodname="ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="1272994791" result="Failed" start-time="2026-10-11T02:58:26.9034300Z" end-time="2026-10-11T02:58:26.9254750Z" duration="0.022045" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected one actual menu choice for MaterialField|Freeze|
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.Freeze(Entity source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 35
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 43
+   at InvokeStub_NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected one actual menu choice for MaterialField|Freeze|
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiftyWorldFixture.Choice(Entity source, String prefix, Func`2 match) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FiftyWorldFixture.cs:line 90
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.Freeze(Entity source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 35
+   at CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(String blueprint) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/NaturalLiquidFreezeReviewTests.cs:line 43
+   at InvokeStub_NaturalLiquidFreezeReviewTests.ExistingFiniteFrostLichenFreezesAuthoredNaturalSolution(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1004" name="PureWaterStillFreezesWithOneFiniteItem" fullname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests.PureWaterStillFreezesWithOneFiniteItem" methodname="PureWaterStillFreezesWithOneFiniteItem" classname="CavesOfOoo.Tests.NaturalLiquidFreezeReviewTests" runstate="Runnable" seed="1767990952" result="Passed" start-time="2026-10-11T02:58:26.9255260Z" end-time="2026-10-11T02:58:26.9657490Z" duration="0.040223" asserts="8" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

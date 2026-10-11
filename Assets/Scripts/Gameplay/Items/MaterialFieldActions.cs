@@ -84,7 +84,10 @@ namespace CavesOfOoo.Core
             float temperature=thermal?.Temperature??0,capacity=thermal?.HeatCapacity??0,flame=thermal?.FlameTemperature??0;
             float combustibility=material?.Combustibility??0,volatility=material?.Volatility??0;
             var freeze=target?.GetEffect<FrozenEffect>();float cold=freeze?.Cold??0;
-            var originalLayer=Layer(zone,x,y,liquid);int originalTurns=originalLayer?.Turns??0,originalCharge=zone.TileState.Charge(x,y);
+            // The freeze command names the water family, but its transaction
+            // must retain the actual literal coating the reaction will consume.
+            string affectedLiquid=verb=="Freeze"?FreezableCoating(zone,x,y):liquid;
+            var originalLayer=Layer(zone,x,y,affectedLiquid);int originalTurns=originalLayer?.Turns??0,originalCharge=zone.TileState.Charge(x,y);
             LiquidCoveredEffect incoming=null; bool coatInstalled=false;
             Func<bool> targetCurrent=()=>entitySelection
                 ?WorldResourceActions.ExactGround(zone,f[7])==target&&zone.GetEntityCell(target)?.X==x&&zone.GetEntityCell(target)?.Y==y
@@ -93,7 +96,8 @@ namespace CavesOfOoo.Core
                     &&(material==null||material.Combustibility==combustibility&&material.Volatility==volatility)
                     &&(verb!="Warm"||target.GetEffect<FrozenEffect>()==freeze&&freeze.Cold==cold)
                     &&CanTarget(actor,target,zone,verb,liquid,coatInstalled?incoming:null)
-                :CanGround(zone,origin,verb,liquid,x,y)&&ReferenceEquals(Layer(zone,x,y,liquid),originalLayer)
+                :CanGround(zone,origin,verb,liquid,x,y)&&ReferenceEquals(Layer(zone,x,y,affectedLiquid),originalLayer)
+                    &&(verb!="Freeze"||FreezableCoating(zone,x,y)==affectedLiquid)
                     &&(originalLayer==null||originalLayer.Turns==originalTurns)&&(verb!="Charge"||zone.TileState.Charge(x,y)==originalCharge);
 
             var payment=InventoryTransferSnapshot.Capture(inventory,item);tx.Do(null,payment.Restore);
@@ -207,7 +211,7 @@ namespace CavesOfOoo.Core
             var cell=zone.GetCell(x,y);if(cell==null||!cell.IsVisible||!cell.IsPassable())return false;
             if(verb=="Film")return (liquid=="oil"||liquid=="brine"||liquid=="gel")&&zone.TileState.CoatingTurns(x,y,liquid)<FilmTurns;
             if(verb=="Kindle")return liquid=="oil"&&CanKindleTile(zone,x,y);
-            if(verb=="Freeze")return liquid=="water"&&zone.TileState.HasCoating(x,y,"water")&&TileReactionSystem.IsInitialized;
+            if(verb=="Freeze")return liquid=="water"&&FreezableCoating(zone,x,y)!=null&&TileReactionSystem.IsInitialized;
             if(verb=="Charge")return string.IsNullOrEmpty(liquid)&&TileReactionSystem.IsInitialized&&TilePropagationSystem.IsConductive(zone,x,y)
                 &&zone.TileState.Charge(x,y)<ZoneTileState.MaxEnergy;
             if(verb!="Wick"||string.IsNullOrEmpty(liquid)||liquid=="ice"||liquid=="lava"||!LiquidRegistry.IsInitialized||LiquidRegistry.Get(liquid)==null)return false;
@@ -218,6 +222,16 @@ namespace CavesOfOoo.Core
                 if(owner.GetPart<TileStateSourcePart>() is TileStateSourcePart source&&source.Coating==liquid&&source.CoatingTurns>0)return false;
             }
             return true;
+        }
+        // Match freeze_water's exact-coating-first family precedence without
+        // projecting false pure water or changing body-coating properties.
+        static string FreezableCoating(Zone zone,int x,int y)
+        {
+            if(zone.TileState.HasCoating(x,y,"water"))return "water";
+            var coatings=zone.TileState.Get(x,y)?.Coatings;
+            if(coatings!=null)foreach(var coating in coatings)
+                if(coating.Turns>0&&LiquidRegistry.Get(coating.Id)?.GroundReactionFamily=="water")return coating.Id;
+            return null;
         }
         /// <summary>Shared with held-torch ignition: exact simulation threshold,
         /// never a combustible-name guess or heat that cannot kindle this owner.</summary>
