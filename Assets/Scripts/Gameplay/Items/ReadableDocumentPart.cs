@@ -1,5 +1,6 @@
 using System;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -16,7 +17,7 @@ namespace CavesOfOoo.Core
                 e.GetParameter<InventoryActionList>("Actions")?.AddAction("Read", "read", "ReadDocument", 'r', 20);
             else if (e.ID == "InventoryAction" && e.GetStringParameter("Command") == "ReadDocument")
             {
-                bool read = TryRead(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone"));
+                bool read = TryRead(e.GetParameter<Entity>("Actor"), e.GetParameter<Zone>("Zone"),e.GetParameter<InventoryTransaction>("InventoryTransaction"));
                 e.Handled = read;
                 return !read;
             }
@@ -27,20 +28,23 @@ namespace CavesOfOoo.Core
         /// entity in the actor's zone. Returns false with a visible refusal when
         /// stale/inaccessible. Success queues complete text; pagination is UI-owned.
         /// Does not consume items, turns, health, RNG, quests or knowledge flags.</summary>
-        public bool TryRead(Entity actor, Zone zone)
+        public bool TryRead(Entity actor, Zone zone)=>TryRead(actor,zone,null);
+        private bool TryRead(Entity actor,Zone zone,InventoryTransaction transaction)
         {
             if (!CanReach(actor, zone))
                 return Reject(actor, "inaccessible-document", "That document is no longer within reach.");
             var document = ReadableDocumentCatalog.Get(DocumentId);
             if (document == null)
                 return Reject(actor, "missing-document", "The writing cannot be read.");
-            MessageLog.AddAnnouncement(document.Title + "\n\n" + document.Text);
+            var reading=new DocumentReadAudio(actor,zone,this);
+            if(transaction==null)reading.Arm();else transaction.AfterCommit(reading.Arm);
+            MessageLog.AddAnnouncement(document.Title + "\n\n" + document.Text,reading);
             Diag.Record("event", "DocumentRead", actor: actor, target: ParentEntity,
                 payload: new { documentId = DocumentId, source = document.Source });
             return true;
         }
 
-        private bool CanReach(Entity actor, Zone zone)
+        internal bool CanReach(Entity actor, Zone zone)
         {
             if (actor == null || ParentEntity == null || CombatSystem.IsDeathHandled(actor)) return false;
             if (actor.Statistics.ContainsKey("Hitpoints") && actor.GetStatValue("Hitpoints") <= 0) return false;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -23,6 +24,7 @@ namespace CavesOfOoo.Rendering
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
+        private DocumentReadAudio _documentAudio;
         private string _message;
         private readonly List<string> _wrappedLines = new List<string>();
         private int _pageIndex;
@@ -64,14 +66,18 @@ namespace CavesOfOoo.Rendering
         public bool GoToPage(int page)
         {
             if (!_isOpen || page < 0 || page >= PageCount) return false;
+            bool changed=page!=_pageIndex;
             _pageIndex = page;
             Render();
+            if(changed)_documentAudio?.TurnPage();
             return true;
         }
 
-        public void Open(string message)
+        public void Open(string message)=>Open(message,null);
+        internal void Open(string message,DocumentReadAudio reading)
         {
             if (string.IsNullOrEmpty(message)) return;
+            _documentAudio=reading;
             _message = message;
             _isOpen = true;
             _wrappedLines.Clear();
@@ -86,6 +92,7 @@ namespace CavesOfOoo.Rendering
             ClearFgRegion();
             ClearBgRegion();
             _isOpen = false;
+            _documentAudio=null;
         }
 
         public void HandleInput()

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="20" result="Failed(Child)" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:36:00Z" end-time="2026-10-11 19:36:02Z" duration="1.8982225">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28337" result="Failed" site="Child" start-time="2026-10-11 19:36:00Z" end-time="2026-10-11 19:36:02Z" duration="1.898223" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34907" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28337" result="Failed" site="Child" start-time="2026-10-11 19:36:00Z" end-time="2026-10-11 19:36:02Z" duration="1.642110" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34908" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28337" result="Failed" site="Child" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:02Z" duration="1.505180" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34909" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28337" result="Failed" site="Child" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:02Z" duration="1.305285" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33236" name="WorldAudioPhysicalPageTests" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:02Z" duration="1.204718" total="20" passed="5" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33237" name="ActualPhysicalReaderSoundsOnlyAChangedVisiblePage" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ActualPhysicalReaderSoundsOnlyAChangedVisiblePage" methodname="ActualPhysicalReaderSoundsOnlyAChangedVisiblePage" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1057459480" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.225856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ActualPhysicalReaderSoundsOnlyAChangedVisiblePage () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33243" name="ByteIdenticalGenericAnnouncementDoesNotInheritPhysicalOrigin" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ByteIdenticalGenericAnnouncementDoesNotInheritPhysicalOrigin" methodname="ByteIdenticalGenericAnnouncementDoesNotInheritPhysicalOrigin" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="617033426" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.025358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ByteIdenticalGenericAnnouncementDoesNotInheritPhysicalOrigin () [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33259" name="DirectSuccessfulPublicReadArmsItsPhysicalContextImmediately" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.DirectSuccessfulPublicReadArmsItsPhysicalContextImmediately" methodname="DirectSuccessfulPublicReadArmsItsPhysicalContextImmediately" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1664710036" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.024438" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.DirectSuccessfulPublicReadArmsItsPhysicalContextImmediately () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:55
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33255" name="FailedOuterReadKeepsLegacyTextButCannotAuthorizePaperSound" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.FailedOuterReadKeepsLegacyTextButCannotAuthorizePaperSound" methodname="FailedOuterReadKeepsLegacyTextButCannotAuthorizePaperSound" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="977406249" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.025734" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.FailedOuterReadKeepsLegacyTextButCannotAuthorizePaperSound () [0x00080] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33260" name="GenericSemanticCannotImitateThePreparedPageRecording" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.GenericSemanticCannotImitateThePreparedPageRecording" methodname="GenericSemanticCannotImitateThePreparedPageRecording" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1009398402" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.042972" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.GenericSemanticCannotImitateThePreparedPageRecording () [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33253" name="MutedPageDoesNotQueueAReplay" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.MutedPageDoesNotQueueAReplay" methodname="MutedPageDoesNotQueueAReplay" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1117756076" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:01Z" duration="0.058961" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.MutedPageDoesNotQueueAReplay () [0x00082] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:41
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33242" name="NonTurnDoesNotReplayPaper" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:02Z" duration="0.287915" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33238" name="NonTurnDoesNotReplayPaper(&quot;same&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper(&quot;same&quot;)" methodname="NonTurnDoesNotReplayPaper" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1385659192" result="Failed" start-time="2026-10-11 19:36:01Z" end-time="2026-10-11 19:36:02Z" duration="0.099938" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper (System.String action) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33239" name="NonTurnDoesNotReplayPaper(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper(&quot;negative&quot;)" methodname="NonTurnDoesNotReplayPaper" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1381333443" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.026090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper (System.String action) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33240" name="NonTurnDoesNotReplayPaper(&quot;too-far&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper(&quot;too-far&quot;)" methodname="NonTurnDoesNotReplayPaper" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1265036688" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.025244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper (System.String action) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33241" name="NonTurnDoesNotReplayPaper(&quot;close&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper(&quot;close&quot;)" methodname="NonTurnDoesNotReplayPaper" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1856892856" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.024889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.NonTurnDoesNotReplayPaper (System.String action) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:30
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33258" name="PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.053961" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33256" name="PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits(False)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits(False)" methodname="PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="947753092" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.026284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33257" name="PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits(True)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits(True)" methodname="PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="961858088" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.024403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.PhysicalOriginArmsOnlyWhenItsActualParentTransactionCommits (System.Boolean commit) [0x00077] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33246" name="QueueOrderCarriesItsOwnReadOrigin" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.QueueOrderCarriesItsOwnReadOrigin" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.101714" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33244" name="QueueOrderCarriesItsOwnReadOrigin(True)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.QueueOrderCarriesItsOwnReadOrigin(True)" methodname="QueueOrderCarriesItsOwnReadOrigin" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="2133637393" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.026449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.QueueOrderCarriesItsOwnReadOrigin (System.Boolean documentFirst) [0x00081] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33245" name="QueueOrderCarriesItsOwnReadOrigin(False)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.QueueOrderCarriesItsOwnReadOrigin(False)" methodname="QueueOrderCarriesItsOwnReadOrigin" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1467475416" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.025356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.QueueOrderCarriesItsOwnReadOrigin (System.Boolean documentFirst) [0x000d4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33254" name="ReopeningGenericReaderClearsThePreviousPhysicalContext" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ReopeningGenericReaderClearsThePreviousPhysicalContext" methodname="ReopeningGenericReaderClearsThePreviousPhysicalContext" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="2031647794" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.024785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.ReopeningGenericReaderClearsThePreviousPhysicalContext () [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33247" name="RestoredPendingTextHasNoReconstructedPhysicalAudioAuthority" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.RestoredPendingTextHasNoReconstructedPhysicalAudioAuthority" methodname="RestoredPendingTextHasNoReconstructedPhysicalAudioAuthority" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="55460050" result="Failed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.025140" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.Flip () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:25
+at CavesOfOoo.Tests.WorldAudioPhysicalPageTests.RestoredPendingTextHasNoReconstructedPhysicalAudioAuthority () [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioPhysicalPageTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33252" name="StalePhysicalContextCannotSoundAfterTheReaderOpens" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.StalePhysicalContextCannotSoundAfterTheReaderOpens" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.203949" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33248" name="StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;item&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;item&quot;)" methodname="StalePhysicalContextCannotSoundAfterTheReaderOpens" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1929918314" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.030162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33249" name="StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;actor&quot;)" methodname="StalePhysicalContextCannotSoundAfterTheReaderOpens" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="178152924" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.025618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33250" name="StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;document-part&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;document-part&quot;)" methodname="StalePhysicalContextCannotSoundAfterTheReaderOpens" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1756979119" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.024368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33251" name="StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;document-id&quot;)" fullname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests.StalePhysicalContextCannotSoundAfterTheReaderOpens(&quot;document-id&quot;)" methodname="StalePhysicalContextCannotSoundAfterTheReaderOpens" classname="CavesOfOoo.Tests.WorldAudioPhysicalPageTests" runstate="Runnable" seed="1112640305" result="Passed" start-time="2026-10-11 19:36:02Z" end-time="2026-10-11 19:36:02Z" duration="0.024496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

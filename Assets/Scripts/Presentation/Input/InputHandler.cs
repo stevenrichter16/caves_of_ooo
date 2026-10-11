@@ -4549,7 +4549,7 @@ namespace CavesOfOoo.Rendering
             if (AnnouncementUI == null || !MessageLog.HasPendingAnnouncement)
                 return false;
 
-            string msg = MessageLog.ConsumeAnnouncement();
+            string msg = MessageLog.ConsumeAnnouncement(out var documentAudio);
             if (msg == null)
                 return false;
 
@@ -4574,7 +4574,7 @@ namespace CavesOfOoo.Rendering
                 EnterCenteredPopupOverlayView();
             }
 
-            AnnouncementUI.Open(msg);
+            AnnouncementUI.Open(msg,documentAudio);
             _inputState = InputState.AnnouncementOpen;
             return true;
         }

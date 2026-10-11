@@ -18,7 +18,7 @@ namespace CavesOfOoo.Core
         public static Action<WorldAudioUtilityReceipt> Callback {get;set;}
         internal static bool IsWater(WorldAudioCue cue)=>cue==WorldAudioCue.WaterFill
             ||cue==WorldAudioCue.WaterDrink||cue==WorldAudioCue.WaterPour;
-        internal static bool IsUtility(WorldAudioCue cue)=>IsWater(cue)||cue==WorldAudioCue.CookPrepare||cue==WorldAudioCue.BrewPrepare||cue==WorldAudioCue.HandleSoft||cue==WorldAudioCue.HandleWood||cue==WorldAudioCue.HandleMetal;
+        internal static bool IsUtility(WorldAudioCue cue)=>IsWater(cue)||cue==WorldAudioCue.CookPrepare||cue==WorldAudioCue.BrewPrepare||cue==WorldAudioCue.HandleSoft||cue==WorldAudioCue.HandleWood||cue==WorldAudioCue.HandleMetal||cue==WorldAudioCue.Page;
         internal static Capture TakeActor(Entity actor,Zone zone,WorldAudioCue cue,Func<bool> committed)
         {
             if(Callback==null||actor==null||zone==null||!IsUtility(cue)||committed==null)return null;

@@ -27,6 +27,14 @@ namespace CavesOfOoo.Core
         private static readonly List<int> Ticks = new List<int>();
         private static readonly List<int> Serials = new List<int>();
         private static readonly Queue<string> Announcements = new Queue<string>();
+        // Kept parallel to the historical text queue; no save format changes.
+        // Public Restore/Clear intentionally discard transient physical origins.
+        private readonly struct AnnouncementOrigin
+        {
+            internal readonly string Text;internal readonly DocumentReadAudio Reading;
+            internal AnnouncementOrigin(string text,DocumentReadAudio reading){Text=text;Reading=reading;}
+        }
+        private static readonly Queue<AnnouncementOrigin> AnnouncementOrigins=new Queue<AnnouncementOrigin>();
         private static int NextSerial;
 
         /// <summary>
@@ -76,20 +84,33 @@ namespace CavesOfOoo.Core
         /// Adds a message to both the regular log and the announcement queue.
         /// Announcements are displayed as modal popups by AnnouncementUI.
         /// </summary>
-        public static void AddAnnouncement(string message)
+        public static void AddAnnouncement(string message)=>AddAnnouncement(message,null);
+        internal static void AddAnnouncement(string message,DocumentReadAudio reading)
         {
             // Announcements include authored lore and quoted documents. Preserve
             // their exact bytes in both the log and the popup queue.
             AddRaw(message);
+            // Historical test/diagnostic snapshots can directly restore the
+            // private string queue. Any mismatch loses audio authority safely.
+            if(AnnouncementOrigins.Count!=Announcements.Count)
+            {AnnouncementOrigins.Clear();foreach(var text in Announcements)AnnouncementOrigins.Enqueue(new AnnouncementOrigin(text,null));}
             Announcements.Enqueue(message);
+            AnnouncementOrigins.Enqueue(new AnnouncementOrigin(message,reading));
             FlashStamp++;
         }
 
         public static bool HasPendingAnnouncement => Announcements.Count > 0;
 
-        public static string ConsumeAnnouncement()
+        public static string ConsumeAnnouncement()=>ConsumeAnnouncement(out _);
+        internal static string ConsumeAnnouncement(out DocumentReadAudio reading)
         {
-            return Announcements.Count > 0 ? Announcements.Dequeue() : null;
+            reading=null;int before=Announcements.Count;
+            if(before==0){AnnouncementOrigins.Clear();return null;}
+            string text=Announcements.Dequeue();
+            if(AnnouncementOrigins.Count==before)
+            {var origin=AnnouncementOrigins.Dequeue();if(ReferenceEquals(text,origin.Text))reading=origin.Reading;else AnnouncementOrigins.Clear();}
+            else AnnouncementOrigins.Clear();
+            return text;
         }
 
         public static string GetLast()
@@ -178,6 +199,7 @@ namespace CavesOfOoo.Core
             Ticks.Clear();
             Serials.Clear();
             Announcements.Clear();
+            AnnouncementOrigins.Clear();
 
             if (entries != null)
             {
@@ -207,6 +229,7 @@ namespace CavesOfOoo.Core
             Ticks.Clear();
             Serials.Clear();
             Announcements.Clear();
+            AnnouncementOrigins.Clear();
             FlashStamp = 0;
             NextSerial = 0;
         }
