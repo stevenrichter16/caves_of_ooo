@@ -111,7 +111,7 @@ namespace CavesOfOoo.Tests
                 if (expected[i] == ' ') Assert.IsNull(actual);
                 else
                 {
-                    var glyph = CP437TilesetGenerator.GetTextTile(expected[i]);
+                    var glyph = HudPixelFont.GetTile(expected[i]);
                     Assert.NotNull(glyph, "Expected text glyph exists.");
                     Assert.AreSame(glyph, actual, "Displayed hotbar glyph at character " + i);
                 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Rendering
 {
@@ -45,7 +46,10 @@ namespace CavesOfOoo.Rendering
             bool occupied,
             bool selected,
             bool pending,
-            bool usable)
+            bool usable,
+            SkillHudIcon icon = SkillHudIcon.Fallback,
+            AbilityTargetingMode targetingMode = AbilityTargetingMode.AdjacentCell,
+            int range = 1)
         {
             SlotIndex = slotIndex;
             Hotkey = hotkey;
@@ -59,6 +63,9 @@ namespace CavesOfOoo.Rendering
             Selected = selected;
             Pending = pending;
             Usable = usable;
+            Icon = icon;
+            TargetingMode = targetingMode;
+            Range = range;
         }
 
         public int SlotIndex { get; }
@@ -73,5 +80,8 @@ namespace CavesOfOoo.Rendering
         public bool Selected { get; }
         public bool Pending { get; }
         public bool Usable { get; }
+        public SkillHudIcon Icon { get; }
+        public AbilityTargetingMode TargetingMode { get; }
+        public int Range { get; }
     }
 }

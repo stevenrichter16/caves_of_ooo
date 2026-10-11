@@ -37,7 +37,8 @@ namespace CavesOfOoo.Tests
             var renderer = CreateRenderer(out var text, out var background, out var camera);
             renderer.Render(EmptySnapshot("first"), camera);
             var textPosition = new Vector3Int(1, GameplayHotbarLayout.GridHeight - 1, 0);
-            var bgPosition = Vector3Int.zero;
+            var bgPosition = new Vector3Int(0, GameplayHotbarLayout.GridHeight - 1, 0);
+            Assert.IsNotNull(background.GetTile(bgPosition), "Tint sentinel needs a submitted header tile.");
             text.SetColor(textPosition, Color.magenta);
             background.SetColor(bgPosition, Color.green);
 
@@ -56,7 +57,9 @@ namespace CavesOfOoo.Tests
         {
             var renderer = CreateRenderer(out var text, out var background, out var camera);
             renderer.Render(EmptySnapshot("first"), camera);
-            background.SetColor(Vector3Int.zero, Color.green);
+            var bgPosition = new Vector3Int(0, GameplayHotbarLayout.GridHeight - 1, 0);
+            Assert.IsNotNull(background.GetTile(bgPosition), "Tint sentinel needs a submitted header tile.");
+            background.SetColor(bgPosition, Color.green);
 
             BeginFrame();
             renderer.Render(EmptySnapshot("x"), camera);
@@ -64,9 +67,9 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual(1, PerformanceDiagnostics.LastCompletedFrameSnapshot.HotbarRenderCount);
             Assert.AreEqual(0, PerformanceDiagnostics.LastCompletedFrameSnapshot.TilemapClearCount);
-            Assert.AreEqual(Color.green, background.GetColor(Vector3Int.zero));
-            Assert.IsNotNull(text.GetTile(new Vector3Int(1, GameplayHotbarLayout.GridHeight - 2, 0)));
-            Assert.IsNull(text.GetTile(new Vector3Int(2, GameplayHotbarLayout.GridHeight - 2, 0)), "Shorter summary erases previous trailing text.");
+            Assert.AreEqual(Color.green, background.GetColor(bgPosition));
+            Assert.IsNotNull(text.GetTile(new Vector3Int(1, GameplayHotbarLayout.GridHeight - 1, 0)));
+            Assert.IsNull(text.GetTile(new Vector3Int(2, GameplayHotbarLayout.GridHeight - 1, 0)), "Shorter summary erases previous trailing text.");
         }
 
         [Test]

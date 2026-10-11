@@ -36,6 +36,31 @@ namespace CavesOfOoo.Core
         }
         private static readonly Queue<AnnouncementOrigin> AnnouncementOrigins=new Queue<AnnouncementOrigin>();
         private static int NextSerial;
+        /// <summary>In-memory change stamp for readers; not serialized.</summary>
+        public static long Revision { get; private set; }
+        /// <summary>Changes on Clear/Restore, even when count and serials match.</summary>
+        public static long HistoryGeneration { get; private set; }
+        public const int MaximumHistoryRange = 64;
+
+        /// <summary>Copies a detached chronological range into a reusable list.
+        /// Negative starts clamp to zero; nonpositive counts read nothing.
+        /// A single read is capped at64 entries, with overflow-safe bounds.</summary>
+        public static int CopyEntryRange(int start, int count, List<Entry> output)
+        {
+            if (output == null) return 0;
+            output.Clear();
+            if (count <= 0) return 0;
+            start = Math.Max(0, Math.Min(start, Messages.Count));
+            int length = Math.Min(Math.Min(count, MaximumHistoryRange), Messages.Count - start);
+            for (int i = 0; i < length; i++)
+            {
+                int index = start + i;
+                output.Add(new Entry(Messages[index], index < Ticks.Count ? Ticks[index] : 0,
+                    index < Serials.Count ? Serials[index] : index));
+            }
+            return length;
+        }
+
 
         /// <summary>
         /// Callback fired when a new message is added.
@@ -77,6 +102,7 @@ namespace CavesOfOoo.Core
             Messages.Add(message);
             Ticks.Add(TickProvider != null ? TickProvider() : 0);
             Serials.Add(NextSerial++);
+            unchecked { Revision++; }
             OnMessage?.Invoke(message);
         }
 
@@ -219,6 +245,7 @@ namespace CavesOfOoo.Core
 
             FlashStamp = flashStamp;
             NextSerial = nextSerial;
+            unchecked { Revision++; HistoryGeneration++; }
         }
 
         public static int NextSerialValue => NextSerial;
@@ -232,6 +259,7 @@ namespace CavesOfOoo.Core
             AnnouncementOrigins.Clear();
             FlashStamp = 0;
             NextSerial = 0;
+            unchecked { Revision++; HistoryGeneration++; }
         }
 
         public static List<string> GetMessages()

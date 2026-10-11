@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "scope": "audio-polish-twenty-routes",
+  "phases": [
+    {
+      "iteration": 1,
+      "mode": "audio-polish-01",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "polish01_fixed_pool",
+        "polish01_surface_music",
+        "polish01_native_ascend_coordinate",
+        "polish01_same_region_ascend_continuity",
+        "polish01_paid_world_map_steps",
+        "polish01_current_map_region_score",
+        "polish01_nonspread_ground_visited",
+        "polish01_nonspread_ascent_retains_region",
+        "polish01_imported_map_music_signal",
+        "polish01_no_local_map_ambience",
+        "polish01_idle_map_work_bound",
+        "polish01_no_remote_zone_generation",
+        "polish01_loaded_map_region",
+        "polish01_native_return_position",
+        "polish01_descend_same_region_continuity",
+        "polish01_ordinary_finish",
+        "polish01_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "polish01-02-actual-beating-map-score.png",
+        "polish01-03-actual-beating-ground.png",
+        "polish01-04-native-return-to-original-ground.png"
+      ]
+    },
+    {
+      "iteration": 2,
+      "mode": "audio-polish-02",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "polish02_imported_initial_progress",
+        "polish02_native_audio_menu",
+        "polish02_mute_retires_waveform",
+        "polish02_long_interruption_stays_silent",
+        "polish02_unmute_resumes_bookmark",
+        "polish02_imported_return_signal",
+        "polish02_fixed_audio_owner_and_pool",
+        "polish02_idle_resume_work_bound",
+        "polish02_menu_costs_no_game_turn",
+        "polish02_loaded_composition_continues",
+        "polish02_ordinary_finish",
+        "polish02_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "polish02-02-actual-music-mute.png",
+        "polish02-03-real-resumed-composition.png",
+        "polish02-04-loaded-world-continuation.png"
+      ]
+    },
+    {
+      "iteration": 3,
+      "mode": "audio-polish-03",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "river_flask_bought_actual_instance",
+        "river_original_empty_flask",
+        "river_generated_flow_source",
+        "river_fill_conserves_units",
+        "river_flow_bed_before_pour",
+        "river_actual_nearer_puddle",
+        "river_pour_conserves_units",
+        "river_bed_survives_nearer_puddle",
+        "river_imported_bed_outputs_signal",
+        "river_idle_is_bounded",
+        "river_actual_refill_removes_puddle",
+        "river_ordinary_finish",
+        "river_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "river-01-purchased-flask.png",
+        "river-02-original-visible-flow.png",
+        "river-03-nearer-real-puddle.png"
+      ]
+    },
+    {
+      "iteration": 4,
+      "mode": "audio-polish-04",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "freeze_original_forage_harvested",
+        "freeze_actual_pool_visible",
+        "freeze_actual_water_phrase",
+        "freeze_imported_water_outputs_signal",
+        "freeze_real_item_commits_ice",
+        "freeze_pool_volume_preserved",
+        "freeze_no_wet_phrase_under_ice",
+        "freeze_idle_keeps_scan_and_voice_bounds",
+        "freeze_ordinary_finish",
+        "freeze_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "freeze-01-actual-earned-lichen.png",
+        "freeze-02-visible-wet-source.png",
+        "freeze-03-actual-ice-quiet.png"
+      ]
+    },
+    {
+      "iteration": 5,
+      "mode": "audio-polish-05",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "room_original_enclosing_structure",
+        "room_entered_by_actual_input",
+        "room_inside_bed_has_no_exterior_habitat",
+        "room_actual_structural_phrase",
+        "room_imported_structure_outputs_signal",
+        "room_idle_keeps_scan_and_voice_bounds",
+        "room_ordinary_finish",
+        "room_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "room-01-outside-original-room.png",
+        "room-02-inside-original-enclosure.png"
+      ]
+    },
+    {
+      "iteration": 6,
+      "mode": "audio-polish-06",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "animal_original_ready_rime",
+        "animal_generated_live_source",
+        "animal_awake_imported_call",
+        "animal_real_rime_commits_freeze",
+        "animal_frozen_call_stays_quiet",
+        "animal_freeze_quiet_keeps_scan_budget",
+        "animal_actual_waits_thaw",
+        "animal_awake_call_returns",
+        "animal_ordinary_finish",
+        "animal_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "animal-01-original-awake-call.png",
+        "animal-02-real-frozen-quiet.png",
+        "animal-03-original-animal-awake-again.png"
+      ]
+    },
+    {
+      "iteration": 7,
+      "mode": "audio-polish-07",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "tail_actual_generated_room",
+        "tail_paid_waits_approach_clock_boundary",
+        "tail_actual_imported_phrase",
+        "tail_paid_input_crosses_real_band",
+        "tail_same_voice_continues",
+        "tail_retained_voice_outputs_signal",
+        "tail_real_save_load_keeps_clock",
+        "tail_idle_keeps_scan_and_voice_bounds",
+        "tail_ordinary_finish",
+        "tail_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "tail-01-before-real-band-boundary.png",
+        "tail-02-after-real-band-boundary.png"
+      ]
+    },
+    {
+      "iteration": 8,
+      "mode": "audio-polish-08",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "brush_original_generated_dry_source",
+        "brush_distant_start_has_no_leaf_voice",
+        "brush_real_paid_approach",
+        "brush_actual_imported_phrase",
+        "brush_imported_voice_outputs_signal",
+        "brush_real_paid_departure",
+        "brush_out_of_range_stays_quiet",
+        "brush_idle_keeps_scan_and_voice_bounds",
+        "brush_ordinary_finish",
+        "brush_audio_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "brush-01-distant-original-margin.png",
+        "brush-02-actual-dry-brush-texture.png",
+        "brush-03-real-departure-quiet.png"
+      ]
+    },
+    {
+      "iteration": 9,
+      "mode": "audio-polish-09",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "footing_original_vessel_acquired",
+        "footing_wet_step_plays",
+        "footing_real_draw_empties_source",
+        "footing_empty_source_step_plays_ground",
+        "footing_audio_pool_bound",
+        "footing_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "footing-02-actually-drained-basin.png",
+        "footing-03-dry-ground-step.png"
+      ]
+    },
+    {
+      "iteration": 10,
+      "mode": "audio-polish-10",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio10_original_vessel_acquired",
+        "audio10_finite_fill_conserved",
+        "audio10_fill_imported_recording",
+        "audio10_drink_one_unit",
+        "audio10_drink_imported_recording",
+        "audio10_refused_full_fill_silent",
+        "audio10_fixed_pool",
+        "audio10_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "water-01-actual-filled-vessel.png",
+        "water-02-after-real-drink.png"
+      ]
+    },
+    {
+      "iteration": 11,
+      "mode": "audio-polish-11",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio11_original_grain_harvested",
+        "audio11_actual_station",
+        "audio11_exact_conversion",
+        "audio11_imported_preparation",
+        "audio11_one_action",
+        "audio11_fixed_pool",
+        "audio11_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "cook-01-actual-grain-and-shelter.png",
+        "cook-02-real-cooked-grain.png"
+      ]
+    },
+    {
+      "iteration": 12,
+      "mode": "audio-polish-12",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio12_generated_alembic",
+        "audio12_real_reagent_harvest",
+        "audio12_original_reagent_consumed",
+        "audio12_real_tonic",
+        "audio12_imported_preparation",
+        "audio12_existing_station_clock",
+        "audio12_fixed_pool",
+        "audio12_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "brew-01-actual-reagent-selection.png",
+        "brew-02-earned-binding-tonic.png"
+      ]
+    },
+    {
+      "iteration": 13,
+      "mode": "audio-polish-13",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio13_original_dagger_equipped",
+        "audio13_metal_imported",
+        "audio13_actual_chest_torch",
+        "audio13_wood_dropped",
+        "audio13_wood_imported",
+        "audio13_same_torch_recovered",
+        "audio13_fixed_pool",
+        "audio13_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "handling-01-original-steel-dagger.png",
+        "handling-02-original-wooden-torch.png"
+      ]
+    },
+    {
+      "iteration": 14,
+      "mode": "audio-polish-14",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio14_original_seam_spent",
+        "audio14_exact_real_yield",
+        "audio14_imported_mineral_phrase",
+        "audio14_paid_harvest",
+        "audio14_checkpoint_preserves_depletion",
+        "audio14_load_does_not_replay",
+        "audio14_fixed_pool",
+        "audio14_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "mineral-01-real-harvested-seam.png",
+        "mineral-02-actual-reloaded-depletion.png"
+      ]
+    },
+    {
+      "iteration": 15,
+      "mode": "audio-polish-15",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "audio15_actual_book_purchase",
+        "audio15_authored_reader",
+        "audio15_keyboard_page",
+        "audio15_keyboard_imported_paper",
+        "audio15_deck_previous_page",
+        "audio15_deck_imported_paper",
+        "audio15_reading_is_free",
+        "audio15_cancel_silent",
+        "audio15_previous_gamepad_restored",
+        "audio15_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "pages-01-original-authored-first-page.png",
+        "pages-02-native-next-page.png",
+        "pages-03-ordinary-reader-return.png"
+      ]
+    },
+    {
+      "iteration": 16,
+      "mode": "audio-polish-16",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "regional16_distinct_imported_compositions",
+        "regional16_sodden_ground_visit",
+        "regional16_sodden_streamed_signal",
+        "regional16_grovelands_ground_visit",
+        "regional16_grovelands_streamed_signal",
+        "regional16_native_paid_map_travel",
+        "regional16_idle_no_rescan_or_restart",
+        "regional16_exact_source_pool",
+        "regional16_return_to_original_region",
+        "regional16_ordinary_finish",
+        "regional16_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "regional16-sodden-actual-ground.png",
+        "regional16-grovelands-actual-ground.png",
+        "regional16-original-region-return.png"
+      ]
+    },
+    {
+      "iteration": 17,
+      "mode": "audio-polish-17",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "sequence17_actual_starting_composition",
+        "sequence17_native_walk_before_wait",
+        "sequence17_complete_natural_first_piece",
+        "sequence17_distinct_next_piece_starts_once",
+        "sequence17_next_imported_signal",
+        "sequence17_no_idle_world_rescan",
+        "sequence17_fixed_voices",
+        "sequence17_native_walk_after_wait",
+        "sequence17_ordinary_finish",
+        "sequence17_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "sequence17-02-before-complete-composition.png",
+        "sequence17-03-actual-natural-next-piece.png",
+        "sequence17-04-gameplay-after-complete-piece.png"
+      ]
+    },
+    {
+      "iteration": 18,
+      "mode": "audio-polish-18",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "quiet18_actual_starting_composition",
+        "quiet18_native_walk_before_wait",
+        "quiet18_complete_natural_first_piece",
+        "quiet18_distinct_next_piece_starts_once",
+        "quiet18_full_rest_without_music",
+        "quiet18_environment_continues_during_rest",
+        "quiet18_next_imported_signal",
+        "quiet18_no_idle_world_rescan",
+        "quiet18_fixed_voices",
+        "quiet18_native_walk_after_wait",
+        "quiet18_ordinary_finish",
+        "quiet18_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "quiet18-02-before-complete-composition.png",
+        "quiet18-03-actual-natural-next-piece.png",
+        "quiet18-04-gameplay-after-complete-piece.png"
+      ]
+    },
+    {
+      "iteration": 19,
+      "mode": "audio-polish-19",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "settlement19_real_authored_arrival",
+        "settlement19_imported_town_signal",
+        "settlement19_native_paid_travel",
+        "settlement19_no_idle_scan_or_restart",
+        "settlement19_native_exit_restores_region",
+        "settlement19_native_return_keeps_piece",
+        "settlement19_fixed_voices",
+        "settlement19_ordinary_finish",
+        "settlement19_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "settlement19-02-actual-town-score.png",
+        "settlement19-03-actual-map-region.png",
+        "settlement19-04-actual-town-return.png"
+      ]
+    },
+    {
+      "iteration": 20,
+      "mode": "audio-polish-20",
+      "checks": [
+        "ordinary_player_and_native_zone",
+        "gain20_imported_steady_playback",
+        "gain20_native_audio_menu",
+        "gain20_music_ramp_has_audible_source_midpoints",
+        "gain20_ambience_ramp_has_audible_source_midpoints",
+        "gain20_zero_mutes_immediately",
+        "gain20_native_unmute_returns",
+        "gain20_actual_imported_output",
+        "gain20_idle_work_bound",
+        "gain20_fixed_pool",
+        "gain20_menu_costs_no_turn_or_actor_changes",
+        "gain20_preferences_restored"
+      ],
+      "captures": [
+        "01-gameplay-arrival.png",
+        "gain20-02-actual-music-ramp.png",
+        "gain20-03-actual-ambience-ramp.png",
+        "gain20-04-native-game-after-settings.png"
+      ]
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs",
+      "sha256": "38b94a2e741fce1c4f11e92f00195c15d8ffde39a3ba4250fabf9022ea5f6cb3"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish.cs",
+      "sha256": "90c38bf165ce1e8f6fa5ba5c8bffdf944b0f652777487d69bf9e2162d0758208"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish01.cs",
+      "sha256": "d239152350fddd1ffa2244a97bb9d75b89204c20cc163669f0ca1f9a8ba3cb7f"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish02.cs",
+      "sha256": "5db6e2ae04aead1387fbba00e4aeb1a3ecc4c61a53ad5296cf87a3456016ace1"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish03.cs",
+      "sha256": "ad988bffc43b8208742d2880c5841dc5a204662d69571dc7e578bd25004ad847"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish04.cs",
+      "sha256": "907e7a55d3d5b3e10da5969b26858270897f95e85227e1620d5402c8f5a0af97"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish05.cs",
+      "sha256": "bfadf44b2ef3ede73c0462535cf4d2008e30999ad03a37b2648b305ad988d6c3"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish06.cs",
+      "sha256": "dc0f12865dbf4fb747c1bbcf02cb2c58a2888e1cab95212cb86596c0fabb761a"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish07.cs",
+      "sha256": "f2a0895ff523a80049864994861ca8b5983b355386581f7bbed5dacff6820eca"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish08.cs",
+      "sha256": "0c12e4393e8a6edb350b11c46d2fd582bf590b0aa457c63ab8838da863817d0b"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish09.cs",
+      "sha256": "adff49514d5f0ed2b991a46f4090630e7a96893679dc4d9a2da8bc8ef13d79f5"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish10.cs",
+      "sha256": "6da301c3f58d48cc24ed483a634a80bcd642236f2c143d8510154eebd28f9b1d"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish11.cs",
+      "sha256": "44d80d8d06e56c993336668fbce3524fd142ca5d76624fd122b77082899b5ea1"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish12.cs",
+      "sha256": "55ec95ed5757b1a971807c17eaf074cc5c7b6969cd7f238394aa1ba52af0d638"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish13.cs",
+      "sha256": "e832abdb80852593898331a573c69905f69bcb7da4ff415df1f3d54e65941eaf"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish14.cs",
+      "sha256": "15a09e0d7a3036406c3070f53cb8a07360c3d5824cb02803d2b19b771dd98dcf"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish15.cs",
+      "sha256": "437a02b3b29cfc6700a5c258508e887b92b2d5763b95228a85dc9b9f540e4041"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish16.cs",
+      "sha256": "21e09ccce795e37cf15584225e4c6e81dd49cc145247887335ca6eeb1510ec07"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish17.cs",
+      "sha256": "2e6e5ce5ce16747432ae4241032d3ae5be72c8bac31b63df6c6975510a5c08b4"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish18.cs",
+      "sha256": "35738011a24e05773a30b83987696e9682bbcc27dbf1a4b79e3900ea6e0de594"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish19.cs",
+      "sha256": "058db71d4d591191837899768e8c81748d45368c21160775180575ad76271760"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish20.cs",
+      "sha256": "6fdebce6d4ab392e7af74b603a8630fe8654bd68dd50fba7e65c04fd066901eb"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Editor/Scenarios/ReferenceGladeNativeBatch.cs",
+      "sha256": "3c98431c13cc5fff9f817b2b2eabbf55eb1f5881229a2f446e6b4e213cf7a4c3"
+    }
+  ]
+}

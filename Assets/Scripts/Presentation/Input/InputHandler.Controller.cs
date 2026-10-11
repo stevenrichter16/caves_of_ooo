@@ -218,7 +218,8 @@ namespace CavesOfOoo.Rendering
                     OpenDecisionReader(text.ToString());
                 }),
                 ("Skills", OpenSkillsScreen), ("Abilities", OpenAbilityManager),
-                ("Quest log", OpenQuestLog), ("Factions", OpenFaction), ("Controls", OpenControlsReader)
+                ("Quest log", OpenQuestLog), ("Factions", OpenFaction), ("Controls", OpenControlsReader),
+                ("World log", OpenLogHistory)
             });
         }
         private void OpenControllerAbilitySlots()

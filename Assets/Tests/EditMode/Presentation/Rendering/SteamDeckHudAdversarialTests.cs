@@ -62,7 +62,7 @@ namespace CavesOfOoo.Tests
                 case "binding": Assert.IsFalse(after.Slots[0].Occupied); Assert.IsTrue(after.Slots[9].Occupied); Assert.AreEqual('0', after.Slots[9].Hotkey); break;
                 case "remove": Assert.IsFalse(after.Slots[0].Occupied); break;
                 case "selected": Assert.IsTrue(after.Slots[9].Selected); Assert.IsFalse(after.Slots[0].Selected); break;
-                case "pending": Assert.IsTrue(after.Slots[0].Pending); StringAssert.Contains("choose a direction", after.SummaryText); break;
+                case "pending": Assert.IsTrue(after.Slots[0].Pending); StringAssert.Contains("AIM", after.SummaryText); break;
             }
             Assert.AreSame(after, HotbarStateBuilder.Build(player, selected, pending));
         }
@@ -131,7 +131,7 @@ namespace CavesOfOoo.Tests
             renderer.Render(snapshot, camera);
             slots[0] = Slot("NEW", 'N');
             renderer.Render(snapshot, camera);
-            Assert.AreEqual(CP437TilesetGenerator.GetTextTile('N'), text.GetTile(new Vector3Int(1, 1, 0)));
+            Assert.AreEqual(HudPixelFont.GetTile('N'), text.GetTile(new Vector3Int(2, 1, 0)));
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace CavesOfOoo.Tests
             var player = CreatePlayer(out var abilities, out _);
             abilities.AddAbility("Other", "CommandOther", "Spell");
             renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);
-            var untouchedPosition = new Vector3Int(GameplayHotbarLayout.SlotWidth, 0, 0);
+            var untouchedPosition = new Vector3Int(GameplayHotbarLayout.SlotWidth + 1, 4, 0);
             text.SetColor(untouchedPosition, Color.magenta);
             abilities.GetAbilityBySlot(0).CooldownRemaining = 2;
             renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);

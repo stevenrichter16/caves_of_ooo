@@ -57,7 +57,10 @@ namespace CavesOfOoo.Rendering
                     occupied,
                     slot == selectedSlot,
                     slot == pendingSlot,
-                    ability?.IsUsable ?? false);
+                    ability?.IsUsable ?? false,
+                    HudHotbarPresentation.IconFor(ability?.SourcePowerClass),
+                    ability?.TargetingMode ?? AbilityTargetingMode.AdjacentCell,
+                    ability?.Range ?? 0);
             }
 
             if (_cachedSnapshot != null && _cachedSnapshot.SelectedSlot == selectedSlot &&
@@ -98,7 +101,8 @@ namespace CavesOfOoo.Rendering
                 left.AccentColorCode == right.AccentColorCode && left.MechanicsText == right.MechanicsText &&
                 left.Glyph == right.Glyph && left.CooldownRemaining == right.CooldownRemaining &&
                 left.Occupied == right.Occupied && left.Selected == right.Selected &&
-                left.Pending == right.Pending && left.Usable == right.Usable;
+                left.Pending == right.Pending && left.Usable == right.Usable &&
+                left.Icon == right.Icon && left.TargetingMode == right.TargetingMode && left.Range == right.Range;
         }
 
         public static char SlotToHotkey(int slot)
@@ -120,13 +124,8 @@ namespace CavesOfOoo.Rendering
                 return "No rite bound. Use the Abilities tab to assign one.";
 
             string prefix = "[" + slot.Hotkey + "] " + slot.DisplayName;
-            if (slot.Pending)
-                return prefix + " - choose a direction.";
-            if (!slot.Usable)
-                return prefix + " - CD " + slot.CooldownRemaining;
-            if (!string.IsNullOrWhiteSpace(slot.MechanicsText))
-                return prefix + " - " + slot.MechanicsText;
-            return prefix + " - ready.";
+            return prefix + " | " + HudHotbarPresentation.StateLabel(slot)
+                + " | " + HudHotbarPresentation.TargetLabel(slot);
         }
 
         private static string BuildShortName(string displayName)

@@ -48,7 +48,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(quench.Occupied);
             Assert.IsTrue(quench.Pending);
             Assert.AreEqual("Quench", quench.DisplayName);
-            Assert.That(snapshot.SummaryText, Does.Contain("choose a direction"));
+            Assert.That(snapshot.SummaryText, Does.Contain("AIM | adjacent"));
         }
 
         [Test]

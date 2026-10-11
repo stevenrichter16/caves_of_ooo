@@ -12,13 +12,14 @@ namespace CavesOfOoo.Rendering
     {
         public struct LogLine
         {
-            public LogLine(string text, int ageIndex, int entryNewestSerial, int rowIndexWithinEntry, int entryRowCount)
+            public LogLine(string text, int ageIndex, int entryNewestSerial, int rowIndexWithinEntry, int entryRowCount, bool isGroupSeparator = false)
             {
                 Text = text ?? string.Empty;
                 AgeIndex = ageIndex < 0 ? 0 : ageIndex;
                 EntryNewestSerial = entryNewestSerial;
                 RowIndexWithinEntry = rowIndexWithinEntry < 0 ? 0 : rowIndexWithinEntry;
                 EntryRowCount = entryRowCount < 1 ? 1 : entryRowCount;
+                IsGroupSeparator = isGroupSeparator;
             }
 
             public string Text { get; }
@@ -26,9 +27,11 @@ namespace CavesOfOoo.Rendering
             public int EntryNewestSerial { get; }
             public int RowIndexWithinEntry { get; }
             public int EntryRowCount { get; }
+            public bool IsGroupSeparator { get; }
 
             public bool MatchesIdentity(LogLine other)
             {
+                if (IsGroupSeparator != other.IsGroupSeparator) return false;
                 if (EntryNewestSerial >= 0 || other.EntryNewestSerial >= 0)
                 {
                     return EntryNewestSerial == other.EntryNewestSerial &&
@@ -62,8 +65,14 @@ namespace CavesOfOoo.Rendering
                     string.Empty,
                     "   ");
 
-                for (int i = 0; i < statusLines.Count && lines.Count < safeMaxLines; i++)
-                    lines.Add(statusLines[i]);
+                int available = safeMaxLines - lines.Count;
+                for (int i = 0; i < statusLines.Count && i < available; i++)
+                {
+                    string line = statusLines[i];
+                    if (i == available - 1 && i < statusLines.Count - 1)
+                        line = Truncate(line + new string(' ', safeWidth) + ">", safeWidth);
+                    lines.Add(line);
+                }
             }
 
             return lines;
@@ -212,6 +221,21 @@ namespace CavesOfOoo.Rendering
                     : entry.Text;
 
                 int ageIndex = entryIndex;
+                if (IsStoredTurnDivider(entry.Text))
+                {
+                    var separator = new LogLine(string.Empty, ageIndex, entry.NewestSerial, 0, 1, true);
+                    // Keep the stored fence's serial as the scroll anchor. A fence
+                    // already represents this boundary; never stack inferred rules.
+                    if (lines.Count > 0 && lines[lines.Count - 1].IsGroupSeparator)
+                        lines[lines.Count - 1] = separator;
+                    else
+                        lines.Add(separator);
+                    continue;
+                }
+                if (entryIndex < entriesNewestFirst.Count - 1 &&
+                    entriesNewestFirst[entryIndex + 1].Tick != entry.Tick &&
+                    (lines.Count == 0 || !lines[lines.Count - 1].IsGroupSeparator))
+                    lines.Add(new LogLine(string.Empty, ageIndex, entry.NewestSerial, 0, 1, true));
                 List<string> wrapped = WrapWithPrefixes(body, safeWidth, ":: ", "   ");
                 for (int i = 0; i < wrapped.Count; i++)
                 {
@@ -228,6 +252,18 @@ namespace CavesOfOoo.Rendering
                 return lines;
 
             return lines.GetRange(lines.Count - safeMaxLines, safeMaxLines);
+        }
+
+        static bool IsStoredTurnDivider(string text)
+        {
+            // TurnManager's exact legacy fence, including Unicode old-save form.
+            // Similar-looking prose remains ordinary text; raw history is untouched.
+            if (text == null || text.Length != 40) return false;
+            char glyph = text[0];
+            if (glyph != (char)0xCD && glyph != '═') return false;
+            for (int i = 1; i < text.Length; i++)
+                if (text[i] != glyph) return false;
+            return true;
         }
 
         public static List<string> WrapWithPrefixes(

@@ -11,13 +11,13 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public sealed class GameplayHotbarRenderer
     {
-        private static readonly Color HotbarBgColor = Color.black;
-        private static readonly Color EmptyColor = QudColorParser.DarkGray;
+        private static readonly Color HotbarBgColor = new Color(.025f, .045f, .055f, 1f);
+        private static readonly Color EmptyColor = QudColorParser.Gray;
 
         private readonly Tilemap _tilemap;
         private readonly Tilemap _backgroundTilemap;
         private static readonly TileBase[] BlankRow = new TileBase[GameplayHotbarLayout.GridWidth];
-        private static readonly TileBase[] BlankSlot = new TileBase[GameplayHotbarLayout.SlotWidth * 4];
+        private static readonly TileBase[] BlankSlot = new TileBase[GameplayHotbarLayout.SlotWidth * 5];
         private readonly List<HotbarSlotSnapshot> _lastSlots =
             new List<HotbarSlotSnapshot>(GameplayHotbarLayout.SlotCount);
         private bool _hasContent;
@@ -25,6 +25,8 @@ namespace CavesOfOoo.Rendering
         private string _lastTitle;
         private string _lastSummary;
         private string _lastHint;
+        private float _lastAspect = -1;
+        private float _cellWidth;
 
         public GameplayHotbarRenderer(Tilemap tilemap, Tilemap backgroundTilemap)
         {
@@ -40,6 +42,7 @@ namespace CavesOfOoo.Rendering
             _needsInitialClear = false;
             _lastSlots.Clear();
             _lastTitle = _lastSummary = _lastHint = null;
+            _lastAspect = -1;
             if (_tilemap != null)
             {
                 _tilemap.ClearAllTiles();
@@ -74,10 +77,12 @@ namespace CavesOfOoo.Rendering
                         ? "[LS] direction  [A/RT] confirm  [B] cancel"
                         : "[D-pad L/R] cycle  [X] cast";
                 IReadOnlyList<HotbarSlotSnapshot> slots = snapshot?.Slots;
-                int slotCount = slots?.Count ?? 0;
+                int slotCount = Mathf.Min(GameplayHotbarLayout.SlotCount, slots?.Count ?? 0);
+                bool layoutChanged = !Mathf.Approximately(_lastAspect, camera.aspect);
+                _cellWidth = GameplayHotbarLayout.ComputeCellWidth(camera.aspect);
                 bool headerChanged = !_hasContent || title != _lastTitle || hint != _lastHint;
                 bool summaryChanged = !_hasContent || summary != _lastSummary;
-                bool slotsChanged = !_hasContent || SlotsChanged(slots, slotCount);
+                bool slotsChanged = !_hasContent || layoutChanged || SlotsChanged(slots, slotCount);
                 if (!headerChanged && !summaryChanged && !slotsChanged)
                     return;
 
@@ -89,30 +94,25 @@ namespace CavesOfOoo.Rendering
                         Clear();
                     DrawBackground();
                 }
-                if (headerChanged)
+                else if (layoutChanged)
+                    DrawBackground();
+                if (headerChanged || summaryChanged)
                 {
-                    if (!firstPaint)
-                        ClearRow(GameplayHotbarLayout.GridHeight - 1);
-                    DrawText(1, GameplayHotbarLayout.GridHeight - 1, title, QudColorParser.White, 18);
-                    DrawRightAligned(
-                        GameplayHotbarLayout.GridWidth - 2,
-                        GameplayHotbarLayout.GridHeight - 1,
-                        hint,
-                        QudColorParser.DarkGray,
-                        GameplayHotbarLayout.GridWidth - 20);
-                }
-                if (summaryChanged)
-                {
-                    if (!firstPaint)
-                        ClearRow(GameplayHotbarLayout.GridHeight - 2);
-                    DrawText(1, GameplayHotbarLayout.GridHeight - 2, summary, QudColorParser.Gray, GameplayHotbarLayout.GridWidth - 2);
+                    if (!firstPaint) ClearRow(GameplayHotbarLayout.GridHeight - 1);
+                    int hintWidth = Mathf.Min(hint.Length, GameplayHotbarLayout.GridWidth - 24);
+                    int detailWidth = GameplayHotbarLayout.GridWidth - hintWidth - 4;
+                    DrawText(1, GameplayHotbarLayout.GridHeight - 1,
+                        HudHotbarPresentation.Fit(string.IsNullOrEmpty(summary) ? title : summary, detailWidth),
+                        QudColorParser.White, detailWidth);
+                    DrawRightAligned(GameplayHotbarLayout.GridWidth - 2, GameplayHotbarLayout.GridHeight - 1,
+                        hint, QudColorParser.Gray, hintWidth);
                 }
                 if (slotsChanged)
                 {
                     // Ordinary snapshots have ten ordered, non-overlapping slots.
                     // Arbitrary callers may provide sparse/reordered/duplicate
                     // indices, so replay those in order after clearing old boxes.
-                    bool granular = !firstPaint && HasOrderedSlots(_lastSlots) &&
+                    bool granular = !firstPaint && !layoutChanged && HasOrderedSlots(_lastSlots) &&
                         HasOrderedSlots(slots) && _lastSlots.Count == slotCount;
                     if (!firstPaint && !granular)
                     {
@@ -139,6 +139,7 @@ namespace CavesOfOoo.Rendering
                 _lastTitle = title;
                 _lastSummary = summary;
                 _lastHint = hint;
+                _lastAspect = camera.aspect;
                 _hasContent = true;
             }
         }
@@ -170,23 +171,27 @@ namespace CavesOfOoo.Rendering
 
         private void ClearSlot(int slotIndex)
         {
-            _tilemap.SetTilesBlock(new BoundsInt(slotIndex * GameplayHotbarLayout.SlotWidth, 0, 0,
-                GameplayHotbarLayout.SlotWidth, 4, 1), BlankSlot);
+            if (slotIndex < 0 || slotIndex >= GameplayHotbarLayout.SlotCount) return;
+            var bounds = new BoundsInt(slotIndex * GameplayHotbarLayout.SlotWidth, 0, 0,
+                GameplayHotbarLayout.SlotWidth, 5, 1);
+            _tilemap.SetTilesBlock(bounds, BlankSlot);
+            _backgroundTilemap.SetTilesBlock(bounds, BlankSlot);
         }
 
         private void DrawBackground()
         {
-            Tile blockTile = CP437TilesetGenerator.GetTextTile(CP437TilesetGenerator.SolidBlock);
+            Tile blockTile = HudPixelFont.GetTile(CP437TilesetGenerator.SolidBlock);
             if (blockTile == null)
                 return;
 
-            for (int y = 0; y < GameplayHotbarLayout.GridHeight; y++)
+            for (int y = GameplayHotbarLayout.GridHeight - 1; y < GameplayHotbarLayout.GridHeight; y++)
             {
                 for (int x = 0; x < GameplayHotbarLayout.GridWidth; x++)
                 {
                     Vector3Int pos = new Vector3Int(x, y, 0);
                     _backgroundTilemap.SetTile(pos, blockTile);
                     _backgroundTilemap.SetTileFlags(pos, TileFlags.None);
+                    _backgroundTilemap.SetTransformMatrix(pos, Matrix4x4.Scale(new Vector3(_cellWidth * 2, 1, 1)));
                     _backgroundTilemap.SetColor(pos, HotbarBgColor);
                 }
             }
@@ -194,32 +199,55 @@ namespace CavesOfOoo.Rendering
 
         private void DrawSlot(HotbarSlotSnapshot slot)
         {
-            int originX = slot.SlotIndex * GameplayHotbarLayout.SlotWidth;
-            const int slotWidth = GameplayHotbarLayout.SlotWidth;
-            const int slotHeight = 4;
-            Color borderColor = slot.Pending
-                ? QudColorParser.BrightCyan
-                : (slot.Selected ? QudColorParser.White : QudColorParser.DarkGray);
-            Color accentColor = !string.IsNullOrEmpty(slot.AccentColorCode)
-                ? QudColorParser.Parse(slot.AccentColorCode)
-                : QudColorParser.White;
-            Color labelColor = slot.Occupied
-                ? (slot.Usable ? accentColor : QudColorParser.BrightRed)
-                : EmptyColor;
+            if (slot.SlotIndex < 0 || slot.SlotIndex >= GameplayHotbarLayout.SlotCount) return;
+            int x = slot.SlotIndex * GameplayHotbarLayout.SlotWidth;
+            const int width = GameplayHotbarLayout.SlotWidth;
+            Color edge = slot.Pending ? QudColorParser.BrightCyan
+                : slot.Selected ? QudColorParser.BrightYellow : QudColorParser.DarkGray;
+            Color accent = !string.IsNullOrEmpty(slot.AccentColorCode)
+                ? QudColorParser.Parse(slot.AccentColorCode) : QudColorParser.White;
+            Color text = slot.Occupied ? (slot.Usable ? QudColorParser.White : QudColorParser.Gray) : EmptyColor;
 
-            DrawBox(originX, 0, slotWidth, slotHeight, borderColor);
-            DrawText(originX + 1, 2, "[" + slot.Hotkey + "]", slot.Selected ? QudColorParser.White : QudColorParser.Gray, 3);
+            // Numbers, state, icon and names have disjoint rows. Explicit AIM,
+            // CD and EMPTY labels survive monochrome viewing/color differences.
+            DrawCardBackground(slot);
+            DrawChar(x + 1, 4, slot.Hotkey, slot.Selected ? QudColorParser.BrightYellow : QudColorParser.Gray);
+            DrawText(x + 2, 4, HudHotbarPresentation.StateLabel(slot),
+                slot.Pending ? QudColorParser.BrightCyan : slot.CooldownRemaining > 0 ? QudColorParser.BrightRed : QudColorParser.Gray, width - 2);
+            if (slot.Selected || slot.Pending) DrawChar(x + 1, 3, slot.Pending ? '^' : '*', edge);
+            if (!slot.Occupied) { DrawCentered(x, 1, "empty", EmptyColor); return; }
 
-            if (!slot.Occupied)
-            {
-                DrawText(originX + 1, 1, "empty", EmptyColor, slotWidth - 2);
-                return;
-            }
+            var pos = new Vector3Int(x + 3, 2, 0);
+            _tilemap.SetTile(pos, HudSkillIconAtlas.GetTile(slot.Icon));
+            _tilemap.SetTileFlags(pos, TileFlags.None);
+            _tilemap.SetColor(pos, Color.white);
+            // Uniformly enlarge the original art between state and two name rows.
+            // Y bounds2.125..3.875 leave positive gaps from both text bands.
+            _tilemap.SetTransformMatrix(pos, Matrix4x4.TRS(new Vector3(_cellWidth * .5f, .5f, 0),
+                Quaternion.identity, new Vector3(1.75f, 1.75f, 1)));
+            HudHotbarPresentation.NameLines(slot.DisplayName, out string first, out string second);
+            DrawCentered(x, 1, first, text);
+            DrawCentered(x, 0, second, text);
+        }
 
-            DrawChar(originX + slotWidth - 2, 2, slot.Glyph, accentColor);
-            DrawText(originX + 1, 1, slot.ShortName, labelColor, slotWidth - 2);
-            if (slot.CooldownRemaining > 0)
-                DrawText(originX + slotWidth - 3, 1, slot.CooldownRemaining.ToString(), QudColorParser.BrightRed, 2);
+        private void DrawCardBackground(HotbarSlotSnapshot slot)
+        {
+            var pos = new Vector3Int(slot.SlotIndex * GameplayHotbarLayout.SlotWidth, 0, 0);
+            Color frame = slot.Pending ? QudColorParser.BrightCyan : slot.Selected ? QudColorParser.BrightYellow
+                : slot.Occupied ? new Color(.35f, .46f, .51f, 1) : new Color(.23f, .29f, .32f, 1);
+            _backgroundTilemap.SetTile(pos, HudCardFrame.GetTile());
+            _backgroundTilemap.SetTileFlags(pos, TileFlags.None);
+            _backgroundTilemap.SetColor(pos, frame);
+            // A single cached four-by-five sprite replaces forty background tiles.
+            // Translation accounts for this map's unchanged half-cell anchor.
+            _backgroundTilemap.SetTransformMatrix(pos, Matrix4x4.TRS(new Vector3(_cellWidth * 3.5f, 2, 0),
+                Quaternion.identity, new Vector3(_cellWidth * 2, 1, 1)));
+        }
+
+        private void DrawCentered(int x, int y, string text, Color color)
+        {
+            DrawText(x + Mathf.Max(0, (GameplayHotbarLayout.SlotWidth - text.Length) / 2), y,
+                text, color, GameplayHotbarLayout.SlotWidth);
         }
 
         private void DrawBox(int x, int y, int w, int h, Color color)
@@ -270,7 +298,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawChar(int x, int y, char c, Color color)
         {
-            Tile tile = CP437TilesetGenerator.GetTextTile(c);
+            Tile tile = HudPixelFont.GetTile(c);
             if (tile == null)
                 return;
 

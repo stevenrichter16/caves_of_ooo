@@ -1,0 +1,102 @@
+{
+    "recipe": "hud-existing-input-v1",
+    "stage": "after",
+    "runId": "53a296fe226c41bd9fafe3c5e3531eac",
+    "beganUtc": "2026-10-11T20:55:23.1004460Z",
+    "endedUtc": "2026-10-11T20:55:38.1875040Z",
+    "cameras": "hotbar=(x:0.00, y:0.00, width:1461.00, height:162.00);sidebar=(x:1461.00, y:0.00, width:459.00, height:1080.00);hotbarTarget=screen;sidebarTarget=screen",
+    "preferences": "native=True;lowDetail=False;scale=1;shadows=True;fx=Full;fxSpeed=1;music=0.55;ambience=0.45;sfx=1",
+    "initialSlots": "0:Pyromancy_EmberSpit:Ember Spit:DirectionLine:4:0|1:Pyromancy_FlamingHands:Flaming Hands:AdjacentCell:1:0|2:Hydromancy_JetBlast:Jet Blast:DirectionLine:2:0|3:Galvanism_GroundSurge:Ground Surge:DirectionLine:4:0|4:Cryomancy_RimeGrip:Rime Grip:DirectionLine:5:0|5:Spellcraft_Calm:Calm:DirectionLine:6:0|6:empty|7:empty|8:empty|9:empty",
+    "observation": "Identical existing-API input recipe on an ordinary isolated seed64 start:120 idle frames,24 actual D-pad slot changes,40 alternating empty-slot attempts,12 older/newer existing-sidebar scroll keys, and six ordinary Look/cursor/return cycles. No paid action or direct renderer call. Raw completed-frame HUD work counters and native recorder samples are written separately from screenshots with actual viewport/settings. Before/after stage changes only the receipt label. Diagnostic editor observation, not standalone/physical Deck/GPU performance or subjective readability. Native recorder LastValue may describe an earlier completed frame; explicit snapshot and observer frame IDs prevent false correlation. Counter observation materializes a diagnostic snapshot once per observed frame; recorder/input coroutine overhead is shared in both runs. No long-session or combat-performance claim. A before/after claim requires retained successful runs with matching source-approved recipe, viewport, graphics, focus, frame limit and actual action counts; otherwise report unmatched evidence only. This mode does not exercise the new full-history reader and does not resize the view or change preferences.",
+    "sampling": "EOF observer, completed snapshot has explicit UnityFrame. Native LastValue is latest completed recorder value, not guaranteed this snapshot frame. Blank means unavailable, not zero. Markers nest; do not sum as exclusive cost. Setup buffers precede sampling; screenshots/file IO follow sampling. Raw phase rows include real input-handler and diagnostic observation overhead; no diagnostic direct Render calls.",
+    "sourceAuthority": "Coordinator records checked-out source revision alongside the raw receipt; this observer does not infer test-to-commit identity.",
+    "frames": 5416,
+    "startTick": 10,
+    "startLogCount": 7,
+    "overflow": false,
+    "before": {
+        "screenWidth": 1920,
+        "screenHeight": 1080,
+        "targetWidth": 1461,
+        "targetHeight": 918,
+        "msaa": 1,
+        "vSync": 0,
+        "targetFrameRate": -1,
+        "groundBuildCount": 40,
+        "gc0": 18512,
+        "gc1": 18512,
+        "gc2": 18512,
+        "filter": "Bilinear",
+        "zone": "Overworld.11.10.0",
+        "runInBackground": true,
+        "focused": true,
+        "profilerEnabled": false,
+        "timeScale": 1.0
+    },
+    "after": {
+        "screenWidth": 1920,
+        "screenHeight": 1080,
+        "targetWidth": 1461,
+        "targetHeight": 918,
+        "msaa": 1,
+        "vSync": 0,
+        "targetFrameRate": -1,
+        "groundBuildCount": 40,
+        "gc0": 18512,
+        "gc1": 18512,
+        "gc2": 18512,
+        "filter": "Bilinear",
+        "zone": "Overworld.11.10.0",
+        "runInBackground": true,
+        "focused": true,
+        "profilerEnabled": false,
+        "timeScale": 1.0
+    },
+    "markers": [
+        {
+            "name": "COO.ZoneRenderer.RenderSidebar",
+            "category": "Scripts",
+            "units": "TimeNanoseconds",
+            "dataType": "Int64",
+            "failure": "",
+            "matchingHandles": 1,
+            "valid": true
+        },
+        {
+            "name": "COO.ZoneRenderer.RenderHotbar",
+            "category": "Scripts",
+            "units": "TimeNanoseconds",
+            "dataType": "Int64",
+            "failure": "",
+            "matchingHandles": 1,
+            "valid": true
+        },
+        {
+            "name": "COO.UI.Sidebar.Render",
+            "category": "Scripts",
+            "units": "TimeNanoseconds",
+            "dataType": "Int64",
+            "failure": "",
+            "matchingHandles": 1,
+            "valid": true
+        },
+        {
+            "name": "COO.UI.Hotbar.Render",
+            "category": "Scripts",
+            "units": "TimeNanoseconds",
+            "dataType": "Int64",
+            "failure": "",
+            "matchingHandles": 1,
+            "valid": true
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "category": "Memory",
+            "units": "Bytes",
+            "dataType": "Int64",
+            "failure": "",
+            "matchingHandles": 1,
+            "valid": true
+        }
+    ]
+}

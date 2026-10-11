@@ -39,7 +39,7 @@ namespace CavesOfOoo.Tests
         }
         [TestCase("meal", "valid")] [TestCase("meal", "before")] [TestCase("meal", "after")] [TestCase("meal", "stale")]
         [TestCase("reink", "valid")] [TestCase("reink", "before")] [TestCase("reink", "after")] [TestCase("reink", "stale")]
-        [TestCase("ordinary-food", "valid")]
+        [TestCase("ordinary-food", "valid")] [TestCase("ordinary-food", "before")] [TestCase("ordinary-food", "after")] [TestCase("ordinary-food", "stale")]
         public void RealInventorySelectionChargesExactlyOneActionOnlyForCommittedConnectedUses(string feature, string condition)
         {
             using (var ui = new HotbarSaveFixture(true, false))
@@ -74,7 +74,8 @@ namespace CavesOfOoo.Tests
                 Release(); InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Enter)); InputSystem.Update();
                 Assert.True(keyboard.enterKey.wasPressedThisFrame);
                 Call(ui.Input, "HandleInventoryInput");
-                bool success = condition == "valid", paid = success && feature != "ordinary-food";
+                // 0ff878e1f intentionally made all committed self-consumption paid.
+                bool success = condition == "valid", paid = success;
                 Assert.AreEqual(!paid, inventory.IsOpen);
                 Assert.AreEqual(paid ? "Normal" : "InventoryOpen", Get(ui.Input, "_inputState").ToString());
                 Assert.False(inventory.ConsumePendingEverydayTurn(), "The same dispatch frame consumes the signal once.");

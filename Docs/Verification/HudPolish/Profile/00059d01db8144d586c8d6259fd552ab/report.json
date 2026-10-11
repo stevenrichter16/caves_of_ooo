@@ -1,0 +1,43 @@
+{
+    "runId": "00059d01db8144d586c8d6259fd552ab",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Identical existing-API input recipe on an ordinary isolated seed64 start:120 idle frames,24 actual D-pad slot changes,40 alternating empty-slot attempts,12 older/newer existing-sidebar scroll keys, and six ordinary Look/cursor/return cycles. No paid action or direct renderer call. Raw completed-frame HUD work counters and native recorder samples are written separately from screenshots with actual viewport/settings. Before/after stage changes only the receipt label.",
+    "cannotVerify": "Diagnostic editor observation, not standalone/physical Deck/GPU performance or subjective readability. Native recorder LastValue may describe an earlier completed frame; explicit snapshot and observer frame IDs prevent false correlation. Counter observation materializes a diagnostic snapshot once per observed frame; recorder/input coroutine overhead is shared in both runs. No long-session or combat-performance claim. A before/after claim requires retained successful runs with matching source-approved recipe, viewport, graphics, focus, frame limit and actual action counts; otherwise report unmatched evidence only. This mode does not exercise the new full-history reader and does not resize the view or change preferences.",
+    "mode": "hud-profile",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS hud_profile_original_source_and_free_start",
+        "PASS hud_profile_native_cycle_returns",
+        "PASS hud_profile_real_history_created",
+        "PASS hud_profile_existing_scroll_roundtrip",
+        "PASS hud_profile_existing_look_roundtrip",
+        "PASS hud_profile_all_inputs_free",
+        "PASS hud_profile_idle_zero_hotbar_paints",
+        "PASS hud_profile_samples_and_marker_availability",
+        "PASS hud_profile_configuration_unchanged",
+        "PASS hud_profile_gamepad_removed_and_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/HudPolish/Profile/00059d01db8144d586c8d6259fd552ab/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/HudPolish/Profile/00059d01db8144d586c8d6259fd552ab/hud-profile-01-before-input.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/HudPolish/Profile/00059d01db8144d586c8d6259fd552ab/hud-profile-02-after-identical-input.png"
+    ],
+    "descriptions": [],
+    "cases": 11,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 21.7878272,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

@@ -254,15 +254,22 @@ namespace CavesOfOoo.Rendering
             return LookQueryService.BuildSnapshot(player, zone, x, y);
         }
 
+        private static readonly IReadOnlyList<SidebarLogEntry> _logEntryView = _logEntryScratch.AsReadOnly();
+        private static long _lastLogRevision = -1;
+        private static int _lastLogLimit = -1;
+
         private static IReadOnlyList<SidebarLogEntry> BuildRecentLogEntries(int maxRecentMessages)
         {
+            int limit = Math.Max(0, maxRecentMessages);
+            if (_lastLogRevision == MessageLog.Revision && _lastLogLimit == limit) return _logEntryView;
+            _lastLogRevision = MessageLog.Revision; _lastLogLimit = limit;
             var raw = _getRecentEntriesScratch;
-            MessageLog.GetRecentEntries(maxRecentMessages, raw);
+            MessageLog.GetRecentEntries(limit, raw);
 
             var entries = _logEntryScratch;
             entries.Clear();
             if (raw.Count == 0)
-                return entries;
+                return _logEntryView;
 
             for (int i = raw.Count - 1; i >= 0; i--)
             {
@@ -271,7 +278,8 @@ namespace CavesOfOoo.Rendering
                 int currentSerial = raw[i].Serial;
                 int count = 1;
 
-                while (i - 1 >= 0 && string.Equals(raw[i - 1].Text, currentText, StringComparison.Ordinal))
+                while (i - 1 >= 0 && raw[i - 1].Tick == currentTick &&
+                    string.Equals(raw[i - 1].Text, currentText, StringComparison.Ordinal))
                 {
                     count++;
                     i--;
@@ -280,7 +288,7 @@ namespace CavesOfOoo.Rendering
                 entries.Add(new SidebarLogEntry(currentText, currentTick, count, currentSerial));
             }
 
-            return entries;
+            return _logEntryView;
         }
     }
 }

@@ -25,6 +25,7 @@ namespace CavesOfOoo.Rendering
         private int _cachedOldestSerial = -1;
         private int _cachedNewestCount = -1;
         private int _cachedOldestCount = -1;
+        private readonly List<SidebarLogEntry> _retainedLogEntries = new List<SidebarLogEntry>(SidebarStateBuilder.SidebarLogMessageLimit);
         private int _logScrollOffsetRows;
         private int _maxLogScrollOffsetRows;
         private int _lastLogViewportHeight = -1;
@@ -72,6 +73,7 @@ namespace CavesOfOoo.Rendering
             _cachedNewestCount = -1;
             _cachedOldestCount = -1;
             _cachedLogLines.Clear();
+            _retainedLogEntries.Clear();
             _visibleLogLines.Clear();
             _needsRedraw = true;
         }
@@ -79,6 +81,7 @@ namespace CavesOfOoo.Rendering
         public void Clear()
         {
             IsVisible = false;
+            _needsRedraw = true;
             if (_tilemap != null)
             {
                 _tilemap.ClearAllTiles();
@@ -140,6 +143,7 @@ namespace CavesOfOoo.Rendering
                 int fingerprint = unchecked(ComputeSnapshotFingerprint(snapshot) * 31 + (actionHint?.GetHashCode() ?? 0));
                 bool inputsUnchanged = !_needsRedraw
                     && fingerprint == _lastSnapshotFingerprint
+                    && (snapshot?.ThoughtEntries != null || LogEntriesEqual(snapshot?.LogEntriesNewestFirst))
                     && Mathf.Approximately(camera.aspect, _lastCameraAspect)
                     && Mathf.Approximately(camera.orthographicSize, _lastCameraSize)
                     && flashActive == _lastFlashActive
@@ -216,7 +220,7 @@ namespace CavesOfOoo.Rendering
                 {
                     Color color = i == 0
                         ? QudColorParser.White
-                        : (i == 1 ? QudColorParser.Gray : QudColorParser.DarkGray);
+                        : QudColorParser.Gray;
                     DrawText(contentX, y, focusLines[i], color, contentWidth);
                 }
 
@@ -326,6 +330,7 @@ namespace CavesOfOoo.Rendering
                     {
                         var e = snapshot.LogEntriesNewestFirst[i];
                         hash = hash * 31 + e.NewestSerial;
+                        hash = hash * 31 + e.Tick;
                         hash = hash * 31 + e.Count;
                         hash = hash * 31 + (e.Text != null ? e.Text.GetHashCode() : 0);
                     }
@@ -378,12 +383,17 @@ namespace CavesOfOoo.Rendering
             {
                 SidebarTextFormatter.LogLine line = logLines[i];
                 float t = maxAge <= 0 ? 0f : (float)line.AgeIndex / maxAge;
-                Color lineColor = Color.Lerp(QudColorParser.White, QudColorParser.DarkGray, t);
+                Color lineColor = Color.Lerp(QudColorParser.White, QudColorParser.Gray, t);
                 if (flashActive && line.AgeIndex == 0)
                     lineColor = QudColorParser.BrightYellow;
 
                 int rowY = firstLogY - i;
-                DrawText(contentX, rowY, line.Text, lineColor, contentWidth);
+                if (line.IsGroupSeparator)
+                {
+                    for (int column = 0; column < contentWidth; column++)
+                        DrawChar(contentX + column, rowY, CP437TilesetGenerator.BoxHorizontal, new Color(.28f, .45f, .49f, 1));
+                }
+                else DrawText(contentX, rowY, line.Text, lineColor, contentWidth);
             }
         }
 
@@ -440,6 +450,19 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private bool LogEntriesEqual(IReadOnlyList<SidebarLogEntry> entries)
+        {
+            int count = entries?.Count ?? 0;
+            if (_retainedLogEntries.Count != count) return false;
+            for (int i = 0; i < count; i++)
+            {
+                var a = _retainedLogEntries[i]; var b = entries[i];
+                if (a.Text != b.Text || a.Tick != b.Tick || a.Count != b.Count || a.NewestSerial != b.NewestSerial)
+                    return false;
+            }
+            return true;
+        }
+
         private List<SidebarTextFormatter.LogLine> GetVisibleLogLines(
             SidebarSnapshot snapshot,
             int width,
@@ -457,7 +480,8 @@ namespace CavesOfOoo.Rendering
                                 _cachedNewestSerial != newestSerial ||
                                 _cachedOldestSerial != oldestSerial ||
                                 _cachedNewestCount != newestCount ||
-                                _cachedOldestCount != oldestCount;
+                                _cachedOldestCount != oldestCount ||
+                                !LogEntriesEqual(snapshot?.LogEntriesNewestFirst);
 
             bool viewportChanged = _lastLogViewportHeight != height;
             SidebarTextFormatter.LogLine? anchor = null;
@@ -477,6 +501,10 @@ namespace CavesOfOoo.Rendering
                 _cachedOldestSerial = oldestSerial;
                 _cachedNewestCount = newestCount;
                 _cachedOldestCount = oldestCount;
+                _retainedLogEntries.Clear();
+                if (snapshot?.LogEntriesNewestFirst != null)
+                    for (int i = 0; i < snapshot.LogEntriesNewestFirst.Count; i++)
+                        _retainedLogEntries.Add(snapshot.LogEntriesNewestFirst[i]);
             }
 
             if ((cacheChanged || viewportChanged) && anchor.HasValue)
@@ -551,7 +579,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawBackground(int startX, int bottomY, int width, int rows, bool flashActive, float flashT)
         {
-            Tile blockTile = CP437TilesetGenerator.GetTextTile(CP437TilesetGenerator.SolidBlock);
+            Tile blockTile = HudPixelFont.GetTile(CP437TilesetGenerator.SolidBlock);
             if (blockTile == null)
                 return;
 
@@ -574,7 +602,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawDivider(int dividerX, int bottomY, int rows)
         {
-            Tile dividerTile = CP437TilesetGenerator.GetTextTile(CP437TilesetGenerator.BoxVertical);
+            Tile dividerTile = HudPixelFont.GetTile(CP437TilesetGenerator.BoxVertical);
             if (dividerTile == null)
                 return;
 
@@ -617,7 +645,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawChar(int x, int y, char c, Color color)
         {
-            Tile tile = CP437TilesetGenerator.GetTextTile(c);
+            Tile tile = HudPixelFont.GetTile(c);
             if (tile == null)
                 return;
 

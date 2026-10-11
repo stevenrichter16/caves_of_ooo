@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="1.3010275">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28473" result="Failed" site="Child" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="1.301028" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="35067" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28473" result="Failed" site="Child" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="1.038150" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="35068" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28473" result="Failed" site="Child" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="0.906373" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="35069" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28473" result="Failed" site="Child" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="0.706092" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27032" name="HudCardFramingTests" fullname="CavesOfOoo.Tests.HudCardFramingTests" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 20:18:06Z" end-time="2026-10-11 20:18:07Z" duration="0.366034" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27033" name="AllTenCardsSubmitThinInsetFramesInTheirExistingFootprints" fullname="CavesOfOoo.Tests.HudCardFramingTests.AllTenCardsSubmitThinInsetFramesInTheirExistingFootprints" methodname="AllTenCardsSubmitThinInsetFramesInTheirExistingFootprints" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="1920928385" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.151792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 64
+  But was:  8.0f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudCardFramingTests.AllTenCardsSubmitThinInsetFramesInTheirExistingFootprints () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudCardFramingTests.cs:39
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27036" name="CancelledPendingFrameReturnsToSelectedColor" fullname="CavesOfOoo.Tests.HudCardFramingTests.CancelledPendingFrameReturnsToSelectedColor" methodname="CancelledPendingFrameReturnsToSelectedColor" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="842197747" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.003384" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not equal to RGBA(0.000, 0.000, 0.000, 1.000)
+  But was:  RGBA(0.000, 0.000, 0.000, 1.000)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudCardFramingTests.CancelledPendingFrameReturnsToSelectedColor () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudCardFramingTests.cs:69
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27034" name="LargerActualIconLeavesClearGapsFromBothNameRowsAndState" fullname="CavesOfOoo.Tests.HudCardFramingTests.LargerActualIconLeavesClearGapsFromBothNameRowsAndState" methodname="LargerActualIconLeavesClearGapsFromBothNameRowsAndState" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="2121573487" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002016" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1.75d +/- 0.0010000000474974513d
+  But was:  1.0d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudCardFramingTests.LargerActualIconLeavesClearGapsFromBothNameRowsAndState () [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudCardFramingTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27037" name="RemovedCardsAndExplicitClearEraseTheirBackgroundFrames" fullname="CavesOfOoo.Tests.HudCardFramingTests.RemovedCardsAndExplicitClearEraseTheirBackgroundFrames" methodname="RemovedCardsAndExplicitClearEraseTheirBackgroundFrames" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="288228545" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.001337" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Text_DB (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudCardFramingTests.RemovedCardsAndExplicitClearEraseTheirBackgroundFrames () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudCardFramingTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27035" name="SelectingAnotherCardErasesOldFrameTintWithoutChangingNames" fullname="CavesOfOoo.Tests.HudCardFramingTests.SelectingAnotherCardErasesOldFrameTintWithoutChangingNames" methodname="SelectingAnotherCardErasesOldFrameTintWithoutChangingNames" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="583365828" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000926" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not equal to RGBA(0.000, 0.000, 0.000, 1.000)
+  But was:  RGBA(0.000, 0.000, 0.000, 1.000)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudCardFramingTests.SelectingAnotherCardErasesOldFrameTintWithoutChangingNames () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudCardFramingTests.cs:61
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27038" name="UnchangedFramesKeepBackgroundAndForegroundSentinelsWithoutWork" fullname="CavesOfOoo.Tests.HudCardFramingTests.UnchangedFramesKeepBackgroundAndForegroundSentinelsWithoutWork" methodname="UnchangedFramesKeepBackgroundAndForegroundSentinelsWithoutWork" classname="CavesOfOoo.Tests.HudCardFramingTests" runstate="Runnable" seed="1764099969" result="Passed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.003880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27039" name="HudPolishBehaviorTests" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.056848" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27049" name="ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" methodname="ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1915606330" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.007932" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph () [0x000bc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:160
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27048" name="ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" methodname="ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="607513641" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002722" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas () [0x00159] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27043" name="ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" methodname="ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1916081869" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000444" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse () [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:65
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27045" name="CooldownMutationNeverOverwritesEitherRenderedNameRow" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.CooldownMutationNeverOverwritesEitherRenderedNameRow" methodname="CooldownMutationNeverOverwritesEitherRenderedNameRow" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="2083972825" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected and actual are both <UnityEngine.Tilemaps.TileBase[8]>
+  Values differ at index [5]
+  Expected: null
+  But was:  <Text_31 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.HudPolishBehaviorTests.CooldownMutationNeverOverwritesEitherRenderedNameRow () [0x0007b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:88
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27042" name="ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" methodname="ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="974424584" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27050" name="ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" methodname="ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1021712524" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.001602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles () [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:169
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27040" name="HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" methodname="HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1824492816" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "line 9"
+  But was:  "[1] Exact spell - ready."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.HudPolishBehaviorTests.HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue () [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27047" name="LaterFocusEffectsRemainReadableWhileDividerStaysMuted" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.LaterFocusEffectsRemainReadableWhileDividerStaysMuted" methodname="LaterFocusEffectsRemainReadableWhileDividerStaysMuted" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1691447735" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Later actual focus effects must not fade into the frame.
+  Expected: RGBA(0.670, 0.670, 0.670, 1.000)
+  But was:  RGBA(0.330, 0.330, 0.330, 1.000)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.LaterFocusEffectsRemainReadableWhileDividerStaysMuted () [0x000c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27046" name="RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" methodname="RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1201416426" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.002590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: less than or equal to 1.70000005f
+  But was:  2.33333325f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight () [0x00188] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:105
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27041" name="SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" methodname="SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1518246913" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not String containing "choose a direction"
+  But was:  "[1] Exact spell - choose a direction."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual, System.String message, System.Object[] args) [0x0000c] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.HudPolishBehaviorTests.SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection () [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27044" name="SevenRowsKeepHaulAndDiscloseOverflowingStatus" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SevenRowsKeepHaulAndDiscloseOverflowingStatus" methodname="SevenRowsKeepHaulAndDiscloseOverflowingStatus" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1617506180" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000648" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Overflow is visible at the actual renderer's seven-row budget.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.SevenRowsKeepHaulAndDiscloseOverflowingStatus () [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:77
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="33761" name="WorldLogHistoryBaselineTests" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.082011" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33762" name="BoundedRangeClampsAndPreservesEveryRawFieldAndPendingOrigin" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.BoundedRangeClampsAndPreservesEveryRawFieldAndPendingOrigin" methodname="BoundedRangeClampsAndPreservesEveryRawFieldAndPendingOrigin" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="2091718159" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.003239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required bounded public chronological range API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.Range () [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:51
+at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.BoundedRangeClampsAndPreservesEveryRawFieldAndPendingOrigin () [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33765" name="IdleAndAppendRefreshKeepReadingIdentityWithoutRewrapping" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.IdleAndAppendRefreshKeepReadingIdentityWithoutRewrapping" methodname="IdleAndAppendRefreshKeepReadingIdentityWithoutRewrapping" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="132667726" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required real on-demand full-history model
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.Model (System.Int32 width, System.Int32 rows) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:56
+at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.IdleAndAppendRefreshKeepReadingIdentityWithoutRewrapping () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:106
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33764" name="OlderThanThirtyEntriesRemainChronologicalAcrossBoundedPages" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.OlderThanThirtyEntriesRemainChronologicalAcrossBoundedPages" methodname="OlderThanThirtyEntriesRemainChronologicalAcrossBoundedPages" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="1100304779" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required real on-demand full-history model
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.Model (System.Int32 width, System.Int32 rows) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:56
+at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.OlderThanThirtyEntriesRemainChronologicalAcrossBoundedPages () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33767" name="PublicHistoryEntryRefusesMissingCanvasWithoutTrappingReadyPlayer" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.PublicHistoryEntryRefusesMissingCanvasWithoutTrappingReadyPlayer" methodname="PublicHistoryEntryRefusesMissingCanvasWithoutTrappingReadyPlayer" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="141163761" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000672" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required keyboard/controller history entry
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.PublicHistoryEntryRefusesMissingCanvasWithoutTrappingReadyPlayer () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:123
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33763" name="RevisionPrecedesObserversAndEqualCountRestoreChangesGeneration" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.RevisionPrecedesObserversAndEqualCountRestoreChangesGeneration" methodname="RevisionPrecedesObserversAndEqualCountRestoreChangesGeneration" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="1065716763" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required public MessageLog.Revision
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.Stamp (System.String name) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:45
+at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.RevisionPrecedesObserversAndEqualCountRestoreChangesGeneration () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33766" name="SameCountAndSerialReplacementCannotReuseStaleHistoryText" fullname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests.SameCountAndSerialReplacementCannotReuseStaleHistoryText" methodname="SameCountAndSerialReplacementCannotReuseStaleHistoryText" classname="CavesOfOoo.Tests.WorldLogHistoryBaselineTests" runstate="Runnable" seed="351889636" result="Failed" start-time="2026-10-11 20:18:07Z" end-time="2026-10-11 20:18:07Z" duration="0.000485" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Required real on-demand full-history model
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.Model (System.Int32 width, System.Int32 rows) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:56
+at CavesOfOoo.Tests.WorldLogHistoryBaselineTests.SameCountAndSerialReplacementCannotReuseStaleHistoryText () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldLogHistoryBaselineTests.cs:114
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

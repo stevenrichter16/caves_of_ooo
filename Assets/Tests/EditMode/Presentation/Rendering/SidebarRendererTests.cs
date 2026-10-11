@@ -165,7 +165,7 @@ namespace CavesOfOoo.Tests
             Tilemap sidebar = zoneRenderer.SidebarTilemap;
             SidebarCameraMetrics metrics = GameplayViewportLayout.MeasureSidebarCamera(sidebarCamera, zoneRenderer.MessageReferenceZoom, zoneRenderer.SidebarWidthChars);
             int contentX = metrics.StartCharX + 2;
-            Tile expectedPrefix = CP437TilesetGenerator.GetTextTile(':');
+            Tile expectedPrefix = HudPixelFont.GetTile(':');
 
             Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX, metrics.BottomTextY, 0)));
             Assert.AreSame(expectedPrefix, sidebar.GetTile(new Vector3Int(contentX + 1, metrics.BottomTextY, 0)));
@@ -401,7 +401,7 @@ namespace CavesOfOoo.Tests
                 TileBase tile = tilemap.GetTile(new Vector3Int(startX + i, y, 0));
                 if (c == ' ')
                     continue;
-                if (tile != CP437TilesetGenerator.GetTextTile(c))
+                if (tile != HudPixelFont.GetTile(c))
                     return false;
             }
 

@@ -130,7 +130,8 @@ namespace CavesOfOoo.Rendering
             AbilityManagerOpen,   // WSP8.0 — KeyCode.M opens the ability manager modal
             ControllerMenu,
             ControllerDirection,
-            QuestLogOpen          // Q1 — KeyCode.Q opens the quest log overlay
+            QuestLogOpen,         // Q1 — KeyCode.Q opens the quest log overlay
+            LogHistoryOpen
         }
         private InputState _inputState = InputState.Normal;
 
@@ -489,6 +490,7 @@ namespace CavesOfOoo.Rendering
                  || !NativeGamepadInput.IsConnected))
                 CancelControllerTravel("You stop.");
 
+            if (_inputState == InputState.LogHistoryOpen) { HandleLogHistoryInput(); return; }
             if (_inputState == InputState.ControllerMenu) { HandleControllerMenu(); return; }
             if (_inputState == InputState.ControllerDirection) { HandleControllerDirection(); return; }
 
@@ -500,6 +502,12 @@ namespace CavesOfOoo.Rendering
                 HandleWaitingForFxResolution();
                 return;
             }
+
+            // F2 retains its existing effects-reader meaning inside inventory.
+            // This route is scoped to gameplay/Look; sidebar =/- stay unchanged.
+            if ((_inputState == InputState.Normal || _inputState == InputState.LookMode)
+                && _pauseMenuUI?.IsOpen != true && InputHelper.GetKeyboardKeyDown(KeyCode.F2))
+            { OpenLogHistory(); return; }
 
             if (_inputState == InputState.LookMode)
             {

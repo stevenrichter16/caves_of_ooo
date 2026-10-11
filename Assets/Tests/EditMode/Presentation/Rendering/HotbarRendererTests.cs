@@ -45,8 +45,8 @@ namespace CavesOfOoo.Tests
 
             InvokeNonPublic(zoneRenderer, "LateUpdate");
 
-            AssertTextAt(zoneRenderer.HotbarTilemap, 1, GameplayHotbarLayout.GridHeight - 1, "GRIMOIRES");
-            AssertTextAt(zoneRenderer.HotbarTilemap, 1, 2, "[1]");
+            AssertTextAt(zoneRenderer.HotbarTilemap, 1, GameplayHotbarLayout.GridHeight - 1, "[1] Kindle");
+            AssertTextAt(zoneRenderer.HotbarTilemap, 1, 4, "1");
 
             Vector3 screen = hotbarCamera.WorldToScreenPoint(new Vector3(2f, 2f, 0f));
             Assert.IsTrue(zoneRenderer.TryGetHotbarSlotAtScreenPosition(screen, out int slot));
@@ -190,7 +190,7 @@ namespace CavesOfOoo.Tests
                     continue;
 
                 TileBase actual = tilemap.GetTile(new Vector3Int(startX + i, y, 0));
-                TileBase expected = CP437TilesetGenerator.GetTextTile(c);
+                TileBase expected = HudPixelFont.GetTile(c);
                 Assert.NotNull(actual);
                 Assert.NotNull(expected);
                 Assert.AreEqual(expected.name, actual.name);

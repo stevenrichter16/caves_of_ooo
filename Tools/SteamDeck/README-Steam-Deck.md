@@ -75,7 +75,7 @@ the left/right stick.
   **LT + D-pad left/right** zooms in/out. **LT + RT** highlights visible points
   of interest.
 - **Menu** opens character screens: inventory/equipment, attributes/effects,
-  skills, abilities, quests, factions and controls. **View** pauses for save/load,
+  skills, abilities, quests, factions, controls and **World log**. **View** pauses for save/load,
   controls, graphics, audio and quit. **LT + Menu** opens controls directly.
 - In menus, **D-pad/left stick** navigates, **A** confirms and **B** goes back.
   **Y** switches tabs and **LB/RB** changes pages where that screen supports them.
@@ -91,6 +91,25 @@ Use Steam Input's normal **Gamepad** output. Custom keyboard-only mappings can h
 gamepad buttons from the game. Keyboard/mouse controls still work; use the Steam
 keyboard for text entry.
 
+## Skills and world log
+
+The compact bar keeps the same ten ability slots and controls. It shows each slot's
+name and whether it is ready, cooling down or being aimed. The selected ability and
+current targeting hint appear above the row; a **>** marks clipped text. Open the
+existing ability reader for the full name and mechanics. **Ready** means
+the cooldown is over; the ability's other requirements still apply when you use it.
+
+The recent sidebar log groups adjacent identical messages only when they have the
+same recorded tick. It keeps the underlying messages unchanged. Open **Menu →
+World log** to read the full retained history, including messages older than the
+sidebar window. **LB/RB** pages and **B** returns to play or Look. Reading history
+is free and does not consume queued announcements or play physical-book sounds.
+
+With a keyboard, **F2** opens World log from play or Look. Use **Page Up/Page Down**
+or the arrow keys to page, **Home/End** for oldest/latest, and **Escape** to close.
+F2 keeps its existing meaning inside other screens. History labels such as
+**Tick 120** show the simulation clock, not a count of your actions.
+
 ## Music, ambience and sound effects
 
 Open **View → Audio**. Select Music, Ambience or Sound effects with D-pad up/down.
@@ -100,15 +119,30 @@ settings are saved and do not spend a turn. Music continues while you read menus
 The sound-effects level also scales the existing spell sounds; it does not change
 spell animation speed or the music/ambience levels.
 
+Music follows the current region, including world-map travel, and interrupted
+compositions retain their place during the current session. Calm listening can
+move to another complete piece after a quiet gap; local environmental sounds
+continue through that gap. Morrowfast has its own musical setting. Changing Music
+or Ambience to a nonzero level fades to that level; 0% mutes immediately.
+Combat briefly lowers the background mix so actions remain clear.
+
+Local details follow the actual place and visible sources: sheltered rooms,
+windblown plants, flowing water and wildlife can sound different. Frozen or
+empty water sources and resting animals do not keep sounding as if active.
+Water handling, cooking, brewing, item handling and mineral gathering have quiet
+feedback tied to the completed action. Brewing sounds indicate preparation,
+not a guarantee of a perfect result. Physical documents make paper sounds on
+real page changes; ordinary messages and the World log do not.
+
 Choose **Audio credits** for the full paginated attribution in the game. The same
 text is supplied in `AUDIO-CREDITS.txt`, with complete license texts in
-`Audio-Licenses`. The three full compositions are independently licensed Scott
+`Audio-Licenses`. The seven full compositions are independently licensed Scott
 Buckley works; no Caves of Qud music is included. Environmental and action recordings
-are CC0, with their authors and modifications retained in the credits. The added
-place and combat set has separate `PLACES-CREDITS.txt` and provenance files too;
-its complete credits are also included in `AUDIO-CREDITS.txt`. Quiet gaps are
-intentional: indoor spaces suppress outdoor wildlife, and empty workshops do not
-play imaginary workers.
+are CC0, with their authors and modifications retained in the credits. Separate
+place, atmosphere, utility and regional-music credit and provenance files are
+included alongside the combined `AUDIO-CREDITS.txt`. Quiet gaps are intentional:
+indoor spaces suppress outdoor wildlife, and empty workshops do not play
+imaginary workers.
 
 For videos or livestream recordings, Scott Buckley uses YouTube Content ID. Put
 these complete credit lines in your video description, or set **Music to 0%** before
@@ -117,6 +151,10 @@ recording. In-game credits alone do not guarantee that uploads avoid claims:
 - 'Shadows and Dust' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
 - 'Decoherence' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
 - 'Ephemera' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+- 'Signal to Noise' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+- 'Cirrus' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+- 'Meanwhile' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
+- 'Hiraeth' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au
 
 See the [composer's usage instructions](https://www.scottbuckley.com.au/library/using-this-music/)
 and [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
@@ -126,7 +164,8 @@ and [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
 `build-info.json` identifies the source revision and the checks run for this package.
 The optimizations were tested and profiled in native Unity on a Mac, and this package
 was built for Linux x86_64. These measurements are not Steam Deck frame-rate,
-thermal, battery, audio-latency or physical-controller certification. Audio source
+thermal, battery, audio-latency or physical-controller certification. The audio and
+HUD update makes no percentage performance-improvement claim. Audio source
 counters, file checks and nonzero mixer samples do not establish subjective musical
 quality or speaker/headphone balance. Large explored-world
 saves still capture their live state on the main thread before background compression.

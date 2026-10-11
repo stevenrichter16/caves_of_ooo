@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="1.2375171">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28569" result="Failed" site="Child" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="1.237517" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="35182" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28569" result="Failed" site="Child" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="1.082741" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="35183" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28569" result="Failed" site="Child" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="1.054337" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="35184" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28569" result="Failed" site="Child" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="0.954096" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27094" name="HudPolishBehaviorTests" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-11 20:47:17Z" end-time="2026-10-11 20:47:18Z" duration="0.754091" total="23" passed="21" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27104" name="ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" methodname="ActualSidebarRefreshDoesNotKeepAStaleMiddleParagraph" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1791775582" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.027619" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27117" name="ActualSidebarRendersStoredFenceAndPunctuationWithoutQuestionMarksOrRewritingHistory" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ActualSidebarRendersStoredFenceAndPunctuationWithoutQuestionMarksOrRewritingHistory" methodname="ActualSidebarRendersStoredFenceAndPunctuationWithoutQuestionMarksOrRewritingHistory" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1961188055" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.080250" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27103" name="ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" methodname="ActualTickRuleAndHudBackgroundContainVisiblePixelsWithoutChangingGlobalAtlas" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1159076137" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.009572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27098" name="ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" methodname="ContiguousTickBoundaryAddsOneQuietRowWithoutFakeTurnProse" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="637118245" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000930" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27100" name="CooldownMutationNeverOverwritesEitherRenderedNameRow" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.CooldownMutationNeverOverwritesEitherRenderedNameRow" methodname="CooldownMutationNeverOverwritesEitherRenderedNameRow" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1607275030" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.078093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27097" name="ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" methodname="ExactDuplicateBodiesAcrossTicksRemainSeparateButSameTickPairsCollapse" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="518921595" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27111" name="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.100974" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27107" name="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',1)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',1)" methodname="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1810747712" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27108" name="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',2)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',2)" methodname="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1581306182" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27109" name="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',3)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('Í',3)" methodname="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1200905242" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27110" name="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('═',2)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity('═',2)" methodname="ExactStoredTurnDividerBecomesOneRuleWithItsOwnChronologicalIdentity" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="871884734" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27105" name="ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" methodname="ExplicitSidebarClearThenSameSnapshotReallyRestoresItsTiles" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1427828958" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.002780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27095" name="HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" methodname="HeaderNamesTheActualLineRangeAndInvalidatesItsMutableValue" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="816962194" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000205" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27102" name="LaterFocusEffectsRemainReadableWhileDividerStaysMuted" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.LaterFocusEffectsRemainReadableWhileDividerStaysMuted" methodname="LaterFocusEffectsRemainReadableWhileDividerStaysMuted" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1014544718" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.002330" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27101" name="RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" methodname="RenderedHudGlyphPixelsUseNormalAspectInsteadOfDoubleHeight" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="674796598" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.002085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27096" name="SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" methodname="SelfCenteredPendingHeaderDoesNotAskForAnImpossibleDirection" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="850016747" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000133" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27099" name="SevenRowsKeepHaulAndDiscloseOverflowingStatus" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SevenRowsKeepHaulAndDiscloseOverflowingStatus" methodname="SevenRowsKeepHaulAndDiscloseOverflowingStatus" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1263543118" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000468" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27116" name="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.189451" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27112" name="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;short&quot;)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;short&quot;)" methodname="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="296045531" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27113" name="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;long&quot;)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;long&quot;)" methodname="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1106146277" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27114" name="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;mixed&quot;)" methodname="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1956239662" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27115" name="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;prefix&quot;)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers(&quot;prefix&quot;)" methodname="SimilarLookingOrdinaryMessagesAreNotDiscardedAsTurnDividers" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1615269788" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27120" name="StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.154140" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27118" name="StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog(False)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog(False)" methodname="StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1795095209" result="Failed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.032557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Hidden log cache cannot force unchanged THOUGHTS frames to repaint.
+  Expected: 0
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog (System.Boolean prewarmLog) [0x000ff] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:263
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27119" name="StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog(True)" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog(True)" methodname="StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="2127026940" result="Failed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.020835" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Hidden log cache cannot force unchanged THOUGHTS frames to repaint.
+  Expected: 0
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HudPolishBehaviorTests.StableThoughtsWithChangedHiddenLogDoNoIdleRepaintAndReturnToCurrentLog (System.Boolean prewarmLog) [0x000ff] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HudPolishBehaviorTests.cs:263
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27106" name="SupportedUnicodePunctuationAndDoubleRuleReuseVisibleHudGlyphs" fullname="CavesOfOoo.Tests.HudPolishBehaviorTests.SupportedUnicodePunctuationAndDoubleRuleReuseVisibleHudGlyphs" methodname="SupportedUnicodePunctuationAndDoubleRuleReuseVisibleHudGlyphs" classname="CavesOfOoo.Tests.HudPolishBehaviorTests" runstate="Runnable" seed="1156054310" result="Passed" start-time="2026-10-11 20:47:18Z" end-time="2026-10-11 20:47:18Z" duration="0.000612" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

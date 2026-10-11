@@ -1,0 +1,350 @@
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
+@@ -39,7 +39,7 @@
+         private readonly List<float> _frameTimes=new List<float>(12000);
+         private double _profileSeconds;
+         private string DirectoryPath => Path.GetFullPath(Path.Combine(Application.dataPath,
+-            _audioPolishIteration>0 ? AudioPolishDirectory : _worldAudioOnly ? "../Docs/Verification/WorldAudio/Native" : _systemDepthIIOnly ? "../Docs/Verification/SystemDepthII/Native" : _systemDepthOnly ? "../Docs/Verification/SystemDepthTenIterations/Native" : _controllerOnly ? "../Docs/Verification/SteamDeckQudControls/Native" : _graphicsOnly ? "../Docs/Verification/SteamDeckPerformance/GraphicsNative" : _biomeCropsOnly ? "../Docs/Verification/BiomeCrops/Native" : _repairWorkAudioOnly ? "../Docs/Verification/Atmosphere/WorkNative" : _repairCultivationOnly ? "../Docs/Verification/RepairCultivation/Native" : _curationAnnex ? "../Docs/Verification/CurationAnnex/Native" : _curationOnly ? "../Docs/Verification/CurationReceiving/Native" : _residentsOnly ? "../Docs/Verification/SpreadEverydayResidents/Native" : _specialistsOnly ? "../Docs/Verification/SpreadSpecialistContent/Native" : _biomeOnly ? "../Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough" : _combatOnly ? "../Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat" : "../Docs/Verification/DensityCompletion/ReferenceGlade/Native", RunId));
++            _hudProfileOnly ? "../Docs/Verification/HudPolish/Profile" : _audioPolishIteration>0 ? AudioPolishDirectory : _worldAudioOnly ? "../Docs/Verification/WorldAudio/Native" : _systemDepthIIOnly ? "../Docs/Verification/SystemDepthII/Native" : _systemDepthOnly ? "../Docs/Verification/SystemDepthTenIterations/Native" : _controllerOnly ? "../Docs/Verification/SteamDeckQudControls/Native" : _graphicsOnly ? "../Docs/Verification/SteamDeckPerformance/GraphicsNative" : _biomeCropsOnly ? "../Docs/Verification/BiomeCrops/Native" : _repairWorkAudioOnly ? "../Docs/Verification/Atmosphere/WorkNative" : _repairCultivationOnly ? "../Docs/Verification/RepairCultivation/Native" : _curationAnnex ? "../Docs/Verification/CurationAnnex/Native" : _curationOnly ? "../Docs/Verification/CurationReceiving/Native" : _residentsOnly ? "../Docs/Verification/SpreadEverydayResidents/Native" : _specialistsOnly ? "../Docs/Verification/SpreadSpecialistContent/Native" : _biomeOnly ? "../Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough" : _combatOnly ? "../Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat" : "../Docs/Verification/DensityCompletion/ReferenceGlade/Native", RunId));
+ 
+         public void Initialize(ScenarioContext context,bool measurePerformance=false,bool combatOnly=false,bool biomeOnly=false,bool specialistsOnly=false,bool residentsOnly=false,bool curationOnly=false,bool curationQuarantine=false,bool repairCultivationOnly=false,bool biomeCropsOnly=false,bool curationAnnex=false)
+         {
+@@ -82,6 +82,7 @@
+             yield return Capture("01-gameplay-arrival");
+             var renderer=FindFirstObjectByType<GameBootstrap>().ZoneRenderer;
+             Require(!renderer.RevealEntire3DZone&&!view.FullReveal,"ordinary scene visibility");
++            if (_hudProfileOnly) { yield return RunHudProfileAudit(); yield break; }
+             if (_audioPolishIteration>0) { yield return RunAudioPolishAudit(); yield break; }
+             if (_worldAudioOnly) { yield return RunWorldAudioAudit(); yield break; }
+             if (_systemDepthIIOnly) { yield return RunSystemDepthIIAudit(); yield break; }
+@@ -501,7 +502,7 @@
+             { runId = RunId, cases = _audit.Count, failures = Failures, complete = Complete, errorsFinalized = _errorsFinalized, screenshots = _screenshots.Count });
+         }
+         private bool Complete => Finished && _errorsFinalized && Failures == 0
+-            && (_audioPolishIteration>0 ? AudioPolishComplete : _worldAudioOnly ? _worldAudioComplete : _systemDepthIIOnly ? _systemDepthIIComplete : _systemDepthOnly ? _systemDepthComplete : _controllerOnly ? _controllerComplete : _graphicsOnly ? _graphicsComplete : _biomeCropsOnly ? BiomeCropsComplete : _repairWorkAudioOnly ? RepairWorkAudioComplete : _repairCultivationOnly ? RepairCultivationComplete : _curationOnly ? CurationComplete : _residentsOnly ? ResidentComplete : _specialistsOnly ? SpecialistComplete : _biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?18:17) && _screenshots.Count >= 10);
++            && (_hudProfileOnly ? HudProfileComplete : _audioPolishIteration>0 ? AudioPolishComplete : _worldAudioOnly ? _worldAudioComplete : _systemDepthIIOnly ? _systemDepthIIComplete : _systemDepthOnly ? _systemDepthComplete : _controllerOnly ? _controllerComplete : _graphicsOnly ? _graphicsComplete : _biomeCropsOnly ? BiomeCropsComplete : _repairWorkAudioOnly ? RepairWorkAudioComplete : _repairCultivationOnly ? RepairCultivationComplete : _curationOnly ? CurationComplete : _residentsOnly ? ResidentComplete : _specialistsOnly ? SpecialistComplete : _biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?18:17) && _screenshots.Count >= 10);
+         private void WriteReport()
+         {
+             Directory.CreateDirectory(DirectoryPath); ReportPath = Path.Combine(DirectoryPath, "report.json");
+@@ -509,13 +510,13 @@
+             {
+                 runId = RunId, cases = _audit.Count, failures = Failures, unexpectedErrors = _unexpectedErrors,
+                 complete = Complete, publicRouteComplete = _curationOnly && CurationPublicComplete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+-                mode=_audioPolishIteration>0 ? AudioPolishMode : _worldAudioOnly ? "world-audio" : _systemDepthIIOnly ? "system-depth-ii-connections" : _systemDepthOnly ? "system-depth-companions-journal" : _controllerOnly ? "qud-controller" : _graphicsOnly ? "graphics-menu" : _biomeCropsOnly?BiomeCropsMode:_repairWorkAudioOnly?"native-work-audio":_repairCultivationOnly?"native-repair-and-cultivation":_curationOnly?(_curationAnnex?"native-curation-annex":_curationQuarantine?"native-curation-public-and-quarantine":"native-curation-public-receiving"):_residentsOnly?"native-generated-everyday-residents":_specialistsOnly?"native-generated-specialist-worksites":_biomeOnly?"native-spread-biome-route":_combatOnly?"native-keyboard-combat":_measurePerformance?"movement-profile":"visual-content-route",
++                mode=_hudProfileOnly ? "hud-profile" : _audioPolishIteration>0 ? AudioPolishMode : _worldAudioOnly ? "world-audio" : _systemDepthIIOnly ? "system-depth-ii-connections" : _systemDepthOnly ? "system-depth-companions-journal" : _controllerOnly ? "qud-controller" : _graphicsOnly ? "graphics-menu" : _biomeCropsOnly?BiomeCropsMode:_repairWorkAudioOnly?"native-work-audio":_repairCultivationOnly?"native-repair-and-cultivation":_curationOnly?(_curationAnnex?"native-curation-annex":_curationQuarantine?"native-curation-public-and-quarantine":"native-curation-public-receiving"):_residentsOnly?"native-generated-everyday-residents":_specialistsOnly?"native-generated-specialist-worksites":_biomeOnly?"native-spread-biome-route":_combatOnly?"native-keyboard-combat":_measurePerformance?"movement-profile":"visual-content-route",
+                 combatSteps=_combatSteps.ToArray(),combatState=CombatState(),biomeSteps=_biomeSteps.ToArray(),biomeShortcuts=_biomeShortcuts,biomeDefensiveCalmUses=_biomeDefensiveCalmUses,
+                 profileSeconds=_profileSeconds,profileFrames=_frameTimes.Count,profileFrameMeanMs=_frameTimes.Count==0?0:_frameTimes.Average(),
+                 profileFrameP95Ms=_frameTimes.Count==0?0:_frameTimes.OrderBy(x=>x).ElementAt((int)((_frameTimes.Count-1)*.95)),
+                 zone = (_biomeCropsOnly || _curationOnly || _repairCultivationOnly) ? _input?.CurrentZone?.ZoneID : _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+-                canVerify = _audioPolishIteration>0 ? AudioPolishCanVerify : _worldAudioOnly ? "Isolated normal boot; actual imported streamed music playback, sampled listener signal, keyboard movement and committed footstep cues, idle context work, same-biome music continuity, save/load replacement and native gamepad audio settings." : _systemDepthIIOnly ? SystemDepthIICanVerify : _systemDepthOnly ? SystemDepthCanVerify : _controllerOnly ? ControllerCanVerify : _graphicsOnly ? "Isolated new game, native Gamepad View/Start/Dpad/A/B through InputHandler, graphics preset state, popup/world captures, and preference restoration." : _biomeCropsOnly ? BiomeCropsCanVerify : _repairWorkAudioOnly ? RepairWorkAudioCanVerify : _repairCultivationOnly ? RepairCultivationCanVerify : _curationOnly ? (_curationAnnex ? CurationAnnexCanVerify : CurationCanVerify) : _residentsOnly ? "Isolated ordinary seed64 player; actual generated seed keeper and cook. Native dialogue/trade purchases, ordinary starter-book reading, seed planting, Conjure Rain, paid waiting, visible crop stage, finite produce pickup, cooking, eating and a real unowned-bed action. Exact source stock and purses are observed; screenshots require visual inspection." : _specialistsOnly ? "Isolated ordinary seed64 player. Two actual generated ordinary worksites selected without modifying their owners; keyboard harvest, reagent selection, brewing, drinking Stoneskin, and quenching the original dagger; stock consumption and submitted models are observed. Native screenshots." : _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls. Actual imported melee playback and background scalar dip in correlated keyboard attack intervals; fixed16-source pool, passive wall-clock recovery without a game turn, and exact temporary audio preference restoration." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+-                cannotVerify = _audioPolishIteration>0 ? AudioPolishCannotVerify : _worldAudioOnly ? "Noncontiguous output windows prove a nonzero signal below full scale only in those sampled windows. They do not prove globally unclipped audio, subjective listening quality, physical speakers, all biome transitions, or Deck performance. Tests separately cover hidden-source refusals and crossfades. Three audio preferences are temporarily initialized and exactly restored; no gameplay state is injected." : _systemDepthIIOnly ? SystemDepthIICannotVerify : _systemDepthOnly ? SystemDepthCannotVerify : _controllerOnly ? ControllerCannotVerify : _graphicsOnly ? "Synthetic gamepad events exercise production input routing; no physical Steam Deck controller or performance claim. Screenshot readability requires visual review." : _biomeCropsOnly ? BiomeCropsCannotVerify : _repairWorkAudioOnly ? RepairWorkAudioCannotVerify : _repairCultivationOnly ? RepairCultivationCannotVerify : _curationOnly ? (_curationAnnex ? CurationAnnexCannotVerify : CurationCannotVerify) : _residentsOnly ? "Two explicitly logged travel shortcuts reach real generated resident approaches. Subsequent movement and every action use ordinary keys with the scheduler active. No source grants, altered balances, reseeding, cooldown resets or forced outcomes. Bed sleep may truthfully refuse if the bed is already reserved/in use or a real hostile is near; correlated diagnostics record the actual outcome. This finite route does not prove natural discovery, long-term economics, all-site frequency or subjective visual quality. Core tests cover refusal, stock persistence and crop timing separately." : _specialistsOnly ? "Two explicitly logged actor travel shortcuts reach real generated source approaches. Short local routes and all interactions use ordinary input with the scheduler active. Harvest spends time; existing still and forge commands consume ingredients without advancing turns. Up to two original healing tonics may be used by the shared walking helper. No source grants, reseeding, model substitutions or outcome forcing. This route does not prove natural discovery, hostile balance, live freeze-on-hit or full-world encounter frequency. Core tests separately cover hit effects and persistence. Screenshots still require visual inspection." : _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled. An attack interval may also include real retaliation; individual recordings are not attributed to one actor. Source playback/scalar observations do not establish subjective clarity, continuous unclipped output, physical speakers or Deck performance. Audio-only preferences are temporarily initialized and restored." : "Routes are script-selected through real keyboard input. At most two original starting tonic units may be used at or below two-thirds HP through native inventory keys; actual consumption is recorded. Naturally earned advancement announcements are dismissed without changing gains. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
++                canVerify = _hudProfileOnly ? HudProfileCanVerify : _audioPolishIteration>0 ? AudioPolishCanVerify : _worldAudioOnly ? "Isolated normal boot; actual imported streamed music playback, sampled listener signal, keyboard movement and committed footstep cues, idle context work, same-biome music continuity, save/load replacement and native gamepad audio settings." : _systemDepthIIOnly ? SystemDepthIICanVerify : _systemDepthOnly ? SystemDepthCanVerify : _controllerOnly ? ControllerCanVerify : _graphicsOnly ? "Isolated new game, native Gamepad View/Start/Dpad/A/B through InputHandler, graphics preset state, popup/world captures, and preference restoration." : _biomeCropsOnly ? BiomeCropsCanVerify : _repairWorkAudioOnly ? RepairWorkAudioCanVerify : _repairCultivationOnly ? RepairCultivationCanVerify : _curationOnly ? (_curationAnnex ? CurationAnnexCanVerify : CurationCanVerify) : _residentsOnly ? "Isolated ordinary seed64 player; actual generated seed keeper and cook. Native dialogue/trade purchases, ordinary starter-book reading, seed planting, Conjure Rain, paid waiting, visible crop stage, finite produce pickup, cooking, eating and a real unowned-bed action. Exact source stock and purses are observed; screenshots require visual inspection." : _specialistsOnly ? "Isolated ordinary seed64 player. Two actual generated ordinary worksites selected without modifying their owners; keyboard harvest, reagent selection, brewing, drinking Stoneskin, and quenching the original dagger; stock consumption and submitted models are observed. Native screenshots." : _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls. Actual imported melee playback and background scalar dip in correlated keyboard attack intervals; fixed16-source pool, passive wall-clock recovery without a game turn, and exact temporary audio preference restoration." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
++                cannotVerify = _hudProfileOnly ? HudProfileCannotVerify : _audioPolishIteration>0 ? AudioPolishCannotVerify : _worldAudioOnly ? "Noncontiguous output windows prove a nonzero signal below full scale only in those sampled windows. They do not prove globally unclipped audio, subjective listening quality, physical speakers, all biome transitions, or Deck performance. Tests separately cover hidden-source refusals and crossfades. Three audio preferences are temporarily initialized and exactly restored; no gameplay state is injected." : _systemDepthIIOnly ? SystemDepthIICannotVerify : _systemDepthOnly ? SystemDepthCannotVerify : _controllerOnly ? ControllerCannotVerify : _graphicsOnly ? "Synthetic gamepad events exercise production input routing; no physical Steam Deck controller or performance claim. Screenshot readability requires visual review." : _biomeCropsOnly ? BiomeCropsCannotVerify : _repairWorkAudioOnly ? RepairWorkAudioCannotVerify : _repairCultivationOnly ? RepairCultivationCannotVerify : _curationOnly ? (_curationAnnex ? CurationAnnexCannotVerify : CurationCannotVerify) : _residentsOnly ? "Two explicitly logged travel shortcuts reach real generated resident approaches. Subsequent movement and every action use ordinary keys with the scheduler active. No source grants, altered balances, reseeding, cooldown resets or forced outcomes. Bed sleep may truthfully refuse if the bed is already reserved/in use or a real hostile is near; correlated diagnostics record the actual outcome. This finite route does not prove natural discovery, long-term economics, all-site frequency or subjective visual quality. Core tests cover refusal, stock persistence and crop timing separately." : _specialistsOnly ? "Two explicitly logged actor travel shortcuts reach real generated source approaches. Short local routes and all interactions use ordinary input with the scheduler active. Harvest spends time; existing still and forge commands consume ingredients without advancing turns. Up to two original healing tonics may be used by the shared walking helper. No source grants, reseeding, model substitutions or outcome forcing. This route does not prove natural discovery, hostile balance, live freeze-on-hit or full-world encounter frequency. Core tests separately cover hit effects and persistence. Screenshots still require visual inspection." : _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled. An attack interval may also include real retaliation; individual recordings are not attributed to one actor. Source playback/scalar observations do not establish subjective clarity, continuous unclipped output, physical speakers or Deck performance. Audio-only preferences are temporarily initialized and restored." : "Routes are script-selected through real keyboard input. At most two original starting tonic units may be used at or below two-thirds HP through native inventory keys; actual consumption is recorded. Naturally earned advancement announcements are dismissed without changing gains. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
+             }, true));
+             Debug.Log("[ReferenceGladeNative] report=" + ReportPath + " failures=" + Failures);
+         }
+@@ -528,6 +529,7 @@
+             _repairWorkCleanup?.Invoke(); _repairWorkCleanup = null;
+             _systemDepthIICleanup?.Invoke(); _systemDepthIICleanup = null;
+             _systemDepthCleanup?.Invoke(); _systemDepthCleanup = null;
++            _hudProfileCleanup?.Invoke(); _hudProfileCleanup = null;
+             _controllerCleanup?.Invoke(); _controllerCleanup = null;
+             _graphicsCleanup?.Invoke(); _graphicsCleanup = null;
+             _profiling=false;DisposeNativeMarkerRecorders();
+--- a/Assets/Editor/Scenarios/ReferenceGladeNativeBatch.cs
++++ b/Assets/Editor/Scenarios/ReferenceGladeNativeBatch.cs
+@@ -117,7 +117,27 @@
+         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Combat Audio Audit", true)]
+         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
+ 
+-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0)
++        // HUD audits must start only after test/native teardown has completed.
++        // Read the installed test framework's actual active-job state; do not
++        // infer cleanup completion merely from a returned XML/test result.
++        private static void RequireHudAuditIdle()
++        {
++            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating
++                || SessionState.GetBool(Prefix + "active", false) || SessionState.GetBool(Prefix + "restoreScenes", false)
++                || SessionState.GetBool("CavesOfOoo.NativeSaveIsolation.active", false))
++                throw new InvalidOperationException("Wait for editor, test and native cleanup before a HUD audit.");
++            var api = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("UnityEditor.TestTools.TestRunner.Api.TestRunnerApi", false)).FirstOrDefault(t => t != null);
++            var active = api?.GetMethod("IsRunActive", BindingFlags.Static | BindingFlags.NonPublic);
++            if (active == null || !(active.Invoke(null, null) is bool running) || running)
++                throw new InvalidOperationException("HUD audit requires an available, idle native test runner; wait for test cleanup.");
++        }
++
++        [MenuItem("Caves Of Ooo/Scenarios/World/HUD Baseline Profile")]
++        public static void LaunchHudBaselineProfile() { RequireHudAuditIdle(); LaunchCore(false, hudProfile:"before"); }
++        [MenuItem("Caves Of Ooo/Scenarios/World/HUD After Profile")]
++        public static void LaunchHudAfterProfile() { RequireHudAuditIdle(); LaunchCore(false, hudProfile:"after"); }
++
++        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null)
+         {
+             if (EditorApplication.isPlayingOrWillChangePlaymode)
+                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
+@@ -134,6 +154,7 @@
+             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
+             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
+             SessionState.SetInt(Prefix + "seed", 64);
++            SessionState.SetString(Prefix+"hudProfile",hudProfile ?? "");
+             SessionState.SetInt(Prefix+"audioPolishIteration",audioPolishIteration);
+             SessionState.SetBool(Prefix+"worldAudioAudit",worldAudioAudit);
+             SessionState.SetBool(Prefix+"systemDepthIIAudit",systemDepthIIAudit);
+@@ -179,6 +200,8 @@
+         {
+             GameBootstrap.OnAfterBootstrap -= Apply;
+             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
++            string hudProfile=SessionState.GetString(Prefix+"hudProfile", "");
++            if(!string.IsNullOrEmpty(hudProfile))runner.ConfigureHudProfile(hudProfile);
+             int polish=SessionState.GetInt(Prefix+"audioPolishIteration",0);
+             if(polish>0)runner.ConfigureAudioPolish(polish);
+             if (SessionState.GetBool(Prefix+"worldAudioAudit",false)) runner.ConfigureWorldAudioAudit();
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs
+@@ -0,0 +1,219 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.Globalization;
++using System.IO;
++using System.Linq;
++using CavesOfOoo.Core;
++using CavesOfOoo.Diagnostics;
++using CavesOfOoo.Rendering;
++using Unity.Profiling;
++using Unity.Profiling.LowLevel.Unsafe;
++using UnityEngine;
++using UnityEngine.InputSystem;
++using UnityEngine.InputSystem.LowLevel;
++
++namespace CavesOfOoo.Scenarios.Custom
++{
++    // Deliberately uses only APIs present before the HUD polish. Import this
++    // observer and its launcher hooks BEFORE the new HUD source/tests.
++    public sealed partial class ReferenceGladeNativePlayer
++    {
++        bool _hudProfileOnly, _hudProfileSampling, _hudProfileOverflow;
++        string _hudProfileStage = "before", _hudProfilePhase = "setup";
++        Action _hudProfileCleanup;
++        Coroutine _hudProfileObserver;
++        const int HudProfileCapacity = 12000;
++        int _hudProfileCount;
++        HudProfileRow[] _hudProfileRows;
++        ProfilerRecorder[] _hudProfileRecorders;
++        MarkerDescription[] _hudProfileDescriptions;
++        double[][] _hudProfileValues;
++        bool[][] _hudProfileHasValue;
++        static readonly string[] HudProfileMarkers = { "COO.ZoneRenderer.RenderSidebar", "COO.ZoneRenderer.RenderHotbar",
++            "COO.UI.Sidebar.Render", "COO.UI.Hotbar.Render", "GC Allocated In Frame" };
++        static readonly string[] HudProfileChecks = { "hud_profile_original_source_and_free_start", "hud_profile_native_cycle_returns",
++            "hud_profile_real_history_created", "hud_profile_existing_scroll_roundtrip", "hud_profile_existing_look_roundtrip",
++            "hud_profile_all_inputs_free", "hud_profile_idle_zero_hotbar_paints", "hud_profile_samples_and_marker_availability",
++            "hud_profile_configuration_unchanged", "hud_profile_gamepad_removed_and_restored" };
++        bool HudProfileComplete => _audit.Count == HudProfileChecks.Length + 1
++            && HudProfileChecks.All(n => _audit.Count(a => a == "PASS " + n) == 1)
++            && _audit.Count(a => a == "PASS ordinary_player_and_native_zone") == 1 && _screenshots.Count >= 3;
++        const string HudProfileCanVerify = "Identical existing-API input recipe on an ordinary isolated seed64 start:120 idle frames,24 actual D-pad slot changes,40 alternating empty-slot attempts,12 older/newer existing-sidebar scroll keys, and six ordinary Look/cursor/return cycles. No paid action or direct renderer call. Raw completed-frame HUD work counters and native recorder samples are written separately from screenshots with actual viewport/settings. Before/after stage changes only the receipt label.";
++        const string HudProfileCannotVerify = "Diagnostic editor observation, not standalone/physical Deck/GPU performance or subjective readability. Native recorder LastValue may describe an earlier completed frame; explicit snapshot and observer frame IDs prevent false correlation. Counter observation materializes a diagnostic snapshot once per observed frame; recorder/input coroutine overhead is shared in both runs. No long-session or combat-performance claim. A before/after claim requires retained successful runs with matching source-approved recipe, viewport, graphics, focus, frame limit and actual action counts; otherwise report unmatched evidence only. This mode does not exercise the new full-history reader and does not resize the view or change preferences.";
++        public void ConfigureHudProfile(string stage)
++        {
++            if (stage != "before" && stage != "after") throw new ArgumentException("HUD profile stage must be before or after.", nameof(stage));
++            _hudProfileOnly = true; _hudProfileStage = stage;
++        }
++
++        IEnumerator RunHudProfileAudit()
++        {
++            var previousPad = Gamepad.current; var pad = InputSystem.AddDevice<Gamepad>();
++            _hudProfileCleanup = () => {
++                StopHudProfileObserver();
++                if (pad.added) { InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.RemoveDevice(pad); }
++                if (previousPad != null && previousPad.added) previousPad.MakeCurrent();
++                Check("hud_profile_gamepad_removed_and_restored", !pad.added
++                    && (previousPad == null || !previousPad.added || ReferenceEquals(previousPad, Gamepad.current)));
++            };
++            try
++            {
++                yield return ControllerHold(pad, new GamepadState(), .05f);
++                yield return new WaitForSecondsRealtime(1f); yield return new WaitForEndOfFrame();
++                var abilities = _input.PlayerEntity.GetPart<ActivatedAbilitiesPart>();
++                Require(State() == "Normal" && Cell().X == 40 && Cell().Y == 12 && abilities != null, "ordinary stable HUD benchmark start");
++                var occupied = Enumerable.Range(0, 10).Where(i => abilities.GetAbilityBySlot(i) != null).ToArray();
++                Require(occupied.Length == 6 && abilities.GetAbilityBySlot(8) == null && abilities.GetAbilityBySlot(9) == null,
++                    "unchanged original six occupied/four empty slots");
++                var checkpoint = ControllerBefore(); int selected = _input.CaptureHotbarSelection();
++                Check("hud_profile_original_source_and_free_start", _input.ZoneRenderer.SidebarLogScrollOffsetRows == 0 && ControllerCost(checkpoint, 0));
++                yield return Capture("hud-profile-01-before-input");
++                var settingsBefore = ObserveMarkerSettings();
++                string camerasBefore = HudProfileCameras(); string preferencesBefore = HudProfilePreferences();
++                string initialSlots = string.Join("|", Enumerable.Range(0, 10).Select(i => { var a = abilities.GetAbilityBySlot(i);
++                    return i + ":" + (a == null ? "empty" : a.SourcePowerClass + ":" + a.DisplayName + ":" + a.TargetingMode + ":" + a.Range + ":" + a.CooldownRemaining); }));
++                string beganUtc = DateTime.UtcNow.ToString("O");
++                BeginHudProfileObserver();
++                _hudProfilePhase = "idle";
++                for (int i = 0; i < 120; i++) yield return null;
++                _hudProfilePhase = "cycle";
++                for (int i = 0; i < 24; i++) yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.DpadRight));
++                Check("hud_profile_native_cycle_returns", _input.CaptureHotbarSelection() == selected && ControllerCost(checkpoint, 0));
++                int oldCount = MessageLog.Count;
++                _hudProfilePhase = "messages";
++                for (int i = 0; i < 40; i++) yield return Tap(i % 2 == 0 ? Key.Digit9 : Key.Digit0);
++                Check("hud_profile_real_history_created", MessageLog.Count == oldCount + 40
++                    && MessageLog.GetRecentEntries(40).All(e => e.Text.Contains("No rite bound")));
++                _hudProfilePhase = "scroll_older";
++                for (int i = 0; i < 12; i++) yield return Tap(Key.Equals);
++                int older = _input.ZoneRenderer.SidebarLogScrollOffsetRows;
++                _hudProfilePhase = "scroll_newer";
++                for (int i = 0; i < 12; i++) yield return Tap(Key.Minus);
++                Check("hud_profile_existing_scroll_roundtrip", older > 0 && _input.ZoneRenderer.SidebarLogScrollOffsetRows == 0);
++                _hudProfilePhase = "look";
++                for (int i = 0; i < 6; i++) { yield return Tap(Key.L); yield return Tap(Key.RightArrow); yield return Tap(Key.Escape); }
++                Check("hud_profile_existing_look_roundtrip", State() == "Normal");
++                _hudProfilePhase = "settle";
++                for (int i = 0; i < 12; i++) yield return null;
++                _hudProfilePhase = "idle_after";
++                for (int i = 0; i < 120; i++) yield return null;
++                _hudProfileSampling = false;
++                if (_hudProfileObserver != null) { StopCoroutine(_hudProfileObserver); _hudProfileObserver = null; }
++                Check("hud_profile_all_inputs_free", ControllerCost(checkpoint, 0) && ControllerStayed(checkpoint));
++                var idleRows = _hudProfileRows.Take(_hudProfileCount).Where(r => r.phase == "idle" || r.phase == "idle_after").ToArray();
++                Check("hud_profile_idle_zero_hotbar_paints", idleRows.Length >= 200 && idleRows.All(r => r.hotbarRenders == 0));
++                Check("hud_profile_samples_and_marker_availability", !_hudProfileOverflow && _hudProfileCount >= 240
++                    && _hudProfileDescriptions.Take(4).All(d => d.valid));
++                var settingsAfter = ObserveMarkerSettings();
++                Check("hud_profile_configuration_unchanged", settingsBefore.screenWidth == settingsAfter.screenWidth
++                    && settingsBefore.screenHeight == settingsAfter.screenHeight && settingsBefore.targetWidth == settingsAfter.targetWidth
++                    && settingsBefore.targetHeight == settingsAfter.targetHeight && settingsBefore.msaa == settingsAfter.msaa
++                    && settingsBefore.filter == settingsAfter.filter && settingsBefore.vSync == settingsAfter.vSync
++                    && settingsBefore.targetFrameRate == settingsAfter.targetFrameRate && settingsBefore.timeScale == settingsAfter.timeScale
++                    && settingsBefore.profilerEnabled == settingsAfter.profilerEnabled && settingsBefore.runInBackground == settingsAfter.runInBackground
++                    && camerasBefore == HudProfileCameras() && preferencesBefore == HudProfilePreferences());
++                WriteHudProfile(beganUtc, settingsBefore, settingsAfter, camerasBefore, preferencesBefore, initialSlots, checkpoint.Tick, oldCount);
++                StopHudProfileObserver();
++                yield return Capture("hud-profile-02-after-identical-input");
++            }
++            finally { _hudProfileCleanup?.Invoke(); _hudProfileCleanup = null; }
++        }
++        string HudProfileCameras()
++        {
++            var follow = _input.CameraFollow;
++            return "hotbar=" + follow.HotbarCamera.pixelRect + ";sidebar=" + follow.SidebarCamera.pixelRect
++                + ";hotbarTarget=" + (follow.HotbarCamera.targetTexture == null ? "screen" : "texture")
++                + ";sidebarTarget=" + (follow.SidebarCamera.targetTexture == null ? "screen" : "texture");
++        }
++        string HudProfilePreferences()
++        {
++            var c = CultureInfo.InvariantCulture;
++            return "native=" + Village3DSettings.Enabled + ";lowDetail=" + Village3DSettings.LowDetail
++                + ";scale=" + Village3DSettings.WorldResolutionScale.ToString("R", c) + ";shadows=" + Village3DSettings.ShadowsEnabled
++                + ";fx=" + SpellFxSettings.Mode + ";fxSpeed=" + SpellFxSettings.AnimationSpeed.ToString("R", c)
++                + ";music=" + WorldAudioSettings.MusicVolume.ToString("R", c) + ";ambience=" + WorldAudioSettings.AmbienceVolume.ToString("R", c)
++                + ";sfx=" + WorldAudioSettings.SfxVolume.ToString("R", c);
++        }
++        void BeginHudProfileObserver()
++        {
++            _hudProfileRows = new HudProfileRow[HudProfileCapacity]; _hudProfileCount = 0; _hudProfileOverflow = false;
++            _hudProfileRecorders = new ProfilerRecorder[HudProfileMarkers.Length];
++            _hudProfileDescriptions = new MarkerDescription[HudProfileMarkers.Length];
++            _hudProfileValues = new double[HudProfileMarkers.Length][]; _hudProfileHasValue = new bool[HudProfileMarkers.Length][];
++            var handles = new List<ProfilerRecorderHandle>(); ProfilerRecorderHandle.GetAvailable(handles);
++            var available = handles.Select(ProfilerRecorderHandle.GetDescription).ToArray();
++            for (int i = 0; i < HudProfileMarkers.Length; i++)
++            {
++                _hudProfileValues[i] = new double[HudProfileCapacity]; _hudProfileHasValue[i] = new bool[HudProfileCapacity];
++                var row = new MarkerDescription { name = HudProfileMarkers[i] }; _hudProfileDescriptions[i] = row;
++                var found = available.Where(d => d.Name == row.name).ToArray(); row.matchingHandles = found.Length;
++                if (found.Length != 1) { row.failure = "Unavailable or ambiguous exact native marker"; continue; }
++                var d = found[0]; row.category = d.Category.Name; row.units = d.UnitType.ToString(); row.dataType = d.DataType.ToString();
++                var options = ProfilerRecorderOptions.Default;
++                if (row.name.StartsWith("COO.", StringComparison.Ordinal)) options |= ProfilerRecorderOptions.SumAllSamplesInFrame;
++                _hudProfileRecorders[i] = ProfilerRecorder.StartNew(d.Category, d.Name, 2, options); row.valid = _hudProfileRecorders[i].Valid;
++                if (!row.valid) row.failure = "Invalid native recorder";
++            }
++            _hudProfileSampling = true; _hudProfileObserver = StartCoroutine(ObserveHudProfile());
++        }
++        IEnumerator ObserveHudProfile()
++        {
++            var frameEnd = new WaitForEndOfFrame(); int previousFrame = -1;
++            while (_hudProfileSampling)
++            {
++                yield return frameEnd;
++                if (!_hudProfileSampling) yield break;
++                if (_hudProfileCount >= HudProfileCapacity) { _hudProfileOverflow = true; yield break; }
++                var snap = PerformanceDiagnostics.LastCompletedFrameSnapshot;
++                if (snap.UnityFrame == previousFrame) continue;
++                previousFrame = snap.UnityFrame; int index = _hudProfileCount++;
++                _hudProfileRows[index] = new HudProfileRow { phase = _hudProfilePhase, observerFrame = Time.frameCount,
++                    snapshotFrame = snap.UnityFrame, realtime = Time.realtimeSinceStartupAsDouble, wallMs = Time.unscaledDeltaTime * 1000d,
++                    tick = snap.TurnTick, hotbarRenders = snap.HotbarRenderCount, sidebarRenders = snap.SidebarRenderCount,
++                    tilemapClears = snap.TilemapClearCount, rendererMs = snap.ZoneRendererLateUpdateMs,
++                    focused = Application.isFocused, selectedSlot = _input.CaptureHotbarSelection(), logOffset = _input.ZoneRenderer.SidebarLogScrollOffsetRows };
++                for (int i = 0; i < _hudProfileRecorders.Length; i++)
++                {
++                    var d = _hudProfileDescriptions[i]; if (!d.valid) continue;
++                    if (!_hudProfileRecorders[i].Valid) { d.valid = false; d.failure = "Recorder became invalid"; continue; }
++                    if (_hudProfileRecorders[i].Count == 0) continue;
++                    _hudProfileHasValue[i][index] = true;
++                    _hudProfileValues[i][index] = d.dataType == "Double" || d.dataType == "Float"
++                        ? _hudProfileRecorders[i].LastValueAsDouble : _hudProfileRecorders[i].LastValue;
++                }
++            }
++        }
++        void StopHudProfileObserver()
++        {
++            _hudProfileSampling = false;
++            if (_hudProfileObserver != null) { StopCoroutine(_hudProfileObserver); _hudProfileObserver = null; }
++            if (_hudProfileRecorders != null) { for (int i = 0; i < _hudProfileRecorders.Length; i++) _hudProfileRecorders[i].Dispose(); _hudProfileRecorders = null; }
++        }
++        void WriteHudProfile(string began, MarkerSettings before, MarkerSettings after, string cameras, string preferences, string initialSlots, int tick, int startLogCount)
++        {
++            Directory.CreateDirectory(DirectoryPath); var c = CultureInfo.InvariantCulture;
++            using (var writer = new StreamWriter(Path.Combine(DirectoryPath, "hud-profile.csv")))
++            {
++                writer.Write("phase,observerFrame,snapshotFrame,realtimeSeconds,wallMs,tick,hotbarRenders,sidebarRenders,tilemapClears,rendererMs,focused,selectedSlot,logOffset");
++                foreach (var name in HudProfileMarkers) writer.Write("," + name); writer.WriteLine();
++                for (int f = 0; f < _hudProfileCount; f++)
++                {
++                    var r = _hudProfileRows[f]; writer.Write(string.Join(",", r.phase, r.observerFrame, r.snapshotFrame, r.realtime.ToString("R", c),
++                        r.wallMs.ToString("R", c), r.tick, r.hotbarRenders, r.sidebarRenders, r.tilemapClears, r.rendererMs.ToString("R", c), r.focused ? 1 : 0, r.selectedSlot, r.logOffset));
++                    for (int i = 0; i < HudProfileMarkers.Length; i++) { writer.Write(','); if (_hudProfileHasValue[i][f]) writer.Write(_hudProfileValues[i][f].ToString("R", c)); }
++                    writer.WriteLine();
++                }
++            }
++            File.WriteAllText(Path.Combine(DirectoryPath, "hud-profile.json"), JsonUtility.ToJson(new HudProfileReport {
++                recipe = "hud-existing-input-v1", stage = _hudProfileStage, runId = RunId, beganUtc = began, endedUtc = DateTime.UtcNow.ToString("O"),
++                frames = _hudProfileCount, overflow = _hudProfileOverflow, startTick = tick, startLogCount = startLogCount,
++                before = before, after = after, cameras = cameras, preferences = preferences, initialSlots = initialSlots, markers = _hudProfileDescriptions,
++                sourceAuthority = "Coordinator records checked-out source revision alongside the raw receipt; this observer does not infer test-to-commit identity.",
++                observation = HudProfileCanVerify + " " + HudProfileCannotVerify,
++                sampling = "EOF observer, completed snapshot has explicit UnityFrame. Native LastValue is latest completed recorder value, not guaranteed this snapshot frame. Blank means unavailable, not zero. Markers nest; do not sum as exclusive cost. Setup buffers precede sampling; screenshots/file IO follow sampling. Raw phase rows include real input-handler and diagnostic observation overhead; no diagnostic direct Render calls." }, true));
++        }
++        struct HudProfileRow { public string phase; public int observerFrame, snapshotFrame, tick, hotbarRenders, sidebarRenders, tilemapClears, selectedSlot, logOffset; public double realtime, wallMs, rendererMs; public bool focused; }
++        [Serializable] sealed class HudProfileReport { public string recipe, stage, runId, beganUtc, endedUtc, cameras, preferences, initialSlots, observation, sampling, sourceAuthority; public int frames, startTick, startLogCount; public bool overflow; public MarkerSettings before, after; public MarkerDescription[] markers; }
++    }
++}
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs.meta
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: e16f575f23a1488fad907d0fa981dc13
+{
+  "stage": "baseline",
+  "readOnly": true,
+  "files": [
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs",
+      "sha256": "ab8a8232b2173763802dcd0a92c024afb9d329c7cce22376b60061b2a763aa96"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/ReferenceGladeNativeBatch.cs",
+      "sha256": "48dccc757f5f4722b59d5b1ab0e517a22b1810b90b14f5f93ef5e426f5f92785"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs",
+      "sha256": "8158024d0e41a899da470830dec753f2e1e0d3e4c0b8336fa43ff9684bea02e4"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.HudProfile.cs.meta",
+      "sha256": "7159b05f71027ddf6eb52a446873b42c5cd2f8bcc16af9c930dbaa85166ebc8f"
+    }
+  ]
+}

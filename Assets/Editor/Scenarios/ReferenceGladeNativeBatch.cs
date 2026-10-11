@@ -120,13 +120,42 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Combat Audio Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0)
+        // HUD audits must start only after test/native teardown has completed.
+        // Read the installed test framework's actual active-job state; do not
+        // infer cleanup completion merely from a returned XML/test result.
+        private static void RequireHudAuditIdle()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating
+                || SessionState.GetBool(Prefix + "active", false) || SessionState.GetBool(Prefix + "restoreScenes", false)
+                || SessionState.GetBool("CavesOfOoo.NativeSaveIsolation.active", false))
+                throw new InvalidOperationException("Wait for editor, test and native cleanup before a HUD audit.");
+            var api = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("UnityEditor.TestTools.TestRunner.Api.TestRunnerApi", false)).FirstOrDefault(t => t != null);
+            var active = api?.GetMethod("IsRunActive", BindingFlags.Static | BindingFlags.NonPublic);
+            if (active == null || !(active.Invoke(null, null) is bool running) || running)
+                throw new InvalidOperationException("HUD audit requires an available, idle native test runner; wait for test cleanup.");
+        }
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/HUD Baseline Profile")]
+        public static void LaunchHudBaselineProfile() { RequireHudAuditIdle(); LaunchCore(false, hudProfile:"before"); }
+        [MenuItem("Caves Of Ooo/Scenarios/World/HUD After Profile")]
+        public static void LaunchHudAfterProfile() { RequireHudAuditIdle(); LaunchCore(false, hudProfile:"after"); }
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/HUD Polish Audit 1080p")]
+        public static void LaunchHudPolish() { RequireHudAuditIdle(); LaunchCore(false,hudPolish:true); }
+        [MenuItem("Caves Of Ooo/Scenarios/World/HUD Polish Audit 800p")]
+        public static void LaunchHudPolish800() { RequireHudAuditIdle(); LaunchCore(false,hudPolish:true,hudWidth:1280,hudHeight:800); }
+        [MenuItem("Caves Of Ooo/Scenarios/World/HUD Polish Audit 720p")]
+        public static void LaunchHudPolish720() { RequireHudAuditIdle(); LaunchCore(false,hudPolish:true,hudWidth:1280,hudHeight:720); }
+
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null,bool hudPolish=false,int hudWidth=1920,int hudHeight=1080)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
             for (int i = 0; i < SceneManager.sceneCount; i++)
                 if (SceneManager.GetSceneAt(i).isDirty)
                     throw new InvalidOperationException("Save scene edits before launching; the completion audit will not discard them.");
+            if (hudPolish && (!string.IsNullOrEmpty(hudProfile) || !((hudWidth==1920 && hudHeight==1080) || (hudWidth==1280 && (hudHeight==800 || hudHeight==720)))))
+                throw new InvalidOperationException("HUD functional audit requires one approved viewport and a separate profile run.");
             var snapshot = EditorSceneManager.GetSceneManagerSetup().Select(s => new SceneRow
                 { path = s.path, loaded = s.isLoaded, active = s.isActive }).ToArray();
             if (snapshot.Any(s => string.IsNullOrEmpty(s.path)))
@@ -137,6 +166,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetBool(Prefix+"hudPolish",hudPolish);
+            SessionState.SetString(Prefix+"hudProfile",hudProfile ?? "");
             SessionState.SetInt(Prefix+"audioPolishIteration",audioPolishIteration);
             SessionState.SetBool(Prefix+"worldAudioAudit",worldAudioAudit);
             SessionState.SetBool(Prefix+"systemDepthIIAudit",systemDepthIIAudit);
@@ -162,7 +193,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + (audioPolishIteration==17||audioPolishIteration==18?960:270));
             try
             {
-                Configure1080p();
+                ConfigureNativeView(hudPolish ? hudWidth : 1920, hudPolish ? hudHeight : 1080);
                 Subscribe();
                 EditorSceneManager.OpenScene("Assets/Scenes/Main/ReferenceGlade.unity");
                 EditorSceneManager.playModeStartScene=AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/Main/ReferenceGlade.unity");
@@ -182,6 +213,9 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            if (SessionState.GetBool(Prefix+"hudPolish",false)) runner.ConfigureHudPolish();
+            string hudProfile=SessionState.GetString(Prefix+"hudProfile", "");
+            if(!string.IsNullOrEmpty(hudProfile))runner.ConfigureHudProfile(hudProfile);
             int polish=SessionState.GetInt(Prefix+"audioPolishIteration",0);
             if(polish>0)runner.ConfigureAudioPolish(polish);
             if (SessionState.GetBool(Prefix+"worldAudioAudit",false)) runner.ConfigureWorldAudioAudit();
@@ -264,7 +298,7 @@ namespace CavesOfOoo.Editor
             return sizes.GetType().GetMethod("GetGroup",All).Invoke(sizes,new[]{Enum.Parse(kind,"Standalone")});
         }
         private static EditorWindow View()=>EditorWindow.GetWindow(EditorType("UnityEditor.GameView"));
-        private static void Configure1080p()
+        private static void ConfigureNativeView(int width,int height)
         {
             var viewType=EditorType("UnityEditor.GameView");SessionState.SetBool(Prefix+"hadView",Resources.FindObjectsOfTypeAll(viewType).Length>0);
             var view=View();var selected=viewType.GetProperty("selectedSizeIndex",All);if(selected==null)throw new InvalidOperationException("GameView fixed-size API unavailable.");
@@ -276,12 +310,12 @@ namespace CavesOfOoo.Editor
             {
                 var size=gt.GetMethod("GetGameViewSize",All).Invoke(group,new object[]{i});
                 int w=(int)size.GetType().GetProperty("width",All).GetValue(size),h=(int)size.GetType().GetProperty("height",All).GetValue(size);
-                if(w==1920&&h==1080){chosen=i;break;}
+                if(w==width&&h==height){chosen=i;break;}
             }
             if(chosen<0)
             {
                 var sizeType=EditorType("UnityEditor.GameViewSize");var enumType=EditorType("UnityEditor.GameViewSizeType");
-                var size=Activator.CreateInstance(sizeType,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{Enum.Parse(enumType,"FixedResolution"),1920,1080,"Voxel world audit 1920x1080"},null);
+                var size=Activator.CreateInstance(sizeType,BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic,null,new object[]{Enum.Parse(enumType,"FixedResolution"),width,height,"Native world audit "+width+"x"+height},null);
                 gt.GetMethod("AddCustomSize",All).Invoke(group,new[]{size});SessionState.SetInt(Prefix+"addedCustomIndex",custom);chosen=built+custom;
             }
             selected.SetValue(view,chosen);view.Show();view.Focus();view.Repaint();EditorApplication.QueuePlayerLoopUpdate();

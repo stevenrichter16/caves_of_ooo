@@ -60,6 +60,7 @@ namespace CavesOfOoo.Rendering
         private char[] _shortcuts = System.Array.Empty<char>();
         private int _cursorIndex;
         private int _scrollOffset;
+        private Vector3 _lastMousePosition;
 
         // ---- Selection output ----
         private bool _selectionMade;
@@ -140,6 +141,7 @@ namespace CavesOfOoo.Rendering
 
             _cursorIndex = 0;
             _scrollOffset = 0;
+            _lastMousePosition = Input.mousePosition;
             _selectionMade = false;
             _selectionCancelled = false;
             _selectedAction = null;
@@ -180,11 +182,19 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            int hoverRow = GetRowAtMouse();
-            if (hoverRow >= 0 && hoverRow != _cursorIndex)
+            Vector3 mousePosition = Input.mousePosition;
+            bool mouseMoved = mousePosition != _lastMousePosition;
+            _lastMousePosition = mousePosition;
+            // A parked pointer must not undo keyboard/controller navigation.
+            // Clicks below still resolve their actual row even without movement.
+            if (mouseMoved)
             {
-                _cursorIndex = hoverRow;
-                Render();
+                int hoverRow = GetRowAtMouse();
+                if (hoverRow >= 0 && hoverRow != _cursorIndex)
+                {
+                    _cursorIndex = hoverRow;
+                    Render();
+                }
             }
 
             if (Input.GetMouseButtonDown(0))

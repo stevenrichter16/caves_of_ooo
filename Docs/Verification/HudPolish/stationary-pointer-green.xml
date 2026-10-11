@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="14" result="Passed" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 20:45:45Z" end-time="2026-10-11 20:45:47Z" duration="1.5296626">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28567" result="Passed" start-time="2026-10-11 20:45:45Z" end-time="2026-10-11 20:45:47Z" duration="1.529663" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="35179" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28567" result="Passed" start-time="2026-10-11 20:45:45Z" end-time="2026-10-11 20:45:47Z" duration="1.343415" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="35180" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28567" result="Passed" start-time="2026-10-11 20:45:45Z" end-time="2026-10-11 20:45:47Z" duration="1.237655" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="35181" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28567" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:47Z" duration="1.037730" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="25450" name="WorldLogHistoryInputTests" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:47Z" duration="0.936952" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25465" name="ActorOrZoneReplacementClosesStaleHistoryInsteadOfReturningOldLookState" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.ActorOrZoneReplacementClosesStaleHistoryInsteadOfReturningOldLookState" methodname="ActorOrZoneReplacementClosesStaleHistoryInsteadOfReturningOldLookState" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="364620634" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.277534" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25451" name="ActualCharacterMenuAppendsWorldLogAndNativeAOpensOlderHistoryWithoutCost" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.ActualCharacterMenuAppendsWorldLogAndNativeAOpensOlderHistoryWithoutCost" methodname="ActualCharacterMenuAppendsWorldLogAndNativeAOpensOlderHistoryWithoutCost" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="2019476105" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.037559" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=8 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="25464" name="ExistingInventoryF2IsNotInterceptedByHistory" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.ExistingInventoryF2IsNotInterceptedByHistory" methodname="ExistingInventoryF2IsNotInterceptedByHistory" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1556162648" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.002763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25463" name="HistoryBrowsingPreservesExactSerializedLogBytesAndRestoresAllRawFields" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.HistoryBrowsingPreservesExactSerializedLogBytesAndRestoresAllRawFields" methodname="HistoryBrowsingPreservesExactSerializedLogBytesAndRestoresAllRawFields" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1487163295" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.009596" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25461" name="HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.086426" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25459" name="HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements(&quot;Normal&quot;)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements(&quot;Normal&quot;)" methodname="HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1532927074" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.009466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25460" name="HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements(&quot;LookMode&quot;)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements(&quot;LookMode&quot;)" methodname="HistoryDoesNotEnqueueConsumeOrAudioArmPendingAnnouncements" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="757455382" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:46Z" duration="0.007232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25458" name="KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 20:45:46Z" end-time="2026-10-11 20:45:47Z" duration="0.214721" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25456" name="KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState(&quot;Normal&quot;)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState(&quot;Normal&quot;)" methodname="KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="2048068437" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.019506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25457" name="KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState(&quot;LookMode&quot;)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState(&quot;LookMode&quot;)" methodname="KeyboardF2HomeEndEscapeUsesHistoryAndRestoresExactInputState" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1727780628" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.013910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25462" name="MissingPopupCanvasCannotTrapInputBehindAnInvisibleModal" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.MissingPopupCanvasCannotTrapInputBehindAnInvisibleModal" methodname="MissingPopupCanvasCannotTrapInputBehindAnInvisibleModal" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1455450740" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.002775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25466" name="NativeHeldConfirmThroughCloseCannotWaitOrMoveTheWorld" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.NativeHeldConfirmThroughCloseCannotWaitOrMoveTheWorld" methodname="NativeHeldConfirmThroughCloseCannotWaitOrMoveTheWorld" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="374569226" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.006285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25455" name="PriorPointerMovementReclaimsHoverOnceAndOpenRearmsTheSample" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.PriorPointerMovementReclaimsHoverOnceAndOpenRearmsTheSample" methodname="PriorPointerMovementReclaimsHoverOnceAndOpenRearmsTheSample" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1804689762" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.013214" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=8 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=8 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="25467" name="RetainedViewDoesNotRepaintOrRewrapUntilInputContentOrDeviceActuallyChanges" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.RetainedViewDoesNotRepaintOrRewrapUntilInputContentOrDeviceActuallyChanges" methodname="RetainedViewDoesNotRepaintOrRewrapUntilInputContentOrDeviceActuallyChanges" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="858922676" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.010088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25454" name="StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.072077" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25452" name="StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog(True)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog(True)" methodname="StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="1493328447" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.018769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=8 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="25453" name="StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog(False)" fullname="CavesOfOoo.Tests.WorldLogHistoryInputTests.StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog(False)" methodname="StationaryLegacyPointerCannotUndoCharacterNavigationToWorldLog" classname="CavesOfOoo.Tests.WorldLogHistoryInputTests" runstate="Runnable" seed="2052523739" result="Passed" start-time="2026-10-11 20:45:47Z" end-time="2026-10-11 20:45:47Z" duration="0.017446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=8 Tilemap=set BgTilemap=set
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

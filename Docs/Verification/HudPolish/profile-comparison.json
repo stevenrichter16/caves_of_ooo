@@ -1,0 +1,3019 @@
+{
+  "before": {
+    "folder": "/Users/steven/caves-of-ooo/Docs/Verification/HudPolish/Profile/c698fb395ce546248e5348bc32ac35b9",
+    "stage": "before",
+    "runId": "c698fb395ce546248e5348bc32ac35b9",
+    "recipe": "hud-existing-input-v1",
+    "frames": 6233,
+    "settings": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 17854,
+      "gc1": 17854,
+      "gc2": 17854,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "cameras": "hotbar=(x:0.00, y:0.00, width:1461.00, height:162.00);sidebar=(x:1461.00, y:0.00, width:459.00, height:1080.00);hotbarTarget=screen;sidebarTarget=screen",
+    "preferences": "native=True;lowDetail=False;scale=1;shadows=True;fx=Full;fxSpeed=1;music=0.55;ambience=0.45;sfx=1",
+    "initialSlots": "0:Pyromancy_EmberSpit:Ember Spit:DirectionLine:4:0|1:Pyromancy_FlamingHands:Flaming Hands:AdjacentCell:1:0|2:Hydromancy_JetBlast:Jet Blast:DirectionLine:2:0|3:Galvanism_GroundSurge:Ground Surge:DirectionLine:4:0|4:Cryomancy_RimeGrip:Rime Grip:DirectionLine:5:0|5:Spellcraft_Calm:Calm:DirectionLine:6:0|6:empty|7:empty|8:empty|9:empty",
+    "startTick": 10,
+    "startLogCount": 7,
+    "markerDescriptions": {
+      "COO.ZoneRenderer.RenderSidebar": {
+        "name": "COO.ZoneRenderer.RenderSidebar",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "name": "COO.ZoneRenderer.RenderHotbar",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.UI.Sidebar.Render": {
+        "name": "COO.UI.Sidebar.Render",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.UI.Hotbar.Render": {
+        "name": "COO.UI.Hotbar.Render",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "GC Allocated In Frame": {
+        "name": "GC Allocated In Frame",
+        "category": "Memory",
+        "units": "Bytes",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      }
+    },
+    "phases": {
+      "idle": {
+        "frames": 119,
+        "focusedFrames": 119,
+        "observedSpanSeconds": 0.2667045000125654,
+        "snapshotLagCounts": {
+          "0": 119
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 0
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 119,
+          "median": 2.238293644040823,
+          "p95": 2.939788857474923,
+          "mean": 3.034025225240518,
+          "min": 1.6974135069176555,
+          "max": 92.58100390434265
+        },
+        "broadRendererMilliseconds": {
+          "samples": 119,
+          "median": 0.1076,
+          "p95": 0.1476,
+          "mean": 0.10949915966386554,
+          "min": 0.0664,
+          "max": 0.1633
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.041041,
+            "p95": 0.055833,
+            "mean": 0.041897411764705884,
+            "min": 0.0,
+            "max": 0.09275,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.0054589999999999994,
+            "p95": 0.007916,
+            "mean": 0.005507714285714285,
+            "min": 0.0,
+            "max": 0.009125,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.001333,
+            "p95": 0.0019169999999999999,
+            "mean": 0.0013621344537815125,
+            "min": 0.0,
+            "max": 0.002166,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.00075,
+            "p95": 0.0011669999999999999,
+            "mean": 0.0007699495798319327,
+            "min": 0.0,
+            "max": 0.002,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 119,
+            "median": 17773.0,
+            "p95": 17965.0,
+            "mean": 18035.210084033613,
+            "min": 222.0,
+            "max": 44175.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.040958,
+            "p95": 0.055833,
+            "mean": 0.04217500869565217,
+            "min": 0.026208,
+            "max": 0.09275,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.005582999999999999,
+            "p95": 0.007916,
+            "mean": 0.00556775652173913,
+            "min": 0.0031249999999999997,
+            "max": 0.009125,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.001333,
+            "p95": 0.0019169999999999999,
+            "mean": 0.001375808695652174,
+            "min": 0.000708,
+            "max": 0.002166,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.00075,
+            "p95": 0.0011669999999999999,
+            "mean": 0.0007793391304347825,
+            "min": 0.000416,
+            "max": 0.002,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 115,
+            "median": 17773.0,
+            "p95": 17825.0,
+            "mean": 18083.15652173913,
+            "min": 17773.0,
+            "max": 44175.0,
+            "missing": 0
+          }
+        }
+      },
+      "cycle": {
+        "frames": 1139,
+        "focusedFrames": 1139,
+        "observedSpanSeconds": 2.92788199998904,
+        "snapshotLagCounts": {
+          "0": 1139
+        },
+        "workTotals": {
+          "hotbarRenders": 24,
+          "sidebarRenders": 0,
+          "tilemapClears": 673
+        },
+        "selectedSlotSequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 1139,
+          "median": 2.301459666341543,
+          "p95": 3.388711716979742,
+          "mean": 2.5730170917683353,
+          "min": 1.5530470991507173,
+          "max": 69.283626973629
+        },
+        "broadRendererMilliseconds": {
+          "samples": 1139,
+          "median": 0.1228,
+          "p95": 0.1885,
+          "mean": 0.19984407374890253,
+          "min": 0.0663,
+          "max": 63.2056
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1139,
+            "median": 0.041124999999999995,
+            "p95": 0.057332999999999995,
+            "mean": 0.043191677787532926,
+            "min": 0.025834,
+            "max": 0.287458,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1139,
+            "median": 0.005667,
+            "p95": 0.008709,
+            "mean": 0.023762766461808603,
+            "min": 0.0029159999999999998,
+            "max": 16.76625,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1139,
+            "median": 0.001375,
+            "p95": 0.0020829999999999998,
+            "mean": 0.0014242265144863914,
+            "min": 0.00075,
+            "max": 0.0036669999999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1139,
+            "median": 0.00075,
+            "p95": 0.001375,
+            "mean": 0.004027912203687444,
+            "min": 0.000375,
+            "max": 0.18579199999999998,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1139,
+            "median": 17833.0,
+            "p95": 18265.0,
+            "mean": 18227.353819139596,
+            "min": 17773.0,
+            "max": 44683.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1135,
+            "median": 0.041124999999999995,
+            "p95": 0.056707999999999995,
+            "mean": 0.04315953303964758,
+            "min": 0.025834,
+            "max": 0.287458,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1135,
+            "median": 0.005667,
+            "p95": 0.008709,
+            "mean": 0.023822577092511014,
+            "min": 0.0029159999999999998,
+            "max": 16.76625,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1135,
+            "median": 0.001375,
+            "p95": 0.0020829999999999998,
+            "mean": 0.0014238863436123346,
+            "min": 0.00075,
+            "max": 0.0036669999999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1135,
+            "median": 0.00075,
+            "p95": 0.001375,
+            "mean": 0.004038950660792951,
+            "min": 0.000375,
+            "max": 0.18579199999999998,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1135,
+            "median": 17833.0,
+            "p95": 18265.0,
+            "mean": 18228.375330396477,
+            "min": 17833.0,
+            "max": 44683.0,
+            "missing": 0
+          }
+        }
+      },
+      "messages": {
+        "frames": 2394,
+        "focusedFrames": 2394,
+        "observedSpanSeconds": 5.664019458024995,
+        "snapshotLagCounts": {
+          "0": 2394
+        },
+        "workTotals": {
+          "hotbarRenders": 80,
+          "sidebarRenders": 40,
+          "tilemapClears": 2474
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 2394,
+          "median": 2.2905648220330477,
+          "p95": 3.0601685866713524,
+          "mean": 2.367202640602905,
+          "min": 1.5674177557229996,
+          "max": 6.071917712688446
+        },
+        "broadRendererMilliseconds": {
+          "samples": 2394,
+          "median": 0.1345,
+          "p95": 0.2077,
+          "mean": 0.1766923141186299,
+          "min": 0.073,
+          "max": 2.6046
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 2394,
+            "median": 0.043167,
+            "p95": 0.0625,
+            "mean": 0.07821346908939014,
+            "min": 0.026292,
+            "max": 2.3097909999999997,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 2394,
+            "median": 0.005791999999999999,
+            "p95": 0.009916,
+            "mean": 0.010970995405179615,
+            "min": 0.0031249999999999997,
+            "max": 0.200875,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 2394,
+            "median": 0.001583,
+            "p95": 0.002459,
+            "mean": 0.03538046365914787,
+            "min": 0.0007909999999999999,
+            "max": 2.2326669999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 2394,
+            "median": 0.00075,
+            "p95": 0.001625,
+            "mean": 0.005737634085213032,
+            "min": 0.000416,
+            "max": 0.190792,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 2394,
+            "median": 17773.0,
+            "p95": 26059.0,
+            "mean": 18541.63993316625,
+            "min": 17773.0,
+            "max": 54113.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 2390,
+            "median": 0.0431875,
+            "p95": 0.0625,
+            "mean": 0.0782746,
+            "min": 0.026292,
+            "max": 2.3097909999999997,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 2390,
+            "median": 0.005791999999999999,
+            "p95": 0.009875,
+            "mean": 0.010918820083682007,
+            "min": 0.0031249999999999997,
+            "max": 0.200875,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 2390,
+            "median": 0.001583,
+            "p95": 0.002459,
+            "mean": 0.03543737656903766,
+            "min": 0.0007909999999999999,
+            "max": 2.2326669999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 2390,
+            "median": 0.00075,
+            "p95": 0.001625,
+            "mean": 0.005685958158995816,
+            "min": 0.000416,
+            "max": 0.190792,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 2390,
+            "median": 17773.0,
+            "p95": 26059.0,
+            "mean": 18541.699581589957,
+            "min": 17773.0,
+            "max": 54113.0,
+            "missing": 0
+          }
+        }
+      },
+      "scroll_older": {
+        "frames": 719,
+        "focusedFrames": 719,
+        "observedSpanSeconds": 1.6339672500034794,
+        "snapshotLagCounts": {
+          "0": 719
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 6,
+          "tilemapClears": 731
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 719,
+          "median": 2.2240434773266315,
+          "p95": 2.940624952316284,
+          "mean": 2.2761151563733693,
+          "min": 1.537457457743585,
+          "max": 5.188584327697754
+        },
+        "broadRendererMilliseconds": {
+          "samples": 719,
+          "median": 0.1332,
+          "p95": 0.1943,
+          "mean": 0.15331974965229486,
+          "min": 0.0765,
+          "max": 2.3471
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 719,
+            "median": 0.043667,
+            "p95": 0.063334,
+            "mean": 0.06183317107093185,
+            "min": 0.028291,
+            "max": 2.2239999999999998,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 719,
+            "median": 0.005709,
+            "p95": 0.008875,
+            "mean": 0.005974873435326843,
+            "min": 0.003,
+            "max": 0.026040999999999998,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 719,
+            "median": 0.0014579999999999999,
+            "p95": 0.002208,
+            "mean": 0.01802841307371349,
+            "min": 0.000917,
+            "max": 2.1673329999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 719,
+            "median": 0.00075,
+            "p95": 0.001375,
+            "mean": 0.0008094200278164116,
+            "min": 0.000375,
+            "max": 0.0021249999999999997,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 719,
+            "median": 17773.0,
+            "p95": 18011.0,
+            "mean": 18060.80806675939,
+            "min": 17773.0,
+            "max": 45071.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 715,
+            "median": 0.043667,
+            "p95": 0.063334,
+            "mean": 0.06192594545454545,
+            "min": 0.028291,
+            "max": 2.2239999999999998,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 715,
+            "median": 0.005709,
+            "p95": 0.008875,
+            "mean": 0.005977997202797203,
+            "min": 0.003,
+            "max": 0.026040999999999998,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 715,
+            "median": 0.001459,
+            "p95": 0.002208,
+            "mean": 0.01812180979020979,
+            "min": 0.000917,
+            "max": 2.1673329999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 715,
+            "median": 0.00075,
+            "p95": 0.001375,
+            "mean": 0.0008098083916083916,
+            "min": 0.000375,
+            "max": 0.0021249999999999997,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 715,
+            "median": 17773.0,
+            "p95": 18011.0,
+            "mean": 18058.288111888112,
+            "min": 17773.0,
+            "max": 45071.0,
+            "missing": 0
+          }
+        }
+      },
+      "scroll_newer": {
+        "frames": 671,
+        "focusedFrames": 671,
+        "observedSpanSeconds": 1.6477331659989432,
+        "snapshotLagCounts": {
+          "0": 671
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 6,
+          "tilemapClears": 683
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 671,
+          "median": 2.4452523794025183,
+          "p95": 3.1676231883466244,
+          "mean": 2.4589918086779945,
+          "min": 1.586252823472023,
+          "max": 5.0968751311302185
+        },
+        "broadRendererMilliseconds": {
+          "samples": 671,
+          "median": 0.1403,
+          "p95": 0.1998,
+          "mean": 0.16167630402384503,
+          "min": 0.0751,
+          "max": 2.277
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 671,
+            "median": 0.046125,
+            "p95": 0.065125,
+            "mean": 0.06531645305514158,
+            "min": 0.027416,
+            "max": 2.166042,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 671,
+            "median": 0.006124999999999999,
+            "p95": 0.009042,
+            "mean": 0.006284134128166915,
+            "min": 0.003083,
+            "max": 0.01175,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 671,
+            "median": 0.001542,
+            "p95": 0.0023339999999999997,
+            "mean": 0.01942045603576751,
+            "min": 0.001,
+            "max": 2.111042,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 671,
+            "median": 0.000792,
+            "p95": 0.0014169999999999999,
+            "mean": 0.0008561356184798806,
+            "min": 0.000375,
+            "max": 0.004208,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 671,
+            "median": 17773.0,
+            "p95": 18173.0,
+            "mean": 18185.590163934427,
+            "min": 17773.0,
+            "max": 45071.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 667,
+            "median": 0.046167,
+            "p95": 0.065125,
+            "mean": 0.06545391004497751,
+            "min": 0.027416,
+            "max": 2.166042,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 667,
+            "median": 0.006124999999999999,
+            "p95": 0.009042,
+            "mean": 0.006288338830584707,
+            "min": 0.003083,
+            "max": 0.01175,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 667,
+            "median": 0.001542,
+            "p95": 0.0023339999999999997,
+            "mean": 0.019529173913043478,
+            "min": 0.001,
+            "max": 2.111042,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 667,
+            "median": 0.000792,
+            "p95": 0.0014169999999999999,
+            "mean": 0.0008574587706146927,
+            "min": 0.000375,
+            "max": 0.004208,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 667,
+            "median": 17773.0,
+            "p95": 18173.0,
+            "mean": 18187.836581709147,
+            "min": 17773.0,
+            "max": 45071.0,
+            "missing": 0
+          }
+        }
+      },
+      "look": {
+        "frames": 1059,
+        "focusedFrames": 1059,
+        "observedSpanSeconds": 2.4835107089893427,
+        "snapshotLagCounts": {
+          "0": 1059
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 18,
+          "tilemapClears": 1095
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 1059,
+          "median": 2.3099135141819715,
+          "p95": 2.958751516416669,
+          "mean": 2.3468789311233165,
+          "min": 1.577210845425725,
+          "max": 5.951502360403538
+        },
+        "broadRendererMilliseconds": {
+          "samples": 1059,
+          "median": 0.1236,
+          "p95": 0.1832,
+          "mean": 0.1627940509915014,
+          "min": 0.0601,
+          "max": 2.6903
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1059,
+            "median": 0.034792,
+            "p95": 0.059167,
+            "mean": 0.07264179131255902,
+            "min": 0.017792,
+            "max": 2.625375,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1059,
+            "median": 0.005791,
+            "p95": 0.008333,
+            "mean": 0.005991237960339943,
+            "min": 0.0031249999999999997,
+            "max": 0.014417,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1059,
+            "median": 0.001958,
+            "p95": 0.003208,
+            "mean": 0.038022735599622284,
+            "min": 0.001,
+            "max": 2.6029169999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1059,
+            "median": 0.00075,
+            "p95": 0.001333,
+            "mean": 0.0008058526912181303,
+            "min": 0.000375,
+            "max": 0.003208,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1059,
+            "median": 16225.0,
+            "p95": 17925.0,
+            "mean": 17259.110481586402,
+            "min": 16225.0,
+            "max": 45519.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1055,
+            "median": 0.034749999999999996,
+            "p95": 0.059167,
+            "mean": 0.07275034691943127,
+            "min": 0.017792,
+            "max": 2.625375,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1055,
+            "median": 0.005791,
+            "p95": 0.008333,
+            "mean": 0.005991955450236966,
+            "min": 0.0031249999999999997,
+            "max": 0.014417,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1055,
+            "median": 0.001958,
+            "p95": 0.003208,
+            "mean": 0.03816124928909952,
+            "min": 0.001,
+            "max": 2.6029169999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1055,
+            "median": 0.00075,
+            "p95": 0.001333,
+            "mean": 0.0008060644549763033,
+            "min": 0.000375,
+            "max": 0.003208,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1055,
+            "median": 16225.0,
+            "p95": 17925.0,
+            "mean": 17255.18578199052,
+            "min": 16225.0,
+            "max": 45519.0,
+            "missing": 0
+          }
+        }
+      },
+      "settle": {
+        "frames": 12,
+        "focusedFrames": 12,
+        "observedSpanSeconds": 0.025095749995671213,
+        "snapshotLagCounts": {
+          "0": 12
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 12
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 12,
+          "median": 2.2303146542981267,
+          "p95": 2.5906250812113285,
+          "mean": 2.2837986471131444,
+          "min": 2.01775087043643,
+          "max": 2.5906250812113285
+        },
+        "broadRendererMilliseconds": {
+          "samples": 12,
+          "median": 0.13105,
+          "p95": 0.182,
+          "mean": 0.13421666666666668,
+          "min": 0.1118,
+          "max": 0.182
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.042458499999999996,
+            "p95": 0.065625,
+            "mean": 0.04583316666666667,
+            "min": 0.038833,
+            "max": 0.065625,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.0054795,
+            "p95": 0.007875,
+            "mean": 0.005791833333333333,
+            "min": 0.0045,
+            "max": 0.007875,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.001438,
+            "p95": 0.002959,
+            "mean": 0.0015729166666666667,
+            "min": 0.0011669999999999999,
+            "max": 0.002959,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.0007295,
+            "p95": 0.0011669999999999999,
+            "mean": 0.0007814166666666667,
+            "min": 0.000542,
+            "max": 0.0011669999999999999,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 12,
+            "median": 17773.0,
+            "p95": 19682.0,
+            "mean": 17932.083333333332,
+            "min": 17773.0,
+            "max": 19682.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.042583499999999996,
+            "p95": 0.065625,
+            "mean": 0.04785925,
+            "min": 0.039542,
+            "max": 0.065625,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.005791999999999999,
+            "p95": 0.007875,
+            "mean": 0.0059949999999999995,
+            "min": 0.0045,
+            "max": 0.007875,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.0014795,
+            "p95": 0.002959,
+            "mean": 0.0016563749999999999,
+            "min": 0.001291,
+            "max": 0.002959,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.000729,
+            "p95": 0.0011669999999999999,
+            "mean": 0.000802125,
+            "min": 0.000584,
+            "max": 0.0011669999999999999,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 8,
+            "median": 17773.0,
+            "p95": 17773.0,
+            "mean": 17773.0,
+            "min": 17773.0,
+            "max": 17773.0,
+            "missing": 0
+          }
+        }
+      },
+      "idle_after": {
+        "frames": 120,
+        "focusedFrames": 120,
+        "observedSpanSeconds": 0.2689447909942828,
+        "snapshotLagCounts": {
+          "0": 120
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 113
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 120,
+          "median": 2.2295386297628284,
+          "p95": 2.8187499847263098,
+          "mean": 2.256970481054547,
+          "min": 1.6220875550061464,
+          "max": 3.3796627540141344
+        },
+        "broadRendererMilliseconds": {
+          "samples": 120,
+          "median": 0.1322,
+          "p95": 0.1863,
+          "mean": 0.13493166666666667,
+          "min": 0.0794,
+          "max": 0.2109
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.0435835,
+            "p95": 0.062792,
+            "mean": 0.04545873333333333,
+            "min": 0.028041999999999997,
+            "max": 0.0765,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.00575,
+            "p95": 0.008499999999999999,
+            "mean": 0.005839283333333333,
+            "min": 0.003333,
+            "max": 0.009165999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.0015,
+            "p95": 0.0021249999999999997,
+            "mean": 0.0015683749999999999,
+            "min": 0.001042,
+            "max": 0.002833,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.00075,
+            "p95": 0.00125,
+            "mean": 0.0007957916666666667,
+            "min": 0.00045799999999999997,
+            "max": 0.001792,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 120,
+            "median": 17773.0,
+            "p95": 17773.0,
+            "mean": 17787.266666666666,
+            "min": 17773.0,
+            "max": 18205.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.0435835,
+            "p95": 0.063167,
+            "mean": 0.04533085344827586,
+            "min": 0.028041999999999997,
+            "max": 0.0765,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.00575,
+            "p95": 0.008583,
+            "mean": 0.005821163793103447,
+            "min": 0.003333,
+            "max": 0.009165999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.0015,
+            "p95": 0.0021249999999999997,
+            "mean": 0.0015649827586206896,
+            "min": 0.001042,
+            "max": 0.002833,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.00075,
+            "p95": 0.00125,
+            "mean": 0.0007883879310344827,
+            "min": 0.00045799999999999997,
+            "max": 0.0017079999999999999,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 116,
+            "median": 17773.0,
+            "p95": 17773.0,
+            "mean": 17784.03448275862,
+            "min": 17773.0,
+            "max": 18199.0,
+            "missing": 0
+          }
+        }
+      }
+    },
+    "hashes": {
+      "hud-profile.json": "2144fad95f1b6ef4ba2182b52159e4d1cd9c0506945fe07ef64509cecb503026",
+      "report.json": "a8ba374911f0442cfe9215bf31b80c481e2fa130016d9c37c38eb5947ef2435a",
+      "hud-profile.csv": "e23dd5a685b0fd7c52fc2d1e9444fd576012defe03e272644949e1e0bcad56e0"
+    },
+    "gcCollectionDeltas": {
+      "gc0": 1,
+      "gc1": 1,
+      "gc2": 1
+    }
+  },
+  "limitations": [
+    "Editor diagnostic fixed-input observation only; no physical Steam Deck, standalone GPU or FPS gain inference.",
+    "The four time markers are nested/inclusive; never sum them as exclusive HUD cost.",
+    "Native LastValue can describe an earlier recorder frame. Snapshot/observer IDs do not identify that recorder sample; per-phase grouping is approximate at boundaries.",
+    "Empty recorder values remain missing, never zero. Zero values are reported as native observations, not proof of no work or allocations.",
+    "GC Allocated In Frame is whole-frame diagnostic/editor allocation including observer overhead; it does not identify HUD allocations or prove zero-allocation behavior.",
+    "TilemapClearCount is a global frame counter, not a HUD-only metric. Broad renderer and wall-frame times include unrelated world/editor work.",
+    "Input waits are time-based, so faster/slower runs produce different phase frame counts. Compare fixed action outcomes and phase distributions; do not compare raw sums of marker samples.",
+    "Two-row boundary trimming is only a sensitivity view; it is not evidence that profiler samples and explicit frame counters are aligned.",
+    "Root must separately retain source revision/diff identity and confirm the same observer implementation. Receipt recipe text alone cannot prove tested source identity.",
+    "This old-API route does not exercise the newly added full-history UI or establish subjective readability."
+  ],
+  "unityInvoked": false,
+  "after": {
+    "folder": "/Users/steven/caves-of-ooo/Docs/Verification/HudPolish/Profile/00059d01db8144d586c8d6259fd552ab",
+    "stage": "after",
+    "runId": "00059d01db8144d586c8d6259fd552ab",
+    "recipe": "hud-existing-input-v1",
+    "frames": 5434,
+    "settings": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 18465,
+      "gc1": 18465,
+      "gc2": 18465,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "cameras": "hotbar=(x:0.00, y:0.00, width:1461.00, height:162.00);sidebar=(x:1461.00, y:0.00, width:459.00, height:1080.00);hotbarTarget=screen;sidebarTarget=screen",
+    "preferences": "native=True;lowDetail=False;scale=1;shadows=True;fx=Full;fxSpeed=1;music=0.55;ambience=0.45;sfx=1",
+    "initialSlots": "0:Pyromancy_EmberSpit:Ember Spit:DirectionLine:4:0|1:Pyromancy_FlamingHands:Flaming Hands:AdjacentCell:1:0|2:Hydromancy_JetBlast:Jet Blast:DirectionLine:2:0|3:Galvanism_GroundSurge:Ground Surge:DirectionLine:4:0|4:Cryomancy_RimeGrip:Rime Grip:DirectionLine:5:0|5:Spellcraft_Calm:Calm:DirectionLine:6:0|6:empty|7:empty|8:empty|9:empty",
+    "startTick": 10,
+    "startLogCount": 7,
+    "markerDescriptions": {
+      "COO.ZoneRenderer.RenderSidebar": {
+        "name": "COO.ZoneRenderer.RenderSidebar",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "name": "COO.ZoneRenderer.RenderHotbar",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.UI.Sidebar.Render": {
+        "name": "COO.UI.Sidebar.Render",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "COO.UI.Hotbar.Render": {
+        "name": "COO.UI.Hotbar.Render",
+        "category": "Scripts",
+        "units": "TimeNanoseconds",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      },
+      "GC Allocated In Frame": {
+        "name": "GC Allocated In Frame",
+        "category": "Memory",
+        "units": "Bytes",
+        "dataType": "Int64",
+        "failure": "",
+        "matchingHandles": 1,
+        "valid": true
+      }
+    },
+    "phases": {
+      "idle": {
+        "frames": 119,
+        "focusedFrames": 119,
+        "observedSpanSeconds": 0.3344039579969831,
+        "snapshotLagCounts": {
+          "0": 119
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 0
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 119,
+          "median": 2.8239937964826822,
+          "p95": 3.3795421477407217,
+          "mean": 3.92533719203114,
+          "min": 2.2718324325978756,
+          "max": 131.56820833683014
+        },
+        "broadRendererMilliseconds": {
+          "samples": 119,
+          "median": 0.1259,
+          "p95": 0.171,
+          "mean": 0.1313075630252101,
+          "min": 0.1013,
+          "max": 0.2182
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.047792,
+            "p95": 0.06808299999999999,
+            "mean": 0.05084108403361345,
+            "min": 0.0,
+            "max": 0.102458,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.007124999999999999,
+            "p95": 0.010624999999999999,
+            "mean": 0.007416647058823529,
+            "min": 0.0,
+            "max": 0.012959,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.003417,
+            "p95": 0.005042,
+            "mean": 0.0035560588235294113,
+            "min": 0.0,
+            "max": 0.006875,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 119,
+            "median": 0.001166,
+            "p95": 0.002042,
+            "mean": 0.0012405714285714283,
+            "min": 0.0,
+            "max": 0.002833,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 119,
+            "median": 17861.0,
+            "p95": 18087.0,
+            "mean": 17912.33613445378,
+            "min": 222.0,
+            "max": 30641.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.047667,
+            "p95": 0.066708,
+            "mean": 0.051088086956521735,
+            "min": 0.037416,
+            "max": 0.102458,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.007124999999999999,
+            "p95": 0.010417,
+            "mean": 0.0074307739130434775,
+            "min": 0.005208,
+            "max": 0.012499999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.003417,
+            "p95": 0.004958,
+            "mean": 0.0035754000000000003,
+            "min": 0.002209,
+            "max": 0.006875,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 115,
+            "median": 0.0011669999999999999,
+            "p95": 0.002,
+            "mean": 0.0012485739130434783,
+            "min": 0.00075,
+            "max": 0.002833,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 115,
+            "median": 17861.0,
+            "p95": 18087.0,
+            "mean": 18059.904347826086,
+            "min": 17861.0,
+            "max": 30641.0,
+            "missing": 0
+          }
+        }
+      },
+      "cycle": {
+        "frames": 949,
+        "focusedFrames": 949,
+        "observedSpanSeconds": 2.8766316669934895,
+        "snapshotLagCounts": {
+          "0": 949
+        },
+        "workTotals": {
+          "hotbarRenders": 24,
+          "sidebarRenders": 0,
+          "tilemapClears": 513
+        },
+        "selectedSlotSequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 949,
+          "median": 2.9048752039670944,
+          "p95": 3.72242066077888,
+          "mean": 3.034625310123014,
+          "min": 2.318707527592778,
+          "max": 14.57042247056961
+        },
+        "broadRendererMilliseconds": {
+          "samples": 949,
+          "median": 0.1437,
+          "p95": 0.2182,
+          "mean": 0.16556859852476288,
+          "min": 0.1045,
+          "max": 8.2813
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 949,
+            "median": 0.050332999999999996,
+            "p95": 0.075417,
+            "mean": 0.06239844994731296,
+            "min": 0.037541,
+            "max": 8.179917,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 949,
+            "median": 0.007083,
+            "p95": 0.011333,
+            "mean": 0.01213553951527924,
+            "min": 0.0052499999999999995,
+            "max": 0.24754199999999998,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 949,
+            "median": 0.0034579999999999997,
+            "p95": 0.005042,
+            "mean": 0.0036317513171759746,
+            "min": 0.002,
+            "max": 0.016749999999999998,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 949,
+            "median": 0.001125,
+            "p95": 0.002041,
+            "mean": 0.005857594309799789,
+            "min": 0.000625,
+            "max": 0.22874999999999998,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 949,
+            "median": 17921.0,
+            "p95": 19368.0,
+            "mean": 18432.885142255007,
+            "min": 17861.0,
+            "max": 45720.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 945,
+            "median": 0.050332999999999996,
+            "p95": 0.075417,
+            "mean": 0.06244493544973545,
+            "min": 0.037541,
+            "max": 8.179917,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 945,
+            "median": 0.007083,
+            "p95": 0.011333,
+            "mean": 0.012157455026455027,
+            "min": 0.0052499999999999995,
+            "max": 0.24754199999999998,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 945,
+            "median": 0.0034579999999999997,
+            "p95": 0.005042,
+            "mean": 0.0036327058201058196,
+            "min": 0.002,
+            "max": 0.016749999999999998,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 945,
+            "median": 0.001125,
+            "p95": 0.002041,
+            "mean": 0.005877889947089947,
+            "min": 0.000625,
+            "max": 0.22874999999999998,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 945,
+            "median": 17921.0,
+            "p95": 19300.0,
+            "mean": 18406.821164021163,
+            "min": 17921.0,
+            "max": 45720.0,
+            "missing": 0
+          }
+        }
+      },
+      "messages": {
+        "frames": 1805,
+        "focusedFrames": 1805,
+        "observedSpanSeconds": 8.886342375015374,
+        "snapshotLagCounts": {
+          "0": 1805
+        },
+        "workTotals": {
+          "hotbarRenders": 80,
+          "sidebarRenders": 40,
+          "tilemapClears": 1723
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 1805,
+          "median": 2.6417020708322525,
+          "p95": 6.455831695348024,
+          "mean": 4.927300147511003,
+          "min": 1.685537165030837,
+          "max": 1107.3517799377441
+        },
+        "broadRendererMilliseconds": {
+          "samples": 1805,
+          "median": 0.1467,
+          "p95": 0.3271,
+          "mean": 0.3439937396121884,
+          "min": 0.0792,
+          "max": 223.8026
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1805,
+            "median": 0.050207999999999996,
+            "p95": 0.16624999999999998,
+            "mean": 0.23816254404432133,
+            "min": 0.029334,
+            "max": 223.693375,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1805,
+            "median": 0.006333,
+            "p95": 0.012374999999999999,
+            "mean": 0.014703327977839336,
+            "min": 0.003792,
+            "max": 0.27949999999999997,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1805,
+            "median": 0.006166,
+            "p95": 0.00975,
+            "mean": 0.05256257285318559,
+            "min": 0.002875,
+            "max": 2.472334,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1805,
+            "median": 0.001041,
+            "p95": 0.002333,
+            "mean": 0.008824293628808865,
+            "min": 0.000542,
+            "max": 0.230541,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1805,
+            "median": 17861.0,
+            "p95": 12732664.0,
+            "mean": 1734462.6376731303,
+            "min": 17861.0,
+            "max": 343494172.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1801,
+            "median": 0.050249999999999996,
+            "p95": 0.16624999999999998,
+            "mean": 0.23859981565796778,
+            "min": 0.029334,
+            "max": 223.693375,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1801,
+            "median": 0.006333,
+            "p95": 0.012041999999999999,
+            "mean": 0.014608300388672958,
+            "min": 0.003792,
+            "max": 0.27949999999999997,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1801,
+            "median": 0.006167,
+            "p95": 0.00975,
+            "mean": 0.05267001332593004,
+            "min": 0.002875,
+            "max": 2.472334,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1801,
+            "median": 0.001041,
+            "p95": 0.00225,
+            "mean": 0.008736058856191005,
+            "min": 0.000542,
+            "max": 0.230541,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1801,
+            "median": 17861.0,
+            "p95": 12732664.0,
+            "mean": 1738273.2976124375,
+            "min": 17861.0,
+            "max": 343494172.0,
+            "missing": 0
+          }
+        }
+      },
+      "scroll_older": {
+        "frames": 698,
+        "focusedFrames": 698,
+        "observedSpanSeconds": 1.6432375830190722,
+        "snapshotLagCounts": {
+          "0": 698
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 6,
+          "tilemapClears": 710
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 698,
+          "median": 2.2881022887304425,
+          "p95": 3.014625748619437,
+          "mean": 2.357314881817958,
+          "min": 1.711791381239891,
+          "max": 4.749794490635395
+        },
+        "broadRendererMilliseconds": {
+          "samples": 698,
+          "median": 0.13595000000000002,
+          "p95": 0.1881,
+          "mean": 0.1567432664756447,
+          "min": 0.089,
+          "max": 2.1726
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 698,
+            "median": 0.0444585,
+            "p95": 0.064958,
+            "mean": 0.06358888968481376,
+            "min": 0.031083,
+            "max": 2.071625,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 698,
+            "median": 0.005958,
+            "p95": 0.008542,
+            "mean": 0.0062319269340974206,
+            "min": 0.003958,
+            "max": 0.012915999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 698,
+            "median": 0.005375,
+            "p95": 0.008832999999999999,
+            "mean": 0.022941616045845274,
+            "min": 0.002542,
+            "max": 2.036458,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 698,
+            "median": 0.000959,
+            "p95": 0.001583,
+            "mean": 0.0010302091690544413,
+            "min": 0.000583,
+            "max": 0.002709,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 698,
+            "median": 17861.0,
+            "p95": 18013.0,
+            "mean": 18183.015759312322,
+            "min": 17861.0,
+            "max": 45159.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 694,
+            "median": 0.0445205,
+            "p95": 0.064958,
+            "mean": 0.06375372766570606,
+            "min": 0.031083,
+            "max": 2.071625,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 694,
+            "median": 0.005958,
+            "p95": 0.008542,
+            "mean": 0.0062384279538904895,
+            "min": 0.003958,
+            "max": 0.012915999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 694,
+            "median": 0.005395499999999999,
+            "p95": 0.008832999999999999,
+            "mean": 0.023052530259365992,
+            "min": 0.003083,
+            "max": 2.036458,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 694,
+            "median": 0.000959,
+            "p95": 0.001583,
+            "mean": 0.0010309841498559078,
+            "min": 0.000583,
+            "max": 0.002709,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 694,
+            "median": 17861.0,
+            "p95": 18013.0,
+            "mean": 18180.685878962537,
+            "min": 17861.0,
+            "max": 45159.0,
+            "missing": 0
+          }
+        }
+      },
+      "scroll_newer": {
+        "frames": 704,
+        "focusedFrames": 704,
+        "observedSpanSeconds": 1.6478580409893766,
+        "snapshotLagCounts": {
+          "0": 704
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 6,
+          "tilemapClears": 425
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 704,
+          "median": 2.3010416189208627,
+          "p95": 3.0018778052181005,
+          "mean": 2.3440381195210978,
+          "min": 1.6962939407676458,
+          "max": 5.461536347866058
+        },
+        "broadRendererMilliseconds": {
+          "samples": 704,
+          "median": 0.12669999999999998,
+          "p95": 0.1823,
+          "mean": 0.14739914772727272,
+          "min": 0.0691,
+          "max": 2.7103
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 704,
+            "median": 0.0448125,
+            "p95": 0.066417,
+            "mean": 0.06463324147727273,
+            "min": 0.027625,
+            "max": 2.623958,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 704,
+            "median": 0.006,
+            "p95": 0.008749999999999999,
+            "mean": 0.006234921875,
+            "min": 0.0036669999999999997,
+            "max": 0.013583,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 704,
+            "median": 0.005375,
+            "p95": 0.008875,
+            "mean": 0.023501838068181815,
+            "min": 0.002833,
+            "max": 2.5865419999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 704,
+            "median": 0.000958,
+            "p95": 0.001583,
+            "mean": 0.0010242045454545454,
+            "min": 0.000542,
+            "max": 0.006042,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 704,
+            "median": 17861.0,
+            "p95": 18053.0,
+            "mean": 18176.738636363636,
+            "min": 17861.0,
+            "max": 45311.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 700,
+            "median": 0.044833,
+            "p95": 0.066417,
+            "mean": 0.06476150285714286,
+            "min": 0.027625,
+            "max": 2.623958,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 700,
+            "median": 0.006,
+            "p95": 0.008749999999999999,
+            "mean": 0.006239001428571428,
+            "min": 0.0036669999999999997,
+            "max": 0.013583,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 700,
+            "median": 0.005375,
+            "p95": 0.008875,
+            "mean": 0.023604229999999997,
+            "min": 0.002833,
+            "max": 2.5865419999999997,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 700,
+            "median": 0.000958,
+            "p95": 0.001583,
+            "mean": 0.0010249385714285715,
+            "min": 0.000542,
+            "max": 0.006042,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 700,
+            "median": 17861.0,
+            "p95": 18053.0,
+            "mean": 18178.325714285715,
+            "min": 17861.0,
+            "max": 45311.0,
+            "missing": 0
+          }
+        }
+      },
+      "look": {
+        "frames": 1027,
+        "focusedFrames": 1027,
+        "observedSpanSeconds": 2.4921453749993816,
+        "snapshotLagCounts": {
+          "0": 1027
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 18,
+          "tilemapClears": 36
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 1027,
+          "median": 2.3563350550830364,
+          "p95": 3.0541240703314543,
+          "mean": 2.4282294274520893,
+          "min": 1.7260841559618711,
+          "max": 11.61471102386713
+        },
+        "broadRendererMilliseconds": {
+          "samples": 1027,
+          "median": 0.1025,
+          "p95": 0.1512,
+          "mean": 0.14338169425511196,
+          "min": 0.0534,
+          "max": 3.3431
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1027,
+            "median": 0.036125,
+            "p95": 0.060708,
+            "mean": 0.07498239435248295,
+            "min": 0.021082999999999998,
+            "max": 2.4524589999999997,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1027,
+            "median": 0.006166,
+            "p95": 0.008792,
+            "mean": 0.006390584225900681,
+            "min": 0.003583,
+            "max": 0.012542,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1027,
+            "median": 0.006124999999999999,
+            "p95": 0.010166999999999999,
+            "mean": 0.04326541674780915,
+            "min": 0.0031669999999999997,
+            "max": 2.420792,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1027,
+            "median": 0.001,
+            "p95": 0.001625,
+            "mean": 0.0010669133398247322,
+            "min": 0.000583,
+            "max": 0.002708,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1027,
+            "median": 16313.0,
+            "p95": 17913.0,
+            "mean": 17327.964946445958,
+            "min": 16313.0,
+            "max": 53079.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 1023,
+            "median": 0.036083,
+            "p95": 0.060708,
+            "mean": 0.07509494428152493,
+            "min": 0.021082999999999998,
+            "max": 2.4524589999999997,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 1023,
+            "median": 0.006166,
+            "p95": 0.008792,
+            "mean": 0.00639410752688172,
+            "min": 0.003583,
+            "max": 0.012542,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 1023,
+            "median": 0.006124999999999999,
+            "p95": 0.010166999999999999,
+            "mean": 0.043414956011730205,
+            "min": 0.0031669999999999997,
+            "max": 2.420792,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 1023,
+            "median": 0.001,
+            "p95": 0.001625,
+            "mean": 0.0010670117302052785,
+            "min": 0.000583,
+            "max": 0.002708,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 1023,
+            "median": 16313.0,
+            "p95": 17885.0,
+            "mean": 17323.842619745847,
+            "min": 16313.0,
+            "max": 53079.0,
+            "missing": 0
+          }
+        }
+      },
+      "settle": {
+        "frames": 12,
+        "focusedFrames": 12,
+        "observedSpanSeconds": 0.024380208022193983,
+        "snapshotLagCounts": {
+          "0": 12
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 0
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 12,
+          "median": 2.143459510989487,
+          "p95": 2.6535855140537024,
+          "mean": 2.229330265739312,
+          "min": 1.9787061028182507,
+          "max": 2.6535855140537024
+        },
+        "broadRendererMilliseconds": {
+          "samples": 12,
+          "median": 0.11065,
+          "p95": 0.1656,
+          "mean": 0.11676666666666667,
+          "min": 0.0878,
+          "max": 0.1656
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.04614549999999999,
+            "p95": 0.065459,
+            "mean": 0.04747925,
+            "min": 0.037584,
+            "max": 0.065459,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.005646,
+            "p95": 0.007333999999999999,
+            "mean": 0.005847333333333333,
+            "min": 0.004958,
+            "max": 0.007333999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.004708499999999999,
+            "p95": 0.007291,
+            "mean": 0.0051355,
+            "min": 0.004,
+            "max": 0.007291,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 12,
+            "median": 0.0009584999999999999,
+            "p95": 0.001333,
+            "mean": 0.0010034999999999998,
+            "min": 0.000834,
+            "max": 0.001333,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 12,
+            "median": 17861.0,
+            "p95": 19770.0,
+            "mean": 18020.083333333332,
+            "min": 17861.0,
+            "max": 19770.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.04672849999999999,
+            "p95": 0.065459,
+            "mean": 0.0485625,
+            "min": 0.037584,
+            "max": 0.065459,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.005646,
+            "p95": 0.007333999999999999,
+            "mean": 0.0058804999999999994,
+            "min": 0.005333,
+            "max": 0.007333999999999999,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.004729499999999999,
+            "p95": 0.006791999999999999,
+            "mean": 0.00515125,
+            "min": 0.0045,
+            "max": 0.006791999999999999,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 8,
+            "median": 0.0009584999999999999,
+            "p95": 0.001333,
+            "mean": 0.00100525,
+            "min": 0.000834,
+            "max": 0.001333,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 8,
+            "median": 17861.0,
+            "p95": 17861.0,
+            "mean": 17861.0,
+            "min": 17861.0,
+            "max": 17861.0,
+            "missing": 0
+          }
+        }
+      },
+      "idle_after": {
+        "frames": 120,
+        "focusedFrames": 120,
+        "observedSpanSeconds": 0.30036487500183284,
+        "snapshotLagCounts": {
+          "0": 120
+        },
+        "workTotals": {
+          "hotbarRenders": 0,
+          "sidebarRenders": 0,
+          "tilemapClears": 0
+        },
+        "selectedSlotSequence": [
+          0
+        ],
+        "logOffsetSequence": [
+          0
+        ],
+        "wallFrameMilliseconds": {
+          "samples": 120,
+          "median": 2.4423752911388874,
+          "p95": 3.1663335394114256,
+          "mean": 2.5193663178166994,
+          "min": 1.9212868064641953,
+          "max": 3.606377635151148
+        },
+        "broadRendererMilliseconds": {
+          "samples": 120,
+          "median": 0.12329999999999999,
+          "p95": 0.1555,
+          "mean": 0.125455,
+          "min": 0.0907,
+          "max": 0.181
+        },
+        "markers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.049062499999999995,
+            "p95": 0.06791699999999999,
+            "mean": 0.05093819166666667,
+            "min": 0.035917,
+            "max": 0.079208,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.006458499999999999,
+            "p95": 0.009625,
+            "mean": 0.006899316666666666,
+            "min": 0.004667,
+            "max": 0.015916,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.0057085,
+            "p95": 0.009708,
+            "mean": 0.006395849999999999,
+            "min": 0.004084,
+            "max": 0.016333,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 120,
+            "median": 0.001042,
+            "p95": 0.0017499999999999998,
+            "mean": 0.00111455,
+            "min": 0.000583,
+            "max": 0.0021249999999999997,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 120,
+            "median": 17861.0,
+            "p95": 17861.0,
+            "mean": 18089.533333333333,
+            "min": 17861.0,
+            "max": 44711.0,
+            "missing": 0
+          }
+        },
+        "trimmedTwoEachBoundaryMarkers": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.049458499999999996,
+            "p95": 0.06858299999999999,
+            "mean": 0.0510869224137931,
+            "min": 0.035917,
+            "max": 0.079208,
+            "missing": 0
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.006479499999999999,
+            "p95": 0.009792,
+            "mean": 0.006945060344827586,
+            "min": 0.004875,
+            "max": 0.015916,
+            "missing": 0
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.005709,
+            "p95": 0.009708,
+            "mean": 0.006432120689655172,
+            "min": 0.004084,
+            "max": 0.016333,
+            "missing": 0
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "samples": 116,
+            "median": 0.001042,
+            "p95": 0.0017499999999999998,
+            "mean": 0.0011217327586206896,
+            "min": 0.000625,
+            "max": 0.0021249999999999997,
+            "missing": 0
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "samples": 116,
+            "median": 17861.0,
+            "p95": 17861.0,
+            "mean": 18097.41379310345,
+            "min": 17861.0,
+            "max": 44711.0,
+            "missing": 0
+          }
+        }
+      }
+    },
+    "hashes": {
+      "hud-profile.json": "bcc2d2089876611955334b6ed8f192ae6cef4e3a1cd50eb2dba17c790617a93b",
+      "report.json": "f60c8d3542bde6ea158632bfdd2136d4db41b49d5e6460a1dbc35780f70834ce",
+      "hud-profile.csv": "21adca9a09538fa041a2d17b12c6b641d36021a70b32cd3cecae7b07155d7eef"
+    },
+    "gcCollectionDeltas": {
+      "gc0": 6,
+      "gc1": 6,
+      "gc2": 6
+    }
+  },
+  "comparison": {
+    "matchedSettingsAndObservedRecipe": true,
+    "sameObserverSourceConfirmedByCoordinator": true,
+    "comparisonEligible": true,
+    "mismatches": [],
+    "phaseComparisons": {
+      "idle": {
+        "beforeFrames": 119,
+        "afterFrames": 119,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "tilemapClears": {
+            "before": 0,
+            "after": 0
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.041041,
+            "afterMedian": 0.047792,
+            "beforeP95": 0.055833,
+            "afterP95": 0.06808299999999999,
+            "beforeSamples": 119,
+            "afterSamples": 119
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.0054589999999999994,
+            "afterMedian": 0.007124999999999999,
+            "beforeP95": 0.007916,
+            "afterP95": 0.010624999999999999,
+            "beforeSamples": 119,
+            "afterSamples": 119
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001333,
+            "afterMedian": 0.003417,
+            "beforeP95": 0.0019169999999999999,
+            "afterP95": 0.005042,
+            "beforeSamples": 119,
+            "afterSamples": 119
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.001166,
+            "beforeP95": 0.0011669999999999999,
+            "afterP95": 0.002042,
+            "beforeSamples": 119,
+            "afterSamples": 119
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 17965.0,
+            "afterP95": 18087.0,
+            "beforeSamples": 119,
+            "afterSamples": 119
+          }
+        }
+      },
+      "cycle": {
+        "beforeFrames": 1139,
+        "afterFrames": 949,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 24,
+            "after": 24
+          },
+          "sidebarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "tilemapClears": {
+            "before": 673,
+            "after": 513
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.041124999999999995,
+            "afterMedian": 0.050332999999999996,
+            "beforeP95": 0.057332999999999995,
+            "afterP95": 0.075417,
+            "beforeSamples": 1139,
+            "afterSamples": 949
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.005667,
+            "afterMedian": 0.007083,
+            "beforeP95": 0.008709,
+            "afterP95": 0.011333,
+            "beforeSamples": 1139,
+            "afterSamples": 949
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001375,
+            "afterMedian": 0.0034579999999999997,
+            "beforeP95": 0.0020829999999999998,
+            "afterP95": 0.005042,
+            "beforeSamples": 1139,
+            "afterSamples": 949
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.001125,
+            "beforeP95": 0.001375,
+            "afterP95": 0.002041,
+            "beforeSamples": 1139,
+            "afterSamples": 949
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17833.0,
+            "afterMedian": 17921.0,
+            "beforeP95": 18265.0,
+            "afterP95": 19368.0,
+            "beforeSamples": 1139,
+            "afterSamples": 949
+          }
+        }
+      },
+      "messages": {
+        "beforeFrames": 2394,
+        "afterFrames": 1805,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 80,
+            "after": 80
+          },
+          "sidebarRenders": {
+            "before": 40,
+            "after": 40
+          },
+          "tilemapClears": {
+            "before": 2474,
+            "after": 1723
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.043167,
+            "afterMedian": 0.050207999999999996,
+            "beforeP95": 0.0625,
+            "afterP95": 0.16624999999999998,
+            "beforeSamples": 2394,
+            "afterSamples": 1805
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.005791999999999999,
+            "afterMedian": 0.006333,
+            "beforeP95": 0.009916,
+            "afterP95": 0.012374999999999999,
+            "beforeSamples": 2394,
+            "afterSamples": 1805
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001583,
+            "afterMedian": 0.006166,
+            "beforeP95": 0.002459,
+            "afterP95": 0.00975,
+            "beforeSamples": 2394,
+            "afterSamples": 1805
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.001041,
+            "beforeP95": 0.001625,
+            "afterP95": 0.002333,
+            "beforeSamples": 2394,
+            "afterSamples": 1805
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 26059.0,
+            "afterP95": 12732664.0,
+            "beforeSamples": 2394,
+            "afterSamples": 1805
+          }
+        }
+      },
+      "scroll_older": {
+        "beforeFrames": 719,
+        "afterFrames": 698,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 6,
+            "after": 6
+          },
+          "tilemapClears": {
+            "before": 731,
+            "after": 710
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.043667,
+            "afterMedian": 0.0444585,
+            "beforeP95": 0.063334,
+            "afterP95": 0.064958,
+            "beforeSamples": 719,
+            "afterSamples": 698
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.005709,
+            "afterMedian": 0.005958,
+            "beforeP95": 0.008875,
+            "afterP95": 0.008542,
+            "beforeSamples": 719,
+            "afterSamples": 698
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.0014579999999999999,
+            "afterMedian": 0.005375,
+            "beforeP95": 0.002208,
+            "afterP95": 0.008832999999999999,
+            "beforeSamples": 719,
+            "afterSamples": 698
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.000959,
+            "beforeP95": 0.001375,
+            "afterP95": 0.001583,
+            "beforeSamples": 719,
+            "afterSamples": 698
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 18011.0,
+            "afterP95": 18013.0,
+            "beforeSamples": 719,
+            "afterSamples": 698
+          }
+        }
+      },
+      "scroll_newer": {
+        "beforeFrames": 671,
+        "afterFrames": 704,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 6,
+            "after": 6
+          },
+          "tilemapClears": {
+            "before": 683,
+            "after": 425
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.046125,
+            "afterMedian": 0.0448125,
+            "beforeP95": 0.065125,
+            "afterP95": 0.066417,
+            "beforeSamples": 671,
+            "afterSamples": 704
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.006124999999999999,
+            "afterMedian": 0.006,
+            "beforeP95": 0.009042,
+            "afterP95": 0.008749999999999999,
+            "beforeSamples": 671,
+            "afterSamples": 704
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001542,
+            "afterMedian": 0.005375,
+            "beforeP95": 0.0023339999999999997,
+            "afterP95": 0.008875,
+            "beforeSamples": 671,
+            "afterSamples": 704
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.000792,
+            "afterMedian": 0.000958,
+            "beforeP95": 0.0014169999999999999,
+            "afterP95": 0.001583,
+            "beforeSamples": 671,
+            "afterSamples": 704
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 18173.0,
+            "afterP95": 18053.0,
+            "beforeSamples": 671,
+            "afterSamples": 704
+          }
+        }
+      },
+      "look": {
+        "beforeFrames": 1059,
+        "afterFrames": 1027,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 18,
+            "after": 18
+          },
+          "tilemapClears": {
+            "before": 1095,
+            "after": 36
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.034792,
+            "afterMedian": 0.036125,
+            "beforeP95": 0.059167,
+            "afterP95": 0.060708,
+            "beforeSamples": 1059,
+            "afterSamples": 1027
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.005791,
+            "afterMedian": 0.006166,
+            "beforeP95": 0.008333,
+            "afterP95": 0.008792,
+            "beforeSamples": 1059,
+            "afterSamples": 1027
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001958,
+            "afterMedian": 0.006124999999999999,
+            "beforeP95": 0.003208,
+            "afterP95": 0.010166999999999999,
+            "beforeSamples": 1059,
+            "afterSamples": 1027
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.001,
+            "beforeP95": 0.001333,
+            "afterP95": 0.001625,
+            "beforeSamples": 1059,
+            "afterSamples": 1027
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 16225.0,
+            "afterMedian": 16313.0,
+            "beforeP95": 17925.0,
+            "afterP95": 17913.0,
+            "beforeSamples": 1059,
+            "afterSamples": 1027
+          }
+        }
+      },
+      "settle": {
+        "beforeFrames": 12,
+        "afterFrames": 12,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "tilemapClears": {
+            "before": 12,
+            "after": 0
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.042458499999999996,
+            "afterMedian": 0.04614549999999999,
+            "beforeP95": 0.065625,
+            "afterP95": 0.065459,
+            "beforeSamples": 12,
+            "afterSamples": 12
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.0054795,
+            "afterMedian": 0.005646,
+            "beforeP95": 0.007875,
+            "afterP95": 0.007333999999999999,
+            "beforeSamples": 12,
+            "afterSamples": 12
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.001438,
+            "afterMedian": 0.004708499999999999,
+            "beforeP95": 0.002959,
+            "afterP95": 0.007291,
+            "beforeSamples": 12,
+            "afterSamples": 12
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.0007295,
+            "afterMedian": 0.0009584999999999999,
+            "beforeP95": 0.0011669999999999999,
+            "afterP95": 0.001333,
+            "beforeSamples": 12,
+            "afterSamples": 12
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 19682.0,
+            "afterP95": 19770.0,
+            "beforeSamples": 12,
+            "afterSamples": 12
+          }
+        }
+      },
+      "idle_after": {
+        "beforeFrames": 120,
+        "afterFrames": 120,
+        "workTotals": {
+          "hotbarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "sidebarRenders": {
+            "before": 0,
+            "after": 0
+          },
+          "tilemapClears": {
+            "before": 113,
+            "after": 0
+          }
+        },
+        "markerDistributions": {
+          "COO.ZoneRenderer.RenderSidebar": {
+            "unit": "ms",
+            "beforeMedian": 0.0435835,
+            "afterMedian": 0.049062499999999995,
+            "beforeP95": 0.062792,
+            "afterP95": 0.06791699999999999,
+            "beforeSamples": 120,
+            "afterSamples": 120
+          },
+          "COO.ZoneRenderer.RenderHotbar": {
+            "unit": "ms",
+            "beforeMedian": 0.00575,
+            "afterMedian": 0.006458499999999999,
+            "beforeP95": 0.008499999999999999,
+            "afterP95": 0.009625,
+            "beforeSamples": 120,
+            "afterSamples": 120
+          },
+          "COO.UI.Sidebar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.0015,
+            "afterMedian": 0.0057085,
+            "beforeP95": 0.0021249999999999997,
+            "afterP95": 0.009708,
+            "beforeSamples": 120,
+            "afterSamples": 120
+          },
+          "COO.UI.Hotbar.Render": {
+            "unit": "ms",
+            "beforeMedian": 0.00075,
+            "afterMedian": 0.001042,
+            "beforeP95": 0.00125,
+            "afterP95": 0.0017499999999999998,
+            "beforeSamples": 120,
+            "afterSamples": 120
+          },
+          "GC Allocated In Frame": {
+            "unit": "bytes",
+            "beforeMedian": 17773.0,
+            "afterMedian": 17861.0,
+            "beforeP95": 17773.0,
+            "afterP95": 17861.0,
+            "beforeSamples": 120,
+            "afterSamples": 120
+          }
+        }
+      }
+    }
+  }
+}
