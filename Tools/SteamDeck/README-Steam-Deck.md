@@ -1,8 +1,20 @@
-# Caves of Ooo — Steam Deck Qud-style controls update
+# Caves of Ooo — Steam Deck current build
 
 This native Linux build includes Qud-style built-in controller controls, the Vulkan world-view
 fix, reduced drawing and interface work, faster save capture, and background save
 compression. It preserves the 3D scene and existing save format.
+
+This update also completes companion pack transfers, deliberate equipment
+changes and safe step-aside orders. Adjacent recruits offer these choices through
+their interaction menu; pack inspection and gear comparison are free. Following
+companions can assist after your direct spell or weapon-skill damage. Stay orders
+still prevent offensive assistance.
+
+Prismreed pith can wick oil, pitch or honey from you or a willing nearby ally.
+Successful food and tonic use now costs an action. Coins taken from containers
+go directly to your purse, armor comparisons explain which body slots receive
+protection, and ditch-cutter mates can shove with their cudgels. Tinkering remains
+unavailable in normal play.
 
 ## Replace the old copy
 

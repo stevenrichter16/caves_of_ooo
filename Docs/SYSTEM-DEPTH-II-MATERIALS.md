@@ -161,3 +161,15 @@ They cannot prove Unity input, rendering or real-time cadence. Native tests and
 Play are coordinator gates; no physical Steam Deck observation is claimed.
 This doc and the exact owned tests/code/receipts accompany each scoped commit.
 No edits to other agents' sources, the master plan, or unrelated workspace dirt.
+
+## Final integration closure
+
+Final native Unity integration passed **1,606/1,606** selected cases in job
+`e80e1a3999bb4459883d4c3902c5c0fe`, including every fixture named above and the
+updated legacy consumable pins. Raw: `Verification/SystemDepthII/native-final-integration.xml`.
+Actual Play passed **14/14**, zero unexpected errors, run
+`78c52afbb3da4f72940713ffabe0a4fd`; eight original-resolution captures were
+visually reviewed. This closes the historical pending native/Play notes above.
+See `SYSTEM-DEPTH-TEN-ITERATIONS-II.md` for the retained first-run failures,
+subsequent fixes, arranged-fixture bounds and requested Deck package status.
+No physical Steam Deck test or whole-project test claim.

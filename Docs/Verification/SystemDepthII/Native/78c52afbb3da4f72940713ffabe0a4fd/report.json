@@ -1,0 +1,64 @@
+{
+    "runId": "78c52afbb3da4f72940713ffabe0a4fd",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 new game with explicitly arranged factory companion, supplies, chest, oil coating, injury and hostile ditch mate. Native keyboard and synthetic Gamepad menu navigation execute ordinary transfers, gear choices, step-aside, pith cleanup, eating, tonic use and container looting. The actual starting Ember Spit is cast with the ordinary scheduler active. Exact owners, quantities, purse, effects, cooldowns, goals and action costs are checked; screenshots record the UI. No direct service call performs an acceptance action.",
+    "cannotVerify": "Arranged fixtures do not prove organic recruitment/item acquisition, encounter frequency, overall balance, physical Steam Deck feel or build performance. The final combat uses a declared seeded NPC RNG, up to three actual wait commands so the newly scheduled opponent can act, and may advance additional turns while stunned. No explicit Play save/load round trip; normal new-game checkpoint writes are confined to the isolated save root and EditMode covers persistence. Raw screenshots require visual review.",
+    "mode": "system-depth-ii-connections",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS companion_pack_inspection_is_free",
+        "PASS native_give_moves_exact_gear_and_pays_once",
+        "PASS native_companion_equipment_uses_actual_slot",
+        "PASS native_unequip_returns_owned_gear_to_companion_pack",
+        "PASS native_retrieve_returns_exact_item_and_pays_once",
+        "PASS native_pith_cleans_oil_spends_one_supply_and_one_action",
+        "PASS native_eating_consumes_and_advances_world",
+        "PASS native_tonic_heals_consumes_and_advances_world",
+        "PASS native_container_coins_credit_exact_purse",
+        "PASS native_step_aside_moves_voluntarily_preserves_stay_and_pays_once",
+        "PASS native_starting_spell_damages_and_companion_assists",
+        "PASS authored_ditch_mate_slam_runs_on_real_scheduler",
+        "PASS depth_ii_gamepad_and_previous_device_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/02-companion-pack-reader.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/03-companion-equipped-pack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/04-pith-cleanup-result.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/05-consumables-pay-time.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/06-container-coins.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/07-companion-clears-the-way.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SystemDepthII/Native/78c52afbb3da4f72940713ffabe0a4fd/08-direct-spell-party-combat.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Scheduled ditch mate",
+            "source": "after Ember Spit",
+            "text": "id=2727; HP=12; energy=1000; tick=120; cell=40,12; target=2697; state=Normal",
+            "units": 0
+        },
+        {
+            "subject": "Scheduled ditch mate",
+            "source": "after ordinary wait 1",
+            "text": "id=2727; HP=5; energy=1000; tick=140; cell=40,12; target=; state=Normal",
+            "units": 0
+        }
+    ],
+    "cases": 14,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 15.949857799999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

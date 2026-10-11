@@ -1,12 +1,15 @@
 # Followers System
 
 > **2026-10-10 update:** Player melee assistance, witnessed local party defense,
-> terrain-aware following, and saved stay/follow world actions are now implemented.
-> See [the ten-iteration living plan](SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md)
-> and its iteration 6, 8 and 9 evidence for current verification. This closes
-> selected F.4/polish gaps; it does not implement the entire historical pursuit,
-> Beguile/Rebuke or companion-management wishlist. Older phase totals below
-> remain historical.
+> terrain-aware following, and saved stay/follow world actions are implemented.
+> The [first ten-iteration plan](SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md)
+> records their verification. The [second plan](SYSTEM-DEPTH-TEN-ITERATIONS-II.md)
+> adds pack inspection, explicit supply transfer and equipment choices, a safe
+> step-aside action, and assistance after damaging direct spells and weapon skills.
+> Native integration passed 1,606 selected tests and the arranged Play route
+> passed 14/14; the linked plan records evidence and its limits. These close
+> selected F.4/polish gaps; remote pursuit, Beguile/Rebuke
+> and the rest of the historical wishlist remain outside their scope.
 
 
 > **Single source of truth.** This file consolidates the multi-phase
@@ -21,7 +24,7 @@
 
 ## Table of contents
 
-- [Status banner (cumulative)](#status-banner-cumulative)
+- [Historical status banner](#historical-status-banner-may-2026)
 - [Why we're building this](#why-were-building-this)
 - [Phases overview](#phases-overview)
 - [Working principles](#working-principles)
@@ -36,7 +39,10 @@
 
 ---
 
-## Status banner (cumulative)
+## Historical status banner (May 2026)
+
+This table and the phase totals below describe the original F.1–F.3 delivery.
+Use the dated update above for subsequent completed work.
 
 | Field | Value |
 |---|---|

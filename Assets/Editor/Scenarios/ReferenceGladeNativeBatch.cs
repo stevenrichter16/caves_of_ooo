@@ -33,6 +33,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchController() => LaunchCore(false, controllerAudit: true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Companion Orders and Quest Journal Audit")]
         public static void LaunchSystemDepth() => LaunchCore(false, systemDepthAudit: true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/System Depth II Connections Audit")]
+        public static void LaunchSystemDepthII() => LaunchCore(false, systemDepthIIAudit: true);
         public static void LaunchCombat() => LaunchCore(false,false,true);
         public static void LaunchBiome() => LaunchCore(false,false,false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Specialist Content Audit")]
@@ -61,7 +63,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Annex Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -78,6 +80,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetBool(Prefix+"systemDepthIIAudit",systemDepthIIAudit);
             SessionState.SetBool(Prefix+"systemDepthAudit",systemDepthAudit);
             SessionState.SetBool(Prefix+"controllerAudit",controllerAudit);
             SessionState.SetBool(Prefix+"graphicsAudit",graphicsAudit);
@@ -119,6 +122,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            if (SessionState.GetBool(Prefix+"systemDepthIIAudit",false)) runner.ConfigureSystemDepthIIAudit();
             if (SessionState.GetBool(Prefix+"systemDepthAudit",false)) runner.ConfigureSystemDepthAudit();
             if (SessionState.GetBool(Prefix+"controllerAudit",false)) runner.ConfigureControllerAudit();
             if (SessionState.GetBool(Prefix+"graphicsAudit",false)) runner.ConfigureGraphicsAudit();

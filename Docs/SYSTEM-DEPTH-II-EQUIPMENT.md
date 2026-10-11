@@ -60,3 +60,15 @@ The wider material regression sweep surfaced four older schematic expectations f
 Reproduced unchanged pins: isolated114 total,110 passed, exactly4 failed (`iteration09-legacy-pins-red.xml`). Updated only the two named schematic test methods in `GameAuditConsumableTests` and `GameAuditConsumableAdversarialTests`. The carriage matrix now includes the missing carried/nonconsuming positive, separately proving that eligibility requires carriage while consumption remains conditional. Refused known/missing/no-access cases now assert false and absent Study action, retaining unchanged supply assertions. No production changes.
 
 GREEN: all115 combined legacy consumable and new/existing schematic cases pass (`iteration09-legacy-pins-green.xml`). Final native integration must include both GameAuditConsumable fixtures so these pins cannot be silently omitted. 🔵 Self-review: all other consumable policy/assertions remain unchanged; ordinary and authorized schematic counterchecks retained.
+
+## Final integration closure
+
+Final native Unity integration passed **1,606/1,606** selected cases in job
+`e80e1a3999bb4459883d4c3902c5c0fe`, including every fixture named above and the
+updated legacy consumable pins. Raw: `Verification/SystemDepthII/native-final-integration.xml`.
+Actual Play passed **14/14**, zero unexpected errors, run
+`78c52afbb3da4f72940713ffabe0a4fd`; eight original-resolution captures were
+visually reviewed. This closes the historical pending native/Play notes above.
+See `SYSTEM-DEPTH-TEN-ITERATIONS-II.md` for the retained first-run failures,
+subsequent fixes, arranged-fixture bounds and requested Deck package status.
+No physical Steam Deck test or whole-project test claim.

@@ -1,6 +1,8 @@
 # System depth: second ten-iteration pass
 
-Status: audit complete; implementation beginning. Baseline `428cb4be9` on main.
+Status: all ten iterations implemented, reviewed and verified in native Unity
+and actual Play. Requested Steam Deck package pending.
+Baseline `428cb4be9` on main.
 This is a new slate, not a recount of the ten iterations in
 `SYSTEM-DEPTH-TEN-ITERATIONS-2026-10-10.md`.
 
@@ -69,7 +71,7 @@ test runners and disjoint source ownership; only the coordinator uses Unity.
 
 ## Iteration 10: direct combat assistance
 
-Implemented; initial native tests pass, final integration and independent review pending. The existing
+Implemented; native tests, independent review and actual Play pass. The existing
 local party helper owns eligibility and target selection. `PerformSingleAttack`
 and `SkillCombatHelpers.DealGuaranteedHitDamage` signal actual HP loss. Direct
 spells collect unique damaged creatures only inside the existing active `Cast`
@@ -98,6 +100,13 @@ per-frame work or zone scan was added. Save tests use the existing goal graph.
 Changed files: CompanionCombat, CombatSystem, SkillCombatHelpers,
 SpellDamageHelpers and two new test fixtures with unique .meta files.
 
+Independent review checked source attribution, cast completion, surviving/current
+targets, Stay/busy gates and guaranteed-hit coverage. No significant actionable
+finding. The 22 adversarial cases exercise failed and throwing resolvers, delayed
+damage, death/removal/dismissal during resolution, party/non-creature targets,
+repeat hits, immunity, busy followers and save restoration; green counterchecks
+are evidence for those hypotheses, not proof against every possible interaction.
+
 ## Remaining larger gaps
 
 Full heterogeneous liquid mixtures, broader companion command schedules and
@@ -107,4 +116,65 @@ judged against visible gameplay benefit rather than age of the TODO.
 
 ## Final verification
 
-Pending. Do not interpret the plan's acceptance criteria as completed evidence.
+**Final native Unity EditMode: 1,606/1,606 passed, zero failures or skips** in
+86 selected fixtures, job `e80e1a3999bb4459883d4c3902c5c0fe`. The selected list is
+`Verification/SystemDepthII/native-final-fixtures.json`, with raw results in
+`native-final-integration.xml`. This includes the previous slate's 45 fixtures,
+new contracts and affected inventory/equipment/AI/movement/UI regressions. It is
+a selected integration suite, not the entire project suite. Fresh compilation
+had no errors. No production edits followed the final suite.
+
+The earlier combined gate passed 1,584/1,584 (`native-first-integration.xml`).
+Review then fixed step-aside rollback admission; its native recheck passed84/84
+(`native-step-review.xml`). The tool monitor reported an initialization timeout
+for that short job, but Unity's fresh, complete XML independently records all84
+passes and the new21-case step fixture. No timeout was counted as a success on
+its own. These overlapping suites are not added together.
+
+**Actual Play: 14/14 checks pass, zero unexpected errors**, run
+`78c52afbb3da4f72940713ffabe0a4fd`, eight screenshots. All eight were visually
+reviewed at original resolution across two reviewers. The pack/equipped reader
+is visible and readable; container coins, pith/tonic outcomes, cleared path and
+Slam knockback/companion attack appear in the actual interface.
+
+The first Play run `b3d7562477b34730ae6b9a3f28f62c4b` retained12/14 passes and
+two failures. Its real Look-mode reader failure led to two observed native RED
+cases and a narrow dispatch fix; the27-case reader regression then passed.
+The Slam check initially stopped before a newly inserted enemy received its
+first turn. The route now sends up to three ordinary waits, with exact energy,
+HP/position/goal observations. The final run required one wait; no authored AI
+chance, damage, health, or cooldown was altered to force the outcome.
+
+Independent review fixed prepared equipment clone validation, stale comparison
+publication, hidden-owner access, spent-coin alias/quantity checks, schematic ID
+mutation, physical footprint hazards and rollback ownership. Each concrete
+finding has its RED/counter evidence in the per-iteration logs. Parsed blueprint
+comparison against `428cb4be9` confirms only `SpreadDitchMate` changed. New C#
+metadata, whitespace checks and scoped Git changes were checked separately.
+
+The reusable native route is **Caves Of Ooo → Scenarios → World → System Depth II
+Connections Audit** (`ReferenceGladeNativeBatch.LaunchSystemDepthII`). It creates an
+isolated seed64 new game and arranges an adjacent recruited villager, ordinary
+factory supplies, a coin chest, an oil coating, an injury and a ditch mate.
+Keyboard and synthetic Gamepad input use the actual menus; assertions measure
+inventory identity, actual equipment slots, effects, purse, cooldowns, goals and
+action cost. One action is scheduler energy spent, not necessarily one tick.
+The route retains normal scheduler behavior and declares its seeded enemy RNG.
+Its report and screenshots go under `Verification/SystemDepthII/Native/<runId>`.
+
+For ordinary play: recruit a willing creature using the existing recruitment
+skill, stand adjacent, look at it and confirm to open its actions. Inspect its
+pack, give a complete carried stack, choose an equipment slot/replacement,
+retrieve unequipped supplies or ask it to step aside. Comparison and inspection
+are free; successful management mutations spend one action. Stay remains an
+explicit limit on combat assistance. An oil/pitch/honey-coated character can use
+carried Prismreed pith to wick a bounded amount; food and tonics now let the world
+act after successful self-consumption. Ditch mates retain their normal Spread
+encounter sources, with an examine warning about their new cudgel shove.
+
+Native EditMode, arranged Play actions, source/content availability, and hardware
+performance are separate evidence. At the user's follow-up request, a new Linux
+Steam Deck package will be built after the final fixes pass, with its extracted
+folder named `CavesOfOoo-current`. The package does not itself establish physical
+Deck controls/performance, natural discovery rates, or exhaustive whole-project
+verification.
