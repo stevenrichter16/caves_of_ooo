@@ -169,7 +169,8 @@ namespace CavesOfOoo.Rendering
             var destructible=owner.GetPart<DestructiblePart>();
             if(destructible!=null&&(destructible.ParentEntity!=owner||destructible.HP<=0||destructible.Gone))return -1;
             var pool=owner.GetPart<LiquidPoolPart>();
-            if(pool?.ParentEntity==owner&&pool.Volume>0&&(pool.LiquidId=="water"||pool.LiquidId=="brine"||pool.LiquidId=="bog-mire"))return (int)Kind.Water;
+            if(pool?.ParentEntity==owner&&pool.Volume>0&&(pool.LiquidId=="water"||pool.LiquidId=="brine"||pool.LiquidId=="bog-mire")
+                &&LiquidSourcePhase.CanDrawWater(zone,owner))return (int)Kind.Water;
             if(Flame(owner))return (int)Kind.Fire;
             if(owner.HasTag("Creature")&&Alive(owner)&&owner.GetPart<BrainPart>()?.ParentEntity==owner)
             {

@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="17" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 18:25:22Z" end-time="2026-10-11 18:25:25Z" duration="2.7860469">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28064" result="Failed" site="Child" start-time="2026-10-11 18:25:22Z" end-time="2026-10-11 18:25:25Z" duration="2.786047" total="35" passed="17" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34558" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28064" result="Failed" site="Child" start-time="2026-10-11 18:25:22Z" end-time="2026-10-11 18:25:25Z" duration="2.550527" total="35" passed="17" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34559" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28064" result="Failed" site="Child" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:25Z" duration="2.390177" total="35" passed="17" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34560" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28064" result="Failed" site="Child" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:25Z" duration="2.289119" total="35" passed="17" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32897" name="WorldAudioFrozenWaterAdversarialTests" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:24Z" duration="1.396228" total="22" passed="17" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32923" name="AnIndependentUnfrozenFlowStillOwnsTheRiverBed" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.AnIndependentUnfrozenFlowStillOwnsTheRiverBed" methodname="AnIndependentUnfrozenFlowStillOwnsTheRiverBed" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="517254513" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.119433" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32913" name="ColdTileWithoutIceDoesNotInventAFrozenPhase" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ColdTileWithoutIceDoesNotInventAFrozenPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.149624" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32910" name="ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;WaterPuddle&quot;)" methodname="ColdTileWithoutIceDoesNotInventAFrozenPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1202148921" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.024950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32911" name="ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;BrinePool&quot;)" methodname="ColdTileWithoutIceDoesNotInventAFrozenPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="351773237" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.023385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32912" name="ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ColdTileWithoutIceDoesNotInventAFrozenPhase(&quot;MirePool&quot;)" methodname="ColdTileWithoutIceDoesNotInventAFrozenPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="582698034" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.023300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32922" name="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.FailedFreezeInventoryTransactionKeepsTheWetSourceAudible" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:24Z" duration="0.238493" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32919" name="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;WaterPuddle&quot;)" methodname="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="2034806072" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:23Z" duration="0.063526" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32920" name="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;BrinePool&quot;)" methodname="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1926303960" result="Passed" start-time="2026-10-11 18:25:23Z" end-time="2026-10-11 18:25:24Z" duration="0.023838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32921" name="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.FailedFreezeInventoryTransactionKeepsTheWetSourceAudible(&quot;MirePool&quot;)" methodname="FailedFreezeInventoryTransactionKeepsTheWetSourceAudible" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1578314061" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32904" name="NearbyIceDoesNotFreezeTheActualSource" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.228618" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32898" name="NearbyIceDoesNotFreezeTheActualSource(&quot;WaterPuddle&quot;,0)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;WaterPuddle&quot;,0)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1652530614" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.024288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32899" name="NearbyIceDoesNotFreezeTheActualSource(&quot;BrinePool&quot;,0)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;BrinePool&quot;,0)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="93869558" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32900" name="NearbyIceDoesNotFreezeTheActualSource(&quot;MirePool&quot;,0)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;MirePool&quot;,0)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1923200237" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.022776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32901" name="NearbyIceDoesNotFreezeTheActualSource(&quot;WaterPuddle&quot;,1)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;WaterPuddle&quot;,1)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="816604968" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32902" name="NearbyIceDoesNotFreezeTheActualSource(&quot;BrinePool&quot;,1)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;BrinePool&quot;,1)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1130595758" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32903" name="NearbyIceDoesNotFreezeTheActualSource(&quot;MirePool&quot;,1)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.NearbyIceDoesNotFreezeTheActualSource(&quot;MirePool&quot;,1)" methodname="NearbyIceDoesNotFreezeTheActualSource" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1661874730" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023521" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32918" name="RemovingIceCannotReviveAnOtherwiseInvalidOwner" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.174772" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32914" name="RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;empty&quot;)" methodname="RemovingIceCannotReviveAnOtherwiseInvalidOwner" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1025711917" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.025243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32915" name="RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;hidden&quot;)" methodname="RemovingIceCannotReviveAnOtherwiseInvalidOwner" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="467497079" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32916" name="RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;removed&quot;)" methodname="RemovingIceCannotReviveAnOtherwiseInvalidOwner" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1328267264" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.027083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32917" name="RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner(&quot;inventory&quot;)" methodname="RemovingIceCannotReviveAnOtherwiseInvalidOwner" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="136485932" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.040710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.RemovingIceCannotReviveAnOtherwiseInvalidOwner (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32924" name="ThawingOnIdleDoesNotDiscoverANewSourceOrBurst" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ThawingOnIdleDoesNotDiscoverANewSourceOrBurst" methodname="ThawingOnIdleDoesNotDiscoverANewSourceOrBurst" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="178547886" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.119473" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.ThawingOnIdleDoesNotDiscoverANewSourceOrBurst () [0x00072] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterAdversarialTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32909" name="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.162309" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32905" name="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;water&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;water&quot;)" methodname="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1498856904" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.024377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32906" name="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;oil&quot;)" methodname="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="331699087" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.024172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32907" name="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;brine&quot;)" methodname="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="581036155" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.024527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32908" name="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests.UnrelatedActiveCoatingDoesNotSilenceLiquidPhase(&quot;bog-mire&quot;)" methodname="UnrelatedActiveCoatingDoesNotSilenceLiquidPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterAdversarialTests" runstate="Runnable" seed="1771312496" result="Passed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.025240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="32925" name="WorldAudioFrozenWaterTests" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:25Z" duration="0.792340" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32942" name="ActualColdTemperatureUsesExistingDrawPhaseAuthority" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualColdTemperatureUsesExistingDrawPhaseAuthority" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.153921" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32940" name="ActualColdTemperatureUsesExistingDrawPhaseAuthority(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualColdTemperatureUsesExistingDrawPhaseAuthority(&quot;BrinePool&quot;)" methodname="ActualColdTemperatureUsesExistingDrawPhaseAuthority" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="1664655013" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.029998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualColdTemperatureUsesExistingDrawPhaseAuthority (System.String blueprint) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32941" name="ActualColdTemperatureUsesExistingDrawPhaseAuthority(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualColdTemperatureUsesExistingDrawPhaseAuthority(&quot;MirePool&quot;)" methodname="ActualColdTemperatureUsesExistingDrawPhaseAuthority" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="199113708" result="Failed" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:24Z" duration="0.023636" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualColdTemperatureUsesExistingDrawPhaseAuthority (System.String blueprint) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32929" name="ActualPaidFrostLichenSilencesRemainingPhysicalPool" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 18:25:24Z" end-time="2026-10-11 18:25:25Z" duration="0.229890" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32926" name="ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;WaterPuddle&quot;)" methodname="ActualPaidFrostLichenSilencesRemainingPhysicalPool" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="1954684273" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.036238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool (System.String blueprint) [0x000b2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32927" name="ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;BrinePool&quot;)" methodname="ActualPaidFrostLichenSilencesRemainingPhysicalPool" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="2017761974" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.024133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool (System.String blueprint) [0x000b2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32928" name="ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool(&quot;MirePool&quot;)" methodname="ActualPaidFrostLichenSilencesRemainingPhysicalPool" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="164509648" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.023372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ActualPaidFrostLichenSilencesRemainingPhysicalPool (System.String blueprint) [0x000b2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32937" name="ExplicitFrozenEffectUsesTheSameCurrentPhase" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.116616" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32934" name="ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;WaterPuddle&quot;)" methodname="ExplicitFrozenEffectUsesTheSameCurrentPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="681021592" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.054517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase (System.String blueprint) [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32935" name="ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;BrinePool&quot;)" methodname="ExplicitFrozenEffectUsesTheSameCurrentPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="1610685145" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.023146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase (System.String blueprint) [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32936" name="ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase(&quot;MirePool&quot;)" methodname="ExplicitFrozenEffectUsesTheSameCurrentPhase" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="414257808" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.022809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ExplicitFrozenEffectUsesTheSameCurrentPhase (System.String blueprint) [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32938" name="GroundIceRetiresActualFlowBedWithoutRescan" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.GroundIceRetiresActualFlowBedWithoutRescan" methodname="GroundIceRetiresActualFlowBedWithoutRescan" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="324480316" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.023318" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 5. Strings differ at index 0.
+  Expected: "marsh"
+  But was:  "water"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.GroundIceRetiresActualFlowBedWithoutRescan () [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:55
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32933" name="ThawedCurrentSourceCanBeObservedAgain" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.142530" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32930" name="ThawedCurrentSourceCanBeObservedAgain(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain(&quot;WaterPuddle&quot;)" methodname="ThawedCurrentSourceCanBeObservedAgain" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="2086472367" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.023203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain (System.String blueprint) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32931" name="ThawedCurrentSourceCanBeObservedAgain(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain(&quot;BrinePool&quot;)" methodname="ThawedCurrentSourceCanBeObservedAgain" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="1473318241" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.022788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain (System.String blueprint) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32932" name="ThawedCurrentSourceCanBeObservedAgain(&quot;MirePool&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain(&quot;MirePool&quot;)" methodname="ThawedCurrentSourceCanBeObservedAgain" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="1119967894" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.022441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.ThawedCurrentSourceCanBeObservedAgain (System.String blueprint) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32939" name="UndergroundDripAlsoStopsWhenItsPoolFreezes" fullname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests.UndergroundDripAlsoStopsWhenItsPoolFreezes" methodname="UndergroundDripAlsoStopsWhenItsPoolFreezes" classname="CavesOfOoo.Tests.WorldAudioFrozenWaterTests" runstate="Runnable" seed="343532136" result="Failed" start-time="2026-10-11 18:25:25Z" end-time="2026-10-11 18:25:25Z" duration="0.022537" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFrozenWaterTests.UndergroundDripAlsoStopsWhenItsPoolFreezes () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFrozenWaterTests.cs:58
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

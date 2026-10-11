@@ -1,0 +1,35 @@
+{
+    "runId": "9db14c04860e4f9e90f05ce70d55ac46",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: unchanged legal travel landing\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:452 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<River03Travel>d__172.MoveNext () [0x00029] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.AudioPolish03.cs:147 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__285.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:472 ",
+    "canVerify": "Actual generated FrostLichenPatch harvest through ordinary input; a real isolated visible natural pool, imported water phrase and sampled source output before freezing; real carried lichen consumption and ice from native inventory action; no further wet phrase while current ice remains. Eleven checks include shared ordinary boot.",
+    "cannotVerify": "Two explicitly recorded travel shortcuts reach the unchanged generated forage and selected pool. Source selection is bounded and script-directed, not natural discovery. No inventory, liquid, ice, temperature, HP, clock, FOV or audio cue is injected. No live thaw, frozen whole river, all-biome or subjective listening claim. Per-source noncontiguous samples do not prove physical speakers, global clipping or Deck performance. Only in-memory ambience level is temporarily changed and restored.",
+    "mode": "audio-polish-04",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "specialist-source family=FieldAlembic version=16 zone=Overworld.11.9.0 disposition=2 station=AlchemyStill safeApproach=True"
+    ],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS freeze_audio_preferences_restored",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/04/9db14c04860e4f9e90f05ce70d55ac46/01-gameplay-arrival.png"
+    ],
+    "descriptions": [],
+    "cases": 3,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 3.2613106999999998,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

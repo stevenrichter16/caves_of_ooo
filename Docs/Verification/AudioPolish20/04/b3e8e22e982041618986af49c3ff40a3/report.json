@@ -1,0 +1,60 @@
+{
+    "runId": "b3e8e22e982041618986af49c3ff40a3",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Actual generated FrostLichenPatch harvest through ordinary input; a real isolated visible natural pool, imported water phrase and sampled source output before freezing; real carried lichen consumption and ice from native inventory action; no further wet phrase while current ice remains. Eleven checks include shared ordinary boot.",
+    "cannotVerify": "Two explicitly recorded travel shortcuts reach unchanged generated forage and pool. Forage uses the existing hazard-free clearance-two specialist landing; nearby enemies remain active during the one paid harvest. The pool observation keeps strict twelve-cell hostile clearance. No healing is granted or used. Source selection is bounded and script-directed, not natural discovery. No inventory, liquid, ice, temperature, HP, clock, FOV or audio cue is injected. No live thaw, frozen whole river, all-biome or subjective listening claim. Per-source noncontiguous samples do not prove physical speakers, global clipping or Deck performance. Only in-memory ambience level is temporarily changed and restored.",
+    "mode": "audio-polish-04",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "freeze-forage-preflight zone=Overworld.11.9.0 source=4948 specialistClearanceTwoApproach=True",
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.11.9.0@65,18 actual finite FrostLichenPatch; existing specialist clearance-two policy, nearby enemies remain active"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS freeze_original_forage_harvested",
+        "PASS freeze_actual_pool_visible",
+        "PASS freeze_actual_water_phrase",
+        "PASS freeze_imported_water_outputs_signal",
+        "PASS freeze_real_item_commits_ice",
+        "PASS freeze_pool_volume_preserved",
+        "PASS freeze_no_wet_phrase_under_ice",
+        "PASS freeze_idle_keeps_scan_and_voice_bounds",
+        "PASS freeze_ordinary_finish",
+        "PASS freeze_audio_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/04/b3e8e22e982041618986af49c3ff40a3/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/04/b3e8e22e982041618986af49c3ff40a3/freeze-01-actual-earned-lichen.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/04/b3e8e22e982041618986af49c3ff40a3/freeze-02-visible-wet-source.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/04/b3e8e22e982041618986af49c3ff40a3/freeze-03-actual-ice-quiet.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Explicit audio-route travel shortcut",
+            "source": "Overworld.9.0.0",
+            "text": "actual isolated finite water-family pool @13,23",
+            "units": 0
+        },
+        {
+            "subject": "Frozen source audio",
+            "source": "Overworld.9.0.0:9356",
+            "text": "Original literal liquid=water, volume=70; wet sample peak=0.007542548, count=282624; actual finite lichen consumed;28s no-input frozen-source observation. Other valid environmental and music sounds remain permitted.",
+            "units": 0
+        }
+    ],
+    "cases": 11,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 61.675704499999998,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

@@ -10,15 +10,15 @@ namespace CavesOfOoo.Scenarios.Custom
         private Action _audioPolishCleanup;
         public void ConfigureAudioPolish(int iteration)
         {
-            if(iteration<1||iteration>3)throw new ArgumentOutOfRangeException(nameof(iteration),"No implemented native route for this audio polish iteration.");
+            if(iteration<1||iteration>4)throw new ArgumentOutOfRangeException(nameof(iteration),"No implemented native route for this audio polish iteration.");
             _audioPolishIteration=iteration;
         }
         private string AudioPolishMode=>"audio-polish-"+_audioPolishIteration.ToString("00");
         private string AudioPolishDirectory=>"../Docs/Verification/AudioPolish20/"+_audioPolishIteration.ToString("00");
-        private string[] AudioPolishChecks=>_audioPolishIteration==1?AudioPolish01Checks:_audioPolishIteration==2?AudioPolish02Checks:_audioPolishIteration==3?AudioPolish03Checks:Array.Empty<string>();
-        private int AudioPolishMinimumCaptures=>_audioPolishIteration>=1&&_audioPolishIteration<=3?4:int.MaxValue;
-        private string AudioPolishCanVerify=>_audioPolishIteration==1?AudioPolish01CanVerify:_audioPolishIteration==2?AudioPolish02CanVerify:_audioPolishIteration==3?AudioPolish03CanVerify:"No implemented audio polish route.";
-        private string AudioPolishCannotVerify=>_audioPolishIteration==1?AudioPolish01CannotVerify:_audioPolishIteration==2?AudioPolish02CannotVerify:_audioPolishIteration==3?AudioPolish03CannotVerify:"No live evidence.";
+        private string[] AudioPolishChecks=>_audioPolishIteration==1?AudioPolish01Checks:_audioPolishIteration==2?AudioPolish02Checks:_audioPolishIteration==3?AudioPolish03Checks:_audioPolishIteration==4?AudioPolish04Checks:Array.Empty<string>();
+        private int AudioPolishMinimumCaptures=>_audioPolishIteration>=1&&_audioPolishIteration<=4?4:int.MaxValue;
+        private string AudioPolishCanVerify=>_audioPolishIteration==1?AudioPolish01CanVerify:_audioPolishIteration==2?AudioPolish02CanVerify:_audioPolishIteration==3?AudioPolish03CanVerify:_audioPolishIteration==4?AudioPolish04CanVerify:"No implemented audio polish route.";
+        private string AudioPolishCannotVerify=>_audioPolishIteration==1?AudioPolish01CannotVerify:_audioPolishIteration==2?AudioPolish02CannotVerify:_audioPolishIteration==3?AudioPolish03CannotVerify:_audioPolishIteration==4?AudioPolish04CannotVerify:"No live evidence.";
         private bool AudioPolishComplete=>AudioPolishChecks.Length>0
             &&AudioPolishChecks.All(name=>_audit.Count(row=>row=="PASS "+name)==1)
             &&_audit.Count(row=>row=="PASS ordinary_player_and_native_zone")==1
@@ -32,6 +32,7 @@ namespace CavesOfOoo.Scenarios.Custom
                     case 1:yield return RunAudioPolish01WorldMap();break;
                     case 2:yield return RunAudioPolish02Bookmarks();break;
                     case 3:yield return RunAudioPolish03River();break;
+                    case 4:yield return RunAudioPolish04Frozen();break;
                     default:throw new InvalidOperationException("Missing actual-game route for audio polish iteration "+_audioPolishIteration);
                 }
             }
