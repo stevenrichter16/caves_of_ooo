@@ -37,6 +37,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchAudioPolish05()=>LaunchAudioPolish(5);
         [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 06 Animal Rest")]
         public static void LaunchAudioPolish06()=>LaunchAudioPolish(6);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Audio Polish 07 Phrase Tails")]
+        public static void LaunchAudioPolish07()=>LaunchAudioPolish(7);
         public static void LaunchAudioPolish(int iteration)=>LaunchCore(false,audioPolishIteration:iteration);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Performance Profile")]
         public static void LaunchProfile() => LaunchCore(false,true);

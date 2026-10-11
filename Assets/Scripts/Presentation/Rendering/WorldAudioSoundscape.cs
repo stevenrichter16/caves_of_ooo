@@ -21,7 +21,7 @@ namespace CavesOfOoo.Rendering
         public int WildlifePhrases{get;private set;}
         public int MaterialPhrases{get;private set;}
         public int HabitatPhrases{get;private set;}
-        string habitat;
+        string habitat,habitatWitness;
         readonly Entity[] detailWitnesses=new Entity[2];
         readonly int[] detailKinds=new int[2];
         public string AmbienceId{get;private set;}
@@ -39,10 +39,9 @@ namespace CavesOfOoo.Rendering
                 sourceCursor[0]=sourceCursor[1]=(int)(random%(uint)sources.Length);
                 laneRemaining[0]=3+Next()*2;laneRemaining[1]=6+Next()*3;laneRemaining[2]=11+Next()*4;
             }
-            bool policyChanged=biome!=region||depth!=level||band!=time;
+            bool policyChanged=biome!=region||depth!=level;
             zone=current;actor=listener;biome=region;depth=level;band=time;
             if(policyChanged)ClearDetails();
-            ValidateDetails();
             Array.Clear(sources,0,sources.Length);flowWitness=null;LastVisitedOwners=0;int flowDistance=int.MaxValue;
             var origin=actor==null?null:zone?.GetEntityCell(actor);
             active=visible&&origin!=null&&Alive(actor)&&zone.ZoneID!=WorldMap.WorldMapZoneID;
@@ -66,6 +65,7 @@ namespace CavesOfOoo.Rendering
                     }
                 }
             SelectBed();
+            ValidateDetails();
         }
         public void Tick(float wallDelta,bool worldVisible,bool danger)
         {
@@ -104,7 +104,7 @@ namespace CavesOfOoo.Rendering
             {
                 if(habitat==null||habitat=="bird"&&sources[(int)Kind.Bird]!=null)return false;
                 if(!audio.TryPlayDetail(habitat,(Next()-.5f)*.7f,danger?.2f:.38f))return false;
-                HabitatPhrases++;return true;
+                habitatWitness=habitat;HabitatPhrases++;return true;
             }
             for(int offset=0;offset<sources.Length;offset++)
             {
@@ -119,10 +119,11 @@ namespace CavesOfOoo.Rendering
             }
             return false;
         }
-        void ClearDetails(){audio.ClearDetails();Array.Clear(detailWitnesses,0,detailWitnesses.Length);}
+        void ClearDetails(){audio.ClearDetails();Array.Clear(detailWitnesses,0,detailWitnesses.Length);habitatWitness=null;}
         void ValidateDetails()
         {
-            if(audio.ActiveDetailSources==0){Array.Clear(detailWitnesses,0,detailWitnesses.Length);return;}
+            if(audio.ActiveDetailSources==0){Array.Clear(detailWitnesses,0,detailWitnesses.Length);habitatWitness=null;return;}
+            if(habitatWitness!=null&&habitatWitness!=habitat){ClearDetails();return;}
             // Keep audible source witnesses independent of the latest nearest-source snapshot.
             for(int i=0;i<detailWitnesses.Length;i++)if(detailWitnesses[i]!=null
                 &&(!Current(detailWitnesses[i],out _)||Classify(detailWitnesses[i])!=detailKinds[i])){ClearDetails();return;}

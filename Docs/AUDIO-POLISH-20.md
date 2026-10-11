@@ -18,7 +18,7 @@ Audit the current music player, regional policy, physical soundscape, action hoo
 
 ## Progress ledger
 
-6/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
+7/20 completed. The three verified sweeps have been read; the ordered plan below is approved for autonomous implementation. These are twenty complete audible behaviors, not twenty commits or test additions. Each row remains pending until implementation and a fresh game check are recorded.
 
 ## Ordered implementation plan
 
@@ -109,3 +109,9 @@ Iteration6 complete:34 native RED cases had14 expected failures/20 passes; broad
 ### Iteration 7 execution prompt — let valid short phrases finish
 
 Iteration6 proved that physical effects retire and restore the same animal voice and that completed-frame baselines matter. Preserve those source checks. Stop blanket day-band resets from chopping a still-valid stone/wood/fire phrase; retain exact known-source validation after selecting current habitat, and a bounded habitat witness that retires changed bird/insect policy. Keep biome/depth/graph/shelter/mute/loss resets and16 voices. Observe28 native cases RED before the narrow patch. In fresh actual Play, enter a generated stone room through paid steps, approach the real WorldClock boundary with at most80 paid waits, and cross it during an imported stone phrase. These takes last only .50/.65 seconds: wait for >.3 seconds remaining and use ordinary keyboard down/release without the optional post-action dwell, never seek or inject audio. Verify same source/clip advancing samples, real signal, F5/F6 clock preservation and zero completed-frame idle scans. One disclosed travel shortcut; fire and incompatible wildlife remain unit-only live scope. Preserve the original failed receipts.
+
+Iteration7 complete:28 native RED cases produced8 expected failures/20 passes;505/505 broad native checks passed. Fresh actual Play `132929d3d3394d808f8081f3c712971f` passed11/11, zero errors,12.422s. After25 ordinary waits, the actual Dawn→Height boundary occurred during an imported stone phrase: same voice/clip continued with advancing samples and peak0.006476717. Actual F5/F6 restored tick300; no idle scan growth and16 voices. Screenshot inspected. One disclosed room travel shortcut; fire and incompatible habitat variants are unit evidence. Independent source review found no further issue; completed-frame baseline correction from6 is retained.
+
+### Iteration 8 execution prompt — dry brush has a local texture
+
+Iteration7 now lets valid sound tails finish across the real saved day band. Retain that behavior and all exact source admission. Actual generated DryBrush with its own literal DryPlant material should join the existing leaf-rustle lane outdoors. Do not infer a voice from biome, a carried reagent, material alone or Vegetation tags. Reuse the two existing restrained rustle recordings and cadence; keep dry-wind bed and simulation unchanged. Observe30 native cases RED, then apply the narrow classifier addition. Fresh Play must find an actual Beating margin with no Tree/Bush alternatives, take seven paid steps toward original brush, observe imported rustle signal, take seven steps out of range and remain28 seconds without that voice. Preserve active enemies/HP, literal material,16 sources and exact completed-frame zero-idle-scan baseline. One disclosed travel shortcut. Do not grant or delete foliage, inject a cue or claim species-specific recording/physical Deck output.
