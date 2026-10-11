@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.2933865">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28201" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.293387" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34729" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28201" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.205731" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34730" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28201" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.198719" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34731" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28201" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.193970" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32976" name="WorldAudioFootingTests" fullname="CavesOfOoo.Tests.WorldAudioFootingTests" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.188953" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32985" name="AdjacentPoolDoesNotWetFootsteps" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.AdjacentPoolDoesNotWetFootsteps" methodname="AdjacentPoolDoesNotWetFootsteps" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1720720224" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.128682" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32979" name="DepletedPoolUsesGround" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.DepletedPoolUsesGround" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.007843" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32977" name="DepletedPoolUsesGround(0)" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.DepletedPoolUsesGround(0)" methodname="DepletedPoolUsesGround" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1064404184" result="Failed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.004541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 8 but was 9. Strings differ at index 4.
+  Expected: "StepSoft"
+  But was:  "StepWater"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFootingTests.DepletedPoolUsesGround (System.Int32 volume) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFootingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32978" name="DepletedPoolUsesGround(-1)" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.DepletedPoolUsesGround(-1)" methodname="DepletedPoolUsesGround" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1130859915" result="Failed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 8 but was 9. Strings differ at index 4.
+  Expected: "StepSoft"
+  But was:  "StepWater"
+  ---------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFootingTests.DepletedPoolUsesGround (System.Int32 volume) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFootingTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32984" name="EmptyPoolDoesNotHideStoneFloor" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.EmptyPoolDoesNotHideStoneFloor" methodname="EmptyPoolDoesNotHideStoneFloor" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="42146089" result="Failed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000960" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 9. Strings differ at index 4.
+  Expected: "StepStone"
+  But was:  "StepWater"
+  ---------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFootingTests.EmptyPoolDoesNotHideStoneFloor () [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFootingTests.cs:29
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32987" name="HiddenWorldStillRefusesMovementAudio" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.HiddenWorldStillRefusesMovementAudio" methodname="HiddenWorldStillRefusesMovementAudio" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1287392439" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000935" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32983" name="PositiveLiquidStillSplashes" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.PositiveLiquidStillSplashes" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.003898" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32980" name="PositiveLiquidStillSplashes(&quot;water&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.PositiveLiquidStillSplashes(&quot;water&quot;)" methodname="PositiveLiquidStillSplashes" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="313773098" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32981" name="PositiveLiquidStillSplashes(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.PositiveLiquidStillSplashes(&quot;brine&quot;)" methodname="PositiveLiquidStillSplashes" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="2028855023" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32982" name="PositiveLiquidStillSplashes(&quot;bog-mire&quot;)" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.PositiveLiquidStillSplashes(&quot;bog-mire&quot;)" methodname="PositiveLiquidStillSplashes" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1030796530" result="Passed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32986" name="RefillingActuallyRestoresSplash" fullname="CavesOfOoo.Tests.WorldAudioFootingTests.RefillingActuallyRestoresSplash" methodname="RefillingActuallyRestoresSplash" classname="CavesOfOoo.Tests.WorldAudioFootingTests" runstate="Runnable" seed="1017015278" result="Failed" start-time="2026-10-11 19:06:09Z" end-time="2026-10-11 19:06:09Z" duration="0.000803" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 8 but was 9. Strings differ at index 4.
+  Expected: "StepSoft"
+  But was:  "StepWater"
+  ---------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioFootingTests.RefillingActuallyRestoresSplash () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioFootingTests.cs:31
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

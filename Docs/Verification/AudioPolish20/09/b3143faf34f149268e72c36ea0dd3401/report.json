@@ -1,0 +1,52 @@
+{
+    "runId": "b3143faf34f149268e72c36ea0dd3401",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Actual original glade waterskin pickup, real movement onto the positive basin and the same basin after actual drawing, exact imported wet/dry footstep playing sources and sampled PCM, preserved charge conservation and sixteen voices.",
+    "cannotVerify": "Script-selected short route, no world or cue injection. Source/output observations are not subjective listening, physical speakers or Deck performance. Only SFX level is temporarily set and restored; simulation remains active. Ground choice is the actual grass basin tile; stone-ground counterpart has native unit coverage.",
+    "mode": "audio-polish-09",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS footing_original_vessel_acquired",
+        "PASS footing_wet_step_plays",
+        "PASS footing_real_draw_empties_source",
+        "PASS footing_empty_source_step_plays_ground",
+        "PASS footing_audio_pool_bound",
+        "PASS footing_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/09/b3143faf34f149268e72c36ea0dd3401/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/09/b3143faf34f149268e72c36ea0dd3401/footing-02-actually-drained-basin.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/09/b3143faf34f149268e72c36ea0dd3401/footing-03-dry-ground-step.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Positive basin footstep",
+            "source": "2119",
+            "text": "Clip=step_water_01; sampled peak=0.0592608; actual liquid=3",
+            "units": 0
+        },
+        {
+            "subject": "Same basin after drawing",
+            "source": "2119",
+            "text": "Clip=step_soft_02; sampled peak=0.09624156; actual liquid=0. No emitter calls or injected volumes.",
+            "units": 0
+        }
+    ],
+    "cases": 7,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 5.3976144999999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

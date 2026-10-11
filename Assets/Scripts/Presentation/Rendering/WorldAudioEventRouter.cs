@@ -52,7 +52,7 @@ namespace CavesOfOoo.Rendering
             for(int i=0;i<cell.Occupants.Count;i++)
             {
                 var owner=cell.Occupants[i];if(owner==null)continue;
-                if(owner.GetPart<LiquidPoolPart>()!=null)return WorldAudioCue.StepWater;
+                if(owner.GetPart<LiquidPoolPart>()?.Volume>0)return WorldAudioCue.StepWater;
                 if(!owner.HasTag("Terrain"))continue;
                 var material=owner.GetPart<MaterialPart>();
                 if(StoneFloors.Contains(owner.BlueprintName??"")||material?.MaterialID=="Stone"||material?.MaterialID=="Masonry"
