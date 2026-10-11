@@ -38,7 +38,14 @@ namespace CavesOfOoo.Tests
         }
         [TearDown] public void TearDown() { scope?.Dispose(); devices.TearDown(); }
         void State(GamepadState state)
-        { InputSystem.QueueStateEvent(pad, state); InputSystem.Update(); Call("Update"); }
+        {
+            InputSystem.QueueStateEvent(pad, state); InputSystem.Update();
+            // EditMode state updates do not advance Time.time. Each synthetic
+            // gesture represents a later input opportunity, as in the native
+            // controller gameplay fixture; preserve the production rate gate.
+            typeof(InputHandler).GetField("_lastMoveTime", Private).SetValue(input, -999f);
+            Call("Update");
+        }
         object Call(string method, params object[] args) => typeof(InputHandler).GetMethod(method, Private).Invoke(input, args);
         void Open(bool controller)
         {
@@ -49,7 +56,11 @@ namespace CavesOfOoo.Tests
             State(new GamepadState());
         }
         void Confirm()
-        { State(new GamepadState().WithButton(GamepadButton.South)); State(new GamepadState()); }
+        {
+            State(new GamepadState().WithButton(GamepadButton.South));
+            Assert.False(menu.IsOpen, "Native A must execute and close the actual menu.");
+            State(new GamepadState());
+        }
         [TestCase(false)] [TestCase(true)]
         public void OrdinaryDirectionMenuAndNativeConfirmToggleStayWithoutSpendingWorldTime(bool controller)
         {
@@ -65,6 +76,7 @@ namespace CavesOfOoo.Tests
         {
             int tick = input.TurnManager.TickCount;
             Open(true); State(new GamepadState().WithButton(GamepadButton.East)); State(new GamepadState());
+            Assert.False(menu.IsOpen, "Native B must cancel the actual menu.");
             Assert.False(CompanionOrders.IsStaying(follower));
             Open(true); follower.GetEffect<RecruitedEffect>().Dismiss(player); Confirm();
             Assert.False(CompanionOrders.IsStaying(follower)); Assert.Null(follower.GetEffect<RecruitedEffect>());

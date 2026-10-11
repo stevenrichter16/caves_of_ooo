@@ -1,6 +1,6 @@
 # Iteration 9 — saved companion stay/follow orders
 
-Status: standalone RED → GREEN complete (64/64). Native input and arranged Play verification remain pending; root owns Unity.
+Status: standalone RED → GREEN complete (64/64); native GREEN complete (19 order + 3 actual-input cases). Bounded arranged Play and screenshot review are complete.
 
 ## Contract
 
@@ -36,7 +36,10 @@ Core RED/GREEN: discover and execute real world actions; alternate labels; exact
 - Independent review found a legitimate transaction callback could replace the follower's Brain after the command captured its goal. Observed `iteration09-callback-red.xml` (1 failure), then pinned the captured Brain and matching follow goal in precommit validation. The replacement Brain remains untouched when the command is refused.
 - Final standalone `iteration09-green.xml`: **64/64 passed** — 19 order cases, 10 navigation cases, 22 existing follow-goal cases and 13 existing recruitment-effect cases. Runtime: .NET 10.0.5 on macOS in an isolated copy of `Tools/EditModeRunner`; this is not native Unity evidence.
 - Corrected the navigation fixture's `Random` construction to explicit `System.Random` after native assembly compilation exposed an ambiguity hidden by the standalone stubs. No behavior assertion changed.
-- Added three native `CompanionOrderInputTests` cases using actual Input System events and the ordinary `InputHandler` world-action surface: keyboard/directional and LT+A/A menu routes, B cancellation, stale dismissal and free tick/energy cost. Execution remains pending.
+- First native integration passed all companion gameplay/navigation cases, but two menu confirmations were blocked by the production MoveRepeatDelay gate because synthetic EditMode updates do not advance Time.time. Updated only the fixture to supply elapsed input opportunities, matching the existing controller gameplay fixture, and strengthened A/B assertions to require actual menu closure. The native rerun passed all three menu cases; no gameplay expectation was relaxed.
+- Added three native `CompanionOrderInputTests` cases using actual Input System events and the ordinary `InputHandler` world-action surface: keyboard/directional and LT+A/A menu routes, B cancellation, stale dismissal and free tick/energy cost. All three pass in the final native batch.
+
+- Root native final integration job `941ad3a3628542c19f5fda2b0a9e49b4`: **810/810 related tests GREEN**, including **19 order cases + 3 actual-input cases**. Raw receipt `native-final-integration.xml`; focused extraction `iteration09-native-green.json`.
 
 ## Self-review
 
@@ -45,8 +48,10 @@ Core RED/GREEN: discover and execute real world actions; alternate labels; exact
 - 🟢 Stay is a travel and new-assistance order. Existing unrelated combat, item-retrieval and effect goals are not canceled, and companions gain no immunity. This bounded behavior is documented in the public helper and avoids destroying goal subtrees.
 - 🟢 Callback replacement and throwing observers have exercised rollback rather than relying only on the ordinary menu path.
 - 🟢 No per-frame scan, new navigation cache, save version change, or independently saved duplicate order owner.
-- ⚪ Native input compilation/execution and the visible walk/menu probe remain root-owned pending gates. The arranged Play probe is included with iteration 10; it does not claim natural recruitment acquisition or physical Deck feel.
+- 🟢 Native input compilation/execution is GREEN; both real A confirmations and B cancellation close their actual menu.
+- 🟢 Root Play run `4d1ed0c4ed82479096c14632d2ad67e6` completed **14/14 checks with zero unexpected errors**, `complete=true`, `errorsFinalized=true`. Actual keyboard context choice and native LT+A/A show stay/follow; ordinary paid walks show the same recruited companion holding and resuming, with free order cost. Registry/gamepad cleanup checks pass. Root reviewed all eight screenshots.
+- ⚪ The arranged Play probe is included with iteration 10. It does not claim natural recruitment acquisition, all-zone navigation or physical Deck feel/performance. Save persistence remains separately verified in native EditMode; no Play save/load claim.
 
 ## Files
 
-`CompanionOrders.cs` and meta; `BrainPart.cs`, `RecruitedEffect.cs`, `FollowLeaderGoal.cs`, `ZoneTransitionSystem.cs`; the responder-only gate in `CompanionCombat.cs`; `CompanionOrderTests.cs` and `CompanionOrderInputTests.cs` with metas; the explicit Random fixture correction in `CompanionNavigationTests.cs`; this log and four XML receipts.
+`CompanionOrders.cs` and meta; `BrainPart.cs`, `RecruitedEffect.cs`, `FollowLeaderGoal.cs`, `ZoneTransitionSystem.cs`; the responder-only gate in `CompanionCombat.cs`; `CompanionOrderTests.cs` and `CompanionOrderInputTests.cs` with metas; the explicit Random fixture correction in `CompanionNavigationTests.cs`; this log, four standalone XML receipts and the focused native GREEN receipt.

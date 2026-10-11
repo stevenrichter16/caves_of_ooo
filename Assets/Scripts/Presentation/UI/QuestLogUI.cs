@@ -38,6 +38,20 @@ namespace CavesOfOoo.Rendering
         private QuestLogSnapshot _snapshot;
         public bool NotesVisible { get; private set; }
         public int NotesPage { get; private set; }
+        /// <summary>Zero-based quest page, independent of the field-note page.</summary>
+        public int QuestPage { get; private set; }
+        public int QuestPageCount { get; private set; } = 1;
+        private const int QuestLinesPerPage = 36;
+        private readonly List<JournalRow> _questRows = new List<JournalRow>();
+        private readonly struct JournalRow
+        {
+            public readonly int X, MarkerX;
+            public readonly string Text;
+            public readonly Color Color;
+            public readonly char Marker;
+            public JournalRow(int x, string text, Color color, int markerX = -1, char marker = '\0')
+            { X = x; Text = text; Color = color; MarkerX = markerX; Marker = marker; }
+        }
         private const int NotesLinesPerPage=34;
         private readonly List<string> _noteLines=new List<string>();
         private sealed class JournalKeys:IInputProbe {public bool GetKeyDown(KeyCode key)=>InputHelper.GetKeyDown(key);}
@@ -68,7 +82,7 @@ namespace CavesOfOoo.Rendering
         public void Open()
         {
             _isOpen = true;
-            NotesVisible=false;NotesPage=0;
+            NotesVisible=false;NotesPage=0;QuestPage=0;
             Rebuild();
             Render();
         }
@@ -126,17 +140,19 @@ namespace CavesOfOoo.Rendering
             if(input.GetKeyDown(KeyCode.Tab)){NotesVisible=!NotesVisible;Rebuild();Render();return true;}
             // ES.3: renounce lost acts aloud from the journal; only acts whose giver is gone are touched.
             if(!NotesVisible&&input.GetKeyDown(KeyCode.R)){if((StoryletPart.Current?.RenounceLost(StoryletPart.LocalPlayer)??0)>0){Rebuild();Render();}return true;}
-            if(NotesVisible)
+            int delta=input.GetKeyDown(KeyCode.PageDown)||input.GetKeyDown(KeyCode.RightArrow)?1:
+                input.GetKeyDown(KeyCode.PageUp)||input.GetKeyDown(KeyCode.LeftArrow)?-1:0;
+            if(delta!=0)
             {
-                int delta=input.GetKeyDown(KeyCode.PageDown)||input.GetKeyDown(KeyCode.RightArrow)?1:
-                    input.GetKeyDown(KeyCode.PageUp)||input.GetKeyDown(KeyCode.LeftArrow)?-1:0;
-                if(delta!=0){NotesPage+=delta;Rebuild();Render();}
+                if(NotesVisible) NotesPage+=delta; else QuestPage+=delta;
+                Rebuild();Render();
             }
             return true;
         }
 
         private void Render()
         {
+            if (!NotesVisible) BuildQuestRows();
             if (Tilemap == null) return;
             Tilemap.ClearAllTiles();
             if(NotesVisible)
@@ -149,130 +165,80 @@ namespace CavesOfOoo.Rendering
                 DrawFooter();return;
             }
 
-            int y = 1;
-            DrawText(2, y, "===== QUEST LOG =====", ColTitle);
-            y++;
-            // ES.2: the closure-ledger, always in view: what ended how, and what is still open.
-            DrawText(2, y, "closure  " + _snapshot.ClosureClosed + " closed  " + _snapshot.ClosureRefused + " refused  " + _snapshot.ClosureOpen + " open", ColDim);
-            y += 2;
-
-            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0 && _snapshot.RefusedCount == 0 && _snapshot.UnspokenCount == 0)
+            DrawText(2, 1, "===== QUEST LOG =====", ColTitle);
+            DrawText(2, 2, "closure  " + _snapshot.ClosureClosed + " closed  " + _snapshot.ClosureRefused
+                + " refused  " + _snapshot.ClosureOpen + " open", ColDim);
+            int first = QuestPage * QuestLinesPerPage;
+            for (int i = 0; i < QuestLinesPerPage && first + i < _questRows.Count; i++)
             {
-                DrawText(2, y, "You have no quests yet.", ColDim);
-                DrawFooter();
-                return;
+                var row = _questRows[first + i];
+                if (row.MarkerX >= 0) DrawChar(row.MarkerX, 4 + i, row.Marker, row.Color);
+                DrawText(row.X, 4 + i, row.Text, row.Color);
             }
+            DrawText(2, H - 4, "Quests: page " + (QuestPage + 1) + " / " + QuestPageCount, ColDim);
+            DrawFooter();
+        }
 
-            // ── Active ──
-            DrawText(2, y, "ACTIVE", ColHeader); y++;
-            if (_snapshot.ActiveCount == 0)
-            {
-                DrawText(4, y, "(none)", ColDim); y++;
-            }
+        // Build the entire presentation before selecting a page. Truncating
+        // during layout used to permanently hide later objectives and history.
+        // This runs only for explicit journal input/open/rebuild, never Update.
+        private void BuildQuestRows()
+        {
+            _questRows.Clear();
+            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0
+                && _snapshot.RefusedCount == 0 && _snapshot.UnspokenCount == 0)
+                AddQuestText(2, "You have no quests yet.", ColDim);
             else
             {
-                for (int i = 0; i < _snapshot.Active.Count && y < H - 4; i++)
+                AddQuestText(2, "ACTIVE", ColHeader);
+                if (_snapshot.ActiveCount == 0) AddQuestText(4, "(none)", ColDim);
+                foreach (var entry in _snapshot.Active)
                 {
-                    var e = _snapshot.Active[i];
-                    // Same answer as the message log — two surfaces
-                    // disagreeing about a quest's name is the bug the
-                    // display-name seam exists to remove.
-                    DrawText(3, y, StoryletPart.QuestDisplayName(e.QuestId), ColQuest); y++;
-                    if (e.Stages.Count == 0)
+                    AddQuestText(3, StoryletPart.QuestDisplayName(entry.QuestId), ColQuest);
+                    if (entry.Stages.Count == 0) AddQuestText(6, "stage " + (entry.CurrentStageIndex + 1), ColCurrent);
+                    for (int j = 0; j < entry.Stages.Count; j++)
                     {
-                        // Unresolved blueprint (content removed) — show index.
-                        DrawText(6, y, "stage " + (e.CurrentStageIndex + 1), ColCurrent);
-                        y++;
-                    }
-                    else
-                    {
-                        for (int j = 0; j < e.Stages.Count && y < H - 4; j++)
+                        var stage = entry.Stages[j];
+                        bool done = stage.Status == QuestLogStageStatus.Done;
+                        bool current = stage.Status == QuestLogStageStatus.Current;
+                        Color color = done ? ColDone : current ? ColCurrent : ColPending;
+                        char marker = done ? GLYPH_DONE : current ? GLYPH_CURRENT : GLYPH_PENDING;
+                        AddQuestText(8, string.IsNullOrEmpty(stage.StageId) ? "(stage " + (j + 1) + ")" : stage.StageId, color, 6, marker);
+                        if (!current) continue;
+                        foreach (var objective in entry.CurrentObjectives)
                         {
-                            var row = e.Stages[j];
-                            char g; Color c;
-                            switch (row.Status)
-                            {
-                                case QuestLogStageStatus.Done: g = GLYPH_DONE; c = ColDone; break;
-                                case QuestLogStageStatus.Current: g = GLYPH_CURRENT; c = ColCurrent; break;
-                                default: g = GLYPH_PENDING; c = ColPending; break;
-                            }
-                            DrawChar(6, y, g, c);
-                            string label = string.IsNullOrEmpty(row.StageId)
-                                ? "(stage " + (j + 1) + ")" : row.StageId;
-                            DrawText(8, y, label, c);
-                            y++;
-
-                            // Q3.4: under the CURRENT stage, list its objectives
-                            // as indented done/pending sub-rows.
-                            if (row.Status == QuestLogStageStatus.Current
-                                && e.CurrentObjectives.Count > 0)
-                            {
-                                for (int k = 0; k < e.CurrentObjectives.Count && y < H - 4; k++)
-                                {
-                                    var o = e.CurrentObjectives[k];
-                                    char og = o.Done ? GLYPH_DONE : GLYPH_PENDING;
-                                    Color oc = o.Done ? ColDone : ColPending;
-                                    DrawChar(10, y, og, oc);
-                                    string olabel = !string.IsNullOrEmpty(o.Text) ? o.Text
-                                        : (!string.IsNullOrEmpty(o.ObjectiveId) ? o.ObjectiveId : "(objective)");
-                                    // Live counter for collect/kill-N objectives ("(1/3)").
-                                    if (o.HasProgress) olabel += " (" + o.Current + "/" + o.Target + ")";
-                                    if (o.Optional) olabel += " (optional)";
-                                    // Objectives contain actionable directions; never silently
-                                    // discard their return/contact clause at the right edge.
-                                    foreach(string line in WrapJournalText(olabel,W-14))
-                                    {
-                                        if(y>=H-4)break;
-                                        DrawText(12,y,line,oc);y++;
-                                    }
-                                }
-                            }
+                            string text = !string.IsNullOrEmpty(objective.Text) ? objective.Text
+                                : !string.IsNullOrEmpty(objective.ObjectiveId) ? objective.ObjectiveId : "(objective)";
+                            if (objective.HasProgress) text += " (" + objective.Current + "/" + objective.Target + ")";
+                            if (objective.Optional) text += " (optional)";
+                            AddQuestText(12, text, objective.Done ? ColDone : ColPending, 10, objective.Done ? GLYPH_DONE : GLYPH_PENDING);
                         }
                     }
-                    y++; // blank line between quests
+                    AddQuestText(2, "", ColDim);
                 }
+                AddQuestSection("COMPLETED", _snapshot.Completed, ColDim, GLYPH_DONE);
+                AddQuestSection("UNSPOKEN", _snapshot.Unspoken, ColPending, GLYPH_PENDING);
+                AddQuestSection("REFUSED", _snapshot.Refused, ColDim, GLYPH_REFUSED);
             }
+            QuestPageCount = Mathf.Max(1, (_questRows.Count + QuestLinesPerPage - 1) / QuestLinesPerPage);
+            QuestPage = Mathf.Clamp(QuestPage, 0, QuestPageCount - 1);
+        }
 
-            // ── Completed ──
-            if (_snapshot.CompletedCount > 0 && y < H - 4)
+        private void AddQuestSection(string label, IReadOnlyList<string> entries, Color color, char marker)
+        {
+            if (entries.Count == 0) return;
+            AddQuestText(2, "", ColDim);
+            AddQuestText(2, label, ColHeader);
+            foreach (string text in entries) AddQuestText(8, text, color, 6, marker);
+        }
+
+        private void AddQuestText(int x, string text, Color color, int markerX = -1, char marker = '\0')
+        {
+            foreach (string line in WrapJournalText(text, W - x - 2))
             {
-                y++;
-                DrawText(2, y, "COMPLETED", ColHeader); y++;
-                for (int i = 0; i < _snapshot.Completed.Count && y < H - 4; i++)
-                {
-                    DrawChar(6, y, GLYPH_DONE, ColDone);
-                    DrawText(8, y, _snapshot.Completed[i], ColDim);
-                    y++;
-                }
+                _questRows.Add(new JournalRow(x, line, color, markerX, marker));
+                markerX = -1;
             }
-
-            // ES.3: open acts the player must still end aloud, and where.
-            if (_snapshot.UnspokenCount > 0 && y < H - 4)
-            {
-                y++;
-                DrawText(2, y, "UNSPOKEN", ColHeader); y++;
-                for (int i = 0; i < _snapshot.Unspoken.Count && y < H - 4; i++)
-                {
-                    DrawChar(6, y, GLYPH_PENDING, ColPending);
-                    foreach (string line in WrapJournalText(_snapshot.Unspoken[i], W - 10))
-                    { if (y >= H - 4) break; DrawText(8, y, line, ColPending); y++; }
-                }
-            }
-
-            // ES.2: acts ended by a spoken no are closure too, and are listed as such.
-            if (_snapshot.RefusedCount > 0 && y < H - 4)
-            {
-                y++;
-                DrawText(2, y, "REFUSED", ColHeader); y++;
-                for (int i = 0; i < _snapshot.Refused.Count && y < H - 4; i++)
-                {
-                    DrawChar(6, y, GLYPH_REFUSED, ColDim);
-                    DrawText(8, y, _snapshot.Refused[i], ColDim);
-                    y++;
-                }
-            }
-
-            DrawFooter();
         }
 
         private static IEnumerable<string> WrapJournalText(string text,int width)
@@ -289,7 +255,10 @@ namespace CavesOfOoo.Rendering
 
         private void DrawFooter()
         {
-            DrawText(2, H - 2, (_snapshot.LostCount > 0 ? "[R] renounce lost  " : "") + "[Tab] quests / field notes  [PgUp/PgDn] pages  [Q/Esc] close", ColDim);
+            string hint = NativeGamepadInput.IsConnected
+                ? "[Y] quests / notes  [LB/RB] pages  [B] close"
+                : "[Tab] quests / notes  [PgUp/PgDn] pages  [Q/Esc] close";
+            DrawText(2, H - 2, (!NotesVisible && _snapshot.LostCount > 0 ? "[R] renounce lost  " : "") + hint, ColDim);
         }
 
         private void DrawChar(int x, int y, char c, Color color)

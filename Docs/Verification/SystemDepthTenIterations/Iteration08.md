@@ -1,6 +1,6 @@
 # Iteration 8 — companion navigation
 
-Status: standalone RED → GREEN complete; native Unity and Play gates remain pending.
+Status: standalone RED → GREEN, native Unity GREEN and bounded arranged Play checks complete.
 
 ## Scope and sweep
 
@@ -26,6 +26,7 @@ Run actual follower `TakeTurn` events with a live leader, party link and follow 
 - Observed RED (`iteration08-red.xml`): 32 tests, 30 passed, 2 failed exactly on building-wall routing and acid detour. All 22 existing follow-goal cases and 8 new counterchecks already passed.
 - Changed only follow movement to the existing `TryApproachWithPathfinding` helper and its stale explanatory comments.
 - Observed GREEN (`iteration08-green.xml`): 32/32 passed, including 10 new full-goal cases. Runtime: .NET 10.0.5, macOS, isolated `Tools/EditModeRunner` copy; not native Unity.
+- Root native final integration job `941ad3a3628542c19f5fda2b0a9e49b4`: **810/810 related tests GREEN**, including all **10 navigation cases**. Raw receipt `native-final-integration.xml`; focused extraction `iteration08-native-green.json`.
 - Files: `FollowLeaderGoal.cs`, `CompanionNavigationTests.cs` plus meta, this log and paired XML receipts.
 
 ## Self-review
@@ -33,4 +34,6 @@ Run actual follower `TakeTurn` events with a live leader, party link and follow 
 - 🟢 No new planner, mutable route cache, lifetime rule, hostile-target selection or save layout.
 - 🟢 Counterchecks cover water, actual acid immunity, sole hazardous passage, moving leader, close idle, unreachable enclosure and capable/incapable/locked doors.
 - 🟢 Existing follow goal and party link remain the exact same objects after building navigation.
-- ⚪ Native Unity compilation and visible companion travel remain root-owned pending gates.
+- 🟢 Native compilation and all navigation cases are GREEN.
+- 🟢 Root Play run `4d1ed0c4ed82479096c14632d2ad67e6` completed **14/14 checks with zero unexpected errors**. Ordinary two-cell paid walks visibly show the arranged companion staying and resuming follow; root reviewed all eight screenshots.
+- ⚪ This short arranged route does not prove natural recruitment, all-zone navigation, campaign balance or physical Steam Deck feel/performance.
