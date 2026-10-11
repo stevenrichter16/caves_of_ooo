@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.6477735">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="28259" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.647774" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="34806" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="28259" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.403966" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="85990" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="34807" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="28259" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.351863" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="34808" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="28259" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.251786" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32927" name="WorldAudioCookingTests" fullname="CavesOfOoo.Tests.WorldAudioCookingTests" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="1.150074" total="15" passed="2" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32930" name="ActualCookingSoundsOncePerStackAfterRealConversion" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ActualCookingSoundsOncePerStackAfterRealConversion" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="0.434973" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32928" name="ActualCookingSoundsOncePerStackAfterRealConversion(1)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ActualCookingSoundsOncePerStackAfterRealConversion(1)" methodname="ActualCookingSoundsOncePerStackAfterRealConversion" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="691161901" result="Failed" start-time="2026-10-11 19:20:09Z" end-time="2026-10-11 19:20:10Z" duration="0.206079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ActualCookingSoundsOncePerStackAfterRealConversion (System.Int32 count) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:14
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32929" name="ActualCookingSoundsOncePerStackAfterRealConversion(3)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ActualCookingSoundsOncePerStackAfterRealConversion(3)" methodname="ActualCookingSoundsOncePerStackAfterRealConversion" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1129895515" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.026790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ActualCookingSoundsOncePerStackAfterRealConversion (System.Int32 count) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:14
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32934" name="ActualOuterFailureRestoresRawFoodAndIsSilent" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ActualOuterFailureRestoresRawFoodAndIsSilent" methodname="ActualOuterFailureRestoresRawFoodAndIsSilent" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1221390013" result="Passed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.027933" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32941" name="CallbackStaleStationCannotPublishFreshPreparation" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.135018" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32937" name="CallbackStaleStationCannotPublishFreshPreparation(&quot;move&quot;)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation(&quot;move&quot;)" methodname="CallbackStaleStationCannotPublishFreshPreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="723737060" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.026256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation (System.String mutation) [0x000e3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32938" name="CallbackStaleStationCannotPublishFreshPreparation(&quot;hide&quot;)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation(&quot;hide&quot;)" methodname="CallbackStaleStationCannotPublishFreshPreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1629754060" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation (System.String mutation) [0x000e3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32939" name="CallbackStaleStationCannotPublishFreshPreparation(&quot;cool-finite&quot;)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation(&quot;cool-finite&quot;)" methodname="CallbackStaleStationCannotPublishFreshPreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="682386094" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation (System.String mutation) [0x000e3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32940" name="CallbackStaleStationCannotPublishFreshPreparation(&quot;part-replace&quot;)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation(&quot;part-replace&quot;)" methodname="CallbackStaleStationCannotPublishFreshPreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="751639600" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024687" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.CallbackStaleStationCannotPublishFreshPreparation (System.String mutation) [0x000e3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32935" name="ColdFiniteRefusalHasNoCueAndReheatedCounterDoes" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ColdFiniteRefusalHasNoCueAndReheatedCounterDoes" methodname="ColdFiniteRefusalHasNoCueAndReheatedCounterDoes" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="461961159" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.025425" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ColdFiniteRefusalHasNoCueAndReheatedCounterDoes () [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:20
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32936" name="ColdLegacyStationRemainsAValidPreparationSource" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ColdLegacyStationRemainsAValidPreparationSource" methodname="ColdLegacyStationRemainsAValidPreparationSource" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1941080903" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024800" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ColdLegacyStationRemainsAValidPreparationSource () [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:22
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32944" name="ExplicitPlayerCookingFinishesFromInventoryMenu" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ExplicitPlayerCookingFinishesFromInventoryMenu" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.099679" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32942" name="ExplicitPlayerCookingFinishesFromInventoryMenu(False)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ExplicitPlayerCookingFinishesFromInventoryMenu(False)" methodname="ExplicitPlayerCookingFinishesFromInventoryMenu" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="681653285" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.025166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ExplicitPlayerCookingFinishesFromInventoryMenu (System.Boolean menu) [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32943" name="ExplicitPlayerCookingFinishesFromInventoryMenu(True)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ExplicitPlayerCookingFinishesFromInventoryMenu(True)" methodname="ExplicitPlayerCookingFinishesFromInventoryMenu" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1945800902" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.025356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.ExplicitPlayerCookingFinishesFromInventoryMenu (System.Boolean menu) [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32946" name="GenericSemanticCannotForgePreparation" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.GenericSemanticCannotForgePreparation" methodname="GenericSemanticCannotForgePreparation" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="1568389828" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024484" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.GenericSemanticCannotForgePreparation () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:35
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32945" name="MissingStationRefusesWithoutPretendKitchenSound" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.MissingStationRefusesWithoutPretendKitchenSound" methodname="MissingStationRefusesWithoutPretendKitchenSound" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="799952270" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024226" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.One () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:12
+at CavesOfOoo.Tests.WorldAudioCookingTests.MissingStationRefusesWithoutPretendKitchenSound () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:33
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32933" name="ParentCommitControlsCookingPublication" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ParentCommitControlsCookingPublication" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.152119" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32931" name="ParentCommitControlsCookingPublication(False)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ParentCommitControlsCookingPublication(False)" methodname="ParentCommitControlsCookingPublication" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="2111200170" result="Passed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.026507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32932" name="ParentCommitControlsCookingPublication(True)" fullname="CavesOfOoo.Tests.WorldAudioCookingTests.ParentCommitControlsCookingPublication(True)" methodname="ParentCommitControlsCookingPublication" classname="CavesOfOoo.Tests.WorldAudioCookingTests" runstate="Runnable" seed="474346670" result="Failed" start-time="2026-10-11 19:20:10Z" end-time="2026-10-11 19:20:10Z" duration="0.024976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldAudioCookingTests.ParentCommitControlsCookingPublication (System.Boolean commit) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldAudioCookingTests.cs:16
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

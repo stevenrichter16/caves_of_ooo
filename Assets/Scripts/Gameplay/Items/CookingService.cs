@@ -33,6 +33,12 @@ namespace CavesOfOoo.Core
             {
                 if (!transaction.TryClaim(actor, actor, "Cook") || !transaction.TryClaim(food, actor, "Cook"))
                     return Reject(actor, food, "in_progress", "That food is already being prepared.");
+                var audio=WorldAudioUtility.TakeStation(actor,station,zone,WorldAudioCue.CookPrepare,
+                    ()=>source.Current(actor,zone)&&actor.GetPart<InventoryPart>()==inventory
+                        &&food.GetPart<CookablePart>()==recipe&&recipe.ParentEntity==food
+                        &&food.GetPart<PhysicsPart>()==foodPhysics&&foodPhysics.ParentEntity==food
+                        &&!inventory.Objects.Contains(food)&&foodPhysics.InInventory==null&&foodPhysics.Equipped==null
+                        &&food.SpatialZone==null&&food.GetPart<StackerPart>()==stack&&(stack==null||stack.StackCount==0));
                 string into = recipe.Into;
                 var products = new Entity[count];
                 for (int i = 0; i < count; i++)
@@ -67,6 +73,7 @@ namespace CavesOfOoo.Core
                 });
                 if (!applied || !receipt.ClaimChanges(transaction, actor, "Cook"))
                 { restore(); return Reject(actor, food, "capacity_or_transfer", "You cannot carry the cooked result; the raw food is unchanged."); }
+                transaction.AfterCommit(()=>audio?.Publish());
                 transaction.AfterCommit(() => Diag.Record("event", "FoodCooked", actor, food,
                     new { from = food.BlueprintName, into, count, station = station.BlueprintName }));
                 transaction.AfterCommit(() => MessageLog.Add("You cook " + count + " " + InventoryPart.GetUnitDisplayName(food) + "."));

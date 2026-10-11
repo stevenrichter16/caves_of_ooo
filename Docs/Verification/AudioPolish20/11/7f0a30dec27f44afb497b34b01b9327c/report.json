@@ -1,0 +1,49 @@
+{
+    "runId": "7f0a30dec27f44afb497b34b01b9327c",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Original glade grain harvested and cooked through actual world/inventory controls at the existing finite campfire. Exact ingredient/product conservation, paid cooking action, station-correlated committed receipt, imported preparation recording sampled while playing, fixed16 audio sources and preference restoration.",
+    "cannotVerify": "No ingredient, heat, fuel, HP or actor grants. The ordinary local route retains scheduling and hostile risk. Recorded bowl/spoon preparation is a restrained material cue, not proof of sizzling/boiling or a simulated kitchen. Script-observed source samples are not subjective listening, complete output capture or hardware performance. Cold/refused/rollback cases are separate native unit coverage. Saved preferences are untouched.",
+    "mode": "audio-polish-11",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "drawn owner=2131 blueprint=Campfire current=True drawn=True"
+    ],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS audio11_original_grain_harvested",
+        "PASS audio11_actual_station",
+        "PASS audio11_imported_preparation",
+        "PASS audio11_exact_conversion",
+        "PASS audio11_one_action",
+        "PASS audio11_fixed_pool",
+        "PASS audio11_preferences_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/11/7f0a30dec27f44afb497b34b01b9327c/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/11/7f0a30dec27f44afb497b34b01b9327c/cook-01-actual-grain-and-shelter.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/AudioPolish20/11/7f0a30dec27f44afb497b34b01b9327c/cook-02-real-cooked-grain.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "audio11_imported_preparation",
+            "source": "2131",
+            "text": "Cue=CookPrepare; original source=2131; exact receipt=True; count=1; imported playing=True; clip=cook_prepare_01; sampled peak=0.05385481; floats=46080. Noncontiguous source samples, not a subjective listening or physical output claim.",
+            "units": 0
+        }
+    ],
+    "cases": 8,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 4.9769543999999998,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

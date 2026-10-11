@@ -18,10 +18,13 @@ namespace CavesOfOoo.Core
         public static Action<WorldAudioUtilityReceipt> Callback {get;set;}
         internal static bool IsWater(WorldAudioCue cue)=>cue==WorldAudioCue.WaterFill
             ||cue==WorldAudioCue.WaterDrink||cue==WorldAudioCue.WaterPour;
+        internal static bool IsUtility(WorldAudioCue cue)=>IsWater(cue)||cue==WorldAudioCue.CookPrepare;
+        internal static Capture TakeStation(Entity actor,Entity source,Zone zone,WorldAudioCue cue,Func<bool> committed)
+            =>source==null?null:Take(actor,null,zone,cue,source,false,committed);
         internal static Capture Take(Entity actor,Entity vessel,Zone zone,WorldAudioCue cue,
             Entity source,bool sourceCarried,Func<bool> committed)
         {
-            if(Callback==null||actor==null||vessel==null||zone==null||!IsWater(cue)||committed==null)return null;
+            if(Callback==null||actor==null||(vessel==null&&source==null)||zone==null||!IsUtility(cue)||committed==null)return null;
             var capture=new Capture(actor,vessel,zone,cue,source,sourceCarried,committed);
             return capture.Current()?capture:null;
         }
@@ -41,7 +44,7 @@ namespace CavesOfOoo.Core
                 origin=zone.GetEntityCell(actor);sourceAnchor=source==null?null:zone.GetEntityCell(source);
                 contact=source==null||sourceCarried?origin:(origin==null?null:SpatialQuery.ClosestCell(zone,source,origin.X,origin.Y));
                 inventory=actor.GetPart<InventoryPart>();actorPhysics=actor.GetPart<PhysicsPart>();actorRender=actor.GetPart<RenderPart>();
-                vesselPhysics=vessel.GetPart<PhysicsPart>();vesselRender=vessel.GetPart<RenderPart>();
+                vesselPhysics=vessel?.GetPart<PhysicsPart>();vesselRender=vessel?.GetPart<RenderPart>();
                 sourcePhysics=source?.GetPart<PhysicsPart>();sourceRender=source?.GetPart<RenderPart>();
             }
             bool Carried(Entity item,PhysicsPart physical,RenderPart render)
@@ -60,7 +63,7 @@ namespace CavesOfOoo.Core
                     ||actor.GetPart<RenderPart>()!=actorRender||actorRender?.ParentEntity!=actor||!actorRender.Visible
                     ||!origin.Explored||!origin.IsVisible||!contact.Explored||!contact.IsVisible
                     ||actor.GetPart<InventoryPart>()!=inventory||inventory?.ParentEntity!=actor
-                    ||!Carried(vessel,vesselPhysics,vesselRender))return false;
+                    ||(vessel!=null&&!Carried(vessel,vesselPhysics,vesselRender)))return false;
                 if(source==null)return true;
                 if(sourceCarried)return source!=vessel&&Carried(source,sourcePhysics,sourceRender);
                 return source.SpatialZone==zone&&sourceAnchor!=null&&zone.GetEntityCell(source)==sourceAnchor&&sourceAnchor.Objects.Contains(source)

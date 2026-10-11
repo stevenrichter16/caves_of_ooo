@@ -104,7 +104,7 @@ namespace CavesOfOoo.Rendering
         {
             try
             {
-                if(!WorldAudioUtility.IsWater(receipt.Cue)||!Current(receipt.Actor,receipt.Zone,receipt.Actor!=player,out _))return;
+                if(!WorldAudioUtility.IsUtility(receipt.Cue)||!Current(receipt.Actor,receipt.Zone,receipt.Actor!=player,out _))return;
                 var contact=zone.GetCell(receipt.Contact.X,receipt.Contact.Y);
                 if(contact==null||!contact.Explored||!contact.IsVisible)return;
                 audio.TryPlay(receipt.Cue,receipt.Actor==player?0:Pan(contact.X));
@@ -117,7 +117,7 @@ namespace CavesOfOoo.Rendering
         {
             try
             {
-                if(WorldAudioUtility.IsWater(cue)||CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
+                if(WorldAudioUtility.IsUtility(cue)||CombatCue(cue)||cue==WorldAudioCue.WorkForge||cue==WorldAudioCue.WorkRepairWood
                     ||cue==WorldAudioCue.WorkRepairStone||cue==WorldAudioCue.WorkRepairMetal||cue==WorldAudioCue.HarvestPlant)return;
                 // Weapon and work sounds require their actual typed committed receipt.
                 bool localInventory=cue==WorldAudioCue.Pickup||cue==WorldAudioCue.Equip||cue==WorldAudioCue.Use;
