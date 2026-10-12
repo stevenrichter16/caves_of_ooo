@@ -71,7 +71,8 @@ namespace CavesOfOoo.Tests
             foreach(var e in roots)Prepared(z,e);
             var cache=z.GetReadOnlyEntities().Single(e=>e.GetProperty(GleanersCellarBuilder.RoleKey)=="supplies").GetPart<ContainerPart>();
             Assert.AreEqual(2,cache.Contents.Where(e=>e.BlueprintName=="FireClay").Sum(e=>e.GetPart<StackerPart>()?.StackCount??1));
-            Assert.AreEqual(1,cache.Contents.Count(e=>e.BlueprintName!="FireClay"));
+            Assert.AreEqual(1,cache.Contents.Count(e=>e.BlueprintName!="FireClay"&&e.BlueprintName!="DitchkeepersFootwork"));
+            Assert.AreEqual(1,cache.Contents.Count(e=>e.BlueprintName=="DitchkeepersFootwork"));
         }
         [TestCase(64)][TestCase(1729)][TestCase(729490642)]
         public void CurationHasPublicInkServiceAndExactlyOnePurchasableBook(int seed)

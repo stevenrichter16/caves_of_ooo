@@ -7,6 +7,7 @@ namespace CavesOfOoo.Core
     {
         AdjacentCell = 0,
         DirectionLine = 1,
-        SelfCentered = 2
+        SelfCentered = 2,
+        CursorCell = 3
     }
 }

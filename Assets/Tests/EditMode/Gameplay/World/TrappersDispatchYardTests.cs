@@ -58,6 +58,45 @@ namespace CavesOfOoo.Tests
             public void Dispose() => Scope.Dispose();
         }
 
+        [TestCase(1)] [TestCase(2)]
+        public void OpeningYardPreservesRolledStockAndAddsFiniteUsefulSalvage(int count)
+        {
+            using (var f = new Fixture(count))
+            {
+                var method = typeof(SpreadExplorationWorksites).GetMethod("TryPlace");
+                Assert.AreEqual(10, method.GetParameters().Length, "Explicit legacy-default opening authority required.");
+                var original = f.Containers.SourceReceipt.Owners.SelectMany(e => e.GetPart<ContainerPart>().Contents).ToArray();
+                object[] args = { f.Zone, f.Factory, f.Terrain, f.Population, f.Containers, SpreadExplorationFamily.TrappersStore, (Func<bool>)(() => true), null, null, true };
+                Assert.True((bool)method.Invoke(null, args)); f.Owners = (Entity[])args[7]; f.Final = (Func<bool>)args[8];
+                Assert.True(f.Final());
+                var all = f.Containers.SourceReceipt.Owners.SelectMany(e => e.GetPart<ContainerPart>().Contents).ToArray();
+                Assert.True(original.All(all.Contains));
+                var added = all.Except(original).ToArray();
+                Assert.AreEqual(1, added.Count(e => e.BlueprintName == "HealingTonic"));
+                Assert.AreEqual(2, added.Where(e => e.BlueprintName == "SalvagedTimber").Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+                Assert.AreEqual(count, f.Owners.Count(e => e.HasTag("Creature")));
+                Assert.True(f.Owners.Where(e => e.HasTag("Creature")).All(e => e.Parts.Any(p => p.Name == "MeleeTraumaProfile")));
+                var crossing = f.Role("crossing"); Assert.True(crossing.GetPart<PhysicsPart>().Solid);
+                Assert.False(crossing.HasTag("Wall"), "Low crossing must not conceal the landing.");
+                Assert.True(f.Final());
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void FinalReceiptAllowsUnrelatedLaterGeneration(bool opening)
+        {
+            using(var f=new Fixture())
+            {
+                Assert.True(SpreadExplorationWorksites.TryPlace(f.Zone,f.Factory,f.Terrain,f.Population,f.Containers,SpreadExplorationFamily.TrappersStore,()=>true,out var owners,out var final,opening));
+                var extra=f.Factory.CreateEntity("Signpost");
+                Assert.True(f.Zone.AddEntity(extra,1,1));
+                Assert.True(final(),"Local packet receipt must tolerate unrelated later builders.");
+                var cache=owners.Single(e=>e.HasPart<ContainerPart>());
+                cache.GetPart<ContainerPart>().Contents.Clear();
+                Assert.False(final(),"Its actual stock remains protected.");
+            }
+        }
+
         static HashSet<(int x, int y)> Reach(Zone zone, (int x, int y) start, Entity safeTrap = null, Entity ignoredBeam = null, (int x, int y)? parked = null, bool diagonals = true)
         {
             var reached = new HashSet<(int x, int y)>();

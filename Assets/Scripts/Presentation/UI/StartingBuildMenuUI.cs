@@ -59,7 +59,7 @@ namespace CavesOfOoo.Rendering
             if (Controller.IsOpen)
             {
                 int hover = GetRowAtMouse();
-                if (hover >= 0 && hover != Controller.SelectedIndex) Controller.HoverSelect(hover);
+                Controller.HoverSelect(hover);
 
                 if (UnityEngine.Input.GetMouseButtonDown(0))
                 {

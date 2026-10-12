@@ -66,7 +66,9 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false,bool mendleafYard=false,bool tacticalWater=false,bool expeditionReport=false,bool fairRetreat=false,bool claimedSupplies=false,bool dangerMovement=false)
+        public static void LaunchOpening(string build, int seed,string approach="bypass") => LaunchCore(false,seed:seed,connectedBuild:build,opening:true,openingApproach:approach);
+
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false,bool mendleafYard=false,bool tacticalWater=false,bool expeditionReport=false,bool fairRetreat=false,bool claimedSupplies=false,bool dangerMovement=false,bool opening=false,string openingApproach="bypass")
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -84,6 +86,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetBool(Prefix + "oldBuildChoice", NativeAuditBootstrapSettings.AllowStartingBuildChoice);
             SessionState.SetString(Prefix + "connectedBuild", connectedBuild??"");
+            SessionState.SetBool(Prefix + "opening", opening);
+            SessionState.SetString(Prefix + "openingApproach", openingApproach);
             SessionState.SetBool(Prefix + "fieldwork", fieldwork);
             SessionState.SetBool(Prefix + "predatorDiversion", predatorDiversion);
             SessionState.SetBool(Prefix + "trapJamming", trapJamming);
@@ -127,7 +131,9 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var driver = new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>();
-            if (SessionState.GetBool(Prefix + "dangerMovement", false))
+            if (SessionState.GetBool(Prefix + "opening", false))
+                driver.InitializeOpening(new ScenarioContext(zone, factory, player, turns),SessionState.GetString(Prefix + "connectedBuild", "duelist"),SessionState.GetString(Prefix + "openingApproach","bypass"));
+            else if (SessionState.GetBool(Prefix + "dangerMovement", false))
                 driver.InitializeDangerMovement(new ScenarioContext(zone, factory, player, turns));
             else if (SessionState.GetBool(Prefix + "claimedSupplies", false))
                 driver.InitializeClaimedSupplies(new ScenarioContext(zone, factory, player, turns));

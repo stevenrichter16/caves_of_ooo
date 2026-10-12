@@ -50,8 +50,11 @@ namespace CavesOfOoo.Core
             if(zone?.ZoneID!=SurfaceID||!SupportsColumn(manager)
                 ||manager.CachedZones.ContainsKey(SurfaceID)||manager.CachedZones.ContainsKey(GleanersCellarBuilder.ZoneID)
                 ||zone.GetReadOnlyEntities().Any(e=>e.GetProperty(RoleKey)!=null))return false;
-            bool Clear()=>placements.All(p=>zone.GetCell(p.x,p.y).Objects.All(e=>e.BlueprintName=="Grass"||e.BlueprintName=="RoadStone"));
-            if(!Clear())return Reject(zone,"occupied-placement");
+            bool opening=manager.Exploration?.Enabled==true&&manager.Exploration.Version>=17;
+            (string blueprint,string role,int x,int y)[] layout=opening?placements.Concat(new[]{("Wall","crossing",28,17),("Signpost","cellar-lead",29,18)}).ToArray():placements;
+            bool Clear()=>layout.All(p=>zone.GetCell(p.x,p.y).Objects.All(e=>e.BlueprintName=="Grass"||e.BlueprintName=="RoadStone"));
+            bool CrossingClear()=>!opening||new[]{(27,17),(29,17),(27,16),(28,16),(29,16)}.All(at=>zone.GetCell(at.Item1,at.Item2).Objects.All(e=>e.BlueprintName=="Grass"||e.BlueprintName=="RoadStone"));
+            if(!Clear()||!CrossingClear())return Reject(zone,"occupied-placement");
             var original=new HashSet<Entity>(zone.GetReadOnlyEntities());
             var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,original);
             var ids=new HashSet<string>(original.Select(e=>e.ID));
@@ -60,11 +63,11 @@ namespace CavesOfOoo.Core
             var placedProofs=new List<Func<bool>>();
             bool Authority()=>SupportsColumn(manager)&&!manager.CachedZones.ContainsKey(SurfaceID)
                 &&!manager.CachedZones.ContainsKey(GleanersCellarBuilder.ZoneID);
-            bool Before()=>Authority()&&unchanged()&&original.SetEquals(zone.GetReadOnlyEntities())&&Clear()
+            bool Before()=>Authority()&&unchanged()&&original.SetEquals(zone.GetReadOnlyEntities())&&Clear()&&CrossingClear()
                 &&detachedProofs.All(proof=>proof());
             try
             {
-                foreach(var p in placements)
+                foreach(var p in layout)
                 {
                     var e=manager.Factory.CreateEntity(p.blueprint);
                     if(e==null||e.BlueprintName!=p.blueprint||e.SpatialZone!=null||string.IsNullOrEmpty(e.ID)||!ids.Add(e.ID)
@@ -90,12 +93,26 @@ namespace CavesOfOoo.Core
                         e.GetPart<RenderPart>().DisplayName="steps to the gleaners' supply cellar";
                         Describe(e,"Worn steps lead to the gleaners' old supply store. Clay for the cracked well was kept below. Scratching travels up the nearer passage; a longer service passage runs around the store. The landing remains the way back.");
                     }
+                    else if(p.role=="crossing")
+                    {
+                        if(!physics.Solid||!e.HasTag("Solid")||!e.HasPart<DestructiblePart>())return Reject(zone,"invalid-crossing");
+                        e.Tags.Remove("Wall"); // Knee-high: solid footing obstacle, but the landing remains visible.
+                        e.GetPart<RenderPart>().VisualID="reference-glade-low-wall";
+                        e.GetPart<RenderPart>().DisplayName="worn crossing wall";
+                        Describe(e,"A low wall with worn footing on either side. Vault crosses two cells when the landing is clear; the path around remains open. A trapped store once stood one stretch south of this glade. These old marks do not promise surviving supplies.");
+                    }
+                    else if(p.role=="cellar-lead")
+                    {
+                        e.GetPart<RenderPart>().DisplayName="ditchkeepers' cellar note";
+                        Describe(e,"Ditchkeepers left a book of crossing tricks and repair clay below. Scratching carries from the broad passage; an older service passage winds around it. Read the recovered manual to learn Vault. The worn wall beside these steps leaves room to walk around or try the crossing.");
+                    }
                     else
                     {
                         e.GetPart<RenderPart>().DisplayName="gleaners' working notice";
                         string text="WELL LINING SPLIT. Two measures of fire clay needed. Stores below the western ruin; leave the landing clear. A second hand adds: the field alembic is one stretch north, the forge one east. Frost lichen can be brewed into a freezing coating and used to quench a melee weapon at a forge, at a cost to its durability. Put the weapon in your pack first. Sill is west; the wayside kitchen is southeast. Marrowstye's receiving hall lies one stretch farther south from the kitchen.";
                         if(manager.Exploration?.Enabled==true && manager.Exploration.Version>=11)
                             text+=" Another hand notes: the kitchen's batch pan also needs two measures of fire clay, for wrapped field meals. Its public oven and cot need no repair. Clay spent there cannot line this well until more is found.";
+                        if(opening)text="Crossing tricks and repair clay were stored below the western ruin. This well and the kitchen's batch pan each need two measures of fire clay; keep them if neither suits your next trip. The kitchen southeast offers one-action healing and bleed treatment in a wrapped field meal, while separate ingredients heal more in total. Its public oven and cot need no repair. Sill lies west, the alembic north, the forge east, and Marrowstye south of the kitchen. Inspect each place for its current condition.";
                         Describe(e,text);
                     }
                     staged.Add(e);
@@ -106,7 +123,7 @@ namespace CavesOfOoo.Core
                 {
                     if(!Authority()||!unchanged()||!original.Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities())
                         ||!placedProofs.All(proof=>proof())||!detachedProofs.Skip(i).All(proof=>proof()))return Reject(zone,"changed-during-publication");
-                    var p=placements[i];if(!zone.AddEntity(staged[i],p.x,p.y))return Reject(zone,"placement-refused");added.Add(staged[i]);
+                    var p=layout[i];if(!zone.AddEntity(staged[i],p.x,p.y))return Reject(zone,"placement-refused");added.Add(staged[i]);
                     placedProofs.Add(SpreadGenerationReceipt.CaptureFinalState(zone,new[]{staged[i]}));
                 }
                 if(!Authority()||!unchanged()||!original.Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities())

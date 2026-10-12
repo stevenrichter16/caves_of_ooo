@@ -2,27 +2,10 @@ using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
 {
-    /// <summary>
-    /// Acrobatics active ability: leap 2 cells in a chosen direction,
-    /// SKIPPING a single solid cell at distance 1 if the cell at
-    /// distance 2 is open. Useful for crossing pits, walls, or doors
-    /// the actor can't normally walk through. Distinct from Disengage
-    /// (open cells only) and Tumble (cell swap with creature) —
-    /// Vault is the only ability that BYPASSES A WALL CELL.
-    ///
-    /// <para><b>Mechanic:</b> SelfCentered with direction (DirectionLine
-    /// targeting). Reads ctx.DirectionX/Y. Looks at the cell at distance
-    /// 2 — if it's open + non-creature, the actor moves there
-    /// regardless of what's at distance 1 (open or wall, they're
-    /// jumped over). If the cell at distance 2 is solid or occupied,
-    /// the leap refuses without consuming a turn or cooldown. A successful
-    /// landing grants one brief adjacent melee accuracy opportunity.</para>
-    ///
-    /// <para>Per the WSP8.2 brainstorm
-    /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Acrobatics_Vault</c>):
-    /// "the only ability that bypasses a wall/solid cell." Disengage
-    /// moves through open cells; Vault crosses blockers.</para>
-    /// </summary>
+    /// <summary>Cursor-selected leap within two cells. A creature target causes
+    /// a landing one cell short and one committed primary melee strike. Empty
+    /// destinations preserve ordinary obstacle-crossing movement. Legacy direct
+    /// direction commands remain movement-only. See SPREAD-OPENING-DECISION-DESIGN §12.</summary>
     public class Acrobatics_Vault : BaseSkillPart
     {
         public override string Name => nameof(Acrobatics_Vault);
@@ -37,7 +20,7 @@ namespace CavesOfOoo.Skills
                 DisplayName = "Vault",
                 Command = "CommandVault",
                 Class = "Skills",
-                TargetingMode = AbilityTargetingMode.DirectionLine,
+                TargetingMode = AbilityTargetingMode.CursorCell,
                 Range = VAULT_DISTANCE,
                 Cooldown = COOLDOWN,
             };
@@ -49,6 +32,8 @@ namespace CavesOfOoo.Skills
             var actor = ctx.Attacker;
             if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
+            if(ctx.TargetCell!=null)return CursorVault(ctx);
+            // Legacy direction-only AI/audit callers retain movement-only semantics.
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
             if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
@@ -106,6 +91,27 @@ namespace CavesOfOoo.Skills
                 actor.ApplyEffect(new VaultPoiseEffect(), actor, ctx.Zone);
             MessageLog.Add(actor.GetDisplayName() + " vaults forward and finds an attacking opening!");
         
+            return true;
+        }
+        private bool CursorVault(SkillEventContext ctx)
+        {
+            var actor=ctx.Attacker;var zone=ctx.Zone;var selected=ctx.TargetCell;
+            if(!ReferenceEquals(zone.GetCell(selected.X,selected.Y),selected)
+                ||!VaultTargeting.TryPlan(actor,zone,selected.X,selected.Y,out var landing,out var target,out var reason))
+            {EmitSkillRejectedDiag(ctx,"invalid_cursor_landing");MessageLog.Add("Vault has no clear landing within two cells.");return false;}
+            var source=zone.GetEntityCell(actor);
+            if(landing!=source&&!MovementSystem.TryMoveTo(actor,zone,landing.X,landing.Y))return false;
+            // Landing can trigger traps, death or transfers. Never attack a stale owner from afar.
+            if(actor.SpatialZone!=zone||actor.GetStatValue("Hitpoints")<=0||CombatSystem.IsDeathHandled(actor))return true;
+            actor.ApplyEffect(new VaultPoiseEffect(),actor,zone);
+            if(target!=null&&target.SpatialZone==zone&&target.GetStatValue("Hitpoints")>0&&!CombatSystem.IsDeathHandled(target)
+                &&SpatialQuery.Distance(zone,actor,target)==1)
+            {
+                target.GetPart<BrainPart>()?.SetPersonallyHostile(actor);
+                MessageLog.Add(actor.HasTag("Player") ? "You vault into a melee strike!" : actor.GetDisplayName()+" vaults into a melee strike!");
+                CombatSystem.PerformCommittedMeleeAttack(actor,target,zone,ctx.Rng??new System.Random());
+            }
+            else MessageLog.Add(actor.HasTag("Player") ? "You vault to the chosen landing." : actor.GetDisplayName()+" vaults to the chosen landing.");
             return true;
         }
     }

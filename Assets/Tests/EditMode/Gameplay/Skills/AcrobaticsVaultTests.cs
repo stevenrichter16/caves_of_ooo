@@ -40,7 +40,7 @@ namespace CavesOfOoo.Tests
         {
             var spec = new Acrobatics_Vault().DeclareActivatedAbility(null);
             Assert.AreEqual("CommandVault", spec.Command);
-            Assert.AreEqual(AbilityTargetingMode.DirectionLine, spec.TargetingMode);
+            Assert.AreEqual(AbilityTargetingMode.CursorCell, spec.TargetingMode);
             Assert.AreEqual(Acrobatics_Vault.VAULT_DISTANCE, spec.Range);
         }
 

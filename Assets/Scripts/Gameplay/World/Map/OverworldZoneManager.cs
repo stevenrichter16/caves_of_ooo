@@ -160,7 +160,7 @@ namespace CavesOfOoo.Core
             if (zoneID == GleanersCellarBuilder.ZoneID && GleanersDistrict.CanBuildCellar(this))
             {
                 var cellar = new ZoneGenerationPipeline();
-                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=11, Exploration?.WorldKey, Exploration?.Enabled==true && Exploration.Version>=12));
+                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=11, Exploration?.WorldKey, Exploration?.Enabled==true && Exploration.Version>=12, Exploration?.Enabled==true && Exploration.Version>=17));
                 return cellar;
             }
 

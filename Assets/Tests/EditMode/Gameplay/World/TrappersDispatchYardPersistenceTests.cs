@@ -89,10 +89,14 @@ namespace CavesOfOoo.Tests
                         Assert.True(MovementSystem.TryMoveTo(player, zone, step.Item1, step.Item2));
                     Assert.LessOrEqual(SpatialQuery.Distance(zone, player, cache), 1);
                     var beforeStock = amounts.Keys.ToDictionary(k => k, k => Packed(player, k));
+                    int dramsBefore = TradeSystem.GetDrams(player);
                     foreach (var item in stock)
                         Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(cache, item), player, zone).Success);
                     Assert.IsEmpty(cache.GetPart<ContainerPart>().Contents);
-                    foreach (var row in amounts) Assert.AreEqual(beforeStock[row.Key] + row.Value, Packed(player, row.Key));
+                    foreach (var row in amounts)
+                        if (row.Key == "GoldCoin") { Assert.AreEqual(0, Packed(player, row.Key)); Assert.AreEqual(dramsBefore + row.Value * 5, TradeSystem.GetDrams(player)); }
+                        else Assert.AreEqual(beforeStock[row.Key] + row.Value, Packed(player, row.Key), row.Key);
+                    int recoveredTimber = amounts.TryGetValue("SalvagedTimber", out int timberUnits) ? timberUnits : 0;
                     string depletedInventory = Inventory(player);
                     Assert.False(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(cache, stock[0]), player, zone).Success);
                     Assert.AreEqual(depletedInventory, Inventory(player));
@@ -102,7 +106,7 @@ namespace CavesOfOoo.Tests
                     {
                         Place(zone, player, outside); zone.GetCell(t.x, t.y).IsVisible = true; zone.GetCell(t.x, t.y).Explored = true;
                         Assert.True(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(trap, "JamTrap"), player, zone).Success);
-                        Assert.True(TrapJammingPart.IsJammed(trap)); Assert.AreEqual(1, Packed(player, "SalvagedTimber"));
+                        Assert.True(TrapJammingPart.IsJammed(trap)); Assert.AreEqual(1 + recoveredTimber, Packed(player, "SalvagedTimber"));
                         Assert.True(MovementSystem.TryMoveTo(player, zone, t.x, t.y)); Assert.AreEqual(100, player.GetStatValue("Hitpoints"));
                     }
                     else
@@ -111,7 +115,7 @@ namespace CavesOfOoo.Tests
                         var stepper = Actor("dispatch-persistence-native-trigger", false); Place(zone, stepper, outside);
                         Assert.True(MovementSystem.TryMoveTo(stepper, zone, t.x, t.y));
                         Assert.AreEqual(100 - trap.GetPart<SpikeTrapTriggerPart>().Damage, stepper.GetStatValue("Hitpoints"));
-                        Assert.Null(zone.GetEntityCell(trap)); Assert.AreEqual(2, Packed(player, "SalvagedTimber"));
+                        Assert.Null(zone.GetEntityCell(trap)); Assert.AreEqual(2 + recoveredTimber, Packed(player, "SalvagedTimber"));
                     }
                     Owned(player, zone); string inventory = Inventory(player);
                     var away = new Zone("Overworld.0.0.0"); Assert.True(zone.RemoveEntity(player));
@@ -134,7 +138,7 @@ namespace CavesOfOoo.Tests
                     var savedTrap = loaded.GetReadOnlyEntities().SingleOrDefault(e => e.ID == trap.ID);
                     if (jammed) { Assert.NotNull(savedTrap); Assert.AreNotSame(trap, savedTrap); Assert.True(TrapJammingPart.IsJammed(savedTrap)); }
                     else Assert.Null(savedTrap);
-                    Assert.AreEqual(jammed ? 1 : 2, Packed(restored.Player, "SalvagedTimber"));
+                    Assert.AreEqual((jammed ? 1 : 2) + recoveredTimber, Packed(restored.Player, "SalvagedTimber"));
                     Owned(restored.Player, loaded);
                     foreach (var item in player.GetPart<InventoryPart>().Objects)
                         Assert.AreNotSame(item, restored.Player.GetPart<InventoryPart>().Objects.Single(e => e.ID == item.ID));

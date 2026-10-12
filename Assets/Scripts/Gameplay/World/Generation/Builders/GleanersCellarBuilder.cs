@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Data;
+using CavesOfOoo.Skills;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -18,12 +19,13 @@ namespace CavesOfOoo.Core
         readonly int seed;
         readonly bool connected;
         readonly bool fieldwork;
+        readonly bool opening;
         readonly string worldKey;
         static readonly string[] Required={"Floor","StoneWall","StairsUp","Crate","FireClay","FallenBeam","Signpost",
             "MarlbackScrabbler","ShatteredRimeGrimoire","Buckler","Dagger","Hatchet","Cudgel","LeatherCap","LeatherGloves"};
         public GleanersCellarBuilder(int seed):this(seed,false){}
-        public GleanersCellarBuilder(int seed, bool connected, string worldKey=null,bool fieldwork=false)
-        {this.seed=seed;this.connected=connected;this.worldKey=worldKey;this.fieldwork=fieldwork;}
+        public GleanersCellarBuilder(int seed, bool connected, string worldKey=null,bool fieldwork=false,bool opening=false)
+        {this.seed=seed;this.connected=connected;this.worldKey=worldKey;this.fieldwork=fieldwork;this.opening=opening;}
 
         /// <summary>Read-only content admission; malformed runtime owners still fail staging.
         /// Both finite reward packages are required so content availability never rerolls a seed.</summary>
@@ -47,6 +49,7 @@ namespace CavesOfOoo.Core
             if(zone==null||zone.ZoneID!=ZoneID||zone.EntityCount!=0||!SupportsContent(factory))return Reject(zone,"invalid-empty-zone-or-content");
             if(connected&&!factory.Blueprints.ContainsKey("SootrootCrop"))return Reject(zone,"missing-sootroot");
             if(fieldwork&&(!connected||!factory.Blueprints.ContainsKey("GleanersTimberPallet")||!factory.Blueprints.ContainsKey("SalvagedTimber")))return Reject(zone,"missing-fieldwork-content");
+            if(opening&&!factory.Blueprints.ContainsKey("DitchkeepersFootwork"))return Reject(zone,"missing-opening-manual");
             var reservationBefore=new HashSet<(int x,int y)>(zone.GenReservedCells);
             var staged=new List<(Entity owner,int x,int y)>();var createdIds=new HashSet<string>(StringComparer.Ordinal);
             var createdOwners=new Dictionary<Entity,(string blueprint,string id)>();
@@ -102,6 +105,7 @@ namespace CavesOfOoo.Core
                 var guard=Place("MarlbackScrabbler","guard",guardX,12);
                 if(!guard.HasTag("Creature")||guard.GetStatValue("Hitpoints")!=15||guard.GetPart<BrainPart>()?.SightRadius!=10)
                     throw new InvalidOperationException("invalid-native-guard");
+                if(opening)guard.AddPart(new MeleeTraumaProfilePart{AllowIncidentalDismemberment=false});
                 var cache=Place("Crate","supplies",storeX,MirrorY(7));
                 var container=cache.GetPart<ContainerPart>();
                 if(container==null||container.Contents.Count!=0||container.IsLocked||!cache.GetPart<PhysicsPart>().Solid)
@@ -110,7 +114,9 @@ namespace CavesOfOoo.Core
                 string reward=north?"ShatteredRimeGrimoire":"Buckler";
                 // Two separate fresh clay owners are checked before native stacking, so a
                 // malformed duplicate ID cannot disappear into a successful merge.
-                var goods=new[]{Make("FireClay"),Make("FireClay"),Make(reward)};
+                var goods=opening?new[]{Make("FireClay"),Make("FireClay"),Make(reward),Make("DitchkeepersFootwork")}:new[]{Make("FireClay"),Make("FireClay"),Make(reward)};
+                if(opening&&(goods[3].GetPart<GrimoirePart>()?.SkillClassName!="Acrobatics_Vault"||goods[3].HasPart<GrimoireChargePart>()))throw new InvalidOperationException("invalid-opening-manual");
+                if(opening)goods[3].GetPart<GrimoirePart>().LearnMessage="You learn Vault: choose a tile within two cells. Choose a creature to land one cell short and strike it. The worn crossing above the cellar offers safe footing to try it.";
                 foreach(var item in goods)
                     if(!item.GetPart<PhysicsPart>().Takeable||item.HasTag("Creature")
                         ||item.GetPart<StackerPart>() is StackerPart stack&&stack.StackCount!=1)
@@ -171,6 +177,8 @@ namespace CavesOfOoo.Core
                 bool RoleMatches(Entity e,string role,string blueprint)=>e.GetProperty(RoleKey)==role&&Fresh(e,blueprint);
                 var finalHandling=beam.GetPart<HandlingPart>();var finalBrain=guard.GetPart<BrainPart>();
                 if((fieldwork&&!ValidPallet(pallet))||roots.Where((e,i)=>!Fresh(e,"SootrootCrop")||e.GetPart<CropPart>()?.GrowthStage!=(i==0?2:0)||e.GetPart<CropPart>()?.MoistureTicks!=0).Any()
+                    ||(opening&&(guard.GetPart<MeleeTraumaProfilePart>()?.AllowIncidentalDismemberment!=false||guard.GetPart<SkillsPart>()?.HasSkill("Axe_Dismember")==true
+                        ||container.Contents.Count(e=>e.BlueprintName=="DitchkeepersFootwork")!=1||goods[3].GetPart<GrimoirePart>()?.SkillClassName!="Acrobatics_Vault"||goods[3].HasPart<GrimoireChargePart>()))
                     ||!TerrainMatches()||createdOwners.Any(pair=>pair.Key.ID!=pair.Value.id||pair.Key.BlueprintName!=pair.Value.blueprint)
                     ||!RoleMatches(stairs,"stairs","StairsUp")||!stairs.HasPart<StairsUpPart>()||stairs.GetPart<PhysicsPart>().Solid||stairs.HasTag("Solid")
                     ||!RoleMatches(notice,"notice","Signpost")||!notice.GetPart<PhysicsPart>().Solid||notice.GetPart<PhysicsPart>().Takeable
@@ -179,7 +187,7 @@ namespace CavesOfOoo.Core
                     ||finalHandling.Carryable||finalHandling.Throwable
                     ||!RoleMatches(guard,"guard","MarlbackScrabbler")||guard.GetPart<PhysicsPart>().Takeable||!guard.HasTag("Creature")||guard.GetStatValue("Hitpoints")!=15||finalBrain?.SightRadius!=10
                     ||!RoleMatches(cache,"supplies","Crate")||cache.GetPart<PhysicsPart>().Takeable||cache.GetPart<ContainerPart>()!=container||container.IsLocked||!cache.GetPart<PhysicsPart>().Solid
-                    ||container.Contents.Any(e=>e.BlueprintName!="FireClay"&&e.BlueprintName!=reward)
+                    ||container.Contents.Any(e=>e.BlueprintName!="FireClay"&&e.BlueprintName!=reward&&(!opening||e.BlueprintName!="DitchkeepersFootwork"))
                     ||container.Contents.Where(e=>e.BlueprintName=="FireClay").Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=2
                     ||container.Contents.Count(e=>e.BlueprintName==reward)!=1||!ValidGraph(staged.Select(p=>p.owner)))
                     throw new InvalidOperationException("invalid-staged-graph");

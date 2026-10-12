@@ -94,7 +94,7 @@ namespace CavesOfOoo.Scenarios.Custom
             string crateId=crate.ID,rewardId=reward.ID,beamId=beam.ID;
             var beamPosition=cellar.GetEntityPosition(beam);
             Check("district_actual_finite_cache",contents.Where(e=>e.BlueprintName=="FireClay").Sum(Units)==2
-                &&contents.All(e=>e.BlueprintName=="FireClay"||e==reward)
+                &&contents.All(e=>e.BlueprintName=="FireClay"||e==reward||(Manager.Exploration.Version>=17&&e.BlueprintName=="DitchkeepersFootwork"))
                 &&contents.All(e=>e.GetPart<PhysicsPart>()?.InInventory==crate)
                 &&(north?reward.GetPart<GrimoireChargePart>()?.Charges==10&&reward.GetPart<GrimoireChargePart>().MaxCharges==10
                     :reward.GetPart<ArmorPart>()?.AV==1&&reward.HasPart<EquippablePart>())

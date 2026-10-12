@@ -15,7 +15,7 @@ namespace CavesOfOoo.Core
   static readonly (int x,int y) Arrival=(40,12);
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
-   out Entity[] owners,out Func<bool> final)
+   out Entity[] owners,out Func<bool> final,bool opening=false)
   {
    owners=null;final=null;bool wet=family==SpreadExplorationFamily.WetCrossing;
    if((!wet&&family!=SpreadExplorationFamily.HeavyFrame)||zone==null||factory==null||authority==null)return false;
@@ -41,7 +41,8 @@ namespace CavesOfOoo.Core
    var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)));
    var before=new SpreadWildernessSituationBuilder.Geometry(zone,selected);
    var design=Find(zone,before,selected,wet,zone.GetEntityPosition(cache),out search);if(design==null)return Fail("no-layout");
-   var specs=design.Specs();var goodsNames=wet?new[]{"Emberwheat","Emberwheat","ClaspbeanPulp","DitchkeepersFootwork"}:new[]{"FireClay","FireClay","DitchkeepersFootwork"};
+   string discovery=opening?"ShatteredRimeGrimoire":"DitchkeepersFootwork";
+   var specs=design.Specs();var goodsNames=wet?new[]{"Emberwheat","Emberwheat","ClaspbeanPulp",discovery}:new[]{"FireClay","FireClay",discovery};
    if(specs.Any(s=>!factory.Blueprints.ContainsKey(s.bp))||goodsNames.Any(bp=>!factory.Blueprints.ContainsKey(bp)))return Fail("missing-blueprint");
    var container=cache.GetPart<ContainerPart>();if(container.MaxItems>=0&&container.Contents.Count+goodsNames.Length>container.MaxItems)return Fail("cache-capacity-changed");
    var staged=new List<Entity>();var goods=new List<Entity>();var freshProof=new List<Func<bool>>();
@@ -56,6 +57,8 @@ namespace CavesOfOoo.Core
     foreach(string bp in goodsNames)
     {
      var e=factory.CreateEntity(bp);if(!Fresh(e,bp)||!authority()||!Initial()||e.GetPart<PhysicsPart>().Takeable!=true||(e.GetPart<StackerPart>()?.StackCount??1)!=1)return Fail("created-supply-changed");
+     if(opening&&bp=="ShatteredRimeGrimoire"&&(e.GetPart<GrimoirePart>()?.SkillClassName!="Rites_ShatteredRime"
+      ||e.GetPart<GrimoireChargePart>()?.Charges!=10||e.GetPart<GrimoireChargePart>()?.MaxCharges!=10))return Fail("invalid-opening-discovery");
      goods.Add(e);freshProof.Add(SpreadGenerationReceipt.CaptureDetachedState(e));
     }
    }

@@ -85,6 +85,7 @@ namespace CavesOfOoo.Rendering
                 text.Append(ink == null ? "\nNo ink available in your pack." : "\nNext carried book: " + ink.Charges + " ink remaining.");
             }
             else text.Append(spec.TargetingMode == AbilityTargetingMode.SelfCentered ? "centered on you; area and effects as described above."
+                : spec.TargetingMode == AbilityTargetingMode.CursorCell ? "cursor-selected tile within range; confirm to act."
                 : spec.TargetingMode == AbilityTargetingMode.AdjacentCell ? "chosen adjacent cell." : "one of eight directions; shape and interception as described above.");
             text.Append("\nCooldown: ").Append(spec.Cooldown).Append(" turns after successful use.");
         }

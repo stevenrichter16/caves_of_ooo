@@ -23,6 +23,8 @@ namespace CavesOfOoo.Rendering
         {
             var abilities = player?.GetPart<ActivatedAbilitiesPart>();
             var slots = SlotScratch;
+            string hint = pendingAbility?.Command == "CommandVault"
+                ? "Move cursor  [Enter] vault  [Esc] cancel" : "[] cycle  [Enter] cast";
             int pendingSlot = pendingAbility != null && abilities != null
                 ? abilities.GetSlotForAbility(pendingAbility.ID)
                 : -1;
@@ -59,12 +61,12 @@ namespace CavesOfOoo.Rendering
                     slot == pendingSlot,
                     ability?.IsUsable ?? false,
                     HudHotbarPresentation.IconFor(ability?.SourcePowerClass),
-                    ability?.TargetingMode ?? AbilityTargetingMode.AdjacentCell,
-                    ability?.Range ?? 0);
+                    ability?.Command == "CommandVault" ? AbilityTargetingMode.CursorCell : ability?.TargetingMode ?? AbilityTargetingMode.AdjacentCell,
+                    ability?.Command == "CommandVault" ? 2 : ability?.Range ?? 0);
             }
 
             if (_cachedSnapshot != null && _cachedSnapshot.SelectedSlot == selectedSlot &&
-                _cachedSnapshot.PendingSlot == pendingSlot)
+                _cachedSnapshot.PendingSlot == pendingSlot && _cachedSnapshot.HintText == hint)
             {
                 bool unchanged = true;
                 for (int i = 0; i < slots.Length; i++)
@@ -87,7 +89,7 @@ namespace CavesOfOoo.Rendering
             _cachedSnapshot = new HotbarSnapshot(
                 "GRIMOIRES",
                 summaryText,
-                "[] cycle  [Enter] cast",
+                hint,
                 System.Array.AsReadOnly((HotbarSlotSnapshot[])slots.Clone()),
                 selectedSlot,
                 pendingSlot);

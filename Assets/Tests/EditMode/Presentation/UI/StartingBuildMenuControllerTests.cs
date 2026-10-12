@@ -112,6 +112,16 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
             Assert.IsEmpty(_chosen);
         }
 
+        [Test]
+        public void StationaryHoveredRowDoesNotUndoKeyboardChoice()
+        {
+            Open(); _menu.HoverSelect(2); Press(KeyCode.Alpha1);
+            _menu.HoverSelect(2);
+            Assert.AreEqual(0, _menu.SelectedIndex, "A resting pointer must not override the selected keyboard/controller row.");
+            _menu.HoverSelect(-1); _menu.HoverSelect(2);
+            Assert.AreEqual(2, _menu.SelectedIndex, "Entering the row again is a new hover choice.");
+        }
+
         // ── choosing ────────────────────────────────────────────
 
         [TestCase(KeyCode.Return)]

@@ -35,12 +35,14 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen { get; private set; }
         public StartingBuildMenuModel Model { get; private set; }
+        private int _lastHoveredRow = -1;
         public int SelectedIndex => Model?.SelectedIndex ?? 0;
 
         /// <summary>Open the modal. Does nothing (and returns false) for an empty list.</summary>
         public bool Open(IReadOnlyList<StartingBuildDef> options, Action<StartingBuildDef> onChosen)
         {
             if (options == null || options.Count == 0) return false;
+            _lastHoveredRow = -1;
             Model = new StartingBuildMenuModel(options);
             _onChosen = onChosen;
             IsOpen = true;
@@ -66,7 +68,14 @@ namespace CavesOfOoo.Rendering
             return false;
         }
 
-        public void HoverSelect(int index) => Model?.Select(index);
+        // Only a newly entered pointer row selects. A resting mouse must not
+        // undo keyboard or controller navigation on the following frame.
+        public void HoverSelect(int index)
+        {
+            if (index == _lastHoveredRow) return;
+            _lastHoveredRow = index;
+            if (IsOpen && index >= 0 && index < Model.Options.Count) Model.Select(index);
+        }
 
         public void ClickConfirm(int index)
         {

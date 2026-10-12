@@ -47,7 +47,7 @@ namespace CavesOfOoo.Tests
      var m=new Manager(scope.Factory,seed);Assert.AreEqual(seed,m.WorldSeed);var e=m.Exploration.Entries.Single(v=>(int)v.Family>=18);scope.Seed(seed^FormationSelector.StableIndex(e.ZoneID,int.MaxValue));var z=m.GetZone(e.ZoneID);Assert.NotNull(z,e.ZoneID);bool placed=m.Exploration.DispositionFor(e.ZoneID)==2;int addedOwners=z.EntityCount-m.Before.Length;
      Assert.True(m.Before.All(v=>z.GetEntityCell(v)!=null));foreach(var item in m.Stock)Assert.AreEqual(item.Value,item.Key.GetPart<StackerPart>()?.StackCount??1);
      Assert.True(m.Stock.Keys.All(item=>m.Containers.SourceReceipt.Owners.Any(c=>c.GetPart<ContainerPart>().Contents.Contains(item))));
-     var actors=m.Population.SourceReceipt.Owners;int manuals=m.Containers.SourceReceipt.Owners.SelectMany(c=>c.GetPart<ContainerPart>().Contents).Count(v=>v.BlueprintName=="DitchkeepersFootwork");
+     var actors=m.Population.SourceReceipt.Owners;int manuals=m.Containers.SourceReceipt.Owners.SelectMany(c=>c.GetPart<ContainerPart>().Contents).Count(v=>v.BlueprintName=="ShatteredRimeGrimoire");
      if(placed){Assert.AreEqual(1,manuals);if(e.Family.ToString()=="WetCrossing"){if(wet==0)SavedPacket(m,z,scope.Factory);wet++;Assert.AreEqual(2,actors.Count);Assert.True(actors.All(v=>v.BlueprintName=="MarlbackScrabbler"));}else{if(heavy==0)SavedPacket(m,z,scope.Factory);heavy++;}}
      else foreach(var v in m.Before)Assert.AreEqual(m.At[v],z.GetEntityPosition(v),v.BlueprintName);
      lines.Add(string.Join("\t",seed,e.ZoneID,e.Family,m.Exploration.DispositionFor(e.ZoneID),string.Join(",",actors.Select(v=>v.BlueprintName)),m.Containers.SourceReceipt.Owners.Count,addedOwners,manuals,m.Composer.LastResult,placed?"accepted":Refusal(e.ZoneID,seed)));
@@ -75,15 +75,15 @@ namespace CavesOfOoo.Tests
    var oldActive=SettlementRuntime.ActiveZone;
    try
    {
-    var cache=manager.Containers.SourceReceipt.Owners.Single(e=>e.GetPart<ContainerPart>().Contents.Any(v=>v.BlueprintName=="DitchkeepersFootwork"));
-    var manual=cache.GetPart<ContainerPart>().Contents.Single(e=>e.BlueprintName=="DitchkeepersFootwork");
+    var cache=manager.Containers.SourceReceipt.Owners.Single(e=>e.GetPart<ContainerPart>().Contents.Any(v=>v.BlueprintName=="ShatteredRimeGrimoire"));
+    var manual=cache.GetPart<ContainerPart>().Contents.Single(e=>e.BlueprintName=="ShatteredRimeGrimoire");
     var actor=factory.CreateEntity("Player");var at=zone.GetEntityPosition(cache);
     var front=new[]{(at.x-1,at.y),(at.x+1,at.y),(at.x,at.y-1),(at.x,at.y+1)}.First(p=>zone.CanPlaceFootprint(actor,p.Item1,p.Item2));
     Assert.True(zone.AddEntity(actor,front.Item1,front.Item2));manager.SetActiveZone(zone);SettlementRuntime.ActiveZone=zone;
-    Assert.False(actor.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault"));
+    Assert.False(actor.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime"));
     Assert.True(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(cache,manual),actor,zone).Success);
     Assert.True(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(manual,"ReadGrimoire"),actor,zone).Success);
-    Assert.True(actor.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault"));
+    Assert.True(actor.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime"));
     var frame=zone.GetReadOnlyEntities().SingleOrDefault(e=>e.BlueprintName=="ConnectedHeavyFrame");
     if(frame!=null)
     {
@@ -100,7 +100,7 @@ namespace CavesOfOoo.Tests
     Assert.AreEqual(expected.Count,returned.EntityCount);foreach(var e in returned.GetReadOnlyEntities()){Assert.True(expected.ContainsKey(e.ID));Assert.AreEqual(expected[e.ID],returned.GetEntityPosition(e));}
     CollectionAssert.AreEqual(tiles,Enumerable.Range(0,Zone.Width*Zone.Height).Select(i=>Tile(returned,i)).ToArray());var current=returned.GetReadOnlyEntities().Single(e=>e.ID==cache.ID);
     Assert.AreEqual(remaining,string.Join("|",current.GetPart<ContainerPart>().Contents.Select(e=>e.ID+":"+(e.GetPart<StackerPart>()?.StackCount??1))));
-    Assert.True(loaded.Player.GetPart<InventoryPart>().Objects.Any(e=>e.ID==manual.ID));Assert.True(loaded.Player.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault"));
+    Assert.True(loaded.Player.GetPart<InventoryPart>().Objects.Any(e=>e.ID==manual.ID));Assert.True(loaded.Player.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime"));
     restored.UnloadZone(returned.ZoneID);Assert.AreSame(returned,restored.GetZone(returned.ZoneID));
    }
    finally{SettlementRuntime.ActiveZone=oldActive;}

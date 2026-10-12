@@ -28,7 +28,7 @@ namespace CavesOfOoo.Tests
    internal bool Place(string family,Func<bool> authority=null)
    {
     var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.ConnectedSpreadSatellite");Assert.NotNull(type,"Optional wet/heavy situations need real cold generation.");
-    object[] a={Zone,Factory,Terrain,Population,Containers,(SpreadExplorationFamily)Enum.Parse(typeof(SpreadExplorationFamily),family),authority??(()=>true),null,null};
+    object[] a={Zone,Factory,Terrain,Population,Containers,(SpreadExplorationFamily)Enum.Parse(typeof(SpreadExplorationFamily),family),authority??(()=>true),null,null,false};
     bool ok=(bool)type.GetMethod("TryPlace").Invoke(null,a);Owners=(Entity[])a[7];Final=(Func<bool>)a[8];return ok;
    }
    internal Func<bool> Proof(IEnumerable<Entity> owners)=>(Func<bool>)typeof(SpreadGenerationReceipt).GetMethod("CaptureFinalState",All).Invoke(null,new object[]{Zone,owners});

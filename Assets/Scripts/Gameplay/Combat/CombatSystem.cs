@@ -1648,6 +1648,14 @@ namespace CavesOfOoo.Core
             // part) re-invoke HandleDeath via Body.Dismember.
             if (IsDeathHandled(defender) || defender.GetStatValue("Hitpoints", 0) <= 0) return;
 
+            // Source-owned capability follows a pursuing actor across zones. Never
+            // veto the defender's general dismember event or alter HP/bleeding.
+            if (source?.GetPart<MeleeTraumaProfilePart>()?.AllowIncidentalDismemberment == false)
+            {
+                EmitDismembermentDiag(defender, hitPart, "source_profile", 0f, 0f, 0, 0);
+                return;
+            }
+
             if (!hitPart.IsSeverable())
             {
                 EmitDismembermentDiag(defender, hitPart, "not_severable", 0f, 0f, 0, 0);

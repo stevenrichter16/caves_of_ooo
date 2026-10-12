@@ -15,15 +15,16 @@ namespace CavesOfOoo.Core
   const int MaxTrials=256;
   public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,
-   out Entity[] owners,out Func<bool> final)
-   =>TryPlaceCore(zone,factory,terrain,population,containers,family,authority,true,out owners,out final);
+   out Entity[] owners,out Func<bool> final,bool opening=false)
+   =>TryPlaceCore(zone,factory,terrain,population,containers,family,authority,true,out owners,out final,opening);
   static bool TryPlaceCore(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
    PopulationBuilder population,ContainerBuilder containers,SpreadExplorationFamily family,Func<bool> authority,bool allowDrying,
-   out Entity[] owners,out Func<bool> final)
+   out Entity[] owners,out Func<bool> final,bool opening)
   {
    owners=null;final=null;
    bool alembic=family==SpreadExplorationFamily.FieldAlembic,forge=family==SpreadExplorationFamily.TemperingShelter,store=family==SpreadExplorationFamily.TrappersStore;
    if((!alembic&&!forge&&!store)||zone==null||factory==null||authority==null)return false;
+   opening=opening&&store&&zone.ZoneID=="Overworld.11.11.0";
    var plan=terrain?.Plan;var actors=population?.SourceReceipt;var stock=store?containers?.SourceReceipt:null;
    bool Identity()=>terrain?.SourceZone==zone&&terrain.Plan==plan&&plan?.ZoneID==zone.ZoneID
     &&population?.CaptureSourceReceipts==true&&population.SourceReceipt==actors&&actors?.Zone==zone&&actors.Factory==factory
@@ -40,7 +41,7 @@ namespace CavesOfOoo.Core
    // Only this freshly authored pair gains a literal, optional emergency supply.
    // Missing content retains the earlier shelter; malformed content refuses below.
    bool emergencyWater=forge&&pair&&zone.ZoneID=="Overworld.15.10.0"&&factory.Blueprints.ContainsKey("SunbladderShell");
-   var replaced=drying?actors.Owners.OrderBy(e=>Distance(zone.GetEntityPosition(e),Arrival)).Take(1).ToArray():pair?actors.Owners.ToArray():Array.Empty<Entity>();var selected=new HashSet<Entity>(replaced);if(cache!=null)selected.Add(cache);
+   var replaced=drying?actors.Owners.OrderBy(e=>Distance(zone.GetEntityPosition(e),Arrival)).Take(1).ToArray():pair||opening?actors.Owners.ToArray():Array.Empty<Entity>();var selected=new HashSet<Entity>(replaced);if(cache!=null)selected.Add(cache);
    string caster=forge?"MarlbackCindercaller":"MarlbackSoursprayer";
    var specs=new List<(string bp,string role,int x,int y)>();
    if(alembic){specs.Add(("AlchemyStill","still",0,0));specs.Add(("StoneburrPatch","binding-forage",-2,1));specs.Add(("FrostLichenPatch","cold-forage",2,1));}
@@ -51,6 +52,7 @@ namespace CavesOfOoo.Core
     for(int y=-2;y<=2;y++)for(int x=-3;x<=3;x++)
      if((Math.Abs(x)==3||Math.Abs(y)==2)&&!(y==0&&Math.Abs(x)==3))specs.Add(("StoneWall","broken-wall",x,y));
    }
+   if(opening)specs.Add(("Wall","crossing",-5,3));
    if(!store)foreach(var p in new[]{(-2,-2),(-1,-2),(2,-2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2));
    if(drying)
    {
@@ -60,6 +62,8 @@ namespace CavesOfOoo.Core
     foreach(int side in new[]{-1,1})foreach(var p in new[]{(3,3),(4,3),(5,3),(5,2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2*side));
    }
    if(pair){specs.Add((caster,"ranged",store?1:2,-1));specs.Add(("MarlbackScrabbler","melee",-1,1));}
+   if(opening&&!pair)specs.Add(("MarlbackScrabbler","melee",-1,1));
+   if(opening&&(!factory.Blueprints.ContainsKey("HealingTonic")||!factory.Blueprints.ContainsKey("SalvagedTimber")||LoadoutPart.Factory!=factory))return false;
    if(specs.Any(s=>!factory.Blueprints.ContainsKey(s.bp))||(pair&&LoadoutPart.Factory!=factory))return false;
    var all=new HashSet<Entity>(zone.GetReadOnlyEntities());var initial=SpreadGenerationReceipt.CaptureFinalState(zone,all);
    var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)));
@@ -85,11 +89,16 @@ namespace CavesOfOoo.Core
    if(!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
    // No enriched shape fits. Only this pre-staging branch can retry the old packet;
    // failed factory/ownership transactions below never consume another attempt.
-   if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final);
+   if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final,opening);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
+   var goods=new List<Entity>();var goodsProofs=new List<Func<bool>>();
+   var container=cache?.GetPart<ContainerPart>();Func<bool> supplied=null;bool stockAdded=false;
+   var otherStock=opening?SpreadGenerationReceipt.CaptureFinalState(zone,stock.Owners.Where(e=>e!=cache)):null;
+   bool StockCapacity()=>!opening||(ReferenceEquals(cache.GetPart<ContainerPart>(),container)&&!container.IsLocked&&(container.MaxItems<0||container.Contents.Count+2<=container.MaxItems));
+   if(!StockCapacity())return false;
    EmergencyWaterStock waterStock=null;
    bool SupplyShape()=>!emergencyWater||waterStock?.Matches()==true;
-   bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
+   bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)&&(!opening||(specs[i].role!="melee"&&specs[i].role!="ranged")||(e.HasTag("Creature")&&e.GetPart<MeleeTraumaProfilePart>()?.AllowIncidentalDismemberment==false&&e.GetPart<SkillsPart>()?.HasSkill("Axe_Dismember")!=true))).All(valid=>valid));
    bool DryingShape()=>!drying||(staged.Count==specs.Count&&staged.Select((e,i)=>DryingOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
    var oldPositions=selected.ToDictionary(e=>e,zone.GetEntityPosition);
    bool Provenance()=>Identity();
@@ -102,11 +111,28 @@ namespace CavesOfOoo.Core
     // caster. Keep the exact detached proof until its actual inventory accepts it.
     if(emergencyWater&&(!EmergencyWaterStock.TryCreate(factory,out waterStock)||!authority()||!Sources()||!initial()
      ||!all.SetEquals(zone.GetReadOnlyEntities())))return false;
+    if(opening)foreach(string bp in new[]{"HealingTonic","SalvagedTimber"})
+    {
+     var item=factory.CreateEntity(bp);
+     if(!Fresh(item,bp)||item.GetPart<PhysicsPart>().Takeable!=true||(item.GetPart<StackerPart>()?.StackCount??1)!=1
+      ||(bp=="HealingTonic"&&item.GetPart<TonicPart>()?.Healing!="4d6+4")||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!goodsProofs.All(p=>p()))return false;
+     if(bp=="SalvagedTimber")
+     {var stack=item.GetPart<StackerPart>();if(stack==null||stack.MaxStack<2)return false;stack.StackCount=2;}
+     goods.Add(item);goodsProofs.Add(SpreadGenerationReceipt.CaptureDetachedState(item));
+    }
     foreach(var spec in specs)
     {
      var e=factory.CreateEntity(spec.bp);
      if(!Fresh(e,spec.bp)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
      e.Properties[RoleKey]=spec.role;
+     if(opening&&(spec.role=="melee"||spec.role=="ranged"))e.AddPart(new MeleeTraumaProfilePart{AllowIncidentalDismemberment=false});
+     if(spec.role=="crossing")
+     {
+      if(!e.GetPart<PhysicsPart>().Solid||!e.HasPart<DestructiblePart>())return false;
+      e.Tags.Remove("Wall"); // Knee-high: solid footing obstacle, but the landing remains visible.
+      e.GetPart<RenderPart>().VisualID="reference-glade-low-wall";e.GetPart<RenderPart>().DisplayName="worn service crossing";
+      e.GetPart<ExaminablePart>().Text="Scuffed footing lies on both sides of this low barrier. Vault crosses two cells to a clear landing, or walk around. Inside the yard, the spike entrance and fallen beam offer other approaches; enemies can occupy a landing.";
+     }
      if(spec.role=="melee")
      {var tactics=e.GetPart<CombatTacticsPart>();if(tactics==null){tactics=new CombatTacticsPart{SkillClasses="",AbilityChance=0};e.AddPart(tactics);}tactics.AssistAllies=true;tactics.AssistRadius=6;}
      if(spec.role=="ranged"&&(!e.HasTag("Creature")||e.GetPart<BrainPart>()==null||e.GetPart<BrainPart>().SightRadius<1||e.GetPart<BrainPart>().SightRadius>6||e.GetPart<CombatTacticsPart>()?.AssistAllies!=true
@@ -130,7 +156,7 @@ namespace CavesOfOoo.Core
     }
    }
    catch(Exception){return false;}
-   if(!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
+   if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -149,9 +175,16 @@ namespace CavesOfOoo.Core
      placedProof[e]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{e});
      if(!authority()||!Owned()||!Others()||!AddedState()||!SupplyShape())return false;
     }
+    if(opening)
+    {
+     if(!Owned()||!Others()||!AddedState()||!StockCapacity()||!goodsProofs.All(p=>p()))return false;
+     // Keep original rolled owners and quantities, including matching stacks.
+     foreach(var item in goods){container.Contents.Add(item);item.GetPart<PhysicsPart>().InInventory=cache;}
+     stockAdded=true;supplied=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{cache});placedProof[cache]=supplied;
+    }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
     bool Final()=>authority()&&Provenance()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
-     &&(!store||stock.MatchesOwnedState())&&finalPacket()&&detached.Values.All(p=>p())
+     &&(!store||(opening?supplied?.Invoke()==true&&otherStock():stock.MatchesOwnedState()))&&finalPacket()&&detached.Values.All(p=>p())
      &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
    }
@@ -159,6 +192,11 @@ namespace CavesOfOoo.Core
    {
     if(!success)
     {
+     if(stockAdded&&supplied?.Invoke()==true)
+     {
+      foreach(var item in goods){container.Contents.Remove(item);item.GetPart<PhysicsPart>().InInventory=null;}
+      placedProof[cache]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{cache});
+     }
      // Do not reclaim owners independently changed or transferred by a callback.
      foreach(var e in packet.Reverse())if(placedProof.TryGetValue(e,out var proof)&&proof())
       {zone.RemoveEntity(e);added.Remove(e);if(e==cache)removed.Add(e);}
@@ -219,10 +257,10 @@ namespace CavesOfOoo.Core
   {
    if(e==null||e.BlueprintName!=blueprint||e.GetProperty(RoleKey)!=role||e.HasPart<SpatialFootprintPart>()
     ||e.Parts.Any(p=>p==null||p.ParentEntity!=e))return false;
-   if(role!="broken-wall"&&role!="haul-bypass"&&role!="trap")return true;
+   if(role!="broken-wall"&&role!="haul-bypass"&&role!="trap"&&role!="crossing")return true;
    var physical=e.GetPart<PhysicsPart>();
    if(physical?.ParentEntity!=e||physical.Takeable||physical.InInventory!=null||physical.Equipped!=null||e.HasTag("Creature"))return false;
-   if(role=="broken-wall")return physical.Solid;
+   if(role=="broken-wall"||role=="crossing")return physical.Solid;
    if(role=="haul-bypass")return physical.Solid&&e.GetPart<HandlingPart>() is HandlingPart handling
     &&handling.Weight==60&&handling.MinLiftStrength==0&&!handling.Carryable&&!e.HasPart<HarvestablePart>()&&!e.HasPart<DestructiblePart>();
    return !physical.Solid&&!e.HasTag("Solid")&&TrapJammingPart.IsSupported(e)&&!TrapJammingPart.IsJammed(e)
@@ -337,6 +375,8 @@ namespace CavesOfOoo.Core
    for(int y=-2;y<=2;y++)for(int x=-3;x<=3;x++)if(!Clear(x,y))return false;
    for(int y=-1;y<=1;y++)for(int x=-5;x<=-4;x++)if(!Clear(x,y))return false;
    if(!Clear(4,0))return false;
+   if(specs.Any(s=>s.role=="crossing"))
+    for(int y=3;y<=4;y++)for(int x=-6;x<=-4;x++)if(!Clear(x,y))return false;
    var blocked=new HashSet<(int x,int y)>(positions);
    var cache=At(origin,(0,0),rotation);var trap=At(origin,(3,0),rotation);var beam=At(origin,(-3,0),rotation);
    var grab=At(origin,(-4,0),rotation);var pull=At(origin,(-5,0),rotation);var aside=At(origin,(-5,-1),rotation);
@@ -344,6 +384,7 @@ namespace CavesOfOoo.Core
    var closed=ReachStore(g,blocked,Arrival,true);
    bool Touch(bool[,] reached,(int x,int y)p)
    {for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)if(g.In(p.x+dx,p.y+dy)&&reached[p.x+dx,p.y+dy])return true;return false;}
+   if(specs.Any(s=>s.role=="crossing")&&new[]{(-6,3),(-4,3)}.Any(local=>{var p=At(origin,local,rotation);return !closed[p.x,p.y];}))return false;
    if(Touch(closed,cache)||!closed[grab.x,grab.y]||!closed[pull.x,pull.y]||!closed[aside.x,aside.y]||!closed[direct.x,direct.y])return false;
    if(new[]{(forage.x-1,forage.y),(forage.x+1,forage.y),(forage.x,forage.y-1),(forage.x,forage.y+1)}.Count(p=>g.In(p.Item1,p.Item2)&&closed[p.Item1,p.Item2])<2)return false;
    blocked.Remove(trap);

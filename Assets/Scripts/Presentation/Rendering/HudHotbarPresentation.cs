@@ -66,6 +66,7 @@ namespace CavesOfOoo.Rendering
             {
                 case AbilityTargetingMode.SelfCentered: return "self";
                 case AbilityTargetingMode.AdjacentCell: return "adjacent";
+                case AbilityTargetingMode.CursorCell: return "tile " + slot.Range;
                 case AbilityTargetingMode.DirectionLine: return "line " + slot.Range;
                 default: return "target " + slot.Range;
             }

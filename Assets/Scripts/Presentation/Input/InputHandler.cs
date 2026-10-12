@@ -2162,6 +2162,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if(ability.Command=="CommandVault"){BeginVaultTargeting(ability,playerCell);return;}
+
             // Directional ability — enter targeting mode. Same as the
             // slot-based TryActivateAbility's directional path.
             _pendingAbility = ability;
@@ -3728,6 +3730,9 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Recognize the command too: old saved ability rows retain direction metadata.
+            if(ability.Command=="CommandVault"){BeginVaultTargeting(ability,playerCell);return;}
+
             // Enter targeting mode
             _pendingAbility = ability;
             _inputState = InputState.AwaitingDirection;
@@ -3741,6 +3746,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void HandleAwaitingDirection()
         {
+            if(_pendingAbility?.Command=="CommandVault"){HandleVaultTargeting();return;}
             // Cancel on Escape
             if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
@@ -3816,7 +3822,7 @@ namespace CavesOfOoo.Rendering
             cmd.SetParameter("DirectionY", dy);
             cmd.SetParameter("Range", ability.Range);
 
-            if (ability.TargetingMode == AbilityTargetingMode.AdjacentCell && targetCell != null)
+            if ((ability.TargetingMode == AbilityTargetingMode.AdjacentCell || ability.TargetingMode == AbilityTargetingMode.CursorCell || ability.Command=="CommandVault") && targetCell != null)
                 cmd.SetParameter("TargetCell", (object)targetCell);
 
             PlayerEntity.FireEvent(cmd);
@@ -3982,7 +3988,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool GetDirectionKeyDown(out int dx, out int dy)
         {
-            bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting;
+            bool cursor = _inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting || IsVaultTargeting;
             if (cursor && NativeGamepadInput.TryDirection(true, out dx, out dy)) return true;
             if (!cursor && NativeGamepadInput.GetKeyDown(KeyCode.Return)
                 && NativeGamepadInput.TrySelectedDirection(out dx, out dy)) return true;
@@ -4296,6 +4302,8 @@ namespace CavesOfOoo.Rendering
             ClearAttackConfirmation();
             var target = _pendingAttackTarget;
             _pendingAttackTarget = null;
+
+            if(_vaultAttackConfirmation){ResolveVaultAttackConfirmation(confirmed,target);return;}
 
             if (confirmed)
                 ExecuteAttackOnNPC(target);

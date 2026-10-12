@@ -31,7 +31,7 @@ namespace CavesOfOoo.Scenarios.Custom
         string[] VariantChecks => VariantCommonChecks.Concat(VariantBreaker
             ? new[] { "variant_frame_pulled", "variant_cleared_crossing", "variant_clay_well" }
             : new[] { "variant_witnessed_breach", "variant_ground_throw", "variant_breach_save_restore", "variant_local_return", "variant_restitution" }).ToArray();
-        const string VariantIntent = "Actual selected Breaker/seed1729 or Bombardier/seed29; ordinary native map/ground trip to one census-observed accepted satellite. Breaker uses its own strength to pull a real heavy frame, crosses the cleared aperture, retrieves finite clay/manual and repairs the original glade well. Bombardier spends one original tonic only with a useful lawful target or preserves it and uses a live alternate approach, retrieves finite grain/manual, commits an actually witnessed local reserve breach, saves/reloads it, leaves/returns and pays restitution using earned grain. Native reading, depletion and final replacement-graph save checks. Up to60seconds of observational frame sampling during useful travel, never clock-padding.";
+        const string VariantIntent = "Actual selected Breaker/seed1729 or Bombardier/seed29; ordinary native map/ground trip to one census-observed accepted satellite. Breaker uses its own strength to pull a real heavy frame, crosses the cleared aperture, retrieves finite clay/charged book and repairs the original glade well. Bombardier spends one original tonic only with a useful lawful target or preserves it and uses a live alternate approach, retrieves finite grain/charged book, commits an actually witnessed local reserve breach, saves/reloads it, leaves/returns and pays restitution using earned grain. Native reading, depletion and final replacement-graph save checks. Up to60seconds of observational frame sampling during useful travel, never clock-padding.";
         const string VariantLimits = "Targeted source-guided seeds selected after census; not blind five-seed coverage, unaided discovery, encounter balance or all-seed proof. No grants, player transfers, target setup, population edits, source replenishment or time changes. Breaker uses actual starting Cudgel/finite tonics if an adjacent hostile forces defense. Bombardier may preserve a throwable when no lawful useful ray exists; expenditure and bypass are separately reported. Witness failure is a retained acceptance failure, never fabricated permission. Native timing includes paced keys, turn/AI, screenshots and audit IO; no prior-build comparison, pure renderer cost, steady-state benchmark or GC-allocation claim. Shorter-than60second routes are reported honestly. Screenshots still need independent visual review.";
 
         IEnumerator ConnectedVariantChooseBuild()
@@ -65,13 +65,13 @@ namespace CavesOfOoo.Scenarios.Custom
             try
             {
                 yield return TravelSurface(VariantZone);
-                var cache=Zone.GetReadOnlyEntities().SingleOrDefault(e=>e.GetPart<ContainerPart>()?.Contents.Any(i=>i.BlueprintName=="DitchkeepersFootwork")==true);
+                var cache=Zone.GetReadOnlyEntities().SingleOrDefault(e=>e.GetPart<ContainerPart>()?.Contents.Any(i=>i.BlueprintName=="ShatteredRimeGrimoire")==true);
                 Require(cache!=null,"actual naturally committed finite satellite cache, never replacement generation");
-                _variantCacheId=cache.ID;_variantManualId=cache.GetPart<ContainerPart>().Contents.Single(e=>e.BlueprintName=="DitchkeepersFootwork").ID;
+                _variantCacheId=cache.ID;_variantManualId=cache.GetPart<ContainerPart>().Contents.Single(e=>e.BlueprintName=="ShatteredRimeGrimoire").ID;
                 var planned=Manager.Exploration.Find(VariantZone);
                 Check("variant_actual_source",Manager.Exploration.DispositionFor(VariantZone)==2
                     &&planned?.Family.ToString()==(VariantBreaker?"HeavyFrame":"WetCrossing")
-                    &&!Player.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault"));
+                    &&!Player.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime"));
                 yield return Capture("variant-02-current-satellite");
                 if(VariantBreaker)yield return ConnectedVariantHeavy();
                 else yield return ConnectedVariantWet();
@@ -83,12 +83,12 @@ namespace CavesOfOoo.Scenarios.Custom
                 yield return Paid(DistrictTakeCache(cache,goods),"local","variant-actual-finite-cache");
                 Check("variant_finite_cache",cache.GetPart<ContainerPart>().Contents.Count==0&&DistrictClay()==clay+clayAdded
                     &&Packed("Emberwheat")==grain+grainAdded&&Packed("ClaspbeanPulp")==pulp+pulpAdded
-                    &&Packed("DitchkeepersFootwork")==1&&CountGraphId(_variantManualId)==1);
+                    &&Packed("ShatteredRimeGrimoire")==1&&CountGraphId(_variantManualId)==1);
                 var manual=Player.GetPart<InventoryPart>().Objects.Single(e=>e.ID==_variantManualId);
                 int tick=Tick,energy=Energy,sp=Player.GetStatValue("SP");
                 yield return ItemAction(manual,"ReadGrimoire");yield return CloseNormal();
-                Check("variant_manual_learned",Player.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault")&&Owns(Player,manual)
-                    &&manual.GetPart<GrimoireChargePart>()==null&&Tick==tick&&Energy==energy&&Player.GetStatValue("SP")==sp);
+                Check("variant_manual_learned",Player.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime")&&Owns(Player,manual)
+                    &&manual.GetPart<GrimoireChargePart>()?.Charges==10&&Tick==tick&&Energy==energy&&Player.GetStatValue("SP")==sp);
                 yield return Capture("variant-03-earned-manual");
                 if(VariantBreaker)
                 {
@@ -311,7 +311,7 @@ namespace CavesOfOoo.Scenarios.Custom
             return string.Join("|",Player.ID,Player.GetProperty(StartingBuildService.PropertyName),VariantSeed,_variantCacheId,
                 string.Join(",",cache.GetPart<ContainerPart>().Contents.Select(e=>e.ID+":"+Units(e))),
                 frame==null?"no-frame":frame.ID+":"+Manager.CachedZones[VariantZone].GetEntityPosition(frame),
-                Player.GetPart<SkillsPart>().HasSkill("Acrobatics_Vault"),CountGraphId(_variantManualId),
+                Player.GetPart<SkillsPart>().HasSkill("Rites_ShatteredRime"),CountGraphId(_variantManualId),
                 VariantKeeper?.ID,claim?.GetState(Player),record?.BreachOrdinal,record?.LastBreach,claim?.FirstSoilID,claim?.SecondSoilID,
                 string.IsNullOrEmpty(_variantHarvestedId)?"no-harvest":CountGraphId(_variantHarvestedId).ToString(),
                 string.Join(",",_variantYieldIds.Select(id=>

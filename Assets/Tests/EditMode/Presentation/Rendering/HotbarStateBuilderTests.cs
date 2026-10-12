@@ -7,6 +7,30 @@ namespace CavesOfOoo.Tests
     public class HotbarStateBuilderTests
     {
         [Test]
+        public void UnboundVaultChangesHintAndCancelRestoresIt()
+        {
+            var player = new Entity();
+            player.AddPart(new ActivatedAbilitiesPart());
+            var vault = new ActivatedAbility { Command = "CommandVault" };
+            var normal = HotbarStateBuilder.Build(player, -1, null);
+            var aiming = HotbarStateBuilder.Build(player, -1, vault);
+            Assert.That(aiming.HintText, Does.Contain("Move cursor"));
+            Assert.AreEqual(normal.HintText, HotbarStateBuilder.Build(player, -1, null).HintText);
+        }
+
+        [Test]
+        public void OldSavedVaultMetadataDisplaysCurrentCursorRange()
+        {
+            var player = new Entity();
+            var abilities = new ActivatedAbilitiesPart();
+            player.AddPart(abilities);
+            abilities.AddAbility("Vault", "CommandVault", "Skills", AbilityTargetingMode.DirectionLine, 2, "Acrobatics_Vault");
+            var snapshot = HotbarStateBuilder.Build(player, 0, null);
+            Assert.AreEqual(AbilityTargetingMode.CursorCell, snapshot.Slots[0].TargetingMode);
+            Assert.AreEqual(2, snapshot.Slots[0].Range);
+        }
+
+        [Test]
         public void Build_UsesActivatedAbilitySlots_AndTooltipDisplayData()
         {
             var player = new Entity { BlueprintName = "Player" };

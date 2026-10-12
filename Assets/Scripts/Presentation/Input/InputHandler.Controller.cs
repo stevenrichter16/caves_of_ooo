@@ -440,6 +440,13 @@ namespace CavesOfOoo.Rendering
 
         private void RefreshControllerDirectionCue()
         {
+            if (IsVaultTargeting)
+            {
+                _controllerDirectionCue.Deactivate();
+                _controllerOwnsCue = false;
+                ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
+                return;
+            }
             bool aiming = ControllerContext() != GamepadInputContext.Menu
                 && (_inputState == InputState.Normal || _inputState == InputState.ControllerDirection
                     || _inputState == InputState.AwaitingDirection || _inputState == InputState.AwaitingTalkDirection
@@ -458,7 +465,7 @@ namespace CavesOfOoo.Rendering
             if (_controllerOwnsCue)
             {
                 _controllerDirectionCue.Deactivate();
-                if (_inputState != InputState.LookMode && _inputState != InputState.ThrowTargeting) ZoneRenderer?.ClearWorldCursor();
+                if (_inputState != InputState.LookMode && _inputState != InputState.ThrowTargeting && !IsVaultTargeting) ZoneRenderer?.ClearWorldCursor();
                 _controllerOwnsCue = false;
             }
         }

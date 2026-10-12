@@ -31,7 +31,7 @@ namespace CavesOfOoo.Tests
    {
     var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.SpreadExplorationWorksites");Assert.NotNull(type,"Selected small worksites must be realized by ordinary generation.");
     var family=(SpreadExplorationFamily)Enum.Parse(typeof(SpreadExplorationFamily),name);
-    object[] a={Zone,factory??Factory,Terrain,Population,Containers,family,authority??(()=>true),null,null};
+    object[] a={Zone,factory??Factory,Terrain,Population,Containers,family,authority??(()=>true),null,null,false};
     bool ok=(bool)type.GetMethod("TryPlace").Invoke(null,a);Owners=(Entity[])a[7];Final=(Func<bool>)a[8];return ok;
    }
    internal Func<bool> Proof(IEnumerable<Entity> owners)=>(Func<bool>)typeof(SpreadGenerationReceipt).GetMethod("CaptureFinalState",All).Invoke(null,new object[]{Zone,owners});

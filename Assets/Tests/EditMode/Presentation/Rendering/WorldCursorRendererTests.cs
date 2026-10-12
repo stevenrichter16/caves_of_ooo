@@ -136,7 +136,7 @@ namespace CavesOfOoo.Tests
             Vector3 expectedMin = tilemap.CellToWorld(tileCell);
             Vector3 expectedMax = tilemap.CellToWorld(tileCell + new Vector3Int(1, 1, 0));
 
-            var line = Object.FindFirstObjectByType<LineRenderer>();
+            var line = GameObject.Find("WorldCursor").GetComponent<LineRenderer>();
             Assert.IsNotNull(line);
             Assert.AreEqual(expectedMin.x, line.GetPosition(0).x, 0.0001f);
             Assert.AreEqual(expectedMin.y, line.GetPosition(0).y, 0.0001f);

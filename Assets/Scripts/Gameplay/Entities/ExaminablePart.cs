@@ -147,6 +147,9 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(directions))
                 baseLine += "\n" + directions;
 
+            if (ParentEntity?.GetPart<MeleeTraumaProfilePart>()?.AllowIncidentalDismemberment == false)
+                baseLine += "\nIts ordinary melee attacks can wound and kill, but do not cause incidental limb loss. This does not protect against other hazards.";
+
             var exploration = SpreadExplorationReadout.Describe(ParentEntity);
             if (!string.IsNullOrEmpty(exploration)) baseLine += "\n" + exploration;
 

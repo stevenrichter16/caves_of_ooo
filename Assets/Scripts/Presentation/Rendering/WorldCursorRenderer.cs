@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using CavesOfOoo.Skills;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,9 @@ namespace CavesOfOoo.Rendering
     {
         private readonly LineRenderer _lineRenderer;
         private readonly Tilemap _tilemap;
+        private readonly LineRenderer _landingRenderer;
+        public Vector2Int LandingCell { get; private set; } = new Vector2Int(-1,-1);
+        int _vaultVersion=-1,_vaultTick=-1;Entity _vaultActor;bool _vaultVisible;
         private Zone _currentZone;
 
         public bool IsVisible => _lineRenderer != null && _lineRenderer.enabled;
@@ -39,6 +43,12 @@ namespace CavesOfOoo.Rendering
             Shader shader = Shader.Find("Sprites/Default");
             if (shader != null)
                 _lineRenderer.material = new Material(shader);
+            var landingGo=new GameObject("VaultLanding");landingGo.transform.SetParent(parent,false);landingGo.layer=renderLayer;
+            _landingRenderer=landingGo.AddComponent<LineRenderer>();
+            _landingRenderer.positionCount=4;_landingRenderer.loop=true;_landingRenderer.useWorldSpace=true;
+            _landingRenderer.widthMultiplier=0.12f;_landingRenderer.sortingOrder=8;
+            _landingRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;_landingRenderer.receiveShadows=false;
+            _landingRenderer.sharedMaterial=_lineRenderer.sharedMaterial;_landingRenderer.enabled=false;
         }
 
         public void SetZone(Zone zone)
@@ -61,6 +71,25 @@ namespace CavesOfOoo.Rendering
             }
 
             Cell cell = _currentZone.GetCell(state.X, state.Y);
+            if(state.Mode==WorldCursorMode.AbilityTarget)
+            {
+                _lineRenderer.widthMultiplier = 0.12f;
+                int tick=TurnManager.Active?.TickCount??0;
+                if(_vaultActor==player&&CurrentCell.x==state.X&&CurrentCell.y==state.Y&&_vaultVersion==_currentZone.EntityVersion
+                    &&_vaultTick==tick&&_vaultVisible==cell.IsVisible)return;
+                _vaultActor=player;_vaultVersion=_currentZone.EntityVersion;_vaultTick=tick;_vaultVisible=cell.IsVisible;
+                CurrentCell=new Vector2Int(state.X,state.Y);
+                Cell landing=null;Entity target=null;string reason=null;
+                bool valid=cell.IsVisible&&VaultTargeting.TryPlan(player,_currentZone,state.X,state.Y,out landing,out target,out reason);
+                CurrentColor=valid?(target==null?QudColorParser.BrightYellow:QudColorParser.BrightRed):QudColorParser.Gray;
+                DrawOutline(_lineRenderer,state.X,state.Y,CurrentColor);
+                LandingCell=valid?new Vector2Int(landing.X,landing.Y):new Vector2Int(-1,-1);
+                _landingRenderer.enabled=valid&&target!=null;
+                if(_landingRenderer.enabled)DrawOutline(_landingRenderer,landing.X,landing.Y,QudColorParser.BrightYellow);
+                return;
+            }
+            _lineRenderer.widthMultiplier = 0.08f;
+            _vaultActor=null;_landingRenderer.enabled=false;LandingCell=new Vector2Int(-1,-1);
             CurrentCell = new Vector2Int(state.X, state.Y);
             CurrentColor = GetCursorColor(cell, player);
 
@@ -87,8 +116,20 @@ namespace CavesOfOoo.Rendering
             _lineRenderer.SetPosition(3, new Vector3(minX, maxY, -0.1f));
         }
 
+        private void DrawOutline(LineRenderer line,int x,int y,Color color)
+        {
+            var cell=new Vector3Int(x,Zone.Height-1-y,0);
+            var min=_tilemap!=null?_tilemap.CellToWorld(cell):new Vector3(x,Zone.Height-1-y,0);
+            var max=_tilemap!=null?_tilemap.CellToWorld(cell+new Vector3Int(1,1,0)):min+Vector3.one;
+            line.startColor=color;line.endColor=color;line.enabled=true;
+            line.SetPosition(0,new Vector3(min.x,min.y,-.15f));line.SetPosition(1,new Vector3(max.x,min.y,-.15f));
+            line.SetPosition(2,new Vector3(max.x,max.y,-.15f));line.SetPosition(3,new Vector3(min.x,max.y,-.15f));
+        }
+
         public void Clear()
         {
+            _vaultActor=null;_vaultVersion=-1;LandingCell=new Vector2Int(-1,-1);
+            if(_landingRenderer!=null)_landingRenderer.enabled=false;
             CurrentCell = new Vector2Int(-1, -1);
             CurrentColor = QudColorParser.Gray;
             if (_lineRenderer != null)
