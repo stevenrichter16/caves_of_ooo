@@ -28,13 +28,13 @@ namespace CavesOfOoo.Rendering
             var skill = Declaration(className);
             var spec = skill?.DeclareActivatedAbility(actor);
             AppendActivation(text, actor, skill, spec);
-            text.Append("\n\nLearning: ").Append(owned ? "Already learned." : PurchaseState(eligibility));
+            text.Append("\n\nLearning: ").Append(owned ? "Already learned." : PurchaseState(actor, eligibility));
             if (cost >= 0) text.Append("\nPurchase: ").Append(cost).Append(" SP. Available: ").Append(actor.GetStatValue("SP")).Append('.');
             if (power != null)
             {
-                text.Append("\nRequired tree: ").Append(power.ParentSkillName).Append('.');
-                if (!string.IsNullOrWhiteSpace(power.Requires)) text.Append("\nRequires: ").Append(ClassNames(power.Requires)).Append('.');
-                if (!string.IsNullOrWhiteSpace(power.Exclusion)) text.Append("\nIncompatible with: ").Append(ClassNames(power.Exclusion)).Append('.');
+                text.Append("\nRequired tree: ").Append(DisplayClassName(actor, power.ParentSkillClass)).Append('.');
+                if (!string.IsNullOrWhiteSpace(power.Requires)) text.Append("\nRequires: ").Append(ClassNames(actor, power.Requires)).Append('.');
+                if (!string.IsNullOrWhiteSpace(power.Exclusion)) text.Append("\nIncompatible with: ").Append(ClassNames(actor, power.Exclusion)).Append('.');
                 if (!string.IsNullOrWhiteSpace(power.Minimum)) text.Append("\nAttributes: ").Append(Attributes(power.Attribute, power.Minimum)).Append('.');
             }
             return text.ToString();
@@ -98,29 +98,41 @@ namespace CavesOfOoo.Rendering
                 if (effect != null && effect.Duration > 0 && (effect.GetType().Name == "LeyTapEffect" || effect.GetType().Name == "HeartFlameEffect"))
                     text.Append("\nActive spell bonus: ").Append(EffectDescriber.Describe(effect));
         }
-        static string PurchaseState(BuySkillAction.Result result)
+        static string PurchaseState(Entity actor, BuySkillAction.Result result)
         {
             if (result.Succeeded) return "Available to buy.";
             switch (result.Reason)
             {
                 case BuySkillAction.FailureReason.InsufficientSP: return "More SP needed.";
-                case BuySkillAction.FailureReason.MissingPrereq: return "Requires " + ClassNames(result.Detail) + ".";
+                case BuySkillAction.FailureReason.MissingPrereq: return "Requires " + ClassNames(actor, result.Detail) + ".";
                 case BuySkillAction.FailureReason.StatMinNotMet: return result.Detail + " requirement not met.";
-                case BuySkillAction.FailureReason.Exclusion: return "Incompatible with " + ClassNames(result.Detail) + ".";
+                case BuySkillAction.FailureReason.Exclusion: return "Incompatible with " + ClassNames(actor, result.Detail) + ".";
                 case BuySkillAction.FailureReason.NotPurchasable: return "Learned through discovery; not sold here.";
                 default: return "Currently unavailable.";
             }
         }
-        static string ClassNames(string classes)
+        static string ClassNames(Entity actor, string classes)
         {
             var names = classes.Split(',');
             for (int i = 0; i < names.Length; i++)
             {
                 var name = names[i].Trim();
-                if (SkillRegistry.TryGetSkillByClass(name, out var root)) names[i] = root.Name;
-                else if (SkillRegistry.TryGetPowerByClass(name, out var power)) names[i] = power.Name;
+                names[i] = DisplayClassName(actor, name);
             }
             return string.Join(", ", names);
+        }
+        /// <summary>Requirement labels honor hidden and obfuscated knowledge, including in readers.</summary>
+        public static string DisplayClassName(Entity actor, string cls)
+        {
+            string name; int flags;
+            if (SkillRegistry.TryGetSkillByClass(cls, out var root)) { name=root.Name; flags=root.Flags; }
+            else if (SkillRegistry.TryGetPowerByClass(cls, out var power)) { name=power.Name; flags=power.Flags; }
+            else return "Unknown requirement";
+            var result=SkillPurchaseEligibility.Evaluate(actor,cls);
+            bool owned=result.Reason==BuySkillAction.FailureReason.AlreadyOwned;
+            if (!owned && ((flags&SkillData.FLAG_HIDDEN)!=0 || ((flags&SkillData.FLAG_OBFUSCATED)!=0
+                && !result.Succeeded && result.Reason!=BuySkillAction.FailureReason.InsufficientSP))) return "Unknown requirement";
+            return name;
         }
         static string Attributes(string attributes, string minimum)
         {

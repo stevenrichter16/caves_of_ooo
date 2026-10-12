@@ -82,6 +82,9 @@ namespace CavesOfOoo.Editor
         public static void LaunchWorldAudio() => LaunchCore(false,worldAudioAudit:true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Graphics Audit")]
         public static void LaunchGraphics() => LaunchCore(false, graphicsAudit: true);
+        [MenuItem("Caves Of Ooo/Scenarios/UI/Full Screen Skills Audit")]
+        public static void LaunchSkills()=>LaunchSkillsAt(800);
+        public static void LaunchSkillsAt(int height)=>LaunchCore(false,skillsAudit:true,hudWidth:1280,hudHeight:height);
         [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Qud Controller Audit")]
         public static void LaunchController() => LaunchCore(false, controllerAudit: true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Companion Orders and Quest Journal Audit")]
@@ -147,7 +150,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/HUD Polish Audit 720p")]
         public static void LaunchHudPolish720() { RequireHudAuditIdle(); LaunchCore(false,hudPolish:true,hudWidth:1280,hudHeight:720); }
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null,bool hudPolish=false,int hudWidth=1920,int hudHeight=1080)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null,bool hudPolish=false,int hudWidth=1920,int hudHeight=1080,bool skillsAudit=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -166,6 +169,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetBool(Prefix+"skillsAudit",skillsAudit);
             SessionState.SetBool(Prefix+"hudPolish",hudPolish);
             SessionState.SetString(Prefix+"hudProfile",hudProfile ?? "");
             SessionState.SetInt(Prefix+"audioPolishIteration",audioPolishIteration);
@@ -193,7 +197,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + (audioPolishIteration==17||audioPolishIteration==18?960:270));
             try
             {
-                ConfigureNativeView(hudPolish ? hudWidth : 1920, hudPolish ? hudHeight : 1080);
+                ConfigureNativeView(hudPolish || skillsAudit ? hudWidth : 1920, hudPolish || skillsAudit ? hudHeight : 1080);
                 Subscribe();
                 EditorSceneManager.OpenScene("Assets/Scenes/Main/ReferenceGlade.unity");
                 EditorSceneManager.playModeStartScene=AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/Main/ReferenceGlade.unity");
@@ -213,6 +217,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            if (SessionState.GetBool(Prefix+"skillsAudit",false)) runner.ConfigureSkillsAudit();
             if (SessionState.GetBool(Prefix+"hudPolish",false)) runner.ConfigureHudPolish();
             string hudProfile=SessionState.GetString(Prefix+"hudProfile", "");
             if(!string.IsNullOrEmpty(hudProfile))runner.ConfigureHudProfile(hudProfile);

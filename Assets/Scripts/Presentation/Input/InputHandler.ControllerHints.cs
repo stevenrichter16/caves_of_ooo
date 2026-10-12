@@ -20,7 +20,7 @@ namespace CavesOfOoo.Rendering
         {
             _controllerLabelsDrawn = 0;
             if (!NativeGamepadInput.IsConnected || !isActiveAndEnabled || PlayerEntity == null
-                || CurrentZone == null || TurnManager == null || ControllerContext() == GamepadInputContext.Menu)
+                || CurrentZone == null || TurnManager == null || ControllerContext() == GamepadInputContext.Menu || ControllerContext() == GamepadInputContext.Skills)
             { _controllerHighlighted = false; return; }
             if (_controllerHintStyle == null)
             {

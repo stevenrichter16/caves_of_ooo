@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.LowLevel;
 
 namespace CavesOfOoo.Rendering
 {
-    public enum GamepadInputContext { World, Menu, Targeting }
+    public enum GamepadInputContext { World, Menu, Targeting, Skills }
     public enum GamepadCommand
     {
         None, Interact, InteractDirection, WaitUntilHealed, WaitMenu, Step,
@@ -140,7 +140,7 @@ namespace CavesOfOoo.Rendering
         public static bool TrySelectedDirection(out int dx, out int dy)
         {
             Sample();
-            return Direction(context == GamepadInputContext.Menu ? Vector2Int.zero : selected, out dx, out dy);
+            return Direction((context == GamepadInputContext.Menu || context == GamepadInputContext.Skills) ? Vector2Int.zero : selected, out dx, out dy);
         }
         public static bool TryLookDirection(out int dx, out int dy)
         { Sample(); return Direction(context == GamepadInputContext.World ? looking : Vector2Int.zero, out dx, out dy); }
@@ -240,7 +240,7 @@ namespace CavesOfOoo.Rendering
                     if ((left != Vector2Int.zero && left != oldSelected)
                         || (right != Vector2Int.zero && right != oldLooking)) anyPressed = true;
                 }
-                else if (context == GamepadInputContext.Menu)
+                else if (context == GamepadInputContext.Menu || context == GamepadInputContext.Skills)
                 {
                     // Dpad keys were latched above. LS navigation has priority
                     // only when no dpad direction is active.
@@ -265,10 +265,12 @@ namespace CavesOfOoo.Rendering
 
         static KeyCode KeyForPress(int button, bool modifier)
         {
-            if (context == GamepadInputContext.Menu)
+            if (context == GamepadInputContext.Menu || context == GamepadInputContext.Skills)
             {
                 if (modifier && button == RightTrigger) return KeyCode.F1;
                 if (modifier && button < DpadUp) return KeyCode.None;
+                if (context == GamepadInputContext.Skills && button == 4) return KeyCode.Q;
+                if (context == GamepadInputContext.Skills && button == 5) return KeyCode.E;
                 return MenuKeys[button];
             }
             if (modifier && button == RightTrigger) return KeyCode.F1;

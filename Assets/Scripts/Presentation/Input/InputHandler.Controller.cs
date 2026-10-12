@@ -51,6 +51,7 @@ namespace CavesOfOoo.Rendering
                 || _deathScreenController.IsActive || PlayerEntity.GetStatValue("Hitpoints", 1) <= 0
                 || CombatSystem.IsDeathHandled(PlayerEntity) || _pauseMenuUI?.IsOpen == true)
                 return GamepadInputContext.Menu;
+            if (_inputState == InputState.SkillsScreenOpen) return GamepadInputContext.Skills;
             if (_inputState == InputState.Normal) return GamepadInputContext.World;
             if (_inputState == InputState.LookMode || _inputState == InputState.ThrowTargeting
                 || _inputState == InputState.AwaitingDirection || _inputState == InputState.AwaitingTalkDirection

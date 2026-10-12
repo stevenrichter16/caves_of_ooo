@@ -40,10 +40,11 @@ namespace CavesOfOoo.Tests
         { var field = typeof(InputHandler).GetField("_inputState", Private); field.SetValue(_input, Enum.Parse(field.FieldType, name)); }
         void Cursor(object ui, int index, int scroll)
         {
+            if (ui is SkillsScreenUI skills) { skills.Model.SelectClass(SkillsScreenStateBuilder.Build(_actor).Rows[index].Class); skills.RefreshSnapshot(); return; }
             ui.GetType().GetField("_cursorIndex", Private).SetValue(ui, index);
             ui.GetType().GetField("_scrollOffset", Private).SetValue(ui, scroll);
         }
-        int Scroll(object ui) => (int)ui.GetType().GetField("_scrollOffset", Private).GetValue(ui);
+        int Scroll(object ui) => ui is SkillsScreenUI skills ? skills.DetailPage : (int)ui.GetType().GetField("_scrollOffset", Private).GetValue(ui);
         void CloseReader() { _input.AnnouncementUI.Close(); Call("CloseAnnouncement"); }
         void AssertNoTurn(int tick, int energy)
         { Assert.AreEqual(tick, _turns.TickCount); Assert.AreEqual(energy, _turns.GetEnergy(_actor)); Assert.True(_turns.WaitingForInput); }
@@ -60,7 +61,7 @@ namespace CavesOfOoo.Tests
             Assert.Greater(_input.AnnouncementUI.PageCount, 1); var all = new List<string>();
             for (int i = 0; i < _input.AnnouncementUI.PageCount; i++) { _input.AnnouncementUI.GoToPage(i); all.AddRange(_input.AnnouncementUI.VisibleLines); }
             StringAssert.Contains("END_OF_DETAILS", string.Join(" ", all)); CloseReader();
-            Assert.AreEqual("SkillsScreenOpen", State); Assert.True(ui.IsOpen); Assert.AreEqual(index, ui.CursorIndex); Assert.AreEqual(scroll, Scroll(ui));
+            Assert.AreEqual("SkillsScreenOpen", State); Assert.True(ui.IsOpen); Assert.AreEqual(power.Class, ui.SelectedClass); Assert.AreEqual(scroll, Scroll(ui));
             Assert.AreEqual(100, _actor.GetStatValue("SP")); Assert.False(_actor.GetPart<SkillsPart>().HasSkill(power.Class)); AssertNoTurn(tick, energy);
         }
         [Test] public void AbilityDetailsReaderReturnsWithoutCallingActivationCallbackOrChangingBindings()

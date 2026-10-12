@@ -91,6 +91,28 @@ Use Steam Input's normal **Gamepad** output. Custom keyboard-only mappings can h
 gamepad buttons from the game. Keyboard/mouse controls still work; use the Steam
 keyboard for text entry.
 
+## Full-screen skills
+
+Open **Menu -> Skills** (keyboard **X**). The Field Manual fills the screen with
+disciplines, powers and persistent details. **Y** switches to the optional
+prerequisite overview while keeping the selected power. Connections show actual
+requirements, never an invented progression chain.
+
+- **LB/RB** changes discipline; **D-pad/left stick** moves between panes and powers.
+- **A** reviews a purchase. Review starts on Cancel; choose Learn with Right and
+  press A to spend the displayed SP. **B** cancels review before closing the screen.
+- **X** assigns an owned active ability to one of ten hotbar slots; A commits and
+  B cancels. Assignment moves an existing binding and replaces that slot's occupant.
+- **Right stick up/down** pages the selected skill's full details. Browsing,
+  purchasing and assignment do not spend a world turn or activate an ability.
+- Keyboard: arrows navigate, **Q/E** change discipline, **Tab** switches view,
+  **Enter** reviews/confirms, **I** assigns, **Page Up/Down** reads, **Esc** backs out.
+  Mouse clicks select rows/cards/buttons; the wheel browses the pane under it.
+
+Names, ownership, SP costs, actual/current attribute requirements, range and
+cooldown stay readable at handheld resolution. Skills learned from books remain
+owned even when their parent discipline has not been purchased.
+
 ## Skills and world log
 
 The compact bar keeps the same ten ability slots and controls. It shows each slot's

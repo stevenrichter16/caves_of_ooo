@@ -1946,7 +1946,6 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.D) || NativeGamepadInput.GetKeyDown(KeyCode.F1)) { OpenSkillsDetailsReader(); return; }
             SkillsScreenUI.HandleInput();
 
             if (!SkillsScreenUI.IsOpen)

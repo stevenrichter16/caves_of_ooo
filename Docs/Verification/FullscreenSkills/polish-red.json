@@ -1,0 +1,48 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "cda32eb9fc354806a1e8baf52d7aec08",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1791777457609,
+      "finished_unix_ms": 1791777472310,
+      "last_update_unix_ms": 1791777472310,
+      "progress": {
+        "completed": 8,
+        "total": 8,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1791777472053,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SkillBrowserPolishTests.TextGraphicRequiresRenderer_AndFitsShortButtonLabels",
+        "last_finished_unix_ms": 1791777472058,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SkillBrowserPolishTests.ColdDescriptionsKeepMinusAndDegreeMeaning",
+            "message": "  Expected string length 34 but was 26. Strings differ at index 0.\n  Expected: \"-300J at 20 degrees; requires >=15\"\n  But was:  \"−300J at 20°; requires >15\"\n  -----------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SkillBrowserPolishTests.HiddenParentDoesNotHideBookOwnedChild",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SkillBrowserPolishTests.HiddenPrerequisiteDoesNotLeakThroughDetailProseOrFailure",
+            "message": "  Expected: not String containing \"Tumble\"\n  But was:  \"Vault\n\nChoose a visible tile within 2 cells. Leap to an empty tile, or land one cell short of a creature and make one melee strike. Red outlines the attack target; yellow outlines your landing. The landing must be clear. Gain +2 accuracy for one adjacent melee roll, spent even on a miss; unused poise lasts 2 turns. Landing hazards still apply. Cooldown 15.\n\nRange: 2 cells.\nTargeting: cursor-selected tile within range; confirm to act.\nCooldown: 15 turns after successful use.\n\nLearning: Requires Tumble.\nPurchase: 1 SP. Available: 10.\nRequired tree: Acrobatics.\nRequires: Tumble.\nAttributes: Agility 15.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SkillBrowserPolishTests.TextGraphicRequiresRenderer_AndFitsShortButtonLabels",
+            "message": "  Without this all labels disappear in native screenshots.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}
