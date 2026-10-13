@@ -134,16 +134,15 @@ namespace CavesOfOoo.Skills
             // overload, which skipped it entirely (the flank bonus is a
             // second hit-sized chunk of damage and deserves its own
             // on-hit proc roll, same as the base swing).
-            int hpBefore = target.GetStatValue("Hitpoints");
-            CombatSystem.PerformSingleAttack(
+            var strike = CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: target,
                 weapon: weapon, isPrimary: true,
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Backstab)");
 
-            if (isFlanked && target.GetStatValue("Hitpoints") > 0)
+            if (isFlanked && target.GetStatValue("Hitpoints") > 0 && actor.GetStatValue("Hitpoints")>0 && actor.SpatialZone==ctx.Zone)
             {
-                int damageDealt = hpBefore - target.GetStatValue("Hitpoints");
+                int damageDealt = strike.ActualDamage;
                 // Bonus = (multiplier - 100%) × damage_dealt.
                 // BACKSTAB_DAMAGE_PERCENT = 200 → bonus = 100% = damage_dealt.
                 int bonus = (damageDealt * (BACKSTAB_DAMAGE_PERCENT - 100)) / 100;

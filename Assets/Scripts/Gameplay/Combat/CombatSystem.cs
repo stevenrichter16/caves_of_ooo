@@ -222,10 +222,12 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Perform a single melee attack with one weapon.
         /// </summary>
-        public static void PerformSingleAttack(Entity attacker, Entity defender,
+        public static MeleeStrikeResult PerformSingleAttack(Entity attacker, Entity defender,
             MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
             string attackSourceDesc = null)
         {
+            if(attacker==null || defender==null || zone==null || rng==null)
+                return new MeleeStrikeResult(MeleeStrikeOutcome.Cancelled);
             // Per-attack correlation ID. WithCause sets the ambient
             // CauseTraceId for every Diag.Record fired during this method
             // — HitRoll → Penetration → DamageRoll → PreDamageMutation →
@@ -318,8 +320,11 @@ namespace CavesOfOoo.Core
                     .AttackerMeleeMiss(attacker, missCtx);
                 CavesOfOoo.Skills.SkillEventDispatcher
                     .DefenderAfterAttackMissed(defender, missCtx);
-                return;
+                return new MeleeStrikeResult(MeleeStrikeOutcome.NaturalMiss);
             }
+
+            if(BladeDefense.TryParry(defender,attacker,zone,rng,out bool guarded))
+                return new MeleeStrikeResult(MeleeStrikeOutcome.FullParry);
 
             // Select hit location on defender
             BodyPart hitPart = null;
@@ -397,7 +402,7 @@ namespace CavesOfOoo.Core
             if (penetrations == 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "fail" : "fails")} to penetrate!");
-                return;
+                return new MeleeStrikeResult(MeleeStrikeOutcome.ArmorStopped);
             }
 
             // Damage — build a typed Damage with attributes from the weapon
@@ -414,7 +419,7 @@ namespace CavesOfOoo.Core
             int totalDamage = 0;
             for (int i = 0; i < penetrations; i++)
                 totalDamage += DiceRoller.Roll(damageDice, rng);
-            damage.Amount = totalDamage;
+            damage.Amount = guarded ? totalDamage / 2 + totalDamage % 2 : totalDamage;
 
             // DamageRoll diag emission — surfaces the base damage roll
             // (pre-resistance, pre-BeforeTakeDamage-mutation). The
@@ -443,7 +448,7 @@ namespace CavesOfOoo.Core
             if (damage.Amount <= 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "deal" : "deals")} no damage!");
-                return;
+                return new MeleeStrikeResult(MeleeStrikeOutcome.Hit);
             }
 
             // Capture pre-damage HP. Phase F BeforeTakeDamage listeners
@@ -458,7 +463,6 @@ namespace CavesOfOoo.Core
             // weapon, the log claimed e.g. "12 damage / 188 HP remaining"
             // while the actual entity lost only 6 HP and sat at 194/200 —
             // the HP bar told the truth, the log lied.
-            int hpBefore = defender.GetStatValue("Hitpoints", 0);
 
             // Apply damage (typed overload — preferred path). Internally:
             //   Phase F BeforeTakeDamage event (listeners can veto/mutate)
@@ -466,7 +470,8 @@ namespace CavesOfOoo.Core
             //   → TakeDamage event (more in-flight mutations possible)
             //   → HP decrement (clamped to ≥ 0)
             //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
-            ApplyDamageCore(defender, damage, attacker, zone, audioAttempt);
+            var committed = ApplyDamageCore(defender, damage, attacker, zone, audioAttempt);
+            var result = new MeleeStrikeResult(MeleeStrikeOutcome.Hit, committed.ActualDamage, committed.Killed);
 
             // W3 re-review: the defender's TakeDamage dispatch (which
             // runs INSIDE that call, before the decrement) can kill the
@@ -477,10 +482,10 @@ namespace CavesOfOoo.Core
             // already logged its death, dropped its gear, and removed it
             // from the zone. The dead do not narrate their swings.
             if (attacker != null && (IsDeathHandled(attacker) || attacker.GetStatValue("Hitpoints", 0) <= 0))
-                return;
+                return result;
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
-            int actualDamage = System.Math.Max(0, hpBefore - hpAfter);
+            int actualDamage = committed.ActualDamage;
             CompanionCombat.AfterPlayerDirectDamage(attacker, defender, zone, actualDamage);
 
             // Tier 2.1: nat-20 hits include the CRITICAL_HIT_TAG so the player
@@ -596,6 +601,10 @@ namespace CavesOfOoo.Core
                 if (hitPart != null)
                     CheckCombatDismemberment(defender, defenderBody, hitPart, actualDamage, zone, rng, attacker);
             }
+            // This landed strike's contact chain can finish the victim (e.g. Charsplit).
+            // Natural misses and full parries returned before reaching this chain.
+            return new MeleeStrikeResult(MeleeStrikeOutcome.Hit, actualDamage,
+                result.Killed || (actualDamage > 0 && IsDeathHandled(defender)));
         }
 
         /// <summary>
@@ -872,12 +881,12 @@ namespace CavesOfOoo.Core
         public static void ApplyDamage(Entity target, Damage damage, Entity source, Zone zone)
             => ApplyDamageCore(target, damage, source, zone, default);
 
-        private static void ApplyDamageCore(Entity target, Damage damage, Entity source, Zone zone, WorldAudioCombatAttempt audioAttempt)
+        private static (int ActualDamage, bool Killed) ApplyDamageCore(Entity target, Damage damage, Entity source, Zone zone, WorldAudioCombatAttempt audioAttempt)
         {
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
-                if (target == null || damage == null) return;
-                if (DebugInvincibility.Blocks(target, "damage", source)) return;
+                if (target == null || damage == null) return default;
+                if (DebugInvincibility.Blocks(target, "damage", source)) return default;
 
                 if (damage.Amount <= 0)
                 {
@@ -891,7 +900,7 @@ namespace CavesOfOoo.Core
                             target: target,
                             payload: new { reason = "zero_or_negative_amount", amount = damage.Amount });
                     }
-                    return;
+                    return default;
                 }
 
                 // Two guards rolled into one: targets without a Hitpoints
@@ -923,7 +932,7 @@ namespace CavesOfOoo.Core
                             target: target,
                             payload: new { reason = hpStat == null ? "no_hitpoints_stat" : "already_dead" });
                     }
-                    return;
+                    return default;
                 }
                 // Capture pre-decrement HP so the floating number we emit
                 // post-decrement uses the real player-visible delta (clamped
@@ -1004,7 +1013,7 @@ namespace CavesOfOoo.Core
                     fullyResistedVeto.SetParameter("Damage", (object)damage);
                     SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResistedVeto);
-                    return;
+                    return default;
                 }
 
                 // Phase E: apply elemental resistances based on damage attributes.
@@ -1035,7 +1044,7 @@ namespace CavesOfOoo.Core
                     fullyResisted.SetParameter("Damage", (object)damage);
                     SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResisted);
-                    return;
+                    return default;
                 }
 
                 // Phase C/E: fire TakeDamage with the typed Damage object BEFORE
@@ -1056,7 +1065,7 @@ namespace CavesOfOoo.Core
                 // Re-read damage.Amount after listeners — it may have been mutated.
                 // Clamp at 0 so over-mutation can't heal the target.
                 int amount = Math.Max(0, damage.Amount);
-                if (amount <= 0) return;
+                if (amount <= 0) return default;
 
                 // Floor at hpStat.Min. .Value already clamps to [Min, Max] for
                 // every existing "is it dead" read, so this doesn't change
@@ -1067,7 +1076,8 @@ namespace CavesOfOoo.Core
                 // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
                 int audioHpBeforeCommit = hpStat.BaseValue;
                 hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
-                WorldAudioCombat.Impact(audioAttempt, Math.Max(0, audioHpBeforeCommit - hpStat.BaseValue));
+                var committed = (ActualDamage: Math.Max(0, audioHpBeforeCommit - hpStat.BaseValue), Killed: hpStat.BaseValue <= 0);
+                WorldAudioCombat.Impact(audioAttempt, committed.ActualDamage);
                 if (hpStat.BaseValue < hpBefore)
                 {
                     target.GetPart<BrainPart>()?.BreakDamageSensitivePeace();
@@ -1174,6 +1184,7 @@ namespace CavesOfOoo.Core
                     if (targetCell != null)
                         ZoneRenderHooks.MarkCellDirty(targetCell, "Combat.Damage");
                 }
+                return committed;
             }
         }
 

@@ -43,7 +43,8 @@ namespace CavesOfOoo.Tests
             var s=FiftySecondCombatFixture.Skill("LongBlades_EnGarde");var a=f.Actor(s);var enemy=f.Target();Assert.True(f.Cast(a,s));
             var zero=new Damage(0);zero.AddAttribute("Melee");CombatSystem.ApplyDamage(a,zero,enemy,f.Zone);
             CombatSystem.ApplyDamage(a,new Damage(3),null,f.Zone);Assert.NotNull(FiftySecondCombatFixture.Effect(a,"EnGardeEffect"));
-            var melee=new Damage(10);melee.AddAttribute("Melee");CombatSystem.ApplyDamage(a,melee,enemy,f.Zone);Assert.AreEqual(992,a.GetStatValue("Hitpoints"));
+            var melee=new Damage(10);melee.AddAttribute("Melee");CombatSystem.ApplyDamage(a,melee,enemy,f.Zone);Assert.AreEqual(987,a.GetStatValue("Hitpoints"));
+            Assert.True(a.HasEffect<EnGardeEffect>(),"Standalone damage never spends a strike guard.");
         }
         [Test] public void FollowThroughUsesSelectedWideBodyContactInsteadOfRemoteAnchor()
         {

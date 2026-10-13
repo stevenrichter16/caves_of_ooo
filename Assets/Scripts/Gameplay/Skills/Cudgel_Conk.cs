@@ -15,7 +15,7 @@ namespace CavesOfOoo.Skills
     /// found, performs a melee attack via
     /// <see cref="CombatSystem.PerformSingleAttack"/> AND applies
     /// <see cref="StunnedEffect"/> for <see cref="STUN_DURATION"/>
-    /// turns regardless of swing outcome (the conk is the targeted-
+    /// turns even on a natural miss, but never through a full parry (the conk is the targeted-
     /// strike effect). Cooldown <see cref="COOLDOWN"/> turns.</para>
     /// </summary>
     public class Cudgel_Conk : BaseSkillPart
@@ -73,12 +73,13 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Swing + always apply Stunned (the targeted-strike effect).
-            CombatSystem.PerformSingleAttack(
+            // The targeted rider survives natural misses, but a full parry stops contact.
+            var result = CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: target,
                 weapon: weapon, isPrimary: true,
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Conk)");
+            if (result.AllowsContactRider && target.GetStatValue("Hitpoints")>0 && actor.GetStatValue("Hitpoints")>0)
             target.ApplyEffect(new StunnedEffect(STUN_DURATION), actor, ctx.Zone);
         
             return true;

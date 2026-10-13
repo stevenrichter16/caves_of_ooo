@@ -6,7 +6,7 @@ namespace CavesOfOoo.Skills
     /// Axe-class active ability: swing at an adjacent creature with a
     /// hook strike. The swing fires PerformSingleAttack with the
     /// <c>(Hook)</c> marker, AND applies <see cref="HookedEffect"/> to
-    /// the target regardless of swing outcome. Hooked targets are
+    /// the target even on a natural miss, but never through a full parry. Hooked targets are
     /// dragged 1 cell closer per turn-end (with Strength save vs
     /// <see cref="HOOK_SAVE_TARGET"/>) for up to <see cref="HOOK_DURATION"/>
     /// turns.
@@ -89,12 +89,13 @@ namespace CavesOfOoo.Skills
             // procs can fire); the Hooked effect always applies (so a
             // missed swing still hooks the target — that's Qud's
             // semantic, mirrors Conk's "stun on swing regardless").
-            CombatSystem.PerformSingleAttack(
+            var result = CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: target,
                 weapon: weapon, isPrimary: true,
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Hook)");
 
+            if (result.AllowsContactRider && target.GetStatValue("Hitpoints")>0 && actor.GetStatValue("Hitpoints")>0)
             target.ApplyEffect(
                 new HookedEffect(HOOK_DURATION, actor, HOOK_SAVE_TARGET, ctx.Rng),
                 actor, ctx.Zone);

@@ -15,8 +15,8 @@ namespace CavesOfOoo.Core
             switch (effect)
             {
                 case EnGardeEffect guard:
-                    return "En Garde - " + (guard.Spent ? "spent." : "halve one adjacent melee blow while a long blade stays equipped; "
-                        + guard.Duration + " of your turns left. Spells and environmental harm bypass it.");
+                    return "En Garde - " + (guard.Spent ? "spent." : "+30 percentage points to parry one perceived adjacent would-hit strike with a held long blade; failed parry halves its damage, rounded up; "
+                        + guard.Duration + " of your turns left. Spells, guaranteed damage and environmental harm bypass it.");
                 case VaultPoiseEffect poise:
                     return "Vault poise - +2 accuracy on " + poise.Charges
                         + " adjacent melee hit roll, spent even on a miss; " + poise.Duration + " of your turns left.";

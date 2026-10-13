@@ -25,15 +25,15 @@ namespace CavesOfOoo.Tests
             back.ApplyEffect(new AcidicEffect(.5f),a,f.Zone);Assert.False(f.Cast(a,s));
             Assert.AreEqual(1000,front.GetStatValue("Hitpoints"));Assert.AreEqual(1000,back.GetStatValue("Hitpoints"));Assert.True(back.HasEffect<AcidicEffect>());
         }
-        [TestCase("Melee",true,5)] [TestCase("Melee",false,9)] [TestCase("Spell",true,9)] [TestCase("Poison",true,9)]
-        public void EnGardeHalvesOnlyOneAdjacentMeleeHit(string attribute,bool adjacent,int expected)
+        [TestCase("Melee",true,9)] [TestCase("Melee",false,9)] [TestCase("Spell",true,9)] [TestCase("Poison",true,9)]
+        public void EnGardeDoesNotInterceptStandaloneDamage(string attribute,bool adjacent,int expected)
         {
             var s=FiftySecondCombatFixture.Skill("LongBlades_EnGarde");var a=f.Actor(s);var source=f.Target(adjacent?11:13,10);
             Assert.True(f.Cast(a,s));Assert.NotNull(FiftySecondCombatFixture.Effect(a,"EnGardeEffect"));
             var hit=new Damage(9);hit.AddAttribute(attribute);CombatSystem.ApplyDamage(a,hit,source,f.Zone);
             Assert.AreEqual(1000-expected,a.GetStatValue("Hitpoints"));
             var second=new Damage(9);second.AddAttribute("Melee");CombatSystem.ApplyDamage(a,second,source,f.Zone);
-            Assert.AreEqual(1000-expected-(attribute=="Melee" || !adjacent ? 9 : 5),a.GetStatValue("Hitpoints"));
+            Assert.AreEqual(1000-expected-9,a.GetStatValue("Hitpoints"));
         }
         [TestCase(true)] [TestCase(false)] public void EnGardeRequiresSwordAtCastAndAtImpact(bool removeAfterCast)
         {

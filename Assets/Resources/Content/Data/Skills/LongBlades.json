@@ -33,10 +33,19 @@
           "Detail": "G"
         },
         {
+          "Name": "Deflect",
+          "Class": "LongBlades_Deflect",
+          "Cost": 1,
+          "MaxRank": 3,
+          "Description": "Passive: 15/22/28% full parry against perceived adjacent melee strikes that would hit. Requires a held long blade and ability to act. One roll per strike; a full parry stops all contact effects. En Garde adds 30 percentage points.",
+          "Foreground": "g",
+          "Detail": "G"
+        },
+        {
           "Name": "En Garde",
           "Class": "LongBlades_EnGarde",
           "Cost": 1,
-          "Description": "Raise your equipped long blade for 2 of your turns. Halve the next positive melee blow from an adjacent attacker, rounding the remaining damage up. One parry only; keep the sword equipped. Does not block spells, poison or environmental harm. Costs a turn; cooldown 12.",
+          "Description": "Raise your held long blade for 2 of your turns. Add 30 percentage points to the next eligible adjacent would-hit parry (30% without Deflect). On failure, halve that strike's aggregate damage, rounded up. Natural misses preserve guard. Requires perception and ability to act. Spells, guaranteed damage and environmental harm bypass it. Costs a turn; cooldown 12.",
           "Foreground": "g",
           "Detail": "G"
         },

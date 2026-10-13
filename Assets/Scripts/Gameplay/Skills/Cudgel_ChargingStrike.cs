@@ -126,16 +126,15 @@ namespace CavesOfOoo.Skills
 
             // Swing with bonus damage. Snapshot HP, fire normal attack,
             // measure damage dealt, apply bonus = +50% of dealt damage.
-            int hpBefore = hitTarget.GetStatValue("Hitpoints");
-            CombatSystem.PerformSingleAttack(
+            var strike = CombatSystem.PerformSingleAttack(
                 attacker: actor, defender: hitTarget,
                 weapon: weapon, isPrimary: true,
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(ChargingStrike)");
 
-            if (hitTarget.GetStatValue("Hitpoints") > 0)
+            if (hitTarget.GetStatValue("Hitpoints") > 0 && actor.GetStatValue("Hitpoints")>0 && actor.SpatialZone==ctx.Zone)
             {
-                int dmg = hpBefore - hitTarget.GetStatValue("Hitpoints");
+                int dmg = strike.ActualDamage;
                 int bonus = (dmg * CHARGE_DAMAGE_BONUS_PERCENT) / 100;
                 if (bonus >= 1)
                 {

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Skills
         {
             var actor=ctx?.Attacker;
             if(actor==null||ctx.Zone?.GetEntityCell(actor)==null||actor.HasEffect<EnGardeEffect>()
-                ||SkillCombatHelpers.FindEquippedWeaponOfClass(actor,"LongBlades")==null)return false;
+                ||BladeDefense.FindLongBlade(actor)==null)return false;
             return actor.ApplyEffect(new EnGardeEffect(),actor,ctx.Zone);
         }
     }
