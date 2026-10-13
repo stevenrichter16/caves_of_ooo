@@ -37,6 +37,7 @@ namespace CavesOfOoo.Core
    // Missing content keeps its earlier service before any factory or receipt is used.
    bool drying=allowDrying&&alembic&&zone.ZoneID=="Overworld.11.9.0"&&LoadoutPart.Factory==factory
     &&new[]{"MarlbackPatchbearer","HealingTonic","MendleafPlant","MendleafSprig","AlchemyShelf","BrewedTonic"}.All(factory.Blueprints.ContainsKey);
+   bool yardDuty=store&&zone.ZoneID=="Overworld.11.11.0",forgeLane=forge&&zone.ZoneID=="Overworld.12.10.0";
    bool pair=!alembic&&actors.Owners.Count==2;
    // Only this freshly authored pair gains a literal, optional emergency supply.
    // Missing content retains the earlier shelter; malformed content refuses below.
@@ -97,6 +98,16 @@ namespace CavesOfOoo.Core
    bool StockCapacity()=>!opening||(ReferenceEquals(cache.GetPart<ContainerPart>(),container)&&!container.IsLocked&&(container.MaxItems<0||container.Contents.Count+2<=container.MaxItems));
    if(!StockCapacity())return false;
    EmergencyWaterStock waterStock=null;
+   bool RoleShape()=>staged.Count==specs.Count&&staged.Select((e,i)=>
+   {
+    var spec=specs[i];var guard=e.GetPart<WorksiteGuardPart>();
+    if(yardDuty&&spec.role=="melee")
+    {var home=positions[i];if(guard==null||guard.ParentEntity!=e||e.Parts.Count(p=>p is WorksiteGuardPart)!=1||guard.ZoneID!=zone.ZoneID||guard.HomeX!=home.x||guard.HomeY!=home.y||guard.PursuitRadius!=4||guard.Returning)return false;}
+    else if(guard!=null)return false;
+    if((yardDuty||forgeLane)&&spec.role=="ranged")
+    {var t=e.GetPart<CombatTacticsPart>();if(t==null||t.ParentEntity!=e||!t.RepositionForShot||t.PreferredRange!=(yardDuty?3:0)||t.AbilityChance!=35)return false;}
+    return true;
+   }).All(valid=>valid);
    bool SupplyShape()=>!emergencyWater||waterStock?.Matches()==true;
    bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)&&(!opening||(specs[i].role!="melee"&&specs[i].role!="ranged")||(e.HasTag("Creature")&&e.GetPart<MeleeTraumaProfilePart>()?.AllowIncidentalDismemberment==false&&e.GetPart<SkillsPart>()?.HasSkill("Axe_Dismember")!=true))).All(valid=>valid));
    bool DryingShape()=>!drying||(staged.Count==specs.Count&&staged.Select((e,i)=>DryingOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
@@ -126,6 +137,10 @@ namespace CavesOfOoo.Core
      if(!Fresh(e,spec.bp)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
      e.Properties[RoleKey]=spec.role;
      if(opening&&(spec.role=="melee"||spec.role=="ranged"))e.AddPart(new MeleeTraumaProfilePart{AllowIncidentalDismemberment=false});
+     if(yardDuty&&spec.role=="melee")
+     {if(e.HasPart<WorksiteGuardPart>())return false;var home=positions[staged.Count];e.AddPart(new WorksiteGuardPart{ZoneID=zone.ZoneID,HomeX=home.x,HomeY=home.y,PursuitRadius=4});}
+     if(forgeLane&&spec.role=="ranged")
+     {var tactics=e.GetPart<CombatTacticsPart>();if(tactics==null)return false;tactics.RepositionForShot=true;}
      if(spec.role=="crossing")
      {
       if(!e.GetPart<PhysicsPart>().Solid||!e.HasPart<DestructiblePart>())return false;
@@ -151,12 +166,14 @@ namespace CavesOfOoo.Core
       :spec.role=="cold-forage"?"A small, finite stand of frost lichen. Brew its cold into a freezing coating, then quench a melee weapon beside a forge. Drinking the coating freezes the drinker.":null;
      if(spec.role=="medicine-forage")cue="A small, finite stand of mendleaf at the drying yard's outer margin. Gather its sprigs and brew one at a time anywhere for a weak mending tonic. A patchbearer works the deeper yard; its bottle harness shows what stronger medicine remains.";
      if(spec.role=="drying-shelf")cue="A broad drying shelf divides the working bay, blocking passage and sight through its frame. Broken stone windbreaks shelter the bays; the central aisle and rear remain open.";
+     if(yardDuty&&spec.role=="melee")cue="This scrabbler watches the cache-side opening. It pursues nearby intruders only a few paces before returning on foot; the yard's walls can break its sight. Injury and lost supplies stay lost.";
+     if(forgeLane&&spec.role=="ranged")cue="A marlback fire-worker shelters beside the tempering forge. It seeks a clear firing lane with ordinary steps while its scrabbler companion advances. Broken walls block its spit; moving it can separate the pair.";
      if(cue!=null){var examine=e.GetPart<ExaminablePart>();if(examine==null){examine=new ExaminablePart();e.AddPart(examine);}examine.Text=cue;}
      staged.Add(e);
     }
    }
    catch(Exception){return false;}
-   if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
+   if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!RoleShape()||!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -183,7 +200,7 @@ namespace CavesOfOoo.Core
      stockAdded=true;supplied=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{cache});placedProof[cache]=supplied;
     }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
-    bool Final()=>authority()&&Provenance()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
+    bool Final()=>authority()&&Provenance()&&RoleShape()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||(opening?supplied?.Invoke()==true&&otherStock():stock.MatchesOwnedState()))&&finalPacket()&&detached.Values.All(p=>p())
      &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;

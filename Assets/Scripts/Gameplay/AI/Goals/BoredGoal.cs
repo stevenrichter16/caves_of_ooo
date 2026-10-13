@@ -23,6 +23,8 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
+            if (ParentEntity.GetPart<WorksiteGuardPart>()?.TakeIdleAction(ParentBrain, CurrentZone) == true) return;
+
             // Situation roles admit their own current targets before faction
             // acquisition. Higher goals (Calm, work, follow, combat) still win.
             var territory = ParentEntity.GetPart<SpreadTerritoryPart>();

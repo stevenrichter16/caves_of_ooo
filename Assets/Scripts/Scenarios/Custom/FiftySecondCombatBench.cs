@@ -16,7 +16,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(name:"Second Fifty Combat Audit",category:"Combat",description:"Elemental ground, positional sword choices and finite enemy tactics.")]
     public sealed class FiftySecondCombatBench : IScenario
     {
-        public const int ExpectedCases=17;
+        public const int ExpectedCases=19;
         public string RunId { get; private set; }
         public int Cases { get; private set; }
         public int Failures { get; private set; }
@@ -157,6 +157,25 @@ namespace CavesOfOoo.Scenarios.Custom
                         Check(first.Outcome==MeleeStrikeOutcome.FullParry&&second.Outcome==MeleeStrikeOutcome.FullParry&&foe.GetStatValue("Hitpoints")==999
                             &&restored.GetPart<RiposteAllowancePart>().Spent&&restored.GetPart<LongBlades_Riposte>().Rank==1&&causes,
                             new{first=first.Outcome.ToString(),second=second.Outcome.ToString(),foeHP=foe.GetStatValue("Hitpoints"),savedSpent=restored.GetPart<RiposteAllowancePart>().Spent,causes,starts});
+                    });
+                    Run("18_guard_displacement_costs_return_actions",()=>
+                    {
+                        var z=NewZone();var a=Npc(z,"MarlbackScrabbler");var target=Actor(z,17,10);Hostile(a,target);
+                        a.AddPart(new WorksiteGuardPart{ZoneID=z.ZoneID,HomeX=10,HomeY=10,PursuitRadius=4});z.MoveEntity(a,16,10);a.GetStat("Hitpoints").BaseValue=8;
+                        var brain=a.GetPart<BrainPart>();brain.PushGoal(new KillGoal(target));a.FireEventAndRelease(GameEvent.New("TakeTurn"));
+                        bool abandoned=brain.FindGoal<KillGoal>()?.Abandoned==true;var first=z.GetEntityPosition(a);a.FireEventAndRelease(GameEvent.New("TakeTurn"));
+                        Check(abandoned&&first==(16,10)&&z.GetEntityPosition(a)==(15,10)&&a.GetStatValue("Hitpoints")==8&&target.GetStatValue("Hitpoints")==1000,
+                            new{abandoned,first=first.ToString(),returned=z.GetEntityPosition(a).ToString(),hp=a.GetStatValue("Hitpoints"),targetHP=target.GetStatValue("Hitpoints")});
+                    });
+                    Run("19_generated_opening_roles_preserve_source_budget",()=>
+                    {
+                        var manager=OverworldZoneManager.CreateDetached(factory,64,true);var yard=manager.GetZone("Overworld.11.11.0");var forge=manager.GetZone("Overworld.12.10.0");
+                        var guards=yard.GetReadOnlyEntities().Where(e=>e.HasPart<WorksiteGuardPart>()).ToArray();
+                        var casters=forge.GetReadOnlyEntities().Where(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="ranged").ToArray();
+                        int forgeHostiles=forge.GetReadOnlyEntities().Count(e=>e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler"||e.BlueprintName=="MarlbackCindercaller");
+                        Check(guards.Length==1&&guards.All(e=>e.BlueprintName=="MarlbackScrabbler"&&e.GetPart<WorksiteGuardPart>().ZoneID==yard.ZoneID)
+                            &&forgeHostiles>=1&&forgeHostiles<=2&&casters.Length<=1&&casters.All(e=>e.GetPart<CombatTacticsPart>().RepositionForShot)&&!forge.GetReadOnlyEntities().Any(e=>e.HasPart<WorksiteGuardPart>()),
+                            new{guards=guards.Length,casters=casters.Length,forgeHostiles,yardDisposition=manager.Exploration.DispositionFor(yard.ZoneID),forgeDisposition=manager.Exploration.DispositionFor(forge.ZoneID)});
                     });
                 }
             }

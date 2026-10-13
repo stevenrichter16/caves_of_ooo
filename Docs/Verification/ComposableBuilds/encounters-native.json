@@ -1,0 +1,2861 @@
+{
+  "runId": "66e121dd32db44f2aa9a493dcafe3ac1",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 17.7670037,
+  "checks": [
+    "PASS ordinary_classic_start",
+    "PASS native_field_recipe_spends_material_and_one_action",
+    "PASS native_scribe_copies_selected_book_and_pays_once",
+    "PASS native_guest_claim_opens_real_chest_once",
+    "PASS native_screen_reclamation_changes_cover_and_supply",
+    "PASS FiftySecondCombatBench",
+    "PASS FiftySecondCombatBench_preserves_campaign_context",
+    "PASS FiftySecondPreparationBench",
+    "PASS FiftySecondPreparationBench_preserves_campaign_context",
+    "PASS FiftySecondExplorationBench",
+    "PASS FiftySecondExplorationBench_preserves_campaign_context",
+    "PASS ComposableBuildComparisonBench",
+    "PASS ComposableBuildComparisonBench_preserves_campaign_context"
+  ],
+  "observations": [
+    {
+      "name": "01-controlled-exploration-owners",
+      "state": "Normal",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "02-field-haft-recipe",
+      "state": "InventoryOpen",
+      "snapshot": "{\"tick\":10,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4500\",\"count\":1},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "03-selected-copy-service",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":20,\"energy\":1000,\"hp\":40,\"drams\":10,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4503\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4520\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "04-guest-locker",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":30,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4520\",\"count\":1},{\"ID\":\"4521\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "05-cover-or-cord",
+      "state": "WorldActionMenuOpen",
+      "snapshot": "{\"tick\":40,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4504\",\"count\":1},{\"ID\":\"4520\",\"count\":1},{\"ID\":\"4521\",\"count\":1}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    },
+    {
+      "name": "06-worn-hood-and-open-space",
+      "state": "Normal",
+      "snapshot": "{\"tick\":50,\"energy\":1000,\"hp\":40,\"drams\":5,\"zone\":\"Overworld.11.10.0\",\"player\":\"2699\",\"pack\":[{\"ID\":\"2700\",\"count\":1},{\"ID\":\"2701\",\"count\":4},{\"ID\":\"2702\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"4501\",\"count\":1},{\"ID\":\"4502\",\"count\":1},{\"ID\":\"4520\",\"count\":1},{\"ID\":\"4521\",\"count\":1},{\"ID\":\"4522\",\"count\":2}],\"effects\":[{\"ClassName\":\"UnderTheClothEffect\",\"Duration\":-1}]}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/01-controlled-exploration-owners.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/02-field-haft-recipe.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/03-selected-copy-service.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/04-guest-locker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/05-cover-or-cord.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/FiftyImprovementsII/Native/66e121dd32db44f2aa9a493dcafe3ac1/06-worn-hood-and-open-space.png"
+  ],
+  "benchmarks": [
+    {
+      "name": "FiftySecondCombatBench",
+      "runId": "ec6d79b406cb4b0786ecda1671b3c2bc",
+      "expected": 19,
+      "cases": 19,
+      "failed": 0,
+      "audit": [
+        "PASS 01_cone_floor_fan",
+        "PASS 02_drying_cuts_only_transient_water",
+        "PASS 03_crosswise_wall_slots",
+        "PASS 04_wall_expiry_finite_meltwater",
+        "PASS 05_trail_entry_and_finite_owners",
+        "PASS 06_draw_spends_real_primer",
+        "PASS 07_en_garde_one_melee_parry",
+        "PASS 08_follow_through_paid_trap_entry",
+        "PASS 09_slam_collision_partner_damage",
+        "PASS 10_vault_one_accuracy_opening",
+        "PASS 11_authored_caster_retreats_for_one_action",
+        "PASS 12_sidestep_then_separate_cast",
+        "PASS 13_exact_disarmed_weapon_recovered",
+        "PASS 14_medic_spends_actual_cure_keeps_healing",
+        "PASS 15_stormbinder_setup_save_and_depth_source",
+        "PASS 16_composable_rank_parry_boundaries",
+        "PASS 17_composable_counter_budget_current_save",
+        "PASS 18_guard_displacement_costs_return_actions",
+        "PASS 19_generated_opening_roles_preserve_source_budget"
+      ],
+      "observations": [
+        {
+          "name": "01_cone_floor_fan",
+          "passed": true,
+          "state": {
+            "fired": true,
+            "soaked": true,
+            "sideHeat": 1,
+            "sideWater": true
+          }
+        },
+        {
+          "name": "02_drying_cuts_only_transient_water",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "temporary": 0,
+            "permanent": 2147483647
+          }
+        },
+        {
+          "name": "03_crosswise_wall_slots",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "slots": [
+              "(12, 9)",
+              "(12, 10)",
+              "(12, 11)"
+            ],
+            "cooldown": 40
+          }
+        },
+        {
+          "name": "04_wall_expiry_finite_meltwater",
+          "passed": true,
+          "state": {
+            "removed": true,
+            "waterAfterExpiry": 4,
+            "waterAfterFour": 0
+          }
+        },
+        {
+          "name": "05_trail_entry_and_finite_owners",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "entered": true,
+            "filmCount": 3,
+            "corrosion": 0.35,
+            "hp": 1000
+          }
+        },
+        {
+          "name": "06_draw_spends_real_primer",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "hp": 992,
+            "marked": false,
+            "cooldown": 20
+          }
+        },
+        {
+          "name": "07_en_garde_one_melee_parry",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "first": 995,
+            "second": 986,
+            "ActualDamage": 5,
+            "guard": false
+          }
+        },
+        {
+          "name": "08_follow_through_paid_trap_entry",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "x": 11,
+            "hp": 988,
+            "victimDead": true,
+            "paidCooldown": 12,
+            "beforeTick": 10,
+            "afterTick": 20
+          }
+        },
+        {
+          "name": "09_slam_collision_partner_damage",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "obstacleHP": 997,
+            "targetHP": 997,
+            "cooldown": 50
+          }
+        },
+        {
+          "name": "10_vault_one_accuracy_opening",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "roll": "{\"weapon\":\"long sword\",\"hitRoll\":1,\"agilityMod\":42,\"weaponHitBonus\":0,\"skillHitBonus\":2,\"totalHit\":45,\"dv\":6,\"naturalTwenty\":false,\"landed\":true}",
+            "poise": false
+          }
+        },
+        {
+          "name": "11_authored_caster_retreats_for_one_action",
+          "passed": true,
+          "state": {
+            "x": 9,
+            "targetHP": 1000,
+            "range": 3
+          }
+        },
+        {
+          "name": "12_sidestep_then_separate_cast",
+          "passed": true,
+          "state": {
+            "moved": true,
+            "targetHP": 999,
+            "allyHP": 1000
+          }
+        },
+        {
+          "name": "13_exact_disarmed_weapon_recovered",
+          "passed": true,
+          "state": {
+            "cast": true,
+            "dropped": true,
+            "picked": true,
+            "equipped": true,
+            "weapon": "4539"
+          }
+        },
+        {
+          "name": "14_medic_spends_actual_cure_keeps_healing",
+          "passed": true,
+          "state": {
+            "poison": false,
+            "cureCarried": false,
+            "healingCarried": true,
+            "beforeHp": 20,
+            "hp": 19,
+            "preActionPoisonDamage": 1
+          }
+        },
+        {
+          "name": "15_stormbinder_setup_save_and_depth_source",
+          "passed": true,
+          "state": {
+            "soaked": true,
+            "hp": 998,
+            "electrified": true,
+            "replaced": true,
+            "group": "DepthEncounter",
+            "weight": 1
+          }
+        },
+        {
+          "name": "16_composable_rank_parry_boundaries",
+          "passed": true,
+          "state": {
+            "rows": [
+              {
+                "rank": 1,
+                "roll": 14,
+                "parried": true,
+                "ActualDamage": 0
+              },
+              {
+                "rank": 1,
+                "roll": 15,
+                "parried": false,
+                "ActualDamage": 4
+              },
+              {
+                "rank": 2,
+                "roll": 21,
+                "parried": true,
+                "ActualDamage": 0
+              },
+              {
+                "rank": 2,
+                "roll": 22,
+                "parried": false,
+                "ActualDamage": 4
+              },
+              {
+                "rank": 3,
+                "roll": 27,
+                "parried": true,
+                "ActualDamage": 0
+              },
+              {
+                "rank": 3,
+                "roll": 28,
+                "parried": false,
+                "ActualDamage": 4
+              }
+            ]
+          }
+        },
+        {
+          "name": "17_composable_counter_budget_current_save",
+          "passed": true,
+          "state": {
+            "first": "FullParry",
+            "second": "FullParry",
+            "foeHP": 999,
+            "savedSpent": true,
+            "causes": true,
+            "starts": [
+              {
+                "TraceId": "6ef78484",
+                "Category": "damage",
+                "Kind": "StrikeStarted",
+                "TimestampUnixMs": 1791865467753,
+                "Turn": null,
+                "ActorId": "055969a25d644fed862006de1e7bf809",
+                "TargetId": "9c87ba0b431f4b73ab6795faf7ca8375",
+                "CauseTraceId": "47a469d12e5146b3b2931cc531b09540",
+                "PayloadJson": "{\"ActionId\":\"34cf4ee3a18a4e78bb5229cfc78a678b\",\"RootStrikeId\":\"47a469d12e5146b3b2931cc531b09540\",\"ParentStrikeId\":null,\"StrikeId\":\"47a469d12e5146b3b2931cc531b09540\",\"origin\":\"Ordinary\",\"Depth\":0,\"CounterDepth\":0,\"SuppressFollowups\":false}"
+              },
+              {
+                "TraceId": "9ea53563",
+                "Category": "damage",
+                "Kind": "StrikeStarted",
+                "TimestampUnixMs": 1791865467754,
+                "Turn": null,
+                "ActorId": "9c87ba0b431f4b73ab6795faf7ca8375",
+                "TargetId": "055969a25d644fed862006de1e7bf809",
+                "CauseTraceId": "4d1e8838bb8d4d9a99a89c1abca46664",
+                "PayloadJson": "{\"ActionId\":\"34cf4ee3a18a4e78bb5229cfc78a678b\",\"RootStrikeId\":\"47a469d12e5146b3b2931cc531b09540\",\"ParentStrikeId\":\"47a469d12e5146b3b2931cc531b09540\",\"StrikeId\":\"4d1e8838bb8d4d9a99a89c1abca46664\",\"origin\":\"ReactiveCounter\",\"Depth\":1,\"CounterDepth\":1,\"SuppressFollowups\":true}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "18_guard_displacement_costs_return_actions",
+          "passed": true,
+          "state": {
+            "abandoned": true,
+            "first": "(16, 10)",
+            "returned": "(15, 10)",
+            "hp": 8,
+            "targetHP": 1000
+          }
+        },
+        {
+          "name": "19_generated_opening_roles_preserve_source_budget",
+          "passed": true,
+          "state": {
+            "guards": 1,
+            "casters": 0,
+            "forgeHostiles": 1,
+            "yardDisposition": 2,
+            "forgeDisposition": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "FiftySecondPreparationBench",
+      "runId": "d82b3d4e1d2f45b6bafcb188d5f70a16",
+      "expected": 18,
+      "cases": 18,
+      "failed": 0,
+      "audit": [
+        "PASS 17_materials_make_native_modest_assembly",
+        "PASS 16_salvage_recovers_only_recorded_head_and_haft",
+        "PASS 18_braced_haft_is_a_hit_for_strength_trade",
+        "PASS 19_guard_lashing_trades_penetration_for_hit",
+        "PASS 20_filter_hood_uses_real_body_and_removes_cleanly",
+        "PASS 21_acid_apron_typed_defense_has_dv_and_speed_cost",
+        "PASS 22_cold_cloak_typed_defense_has_dv_cost",
+        "PASS 23_refuel_pays_whole_oil_and_caps_without_lighting",
+        "PASS refill_full_torch_is_free",
+        "PASS 24_bandage_spends_one_and_cures_only_bleeding",
+        "PASS 25_concentrated_mendleaf_makes_one_two_die_brew",
+        "PASS 26_detox_sacrifices_toxic_and_makes_two_die_healing",
+        "PASS 27_compost_pays_sludge_without_free_water_or_growth",
+        "PASS 29_transplant_moves_exact_owner_and_keeps_compost",
+        "PASS 28_seed_choice_gives_triple_seed_no_cord",
+        "PASS 30_physical_infusion_has_finite_cost_without_bits",
+        "PASS duplicate_infusion_is_free",
+        "PASS replacement_save_keeps_payment_enhancement_and_harvest"
+      ],
+      "observations": [
+        {
+          "name": "17_materials_make_native_modest_assembly",
+          "passed": true,
+          "state": {
+            "weapon": "9352",
+            "damage": "1d3",
+            "strengthCap": 1
+          }
+        },
+        {
+          "name": "16_salvage_recovers_only_recorded_head_and_haft",
+          "passed": true,
+          "state": {
+            "head": 1,
+            "haft": 1,
+            "binding": 0
+          }
+        },
+        {
+          "name": "18_braced_haft_is_a_hit_for_strength_trade",
+          "passed": true,
+          "state": {
+            "normalCap": 3,
+            "bracedCap": 5,
+            "normalHit": 1,
+            "bracedHit": 0
+          }
+        },
+        {
+          "name": "19_guard_lashing_trades_penetration_for_hit",
+          "passed": true,
+          "state": {
+            "hit": 2,
+            "penetration": -1
+          }
+        },
+        {
+          "name": "20_filter_hood_uses_real_body_and_removes_cleanly",
+          "passed": true,
+          "state": {
+            "equippedIntake": 50,
+            "carriedIntake": 100
+          }
+        },
+        {
+          "name": "21_acid_apron_typed_defense_has_dv_and_speed_cost",
+          "passed": true,
+          "state": {
+            "acid": 5,
+            "heat": 10,
+            "dv": -1,
+            "speedPenalty": 5
+          }
+        },
+        {
+          "name": "22_cold_cloak_typed_defense_has_dv_cost",
+          "passed": true,
+          "state": {
+            "cold": 5,
+            "dv": -1
+          }
+        },
+        {
+          "name": "23_refuel_pays_whole_oil_and_caps_without_lighting",
+          "passed": true,
+          "state": {
+            "fuel": 50.0,
+            "oil": 1
+          }
+        },
+        {
+          "name": "refill_full_torch_is_free",
+          "passed": true,
+          "state": {
+            "tick": 70,
+            "oil": 1
+          }
+        },
+        {
+          "name": "24_bandage_spends_one_and_cures_only_bleeding",
+          "passed": true,
+          "state": {
+            "beforeHP": 95,
+            "afterHP": 95,
+            "count": 0
+          }
+        },
+        {
+          "name": "25_concentrated_mendleaf_makes_one_two_die_brew",
+          "passed": true,
+          "state": {
+            "healing": "2d4",
+            "source": 0
+          }
+        },
+        {
+          "name": "26_detox_sacrifices_toxic_and_makes_two_die_healing",
+          "passed": true,
+          "state": {
+            "properties": "vital:2",
+            "healing": "2d4"
+          }
+        },
+        {
+          "name": "27_compost_pays_sludge_without_free_water_or_growth",
+          "passed": true,
+          "state": {
+            "originalStage": 16,
+            "stage": 12,
+            "Composted": true,
+            "MoistureTicks": 0,
+            "TicksInStage": 0
+          }
+        },
+        {
+          "name": "29_transplant_moves_exact_owner_and_keeps_compost",
+          "passed": true,
+          "state": {
+            "ID": "9375",
+            "x": 10,
+            "y": 11,
+            "Composted": true
+          }
+        },
+        {
+          "name": "28_seed_choice_gives_triple_seed_no_cord",
+          "passed": true,
+          "state": {
+            "seeds": 3,
+            "produce": 0,
+            "controlledElapsedGrowth": true
+          }
+        },
+        {
+          "name": "30_physical_infusion_has_finite_cost_without_bits",
+          "passed": true,
+          "state": {
+            "ID": "9380",
+            "minerals": 1,
+            "enhancements": 1
+          }
+        },
+        {
+          "name": "duplicate_infusion_is_free",
+          "passed": true,
+          "state": {
+            "minerals": 1,
+            "enhancements": 1
+          }
+        },
+        {
+          "name": "replacement_save_keeps_payment_enhancement_and_harvest",
+          "passed": true,
+          "state": {
+            "replacementPlayer": true,
+            "replacementItem": true,
+            "restoredEnhancements": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "FiftySecondExplorationBench",
+      "runId": "6469691fc41941d2b3b6ce164f6520d8",
+      "expected": 21,
+      "cases": 21,
+      "failed": 0,
+      "audit": [
+        "PASS selected_copy",
+        "PASS smith_supplies_finite_repair",
+        "PASS selected_rental_return",
+        "PASS worn_rental_buyout",
+        "PASS guest_claim_outlasts_oath",
+        "PASS two_cell_locksmith",
+        "PASS courtesy_is_real_movement",
+        "PASS finite_medicine_benefits_patient",
+        "PASS gift_occupies_actual_npc_hand",
+        "PASS body_remains_in_graveyard",
+        "PASS same_descent_jar_becomes_hand_light",
+        "PASS reciprocal_rope_and_real_stair_roundtrip",
+        "PASS jammed_spike_salvage_once",
+        "PASS cloth_cover_exchanged_for_finite_cord",
+        "PASS loaded_locker_moves_with_exact_cargo",
+        "PASS paid_pass_ends_after_actual_entry_exit",
+        "PASS gate_controls_real_finite_grazer",
+        "PASS collector_trades_exact_carried_find",
+        "PASS finite_library_study_and_exact_return",
+        "PASS counter_key_opens_same_finite_cache",
+        "PASS replacement_save_keeps_service_and_depletion_graph"
+      ],
+      "observations": [
+        {
+          "name": "selected_copy",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "smith_supplies_finite_repair",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "selected_rental_return",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "worn_rental_buyout",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "guest_claim_outlasts_oath",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "two_cell_locksmith",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "courtesy_is_real_movement",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "finite_medicine_benefits_patient",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "gift_occupies_actual_npc_hand",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "body_remains_in_graveyard",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "same_descent_jar_becomes_hand_light",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "reciprocal_rope_and_real_stair_roundtrip",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "jammed_spike_salvage_once",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "cloth_cover_exchanged_for_finite_cord",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "loaded_locker_moves_with_exact_cargo",
+          "passed": true,
+          "ticks": 34,
+          "paidCommands": 2,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "paid_pass_ends_after_actual_entry_exit",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "gate_controls_real_finite_grazer",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "collector_trades_exact_carried_find",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "finite_library_study_and_exact_return",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "counter_key_opens_same_finite_cache",
+          "passed": true,
+          "ticks": 20,
+          "paidCommands": 1,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        },
+        {
+          "name": "replacement_save_keeps_service_and_depletion_graph",
+          "passed": true,
+          "ticks": 40,
+          "paidCommands": 3,
+          "error": null,
+          "scope": "controlled detached fixture; direct command/owner turn, not ordinary discovery"
+        }
+      ]
+    },
+    {
+      "name": "ComposableBuildComparisonBench",
+      "runId": "9d4932a5291841f3b51d110e0e052e47",
+      "expected": 42,
+      "cases": 42,
+      "failed": 0,
+      "audit": [
+        "PASS build/Counterfighter/OpenCommitment/vault=False/uncapped=False/speed=100",
+        "PASS build/Counterfighter/OpenCommitment/vault=True/uncapped=False/speed=100",
+        "PASS build/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS build/Counterfighter/HeldEntrance/vault=True/uncapped=False/speed=100",
+        "PASS build/Counterfighter/MixedLane/vault=False/uncapped=False/speed=100",
+        "PASS build/Counterfighter/MixedLane/vault=True/uncapped=False/speed=100",
+        "PASS build/Hybrid/OpenCommitment/vault=False/uncapped=False/speed=100",
+        "PASS build/Hybrid/OpenCommitment/vault=True/uncapped=False/speed=100",
+        "PASS build/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS build/Hybrid/HeldEntrance/vault=True/uncapped=False/speed=100",
+        "PASS build/Hybrid/MixedLane/vault=False/uncapped=False/speed=100",
+        "PASS build/Hybrid/MixedLane/vault=True/uncapped=False/speed=100",
+        "PASS build/Ranked/OpenCommitment/vault=False/uncapped=False/speed=100",
+        "PASS build/Ranked/OpenCommitment/vault=True/uncapped=False/speed=100",
+        "PASS build/Ranked/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS build/Ranked/HeldEntrance/vault=True/uncapped=False/speed=100",
+        "PASS build/Ranked/MixedLane/vault=False/uncapped=False/speed=100",
+        "PASS build/Ranked/MixedLane/vault=True/uncapped=False/speed=100",
+        "PASS build/Control/OpenCommitment/vault=False/uncapped=False/speed=100",
+        "PASS build/Control/OpenCommitment/vault=True/uncapped=False/speed=100",
+        "PASS build/Control/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS build/Control/HeldEntrance/vault=True/uncapped=False/speed=100",
+        "PASS build/Control/MixedLane/vault=False/uncapped=False/speed=100",
+        "PASS build/Control/MixedLane/vault=True/uncapped=False/speed=100",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=50",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=50",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=100",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=200",
+        "PASS cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=200",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=50",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=50",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=100",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=200",
+        "PASS cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=200",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=50",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=50",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=100",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=100",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=200",
+        "PASS cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=200"
+      ],
+      "observations": [
+        {
+          "name": "build/Counterfighter/OpenCommitment/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 4.34375,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "lunge": 38,
+              "walk-off-ray": 11,
+              "walk-approach": 62,
+              "guard": 17,
+              "melee": 11
+            }
+          }
+        },
+        {
+          "name": "build/Counterfighter/OpenCommitment/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 2.53125,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "lunge": 32,
+              "walk-off-ray": 11,
+              "vault-attack": 17,
+              "walk-approach": 21
+            }
+          }
+        },
+        {
+          "name": "build/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 7,
+            "victories": 23,
+            "withdrawals": 0,
+            "timeouts": 2,
+            "damageMean": 29.125,
+            "damageMedian": 25.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              22.746039181102283,
+              35.503960818897717
+            ],
+            "deathWilson95": [
+              0.11023696931531854,
+              0.38755330790444842
+            ],
+            "actionsMean": 8.75,
+            "tonicsMean": 0.46875,
+            "endHpMean": 19.375,
+            "minHpMean": 16.65625,
+            "defenseRolls": 161,
+            "parries": 26,
+            "guarded": 32,
+            "counterRolls": 26,
+            "counters": 12,
+            "counterDamage": 75,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "counterPerFullParryWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.11265241343015049,
+              0.22610673474603804
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 124,
+              "tonic": 15,
+              "hold-entrance": 14,
+              "wait": 94,
+              "lunge": 1
+            }
+          }
+        },
+        {
+          "name": "build/Counterfighter/HeldEntrance/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 7,
+            "victories": 23,
+            "withdrawals": 0,
+            "timeouts": 2,
+            "damageMean": 29.125,
+            "damageMedian": 25.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              22.746039181102283,
+              35.503960818897717
+            ],
+            "deathWilson95": [
+              0.11023696931531854,
+              0.38755330790444842
+            ],
+            "actionsMean": 8.75,
+            "tonicsMean": 0.46875,
+            "endHpMean": 19.375,
+            "minHpMean": 16.65625,
+            "defenseRolls": 161,
+            "parries": 26,
+            "guarded": 32,
+            "counterRolls": 26,
+            "counters": 12,
+            "counterDamage": 75,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "counterPerFullParryWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.11265241343015049,
+              0.22610673474603804
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 124,
+              "tonic": 15,
+              "hold-entrance": 14,
+              "wait": 94,
+              "lunge": 1
+            }
+          }
+        },
+        {
+          "name": "build/Counterfighter/MixedLane/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 31,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 14.25,
+            "damageMedian": 13.0,
+            "damageP90": 29.0,
+            "damageMeanApprox95": [
+              10.690353406450615,
+              17.809646593549385
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 5.90625,
+            "tonicsMean": 0.125,
+            "endHpMean": 27.96875,
+            "minHpMean": 26.125,
+            "defenseRolls": 73,
+            "parries": 14,
+            "guarded": 28,
+            "counterRolls": 14,
+            "counters": 9,
+            "counterDamage": 56,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.38764004682140418,
+              0.83655509262797267
+            ],
+            "counterPerFullParryWilson95": [
+              0.38764004682140418,
+              0.83655509262797267
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.11782254045474989,
+              0.29655717053513053
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 125,
+              "walk-approach": 24,
+              "tonic": 4,
+              "lunge": 4
+            }
+          }
+        },
+        {
+          "name": "build/Counterfighter/MixedLane/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 31,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 10.90625,
+            "damageMedian": 8.5,
+            "damageP90": 27.0,
+            "damageMeanApprox95": [
+              7.2666058932513309,
+              14.545894106748669
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 5.3125,
+            "tonicsMean": 0.09375,
+            "endHpMean": 30.65625,
+            "minHpMean": 29.21875,
+            "defenseRolls": 60,
+            "parries": 15,
+            "guarded": 28,
+            "counterRolls": 15,
+            "counters": 9,
+            "counterDamage": 56,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.357464427565077,
+              0.80175771917405336
+            ],
+            "counterPerFullParryWilson95": [
+              0.357464427565077,
+              0.80175771917405336
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.1577638557841185,
+              0.372323109454848
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 107,
+              "walk-approach": 9,
+              "vault-attack": 15,
+              "tonic": 3,
+              "lunge": 4
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/OpenCommitment/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 9.53125,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "walk-approach": 114,
+              "walk-off-ray": 82,
+              "jet-blast": 32,
+              "guard": 32,
+              "melee": 45
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/OpenCommitment/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 3.84375,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "vault-attack": 32,
+              "walk-off-ray": 17,
+              "jet-blast": 17,
+              "walk-approach": 37,
+              "guard": 10,
+              "melee": 10
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 5,
+            "victories": 22,
+            "withdrawals": 0,
+            "timeouts": 5,
+            "damageMean": 28.53125,
+            "damageMedian": 28.5,
+            "damageP90": 51.0,
+            "damageMeanApprox95": [
+              22.042003439933207,
+              35.020496560066796
+            ],
+            "deathWilson95": [
+              0.068643191066272161,
+              0.31754492553566527
+            ],
+            "actionsMean": 14.59375,
+            "tonicsMean": 0.5,
+            "endHpMean": 20.65625,
+            "minHpMean": 16.3125,
+            "defenseRolls": 167,
+            "parries": 31,
+            "guarded": 30,
+            "counterRolls": 30,
+            "counters": 16,
+            "counterDamage": 92,
+            "spentRefusals": 1,
+            "counterPerEligibleProcWilson95": [
+              0.36142013281525048,
+              0.69767872775871775
+            ],
+            "counterPerFullParryWilson95": [
+              0.34840118286973176,
+              0.6803001396872117
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.13396751941877455,
+              0.25142807509684695
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 31,
+              "melee": 119,
+              "tonic": 16,
+              "hold-entrance": 37,
+              "wait": 232
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/HeldEntrance/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 5,
+            "victories": 23,
+            "withdrawals": 0,
+            "timeouts": 4,
+            "damageMean": 28.53125,
+            "damageMedian": 28.5,
+            "damageP90": 51.0,
+            "damageMeanApprox95": [
+              22.042003439933207,
+              35.020496560066796
+            ],
+            "deathWilson95": [
+              0.068643191066272161,
+              0.31754492553566527
+            ],
+            "actionsMean": 12.84375,
+            "tonicsMean": 0.5,
+            "endHpMean": 20.65625,
+            "minHpMean": 16.3125,
+            "defenseRolls": 167,
+            "parries": 31,
+            "guarded": 30,
+            "counterRolls": 30,
+            "counters": 16,
+            "counterDamage": 92,
+            "spentRefusals": 1,
+            "counterPerEligibleProcWilson95": [
+              0.36142013281525048,
+              0.69767872775871775
+            ],
+            "counterPerFullParryWilson95": [
+              0.34840118286973176,
+              0.6803001396872117
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.13396751941877455,
+              0.25142807509684695
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 31,
+              "melee": 119,
+              "tonic": 16,
+              "hold-entrance": 28,
+              "wait": 184,
+              "vault-attack": 1
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/MixedLane/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 30,
+            "withdrawals": 0,
+            "timeouts": 1,
+            "damageMean": 12.4375,
+            "damageMedian": 9.0,
+            "damageP90": 29.0,
+            "damageMeanApprox95": [
+              8.6614759186542223,
+              16.213524081345778
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 8.0,
+            "tonicsMean": 0.0625,
+            "endHpMean": 28.71875,
+            "minHpMean": 27.75,
+            "defenseRolls": 67,
+            "parries": 16,
+            "guarded": 26,
+            "counterRolls": 16,
+            "counters": 9,
+            "counterDamage": 59,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.33178195606776517,
+              0.76901636664814477
+            ],
+            "counterPerFullParryWilson95": [
+              0.33178195606776517,
+              0.76901636664814477
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15268010510617858,
+              0.35325990754175707
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 32,
+              "melee": 129,
+              "walk-approach": 61,
+              "tonic": 2
+            }
+          }
+        },
+        {
+          "name": "build/Hybrid/MixedLane/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 31,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 12.34375,
+            "damageMedian": 11.0,
+            "damageP90": 21.0,
+            "damageMeanApprox95": [
+              8.6699521455443112,
+              16.017547854455689
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 6.3125,
+            "tonicsMean": 0.0625,
+            "endHpMean": 28.8125,
+            "minHpMean": 27.84375,
+            "defenseRolls": 63,
+            "parries": 14,
+            "guarded": 26,
+            "counterRolls": 14,
+            "counters": 8,
+            "counterDamage": 47,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.32590266902869358,
+              0.78619490069599485
+            ],
+            "counterPerFullParryWilson95": [
+              0.32590266902869358,
+              0.78619490069599485
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.13724883861823151,
+              0.33912515601983817
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 32,
+              "melee": 127,
+              "vault-attack": 8,
+              "walk-approach": 1,
+              "tonic": 2
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/OpenCommitment/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 4.625,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "walk-approach": 32,
+              "walk-off-ray": 32,
+              "guard": 32,
+              "melee": 52
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/OpenCommitment/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 3.8125,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "vault-attack": 32,
+              "walk-off-ray": 11,
+              "guard": 17,
+              "melee": 17,
+              "walk-approach": 45
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 6,
+            "victories": 19,
+            "withdrawals": 0,
+            "timeouts": 7,
+            "damageMean": 27.21875,
+            "damageMedian": 24.5,
+            "damageP90": 57.0,
+            "damageMeanApprox95": [
+              20.048650744292758,
+              34.388849255707242
+            ],
+            "deathWilson95": [
+              0.088894239361627825,
+              0.35309495754922438
+            ],
+            "actionsMean": 17.15625,
+            "tonicsMean": 0.5,
+            "endHpMean": 21.8125,
+            "minHpMean": 18.4375,
+            "defenseRolls": 178,
+            "parries": 55,
+            "guarded": 32,
+            "counterRolls": 50,
+            "counters": 33,
+            "counterDamage": 231,
+            "spentRefusals": 5,
+            "counterPerEligibleProcWilson95": [
+              0.52153568541482853,
+              0.77563230364938951
+            ],
+            "counterPerFullParryWilson95": [
+              0.46812560910645018,
+              0.71881696213566426
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.24574100609665517,
+              0.38030715889969324
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 123,
+              "tonic": 16,
+              "hold-entrance": 55,
+              "wait": 323
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/HeldEntrance/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 6,
+            "victories": 21,
+            "withdrawals": 0,
+            "timeouts": 5,
+            "damageMean": 27.21875,
+            "damageMedian": 24.5,
+            "damageP90": 57.0,
+            "damageMeanApprox95": [
+              20.048650744292758,
+              34.388849255707242
+            ],
+            "deathWilson95": [
+              0.088894239361627825,
+              0.35309495754922438
+            ],
+            "actionsMean": 13.875,
+            "tonicsMean": 0.5,
+            "endHpMean": 21.8125,
+            "minHpMean": 18.4375,
+            "defenseRolls": 178,
+            "parries": 55,
+            "guarded": 32,
+            "counterRolls": 50,
+            "counters": 33,
+            "counterDamage": 231,
+            "spentRefusals": 5,
+            "counterPerEligibleProcWilson95": [
+              0.52153568541482853,
+              0.77563230364938951
+            ],
+            "counterPerFullParryWilson95": [
+              0.46812560910645018,
+              0.71881696213566426
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.24574100609665517,
+              0.38030715889969324
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 123,
+              "tonic": 16,
+              "hold-entrance": 36,
+              "wait": 234,
+              "vault-attack": 3
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/MixedLane/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 15.1875,
+            "damageMedian": 12.5,
+            "damageP90": 32.0,
+            "damageMeanApprox95": [
+              11.069545826799351,
+              19.305454173200651
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 6.75,
+            "tonicsMean": 0.1875,
+            "endHpMean": 28.125,
+            "minHpMean": 26.09375,
+            "defenseRolls": 90,
+            "parries": 21,
+            "guarded": 28,
+            "counterRolls": 20,
+            "counters": 13,
+            "counterDamage": 66,
+            "spentRefusals": 1,
+            "counterPerEligibleProcWilson95": [
+              0.43285051021946463,
+              0.81881045213205539
+            ],
+            "counterPerFullParryWilson95": [
+              0.40878295815501514,
+              0.79249232202017494
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15798078393937456,
+              0.33051898588552175
+            ],
+            "decisions": {
+              "guard": 33,
+              "melee": 137,
+              "walk-approach": 40,
+              "tonic": 6
+            }
+          }
+        },
+        {
+          "name": "build/Ranked/MixedLane/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 11.90625,
+            "damageMedian": 9.0,
+            "damageP90": 20.0,
+            "damageMeanApprox95": [
+              8.080888174661375,
+              15.731611825338625
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 5.625,
+            "tonicsMean": 0.125,
+            "endHpMean": 30.125,
+            "minHpMean": 28.9375,
+            "defenseRolls": 74,
+            "parries": 23,
+            "guarded": 27,
+            "counterRolls": 21,
+            "counters": 13,
+            "counterDamage": 73,
+            "spentRefusals": 2,
+            "counterPerEligibleProcWilson95": [
+              0.40878295815501514,
+              0.79249232202017494
+            ],
+            "counterPerFullParryWilson95": [
+              0.36811049305016952,
+              0.74365631667801346
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.21690691603479306,
+              0.42338824747674819
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 116,
+              "walk-approach": 9,
+              "vault-attack": 19,
+              "tonic": 4
+            }
+          }
+        },
+        {
+          "name": "build/Control/OpenCommitment/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 5.75,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "walk-approach": 70,
+              "walk-off-ray": 38,
+              "jet-blast": 32,
+              "melee": 44
+            }
+          }
+        },
+        {
+          "name": "build/Control/OpenCommitment/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 0,
+            "victories": 32,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 0.0,
+            "damageMedian": 0.0,
+            "damageP90": 0.0,
+            "damageMeanApprox95": [
+              0.0,
+              0.0
+            ],
+            "deathWilson95": [
+              0.0,
+              0.1071827150573635
+            ],
+            "actionsMean": 3.15625,
+            "tonicsMean": 0.0,
+            "endHpMean": 40.0,
+            "minHpMean": 40.0,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "vault-attack": 32,
+              "walk-off-ray": 11,
+              "jet-blast": 17,
+              "walk-approach": 31,
+              "melee": 10
+            }
+          }
+        },
+        {
+          "name": "build/Control/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 2,
+            "victories": 21,
+            "withdrawals": 1,
+            "timeouts": 8,
+            "damageMean": 25.65625,
+            "damageMedian": 22.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              19.065378720435337,
+              32.247121279564659
+            ],
+            "deathWilson95": [
+              0.017310203195157234,
+              0.20147467248003581
+            ],
+            "actionsMean": 19.1875,
+            "tonicsMean": 0.46875,
+            "endHpMean": 23.25,
+            "minHpMean": 19.28125,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "jet-blast": 32,
+              "melee": 135,
+              "tonic": 15,
+              "hold-entrance": 59,
+              "wait": 369,
+              "walk-retreat": 4
+            }
+          }
+        },
+        {
+          "name": "build/Control/HeldEntrance/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 2,
+            "victories": 24,
+            "withdrawals": 1,
+            "timeouts": 5,
+            "damageMean": 25.65625,
+            "damageMedian": 22.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              19.065378720435337,
+              32.247121279564659
+            ],
+            "deathWilson95": [
+              0.017310203195157234,
+              0.20147467248003581
+            ],
+            "actionsMean": 14.21875,
+            "tonicsMean": 0.46875,
+            "endHpMean": 23.25,
+            "minHpMean": 19.28125,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "jet-blast": 32,
+              "melee": 135,
+              "tonic": 15,
+              "hold-entrance": 31,
+              "wait": 236,
+              "vault-attack": 3,
+              "vault-retreat": 1,
+              "walk-retreat": 2
+            }
+          }
+        },
+        {
+          "name": "build/Control/MixedLane/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 5,
+            "victories": 27,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 24.09375,
+            "damageMedian": 15.5,
+            "damageP90": 49.0,
+            "damageMeanApprox95": [
+              17.341080310649886,
+              30.846419689350114
+            ],
+            "deathWilson95": [
+              0.068643191066272161,
+              0.31754492553566527
+            ],
+            "actionsMean": 7.65625,
+            "tonicsMean": 0.46875,
+            "endHpMean": 23.40625,
+            "minHpMean": 19.875,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "tumble": 32,
+              "jet-blast": 31,
+              "melee": 136,
+              "undertow": 5,
+              "tonic": 15,
+              "walk-retreat": 3,
+              "walk-approach": 23
+            }
+          }
+        },
+        {
+          "name": "build/Control/MixedLane/vault=True/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 4,
+            "victories": 27,
+            "withdrawals": 1,
+            "timeouts": 0,
+            "damageMean": 23.9375,
+            "damageMedian": 15.5,
+            "damageP90": 49.0,
+            "damageMeanApprox95": [
+              17.213232936570517,
+              30.661767063429483
+            ],
+            "deathWilson95": [
+              0.049700538444743009,
+              0.28068649784827959
+            ],
+            "actionsMean": 7.59375,
+            "tonicsMean": 0.46875,
+            "endHpMean": 23.5625,
+            "minHpMean": 20.03125,
+            "defenseRolls": 0,
+            "parries": 0,
+            "guarded": 0,
+            "counterRolls": 0,
+            "counters": 0,
+            "counterDamage": 0,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": null,
+            "counterPerFullParryWilson95": null,
+            "parryPerDefenseRollWilson95": null,
+            "decisions": {
+              "tumble": 32,
+              "jet-blast": 31,
+              "melee": 130,
+              "undertow": 5,
+              "tonic": 15,
+              "vault-retreat": 2,
+              "walk-retreat": 6,
+              "walk-approach": 19,
+              "vault-attack": 3
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 23,
+            "victories": 3,
+            "withdrawals": 0,
+            "timeouts": 6,
+            "damageMean": 48.65625,
+            "damageMedian": 44.5,
+            "damageP90": 75.0,
+            "damageMeanApprox95": [
+              42.021457514883039,
+              55.291042485116961
+            ],
+            "deathWilson95": [
+              0.546251630618882,
+              0.8443559315435214
+            ],
+            "actionsMean": 12.9375,
+            "tonicsMean": 0.84375,
+            "endHpMean": 6.3125,
+            "minHpMean": 4.15625,
+            "defenseRolls": 247,
+            "parries": 40,
+            "guarded": 21,
+            "counterRolls": 39,
+            "counters": 21,
+            "counterDamage": 150,
+            "spentRefusals": 1,
+            "counterPerEligibleProcWilson95": [
+              0.3856918682173881,
+              0.68433352765951649
+            ],
+            "counterPerFullParryWilson95": [
+              0.37497106853929735,
+              0.67064770449818312
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.12123706336371512,
+              0.21300414702563022
+            ],
+            "decisions": {
+              "guard": 21,
+              "tonic": 27,
+              "melee": 31,
+              "hold-entrance": 20,
+              "wait": 313,
+              "lunge": 2
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 22,
+            "victories": 3,
+            "withdrawals": 0,
+            "timeouts": 7,
+            "damageMean": 48.34375,
+            "damageMedian": 44.5,
+            "damageP90": 75.0,
+            "damageMeanApprox95": [
+              41.835657987501627,
+              54.851842012498373
+            ],
+            "deathWilson95": [
+              0.514330003019676,
+              0.82047647883381258
+            ],
+            "actionsMean": 14.6875,
+            "tonicsMean": 0.84375,
+            "endHpMean": 6.84375,
+            "minHpMean": 4.4375,
+            "defenseRolls": 249,
+            "parries": 40,
+            "guarded": 21,
+            "counterRolls": 40,
+            "counters": 20,
+            "counterDamage": 149,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.35199278797099753,
+              0.64800721202900247
+            ],
+            "counterPerFullParryWilson95": [
+              0.35199278797099753,
+              0.64800721202900247
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.12024373772338989,
+              0.21135359436120374
+            ],
+            "decisions": {
+              "guard": 21,
+              "tonic": 27,
+              "melee": 33,
+              "hold-entrance": 20,
+              "wait": 367,
+              "lunge": 2
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 7,
+            "victories": 23,
+            "withdrawals": 0,
+            "timeouts": 2,
+            "damageMean": 29.125,
+            "damageMedian": 25.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              22.746039181102283,
+              35.503960818897717
+            ],
+            "deathWilson95": [
+              0.11023696931531854,
+              0.38755330790444842
+            ],
+            "actionsMean": 8.75,
+            "tonicsMean": 0.46875,
+            "endHpMean": 19.375,
+            "minHpMean": 16.65625,
+            "defenseRolls": 161,
+            "parries": 26,
+            "guarded": 32,
+            "counterRolls": 26,
+            "counters": 12,
+            "counterDamage": 75,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "counterPerFullParryWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.11265241343015049,
+              0.22610673474603804
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 124,
+              "tonic": 15,
+              "hold-entrance": 14,
+              "wait": 94,
+              "lunge": 1
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 7,
+            "victories": 23,
+            "withdrawals": 0,
+            "timeouts": 2,
+            "damageMean": 29.125,
+            "damageMedian": 25.0,
+            "damageP90": 54.0,
+            "damageMeanApprox95": [
+              22.746039181102283,
+              35.503960818897717
+            ],
+            "deathWilson95": [
+              0.11023696931531854,
+              0.38755330790444842
+            ],
+            "actionsMean": 8.75,
+            "tonicsMean": 0.46875,
+            "endHpMean": 19.375,
+            "minHpMean": 16.65625,
+            "defenseRolls": 161,
+            "parries": 26,
+            "guarded": 32,
+            "counterRolls": 26,
+            "counters": 12,
+            "counterDamage": 75,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "counterPerFullParryWilson95": [
+              0.28755582695234905,
+              0.64542363795569879
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.11265241343015049,
+              0.22610673474603804
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 124,
+              "tonic": 15,
+              "hold-entrance": 14,
+              "wait": 94,
+              "lunge": 1
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=False/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 27,
+            "withdrawals": 1,
+            "timeouts": 3,
+            "damageMean": 9.65625,
+            "damageMedian": 5.5,
+            "damageP90": 18.0,
+            "damageMeanApprox95": [
+              4.0682749759907111,
+              15.244225024009289
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 10.875,
+            "tonicsMean": 0.125,
+            "endHpMean": 32.78125,
+            "minHpMean": 31.875,
+            "defenseRolls": 56,
+            "parries": 14,
+            "guarded": 25,
+            "counterRolls": 14,
+            "counters": 5,
+            "counterDamage": 35,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.16344490737202735,
+              0.61235995317859593
+            ],
+            "counterPerFullParryWilson95": [
+              0.16344490737202735,
+              0.61235995317859593
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15516915222973843,
+              0.37692892001431927
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 140,
+              "hold-entrance": 46,
+              "wait": 122,
+              "tonic": 4,
+              "walk-retreat": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Counterfighter/HeldEntrance/vault=False/uncapped=True/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 27,
+            "withdrawals": 1,
+            "timeouts": 3,
+            "damageMean": 9.65625,
+            "damageMedian": 5.5,
+            "damageP90": 18.0,
+            "damageMeanApprox95": [
+              4.0682749759907111,
+              15.244225024009289
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 10.875,
+            "tonicsMean": 0.125,
+            "endHpMean": 32.78125,
+            "minHpMean": 31.875,
+            "defenseRolls": 56,
+            "parries": 14,
+            "guarded": 25,
+            "counterRolls": 14,
+            "counters": 5,
+            "counterDamage": 35,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.16344490737202735,
+              0.61235995317859593
+            ],
+            "counterPerFullParryWilson95": [
+              0.16344490737202735,
+              0.61235995317859593
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15516915222973843,
+              0.37692892001431927
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 140,
+              "hold-entrance": 46,
+              "wait": 122,
+              "tonic": 4,
+              "walk-retreat": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 24,
+            "victories": 4,
+            "withdrawals": 0,
+            "timeouts": 4,
+            "damageMean": 53.8125,
+            "damageMedian": 56.0,
+            "damageP90": 79.0,
+            "damageMeanApprox95": [
+              46.757445431842683,
+              60.867554568157317
+            ],
+            "deathWilson95": [
+              0.57893108229753376,
+              0.86747756017378452
+            ],
+            "actionsMean": 10.21875,
+            "tonicsMean": 1.0625,
+            "endHpMean": 5.71875,
+            "minHpMean": 3.9375,
+            "defenseRolls": 295,
+            "parries": 58,
+            "guarded": 17,
+            "counterRolls": 51,
+            "counters": 31,
+            "counterDamage": 205,
+            "spentRefusals": 7,
+            "counterPerEligibleProcWilson95": [
+              0.47084911225165049,
+              0.72972855141972293
+            ],
+            "counterPerFullParryWilson95": [
+              0.40799953310272974,
+              0.65668184642173277
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15528068444007342,
+              0.24573978928246054
+            ],
+            "decisions": {
+              "jet-blast": 22,
+              "tonic": 34,
+              "guard": 17,
+              "melee": 25,
+              "hold-entrance": 14,
+              "wait": 211,
+              "walk-retreat": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 23,
+            "victories": 5,
+            "withdrawals": 0,
+            "timeouts": 4,
+            "damageMean": 53.25,
+            "damageMedian": 55.5,
+            "damageP90": 79.0,
+            "damageMeanApprox95": [
+              45.833387870201719,
+              60.666612129798281
+            ],
+            "deathWilson95": [
+              0.546251630618882,
+              0.8443559315435214
+            ],
+            "actionsMean": 10.3125,
+            "tonicsMean": 1.0625,
+            "endHpMean": 6.0,
+            "minHpMean": 4.53125,
+            "defenseRolls": 297,
+            "parries": 57,
+            "guarded": 18,
+            "counterRolls": 57,
+            "counters": 33,
+            "counterDamage": 228,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.44979910140681378,
+              0.69812600246948142
+            ],
+            "counterPerFullParryWilson95": [
+              0.44979910140681378,
+              0.69812600246948142
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15117827637792342,
+              0.24052818974910156
+            ],
+            "decisions": {
+              "jet-blast": 22,
+              "tonic": 34,
+              "guard": 18,
+              "melee": 27,
+              "hold-entrance": 13,
+              "wait": 212,
+              "walk-retreat": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 5,
+            "victories": 22,
+            "withdrawals": 0,
+            "timeouts": 5,
+            "damageMean": 28.53125,
+            "damageMedian": 28.5,
+            "damageP90": 51.0,
+            "damageMeanApprox95": [
+              22.042003439933207,
+              35.020496560066796
+            ],
+            "deathWilson95": [
+              0.068643191066272161,
+              0.31754492553566527
+            ],
+            "actionsMean": 14.59375,
+            "tonicsMean": 0.5,
+            "endHpMean": 20.65625,
+            "minHpMean": 16.3125,
+            "defenseRolls": 167,
+            "parries": 31,
+            "guarded": 30,
+            "counterRolls": 30,
+            "counters": 16,
+            "counterDamage": 92,
+            "spentRefusals": 1,
+            "counterPerEligibleProcWilson95": [
+              0.36142013281525048,
+              0.69767872775871775
+            ],
+            "counterPerFullParryWilson95": [
+              0.34840118286973176,
+              0.6803001396872117
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.13396751941877455,
+              0.25142807509684695
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 31,
+              "melee": 119,
+              "tonic": 16,
+              "hold-entrance": 37,
+              "wait": 232
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 6,
+            "victories": 21,
+            "withdrawals": 0,
+            "timeouts": 5,
+            "damageMean": 29.375,
+            "damageMedian": 28.5,
+            "damageP90": 57.0,
+            "damageMeanApprox95": [
+              22.608929345862979,
+              36.141070654137025
+            ],
+            "deathWilson95": [
+              0.088894239361627825,
+              0.35309495754922438
+            ],
+            "actionsMean": 14.5,
+            "tonicsMean": 0.5,
+            "endHpMean": 20.0625,
+            "minHpMean": 16.09375,
+            "defenseRolls": 171,
+            "parries": 31,
+            "guarded": 30,
+            "counterRolls": 31,
+            "counters": 17,
+            "counterDamage": 94,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.37771879603669134,
+              0.70838517163413883
+            ],
+            "counterPerFullParryWilson95": [
+              0.37771879603669134,
+              0.70838517163413883
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.13075543457578911,
+              0.24582313711424345
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 31,
+              "melee": 116,
+              "tonic": 16,
+              "hold-entrance": 37,
+              "wait": 232
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=False/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 2,
+            "victories": 30,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 11.875,
+            "damageMedian": 6.5,
+            "damageP90": 36.0,
+            "damageMeanApprox95": [
+              7.5333659423757764,
+              16.216634057624223
+            ],
+            "deathWilson95": [
+              0.017310203195157234,
+              0.20147467248003581
+            ],
+            "actionsMean": 7.125,
+            "tonicsMean": 0.125,
+            "endHpMean": 30.21875,
+            "minHpMean": 28.46875,
+            "defenseRolls": 75,
+            "parries": 9,
+            "guarded": 21,
+            "counterRolls": 9,
+            "counters": 6,
+            "counterDamage": 30,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.35419734749908977,
+              0.879418401317257
+            ],
+            "counterPerFullParryWilson95": [
+              0.35419734749908977,
+              0.879418401317257
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.064432989690721643,
+              0.2125984251968504
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 33,
+              "melee": 159,
+              "tonic": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Hybrid/HeldEntrance/vault=False/uncapped=True/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 2,
+            "victories": 30,
+            "withdrawals": 0,
+            "timeouts": 0,
+            "damageMean": 11.875,
+            "damageMedian": 6.5,
+            "damageP90": 36.0,
+            "damageMeanApprox95": [
+              7.5333659423757764,
+              16.216634057624223
+            ],
+            "deathWilson95": [
+              0.017310203195157234,
+              0.20147467248003581
+            ],
+            "actionsMean": 7.125,
+            "tonicsMean": 0.125,
+            "endHpMean": 30.21875,
+            "minHpMean": 28.46875,
+            "defenseRolls": 75,
+            "parries": 9,
+            "guarded": 21,
+            "counterRolls": 9,
+            "counters": 6,
+            "counterDamage": 30,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.35419734749908977,
+              0.879418401317257
+            ],
+            "counterPerFullParryWilson95": [
+              0.35419734749908977,
+              0.879418401317257
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.064432989690721643,
+              0.2125984251968504
+            ],
+            "decisions": {
+              "jet-blast": 32,
+              "guard": 33,
+              "melee": 159,
+              "tonic": 4
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 20,
+            "victories": 8,
+            "withdrawals": 0,
+            "timeouts": 4,
+            "damageMean": 48.09375,
+            "damageMedian": 43.0,
+            "damageP90": 72.0,
+            "damageMeanApprox95": [
+              42.168245840321184,
+              54.019254159678816
+            ],
+            "deathWilson95": [
+              0.45254100589525126,
+              0.77066331534040788
+            ],
+            "actionsMean": 10.15625,
+            "tonicsMean": 0.9375,
+            "endHpMean": 8.28125,
+            "minHpMean": 4.3125,
+            "defenseRolls": 281,
+            "parries": 54,
+            "guarded": 23,
+            "counterRolls": 52,
+            "counters": 32,
+            "counterDamage": 170,
+            "spentRefusals": 2,
+            "counterPerEligibleProcWilson95": [
+              0.47959626940741784,
+              0.7352972866511478
+            ],
+            "counterPerFullParryWilson95": [
+              0.45966610248851525,
+              0.71321984810759542
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15037745790478108,
+              0.24226743666118117
+            ],
+            "decisions": {
+              "guard": 23,
+              "tonic": 30,
+              "melee": 48,
+              "hold-entrance": 19,
+              "wait": 203,
+              "walk-retreat": 2
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=50",
+          "summary": {
+            "n": 32,
+            "deaths": 20,
+            "victories": 8,
+            "withdrawals": 0,
+            "timeouts": 4,
+            "damageMean": 46.75,
+            "damageMedian": 41.0,
+            "damageP90": 66.0,
+            "damageMeanApprox95": [
+              41.034311911713459,
+              52.465688088286541
+            ],
+            "deathWilson95": [
+              0.45254100589525126,
+              0.77066331534040788
+            ],
+            "actionsMean": 10.0,
+            "tonicsMean": 0.875,
+            "endHpMean": 8.90625,
+            "minHpMean": 4.6875,
+            "defenseRolls": 278,
+            "parries": 55,
+            "guarded": 23,
+            "counterRolls": 55,
+            "counters": 35,
+            "counterDamage": 184,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.50422518148683715,
+              0.75069650657059162
+            ],
+            "counterPerFullParryWilson95": [
+              0.50422518148683715,
+              0.75069650657059162
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.15526866484475066,
+              0.24865183518079553
+            ],
+            "decisions": {
+              "guard": 23,
+              "tonic": 28,
+              "melee": 46,
+              "hold-entrance": 19,
+              "wait": 203,
+              "walk-retreat": 1
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 6,
+            "victories": 19,
+            "withdrawals": 0,
+            "timeouts": 7,
+            "damageMean": 27.21875,
+            "damageMedian": 24.5,
+            "damageP90": 57.0,
+            "damageMeanApprox95": [
+              20.048650744292758,
+              34.388849255707242
+            ],
+            "deathWilson95": [
+              0.088894239361627825,
+              0.35309495754922438
+            ],
+            "actionsMean": 17.15625,
+            "tonicsMean": 0.5,
+            "endHpMean": 21.8125,
+            "minHpMean": 18.4375,
+            "defenseRolls": 178,
+            "parries": 55,
+            "guarded": 32,
+            "counterRolls": 50,
+            "counters": 33,
+            "counterDamage": 231,
+            "spentRefusals": 5,
+            "counterPerEligibleProcWilson95": [
+              0.52153568541482853,
+              0.77563230364938951
+            ],
+            "counterPerFullParryWilson95": [
+              0.46812560910645018,
+              0.71881696213566426
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.24574100609665517,
+              0.38030715889969324
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 123,
+              "tonic": 16,
+              "hold-entrance": 55,
+              "wait": 323
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=100",
+          "summary": {
+            "n": 32,
+            "deaths": 6,
+            "victories": 19,
+            "withdrawals": 0,
+            "timeouts": 7,
+            "damageMean": 25.96875,
+            "damageMedian": 23.5,
+            "damageP90": 57.0,
+            "damageMeanApprox95": [
+              18.826384578057173,
+              33.111115421942827
+            ],
+            "deathWilson95": [
+              0.088894239361627825,
+              0.35309495754922438
+            ],
+            "actionsMean": 16.75,
+            "tonicsMean": 0.4375,
+            "endHpMean": 22.09375,
+            "minHpMean": 19.03125,
+            "defenseRolls": 172,
+            "parries": 56,
+            "guarded": 32,
+            "counterRolls": 56,
+            "counters": 38,
+            "counterDamage": 265,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.548223941560039,
+              0.78599172112277715
+            ],
+            "counterPerFullParryWilson95": [
+              0.548223941560039,
+              0.78599172112277715
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.26002599652532066,
+              0.39875781799866006
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 113,
+              "tonic": 14,
+              "hold-entrance": 54,
+              "wait": 323
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=False/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 29,
+            "withdrawals": 1,
+            "timeouts": 1,
+            "damageMean": 10.875,
+            "damageMedian": 5.5,
+            "damageP90": 26.0,
+            "damageMeanApprox95": [
+              5.1021763631706634,
+              16.647823636829337
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 8.15625,
+            "tonicsMean": 0.15625,
+            "endHpMean": 32.0,
+            "minHpMean": 30.65625,
+            "defenseRolls": 73,
+            "parries": 21,
+            "guarded": 26,
+            "counterRolls": 21,
+            "counters": 11,
+            "counterDamage": 74,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.32369217900266756,
+              0.71656287703237054
+            ],
+            "counterPerFullParryWilson95": [
+              0.32369217900266756,
+              0.71656287703237054
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.19651589092755173,
+              0.40005679886547707
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 163,
+              "tonic": 5,
+              "walk-retreat": 4,
+              "hold-entrance": 17,
+              "wait": 40
+            }
+          }
+        },
+        {
+          "name": "cap/Ranked/HeldEntrance/vault=False/uncapped=True/speed=200",
+          "summary": {
+            "n": 32,
+            "deaths": 1,
+            "victories": 29,
+            "withdrawals": 1,
+            "timeouts": 1,
+            "damageMean": 10.875,
+            "damageMedian": 5.5,
+            "damageP90": 26.0,
+            "damageMeanApprox95": [
+              5.1021763631706634,
+              16.647823636829337
+            ],
+            "deathWilson95": [
+              0.0055377173625509452,
+              0.15744607800372734
+            ],
+            "actionsMean": 8.15625,
+            "tonicsMean": 0.15625,
+            "endHpMean": 32.0,
+            "minHpMean": 30.65625,
+            "defenseRolls": 73,
+            "parries": 21,
+            "guarded": 26,
+            "counterRolls": 21,
+            "counters": 11,
+            "counterDamage": 74,
+            "spentRefusals": 0,
+            "counterPerEligibleProcWilson95": [
+              0.32369217900266756,
+              0.71656287703237054
+            ],
+            "counterPerFullParryWilson95": [
+              0.32369217900266756,
+              0.71656287703237054
+            ],
+            "parryPerDefenseRollWilson95": [
+              0.19651589092755173,
+              0.40005679886547707
+            ],
+            "decisions": {
+              "guard": 32,
+              "melee": 163,
+              "tonic": 5,
+              "walk-retreat": 4,
+              "hold-entrance": 17,
+              "wait": 40
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "fixture": "Ordinary N/Classic start with original stats. Isolated zone flattened, player repositioned, finite timber/books/ink/hood and 10 drams supplied; local scribe, guest-right, locker, screen and model examples placed. Public or existing reflected host entries open exact-owner menus; navigation and confirmation use native keys. Hood uses ordinary equipment service, not native keys.",
+  "canVerify": "Four real native-key command selections, explicit material/payment consequences and one-action timing, six rendered captures, plus detached combat/preparation/exploration command, scheduler and save observations. Benchmarks must preserve the player context.",
+  "cannotVerify": "Controlled supplies do not prove ordinary source discovery, dialogue discovery, difficulty, long-term enjoyment or novice comprehension. Benchmarks are direct gameplay evidence, not keyboard combat. Pixel quality requires separate screenshot inspection."
+}

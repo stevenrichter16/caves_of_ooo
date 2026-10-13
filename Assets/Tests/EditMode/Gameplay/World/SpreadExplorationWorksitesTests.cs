@@ -14,12 +14,12 @@ namespace CavesOfOoo.Tests
   sealed class Fixture:IDisposable
   {
    internal readonly HaulingContentScope Scope=new HaulingContentScope();internal EntityFactory Factory=>Scope.Factory;
-   internal readonly Zone Zone=new Zone("Overworld.11.9.0");internal readonly SpreadCompositionBuilder Terrain=new SpreadCompositionBuilder(64){FormationOverride=Formation.OldRoad};
+   internal readonly Zone Zone;internal readonly SpreadCompositionBuilder Terrain=new SpreadCompositionBuilder(64){FormationOverride=Formation.OldRoad};
    internal readonly PopulationBuilder Population;internal readonly ContainerBuilder Containers=new ContainerBuilder(BiomeType.Spread,1,ContainerPlacementService.ZoneKind.Wilderness){CaptureSourceReceipts=true};
    internal Entity[] Owners;internal Func<bool> Final;
-   internal Fixture(int count=2)
+   internal Fixture(int count=2,string zoneId="Overworld.11.9.0")
    {
-    Scope.Seed(64);Assert.True(Terrain.BuildZone(Zone,Factory,new Random(64)));
+    Zone=new Zone(zoneId);Scope.Seed(64);Assert.True(Terrain.BuildZone(Zone,Factory,new Random(64)));
     // Controlled geometry only; the final test separately exercises unedited native generation.
     foreach(var e in Zone.GetReadOnlyEntities().Where(e=>!(bool)typeof(DoorPart).GetMethod("IsBareGround",All).Invoke(null,new object[]{e})).ToArray())Zone.RemoveEntity(e);
     Zone.GenReservedCells.Clear();
@@ -27,16 +27,22 @@ namespace CavesOfOoo.Tests
     Assert.True(Population.BuildZone(Zone,Factory,new Random(17)));Assert.True(Containers.BuildZone(Zone,Factory,new FirstRoll()));
     Assert.True(Population.SourceReceipt.IsCurrent);Assert.True(Containers.SourceReceipt.IsCurrent);Assert.IsNotEmpty(Containers.SourceReceipt.Owners.Where(e=>e.BlueprintName=="Crate"||e.BlueprintName=="Sack"));
    }
-   internal bool Place(string name,Func<bool> authority=null,EntityFactory factory=null)
+   internal bool Place(string name,Func<bool> authority=null,EntityFactory factory=null,bool opening=false)
    {
     var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.SpreadExplorationWorksites");Assert.NotNull(type,"Selected small worksites must be realized by ordinary generation.");
     var family=(SpreadExplorationFamily)Enum.Parse(typeof(SpreadExplorationFamily),name);
-    object[] a={Zone,factory??Factory,Terrain,Population,Containers,family,authority??(()=>true),null,null,false};
+    object[] a={Zone,factory??Factory,Terrain,Population,Containers,family,authority??(()=>true),null,null,opening};
     bool ok=(bool)type.GetMethod("TryPlace").Invoke(null,a);Owners=(Entity[])a[7];Final=(Func<bool>)a[8];return ok;
    }
    internal Func<bool> Proof(IEnumerable<Entity> owners)=>(Func<bool>)typeof(SpreadGenerationReceipt).GetMethod("CaptureFinalState",All).Invoke(null,new object[]{Zone,owners});
    public void Dispose()=>Scope.Dispose();
   }
+  [TestCase(1)][TestCase(2)] public void OpeningGuardUsesOnlyAdmittedSourceBudget(int count)
+  {using(var f=new Fixture(count,"Overworld.11.11.0")){Assert.True(f.Place("TrappersStore",opening:true));Assert.True(f.Final());Assert.AreEqual(count,f.Zone.GetReadOnlyEntities().Count(e=>e.HasTag("Creature")));var actor=f.Owners.Single(e=>e.BlueprintName=="MarlbackScrabbler");var p=actor.GetPart<WorksiteGuardPart>();Assert.NotNull(p);Assert.AreEqual(f.Zone.ZoneID,p.ZoneID);Assert.AreEqual(f.Zone.GetEntityPosition(actor),(p.HomeX,p.HomeY));Assert.AreEqual(4,p.PursuitRadius);Assert.False(f.Factory.CreateEntity("MarlbackScrabbler").HasPart<WorksiteGuardPart>());p.HomeX++;Assert.False(f.Final());}}
+  [TestCase("Overworld.12.10.0",true)][TestCase("Overworld.15.10.0",false)] public void ForgeLanePolicyIsScopedAndMeleeKeepsAdvancing(string zone,bool expected)
+  {using(var f=new Fixture(2,zone)){Assert.True(f.Place("TemperingShelter"));Assert.True(f.Final());var caster=f.Owners.Single(e=>e.BlueprintName=="MarlbackCindercaller");Assert.AreEqual(expected,caster.GetPart<CombatTacticsPart>().RepositionForShot);Assert.False(f.Owners.Any(e=>e.HasPart<WorksiteGuardPart>()));Assert.False(f.Factory.CreateEntity("MarlbackCindercaller").GetPart<CombatTacticsPart>().RepositionForShot);if(expected){caster.GetPart<CombatTacticsPart>().RepositionForShot=false;Assert.False(f.Final());}}}
+  [Test] public void LaterFactoryCallbackCannotRedefineStagedGuardDuty()
+  {using(var f=new Fixture(2,"Overworld.11.11.0")){var old=f.Zone.GetReadOnlyEntities().ToArray();var proof=f.Proof(old);Entity staged=null;f.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");foreach(var bp in new[]{"MarlbackSoursprayer","MarlbackScrabbler"})f.Factory.Blueprints[bp].Parts["ReceiptCreated"]=new Dictionary<string,string>();SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{if(e.BlueprintName=="MarlbackSoursprayer")staged=e;else if(staged!=null)staged.GetPart<CombatTacticsPart>().RepositionForShot=false;};try{Assert.False(f.Place("TrappersStore",opening:true));Assert.True(proof());CollectionAssert.AreEquivalent(old,f.Zone.GetReadOnlyEntities());Assert.True(f.Population.SourceReceipt.IsCurrent);}finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}}}
   [TestCase("FieldAlembic","AlchemyStill")][TestCase("TemperingShelter","TinkersForge")][TestCase("TrappersStore","SpikeTrap")]
   public void ThreeSitesHaveRealFunctionalOwnersFiniteGatheringAndSafeArrival(string family,string functional)
   {

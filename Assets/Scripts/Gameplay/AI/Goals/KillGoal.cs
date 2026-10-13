@@ -112,10 +112,13 @@ namespace CavesOfOoo.Core
                 FailToParent();
                 return;
             }
+            var duty = ParentEntity.GetPart<WorksiteGuardPart>();
+            if (duty?.Applies(ParentBrain, CurrentZone) == true && !duty.AllowsPursuit(CurrentZone, LastSeenX, LastSeenY))
+            { Abandon("outside-worksite-duty"); return; }
             if (!visible)
             {
                 if (myPos.x != LastSeenX || myPos.y != LastSeenY)
-                    AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, LastSeenX, LastSeenY);
+                    Approach(LastSeenX, LastSeenY);
                 if (SearchRemaining <= 0) Abandon("search-spent");
                 return;
             }
@@ -145,11 +148,21 @@ namespace CavesOfOoo.Core
                     {
                         var path=FindPath.ToContact(CurrentZone,ParentEntity,Target);
                         if(path.Usable && path.Steps.Count>0)
-                            MovementSystem.TryMove(ParentEntity,CurrentZone,path.Steps[0].dx,path.Steps[0].dy);
+                        {
+                            if (duty?.Applies(ParentBrain, CurrentZone) == true) duty.Step(CurrentZone,path.Steps[0].dx,path.Steps[0].dy);
+                            else MovementSystem.TryMove(ParentEntity,CurrentZone,path.Steps[0].dx,path.Steps[0].dy);
+                        }
                     }
-                    else AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    else Approach(targetPos.x, targetPos.y);
                 }
             }
+        }
+
+        private void Approach(int x, int y)
+        {
+            var duty = ParentEntity.GetPart<WorksiteGuardPart>();
+            if (duty?.Applies(ParentBrain, CurrentZone) == true) duty.Approach(CurrentZone, x, y);
+            else { var at = CurrentZone.GetEntityPosition(ParentEntity); AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, at.x, at.y, x, y); }
         }
 
         private void Abandon(string reason)
