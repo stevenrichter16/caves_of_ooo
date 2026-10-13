@@ -183,11 +183,12 @@ namespace CavesOfOoo.Scenarios.Custom
         static void Hit(Entity target,Entity source,Zone z,int amount,string type){var d=new Damage(amount);d.AddAttribute(type);CombatSystem.ApplyDamage(target,d,source,z);}
         sealed class DefenseRandom:Random{readonly int percent;public DefenseRandom(int percent){this.percent=percent;}public override int Next(int max)=>max==100?percent:0;public override int Next(int min,int max)=>max==21?10:min;}
         sealed class MinimumRandom:Random{public override int Next(int max)=>0;public override int Next(int min,int max)=>min;}
-        private sealed class DetachedScope : IDisposable
+        internal sealed class DetachedScope : IDisposable
         {
             readonly TurnManager active = TurnManager.Active;
             readonly Entity world = TurnManager.World;
             readonly SettlementManager settlement = SettlementManager.Current;
+            readonly Dictionary<string,int> reputation = PlayerReputation.GetAll();
             readonly Action<string> onMessage = MessageLog.OnMessage;
             readonly Func<int> tickProvider = MessageLog.TickProvider;
             readonly List<MessageLog.Entry> messages = MessageLog.GetAllEntries();
@@ -221,6 +222,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 MessageLog.OnMessage = onMessage; MessageLog.TickProvider = tickProvider; TurnManager.World = world;
                 typeof(TurnManager).GetProperty("Active").SetValue(null, active);
                 typeof(SettlementManager).GetProperty("Current").SetValue(null, settlement);
+                PlayerReputation.Restore(reputation);
             }
         }
     }

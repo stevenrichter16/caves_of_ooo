@@ -7,5 +7,7 @@ namespace CavesOfOoo.Core
     {
         public bool Spent;
         [NonSerialized] internal bool Reserved;
+        // Isolated comparison fixtures only. Never authored or restored from saves.
+        [NonSerialized] internal bool ComparisonUncapped;
     }
 }

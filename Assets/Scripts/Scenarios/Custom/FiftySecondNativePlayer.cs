@@ -73,7 +73,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ZoneRenderHooks.MarkFullDirty("FiftySecondNative.Equipped");
             yield return Capture("06-worn-hood-and-open-space");
             string before = Snapshot();
-            foreach (string name in new[] { "FiftySecondCombatBench", "FiftySecondPreparationBench", "FiftySecondExplorationBench" })
+            foreach (string name in new[] { "FiftySecondCombatBench", "FiftySecondPreparationBench", "FiftySecondExplorationBench", "ComposableBuildComparisonBench" })
             {
                 Type type = typeof(FiftySecondNativePlayer).Assembly.GetType("CavesOfOoo.Scenarios.Custom." + name);
                 Require(type != null && typeof(IScenario).IsAssignableFrom(type), "compiled benchmark " + name);
@@ -85,7 +85,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 Check(name, cases == expected && failed == 0);
                 Check(name + "_preserves_campaign_context", Snapshot() == before && State == "Normal");
             }
-            benchesComplete = benchmarks.Count == 3;
+            benchesComplete = benchmarks.Count == 4;
             WriteReport();
         }
         int Count(string bp) => Player.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == bp).Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1);
@@ -168,7 +168,7 @@ namespace CavesOfOoo.Scenarios.Custom
         void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath); File.WriteAllText(Path.Combine(DirectoryPath, "report.json"), JsonConvert.SerializeObject(new {
-                runId, complete = Finished && errorsFinalized && Failures == 0 && checks.Count == 11 && benchesComplete,
+                runId, complete = Finished && errorsFinalized && Failures == 0 && checks.Count == 13 && benchesComplete,
                 failures = Failures, errors, fatal, seconds = clock?.Elapsed.TotalSeconds, checks, observations, screenshots, benchmarks,
                 fixture = "Ordinary N/Classic start with original stats. Isolated zone flattened, player repositioned, finite timber/books/ink/hood and 10 drams supplied; local scribe, guest-right, locker, screen and model examples placed. Public or existing reflected host entries open exact-owner menus; navigation and confirmation use native keys. Hood uses ordinary equipment service, not native keys.",
                 canVerify = "Four real native-key command selections, explicit material/payment consequences and one-action timing, six rendered captures, plus detached combat/preparation/exploration command, scheduler and save observations. Benchmarks must preserve the player context.",

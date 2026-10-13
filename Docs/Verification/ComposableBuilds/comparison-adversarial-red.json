@@ -1,0 +1,64 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "9db05a2502a24184bc151a99998342e9",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1791864368897,
+      "finished_unix_ms": 1791864375830,
+      "last_update_unix_ms": 1791864375830,
+      "progress": {
+        "completed": 20,
+        "total": 20,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1791864375772,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_UncappedStillRejectsReactiveAncestors(True)",
+        "last_finished_unix_ms": 1791864375810,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidProfileCannotSilentlyBecomeControl(-1)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidProfileCannotSilentlyBecomeControl(4)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidProfileCannotSilentlyBecomeControl(99)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidSpeedRefusesBeforeCreatingPlayer(-1)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidSpeedRefusesBeforeCreatingPlayer(0)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidSpeedRefusesBeforeCreatingPlayer(24)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidSpeedRefusesBeforeCreatingPlayer(201)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.Adversarial_InvalidSpeedRefusesBeforeCreatingPlayer(int.MaxValue)",
+            "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

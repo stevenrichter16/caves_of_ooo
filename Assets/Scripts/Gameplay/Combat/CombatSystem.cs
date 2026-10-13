@@ -1131,6 +1131,7 @@ namespace CavesOfOoo.Core
                         payload: new
                         {
                             amount = amount,
+                            committed.ActualDamage,
                             hpAfter = hpStat.BaseValue,
                             lethal = hpStat.BaseValue <= 0,
                             attributes = damage.Attributes

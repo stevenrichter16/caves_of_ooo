@@ -18,7 +18,7 @@ namespace CavesOfOoo.Skills
             var skill=actor?.GetPart<LongBlades_Riposte>();if(skill==null)return;
             var budget=actor.GetPart<RiposteAllowancePart>();
             string reason=parent.CounterDepth>0 || parent.SuppressFollowups?"reactive_ancestor"
-                :budget==null?"missing_allowance":budget.Spent?"spent":budget.Reserved?"reserved"
+                :budget==null?"missing_allowance":budget.Spent&&!budget.ComparisonUncapped?"spent":budget.Reserved?"reserved"
                 :!BladeDefense.CanReact(actor,opponent,zone)?"actor_or_contact_ineligible":null;
             var weapon=reason==null?BladeDefense.FindLongBlade(actor):null;
             if(reason==null && weapon==null)reason="no_held_blade";
