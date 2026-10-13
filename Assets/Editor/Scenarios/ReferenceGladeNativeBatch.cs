@@ -84,6 +84,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchGraphics() => LaunchCore(false, graphicsAudit: true);
         [MenuItem("Caves Of Ooo/Scenarios/UI/Full Screen Skills Audit")]
         public static void LaunchSkills()=>LaunchSkillsAt(800);
+        [MenuItem("Caves Of Ooo/Scenarios/UI/Full Screen Skills Audit 720p")]
+        public static void LaunchSkills720()=>LaunchSkillsAt(720);
         public static void LaunchSkillsAt(int height)=>LaunchCore(false,skillsAudit:true,hudWidth:1280,hudHeight:height);
         [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Qud Controller Audit")]
         public static void LaunchController() => LaunchCore(false, controllerAudit: true);

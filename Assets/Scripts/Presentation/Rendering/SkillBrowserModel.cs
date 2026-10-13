@@ -25,6 +25,7 @@ namespace CavesOfOoo.Rendering
         public string PendingPurchase { get; private set; }
         public int PendingRank { get; private set; }
         public int PendingCost { get; private set; }
+        public string PendingWarning => AbilityDetailsBuilder.PurchaseWarning(Actor,PendingPurchase);
         public string Details { get; private set; } = "";
         public string Requirements { get; private set; } = "";
         public string ActivationSummary { get; private set; } = "";

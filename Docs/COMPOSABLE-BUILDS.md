@@ -1,6 +1,6 @@
 # Composable builds implementation
 
-Status: milestones 1–4 implemented and reviewed; milestone 5 next, source baseline `244177619cffae76fb452cce40e3c49cc5dfcb2f` (Unity 6000.3.4f1). Authoritative design: [supplied specification](COMPOSABLE-BUILDS-SPEC.md). User authorized milestone implementation, review and fixes. User explicitly waived legacy-save compatibility on 2026-10-12: version 8 will reject old saves; no migration/legacy fixtures. Current saves must round-trip and invalid loads must fail safely. Existing player files remain untouched by isolated tests.
+Status: milestones 1–5 implemented and reviewed; milestone 6 next, source baseline `244177619cffae76fb452cce40e3c49cc5dfcb2f` (Unity 6000.3.4f1). Authoritative design: [supplied specification](COMPOSABLE-BUILDS-SPEC.md). User authorized milestone implementation, review and fixes. User explicitly waived legacy-save compatibility on 2026-10-12: version 8 will reject old saves; no migration/legacy fixtures. Current saves must round-trip and invalid loads must fail safely. Existing player files remain untouched by isolated tests.
 
 ## Ordered work
 1. Baseline/contracts and failing tests.
@@ -90,3 +90,21 @@ Files: new BladeDefense, MeleeStrikeResult, LongBlades_Deflect and two defense t
 - Prototype one-counter limit remains fixed in production; capped/uncapped comparison is still M6 work, not a balance conclusion.
 
 Files: new MeleeStrikeProvenance, RiposteAllowancePart, LongBlades_Riposte and two counter test fixtures/meta; combat/skill context and caller plumbing, TurnManager, save request guard, LongBlades data, expanded native combat bench; this doc and receipts.
+
+### Milestone 5 verification and decisions (before implementation)
+- The Field Manual already separates owned/upgradable state and snapshots reviewed rank/cost. Add live defense/allowance summaries, plus a visible nonblocking Riposte source warning in both details and review. Source warning must not fabricate a mandatory Deflect prerequisite.
+- Existing controller audit starts with an explicitly granted 10-SP UI-only budget, buys Acrobatics/Vault for two, then can exercise the exact eight-SP sword package with the remaining eight. Preserve its cancel-first and no-turn-cost controls, existing slot assignment, and state-driven rendering.
+- Validate at 1280x800 and 1280x720 through the existing isolated native launcher; capture actual rank/review/overview states. These are injected controller events, not physical Steam Deck tests or earned progression.
+
+
+### Milestone 5: readable ranks and live defense
+- Riposte acquisition and review warn when neither Deflect nor En Garde is known, without making either a prerequisite. The review still defaults to Cancel. Upgrade changes the existing part; active hotbar assignment remains separate.
+- Details prioritize current/next rank values, current held-blade eligibility, guard state and available/spent counter allowance. Reading these never renews the allowance.
+- RED: missing presentation API (`presentation-red.json`); review RED `ac71927a905f45a7a6bea1a7afe73b28` exposed a purchase price shown at maximum rank. Price hidden at cap, with an available-rank counter-control.
+- GREEN: **65/65 native Unity EditMode**, zero skipped, `681dbf8e4d9e4232ad513a7b044b1f8b`, [receipt](Verification/ComposableBuilds/presentation-green.json). Two initial jobs timed out before starting tests and are not evidence.
+- Native controller + keyboard: **23/23 checks at each viewport**, zero errors/failures. 1280x800 run `c519ec27991844d788b9a54a058de322`; 1280x720 run `37a0bdb5c56041198b54b46594e9649c`. [800p](Verification/ComposableBuilds/presentation-native-800.json), [720p](Verification/ComposableBuilds/presentation-native-720.json). Reviewed warning, current/next, maximum-rank, upgrade-review and overview pixels. Controls/text fit; no overlapping or clipped essential text observed.
+- Native scenario buys the eight-SP full blade package after the existing two-SP Acrobatics/Vault UI exercise; it verifies exactly one part at maximum rank and unchanged Vault slot, position, turn/energy. Ten SP is an explicit fixture grant, not opening progression evidence.
+- 🔵 Fixed cold-review evidence mismatch: native maximum-rank check now counts the authoritative skill instances instead of inferring uniqueness from rank text.
+- Can verify real rendered UI, synthetic controller navigation/cancel/confirm and keyboard return at both supported small viewports. Cannot verify physical Deck buttons, novice discovery or build balance here.
+
+Files: AbilityDetailsBuilder, SkillBrowserModel, SkillsScreenUI.View, two ranked skill descriptions; native skill driver and 720p menu; new ComposableBuildPresentationTests/meta; this doc and receipts. CoO-original presentation; no new Qud-parity claim.

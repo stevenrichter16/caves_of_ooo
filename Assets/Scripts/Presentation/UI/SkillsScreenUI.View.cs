@@ -183,13 +183,16 @@ namespace CavesOfOoo.Rendering
         void RenderReview()
         {
             hits.Clear();Box(new Rect(0,0,1280,800),new Color(0,0,0,.85f));
-            Frame(new Rect(286,204,708,374),Gold,Panel);
+            bool warning=!string.IsNullOrEmpty(Model.PendingWarning);
+            Frame(new Rect(286,204,708,warning?418:374),Gold,Panel);
             Label(new Rect(310,228,660,30),Model.PendingRank>0?"UPGRADE THIS SKILL?":"LEARN THIS SKILL?",Gold,28);
             Label(new Rect(310,286,660,65),SkillScreenText.Page(SkillScreenText.Wrap(Model.Selected.DisplayName+(Model.Selected.MaxRank>1?" ("+Model.PendingRank+" -> "+(Model.PendingRank+1)+")":""),47),0,2),Ink,28);
             Label(new Rect(310,371,660,70),"Cost: "+Model.PendingCost+" SP\nAvailable: "+Model.Points+" -> "+(Model.Points-Model.PendingCost)+" SP",Ink,24);
-            Label(new Rect(310,459,660,24),lastController?"Left / Right: choose   A: confirm   B: cancel":"Left / Right: choose   Enter: confirm   Esc: cancel",Muted,20);
-            Button(new Rect(310,511,290,42),lastController?"[A] Cancel":"Cancel",HitKind.Cancel,selected:!learnSelected);
-            Button(new Rect(624,511,346,42),Model.PendingRank>0?(lastController?"[A] Upgrade":"Upgrade"):(lastController?"[A] Learn":"Learn"),HitKind.Buy,selected:learnSelected);
+            if(warning)Label(new Rect(310,447,660,44),SkillScreenText.Fit(Model.PendingWarning,73,2),Gold,18);
+            int shift=warning?44:0;
+            Label(new Rect(310,459+shift,660,24),lastController?"Left / Right: choose   A: confirm   B: cancel":"Left / Right: choose   Enter: confirm   Esc: cancel",Muted,20);
+            Button(new Rect(310,511+shift,290,42),lastController?"[A] Cancel":"Cancel",HitKind.Cancel,selected:!learnSelected);
+            Button(new Rect(624,511+shift,346,42),Model.PendingRank>0?(lastController?"[A] Upgrade":"Upgrade"):(lastController?"[A] Learn":"Learn"),HitKind.Buy,selected:learnSelected);
         }
         void RenderAssignment()
         {

@@ -7,7 +7,7 @@ namespace CavesOfOoo.Skills
         public override string Name => nameof(LongBlades_Riposte);
         public static int Chance(int rank) => rank==1?45:rank==2?65:rank>=3?80:0;
         public override string DescribeRank(int rank) => Chance(rank)
-            + "% chance after a full parry to attempt one normal long-blade counter. It can miss. One issued counter between your turns. Needs Deflect or En Garde; natural misses do not trigger it.";
+            + "% counter chance after a full parry; the attack can miss.";
         public override bool AddSkill(Entity actor)
         {
             if(actor.GetPart<RiposteAllowancePart>()==null)actor.AddPart(new RiposteAllowancePart());

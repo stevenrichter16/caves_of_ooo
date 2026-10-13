@@ -5,6 +5,6 @@ namespace CavesOfOoo.Skills
     {
         public override string Name => nameof(LongBlades_Deflect);
         public override string DescribeRank(int rank) => BladeDefense.DeflectChance(rank)
-            + "% full parry against perceived adjacent melee strikes that would hit. Requires a held long blade and ability to act. En Garde adds 30 percentage points.";
+            + "% full parry on an eligible strike.";
     }
 }

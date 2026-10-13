@@ -24,10 +24,11 @@ namespace CavesOfOoo.Rendering
             if (!owned && (flags & SkillData.FLAG_OBFUSCATED) != 0 && !eligibility.Succeeded
                 && eligibility.Reason != BuySkillAction.FailureReason.InsufficientSP) return "Details remain unknown until requirements are met.";
 
-            var text = new StringBuilder(name).Append("\n\n").Append(description);
+            var text = new StringBuilder(name);
+            string warning=PurchaseWarning(actor,className);
+            if(!string.IsNullOrEmpty(warning))text.Append("\n\n").Append(warning);
             var skill = Declaration(className);
             var spec = skill?.DeclareActivatedAbility(actor);
-            AppendActivation(text, actor, skill, spec);
             if(eligibility.MaxRank>1)
             {
                 int rank=actor.GetPart<SkillsPart>()?.GetRank(className)??0;
@@ -35,9 +36,12 @@ namespace CavesOfOoo.Rendering
                 if(rank>0)text.Append("\nCurrent: ").Append(skill?.DescribeRank(rank));
                 if(rank<eligibility.MaxRank)text.Append("\nNext rank ").Append(rank+1).Append(": ").Append(skill?.DescribeRank(rank+1));
             }
+            AppendBladeState(text,actor,className);
+            text.Append("\n\n").Append(description);
+            AppendActivation(text, actor, skill, spec);
             text.Append("\n\nLearning: ").Append(owned && eligibility.OldRank>=eligibility.MaxRank ? "Already learned." : PurchaseState(actor, eligibility));
             cost=eligibility.Cost;
-            if (cost >= 0) text.Append("\nPurchase: ").Append(cost).Append(" SP. Available: ").Append(actor.GetStatValue("SP")).Append('.');
+            if (cost >= 0 && eligibility.OldRank < eligibility.MaxRank) text.Append("\nPurchase: ").Append(cost).Append(" SP. Available: ").Append(actor.GetStatValue("SP")).Append('.');
             if (power != null)
             {
                 text.Append("\nRequired tree: ").Append(DisplayClassName(actor, power.ParentSkillClass)).Append('.');
@@ -46,6 +50,28 @@ namespace CavesOfOoo.Rendering
                 if (!string.IsNullOrWhiteSpace(power.Minimum)) text.Append("\nAttributes: ").Append(Attributes(power.Attribute, power.Minimum)).Append('.');
             }
             return text.ToString();
+        }
+
+        public static string PurchaseWarning(Entity actor,string className)
+        {
+            if(className!=nameof(LongBlades_Riposte))return "";
+            var skills=actor?.GetPart<SkillsPart>();
+            return skills?.HasSkill(nameof(LongBlades_Deflect))!=true && skills?.HasSkill(nameof(LongBlades_EnGarde))!=true
+                && actor?.HasEffect<EnGardeEffect>()!=true
+                ? "No parry source yet. Learn Deflect or En Garde to trigger Riposte." : "";
+        }
+        static void AppendBladeState(StringBuilder text,Entity actor,string className)
+        {
+            if(className!=nameof(LongBlades_Deflect) && className!=nameof(LongBlades_Riposte) && className!=nameof(LongBlades_EnGarde))return;
+            var guard=actor.GetPart<StatusEffectsPart>()?.GetEffect<EnGardeEffect>();
+            bool guarded=guard!=null && !guard.Spent && guard.Duration>0;
+            bool blade=BladeDefense.FindLongBlade(actor)!=null;
+            bool blocked=actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true;
+            int chance=BladeDefense.DeflectChance(actor.GetPart<SkillsPart>()?.GetRank(nameof(LongBlades_Deflect))??0)+(guarded?BladeDefense.GuardBonus:0);
+            text.Append("\n\nDefense now: ").Append(!blade?"needs a held long blade.":blocked?"unable to react.":chance+"% parry on an eligible adjacent strike.");
+            text.Append("\nGuard: ").Append(guarded?guard.Duration+" of your turns left; one eligible strike.":"inactive.");
+            if(actor.GetPart<SkillsPart>()?.HasSkill(nameof(LongBlades_Riposte))==true)
+                text.Append("\nCounter allowance: ").Append(actor.GetPart<RiposteAllowancePart>()?.Spent==true?"spent until your turn completes.":"available.");
         }
 
         public static string BuildForAbility(Entity actor, Guid abilityId)
