@@ -31,8 +31,10 @@ namespace CavesOfOoo.Skills
             if (skills == null) return Refuse(result, BuySkillAction.FailureReason.ActorMissingSkillsPart);
             var points = actor.GetStat("SP");
             result.SpBefore = result.SpAfter = points?.BaseValue ?? 0;
-            // An already learned power stays owned even without its newly required parent.
-            if (skills.HasSkill(skillClassName)) return Refuse(result, BuySkillAction.FailureReason.AlreadyOwned);
+            result.OldRank=result.NewRank=skills.GetRank(skillClassName);
+            result.MaxRank=SkillRanks.Maximum(skillClassName);
+            if(result.OldRank>=result.MaxRank) return Refuse(result,BuySkillAction.FailureReason.AlreadyOwned);
+            result.Cost=SkillRanks.Cost(skillClassName,result.OldRank+1);
             if (result.Cost < 0) return Refuse(result, BuySkillAction.FailureReason.NotPurchasable);
             if (points == null) return Refuse(result, BuySkillAction.FailureReason.ActorMissingSPStat);
             if (!MeetsAttributeMinimum(actor, attribute, minimum, out var failedAttribute))

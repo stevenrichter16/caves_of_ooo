@@ -26,6 +26,10 @@ namespace CavesOfOoo.Skills
         public string Attribute = "";
         public string Snippet = "";
         public int Cost = -999;
+
+        /// <summary>One attached skill; optional explicit cost per rank. Omitted costs reuse Cost.</summary>
+        public int MaxRank = 1;
+        public int[] RankCosts;
         public int Flags = 0;
 
         public bool Hidden          { get => (Flags & SkillData.FLAG_HIDDEN)     != 0; set => Flags = value ? (Flags | SkillData.FLAG_HIDDEN)     : (Flags & ~SkillData.FLAG_HIDDEN);     }

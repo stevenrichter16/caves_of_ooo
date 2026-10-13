@@ -39,6 +39,7 @@ namespace CavesOfOoo.Skills
         /// sync via <see cref="AddSkill(BaseSkillPart, Entity, string)"/>
         /// / <see cref="RemoveSkill"/>.
         /// </summary>
+        [NonSerialized]
         public List<BaseSkillPart> SkillList = new List<BaseSkillPart>();
 
         // ── Save/load (delegated to Part system) ─────────────────────────
@@ -87,7 +88,7 @@ namespace CavesOfOoo.Skills
         /// returned false (in which case the part is rolled back).</returns>
         public bool AddSkill(BaseSkillPart skill, string source = null)
         {
-            if (skill == null || ParentEntity == null) return false;
+            if (skill == null || ParentEntity == null || skill.Rank != 1) return false;
 
             // Duplicate check by Type (mirrors MutationsPart.AddMutation
             // duplicate-detection at MutationsPart.cs:108-125).
@@ -468,6 +469,33 @@ namespace CavesOfOoo.Skills
                 return false; // stop propagation — the skill consumed it
             }
             return true; // let other Parts try
+        }
+
+        // Roll back only the instance attached by a failed initial purchase.
+        internal void RollbackAcquisition(string className)
+        {
+            var skill=GetSkill(className);
+            if(skill==null)return;
+            try { skill.RemoveSkill(ParentEntity); }
+            finally
+            {
+                skill.StatShifter.RemoveStatShifts();
+                if(skill.ActivatedAbilityID!=Guid.Empty)
+                    ParentEntity.GetPart<ActivatedAbilitiesPart>()?.RemoveAbility(skill.ActivatedAbilityID);
+                SkillList.Remove(skill);ParentEntity.RemovePart(skill);
+            }
+        }
+
+        // Purchase serialization is transient; no callbacks may buy recursively.
+        [NonSerialized] internal bool PurchaseInProgress;
+        public int GetRank(string className) => GetSkill(className)?.Rank ?? 0;
+        internal bool AdvanceRank(string className,int expectedRank)
+        {
+            var skill=GetSkill(className);
+            if(skill==null||skill.ParentEntity!=ParentEntity||!ParentEntity.Parts.Contains(skill)
+                ||skill.Rank!=expectedRank||expectedRank<1||expectedRank>=SkillRanks.Maximum(className))return false;
+            skill.Rank=expectedRank+1;
+            return true;
         }
 
         // ── Queries ──────────────────────────────────────────────────────

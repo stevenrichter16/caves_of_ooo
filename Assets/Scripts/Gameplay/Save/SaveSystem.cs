@@ -43,7 +43,9 @@ namespace CavesOfOoo.Core
         //   project, noted in Docs/FELLING-W5-PLAN.md.)
         // Bumping is acceptable on a feature branch;
         // older saves will be rejected by ReadHeader's strict check.
-        public const int FormatVersion = 7;
+        // v8: one authoritative skill rank; redundant SkillList cache removed.
+        // User-approved clean break: older saves intentionally rejected.
+        public const int FormatVersion = 8;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -353,7 +355,7 @@ namespace CavesOfOoo.Core
             World = SpreadExplorationPlan.BindForSave(ZoneManager, World);
             writer.WriteHeader(GameVersion);
             writer.WriteCheck("GameSession.Begin");
-            writer.Write(SaveVersion);
+            writer.Write(SaveWriter.FormatVersion);
             writer.WriteString(GameID);
             writer.WriteString(GameVersion);
             writer.Write(WorldSeed);
@@ -390,6 +392,8 @@ namespace CavesOfOoo.Core
 
             var state = new GameSessionState();
             state.SaveVersion = reader.ReadInt();
+            if(state.SaveVersion != SaveWriter.FormatVersion)
+                throw new InvalidDataException("Session save version differs from header.");
             state.GameID = reader.ReadString();
             state.GameVersion = reader.ReadString();
             state.WorldSeed = reader.ReadInt();
@@ -1619,6 +1623,9 @@ namespace CavesOfOoo.Core
             else
                 ReadPublicFields(part, reader);
 
+            if(part is CavesOfOoo.Skills.BaseSkillPart skill &&
+                (skill.Rank<1 || skill.Rank>CavesOfOoo.Skills.SkillRanks.Maximum(skill.GetType().Name)))
+                throw new InvalidDataException("Invalid saved skill rank: "+skill.GetType().Name);
             return part;
         }
 

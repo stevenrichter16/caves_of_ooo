@@ -77,11 +77,14 @@ namespace CavesOfOoo.Rendering
         /// the skill is acquired), this flips to false and the real
         /// name shows.</summary>
         public readonly bool IsObfuscated;
+        public readonly int OwnedRank, MaxRank;
+        public readonly bool PurchaseEligible;
+        public bool CanUpgrade => OwnedRank>0 && OwnedRank<MaxRank;
 
         public SkillsScreenRow(
             string @class, string displayName, string description,
             bool isTreeRoot, string parentSkillName, int cost,
-            SkillsScreenRowState state, bool isObfuscated)
+            SkillsScreenRowState state, bool isObfuscated, int ownedRank = 0, int maxRank = 1, bool purchaseEligible = false)
         {
             Class = @class ?? string.Empty;
             DisplayName = displayName ?? string.Empty;
@@ -91,6 +94,7 @@ namespace CavesOfOoo.Rendering
             Cost = cost;
             State = state;
             IsObfuscated = isObfuscated;
+            OwnedRank=ownedRank;MaxRank=maxRank;PurchaseEligible=purchaseEligible;
         }
     }
 

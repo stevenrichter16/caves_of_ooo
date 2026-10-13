@@ -39,7 +39,10 @@ namespace CavesOfOoo.Skills
             Exclusion,
             /// <summary>The row's Cost is negative — not-for-sale
             /// (grimoire-taught / quest-granted). M0 S6.</summary>
-            NotPurchasable
+            NotPurchasable,
+            StaleReview,
+            TransactionInProgress,
+            SetupFailed
         }
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace CavesOfOoo.Skills
             public int Cost;
             public int SpBefore;
             public int SpAfter;
+            public int OldRank, NewRank, MaxRank;
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace CavesOfOoo.Skills
         /// On success, deducts Cost from actor's SP stat and calls
         /// <c>SkillsPart.AddSkill(skillClassName, source:"purchase")</c>.
         /// </summary>
-        public static Result Execute(Entity actor, string skillClassName)
+        public static Result Execute(Entity actor, string skillClassName, int? expectedRank = null, int? expectedCost = null)
         {
             var result = SkillPurchaseEligibility.Evaluate(actor, skillClassName);
             if (!result.Succeeded)
@@ -89,31 +93,32 @@ namespace CavesOfOoo.Skills
             var spStat = actor.GetStat("SP");
             int cost = result.Cost;
 
-            // ── All checks passed; commit. ──
-            spStat.BaseValue -= cost;
-            result.SpAfter = spStat.BaseValue;
-            result.CostPaid = cost;
-
-            bool added = skillsPart.AddSkill(skillClassName, source: "purchase");
-            if (!added)
+            if ((expectedRank.HasValue && expectedRank.Value != result.OldRank)
+                || (expectedCost.HasValue && expectedCost.Value != cost))
+                return EmitAndReturn(actor,result,skillClassName,FailureReason.StaleReview,"review-changed");
+            if(skillsPart.PurchaseInProgress)
+                return EmitAndReturn(actor,result,skillClassName,FailureReason.TransactionInProgress,"purchase-in-progress");
+            skillsPart.PurchaseInProgress=true;
+            try
             {
-                // Pathological: AddSkill rolled back due to lifecycle hook.
-                // Refund SP since the skill isn't actually owned.
-                spStat.BaseValue += cost;
-                result.SpAfter = spStat.BaseValue;
-                result.CostPaid = 0;
-                // Surface this as a special failure so the player /
-                // observer knows the buy was attempted but the skill
-                // self-rejected. Most realistic via the Diag substrate;
-                // re-use AlreadyOwned-ish failure for now (real cause:
-                // skill setup failed, SP refunded).
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.AlreadyOwned, "lifecycle-hook-rejected");
+                spStat.BaseValue-=cost;
+                bool changed=result.OldRank==0 ? skillsPart.AddSkill(skillClassName,source:"purchase")
+                    : skillsPart.AdvanceRank(skillClassName,result.OldRank);
+                if(!changed)
+                {
+                    spStat.BaseValue+=cost;result.SpAfter=spStat.BaseValue;
+                    return EmitAndReturn(actor,result,skillClassName,FailureReason.AlreadyOwned,"lifecycle-hook-rejected");
+                }
+                result.NewRank=result.OldRank+1;result.CostPaid=cost;result.SpAfter=spStat.BaseValue;
+                result.Succeeded=true;EmitDiag(actor,skillClassName,result);return result;
             }
-
-            result.Succeeded = true;
-            EmitDiag(actor, skillClassName, result);
-            return result;
+            catch (System.Exception error)
+            {
+                try { if(result.OldRank==0)skillsPart.RollbackAcquisition(skillClassName); }
+                finally { spStat.BaseValue+=cost;result.SpAfter=spStat.BaseValue;result.CostPaid=0;result.NewRank=result.OldRank; }
+                return EmitAndReturn(actor,result,skillClassName,FailureReason.SetupFailed,error.GetType().Name);
+            }
+            finally { skillsPart.PurchaseInProgress=false; }
         }
 
         // ────────────────────────────────────────────────────────────────────
@@ -145,6 +150,7 @@ namespace CavesOfOoo.Skills
                     reason = result.Reason.ToString(),
                     detail = result.Detail,
                     costPaid = result.CostPaid,
+                    oldRank = result.OldRank, newRank = result.NewRank,
                     spBefore = result.SpBefore,
                     spAfter = result.SpAfter,
                 });

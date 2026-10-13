@@ -121,8 +121,8 @@ namespace CavesOfOoo.Tests
             {var state=HotbarSaveFixture.MakeState(9,5,9);state.Player.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(9).CooldownRemaining=7;var loaded=HotbarSaveFixture.RoundTrip(state);f.Bootstrap.ApplyLoadedGame(loaded);Assert.AreEqual(9,f.Selected);Assert.AreEqual(9,f.Rendered);Assert.AreEqual(7,loaded.Player.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(9).CooldownRemaining);Assert.AreEqual(17,loaded.TurnManager.TickCount);Assert.AreEqual(1000,loaded.TurnManager.GetEnergy(loaded.Player));}
         }
         [Test]
-        public void ExistingV7FieldAlreadyRoundTripsNonzeroSelection()
-        {using(var f=new HotbarSaveFixture()){var loaded=HotbarSaveFixture.RoundTrip(HotbarSaveFixture.MakeState(9,5,9));Assert.AreEqual(7,loaded.SaveVersion);Assert.AreEqual(9,loaded.SelectedHotbarSlot);Assert.AreSame(loaded.Player,loaded.TurnManager.CurrentActor);}}
+        public void CurrentFormatRoundTripsNonzeroSelection()
+        {using(var f=new HotbarSaveFixture()){var loaded=HotbarSaveFixture.RoundTrip(HotbarSaveFixture.MakeState(9,5,9));Assert.AreEqual(SaveWriter.FormatVersion,loaded.SaveVersion);Assert.AreEqual(9,loaded.SelectedHotbarSlot);Assert.AreSame(loaded.Player,loaded.TurnManager.CurrentActor);}}
         [Test]
         public void ExplicitRestoreSelectsWithoutTargetingOrSpendingActionCost()
         {

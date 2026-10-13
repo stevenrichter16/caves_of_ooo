@@ -179,6 +179,9 @@ namespace CavesOfOoo.Skills
                     continue;
                 }
 
+                if(!SkillRanks.Valid(skill.MaxRank,skill.RankCosts))
+                { Debug.LogWarning($"SkillRegistry [{sourceLabel}]: invalid rank metadata for {skill.Class}; skipped."); continue; }
+
                 // By-name and by-class registration. Empty-name skills
                 // are accepted (some tools may ship name-less data); only
                 // Class is required.
@@ -201,6 +204,8 @@ namespace CavesOfOoo.Skills
                                 $"SkillRegistry [{sourceLabel}]: skipping power '{power.Name}' under skill '{skill.Name}' — missing 'Class' field.");
                             continue;
                         }
+                        if(!SkillRanks.Valid(power.MaxRank,power.RankCosts))
+                        { Debug.LogWarning($"SkillRegistry [{sourceLabel}]: invalid rank metadata for {power.Class}; skipped."); skill.Powers.RemoveAt(j--); continue; }
                         power.ParentSkillName = skill.Name;
                         power.ParentSkillClass = skill.Class;
                         _powersByClass[power.Class] = power;

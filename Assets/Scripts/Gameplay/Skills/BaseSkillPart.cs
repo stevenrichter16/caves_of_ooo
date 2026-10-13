@@ -39,6 +39,12 @@ namespace CavesOfOoo.Skills
     /// </summary>
     public abstract class BaseSkillPart : Part
     {
+        /// <summary>Saved owned rank. Only the purchase authority advances it; grants start at one.</summary>
+        public int Rank = 1;
+
+        /// <summary>Optional live effect text for current/next ranks; must not mutate the actor.</summary>
+        public virtual string DescribeRank(int rank) => "";
+
         /// <summary>
         /// Per-skill stat-shift tracker (lazy-init). Concrete passive
         /// skills use this in their <c>AddSkill</c> hook to apply

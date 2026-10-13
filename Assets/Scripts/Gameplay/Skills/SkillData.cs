@@ -61,6 +61,10 @@ namespace CavesOfOoo.Skills
         /// MUST specify Cost explicitly or the registry will warn.</summary>
         public int Cost = -999;
 
+        /// <summary>One attached skill; optional explicit cost per rank. Omitted costs reuse Cost.</summary>
+        public int MaxRank = 1;
+        public int[] RankCosts;
+
         /// <summary>Bitfield (per IPartEntry):
         ///   bit 0 (1) = HIDDEN — entry hidden in pool until acquired
         ///   bit 1 (2) = OBFUSCATED — name renders as "???" until

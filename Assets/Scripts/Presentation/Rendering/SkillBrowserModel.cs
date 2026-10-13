@@ -23,6 +23,8 @@ namespace CavesOfOoo.Rendering
         public int SkillIndex { get; private set; }
         public bool Overview { get; set; }
         public string PendingPurchase { get; private set; }
+        public int PendingRank { get; private set; }
+        public int PendingCost { get; private set; }
         public string Details { get; private set; } = "";
         public string Requirements { get; private set; } = "";
         public string ActivationSummary { get; private set; } = "";
@@ -90,7 +92,7 @@ namespace CavesOfOoo.Rendering
         }
         public string StateLabel(SkillsScreenRow row)
         {
-            if (row.State==SkillsScreenRowState.Owned) return "OWNED";
+            if (row.State==SkillsScreenRowState.Owned) return row.MaxRank>1 ? (row.CanUpgrade?"OWNED ":"MAX ")+row.OwnedRank+"/"+row.MaxRank : "OWNED";
             if (row.IsObfuscated) return "UNKNOWN";
             if (row.Cost<0) return "DISCOVERY";
             if (row.State==SkillsScreenRowState.Buyable) return "AVAILABLE";
@@ -102,16 +104,16 @@ namespace CavesOfOoo.Rendering
             if(Selected.IsObfuscated) { Notice="Requirements remain unknown."; return false; }
             var eligible=SkillPurchaseEligibility.Evaluate(Actor,Selected.Class);
             if (!eligible.Succeeded) { Notice=FailureForActor(Selected.DisplayName,eligible); return false; }
-            PendingPurchase=Selected.Class; return true;
+            PendingPurchase=Selected.Class; PendingRank=eligible.OldRank; PendingCost=eligible.Cost; return true;
         }
         public void Cancel() => PendingPurchase=null;
         public bool ConfirmPurchase()
         {
             if (PendingPurchase==null) return false;
             string name=Selected.DisplayName, pending=PendingPurchase; Cancel();
-            var result=BuySkillAction.Execute(Actor,pending);
+            var result=BuySkillAction.Execute(Actor,pending,PendingRank,PendingCost);
             Refresh();
-            Notice=result.Succeeded ? "Learned "+name+". Spent "+result.CostPaid+" SP." : FailureForActor(name,result);
+            Notice=result.Succeeded ? (result.OldRank>0?"Upgraded ":"Learned ")+name+(result.MaxRank>1?" to rank "+result.NewRank:"")+". Spent "+result.CostPaid+" SP." : FailureForActor(name,result);
             if(result.Succeeded) MessageLog.Add(Notice);
             return result.Succeeded;
         }
@@ -180,6 +182,7 @@ namespace CavesOfOoo.Rendering
         {
             switch(r.Reason)
             {
+                case BuySkillAction.FailureReason.StaleReview: return "Purchase changed. Review the current rank and cost.";
                 case BuySkillAction.FailureReason.AlreadyOwned: return "Already learned.";
                 case BuySkillAction.FailureReason.InsufficientSP: return "Need "+r.Cost+" SP ("+r.SpBefore+" available).";
                 case BuySkillAction.FailureReason.NotPurchasable: return "Learned through discovery; not purchased here.";

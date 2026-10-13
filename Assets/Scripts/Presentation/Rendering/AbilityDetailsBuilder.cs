@@ -19,7 +19,7 @@ namespace CavesOfOoo.Rendering
             { name = power.Name; description = power.Description; cost = power.Cost; flags = power.Flags; }
             else return null;
             var eligibility = SkillPurchaseEligibility.Evaluate(actor, className);
-            bool owned = eligibility.Reason == BuySkillAction.FailureReason.AlreadyOwned;
+            bool owned = actor.GetPart<SkillsPart>()?.HasSkill(className)==true;
             if (!owned && (flags & SkillData.FLAG_HIDDEN) != 0) return null;
             if (!owned && (flags & SkillData.FLAG_OBFUSCATED) != 0 && !eligibility.Succeeded
                 && eligibility.Reason != BuySkillAction.FailureReason.InsufficientSP) return "Details remain unknown until requirements are met.";
@@ -28,7 +28,15 @@ namespace CavesOfOoo.Rendering
             var skill = Declaration(className);
             var spec = skill?.DeclareActivatedAbility(actor);
             AppendActivation(text, actor, skill, spec);
-            text.Append("\n\nLearning: ").Append(owned ? "Already learned." : PurchaseState(actor, eligibility));
+            if(eligibility.MaxRank>1)
+            {
+                int rank=actor.GetPart<SkillsPart>()?.GetRank(className)??0;
+                text.Append("\n\nRank: ").Append(rank).Append('/').Append(eligibility.MaxRank);
+                if(rank>0)text.Append("\nCurrent: ").Append(skill?.DescribeRank(rank));
+                if(rank<eligibility.MaxRank)text.Append("\nNext rank ").Append(rank+1).Append(": ").Append(skill?.DescribeRank(rank+1));
+            }
+            text.Append("\n\nLearning: ").Append(owned && eligibility.OldRank>=eligibility.MaxRank ? "Already learned." : PurchaseState(actor, eligibility));
+            cost=eligibility.Cost;
             if (cost >= 0) text.Append("\nPurchase: ").Append(cost).Append(" SP. Available: ").Append(actor.GetStatValue("SP")).Append('.');
             if (power != null)
             {
@@ -129,7 +137,7 @@ namespace CavesOfOoo.Rendering
             else if (SkillRegistry.TryGetPowerByClass(cls, out var power)) { name=power.Name; flags=power.Flags; }
             else return "Unknown requirement";
             var result=SkillPurchaseEligibility.Evaluate(actor,cls);
-            bool owned=result.Reason==BuySkillAction.FailureReason.AlreadyOwned;
+            bool owned=actor?.GetPart<SkillsPart>()?.HasSkill(cls)==true;
             if (!owned && ((flags&SkillData.FLAG_HIDDEN)!=0 || ((flags&SkillData.FLAG_OBFUSCATED)!=0
                 && !result.Succeeded && result.Reason!=BuySkillAction.FailureReason.InsufficientSP))) return "Unknown requirement";
             return name;
