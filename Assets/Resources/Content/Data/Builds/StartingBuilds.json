@@ -95,6 +95,29 @@
       ]
     },
     {
+      "Id": "warden",
+      "Name": "The Warden",
+      "Kind": "build",
+      "Tagline": "Hold an entrance. Choose when to give ground.",
+      "Weakness": "Guard covers one melee strike. Ranged threats and crowds demand cover or movement.",
+      "FirstBuy": "Deflect for passive defense, or Riposte to answer a full parry.",
+      "Attributes": { "Strength": 18, "Agility": 18, "Toughness": 18, "Ego": 16 },
+      "Items": [
+        { "Blueprint": "LongSword", "Count": 1, "Equip": true },
+        { "Blueprint": "Buckler", "Count": 1, "Equip": true },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "LongBladesSkill",
+        "LongBlades_EnGarde",
+        "LongBlades_Expertise",
+        "LongBlades_Lunge",
+        "LongBlades_Lacerate",
+        "LongBlades_FollowThrough"
+      ]
+    },
+    {
       "Id": "classic",
       "Name": "Classic",
       "Kind": "classic",

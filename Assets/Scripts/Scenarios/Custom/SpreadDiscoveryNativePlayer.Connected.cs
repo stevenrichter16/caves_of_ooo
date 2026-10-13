@@ -105,7 +105,7 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         IEnumerator ConnectedDuelistDefense()
         {
-            if(!Connected||_connectedBuild!="duelist"||_fighting)yield break;
+            if(!Connected||(_connectedBuild!="duelist"&&!(_opening&&_connectedBuild=="warden"))||_fighting)yield break;
             if(_fieldwork){yield return FieldworkDuelistDefense();yield break;}
             var target=Threats(Zone).Where(e=>SpatialQuery.Distance(Zone,Player,e)<=1
                 &&!ReferenceGladeRouteControl.HasLiveCalm(Zone,e))
@@ -113,8 +113,8 @@ namespace CavesOfOoo.Scenarios.Custom
             if(target==null)yield break;
             Require(_connectedDefenses<6,"bounded six ordinary close-hostile defenses");
             var weapon=StartingBuildService.PrimaryHandWeapon(Player);
-            Require(weapon?.ID==_connectedOriginalDaggerId&&weapon.BlueprintName=="Dagger"
-                &&weapon.GetPart<PhysicsPart>()?.Equipped==Player,"same real chosen equipped dagger for defense");
+            Require(weapon?.ID==_connectedOriginalDaggerId&&weapon.BlueprintName==(_connectedBuild=="warden"?"LongSword":"Dagger")
+                &&weapon.GetPart<PhysicsPart>()?.Equipped==Player,"same real chosen equipped weapon for defense");
             var oldGuard=_guard;string oldId=_guardId;bool oldFighting=_fighting;
             bool oldAttempt=_guardAttempt,oldDamage=_guardDamage,oldLethal=_guardLethal;
             int hp=Player.GetStatValue("Hitpoints"),tonics=Packed("HealingTonic");string targetId=target.ID;
@@ -123,12 +123,12 @@ namespace CavesOfOoo.Scenarios.Custom
             {
                 yield return FightGuard(requireDirectLethal:false);
                 Require(CombatSystem.IsDeathHandled(target)&&_guardAttempt&&_guardDamage,"real close-hostile combat resolved after observed chosen-weapon attacks");
-                _observations.Add(new{phase="connected-duelist-native-defense",zone=Zone.ZoneID,target=targetId,
+                _observations.Add(new{phase="connected-"+_connectedBuild+"-native-defense",zone=Zone.ZoneID,target=targetId,
                     targetBlueprint=target.BlueprintName,originalWeapon=_connectedOriginalDaggerId,defense=_connectedDefenses,
                     hpBefore=hp,hpAfter=Player.GetStatValue("Hitpoints"),tonicsBefore=tonics,tonicsAfter=Packed("HealingTonic"),
                     directLethalObserved=_guardLethal,actualDamageObserved=_guardDamage,
-                    bound="Normal attacks and original finite tonics only. Death after player damage may be a bleed or counterattack; direct lethality is reported separately."});
-                yield return Capture("connected-duelist-defense-"+_connectedDefenses);
+                    bound=(_connectedBuild=="warden"?"Normal attacks, paid En Garde and original finite tonics. ":"Normal attacks and original finite tonics only. ")+"Death after player damage may be a bleed or counterattack; direct lethality is reported separately."});
+                yield return Capture("connected-"+_connectedBuild+"-defense-"+_connectedDefenses);
             }
             finally
             {

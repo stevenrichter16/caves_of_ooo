@@ -66,6 +66,12 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
+        [MenuItem("Caves Of Ooo/Scenarios/World/Composable Warden Opening Audit")]
+        public static void LaunchWardenOpening() => LaunchOpening("warden",64);
+
+        [MenuItem("Caves Of Ooo/Scenarios/World/Composable Warden First Purchase Audit")]
+        public static void LaunchWardenFirstPurchase() => LaunchOpening("warden",64,"progression");
+
         public static void LaunchOpening(string build, int seed,string approach="bypass") => LaunchCore(false,seed:seed,connectedBuild:build,opening:true,openingApproach:approach);
 
         private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false,bool mendleafYard=false,bool tacticalWater=false,bool expeditionReport=false,bool fairRetreat=false,bool claimedSupplies=false,bool dangerMovement=false,bool opening=false,string openingApproach="bypass")
@@ -132,7 +138,7 @@ namespace CavesOfOoo.Editor
             GameBootstrap.OnAfterBootstrap -= Apply;
             var driver = new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>();
             if (SessionState.GetBool(Prefix + "opening", false))
-                driver.InitializeOpening(new ScenarioContext(zone, factory, player, turns),SessionState.GetString(Prefix + "connectedBuild", "duelist"),SessionState.GetString(Prefix + "openingApproach","bypass"));
+                driver.InitializeOpening(new ScenarioContext(zone, factory, player, turns),SessionState.GetString(Prefix + "connectedBuild", "duelist"),SessionState.GetInt(Prefix + "seed",0),SessionState.GetString(Prefix + "openingApproach","bypass"));
             else if (SessionState.GetBool(Prefix + "dangerMovement", false))
                 driver.InitializeDangerMovement(new ScenarioContext(zone, factory, player, turns));
             else if (SessionState.GetBool(Prefix + "claimedSupplies", false))

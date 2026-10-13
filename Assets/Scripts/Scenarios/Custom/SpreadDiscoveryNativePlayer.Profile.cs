@@ -20,7 +20,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         void BeginSoddenProfile()
         {
-            if (!_soddenDistrict || _soddenRecorders != null) return;
+            if ((!_soddenDistrict && !_opening) || _soddenRecorders != null) return;
             _soddenRecorders = new ProfilerRecorder[SoddenMetricNames.Length];
             _soddenMetricSamples = new long[SoddenMetricNames.Length][];
             _soddenMetricUnits = new string[SoddenMetricNames.Length];
@@ -63,7 +63,7 @@ namespace CavesOfOoo.Scenarios.Custom
                         p95 = sorted.Length == 0 ? 0 : sorted[(int)((sorted.Length - 1) * .95)],
                         mean = samples.Length == 0 ? 0 : samples.Average(), samples });
                 }
-                _observations.Add(new { phase = "sodden-native-profiler", seconds = Time.realtimeSinceStartupAsDouble - _soddenMetricStarted,
+                _observations.Add(new { phase = _opening ? "opening-native-profiler" : "sodden-native-profiler", seconds = Time.realtimeSinceStartupAsDouble - _soddenMetricStarted,
                     capacityReached = _soddenMetricFrames == SoddenMetricCapacity, rows,
                     bound = "ProfilerRecorder latest completed sample, potentially the preceding frame. Editor gameplay includes paced input, AI, screenshots and audit IO. Missing markers are invalid, not zero. No pre-change baseline, isolated renderer attribution, GPU timing or standalone-build claim." });
             }

@@ -1,0 +1,374 @@
+{
+  "runId": "1eed6d7ff6004d0580e83ac15d11cc8c",
+  "mode": "ordinary-bootstrap-stormcaller",
+  "complete": true,
+  "failures": 0,
+  "unexpectedErrors": 0,
+  "seconds": 1.8026799999999998,
+  "fatal": null,
+  "audit": [
+    "PASS ordinary_start",
+    "PASS bootstrap_starting_stats",
+    "PASS bootstrap_starting_inventory",
+    "PASS bootstrap_starting_skills_hotbar",
+    "PASS bootstrap_free_selection"
+  ],
+  "requiredChecks": [
+    "ordinary_start",
+    "bootstrap_starting_stats",
+    "bootstrap_starting_inventory",
+    "bootstrap_starting_skills_hotbar",
+    "bootstrap_free_selection"
+  ],
+  "keys": [
+    {
+      "sequence": 0,
+      "keys": "N",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 1,
+      "keys": "Digit3",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 2,
+      "keys": "Enter",
+      "state": "Normal",
+      "tick": 10
+    }
+  ],
+  "observations": [
+    {
+      "phase": "opening_selected_picker",
+      "requestedBuild": "stormcaller",
+      "selectedBuild": "stormcaller",
+      "expectedSeed": 1729,
+      "actualSeed": 1729,
+      "entry": "boot-menu N",
+      "selectionTick": 10,
+      "selectionEnergy": 1000,
+      "selectionWorld": 10
+    },
+    {
+      "phase": "ordinary_start",
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "bootstrap_actual_start",
+      "requestedBuild": "stormcaller",
+      "actualBuild": "stormcaller",
+      "expectedSeed": 1729,
+      "actualSeed": 1729,
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "tick": 10,
+      "energy": 1000,
+      "worldTick": 10,
+      "drams": 50,
+      "expectedAttributes": [
+        16,
+        20,
+        16,
+        18
+      ],
+      "expectedSkills": [
+        "Pyromancy_Kindle",
+        "Galvanism_ArcBolt",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Spellcraft_Calm",
+        "SpellcraftSkill"
+      ],
+      "expectedItems": [
+        {
+          "Blueprint": "Dagger",
+          "Count": 1,
+          "Equip": true,
+          "EffectiveCount": 1
+        },
+        {
+          "Blueprint": "Cloak",
+          "Count": 1,
+          "Equip": true,
+          "EffectiveCount": 1
+        },
+        {
+          "Blueprint": "HealingTonic",
+          "Count": 2,
+          "Equip": false,
+          "EffectiveCount": 2
+        },
+        {
+          "Blueprint": "DriedMeat",
+          "Count": 2,
+          "Equip": false,
+          "EffectiveCount": 2
+        },
+        {
+          "Blueprint": "WateringGrimoire",
+          "Count": 1,
+          "Equip": false,
+          "EffectiveCount": 1
+        },
+        {
+          "Blueprint": "CandyCarrotSeed",
+          "Count": 4,
+          "Equip": false,
+          "EffectiveCount": 4
+        },
+        {
+          "Blueprint": "EmberwheatSeed",
+          "Count": 2,
+          "Equip": false,
+          "EffectiveCount": 2
+        }
+      ],
+      "primary": "Dagger",
+      "skills": [
+        {
+          "className": "Pyromancy_Kindle",
+          "Rank": 1,
+          "ActivatedAbilityID": "508ae6d0-85aa-4b0b-97cb-30aeb318221c"
+        },
+        {
+          "className": "Galvanism_ArcBolt",
+          "Rank": 1,
+          "ActivatedAbilityID": "1a77b6ae-29d1-4b50-b97b-454e0b412b2a"
+        },
+        {
+          "className": "Hydromancy_JetBlast",
+          "Rank": 1,
+          "ActivatedAbilityID": "1baa3986-24a0-4557-9406-8a4eb675f728"
+        },
+        {
+          "className": "Galvanism_GroundSurge",
+          "Rank": 1,
+          "ActivatedAbilityID": "14561e59-6f1d-4caa-bdc6-113d0b9eda9a"
+        },
+        {
+          "className": "Spellcraft_Calm",
+          "Rank": 1,
+          "ActivatedAbilityID": "e9596749-ba73-4dda-941d-e9cefd787df1"
+        },
+        {
+          "className": "SpellcraftSkill",
+          "Rank": 1,
+          "ActivatedAbilityID": "00000000-0000-0000-0000-000000000000"
+        }
+      ],
+      "abilities": [
+        {
+          "ID": "508ae6d0-85aa-4b0b-97cb-30aeb318221c",
+          "Command": "CommandKindle",
+          "SourcePowerClass": "Pyromancy_Kindle",
+          "CooldownRemaining": 0,
+          "MaxCooldown": 6
+        },
+        {
+          "ID": "1a77b6ae-29d1-4b50-b97b-454e0b412b2a",
+          "Command": "CommandArcBolt",
+          "SourcePowerClass": "Galvanism_ArcBolt",
+          "CooldownRemaining": 0,
+          "MaxCooldown": 7
+        },
+        {
+          "ID": "1baa3986-24a0-4557-9406-8a4eb675f728",
+          "Command": "CommandJetBlast",
+          "SourcePowerClass": "Hydromancy_JetBlast",
+          "CooldownRemaining": 0,
+          "MaxCooldown": 20
+        },
+        {
+          "ID": "14561e59-6f1d-4caa-bdc6-113d0b9eda9a",
+          "Command": "CommandGroundSurge",
+          "SourcePowerClass": "Galvanism_GroundSurge",
+          "CooldownRemaining": 0,
+          "MaxCooldown": 30
+        },
+        {
+          "ID": "e9596749-ba73-4dda-941d-e9cefd787df1",
+          "Command": "CommandCalm",
+          "SourcePowerClass": "Spellcraft_Calm",
+          "CooldownRemaining": 0,
+          "MaxCooldown": 20
+        }
+      ],
+      "hotbar": [
+        {
+          "slot": 0,
+          "id": "508ae6d0-85aa-4b0b-97cb-30aeb318221c",
+          "command": "CommandKindle"
+        },
+        {
+          "slot": 1,
+          "id": "1a77b6ae-29d1-4b50-b97b-454e0b412b2a",
+          "command": "CommandArcBolt"
+        },
+        {
+          "slot": 2,
+          "id": "1baa3986-24a0-4557-9406-8a4eb675f728",
+          "command": "CommandJetBlast"
+        },
+        {
+          "slot": 3,
+          "id": "14561e59-6f1d-4caa-bdc6-113d0b9eda9a",
+          "command": "CommandGroundSurge"
+        },
+        {
+          "slot": 4,
+          "id": "e9596749-ba73-4dda-941d-e9cefd787df1",
+          "command": "CommandCalm"
+        },
+        {
+          "slot": 5,
+          "id": "00000000-0000-0000-0000-000000000000",
+          "command": null
+        },
+        {
+          "slot": 6,
+          "id": "00000000-0000-0000-0000-000000000000",
+          "command": null
+        },
+        {
+          "slot": 7,
+          "id": "00000000-0000-0000-0000-000000000000",
+          "command": null
+        },
+        {
+          "slot": 8,
+          "id": "00000000-0000-0000-0000-000000000000",
+          "command": null
+        },
+        {
+          "slot": 9,
+          "id": "00000000-0000-0000-0000-000000000000",
+          "command": null
+        }
+      ]
+    },
+    {
+      "phase": "bootstrap_starting_stats",
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "bootstrap_starting_inventory",
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "bootstrap_starting_skills_hotbar",
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "bootstrap_free_selection",
+      "player": "2720",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:20:20:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:16:16:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2721:WateringGrimoire:1:owner=2720|2722:CandyCarrotSeed:4:owner=2720|2723:EmberwheatSeed:2:owner=2720|2726:HealingTonic:2:owner=2720|2727:DriedMeat:2:owner=2720;slots=1214:2724|1215:2725;body=1214:2724|1215:2725;owners=2721:WateringGrimoire:1:carried=2720:equipped=|2722:CandyCarrotSeed:4:carried=2720:equipped=|2723:EmberwheatSeed:2:carried=2720:equipped=|2724:Dagger:1:carried=:equipped=2720|2725:Cloak:1:carried=:equipped=2720|2726:HealingTonic:2:carried=2720:equipped=|2727:DriedMeat:2:carried=2720:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    }
+  ],
+  "windows": [],
+  "timings": [],
+  "notes": [
+    "Bootstrap-only run ended after the real selection and starting-state checks; no expedition or optional-site admission was exercised."
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/1eed6d7ff6004d0580e83ac15d11cc8c/opening-00-build-picker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/1eed6d7ff6004d0580e83ac15d11cc8c/opening-01-bootstrap-glade.png"
+  ],
+  "localInputs": 0,
+  "mapSteps": 0,
+  "completedPlayerTurns": 0,
+  "pureClock": 0,
+  "checkpointHash": null,
+  "threatClearance": 1,
+  "passedChecks": [
+    "ordinary_start",
+    "bootstrap_starting_stats",
+    "bootstrap_starting_inventory",
+    "bootstrap_starting_skills_hotbar",
+    "bootstrap_free_selection"
+  ],
+  "unmetChecks": [],
+  "canVerify": "Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
+  "intendedCapability": "Actual launcher seed and native build-picker selection; verify ordinary starting stats, finite pack and equipped ownership, skill ranks and ready hotbar. No grants or world mutations by the evaluator.",
+  "cannotVerify": "Bootstrap only: no expedition, optional-site admission, earned progression, combat, save/reload, performance or physical Deck claim. Starting data is compared with its authored source; content balance remains separately tested."
+}

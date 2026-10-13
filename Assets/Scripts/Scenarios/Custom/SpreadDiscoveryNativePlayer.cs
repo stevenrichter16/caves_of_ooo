@@ -282,7 +282,18 @@ namespace CavesOfOoo.Scenarios.Custom
                         Require(Player.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == "HealingTonic").Sum(Units) == units - 1, "actual finite original tonic");
                     }
                 }
-                if(SpatialQuery.Distance(Zone,Player,_guard)<=1){var target=SpatialQuery.ClosestCell(Zone,_guard,At.X,At.Y);yield return Paid(Tap(Direction(target.X-At.X,target.Y-At.Y)),"local",ConnectedVariant&&VariantBreaker?"native-breaker-cudgel-defense":_soddenDistrict?"native-earned-weapon-defense":"native-front-dagger-attack");}
+                if(_opening&&_connectedBuild=="warden"&&SpatialQuery.Distance(Zone,Player,_guard)==1&&!Player.HasEffect<EnGardeEffect>())
+                {
+                    var abilities=Player.GetPart<ActivatedAbilitiesPart>();var guard=abilities.AbilityList.FirstOrDefault(a=>a.Command=="CommandEnGarde"&&a.IsUsable);
+                    if(guard!=null&&BladeDefense.FindLongBlade(Player)!=null)
+                    {
+                        int slot=abilities.GetSlotForAbility(guard.ID);Require(slot>=0&&slot<10,"original guard assigned");
+                        yield return Paid(Tap(Shortcut(slot==9?"Digit0":"Digit"+(slot+1))),"local","native-warden-guard");
+                        Require(guard.CooldownRemaining>0,"guard paid actual cooldown; effect may already be consumed");
+                        if(CombatSystem.IsDeathHandled(_guard))continue;
+                    }
+                }
+                if(SpatialQuery.Distance(Zone,Player,_guard)<=1){var target=SpatialQuery.ClosestCell(Zone,_guard,At.X,At.Y);yield return Paid(Tap(Direction(target.X-At.X,target.Y-At.Y)),"local",ConnectedVariant&&VariantBreaker?"native-breaker-cudgel-defense":_soddenDistrict?"native-earned-weapon-defense":_opening&&_connectedBuild=="warden"?"native-warden-sword-attack":"native-front-dagger-attack");}
                 else{var path=PathTo(c=>SpatialQuery.DistanceToCell(Zone,_guard,c.X,c.Y)==1);Require(path!=null&&path.Count>0,"actual front guard approach");yield return StepTo(path[0].x,path[0].y);}
             }
             throw new InvalidOperationException("Bounded front combat exhausted; no grant or reroll.");
@@ -359,6 +370,13 @@ namespace CavesOfOoo.Scenarios.Custom
             if(!validClock)_observations.Add(new{phase="rejected-native-action-clock",label,kind,marker,beforeEnergy=before,afterEnergy=Energy,beforeTick=tick,afterTick=Tick,speed,rows});
             Require(validClock,"exact native action clock/energy "+label);
             if(combat!=null){var proof=ReferenceGladeCombatEvidence.Inspect(rows,combat,Player.ID,_guardId);Require(proof.WindowValid,"canonical exact guard combat window");_guardAttempt|=proof.PlayerAttempt;_guardDamage|=proof.PlayerDamage;_guardLethal|=proof.PlayerLethal;}
+            if(_opening&&_fighting)
+                foreach(var defense in rows.Where(r=>r.Kind=="BladeDefense"&&r.ActorId==Player.ID))
+                {
+                    var payload=JObject.Parse(defense.PayloadJson);_openingDefenseRolls++;
+                    if((bool)payload["parried"])_openingParries++;
+                    if((bool)payload["guarded"])_openingGuarded++;
+                }
             if(kind=="map")_mapSteps++;else if(kind=="rest")_rests++;else _localInputs++;_completedTurns+=_lastClock.CompletedTurns;_pureClock+=_lastClock.PureClock;
             _windows.Add(new{label,kind,marker,beforeEnergy=before,afterEnergy=Energy,beforeTick=tick,afterTick=Tick,receipt=_lastClock,rows});Observe(label);
         }
@@ -447,6 +465,21 @@ namespace CavesOfOoo.Scenarios.Custom
                     seen[x,y]=true;parent[x,y]=at;queue.Enqueue((x,y));
                 }
             }
+            var routeMap=new string[Zone.Height];
+            for(int y=0;y<Zone.Height;y++)
+            {
+                var row=new char[Zone.Width];
+                for(int x=0;x<Zone.Width;x++)
+                {
+                    var c=zone.GetCell(x,y);
+                    row[x]=x==start.X&&y==start.Y?'@':goal(c)?'G':seen[x,y]?'.':Allowed(x,y)?'o':
+                        !zone.CanPlaceFootprint(Player,x,y,allowOperableDoors:true)?'#':
+                        c.Occupants.Any(e=>e!=Player&&e.HasTag("Creature"))?'C':'!';
+                }
+                routeMap[y]=new string(row);
+            }
+            _observations.Add(new{phase="route-component-map",zone=zone.ZoneID,rows=routeMap,
+                legend="@ player; G goal; . reached; o safe but disconnected; # physical blocker; C creature; ! other safety refusal"});
             _notes.Add("NO SAFE ROUTE "+zone.ZoneID+"@"+start.X+","+start.Y+" threats="+string.Join(";",threats.Select(e=>e.ID+"@"+zone.GetEntityCell(e).X+","+zone.GetEntityCell(e).Y)));WriteReport();return null;
         }
 
@@ -553,15 +586,15 @@ namespace CavesOfOoo.Scenarios.Custom
             _observations.Add(new{phase,player=Player.ID,zone=Zone.ZoneID,x=At?.X,y=At?.Y,hp=Player.GetStatValue("Hitpoints"),stats=Stats(Player),tick=Tick,energy=Energy,drams=TradeSystem.GetDrams(Player),gear=Gear(Player),notes=NoteSignature(),site=_siteId,guard=_guardId,key=_keyId,reward=_rewardId,message=MessageLog.GetLast()});WriteReport();
         }
         void Finish(){try{EndTiming();}finally{Cleanup();Finished=true;WriteReport();}}
-        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(_opening?6:_dangerMovement?5:_claimedSupplies?5:_fairRetreat?6:_expeditionReport?4:_tacticalWater?6:_mendleafYard?6:_soddenDistrict?6:_trapJamming?6:_predatorDiversion?6:_fieldwork?6:ConnectedVariant?6:Connected?10:_district?7:_cards?6:_ordinary?10:12);
+        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(_opening?(OpeningBootstrap?2:6):_dangerMovement?5:_claimedSupplies?5:_fairRetreat?6:_expeditionReport?4:_tacticalWater?6:_mendleafYard?6:_soddenDistrict?6:_trapJamming?6:_predatorDiversion?6:_fieldwork?6:ConnectedVariant?6:Connected?10:_district?7:_cards?6:_ordinary?10:12);
         void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
-            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=_opening?"ordinary-opening-"+_connectedBuild:_dangerMovement?"controlled-danger-movement":_claimedSupplies?"generated-claimed-supplies":_fairRetreat?"controlled-fair-retreat":_expeditionReport?"ordinary-expedition-report":_tacticalWater?"ordinary-finite-emergency-water":_mendleafYard?"ordinary-mendleaf-drying-yard":_soddenDistrict?"ordinary-sodden-expedition":_trapJamming?"ordinary-timber-trap-jamming":_predatorDiversion?"ordinary-predator-diversion":_fieldwork?"ordinary-living-fieldwork":ConnectedVariant?"connected-targeted-"+_connectedBuild:Connected?"connected-selected-"+_connectedBuild:_district?"ordinary-gleaners-district":_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
+            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=_opening?(OpeningBootstrap?"ordinary-bootstrap-":"ordinary-opening-")+_connectedBuild:_dangerMovement?"controlled-danger-movement":_claimedSupplies?"generated-claimed-supplies":_fairRetreat?"controlled-fair-retreat":_expeditionReport?"ordinary-expedition-report":_tacticalWater?"ordinary-finite-emergency-water":_mendleafYard?"ordinary-mendleaf-drying-yard":_soddenDistrict?"ordinary-sodden-expedition":_trapJamming?"ordinary-timber-trap-jamming":_predatorDiversion?"ordinary-predator-diversion":_fieldwork?"ordinary-living-fieldwork":ConnectedVariant?"connected-targeted-"+_connectedBuild:Connected?"connected-selected-"+_connectedBuild:_district?"ordinary-gleaners-district":_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
                 passedChecks=RequiredChecks.Where(n=>_audit.Contains("PASS "+n)).ToArray(),unmetChecks=RequiredChecks.Where(n=>!_audit.Contains("PASS "+n)).ToArray(),
                 canVerify="Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
-                intendedCapability=_opening?OpeningIntent:_dangerMovement?DangerMovementIntent:_claimedSupplies?ClaimedSuppliesIntent:_fairRetreat?FairRetreatIntent:_expeditionReport?ExpeditionReportIntent:_tacticalWater?TacticalWaterIntent:_mendleafYard?MendleafIntent:_soddenDistrict?SoddenIntent:_trapJamming?TrapJammingIntent:_predatorDiversion?DiversionIntent:_fieldwork?FieldworkIntent:ConnectedVariant?VariantIntent:Connected?ConnectedIntent:_district?DistrictIntent:_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
-                cannotVerify=_opening?OpeningLimits:_dangerMovement?DangerMovementLimits:_claimedSupplies?ClaimedSuppliesLimits:_fairRetreat?FairRetreatLimits:_expeditionReport?ExpeditionReportLimits:_tacticalWater?TacticalWaterLimits:_mendleafYard?MendleafLimits:_soddenDistrict?SoddenLimits:_trapJamming?TrapJammingLimits:_predatorDiversion?DiversionLimits:_fieldwork?FieldworkLimits:ConnectedVariant?VariantLimits:Connected?ConnectedLimits:_district?DistrictLimits:_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
+                intendedCapability=_opening?OpeningAuditIntent:_dangerMovement?DangerMovementIntent:_claimedSupplies?ClaimedSuppliesIntent:_fairRetreat?FairRetreatIntent:_expeditionReport?ExpeditionReportIntent:_tacticalWater?TacticalWaterIntent:_mendleafYard?MendleafIntent:_soddenDistrict?SoddenIntent:_trapJamming?TrapJammingIntent:_predatorDiversion?DiversionIntent:_fieldwork?FieldworkIntent:ConnectedVariant?VariantIntent:Connected?ConnectedIntent:_district?DistrictIntent:_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
+                cannotVerify=_opening?OpeningAuditLimits:_dangerMovement?DangerMovementLimits:_claimedSupplies?ClaimedSuppliesLimits:_fairRetreat?FairRetreatLimits:_expeditionReport?ExpeditionReportLimits:_tacticalWater?TacticalWaterLimits:_mendleafYard?MendleafLimits:_soddenDistrict?SoddenLimits:_trapJamming?TrapJammingLimits:_predatorDiversion?DiversionLimits:_fieldwork?FieldworkLimits:ConnectedVariant?VariantLimits:Connected?ConnectedLimits:_district?DistrictLimits:_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
             var parsed=JObject.Parse(json);Require(parsed["windows"] is JArray w&&w.Count==_windows.Count&&parsed["observations"] is JArray o&&o.Count==_observations.Count,"complete nested report evidence");File.WriteAllText(ReportPath,json);
         }
         void Cleanup(){if(_cleaned)return;_cleaned=true;StopDiversionObservation();if(_keyboard!=null){InputSystem.QueueStateEvent(_keyboard,new KeyboardState());InputSystem.RemoveDevice(_keyboard);}if(_oldKeyboard!=null&&_oldKeyboard.added)_oldKeyboard.MakeCurrent();if(_oldSettings!=null)InputSystem.settings=_oldSettings;if(_settings!=null)Destroy(_settings);Application.runInBackground=_oldBackground;}

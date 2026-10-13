@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
@@ -86,6 +87,144 @@ namespace CavesOfOoo.Tests
   }
   [Test]public void FinalValidatorPinsHarvestStateAndCannotBeReusedForAnotherSite()
   {using(var f=new Fixture()){Assert.True(f.Place("FieldAlembic"));var proof=f.Final;var patch=f.Owners.First(e=>e.HasPart<HarvestablePart>());Assert.True(proof());Assert.False(f.Place("FieldAlembic"));patch.GetPart<HarvestablePart>().Harvested=true;Assert.False(proof());}}
+
+  sealed class CensusProbe:IZoneBuilder
+  {
+   internal Action<Zone> Observe;
+   public string Name=>"OpeningWorksiteCensus";
+   public int Priority{get;set;}
+   public bool BuildZone(Zone zone,EntityFactory factory,Random rng){Observe(zone);return true;}
+  }
+  sealed class CensusManager:OverworldZoneManager
+  {
+   internal Entity[] Before,Sources,Caches,RetainedSources,AddedActors;
+   internal int CreatureCountBefore,CreatureCountAfter,PipelineBuilds;
+   internal bool OriginalUnchanged,OthersUnchanged,StockPreserved,ObservedAfter;
+   internal SpreadExplorationBuilder Composer;
+   internal CensusManager(EntityFactory factory,int seed):base(factory,seed){}
+   protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+   {
+    PipelineBuilds++;
+    var pipeline=base.GetPipelineForZone(id);
+    var population=pipeline.Builders.OfType<PopulationBuilder>().Single();
+    var containers=pipeline.Builders.OfType<ContainerBuilder>().Single();
+    Composer=pipeline.Builders.OfType<SpreadExplorationBuilder>().Single();
+    Func<bool> original=null,others=null;
+    Dictionary<Entity,Entity[]> stock=null;
+    Dictionary<Entity,int> quantities=null;
+    pipeline.AddBuilder(new CensusProbe{Priority=4299,Observe=zone=>
+    {
+     ObservedAfter=false;
+     Before=zone.GetReadOnlyEntities().ToArray();
+     Assert.NotNull(population.SourceReceipt,"Observe the real producer receipt, never infer an allowance from nearby actors.");
+     Assert.NotNull(containers.SourceReceipt);
+     Sources=population.SourceReceipt.Owners.ToArray();
+     Caches=containers.SourceReceipt.Owners.ToArray();
+     original=CensusProof(zone,Before);
+     others=CensusProof(zone,Before.Except(Sources).Except(Caches));
+     stock=Caches.ToDictionary(e=>e,e=>e.GetPart<ContainerPart>().Contents.ToArray());
+     quantities=stock.Values.SelectMany(v=>v).ToDictionary(e=>e,e=>e.GetPart<StackerPart>()?.StackCount??1);
+     CreatureCountBefore=Before.Count(e=>e.HasTag("Creature"));
+    }});
+    // Check the transaction before later crop/narrative builders legitimately amend the zone.
+    pipeline.AddBuilder(new CensusProbe{Priority=4301,Observe=zone=>
+    {
+     OriginalUnchanged=original()&&new HashSet<Entity>(Before).SetEquals(zone.GetReadOnlyEntities());
+     OthersUnchanged=others();
+     RetainedSources=Sources.Where(e=>zone.GetEntityCell(e)!=null).ToArray();
+     AddedActors=zone.GetReadOnlyEntities().Except(Before).Where(e=>e.HasTag("Creature")).ToArray();
+     CreatureCountAfter=zone.GetReadOnlyEntities().Count(e=>e.HasTag("Creature"));
+     StockPreserved=stock.All(pair=>zone.GetEntityCell(pair.Key)!=null&&pair.Value.All(item=>
+      pair.Key.GetPart<ContainerPart>().Contents.Contains(item)&&(item.GetPart<StackerPart>()?.StackCount??1)==quantities[item]));
+     ObservedAfter=true;
+    }});
+    return pipeline;
+   }
+  }
+  static Func<bool> CensusProof(Zone zone,IEnumerable<Entity> owners)
+   =>(Func<bool>)typeof(SpreadGenerationReceipt).GetMethod("CaptureFinalState",All).Invoke(null,new object[]{zone,owners});
+  static string CensusOwners(IEnumerable<Entity> owners)
+   =>string.Join(",",owners.Select(e=>e.ID+":"+e.BlueprintName+":"+e.GetProperty(SpreadExplorationWorksites.RoleKey)
+    +":guard="+e.HasPart<WorksiteGuardPart>()+":lane="+(e.GetPart<CombatTacticsPart>()?.RepositionForShot==true)));
+
+  [Test]public void ThreeSeedOpeningYardAndForgeCensusPreservesActualSourceBudgetsAndReturns()
+  {
+   // Generated-graph evidence, authoritative in native Unity; not an ordinary-input or tactical-comparison journey.
+   string path=Path.Combine(Path.GetDirectoryName(UnityEngine.Application.dataPath),"Docs/Verification/ComposableBuilds/worksite-three-seed-census.tsv");
+   Directory.CreateDirectory(Path.GetDirectoryName(path));
+   var rows=new List<string>{"seed\tzone\tfamily\tdisposition\tresult\tsourceActors\tretainedSources\taddedActors\tcacheOwners\tcreaturesBefore\tcreaturesAfter\tstockPreserved\toriginalUnchanged\tdepletion\tcachedReturn"};
+   int admitted=0,refused=0;
+   try
+   {
+    using(var scope=new HaulingContentScope())
+    foreach(int seed in new[]{1,64,1729})
+    {
+     var manager=new CensusManager(scope.Factory,seed);
+     Assert.AreEqual(seed,manager.WorldSeed);
+     foreach(var site in new[]{(id:"Overworld.11.11.0",family:SpreadExplorationFamily.TrappersStore),(id:"Overworld.12.10.0",family:SpreadExplorationFamily.TemperingShelter)})
+     {
+      string context=seed+" "+site.id;
+      var entry=manager.Exploration.Find(site.id);
+      Assert.NotNull(entry,context);
+      Assert.AreEqual(site.family,entry.Family,context);
+      scope.Seed(unchecked(seed^FormationSelector.StableIndex(site.id,int.MaxValue)));
+      var zone=manager.GetZone(site.id);
+      Assert.NotNull(zone,context);
+      Assert.True(manager.ObservedAfter,context);
+      int disposition=manager.Exploration.DispositionFor(site.id);
+      string sourceActors=CensusOwners(manager.Sources),retainedSources=CensusOwners(manager.RetainedSources),addedActors=CensusOwners(manager.AddedActors);
+      string cacheOwners=string.Join(",",manager.Caches.Select(e=>e.ID+":"+e.BlueprintName));
+      string Row(string depletion,string returned)=>string.Join("\t",seed,site.id,site.family,disposition,manager.Composer.LastResult,sourceActors,retainedSources,addedActors,cacheOwners,
+       manager.CreatureCountBefore,manager.CreatureCountAfter,manager.StockPreserved,manager.OriginalUnchanged,depletion,returned);
+      rows.Add(Row("not-tested","not-tested"));
+      File.WriteAllLines(path,rows);
+      Assert.True(disposition==1||disposition==2,context+": an unaccepted generation is not a source refusal.");
+      Assert.True(manager.StockPreserved,context+": original rolled items and quantities must survive composition.");
+      Assert.True(manager.OthersUnchanged,context);
+      Assert.AreEqual(manager.CreatureCountBefore,manager.CreatureCountAfter,context+": composition cannot add a free hostile group.");
+      var roles=zone.GetReadOnlyEntities().Where(e=>e.HasTag("Creature")&&e.Properties.ContainsKey(SpreadExplorationWorksites.RoleKey)).ToArray();
+      if(disposition==2)
+      {
+       admitted++;
+       Assert.AreEqual(site.family.ToString(),manager.Composer.LastResult,context);
+       Assert.That(manager.Sources.Length,Is.InRange(1,2),context);
+       Assert.AreEqual(manager.Sources.Length,manager.RetainedSources.Length+manager.AddedActors.Length,context);
+       bool yard=site.family==SpreadExplorationFamily.TrappersStore,pair=manager.Sources.Length==2;
+       Assert.AreEqual(yard||pair?manager.Sources.Length:0,roles.Length,context);
+       Assert.AreEqual(yard?1:0,roles.Count(e=>e.HasPart<WorksiteGuardPart>()),context);
+       Assert.AreEqual(pair?1:0,roles.Count(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="ranged"&&e.GetPart<CombatTacticsPart>()?.RepositionForShot==true),context);
+      }
+      else
+      {
+       refused++;
+       StringAssert.StartsWith("refused:",manager.Composer.LastResult,context);
+       Assert.True(manager.OriginalUnchanged,context+": a refused transaction must retain its complete original graph.");
+       Assert.IsEmpty(roles,context);
+      }
+      // Deplete a real generated resource before cached return; no source is granted for this check.
+      string depletion="none-available";
+      var patch=zone.GetReadOnlyEntities().FirstOrDefault(e=>e.Properties.ContainsKey(SpreadExplorationWorksites.RoleKey)&&e.HasPart<HarvestablePart>());
+      if(patch!=null){patch.GetPart<HarvestablePart>().Harvested=true;depletion="harvested:"+patch.ID;}
+      else
+      {
+       var cache=manager.Caches.FirstOrDefault(e=>e.GetPart<ContainerPart>().Contents.Count>0);
+       if(cache!=null){var item=cache.GetPart<ContainerPart>().Contents[0];cache.GetPart<ContainerPart>().Contents.Remove(item);item.GetPart<PhysicsPart>().InInventory=null;depletion="removed-stock:"+item.ID;}
+      }
+      var retained=zone.GetReadOnlyEntities().ToArray();var proof=CensusProof(zone,retained);int builds=manager.PipelineBuilds;
+      manager.UnloadZone(site.id);
+      Assert.AreSame(zone,manager.GetZone(site.id),context);
+      Assert.AreEqual(builds,manager.PipelineBuilds,context);
+      Assert.AreEqual(disposition,manager.Exploration.DispositionFor(site.id),context);
+      CollectionAssert.AreEquivalent(retained,zone.GetReadOnlyEntities(),context);
+      Assert.True(proof(),context+": return must preserve depletion and the accepted/refused source graph.");
+      rows[rows.Count-1]=Row(depletion,"preserved");
+     }
+    }
+    TestContext.WriteLine("Opening worksite census: admitted="+admitted+", refused="+refused+"; no admission split is forced.");
+   }
+   finally{File.WriteAllLines(path,rows);TestContext.WriteLine(string.Join("\n",rows));}
+  }
+
   [TestCase("FieldAlembic")][TestCase("TemperingShelter")][TestCase("TrappersStore")]
   public void OrdinaryEnabledPipelineCommitsAndCachedVisitDoesNotReplenish(string family)
   {

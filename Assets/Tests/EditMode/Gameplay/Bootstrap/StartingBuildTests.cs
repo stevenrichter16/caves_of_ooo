@@ -25,7 +25,7 @@ namespace CavesOfOoo.Tests
     public class StartingBuildTests
     {
         private static ScenarioTestHarness _h;
-        private static readonly string[] Ids = { "duelist", "breaker", "stormcaller", "bombardier" };
+        private static readonly string[] Ids = { "duelist", "breaker", "stormcaller", "bombardier", "warden" };
 
         [OneTimeSetUp]
         public void OneTimeSetup()
@@ -58,9 +58,9 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════
 
         [Test]
-        public void TheSet_IsFourBuildsThenClassic()
+        public void TheSet_IsFiveBuildsThenClassic()
         {
-            CollectionAssert.AreEqual(new[] { "duelist", "breaker", "stormcaller", "bombardier", "classic" },
+            CollectionAssert.AreEqual(new[] { "duelist", "breaker", "stormcaller", "bombardier", "warden", "classic" },
                 StartingBuildRegistry.All.Select(b => b.Id).ToArray());
             Assert.IsTrue(Build("classic").IsClassic);
             foreach (var id in Ids) Assert.IsFalse(Build(id).IsClassic, id);
@@ -73,7 +73,7 @@ namespace CavesOfOoo.Tests
             Assert.IsEmpty(problems, string.Join("\n", problems));
         }
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
         public void Attributes_SumTo70_InEvenSteps(string id)
         {
             var a = Build(id).Attributes;
@@ -86,17 +86,34 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("duelist", 6)] [TestCase("breaker", 6)] [TestCase("stormcaller", 6)] [TestCase("bombardier", 3)]
+        [TestCase("duelist", 6)] [TestCase("breaker", 6)] [TestCase("stormcaller", 6)] [TestCase("bombardier", 3)] [TestCase("warden", 6)]
         public void SkillRows_FollowThePowerBudget(string id, int rows)
         {
             Assert.AreEqual(rows, Build(id).Skills.Count);
         }
 
+        [Test] public void WardenStartsWithGuardAndLeavesRankedDefenseAsEarnedChoices()
+        {
+            var def=Build("warden");Assert.NotNull(def);var p=FreshPlayer();int sp=p.GetStatValue("SP");
+            Assert.True(StartingBuildService.Apply(p,_h.Factory,def).Success);Assert.AreEqual(sp,p.GetStatValue("SP"));
+            Assert.NotNull(BladeDefense.FindLongBlade(p));Assert.AreEqual("LongSword",StartingBuildService.PrimaryHandWeapon(p).BlueprintName);
+            var skills=p.GetPart<SkillsPart>();Assert.True(skills.HasSkill("LongBlades_EnGarde"));Assert.False(skills.HasSkill("LongBlades_Deflect"));Assert.False(skills.HasSkill("LongBlades_Riposte"));
+            var first=p.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(0);Assert.AreEqual("CommandEnGarde",first.Command);Assert.Zero(first.CooldownRemaining);
+            var budget=def.Items.Sum(it=>_h.Factory.CreateEntity(it.Blueprint).GetPart<CommercePart>().Value*it.EffectiveCount);Assert.AreEqual(89,budget);
+            Assert.False(StartingBuildService.Apply(p,_h.Factory,def).Success,"Cannot double the optional starter package.");
+        }
+        [TestCase("LongBlades_Deflect")][TestCase("LongBlades_Riposte")]
+        public void WardenCanSpendOneActualPointOnEitherDefenseWithoutAnotherRoot(string choice)
+        {
+            var def=Build("warden");Assert.NotNull(def);var p=FreshPlayer();Assert.True(StartingBuildService.Apply(p,_h.Factory,def).Success);
+            p.GetStat("SP").BaseValue=1;Assert.True(BuySkillAction.Execute(p,choice).Succeeded);Assert.Zero(p.GetStatValue("SP"));Assert.AreEqual(1,p.GetPart<SkillsPart>().GetRank(choice));
+            Assert.False(p.GetPart<SkillsPart>().HasSkill(choice=="LongBlades_Deflect"?"LongBlades_Riposte":"LongBlades_Deflect"));
+        }
         // ════════════════════════════════════════════════════════
         // Applying a build
         // ════════════════════════════════════════════════════════
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
         public void Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(string id)
         {
             var p = FreshPlayer();
@@ -116,7 +133,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("duelist", "Dagger")] [TestCase("breaker", "Cudgel")]
-        [TestCase("stormcaller", "Dagger")] [TestCase("bombardier", "Dagger")]
+        [TestCase("stormcaller", "Dagger")] [TestCase("bombardier", "Dagger")] [TestCase("warden", "LongSword")]
         public void Apply_PutsTheWeaponInThePrimaryHand(string id, string weapon)
         {
             var p = FreshPlayer();
@@ -146,7 +163,7 @@ namespace CavesOfOoo.Tests
                 "the weapon was demoted to the off-hand; the natural fist swings first");
         }
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
         public void Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(string id)
         {
             var p = FreshPlayer();

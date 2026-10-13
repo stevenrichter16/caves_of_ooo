@@ -194,6 +194,7 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator DistrictApproach(Entity target,int budget)=>DistrictReach(c=>SpatialQuery.DistanceToCell(Zone,target,c.X,c.Y)<=1,budget);
         IEnumerator DistrictReach(Func<Cell,bool> goal,int budget)
         {
+            int clearanceWaits=0;
             for(int i=0;i<budget;i++)
             {
                 // This is the actual melee build responding to a live adjacent
@@ -233,6 +234,14 @@ namespace CavesOfOoo.Scenarios.Custom
                     path=PathTo(goal);
                 }
                 if(path==null||path.Count==0)RouteDiagnostic("district native waypoint",goal);
+                if((path==null||path.Count==0)&&OpeningProgression&&clearanceWaits<6&&Safe(Zone,At,ThreatClearance))
+                {
+                    clearanceWaits++;
+                    _notes.Add("Opening transient route wait "+clearanceWaits+"; current creatures="+string.Join(";",Zone.GetReadOnlyEntities()
+                        .Where(e=>e!=Player&&e.HasTag("Creature")).Select(e=>e.ID+":"+e.BlueprintName+"@"+Zone.GetEntityPosition(e))));
+                    yield return Paid(Tap(Key.Period),"local","opening-ordinary-clearance-wait");
+                    continue;
+                }
                 Require(path!=null&&path.Count>0,"current safe district route remains available");
                 yield return StepTo(path[0].x,path[0].y);
             }
