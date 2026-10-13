@@ -61,6 +61,7 @@ namespace CavesOfOoo.Skills
 
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — mirrors Slam's WSP4.4 fix.
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;

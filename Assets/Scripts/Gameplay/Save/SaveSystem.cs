@@ -669,6 +669,7 @@ namespace CavesOfOoo.Core
         /// checkpoints may be superseded. Pump or flush reports durable completion.</summary>
         public static bool RequestQuickSave()
         {
+            if(MeleeStrikeScope.IsResolving)return false;
             try
             {
                 PumpPendingSaves();
@@ -713,6 +714,7 @@ namespace CavesOfOoo.Core
 
         public static bool SaveSlot(string name)
         {
+            if(MeleeStrikeScope.IsResolving)return false;
             FlushPendingSaves();
             try
             {

@@ -50,6 +50,8 @@ namespace CavesOfOoo.Core
     [Serializable]
     public class Damage
     {
+        [NonSerialized] public MeleeStrikeProvenance Provenance;
+
         // Backing field is public for parity with Qud's _Amount, which save
         // serialization touches directly. Prefer the property in normal code.
         public int _Amount;

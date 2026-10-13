@@ -41,6 +41,8 @@ namespace CavesOfOoo.Skills
         /// fired before damage is rolled (e.g. miss).</summary>
         public Damage Damage;
 
+        public MeleeStrikeProvenance Provenance;
+
         /// <summary>Post-resistance HP delta for the hit. 0 for vetoed /
         /// fully-resisted hits or events that don't deal damage.</summary>
         public int ActualDamage;

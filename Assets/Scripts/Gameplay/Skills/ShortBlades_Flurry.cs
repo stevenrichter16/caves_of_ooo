@@ -53,6 +53,7 @@ namespace CavesOfOoo.Skills
 
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             // Determinism: bail on null Rng — mirrors Shank's pattern.
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -99,6 +100,7 @@ namespace CavesOfOoo.Skills
                 int hp = target.GetStatValue("Hitpoints");
                 if (hp <= 0 || ctx.Zone.GetEntityCell(target) == null
                     || ctx.Zone.GetEntityCell(actor) == null || actor.GetStatValue("Hitpoints") <= 0) break;
+                if(strike>0 && !BladeDefense.CanContinueStrike(actor,target,ctx.Zone,weapon))break;
                 CombatSystem.PerformSingleAttack(
                     attacker: actor, defender: target,
                     weapon: weapon, isPrimary: true,

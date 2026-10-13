@@ -50,6 +50,7 @@ namespace CavesOfOoo.Skills
 
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — mirrors Slam/Shank/Lunge.
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
@@ -98,6 +99,7 @@ namespace CavesOfOoo.Skills
             {
                 if (ctx.Zone.GetEntityCell(actor) == null || actor.GetStatValue("Hitpoints") <= 0) break;
                 if (ctx.Zone.GetEntityCell(targets[i]) == null || targets[i].GetStatValue("Hitpoints") <= 0) continue;
+                if(!BladeDefense.CanContinueStrike(actor,targets[i],ctx.Zone,weapon))continue;
                 CombatSystem.PerformSingleAttack(
                     attacker: actor, defender: targets[i],
                     weapon: weapon, isPrimary: true,

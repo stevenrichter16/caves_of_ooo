@@ -32,6 +32,7 @@ namespace CavesOfOoo.Skills
 
         public override void OnDefenderAfterAttackMissed(SkillEventContext ctx)
         {
+            if (ctx?.Provenance.SuppressFollowups==true) return;
             if (_recurring) return;
             if (ctx == null || ctx.Attacker == null || ctx.Defender == null) return;
             if (ctx.Rng == null || ctx.Zone == null) return;
@@ -54,6 +55,8 @@ namespace CavesOfOoo.Skills
                 }
             });
             if (found == null) return;
+            // An earlier miss reaction may have countered, moved or disabled either actor.
+            if (!BladeDefense.CanContinueStrike(ctx.Defender,ctx.Attacker,ctx.Zone,found)) return;
 
             _recurring = true;
             try
@@ -63,7 +66,8 @@ namespace CavesOfOoo.Skills
                     attacker: ctx.Defender, defender: ctx.Attacker,
                     weapon: found, isPrimary: true,
                     zone: ctx.Zone, rng: ctx.Rng,
-                    attackSourceDesc: "(Rejoinder)");
+                    attackSourceDesc: "(Rejoinder)",
+                    provenance: ctx.Provenance.Child(MeleeStrikeOrigin.ReactiveCounter));
             }
             finally
             {

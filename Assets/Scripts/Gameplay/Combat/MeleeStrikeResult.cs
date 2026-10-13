@@ -9,8 +9,9 @@ namespace CavesOfOoo.Core
         public readonly MeleeStrikeOutcome Outcome;
         public readonly int ActualDamage;
         public readonly bool Killed;
+        public readonly MeleeStrikeProvenance Provenance;
         public bool AllowsContactRider => Outcome != MeleeStrikeOutcome.FullParry && Outcome != MeleeStrikeOutcome.Cancelled;
-        public MeleeStrikeResult(MeleeStrikeOutcome outcome, int damage = 0, bool killed = false)
-        { Outcome = outcome; ActualDamage = damage; Killed = killed; }
+        public MeleeStrikeResult(MeleeStrikeOutcome outcome, int damage = 0, bool killed = false, MeleeStrikeProvenance provenance = default)
+        { Outcome = outcome; ActualDamage = damage; Killed = killed; Provenance=provenance; }
     }
 }

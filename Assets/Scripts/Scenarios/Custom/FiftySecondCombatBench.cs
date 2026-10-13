@@ -16,7 +16,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(name:"Second Fifty Combat Audit",category:"Combat",description:"Elemental ground, positional sword choices and finite enemy tactics.")]
     public sealed class FiftySecondCombatBench : IScenario
     {
-        public const int ExpectedCases=15;
+        public const int ExpectedCases=17;
         public string RunId { get; private set; }
         public int Cases { get; private set; }
         public int Failures { get; private set; }
@@ -27,6 +27,7 @@ namespace CavesOfOoo.Scenarios.Custom
         public void Apply(ScenarioContext ctx)
         {
             RunId=Guid.NewGuid().ToString("N");Cases=Failures=0;Audit.Clear();Observations.Clear();factory=ctx.Factory;
+            bool oldCapture=Diag.DetailedCaptureEnabled;Diag.DetailedCaptureEnabled=true;
             var oldReaction=MaterialReactionResolver.Factory;var oldWall=Cryomancy_GlacialWall.Factory;
             var oldLoadout=LoadoutPart.Factory;var oldLoadoutRng=LoadoutPart.Rng;
             try
@@ -70,7 +71,12 @@ namespace CavesOfOoo.Scenarios.Custom
                     Run("07_en_garde_one_melee_parry",()=>
                     {
                         var z=NewZone();var a=Actor(z);Arm(a,"LongSword");var attacker=Actor(z,11,10);var s=new LongBlades_EnGarde();Learn(a,s);bool cast=Cast(a,z,s);
-                        Hit(a,attacker,z,9,"Melee");int first=a.GetStatValue("Hitpoints");Hit(a,attacker,z,9,"Melee");Check(cast&&first==995&&a.GetStatValue("Hitpoints")==986&&!a.HasEffect<EnGardeEffect>(),new{cast,first,second=a.GetStatValue("Hitpoints"),guard=a.HasEffect<EnGardeEffect>()});
+                        var weapon=Arm(attacker,"LongSword").GetPart<MeleeWeaponPart>();attacker.GetStat("Strength").BaseValue=16;
+                        weapon.BaseDamage="1d1+8";weapon.PenBonus=3;weapon.HitBonus=100;weapon.Attributes="TestWeapon";
+                        var fails=new DefenseRandom(99);
+                        var firstStrike=CombatSystem.PerformSingleAttack(attacker,a,weapon,true,z,fails);int first=a.GetStatValue("Hitpoints");
+                        CombatSystem.PerformSingleAttack(attacker,a,weapon,true,z,fails);
+                        Check(cast&&first==995&&a.GetStatValue("Hitpoints")==986&&!a.HasEffect<EnGardeEffect>(),new{cast,first,second=a.GetStatValue("Hitpoints"),firstStrike.ActualDamage,guard=a.HasEffect<EnGardeEffect>()});
                     });
                     Run("08_follow_through_paid_trap_entry",()=>
                     {
@@ -119,9 +125,42 @@ namespace CavesOfOoo.Scenarios.Custom
                         var restored=loaded.ZoneManager.ActiveZone.GetReadOnlyEntities().Single(e=>e.ID==a.ID);var row=PopulationTable.UndergroundTier(3).Entries.Single(e=>e.BlueprintName=="MarlbackStormbinder");
                         Check(soaked&&target.GetStatValue("Hitpoints")<1000&&target.HasEffect<ElectrifiedEffect>()&&restored!=a&&restored.GetPart<ActivatedAbilitiesPart>().AbilityList.Single(e=>e.Command=="CommandArcBolt").CooldownRemaining==7&&restored.GetPart<InventoryPart>().Objects.Count(e=>e.BlueprintName=="SparkRoot")==1&&row.EncounterGroup=="DepthEncounter"&&row.Weight==1,new{soaked,hp=target.GetStatValue("Hitpoints"),electrified=target.HasEffect<ElectrifiedEffect>(),replaced=restored!=a,group=row.EncounterGroup,weight=row.Weight});
                     });
+                    Run("16_composable_rank_parry_boundaries",()=>
+                    {
+                        bool passed=true;var rows=new List<object>();
+                        for(int rank=1;rank<=3;rank++)for(int boundary=0;boundary<=1;boundary++)
+                        {
+                            var z=NewZone();var defender=Actor(z);Arm(defender,"LongSword");var foe=Actor(z,11,10);
+                            var weapon=Arm(foe,"LongSword").GetPart<MeleeWeaponPart>();weapon.HitBonus=100;
+                            var deflect=new LongBlades_Deflect();Learn(defender,deflect);deflect.Rank=rank;
+                            int roll=BladeDefense.DeflectChance(rank)-1+boundary;
+                            var result=CombatSystem.PerformSingleAttack(foe,defender,weapon,true,z,new DefenseRandom(roll));
+                            bool parried=result.Outcome==MeleeStrikeOutcome.FullParry;passed&=parried==(boundary==0);
+                            rows.Add(new{rank,roll,parried,result.ActualDamage});
+                        }
+                        Check(passed,new{rows});
+                    });
+                    Run("17_composable_counter_budget_current_save",()=>
+                    {
+                        var z=new Zone("Overworld.0.0.0");var defender=Actor(z);var sword=Arm(defender,"LongSword").GetPart<MeleeWeaponPart>();
+                        var foe=Actor(z,11,10);var weapon=Arm(foe,"LongSword").GetPart<MeleeWeaponPart>();
+                        defender.GetStat("Strength").BaseValue=16;sword.BaseDamage="1d1";sword.PenBonus=3;sword.Attributes="LongBlades";sword.HitBonus=100;weapon.HitBonus=100;
+                        Learn(defender,new LongBlades_Deflect(),new LongBlades_Riposte());
+                        var first=CombatSystem.PerformSingleAttack(foe,defender,weapon,true,z,new DefenseRandom(0));
+                        var second=CombatSystem.PerformSingleAttack(foe,defender,weapon,true,z,new DefenseRandom(0));
+                        var turns=new TurnManager();turns.AddEntity(defender);turns.AddEntity(foe);
+                        var manager=new OverworldZoneManager(null,64);manager.ReplaceLoadedState(new Dictionary<string,Zone>{{z.ZoneID,z}},z.ZoneID,new Dictionary<string,List<ZoneConnection>>());GameSessionState loaded;
+                        using(var bytes=new MemoryStream()){GameSessionState.Capture(RunId,"controlled counter witness",manager,turns,defender).Save(new SaveWriter(bytes));bytes.Position=0;loaded=GameSessionState.Load(new SaveReader(bytes,null));}
+                        var restored=loaded.ZoneManager.ActiveZone.GetReadOnlyEntities().Single(e=>e.ID==defender.ID);
+                        var starts=Diag.Snapshot(256).Where(e=>e.Kind=="StrikeStarted" && e.PayloadJson.Contains(first.Provenance.ActionId)).ToArray();
+                        bool causes=starts.Length==2 && starts.All(e=>Newtonsoft.Json.Linq.JObject.Parse(e.PayloadJson)["StrikeId"].ToString()==e.CauseTraceId);
+                        Check(first.Outcome==MeleeStrikeOutcome.FullParry&&second.Outcome==MeleeStrikeOutcome.FullParry&&foe.GetStatValue("Hitpoints")==999
+                            &&restored.GetPart<RiposteAllowancePart>().Spent&&restored.GetPart<LongBlades_Riposte>().Rank==1&&causes,
+                            new{first=first.Outcome.ToString(),second=second.Outcome.ToString(),foeHP=foe.GetStatValue("Hitpoints"),savedSpent=restored.GetPart<RiposteAllowancePart>().Spent,causes,starts});
+                    });
                 }
             }
-            finally{MaterialReactionResolver.Factory=oldReaction;Cryomancy_GlacialWall.Factory=oldWall;LoadoutPart.Factory=oldLoadout;LoadoutPart.Rng=oldLoadoutRng;}
+            finally{Diag.DetailedCaptureEnabled=oldCapture;MaterialReactionResolver.Factory=oldReaction;Cryomancy_GlacialWall.Factory=oldWall;LoadoutPart.Factory=oldLoadout;LoadoutPart.Rng=oldLoadoutRng;}
         }
         string current;
         void Run(string name,Action action){current=name;int before=Cases;try{action();}catch(Exception error){if(Cases==before)Check(false,new{error=error.ToString()});else throw;}}
@@ -142,6 +181,7 @@ namespace CavesOfOoo.Scenarios.Custom
         static void Act(Entity a,Entity target,Zone z){var b=a.GetPart<BrainPart>();b.CurrentZone=z;b.Target=target;if(!(b.PeekGoal() is KillGoal))b.PushGoal(new KillGoal(target));a.FireEventAndRelease(GameEvent.New("TakeTurn"));}
         static void Tick(Entity a,Zone z,int count){for(int i=0;i<count;i++){var e=GameEvent.New("EndTurn");e.SetParameter("Zone",(object)z);a.FireEventAndRelease(e);}}
         static void Hit(Entity target,Entity source,Zone z,int amount,string type){var d=new Damage(amount);d.AddAttribute(type);CombatSystem.ApplyDamage(target,d,source,z);}
+        sealed class DefenseRandom:Random{readonly int percent;public DefenseRandom(int percent){this.percent=percent;}public override int Next(int max)=>max==100?percent:0;public override int Next(int min,int max)=>max==21?10:min;}
         sealed class MinimumRandom:Random{public override int Next(int max)=>0;public override int Next(int min,int max)=>min;}
         private sealed class DetachedScope : IDisposable
         {

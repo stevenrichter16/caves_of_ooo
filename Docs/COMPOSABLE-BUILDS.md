@@ -1,6 +1,6 @@
 # Composable builds implementation
 
-Status: milestones 1–3 implemented and reviewed; milestone 4 next, source baseline `244177619cffae76fb452cce40e3c49cc5dfcb2f` (Unity 6000.3.4f1). Authoritative design: [supplied specification](COMPOSABLE-BUILDS-SPEC.md). User authorized milestone implementation, review and fixes. User explicitly waived legacy-save compatibility on 2026-10-12: version 8 will reject old saves; no migration/legacy fixtures. Current saves must round-trip and invalid loads must fail safely. Existing player files remain untouched by isolated tests.
+Status: milestones 1–4 implemented and reviewed; milestone 5 next, source baseline `244177619cffae76fb452cce40e3c49cc5dfcb2f` (Unity 6000.3.4f1). Authoritative design: [supplied specification](COMPOSABLE-BUILDS-SPEC.md). User authorized milestone implementation, review and fixes. User explicitly waived legacy-save compatibility on 2026-10-12: version 8 will reject old saves; no migration/legacy fixtures. Current saves must round-trip and invalid loads must fail safely. Existing player files remain untouched by isolated tests.
 
 ## Ordered work
 1. Baseline/contracts and failing tests.
@@ -66,3 +66,27 @@ Files: BaseSkillPart, SkillsPart, SkillData, PowerData, new SkillRanks, SkillReg
 - 🧪 Native rendered combat/Field Manual and performance evidence remain milestone 5/10 gates; passing isolated tests is not visual, balance, human-player or Deck verification. No release build produced.
 
 Files: new BladeDefense, MeleeStrikeResult, LongBlades_Deflect and two defense test fixtures (with meta); CombatSystem, EnGardeEffect/description, EnGarde/Conk/Hook/ChargingStrike/Backstab/FollowThrough, LongBlades content; two existing guard pins, this doc and receipts.
+
+### Milestone 4 verification and decisions (before implementation)
+- Riposte issues one selected current long-blade strike, never the outer multiweapon action. Valid primary blade wins, then stable attached-body traversal; this query remains separate from attack scratch.
+- Typed provenance includes action/root/parent/strike IDs, origin, depth, inherited reactive ancestry and follow-up suppression. Riposte descendants suppress extra attacks before RNG. Existing Rejoinder/Backswing behavior is retained absent Riposte; tagged Rejoinder ancestry cannot become eligible for Riposte by passing through Backswing.
+- Actor-owned allowance survives skill removal/reacquisition, equipment changes, current-save load and travel. Failed chance/cancelled pre-issue leaves allowance; issued miss/armor stop/parry spends it. Reset only at a genuine scheduled owner completion, after EndTurn callbacks and immediately before energy payment; transient reentrancy guard prevents a callback from renewing it twice.
+- Subsequent strikes in body/flurry/whirlwind sequences must recheck current actor/target/action/equipment/contact after an earlier counter. Existing standalone guaranteed damage keeps its exclusion while parent bonuses carry their parent provenance.
+
+
+### Milestone 4: bounded counter reactions
+- Added authored Riposte ranks I–III (45/65/80 conditional chance) and actor-owned saved allowance. One selected primary eligible blade, then stable body order; never a full multiweapon action. Failed probability leaves allowance, issued miss/parry/armor-zero spends it. Skill removal/reacquisition does not refill it.
+- Added typed action/root/parent/strike IDs, origin, depth, reactive ancestry and follow-up suppression to damage, skill events and results. Paid multi-strikes share action identity. Riposte descendants cannot trigger Rejoinder/Backswing or another Riposte; ordinary Rejoinder/Backswing retains its legacy overlap and probability, with current actor/contact checks before issuance.
+- TurnManager resets only genuine registered current-owner completions with scheduled energy, after EndTurn callbacks and before energy spending; reentrant calls return without repeating events. Save/autosave requests refuse unresolved strike/action scopes. Current-save round trips retain spent/unspent state without replaying acquisition.
+- Subsequent body, Flurry and Whirlwind strikes revalidate current participants and original equipment. Natural/default weapons retain their separate ownership contract.
+- RED: [missing counter API](Verification/ComposableBuilds/riposte-red.json). Cold review RED `329fde0e926049f4afc57ef562a54b49`: legacy Rejoinder issued attacks against dead/remote opponents or while stunned; three negative controls failed ([receipt](Verification/ComposableBuilds/riposte-review-red.json)). Fixed.
+- GREEN: **237/237 native Unity EditMode, zero skipped**, job `66f8f90c12684eb19af2a33724b81c40` ([receipt](Verification/ComposableBuilds/riposte-green.json)). Includes 40 new counter cases, blade tests and neighboring multiweapon, active skills, event dispatch, elemental miss retorts and turn scheduler tests.
+- 🟡 Fixed review: StrikeStarted now enters its own diagnostic cause scope before emission; parent/counter IDs and cause fields are asserted.
+- 🟡 Fixed review: pending legacy Rejoinder after Backswing/Riposte now revalidates actors and contact; Backswing uses the same pre-issuance rule.
+- 🧪 Discarded stale run `8e017dff8fd24e04bc355a762d53431c`: a test-only Newtonsoft reference failed compilation, but Unity ran previous assemblies. Removed that dependency, refreshed, confirmed clear console, and obtained the final 237-case run above. No stale result is acceptance evidence.
+- Existing controlled native bench's guard case was updated from raw damage to actual strikes, and two cases added for rank boundaries and saved counter allowance/diagnostic lineage.
+- **Native Play: complete**, run `673fd8e95be24ed6bc073c0219cba8af`, **11 driver checks; combat 17/17, preparation 18/18, exploration 21/21; zero errors/failures**, [raw report](Verification/ComposableBuilds/combat-native.json). Actual bootstrap/native input and detached controlled benches ran; caller graph/save isolation restored and Play stopped.
+- Can verify: runtime parry boundaries, one counter over repeated parries, typed causal records and current-save spent allowance in an isolated game session. Cannot verify here: ordinary acquisition of these skills, their rendered combat feel, human enjoyment, or physical Deck behavior. The combat cases use explicit controlled grants/rolls; this is not a natural expedition.
+- Prototype one-counter limit remains fixed in production; capped/uncapped comparison is still M6 work, not a balance conclusion.
+
+Files: new MeleeStrikeProvenance, RiposteAllowancePart, LongBlades_Riposte and two counter test fixtures/meta; combat/skill context and caller plumbing, TurnManager, save request guard, LongBlades data, expanded native combat bench; this doc and receipts.

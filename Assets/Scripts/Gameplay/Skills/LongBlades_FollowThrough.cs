@@ -9,6 +9,7 @@ namespace CavesOfOoo.Skills
         {DisplayName="Follow Through",Command="CommandFollowThrough",Class="Skills",TargetingMode=AbilityTargetingMode.AdjacentCell,Range=1,Cooldown=12};
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             var actor=ctx?.Attacker;var weapon=SkillCombatHelpers.FindEquippedWeaponOfClass(actor,"LongBlades");
             if(weapon==null||ctx.Zone==null||ctx.Rng==null)return false;
             var target=SkillCombatHelpers.FindAdjacentSkillTarget(actor,ctx.Zone,ctx.TargetCell,out var contact);

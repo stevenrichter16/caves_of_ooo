@@ -191,11 +191,14 @@ namespace CavesOfOoo.Skills
         /// vetoed or fully resisted).</returns>
         public static int DealGuaranteedHitDamage(
             Entity attacker, Entity target, MeleeWeaponPart weapon,
-            int rawDamage, Zone zone, System.Random rng)
+            int rawDamage, Zone zone, System.Random rng, MeleeStrikeProvenance parent = default)
         {
             if (target == null || rawDamage <= 0) return 0;
 
-            var damage = new Damage(rawDamage);
+            var provenance=parent.IsEmpty?MeleeStrikeProvenance.Action(MeleeStrikeOrigin.GuaranteedDamage).Child(MeleeStrikeOrigin.GuaranteedDamage)
+                :parent.Child(MeleeStrikeOrigin.BonusDamage);
+            using var damageScope=new MeleeStrikeScope(provenance);
+            var damage = new Damage(rawDamage){Provenance=provenance};
             damage.AddAttribute("Melee");
             if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
                 damage.AddAttributes(weapon.Attributes);
@@ -219,7 +222,7 @@ namespace CavesOfOoo.Skills
                     Attacker = attacker, Defender = target,
                     Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
                     Damage = damage, ActualDamage = actualDamage,
-                    Zone = zone, Rng = rng,
+                    Zone = zone, Rng = rng, Provenance=provenance,
                 };
                 SkillEventDispatcher.AttackerAfterAttack(attacker, hitCtx);
             }

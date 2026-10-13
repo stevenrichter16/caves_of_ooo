@@ -127,6 +127,7 @@ namespace CavesOfOoo.Core
                     return false;
                 }
 
+                using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.Ordinary);
                 CompanionCombat.AfterPlayerMelee(attacker, defender, zone);
                 FaceToward(attacker, defender, zone);
                 EntityVisualHooks.EmitAttack(attacker, defender, zone);
@@ -173,6 +174,8 @@ namespace CavesOfOoo.Core
                 // its off-hand and swing again.
                 if (IsDeathHandled(attacker) || attacker.GetStatValue("Hitpoints", 0) <= 0)
                     break;
+
+                if(i>0 && !BladeDefense.CanContinueStrike(attacker,defender,zone,weapons[i].Weapon))break;
 
                 bool isPrimary = weapons[i].IsPrimary;
 
@@ -224,10 +227,16 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static MeleeStrikeResult PerformSingleAttack(Entity attacker, Entity defender,
             MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
-            string attackSourceDesc = null)
+            string attackSourceDesc = null, MeleeStrikeProvenance provenance = default)
         {
             if(attacker==null || defender==null || zone==null || rng==null)
                 return new MeleeStrikeResult(MeleeStrikeOutcome.Cancelled);
+            if(provenance.IsEmpty)
+            {
+                var current=MeleeStrikeScope.Current;
+                provenance=current.Child(current.IsEmpty?MeleeStrikeOrigin.Ordinary:current.Origin);
+            }
+            using var strikeScope=new MeleeStrikeScope(provenance);
             // Per-attack correlation ID. WithCause sets the ambient
             // CauseTraceId for every Diag.Record fired during this method
             // — HitRoll → Penetration → DamageRoll → PreDamageMutation →
@@ -235,8 +244,11 @@ namespace CavesOfOoo.Core
             // Queries can filter by CauseTraceId to pull one attack's
             // full record set deterministically (no more
             // timestamp-window matcher noise).
-            string attackId = System.Guid.NewGuid().ToString("N").Substring(0, 8);
+            string attackId = provenance.StrikeId;
             using var _attackCause = Diag.WithCause(attackId);
+            if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"StrikeStarted",actor:attacker,target:defender,
+                payload:new{provenance.ActionId,provenance.RootStrikeId,provenance.ParentStrikeId,provenance.StrikeId,
+                    origin=provenance.Origin.ToString(),provenance.Depth,provenance.CounterDepth,provenance.SuppressFollowups});
 
             string damageDice = weapon?.BaseDamage ?? "1d2";
             int hitBonus = weapon?.HitBonus ?? 0;
@@ -314,17 +326,20 @@ namespace CavesOfOoo.Core
                     Attacker = attacker, Defender = defender,
                     Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
                     Damage = null, ActualDamage = 0,
-                    Zone = zone, Rng = rng,
+                    Zone = zone, Rng = rng, Provenance=provenance,
                 };
                 CavesOfOoo.Skills.SkillEventDispatcher
                     .AttackerMeleeMiss(attacker, missCtx);
                 CavesOfOoo.Skills.SkillEventDispatcher
                     .DefenderAfterAttackMissed(defender, missCtx);
-                return new MeleeStrikeResult(MeleeStrikeOutcome.NaturalMiss);
+                return new MeleeStrikeResult(MeleeStrikeOutcome.NaturalMiss,provenance:provenance);
             }
 
             if(BladeDefense.TryParry(defender,attacker,zone,rng,out bool guarded))
-                return new MeleeStrikeResult(MeleeStrikeOutcome.FullParry);
+            {
+                CavesOfOoo.Skills.LongBlades_Riposte.TryCounter(defender,attacker,zone,rng,provenance);
+                return new MeleeStrikeResult(MeleeStrikeOutcome.FullParry,provenance:provenance);
+            }
 
             // Select hit location on defender
             BodyPart hitPart = null;
@@ -402,13 +417,13 @@ namespace CavesOfOoo.Core
             if (penetrations == 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "fail" : "fails")} to penetrate!");
-                return new MeleeStrikeResult(MeleeStrikeOutcome.ArmorStopped);
+                return new MeleeStrikeResult(MeleeStrikeOutcome.ArmorStopped,provenance:provenance);
             }
 
             // Damage — build a typed Damage with attributes from the weapon
             // (Phase C of the Qud-parity port). Attributes flow through ApplyDamage
             // and are observable by listeners (Phase E will use them for resistances).
-            Damage damage = new Damage(0);
+            Damage damage = new Damage(0) { Provenance=provenance };
             damage.AddAttribute("Melee");
             damage.AddAttribute(statName);                      // e.g. "Strength"
             if (weapon != null && !string.IsNullOrEmpty(weapon.Attributes))
@@ -448,7 +463,7 @@ namespace CavesOfOoo.Core
             if (damage.Amount <= 0)
             {
                 MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "deal" : "deals")} no damage!");
-                return new MeleeStrikeResult(MeleeStrikeOutcome.Hit);
+                return new MeleeStrikeResult(MeleeStrikeOutcome.Hit,provenance:provenance);
             }
 
             // Capture pre-damage HP. Phase F BeforeTakeDamage listeners
@@ -471,7 +486,7 @@ namespace CavesOfOoo.Core
             //   → HP decrement (clamped to ≥ 0)
             //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
             var committed = ApplyDamageCore(defender, damage, attacker, zone, audioAttempt);
-            var result = new MeleeStrikeResult(MeleeStrikeOutcome.Hit, committed.ActualDamage, committed.Killed);
+            var result = new MeleeStrikeResult(MeleeStrikeOutcome.Hit, committed.ActualDamage, committed.Killed, provenance);
 
             // W3 re-review: the defender's TakeDamage dispatch (which
             // runs INSIDE that call, before the decrement) can kill the
@@ -583,7 +598,7 @@ namespace CavesOfOoo.Core
                     Attacker = attacker, Defender = defender,
                     Weapon = weapon, WeaponEntity = weapon?.ParentEntity,
                     Damage = damage, ActualDamage = actualDamage,
-                    Zone = zone, Rng = rng,
+                    Zone = zone, Rng = rng, Provenance=provenance,
                 };
                 CavesOfOoo.Skills.SkillEventDispatcher
                     .AttackerAfterAttack(attacker, hitCtx);
@@ -604,7 +619,7 @@ namespace CavesOfOoo.Core
             // This landed strike's contact chain can finish the victim (e.g. Charsplit).
             // Natural misses and full parries returned before reaching this chain.
             return new MeleeStrikeResult(MeleeStrikeOutcome.Hit, actualDamage,
-                result.Killed || (actualDamage > 0 && IsDeathHandled(defender)));
+                result.Killed || (actualDamage > 0 && IsDeathHandled(defender)), provenance);
         }
 
         /// <summary>
@@ -886,6 +901,8 @@ namespace CavesOfOoo.Core
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
                 if (target == null || damage == null) return default;
+                if(damage.Provenance.IsEmpty && !MeleeStrikeScope.Current.IsEmpty)
+                    damage.Provenance=MeleeStrikeScope.Current.Child(MeleeStrikeOrigin.BonusDamage);
                 if (DebugInvincibility.Blocks(target, "damage", source)) return default;
 
                 if (damage.Amount <= 0)

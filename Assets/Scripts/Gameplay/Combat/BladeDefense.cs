@@ -24,27 +24,49 @@ namespace CavesOfOoo.Core
         public static MeleeWeaponPart FindLongBlade(Entity actor)
         {
             var root=actor?.GetPart<Body>()?.GetBody();
-            return root==null ? null : Find(actor,root,root);
+            return root==null ? null : Find(actor,root,root,true) ?? Find(actor,root,root,false);
         }
-        static MeleeWeaponPart Find(Entity actor,BodyPart root,BodyPart part)
+        static MeleeWeaponPart Find(Entity actor,BodyPart root,BodyPart part,bool primaryOnly)
         {
-            var item=part.Equipped;
-            if(part.Type=="Hand" && !part.Abstract && !part.IsUnsupported() && item!=null)
+            if(!primaryOnly || part.Primary || part.DefaultPrimary)
             {
-                var weapon=item.GetPart<MeleeWeaponPart>(); var physical=item.GetPart<PhysicsPart>();
-                var equippable=item.GetPart<EquippablePart>(); var destructible=item.GetPart<DestructiblePart>();
-                if(weapon!=null && HasToken(weapon.Attributes,"LongBlades") && physical?.Equipped==actor
-                    && weapon.ParentEntity==item && physical.InInventory==null && item.SpatialZone==null
-                    && equippable!=null && !(destructible?.Gone??false)
-                    && !(destructible?.IsDestroyed??false))
-                {
-                    int required=RequiredHands(equippable.GetEffectiveSlots());
-                    if(required>0 && CountHands(root,item)>=required)return weapon;
-                }
+                var weapon=part.Equipped?.GetPart<MeleeWeaponPart>();
+                if(weapon!=null && HasToken(weapon.Attributes,"LongBlades") && IsHeldWeapon(actor,weapon))return weapon;
             }
             if(part.Parts!=null)foreach(var child in part.Parts)
-            { var found=Find(actor,root,child);if(found!=null)return found; }
+            {var found=Find(actor,root,child,primaryOnly);if(found!=null)return found;}
             return null;
+        }
+        /// <summary>Validate the same selected physical weapon without selecting a replacement.</summary>
+        public static bool IsHeldWeapon(Entity actor,MeleeWeaponPart weapon)
+        {
+            var root=actor?.GetPart<Body>()?.GetBody();var item=weapon?.ParentEntity;
+            if(root==null || item==null || item.GetPart<MeleeWeaponPart>()!=weapon || item.SpatialZone!=null)return false;
+            var physical=item.GetPart<PhysicsPart>();var equippable=item.GetPart<EquippablePart>();var destructible=item.GetPart<DestructiblePart>();
+            if(physical?.Equipped!=actor || physical.InInventory!=null || equippable==null
+                || (destructible?.Gone??false) || (destructible?.IsDestroyed??false))return false;
+            int required=RequiredHands(equippable.GetEffectiveSlots());
+            return required>0 && CountHands(root,item)>=required;
+        }
+        /// <summary>Resumed melee sequences revalidate contact/action and their original weapon.
+        /// Attached natural/default weapons retain their distinct ownership contract.</summary>
+        public static bool CanContinueStrike(Entity actor,Entity target,Zone zone,MeleeWeaponPart weapon)
+        {
+            if(!Live(actor,zone) || !Live(target,zone) || SpatialQuery.Distance(zone,actor,target)!=1
+                || actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true)return false;
+            if(weapon==null)return true;
+            var item=weapon.ParentEntity;
+            if(item==actor)return actor.GetPart<MeleeWeaponPart>()==weapon;
+            if(IsHeldWeapon(actor,weapon))return true;
+            var root=actor.GetPart<Body>()?.GetBody();
+            return root!=null && HasNatural(root,item);
+        }
+        static bool HasNatural(BodyPart part,Entity item)
+        {
+            if(item==null)return false;
+            if(part._DefaultBehavior==item && part.Equipped==null && !part.Abstract && !part.IsUnsupported())return true;
+            if(part.Parts!=null)foreach(var child in part.Parts)if(HasNatural(child,item))return true;
+            return false;
         }
         static int CountHands(BodyPart part,Entity item)
         {

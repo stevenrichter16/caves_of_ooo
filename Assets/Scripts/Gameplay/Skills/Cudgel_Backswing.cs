@@ -29,6 +29,7 @@ namespace CavesOfOoo.Skills
 
         public override void OnAttackerMeleeMiss(SkillEventContext ctx)
         {
+            if (ctx?.Provenance.SuppressFollowups==true) return;
             if (_recurring) return;  // bail on Backswing-of-a-Backswing
             if (ctx == null || ctx.Attacker == null || ctx.Defender == null) return;
             if (ctx.Weapon == null || string.IsNullOrEmpty(ctx.Weapon.Attributes)) return;
@@ -36,6 +37,7 @@ namespace CavesOfOoo.Skills
             if (ctx.Rng == null || ctx.Zone == null) return;
 
             if (ctx.Rng.Next(100) >= CHANCE_PERCENT) return;
+            if (!BladeDefense.CanContinueStrike(ctx.Attacker,ctx.Defender,ctx.Zone,ctx.Weapon)) return;
 
             _recurring = true;
             try
@@ -44,7 +46,8 @@ namespace CavesOfOoo.Skills
                     attacker: ctx.Attacker, defender: ctx.Defender,
                     weapon: ctx.Weapon, isPrimary: true,
                     zone: ctx.Zone, rng: ctx.Rng,
-                    attackSourceDesc: "(Backswing)");
+                    attackSourceDesc: "(Backswing)",
+                    provenance: ctx.Provenance.Child(MeleeStrikeOrigin.ExtraAttack));
             }
             finally
             {

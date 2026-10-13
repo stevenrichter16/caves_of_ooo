@@ -59,6 +59,7 @@ namespace CavesOfOoo.Skills
 
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
@@ -144,7 +145,7 @@ namespace CavesOfOoo.Skills
                     // momentum bonus is a second hit-sized chunk of damage and
                     // deserves its own on-hit proc roll, same as the base swing).
                     SkillCombatHelpers.DealGuaranteedHitDamage(
-                        actor, hitTarget, weapon, bonus, ctx.Zone, ctx.Rng);
+                        actor, hitTarget, weapon, bonus, ctx.Zone, ctx.Rng, strike.Provenance);
                     MessageLog.Add(actor.GetDisplayName() + "'s charge adds +" + bonus + " momentum damage!");
                 }
             }

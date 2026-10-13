@@ -376,8 +376,15 @@ namespace CavesOfOoo.Core
         /// Called after the player (or any actor) completes their action.
         /// Spends their energy and resumes processing.
         /// </summary>
+        private bool _endingTurn;
+
         public void EndTurn(Entity actor, Zone zone = null)
         {
+            if(_endingTurn)return;
+            bool ownerBoundary=actor!=null && CurrentActor==actor && IsRegistered(actor) && GetEnergy(actor)>=ActionThreshold;
+            _endingTurn=true;
+            try
+            {
             using (PerformanceMarkers.Turns.EndTurn.Auto())
             {
                 // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
@@ -418,6 +425,7 @@ namespace CavesOfOoo.Core
                 if (MessageLog.Count > _turnStartMessageCount)
                     MessageLog.Add(TURN_DIVIDER);
 
+                if(ownerBoundary && actor.GetPart<RiposteAllowancePart>() is RiposteAllowancePart allowance)allowance.Spent=false;
                 SpendEnergy(actor);
                 CurrentActor = null;
                 WaitingForInput = false;
@@ -438,6 +446,8 @@ namespace CavesOfOoo.Core
                     tickEnd.Release();
                 }
             }
+            }
+            finally {_endingTurn=false;}
         }
 
         /// <summary>

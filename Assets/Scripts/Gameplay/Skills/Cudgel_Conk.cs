@@ -40,6 +40,7 @@ namespace CavesOfOoo.Skills
 
         public override bool OnCommand(SkillEventContext ctx)
         {
+            using var actionScope=MeleeStrikeScope.BeginAction(MeleeStrikeOrigin.ActiveAbility);
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — matches the early-out pattern of
             // every other skill (Bludgeon/Hammer/ShatteringBlows/etc.).
