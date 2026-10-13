@@ -35,7 +35,7 @@ namespace CavesOfOoo.Tests
         {
             using(var s=new MemoryStream())
             {
-                var prefix=GameAuditTileSessionSaveTests.LegacyBytes(f.Saved,false);s.Write(prefix,0,prefix.Length);var w=new SaveWriter(s);
+                var prefix=GameAuditTileSessionSaveTests.CurrentBytesWithoutTileSnapshot(f.Saved,false);s.Write(prefix,0,prefix.Length);var w=new SaveWriter(s);
                 w.WriteCheck(Begin);w.Write(1);
                 w.Write(fault=="negative-zone-count"?-1:fault=="too-many-zones"?4097:fault=="missing-zone"?1:2);
                 if(fault=="zone-id-too-long"){w.Write(1025);return s.ToArray();}
@@ -100,18 +100,18 @@ namespace CavesOfOoo.Tests
             {var z=Active(f.Saved);z.TileState.WriteCoating(5,6,"water",53);f.Saved.Player.AddPart(new TileHookMutationPart{ZoneId=z.ZoneID,Mutate=mutate});var copy=Active(Decode(f.EncodeSaved()));Assert.AreEqual(mutate?0:53,copy.TileState.CoatingTurns(5,6,"water"));Assert.AreEqual(mutate?61:0,copy.TileState.CoatingTurns(7,8,"hook-liquid"));Assert.AreEqual(mutate?"hook-cloud":"",copy.TileState.Cloud(7,8));}
         }
         [TestCase(false)][TestCase(true)]
-        public void RealMorrowfastLegacyGeometryRepairRespectsExtensionButLegacyAbsenceKeepsOldSemantics(bool extension)
+        public void CurrentSessionMorrowfastGeometryRepairRespectsOptionalTileSnapshot(bool includeTileSnapshot)
         {
             using(var content=new EntityEquipmentContentFixture())using(var f=new DecodeIsolationFixture(aura:false))
             {
                 var old=new Zone(MorrowfastSceneRuntime.ZoneID);f.Saved.ZoneManager.CachedZones.Add(old.ZoneID,old);
                 Assert.AreEqual("Morrowfast",f.Saved.ZoneManager.WorldMap.GetPOI(3,6).Profile);Assert.IsFalse(MorrowfastSceneRuntime.IsActive(old));
-                byte[] bytes=extension?f.EncodeSaved():GameAuditTileSessionSaveTests.LegacyBytes(f.Saved);
+                byte[] bytes=includeTileSnapshot?f.EncodeSaved():GameAuditTileSessionSaveTests.CurrentBytesWithoutTileSnapshot(f.Saved);
                 var loaded=Decode(bytes,content.Factory);var repaired=loaded.ZoneManager.CachedZones[old.ZoneID];
                 Assert.IsTrue(MorrowfastSceneRuntime.IsActive(repaired),"Real existing geometry migration must have happened.");
                 var pools=repaired.GetAllEntities().Where(e=>e.GetPart<LiquidPoolPart>()?.LiquidId=="water").ToArray();Assert.Greater(pools.Length,0);
                 int written=0;foreach(var pool in pools){var p=repaired.GetEntityPosition(pool);if(repaired.TileState.HasCoating(p.x,p.y,"water"))written++;}
-                Assert.AreEqual(extension?0:pools.Length,written,"An explicit empty snapshot wins; a file with no snapshot retains old migration projections.");
+                Assert.AreEqual(includeTileSnapshot?0:pools.Length,written,"An explicit empty snapshot wins; a current-schema file without the optional snapshot retains repair projections.");
             }
         }
         [Test]

@@ -34,12 +34,15 @@ namespace CavesOfOoo.Tests
             //      (SkipValue never consumes the bytes): a v6 save with
             //      the catacomb floor cached would misalign mid-load.
             //      Strict rejection is the honest failure.
-            Assert.AreEqual(7, SaveWriter.FormatVersion);
+            // 7→8: composable builds add authoritative skill ranks and remove
+            //      the redundant serialized SkillsPart.SkillList cache. Legacy
+            //      migration was explicitly waived; keep strict rejection.
+            Assert.AreEqual(8, SaveWriter.FormatVersion);
         }
 
         // counter-check: a fabricated v2-version header must reject on load
         [Test]
-        public void SaveReader_RejectsV2HeaderOnV3Build()
+        public void SaveReader_RejectsV2HeaderOnCurrentBuild()
         {
             using var stream = new MemoryStream();
             var writer = new BinaryWriter(stream);

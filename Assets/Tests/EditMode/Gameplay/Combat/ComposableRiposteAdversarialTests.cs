@@ -26,6 +26,14 @@ namespace CavesOfOoo.Tests
             { if(max==100){PercentDraws++;OnPercent?.Invoke(PercentDraws);}return 0; }
             public override int Next(int min,int max) {if(max==21){HitDraws++;return 10;}return min;}
         }
+        [TestCase(true)] [TestCase(false)] public void OrdinaryShieldOrEmptyOffhandRetainsItsNaturalSwing(bool shield)
+        {
+            var actor=f.Factory.CreateEntity("Player");Assert.True(f.Zone.AddEntity(actor,20,10));var target=f.Target(21,10);
+            var weapon=f.Factory.CreateEntity("Dagger");Assert.True(actor.GetPart<InventoryPart>().AddObject(weapon));Assert.True(InventorySystem.Equip(actor,weapon));
+            if(shield){var buckler=f.Factory.CreateEntity("Buckler");Assert.True(actor.GetPart<InventoryPart>().AddObject(buckler));Assert.True(InventorySystem.Equip(actor,buckler));}
+            actor.Statistics["MultiWeaponSkillBonus"]=new Stat{Name="MultiWeaponSkillBonus",BaseValue=100};target.Statistics["DV"]=new Stat{Name="DV",BaseValue=1000};
+            var rolls=new MutableRolls();Assert.True(CombatSystem.PerformMeleeAttack(actor,target,f.Zone,rolls));Assert.AreEqual(2,rolls.HitDraws,"Primary dagger and unchanged natural offhand both make ordinary accuracy rolls.");
+        }
         MeleeStrikeResult Strike(Random rng,MeleeStrikeProvenance p=default)
             => CombatSystem.PerformSingleAttack(a,d,attack,true,f.Zone,rng,provenance:p);
         [TestCase("normal",true)] [TestCase("disarm",false)] [TestCase("move",false)]

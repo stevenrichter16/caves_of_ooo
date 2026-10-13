@@ -144,24 +144,33 @@ namespace CavesOfOoo.Tests
         [TestCase(true)] [TestCase(false)]
         public void Rain_WatersOnePhysicalCropOwnerAndReportsOneOwnerPerCast(bool body)
         {
-            var z = new Zone(); var actor = F.Owner(null, true); F.Place(z, actor, 10, 10);
-            var crop = F.Owner(body ? "0,0;1,0;2,0;3,0" : null); crop.AddPart(new CropPart()); F.Place(z, crop, 6, 10);
-            Assert.IsTrue(new Hydromancy_ConjureRain().OnCommand(F.Context(z, actor)));
-            Assert.AreEqual(body ? 40 : 0, crop.GetPart<CropPart>().MoistureTicks);
-            var records = DiagQuery.Apply(new DiagQuery.Filter { Category = "crop", Kind = "CropWatered", Limit = 50 }).Records;
-            Assert.AreEqual(body ? 1 : 0, records.Count(e => e.TargetId == crop.ID));
-            Assert.IsTrue(new Hydromancy_ConjureRain().OnCommand(F.Context(z, actor)));
-            records = DiagQuery.Apply(new DiagQuery.Filter { Category = "crop", Kind = "CropWatered", Limit = 50 }).Records;
-            Assert.AreEqual(body ? 2 : 0, records.Count(e => e.TargetId == crop.ID));
+            var previousTurns = TurnManager.Active;
+            try
+            {
+                _ = new TurnManager(); // Exercise physical crop ownership with a live clock.
+                var z = new Zone(); var actor = F.Owner(null, true); F.Place(z, actor, 10, 10);
+                var crop = F.Owner(body ? "0,0;1,0;2,0;3,0" : null); crop.SetTag("Crop"); crop.GetPart<PhysicsPart>().Takeable = false; crop.AddPart(new CropPart()); F.Place(z, crop, 6, 10);
+                Assert.IsTrue(new Hydromancy_ConjureRain().OnCommand(F.Context(z, actor)));
+                Assert.AreEqual(body ? 40 : 0, crop.GetPart<CropPart>().MoistureTicks);
+                var records = DiagQuery.Apply(new DiagQuery.Filter { Category = "crop", Kind = "CropWatered", Limit = 50 }).Records;
+                Assert.AreEqual(body ? 1 : 0, records.Count(e => e.TargetId == crop.ID));
+                Assert.IsTrue(new Hydromancy_ConjureRain().OnCommand(F.Context(z, actor)));
+                records = DiagQuery.Apply(new DiagQuery.Filter { Category = "crop", Kind = "CropWatered", Limit = 50 }).Records;
+                Assert.AreEqual(body ? 2 : 0, records.Count(e => e.TargetId == crop.ID));
+            }
+            finally
+            {
+                typeof(TurnManager).GetProperty("Active").SetValue(null, previousTurns);
+            }
         }
 
         [TestCase(true)] [TestCase(false)]
         public void GlacialWall_DoesNotBuryCreatureBodyOutsideItsAnchor(bool body)
         {
             var z = new Zone(); var actor = F.Owner(null, true); F.Place(z, actor, 10, 10);
-            var target = F.Owner(body ? "0,0;0,1" : null, true); F.Place(z, target, 11, 9);
+            var target = F.Owner(body ? "0,0;0,1" : null, true); F.Place(z, target, 12, 8);
             Assert.IsTrue(new Cryomancy_GlacialWall().OnCommand(F.Context(z, actor)));
-            Assert.AreEqual(!body, z.GetCell(11, 10).Objects.Any(e => e.BlueprintName == "IceWall"));
+            Assert.AreEqual(!body, z.GetCell(12, 9).Objects.Any(e => e.BlueprintName == "IceWall"));
             Assert.IsTrue(z.GetCell(12, 10).Objects.Any(e => e.BlueprintName == "IceWall"));
         }
 
@@ -197,7 +206,8 @@ namespace CavesOfOoo.Tests
         {
             var z = new Zone(); var actor = F.ArmedActor("Cudgel"); F.Place(z, actor, 10, 10);
             var target = F.Owner(body ? "0,0;0,1" : null, true); F.Place(z, target, 12, 9);
-            Assert.AreEqual(body, new Cudgel_ChargingStrike().OnCommand(F.Context(z, actor)));
+            Assert.IsTrue(new Cudgel_ChargingStrike().OnCommand(F.Context(z, actor)),
+                "An empty lane still spends the successful three-cell charge.");
             Assert.AreEqual((body ? 11 : 13, 10), z.GetEntityPosition(actor));
             Assert.AreEqual(body, Probe(target).DamageCalls > 0);
         }

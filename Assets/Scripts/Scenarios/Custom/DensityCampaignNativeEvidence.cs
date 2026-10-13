@@ -20,16 +20,16 @@ namespace CavesOfOoo.Scenarios.Custom
             result=default;
             if(beforeEnergy<0||afterEnergy<0||elapsedTicks<0||speed<=0
                 ||!Window(rows,marker,actor,out var fresh)||!(kind=="local"||kind=="map"||kind=="rest"))return false;
-            int ends=fresh.Count(r=>r.Category=="turn"&&r.Kind=="End"&&r.ActorId==actor);
+            if(!TryCompletedTurns(fresh,actor,out int ends,out int ordinaryEnds))return false;
             var pure=fresh.Where(r=>(r.Category=="worldmap"&&r.Kind=="Stepped")||(r.Category=="furniture"&&r.Kind=="Rested")).ToArray();
-            if(kind=="local") {if(pure.Length!=0||ends<1||ends>2)return false;}
+            if(kind=="local") {if(pure.Length!=0||ordinaryEnds!=1)return false;}
             else
             {
                 if(pure.Length!=1||pure[0].ActorId!=actor)return false;
                 var row=pure[0];
                 if(kind=="map")
                 {
-                    if(row.Category!="worldmap"||row.Kind!="Stepped"||ends<1||ends>2
+                    if(row.Category!="worldmap"||row.Kind!="Stepped"||ordinaryEnds!=1
                         ||!Int(row,"turnsCost",out result.PureClock)||result.PureClock<=0
                         ||!Int(row,"toWorldX",out int x)||!Int(row,"toWorldY",out int y)
                         ||x<0||x>=WorldMap.Width||y<0||y>=WorldMap.Height)return false;
@@ -45,6 +45,34 @@ namespace CavesOfOoo.Scenarios.Custom
             if(elapsedTicks<result.PureClock||(kind=="rest"&&(elapsedTicks!=result.PureClock||beforeEnergy!=afterEnergy)))return false;
             result.CompletedTurns=ends;
             return (long)beforeEnergy+(long)(elapsedTicks-result.PureClock)*speed-(long)ends*TurnManager.ActionThreshold==afterEnergy;
+        }
+        // The submitted input may finish a turn whose Begin predates the marker.
+        // Every additional paid turn needs its own ordered Begin/veto/End witness;
+        // a balanced energy equation alone cannot legitimize another ordinary End.
+        // A final unblocked Begin is allowed: the player is awaiting their next input.
+        static bool TryCompletedTurns(IReadOnlyList<Diag.Entry> rows,string actor,out int ends,out int ordinaryEnds)
+        {
+            ends=ordinaryEnds=0;bool begun=false,blocked=false;
+            foreach(var row in rows)
+            {
+                if(row.Category!="turn"||row.ActorId!=actor)continue;
+                if(row.Kind=="Begin")
+                {
+                    if(begun)return false;
+                    begun=true;
+                }
+                else if(row.Kind=="ActionBlocked")
+                {
+                    if(!begun||blocked||!Text(row,"phase",out string phase)||phase!="BeginTakeAction")return false;
+                    blocked=true;
+                }
+                else if(row.Kind=="End")
+                {
+                    if(!blocked&&++ordinaryEnds>1)return false;
+                    ends++;begun=blocked=false;
+                }
+            }
+            return !blocked;
         }
         public static bool RecoveryMatches(ClockReceipt receipt,string site,int hpBefore,int hpAfter,int maximum)
             =>hpBefore>0&&hpBefore<maximum&&hpAfter==maximum&&receipt.Site==site

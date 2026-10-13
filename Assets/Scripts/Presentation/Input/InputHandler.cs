@@ -967,6 +967,9 @@ namespace CavesOfOoo.Rendering
                 var move = MovementSystem.TryMoveDetailed(PlayerEntity, CurrentZone, dx, dy);
                 var blockedBy = move.BlockedBy;
 
+                // Finish every paid branch here. NPC scheduling can apply a
+                // blocking status; that must not turn this same input into
+                // another paid wait in the status fallback below.
                 if (move.Moved)
                 {
                     var newCell = CurrentZone.GetEntityCell(PlayerEntity);
@@ -976,12 +979,14 @@ namespace CavesOfOoo.Rendering
                         ZoneRenderer.RefreshMovement(oldX, oldY, newCell.X, newCell.Y);
 
                     EndTurnAndProcess();
+                    return;
                 }
                 else if (move.ActionPerformed)
                 {
                     // Unlocking/opening is this turn's action. It must not also
                     // strike the owner or walk through it in the same input.
                     EndTurnAndProcess();
+                    return;
                 }
                 else if (blockedBy != null && blockedBy.HasTag("Creature")
                     && (FactionManager.IsHostile(PlayerEntity, blockedBy)
@@ -991,6 +996,7 @@ namespace CavesOfOoo.Rendering
                     // when entry created no permanent faction/personal hostility.
                     CombatSystem.PerformMeleeAttack(PlayerEntity, blockedBy, CurrentZone, _combatRng);
                     EndTurnAndProcess();
+                    return;
                 }
                 else if (DestructionSystem.IsBreakable(blockedBy))
                 {
@@ -1014,6 +1020,7 @@ namespace CavesOfOoo.Rendering
                     DestructionSystem.StrikeStructure(
                         blockedBy, PlayerEntity, CurrentZone, _combatRng);
                     EndTurnAndProcess();
+                    return;
                 }
                 else if (blockedBy == null && ZoneManager != null && WorldMap != null)
                 {
@@ -1029,6 +1036,7 @@ namespace CavesOfOoo.Rendering
                         {
                             HandleZoneTransition(result);
                             EndTurnAndProcess();
+                            return;
                         }
                     }
                     // If there's no transition, fall through to the

@@ -63,5 +63,46 @@ namespace CavesOfOoo.Tests
                 Assert.False(budget.Spent);Assert.AreEqual(1,rng.Draws);
             }
         }
+        [TestCase(false,false)] [TestCase(true,false)] [TestCase(true,true)]
+        public void DiagnosticCursorCannotReplayDamageWhenShortTraceIdsCollide(bool collision,bool evicted)
+        {
+            var buffer=(Diag.Entry[])typeof(Diag).GetField("_buffer",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
+            var saved=(Diag.Entry[])buffer.Clone();
+            var fields=new[]{"_writeIndex","_filledCount","_droppedCount"}.Select(n=>typeof(Diag).GetField(n,BindingFlags.Static|BindingFlags.NonPublic)).ToArray();
+            var values=fields.Select(f=>f.GetValue(null)).ToArray();
+            var append=typeof(Diag).GetMethod("Append",BindingFlags.Static|BindingFlags.NonPublic);
+            try
+            {
+                Array.Clear(buffer,0,buffer.Length);fields[0].SetValue(null,0);fields[1].SetValue(null,0);
+                var type=typeof(ComposableBuildComparisonBench).GetNestedType("Trial",BindingFlags.NonPublic);
+                var trial=Activator.CreateInstance(type,true);var player=new Entity{ID="cursor-player"};
+                var result=new ComposableBuildComparisonBench.TrialResult();
+                type.GetField("Player").SetValue(trial,player);type.GetField("Result").SetValue(trial,result);
+                string cursor=new string("12345678".ToCharArray());
+                type.GetField("LastTrace").SetValue(trial,cursor);
+                void Add(Diag.Entry e)=>append.Invoke(null,new object[]{e});
+                Add(new Diag.Entry{TraceId=new string((collision?"12345678":"87654321").ToCharArray())});
+                Add(new Diag.Entry{TraceId="old-damage",Kind="DamageDealt",TargetId=player.ID,PayloadJson="{\"ActualDamage\":36,\"hpAfter\":4}"});
+                if(!evicted)Add(new Diag.Entry{TraceId=cursor});
+                Add(new Diag.Entry{TraceId="new-damage",Kind="DamageDealt",TargetId=player.ID,PayloadJson="{\"ActualDamage\":7,\"hpAfter\":33}"});
+                var collect=typeof(ComposableBuildComparisonBench).GetMethod("Collect",BindingFlags.Static|BindingFlags.NonPublic);
+                if(evicted)
+                {
+                    var error=Assert.Throws<TargetInvocationException>(()=>collect.Invoke(null,new[]{trial}));
+                    Assert.IsInstanceOf<InvalidOperationException>(error.InnerException);
+                    Assert.Zero(result.Damage,"A surviving collision cannot substitute for the evicted cursor.");
+                    return;
+                }
+                collect.Invoke(null,new[]{trial});
+                Assert.AreEqual(7,result.Damage,"A display-id collision must not replay earlier damage.");
+                Assert.AreEqual(33,result.MinHp);
+                collect.Invoke(null,new[]{trial});Assert.AreEqual(7,result.Damage,"No new records means no new damage.");
+            }
+            finally
+            {
+                saved.CopyTo(buffer,0);for(int i=0;i<fields.Length;i++)fields[i].SetValue(null,values[i]);
+            }
+        }
+
     }
 }

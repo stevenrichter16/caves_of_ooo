@@ -347,6 +347,12 @@ namespace CavesOfOoo.Core
 
                     if (!actor.FireEventAndRelease(beginTakeAction))
                     {
+                        // Distinguish a real pre-action veto from an ordinary
+                        // paid input. Native clock evidence joins this witness
+                        // to this actor's preceding Begin and following End.
+                        if (Diag.IsChannelEnabled(beginChannel))
+                            Diag.Record(beginChannel, "ActionBlocked", actor: actor,
+                                payload: new { phase = "BeginTakeAction" });
                         EndTurn(actor, actorZone);
                         if (actor.HasTag("Player"))
                             playerAlreadyBlocked = true;

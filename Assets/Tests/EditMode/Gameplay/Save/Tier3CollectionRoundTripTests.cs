@@ -191,16 +191,9 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_RoundTripEntityWithBodies_DoesNotInvokeOnAfterLoad_OnPrimary()
         {
-            // ADVERSARIAL: with the WithBodies helper, the primary
-            // entity's OnAfterLoad is NOT called (primary isn't in
-            // SaveReader._loadedEntities). For SkillsPart this means
-            // the loaded SkillList is whatever reflection wrote — which
-            // is a parallel BaseSkillPart instance, NOT the same one in
-            // ParentEntity.Parts.
-            //
-            // This test pins that the WithBodies helper is INSUFFICIENT
-            // for SkillsPart — and that the ViaTokenGraph helper IS the
-            // correct one for OnAfterLoad-dependent Parts.
+            // This low-level helper bypasses primary OnAfterLoad. The authoritative
+            // skill Part survives, but its nonserialized index is rebuilt only
+            // by the hook. The token-graph helper covers normal loaded sessions.
             var entity = new Entity { ID = "actor4", BlueprintName = "TestActor" };
             entity.AddPart(new SkillsPart());
             var skills = entity.GetPart<SkillsPart>();
@@ -210,27 +203,15 @@ namespace CavesOfOoo.Tests
             var loadedSkills = loaded.GetPart<SkillsPart>();
 
             Assert.IsNotNull(loadedSkills, "SkillsPart itself round-trips.");
-            Assert.AreEqual(1, loadedSkills.SkillList.Count,
-                "SkillList still has 1 entry — but it's a duplicate, "
-                + "not the same instance as in ParentEntity.Parts.");
-
-            // The crucial divergence: SkillList[0] is a SEPARATE
-            // BaseSkillPart instance from any in loaded.Parts. Without
-            // OnAfterLoad, identity is divergent.
-            bool foundOnEntity = false;
-            for (int i = 0; i < loaded.Parts.Count; i++)
-            {
-                if (System.Object.ReferenceEquals(loaded.Parts[i], loadedSkills.SkillList[0]))
-                {
-                    foundOnEntity = true;
-                    break;
-                }
-            }
-            Assert.IsFalse(foundOnEntity,
-                "Without OnAfterLoad on the primary, SkillList[0] is "
-                + "NOT the same instance as any Part in loaded.Parts. "
-                + "This is the contract that justifies the existence "
-                + "of RoundTripEntityViaTokenGraph.");
+            Assert.IsNotNull(loadedSkills.SkillList);
+            Assert.IsEmpty(loadedSkills.SkillList, "The nonserialized index needs OnAfterLoad.");
+            var authoritative = loaded.GetPart<AcrobaticsSkill>();
+            Assert.IsNotNull(authoritative);
+            Assert.AreSame(loaded, authoritative.ParentEntity);
+            loadedSkills.OnAfterLoad(null);
+            Assert.AreEqual(1, loadedSkills.SkillList.Count);
+            Assert.AreSame(authoritative, loadedSkills.SkillList[0],
+                "Rebuilding indexes the authoritative Part without creating a duplicate.");
         }
 
         // ── F. Multi-skill round-trip ───────────────────────────────────
@@ -238,10 +219,8 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_SkillsPart_MultipleSkills_AllRoundTrip()
         {
-            // List-order contract: skills are added in a specific order
-            // and that order must round-trip. (SkillsPart's AddSkill
-            // appends to SkillList; SaveSystem.cs:WriteFieldValue IList
-            // path writes in index order.)
+            // Skill order follows authoritative Part order; OnAfterLoad rebuilds
+            // the nonserialized index in that order.
             //
             // Note: AddSkill rejects duplicates of the same type; for
             // this test we use distinct subtypes via 3 different

@@ -75,7 +75,7 @@ namespace CavesOfOoo.Tests
         public void InitialCheckpointUsesValidatedPreUpdateSelection(bool empty,int expected)
         {using(var f=new HotbarSaveFixture()){var state=empty?HotbarSaveFixture.MakeState(-1):HotbarSaveFixture.MakeState(-1,5,9);f.BindOld(state);SaveGameService.RegisterRuntime(f.Capture,f.Bootstrap.ApplyLoadedGame,state.GameID);Assert.IsTrue(SaveGameService.BeginNewGame());f.Restore(9);Assert.IsTrue(SaveGameService.QuickLoad());Assert.AreEqual(expected,f.Selected);Assert.AreEqual(expected,f.Rendered);Assert.AreEqual(17,f.Input.TurnManager.TickCount);}}
         [Test]
-        public void RepeatedV7CaptureLoadCaptureRetainsSelectedSlotAndAliases()
-        {using(var f=new HotbarSaveFixture()){f.BindOld(HotbarSaveFixture.MakeState(9,5,9));for(int i=0;i<3;i++){var loaded=HotbarSaveFixture.RoundTrip(f.Capture());f.Bootstrap.ApplyLoadedGame(loaded);Assert.AreEqual(7,loaded.SaveVersion);Assert.AreEqual(9,f.Selected);Assert.AreEqual(9,f.Rendered);Assert.AreEqual(9,f.Capture().SelectedHotbarSlot);Assert.AreSame(loaded.Player,f.Input.TurnManager.CurrentActor);}}}
+        public void RepeatedCurrentCaptureLoadCaptureRetainsSelectedSlotAndAliases()
+        {using(var f=new HotbarSaveFixture()){f.BindOld(HotbarSaveFixture.MakeState(9,5,9));for(int i=0;i<3;i++){var loaded=HotbarSaveFixture.RoundTrip(f.Capture());f.Bootstrap.ApplyLoadedGame(loaded);Assert.AreEqual(SaveWriter.FormatVersion,loaded.SaveVersion);Assert.AreEqual(9,f.Selected);Assert.AreEqual(9,f.Rendered);Assert.AreEqual(9,f.Capture().SelectedHotbarSlot);Assert.AreSame(loaded.Player,f.Input.TurnManager.CurrentActor);}}}
     }
 }

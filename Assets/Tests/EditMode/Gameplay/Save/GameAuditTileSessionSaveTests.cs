@@ -130,11 +130,11 @@ namespace CavesOfOoo.Tests
         public void NullManagerSessionRemainsValid()
         {using(var f=new DecodeIsolationFixture(aura:false)){f.Saved.ZoneManager=null;f.Saved.ActiveZoneID=null;var copy=Round(f);Assert.IsNull(copy.ZoneManager);Assert.AreEqual(f.Saved.Player.ID,copy.Player.ID);}}
         [Test]
-        public void ExactLegacyV7SessionLoadsWithoutConjuringTileSnapshot()
-        {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));var old=LegacyBytes(f.Saved);Assert.AreEqual(7,BitConverter.ToInt32(old,4));var copy=DecodeIsolationFixture.Decode(old);Assert.AreEqual(f.Saved.Player.ID,copy.Player.ID);Assert.AreEqual(0,Active(copy).TileState.WrittenCount);}}
+        public void CurrentSessionWithoutOptionalTileSnapshotLoadsWithoutConjuringOne()
+        {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));var bytes=CurrentBytesWithoutTileSnapshot(f.Saved);Assert.AreEqual(SaveWriter.FormatVersion,BitConverter.ToInt32(bytes,4));var copy=DecodeIsolationFixture.Decode(bytes);Assert.AreEqual(f.Saved.Player.ID,copy.Player.ID);Assert.AreEqual(0,Active(copy).TileState.WrittenCount);}}
         [TestCase(false)][TestCase(true)]
-        public void PermittedBytesAfterFinalEndRemainUnread(bool legacy)
-        {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));byte[] bytes=legacy?LegacyBytes(f.Saved):f.EncodeSaved();using(var stream=new MemoryStream(bytes.Concat(new byte[]{9,8,7,6,5}).ToArray())){var copy=GameSessionState.Load(new SaveReader(stream,null));Assert.AreEqual(bytes.Length,stream.Position);Assert.AreEqual(f.Saved.Player.ID,copy.Player.ID);if(!legacy)EqualTiles(Active(f.Saved),Active(copy));}}}
+        public void PermittedBytesAfterFinalEndRemainUnread(bool omitTileSnapshot)
+        {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));byte[] bytes=omitTileSnapshot?CurrentBytesWithoutTileSnapshot(f.Saved):f.EncodeSaved();using(var stream=new MemoryStream(bytes.Concat(new byte[]{9,8,7,6,5}).ToArray())){var copy=GameSessionState.Load(new SaveReader(stream,null));Assert.AreEqual(bytes.Length,stream.Position);Assert.AreEqual(f.Saved.Player.ID,copy.Player.ID);if(!omitTileSnapshot)EqualTiles(Active(f.Saved),Active(copy));}}}
         [Test]
         public void NonseekableStreamLoadsTileStateWithoutLengthPositionOrSeek()
         {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));using(var stream=new NonseekStream(f.EncodeSaved()))EqualTiles(Active(f.Saved),Active(GameSessionState.Load(new SaveReader(stream,null))));}}
@@ -143,10 +143,10 @@ namespace CavesOfOoo.Tests
         {using(var f=new DecodeIsolationFixture(aura:false)){var live=Active(f.Live);live.TileState.WriteCoating(5,6,"water",ZoneTileState.Permanent);Assert.IsTrue(SaveGameService.QuickSave());live.TileState.Clear(5,6);Assert.IsTrue(SaveGameService.QuickLoad());Assert.AreEqual(1,f.ApplyCalls);Assert.AreEqual(ZoneTileState.Permanent,Active(f.Applied).TileState.CoatingTurns(5,6,"water"));Assert.IsNull(live.TileState.Get(5,6));}}
         [TestCase(1)][TestCase(2)][TestCase(3)]
         public void TruncatedOptionalSectionMarkerRejectsBeforePublishing(int count)
-        {using(var f=new DecodeIsolationFixture(aura:false,observers:true)){var bytes=LegacyBytes(f.Saved,false).Concat(CheckBytes(Begin).Take(count)).ToArray();Assert.Catch(()=>DecodeIsolationFixture.Decode(bytes));f.AssertLiveUnchanged();CollectionAssert.IsEmpty(DecodeObservationPart.Hooks);}}
+        {using(var f=new DecodeIsolationFixture(aura:false,observers:true)){var bytes=CurrentBytesWithoutTileSnapshot(f.Saved,false).Concat(CheckBytes(Begin).Take(count)).ToArray();Assert.Catch(()=>DecodeIsolationFixture.Decode(bytes));f.AssertLiveUnchanged();CollectionAssert.IsEmpty(DecodeObservationPart.Hooks);}}
         [Test]
         public void UnsupportedOptionalSectionVersionRejectsBeforePublishing()
-        {using(var f=new DecodeIsolationFixture(aura:false,observers:true)){using(var stream=new MemoryStream()){byte[] prefix=LegacyBytes(f.Saved,false);stream.Write(prefix,0,prefix.Length);var w=new SaveWriter(stream);w.WriteCheck(Begin);w.Write(int.MaxValue);w.WriteCheck(End);w.WriteCheck("GameSession.End");Assert.Catch(()=>DecodeIsolationFixture.Decode(stream.ToArray()));f.AssertLiveUnchanged();CollectionAssert.IsEmpty(DecodeObservationPart.Hooks);}}}
+        {using(var f=new DecodeIsolationFixture(aura:false,observers:true)){using(var stream=new MemoryStream()){byte[] prefix=CurrentBytesWithoutTileSnapshot(f.Saved,false);stream.Write(prefix,0,prefix.Length);var w=new SaveWriter(stream);w.WriteCheck(Begin);w.Write(int.MaxValue);w.WriteCheck(End);w.WriteCheck("GameSession.End");Assert.Catch(()=>DecodeIsolationFixture.Decode(stream.ToArray()));f.AssertLiveUnchanged();CollectionAssert.IsEmpty(DecodeObservationPart.Hooks);}}}
         [Test]
         public void CorruptExtendedFooterStillRejectsBeforeHooksAndCanRetryValidBytes()
         {using(var f=new DecodeIsolationFixture(aura:false,observers:true)){Rich(Active(f.Saved));var bytes=f.EncodeSaved();var bad=(byte[])bytes.Clone();bad[bad.Length-1]^=0xff;Assert.Catch(()=>DecodeIsolationFixture.Decode(bad));f.AssertLiveUnchanged();CollectionAssert.IsEmpty(DecodeObservationPart.Hooks);EqualTiles(Active(f.Saved),Active(DecodeIsolationFixture.Decode(bytes)));}}
@@ -157,9 +157,10 @@ namespace CavesOfOoo.Tests
         public void StandaloneManagerGraphFormatDeliberatelyRemainsWithoutTileExtension()
         {using(var f=new DecodeIsolationFixture(aura:false)){Rich(Active(f.Saved));using(var stream=new MemoryStream()){var w=new SaveWriter(stream);SaveGraphSerializer.SaveOverworldZoneManager(f.Saved.ZoneManager,w);w.WriteQueuedEntityBodies();stream.Position=0;var r=new SaveReader(stream,null);var copy=SaveGraphSerializer.LoadOverworldZoneManager(r);r.ReadEntityBodies();Assert.AreEqual(0,copy.ActiveZone.TileState.WrittenCount);Assert.AreEqual(f.Saved.Player.ID,copy.ActiveZone.GetCell(3,4).Objects.Single().ID);}}}
 
-        // Exact pre-extension writer. This is a compatibility fixture, not production serialization.
-        // It must remain fixed to the source-verified v7 prefix, so tests really exercise old files.
-        internal static byte[] LegacyBytes(GameSessionState s,bool footer=true)
+        // Current schema prefix with the optional tile snapshot omitted. The tile
+        // corruption fixtures append their own section; this must retain the current
+        // header so they exercise tile parsing rather than fail at version rejection.
+        internal static byte[] CurrentBytesWithoutTileSnapshot(GameSessionState s,bool footer=true)
         {
             using(var stream=new MemoryStream())
             {

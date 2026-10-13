@@ -268,7 +268,8 @@ namespace CavesOfOoo.Tests
                     count++;
                 }
             }
-            Assert.AreEqual(49, count, "content coverage is tied to actual registered castable classes");
+            // Includes the registered Caustic Trail and Caustic Draw corrosion actives.
+            Assert.AreEqual(51, count, "content coverage is tied to actual registered castable classes");
             SkillRegistry.ResetForTests();
         }
 

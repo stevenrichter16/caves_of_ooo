@@ -45,7 +45,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Directory.CreateDirectory(path);
             File.WriteAllText(Path.Combine(path,"report.json"),JsonConvert.SerializeObject(new{runId=RunId,complete=Cases==ExpectedCases&&Failures==0,cases=Cases,failures=Failures,
                 fixture="Six purchased SP. All attributes18, HP40, ordinary LongSword/Buckler/LeatherArmor, two real tonics. Physical Vault manual is supplied in its arm. Controlled maps and personally hostile authored creatures. World entity omitted; material/coating decay retained. No forced combat rolls. Seeds1..32; action limit60.",
-                policy="Heal at14, retreat at8 without supplies. Walk off visible commitment unless holding the doorway. Jet Blast interrupts commitments or an adjacent threat; guard adjacent threat; Lunge at2; Tumble out of threatened lane; Vault at2 or toward retreat; ordinary melee/approach. Shared policies are fixed, not optimal.",
+                policy="Heal at14, retreat at8 without supplies. Walk off visible commitment unless holding the doorway. Jet Blast interrupts commitments or an adjacent threat; guard adjacent threat; Lunge at2; Tumble swaps past adjacent melee toward a visible caster, or out of a threatened lane; Vault at2 or toward retreat; ordinary melee/approach. Shared policies are fixed, not optimal.",
                 cannotVerify="Natural discovery, novice comprehension, optimal strategy, general balance, real expedition performance or enjoyment. Cap arms change only the spent gate. Initial seeds paired; draw streams diverge after different decisions.",Audit,Observations,Trials},Formatting.Indented));
         }
         void RunCase(EntityFactory factory,Profile p,Encounter e,bool vault,bool uncapped,int speed,string experiment)
@@ -155,7 +155,10 @@ namespace CavesOfOoo.Scenarios.Custom
         static void Collect(Trial t)
         {
             var records=Diag.Snapshot(Diag.BufferCapacity);int start=0;
-            if(t.LastTrace!=null){while(start<records.Count&&records[start].TraceId!=t.LastTrace)start++;Require(start<records.Count,"diagnostic ring overrun");start++;}
+            // Display IDs contain only eight random hex digits. Snapshots retain
+            // each record's string object, so use in-process reference identity:
+            // a coincidental equal display ID cannot replay damage or mask overrun.
+            if(t.LastTrace!=null){while(start<records.Count&&!ReferenceEquals(records[start].TraceId,t.LastTrace))start++;Require(start<records.Count,"diagnostic ring overrun");start++;}
             for(int i=start;i<records.Count;i++)
             {
                 var e=records[i];var r=t.Result;

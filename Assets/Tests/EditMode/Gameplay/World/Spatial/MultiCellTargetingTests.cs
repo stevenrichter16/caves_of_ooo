@@ -167,7 +167,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(target, 8, 10);
             var method = typeof(Entity).Assembly.GetType("CavesOfOoo.Core.RiteTargeting")
                 .GetMethod("FirstCreatureInLine", BindingFlags.Static | BindingFlags.NonPublic);
-            var hit = method.Invoke(null, new object[] { zone, null, 5, 11, 1, 0, 8 });
+            var hit = method.Invoke(null, new object[] { zone, null, 5, 11, 1, 0, 8, true, false });
             Assert.AreSame(footprint ? target : null, hit);
         }
 

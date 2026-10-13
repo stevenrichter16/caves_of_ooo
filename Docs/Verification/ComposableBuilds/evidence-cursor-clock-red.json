@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "id": "2",
+    "testcasecount": "57",
+    "result": "Failed(Child)",
+    "total": "57",
+    "passed": "51",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-13 05:34:33Z",
+    "end-time": "2026-10-13 05:34:40Z",
+    "duration": "7.3996044"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.ComposableComparisonAdversarialTests.DiagnosticCursorCannotReplayDamageWhenShortTraceIdsCollide(True)",
+      "message": "  A display-id collision must not replay earlier damage.\n  Expected: 7\n  But was:  43\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCampaignNativeEvidenceTests.ExtraPaidTurnNeedsExactlyOneOrderedBeginVetoWitness(\"missing-end\")",
+      "message": "  A balanced energy equation alone is not evidence of a legitimate skipped turn.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCampaignNativeEvidenceTests.SchedulerRecordsActualBeginVetoBetweenItsOwnedBoundaries(True)",
+      "message": "  Expected is <System.String[3]>, actual is <System.Linq.Enumerable+SelectArrayIterator`2[CavesOfOoo.Diagnostics.Diag+Entry,System.String]>\n  Values differ at index [1]\n  Expected string length 13 but was 3. Strings differ at index 0.\n  Expected: \"ActionBlocked\"\n  But was:  \"End\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCampaignNativeEvidenceTests.SecondOrdinaryEndCannotMasqueradeAsAnAutomaticBlockedTurn",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCampaignNativeEvidenceTests.WitnessedBeginVetoesExplainExtraPaidTurnsWithoutRelaxingEnergy(\"local\",2)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCampaignNativeEvidenceTests.WitnessedBeginVetoesExplainExtraPaidTurnsWithoutRelaxingEnergy(\"map\",2)",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

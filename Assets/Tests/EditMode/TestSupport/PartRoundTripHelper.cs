@@ -121,9 +121,7 @@ namespace CavesOfOoo.Tests
         /// <para>Use this for SL.4+ tests where a Part's correctness
         /// depends on the load-hook (e.g. <c>SkillsPart.OnAfterLoad</c>
         /// rebuilds <c>SkillList</c> from <c>ParentEntity.Parts</c>;
-        /// without OnAfterLoad the SkillList holds a parallel set of
-        /// reflection-deserialized BaseSkillPart instances that don't
-        /// match the entity's own Parts list).</para>
+        /// without OnAfterLoad the nonserialized SkillList remains empty).</para>
         ///
         /// <para>Contrast with <see cref="RoundTripEntityWithBodies"/>:
         /// the previous helper calls <c>LoadEntityBody</c> directly on

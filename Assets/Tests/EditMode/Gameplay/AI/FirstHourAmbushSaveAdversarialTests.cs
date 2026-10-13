@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
@@ -65,38 +66,29 @@ namespace CavesOfOoo.Tests
                 f.Turn();Assert.AreEqual(1,Sleeps(f.Brain));f.RoundTrip();f.Turn();Assert.AreEqual(1,Sleeps(f.Brain));
             }
         }
-        [TestCase("AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn",true)]
-        [TestCase("FullyAwakeRoundTripNeverSilentlyRearms",false)]
-        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__AmbushBandit__",true)]
-        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__SleepingTroll__",true)]
-        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__MimicChest__",true)]
-        public void ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(string key,bool sleeping)
-        {
-            using(var scope=new HotbarSaveFixture(false,false))
-            {
-                var state=FirstHourAmbushLegacyBytes.Load(key);var actor=state.ZoneManager.ActiveZone.GetAllEntities().Single(e=>e.HasPart<AIAmbushPart>());var brain=actor.GetPart<BrainPart>();
-                Assert.AreEqual(sleeping?1:0,Sleeps(brain));
-                for(int i=0;i<3;i++){actor.FireEvent(GameEvent.New("TakeTurn"));Assert.AreEqual(sleeping?1:0,Sleeps(brain));}
-                var loaded=HotbarSaveFixture.RoundTrip(state);actor=loaded.ZoneManager.ActiveZone.GetAllEntities().Single(e=>e.ID==actor.ID);brain=actor.GetPart<BrainPart>();actor.FireEvent(GameEvent.New("TakeTurn"));Assert.AreEqual(sleeping?1:0,Sleeps(brain));
-            }
-        }
+        // These archived synthetic sessions are genuinely v7 bytes. The user's
+        // legacy-save waiver makes strict rejection the supported contract; the
+        // current-format lifecycle and round-trip controls above remain unchanged.
+        [TestCase("AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn")]
+        [TestCase("FullyAwakeRoundTripNeverSilentlyRearms")]
+        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__AmbushBandit__")]
+        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__SleepingTroll__")]
+        [TestCase("ExistingAmbusherRetainsItsSingleSavedSleep__MimicChest__")]
         [TestCase("PendingExplicitWakeSurvivesBeforeNextStackCleanup")]
         [TestCase("DamageBetweenLastSleepTickAndSaveStillWakesAfterLoad")]
-        public void LegacyUnwrittenPendingStateCannotBeRecoveredButCurrentDamageStillWakes(string key)
+        [TestCase("OrdinaryViperDoesNotGainAnAmbushPartOrGoalOnSaveLoad")]
+        public void ArchivedV7AmbushSessionsRejectBeforeReplacingCurrentActors(string key)
         {
             using(var scope=new HotbarSaveFixture(false,false))
             {
-                var state=FirstHourAmbushLegacyBytes.Load(key);var actor=state.ZoneManager.ActiveZone.GetAllEntities().Single(e=>e.HasPart<AIAmbushPart>());var sleep=actor.GetPart<BrainPart>().FindGoal<DormantGoal>();
-                Assert.False(sleep.Finished(),"The baseline never wrote its private pending-wake state.");
-                sleep.TakeAction();Assert.False(sleep.Finished(),"Legacy baseline begins at the first current HP sample.");actor.GetStat("Hitpoints").BaseValue--;sleep.TakeAction();Assert.True(sleep.Finished());
-            }
-        }
-        [Test] public void LegacyOrdinaryViperStaysOrdinary()
-        {
-            using(var scope=new HotbarSaveFixture(false,false))
-            {
-                var state=FirstHourAmbushLegacyBytes.Load("OrdinaryViperDoesNotGainAnAmbushPartOrGoalOnSaveLoad");var actor=state.ZoneManager.ActiveZone.GetAllEntities().Single(e=>e.BlueprintName=="Viper");
-                Assert.False(actor.HasPart<AIAmbushPart>());actor.FireEvent(GameEvent.New("TakeTurn"));Assert.AreEqual(0,Sleeps(actor.GetPart<BrainPart>()));
+                var turns=TurnManager.Active;
+                var actor=turns.CurrentActor;
+                var player=scope.Capture().Player;
+                var error=Assert.Throws<InvalidDataException>(()=>FirstHourAmbushLegacyBytes.Load(key));
+                Assert.AreEqual("Unsupported save format version 7.",error.Message);
+                Assert.AreSame(turns,TurnManager.Active);
+                Assert.AreSame(actor,TurnManager.Active.CurrentActor);
+                Assert.AreSame(player,scope.Capture().Player);
             }
         }
     }

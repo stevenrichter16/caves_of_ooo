@@ -64,7 +64,11 @@ namespace CavesOfOoo.Core
         static bool HasNatural(BodyPart part,Entity item)
         {
             if(item==null)return false;
-            if(part._DefaultBehavior==item && part.Equipped==null && !part.Abstract && !part.IsUnsupported())return true;
+            // Match GatherMeleeWeapons: a non-melee item still permits this hand's
+            // natural fallback; supporting slots of a multi-slot item do not.
+            if(part._DefaultBehavior==item && part.FirstSlotForDefaultBehavior
+                && (part.Equipped==null || (part.FirstSlotForEquipped && part.Equipped.GetPart<MeleeWeaponPart>()==null))
+                && !part.Abstract && !part.IsUnsupported())return true;
             if(part.Parts!=null)foreach(var child in part.Parts)if(HasNatural(child,item))return true;
             return false;
         }

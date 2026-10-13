@@ -1,0 +1,151 @@
+{
+  "source": "Native Unity NUnit XML; connector startup timeout did not prevent this completed run",
+  "summary": {
+    "id": "2",
+    "testcasecount": "7159",
+    "result": "Failed(Child)",
+    "total": "7159",
+    "passed": "7132",
+    "failed": "26",
+    "inconclusive": "0",
+    "skipped": "1",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-13 04:56:53Z",
+    "end-time": "2026-10-13 05:18:23Z",
+    "duration": "1290.2324474"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn\",True)",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming (System.String key, System.Boolean sleeping) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:77 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"FullyAwakeRoundTripNeverSilentlyRearms\",False)",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming (System.String key, System.Boolean sleeping) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:77 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__AmbushBandit__\",True)",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming (System.String key, System.Boolean sleeping) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:77 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__SleepingTroll__\",True)",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming (System.String key, System.Boolean sleeping) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:77 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__MimicChest__\",True)",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming (System.String key, System.Boolean sleeping) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:77 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyOrdinaryViperStaysOrdinary",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyOrdinaryViperStaysOrdinary () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:98 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyUnwrittenPendingStateCannotBeRecoveredButCurrentDamageStillWakes(\"PendingExplicitWakeSurvivesBeforeNextStackCleanup\")",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyUnwrittenPendingStateCannotBeRecoveredButCurrentDamageStillWakes (System.String key) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:89 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyUnwrittenPendingStateCannotBeRecoveredButCurrentDamageStillWakes(\"DamageBetweenLastSleepTickAndSaveStillWakesAfterLoad\")",
+      "message": "System.IO.InvalidDataException : Unsupported save format version 7.",
+      "stack": "  at CavesOfOoo.Core.SaveReader.ReadHeader () [0x00040] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:171 \n  at CavesOfOoo.Core.GameSessionState.Load (CavesOfOoo.Core.SaveReader reader) [0x00000] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Save/SaveSystem.cs:390 \n  at CavesOfOoo.Tests.FirstHourAmbushLegacyBytes.Load (System.String name) [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs:69 \n  at CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.LegacyUnwrittenPendingStateCannotBeRecoveredButCurrentDamageStillWakes (System.String key) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs:89 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RepeatedV7CaptureLoadCaptureRetainsSelectedSlotAndAliases",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RepeatedV7CaptureLoadCaptureRetainsSelectedSlotAndAliases () [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/GameAuditHotbarSelectionAdversarialTests.cs:79\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(null)",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(\"\")",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(\"42\")",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(\"custom:item/1\")",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(\"f72c8cc150b44a28a15bb5c56d40d806\")",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable(\" \")",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSplitIdentityTests.SupportedBodyLoadRepairsOnlyMissingIDsBeforeHooksAndIsStable (System.String id) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSplitIdentityTests.cs:64\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditTileSessionSaveTests.ExactLegacyV7SessionLoadsWithoutConjuringTileSnapshot",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditTileSessionSaveTests.ExactLegacyV7SessionLoadsWithoutConjuringTileSnapshot () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveTests.cs:134\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",False)",
+      "message": "  0:(6, 10) 1:(5, 11) 2:(5, 10) 3:(4, 11) 4:(5, 10) 5:(6, 11) 6:(5, 11) 7:(6, 11) 8:(5, 11) 9:(4, 12) 10:(4, 13) 11:(4, 14) 12:(4, 13) 13:(4, 12) 14:(4, 13) 15:(3, 13) 16:(2, 13) 17:(1, 13) 18:(1, 14) 19:(1, 15) 20:(0, 15) 21:(1, 16) 22:(0, 17) 23:(0, 16) 24:(1, 17) 25:(1, 16) 26:(0, 15) 27:(1, 15) 28:(2, 15) 29:(2, 16) 30:(1, 15)\n  Expected: 1\n  But was:  11\n",
+      "stack": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass (System.String bp, System.Boolean wide) [0x001e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:32\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",True)",
+      "message": "  0:(6, 10) 1:(5, 11) 2:(5, 10) 3:(4, 11) 4:(5, 10) 5:(6, 11) 6:(5, 11) 7:(6, 11) 8:(5, 11) 9:(4, 12) 10:(4, 13) 11:(4, 14) 12:(4, 13) 13:(4, 12) 14:(4, 13) 15:(3, 13) 16:(2, 13) 17:(1, 13) 18:(1, 14) 19:(1, 15) 20:(0, 15) 21:(1, 16) 22:(0, 17) 23:(0, 16) 24:(1, 17) 25:(1, 16) 26:(0, 15) 27:(1, 15) 28:(2, 15) 29:(2, 16) 30:(1, 15)\n  Expected: 1\n  But was:  11\n",
+      "stack": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass (System.String bp, System.Boolean wide) [0x001e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:32\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MultiCellSkillSelectorTests.ChargingStrike_AttacksFirstRemoteBodyAndStopsAtRealContact(False)",
+      "message": "  Expected: False\n  But was:  True\n",
+      "stack": "at CavesOfOoo.Tests.MultiCellSkillSelectorTests.ChargingStrike_AttacksFirstRemoteBodyAndStopsAtRealContact (System.Boolean body) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellSkillSelectorTests.cs:200\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MultiCellSkillSelectorTests.GlacialWall_DoesNotBuryCreatureBodyOutsideItsAnchor(False)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.MultiCellSkillSelectorTests.GlacialWall_DoesNotBuryCreatureBodyOutsideItsAnchor (System.Boolean body) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellSkillSelectorTests.cs:164\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MultiCellSkillSelectorTests.Rain_WatersOnePhysicalCropOwnerAndReportsOneOwnerPerCast(True)",
+      "message": "  Expected: 40\n  But was:  0\n",
+      "stack": "at CavesOfOoo.Tests.MultiCellSkillSelectorTests.Rain_WatersOnePhysicalCropOwnerAndReportsOneOwnerPerCast (System.Boolean body) [0x0006c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellSkillSelectorTests.cs:150\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MultiCellTargetingTests.RiteSeesCreatureEdgeWhileEmptyNeighborRemainsUntargeted(True)",
+      "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+      "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00040] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.MultiCellTargetingTests.RiteSeesCreatureEdgeWhileEmptyNeighborRemainsUntargeted (System.Boolean footprint) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellTargetingTests.cs:170 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.MultiCellTargetingTests.RiteSeesCreatureEdgeWhileEmptyNeighborRemainsUntargeted(False)",
+      "message": "System.Reflection.TargetParameterCountException : Number of parameters specified does not match the expected number.",
+      "stack": "  at System.Reflection.RuntimeMethodInfo.ConvertValues (System.Reflection.Binder binder, System.Object[] args, System.Reflection.ParameterInfo[] pinfo, System.Globalization.CultureInfo culture, System.Reflection.BindingFlags invokeAttr) [0x00016] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00040] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.MultiCellTargetingTests.RiteSeesCreatureEdgeWhileEmptyNeighborRemainsUntargeted (System.Boolean footprint) [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellTargetingTests.cs:170 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpellFxSequenceTests.EveryRegisteredMagicActiveUsesTheCaptureSpine",
+      "message": "  content coverage is tied to actual registered castable classes\n  Expected: 49\n  But was:  51\n",
+      "stack": "at CavesOfOoo.Tests.SpellFxSequenceTests.EveryRegisteredMagicActiveUsesTheCaptureSpine () [0x00135] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/SpellFxSequenceTests.cs:271\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StoryletSaveRoundTripTests.SaveWriter_FormatVersion_IsCurrentSchemaVersion",
+      "message": "  Expected: 7\n  But was:  8\n",
+      "stack": "at CavesOfOoo.Tests.StoryletSaveRoundTripTests.SaveWriter_FormatVersion_IsCurrentSchemaVersion () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Storylets/StoryletSaveRoundTripTests.cs:37\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Tier3CollectionRoundTripTests.Adversarial_RoundTripEntityWithBodies_DoesNotInvokeOnAfterLoad_OnPrimary",
+      "message": "  SkillList still has 1 entry \u2014 but it's a duplicate, not the same instance as in ParentEntity.Parts.\n  Expected: 1\n  But was:  0\n",
+      "stack": "at CavesOfOoo.Tests.Tier3CollectionRoundTripTests.Adversarial_RoundTripEntityWithBodies_DoesNotInvokeOnAfterLoad_OnPrimary () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/Tier3CollectionRoundTripTests.cs:213\n"
+    }
+  ]
+}
