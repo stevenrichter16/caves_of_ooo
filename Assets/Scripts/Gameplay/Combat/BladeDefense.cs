@@ -123,8 +123,18 @@ namespace CavesOfOoo.Core
             int roll=rng.Next(100);bool parried=roll<chance;
             if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"BladeDefense",actor:defender,target:attacker,
                 payload:new { chance,roll,guarded,parried,rank });
-            if(parried)MessageLog.Add(defender.GetDisplayName()+" parries "+attacker.GetDisplayName()+"'s strike.");
-            else if(guarded)MessageLog.Add(defender.GetDisplayName()+" catches part of the strike on a measured guard.");
+            if(parried || guarded)
+            {
+                string defenderName=defender.GetDisplayName();
+                bool playerDefender=string.Equals(defenderName,"you",StringComparison.OrdinalIgnoreCase);
+                if(parried)
+                {
+                    string attackerName=attacker.GetDisplayName();
+                    string possessive=string.Equals(attackerName,"you",StringComparison.OrdinalIgnoreCase)?"your":attackerName+"'s";
+                    MessageLog.Add(defenderName+(playerDefender?" parry ":" parries ")+possessive+" strike.");
+                }
+                else MessageLog.Add(defenderName+(playerDefender?" catch ":" catches ")+"part of the strike on a measured guard.");
+            }
             return parried;
         }
     }

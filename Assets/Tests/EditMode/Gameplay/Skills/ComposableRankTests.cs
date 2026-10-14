@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using CavesOfOoo.Core;
@@ -103,6 +104,88 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(()=>result=BuySkillAction.Execute(actor,"ThrowingRankSkill"));
             Assert.False(result.Succeeded);Assert.AreEqual(19,actor.GetStatValue("SP"));
             Assert.False(actor.GetPart<SkillsPart>().HasSkill("ThrowingRankSkill"));Assert.Null(actor.GetPart<ThrowingRankSkill>());
+        }
+        public sealed class DoublyThrowingRankSkill : BaseSkillPart
+        {
+            public static int RemovalAttempts;
+            public override bool AddSkill(Entity owner)
+            {
+                StatShifter.SetStatShift("DV", 2);
+                return true;
+            }
+            public override ActivatedAbilitySpec DeclareActivatedAbility(Entity owner)
+                => throw new InvalidOperationException("acquisition failed");
+            public override bool RemoveSkill(Entity owner)
+            {
+                RemovalAttempts++;
+                throw new InvalidOperationException("teardown also failed");
+            }
+        }
+        [Test] public void ThrowingAcquisitionAndTeardown_ReturnsFailureAndAllowsLaterPurchase()
+        {
+            // Hypothesis: a failing cleanup callback must not escape the purchase
+            // transaction or leave its stat effect or transient purchase gate behind.
+            SkillRegistry.InitializeFromJson(@"{""Skills"":[{""Class"":""DoublyThrowingRankSkill"",""Cost"":1},{""Class"":""LongBladesSkill"",""Cost"":1}]}");
+            actor.Statistics["DV"]=new Stat{Owner=actor,Name="DV",BaseValue=0};
+            DoublyThrowingRankSkill.RemovalAttempts=0;
+            BuySkillAction.Result result=null;
+            Assert.DoesNotThrow(()=>result=BuySkillAction.Execute(actor,"DoublyThrowingRankSkill"));
+            Assert.False(result.Succeeded);
+            Assert.AreEqual(BuySkillAction.FailureReason.SetupFailed,result.Reason);
+            Assert.AreEqual(0,result.CostPaid);
+            Assert.AreEqual(19,actor.GetStatValue("SP"));
+            Assert.AreEqual(0,actor.GetStatValue("DV"));
+            Assert.AreEqual(1,DoublyThrowingRankSkill.RemovalAttempts);
+            Assert.Null(actor.GetPart<DoublyThrowingRankSkill>());
+            Assert.False(actor.GetPart<SkillsPart>().HasSkill("DoublyThrowingRankSkill"));
+            Assert.AreEqual(0,actor.GetPart<ActivatedAbilitiesPart>().AbilityByGuid.Count);
+            Assert.True(BuySkillAction.Execute(actor,"LongBladesSkill").Succeeded);
+            Assert.AreEqual(18,actor.GetStatValue("SP"));
+        }
+        public sealed class RankLoadProbePart : Part
+        {
+            public static int LoadCalls;
+            public override void OnAfterLoad(SaveReader reader) => LoadCalls++;
+        }
+        [TestCase(true)] [TestCase(false)]
+        public void SessionDecode_RejectsDuplicateSkillClassesBeforePublication_ButAllowsDistinctClasses(bool duplicate)
+        {
+            // Both ranks are independently valid. Only the duplicate class makes
+            // this graph malformed, and it must fail before reputation or hooks publish.
+            SkillRegistry.InitializeFromJson(@"{""Skills"":[{""Class"":""LongBladesSkill"",""Cost"":1,""Powers"":[{""Class"":""LongBlades_Deflect"",""Cost"":1,""MaxRank"":3},{""Class"":""LongBlades_Riposte"",""Cost"":1,""MaxRank"":3}]}]}");
+            var savedActor=new Entity{ID="saved-rank-owner"};
+            savedActor.AddPart(new RankLoadProbePart());
+            savedActor.AddPart(new SkillsPart());
+            savedActor.AddPart(new LongBlades_Deflect{Rank=1});
+            if(duplicate) savedActor.AddPart(new LongBlades_Deflect{Rank=2});
+            else savedActor.AddPart(new LongBlades_Riposte{Rank=2});
+            var originalReputation=new Dictionary<string,int>(PlayerReputation.GetAll());
+            try
+            {
+                PlayerReputation.Restore(new Dictionary<string,int>{{"RankAudit",17}});
+                using var stream=new MemoryStream();
+                GameSessionState.Capture("rank-audit","test",null,null,savedActor).Save(new SaveWriter(stream));
+                PlayerReputation.Restore(new Dictionary<string,int>{{"RankAudit",91}});
+                RankLoadProbePart.LoadCalls=0;
+                stream.Position=0;
+                var reader=new SaveReader(stream,null);
+                if(duplicate)
+                {
+                    Assert.Throws<InvalidDataException>(()=>GameSessionState.Load(reader));
+                    Assert.AreEqual(91,PlayerReputation.GetAll()["RankAudit"]);
+                    Assert.AreEqual(0,RankLoadProbePart.LoadCalls);
+                }
+                else
+                {
+                    var loaded=GameSessionState.Load(reader);
+                    Assert.AreEqual(17,PlayerReputation.GetAll()["RankAudit"]);
+                    Assert.AreEqual(1,RankLoadProbePart.LoadCalls);
+                    Assert.AreEqual(2,loaded.Player.GetPart<SkillsPart>().SkillList.Count);
+                    Assert.AreEqual(1,loaded.Player.GetPart<SkillsPart>().GetRank("LongBlades_Deflect"));
+                    Assert.AreEqual(2,loaded.Player.GetPart<SkillsPart>().GetRank("LongBlades_Riposte"));
+                }
+            }
+            finally { PlayerReputation.Restore(originalReputation); }
         }
         [Test] public void InvalidRankMetadataIsRejectedAtIngestion()
         {

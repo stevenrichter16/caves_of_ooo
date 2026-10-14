@@ -45,3 +45,11 @@ Other build archives and model `.blend1` backups have been preserved. Python byt
 - 🔵 Generated visual evidence remains intentionally local and is not described as pushed source.
 - Checked archive members/hashes, incremental bundle prerequisites, package-lock consistency and Git whitespace. These preservation checks are separate from the En Garde UI fix's native tests.
 - En Garde display follow-up: `b132f039f`, 78/78 native Unity EditMode tests passed after eight expected RED failures. See `COMPOSABLE-BUILDS.md` for behavior and evidence; no combat balance changed.
+
+## Closed-editor cleanup follow-up
+
+After the user confirmed Unity was closed and the preservation commit `37f057319` matched fetched main, removed the ignored `Library` cache, six superseded diagnostic build directories and two incomplete `_to_delete/rc-bundle` chunks. Exact paths and byte counts: `Verification/StorageCleanup-2026-10-13/closed-editor-cleanup.json`. No tracked source, personal saves, current build, retained complete archives or unique frame captures were removed.
+
+Filesystem free space rose from **2,624,671,744 to 13,022,351,360 bytes** immediately after cleanup. Unity subsequently reopened through Hub and regenerated the necessary cache for native testing; free space at documentation time is **8,950,112,256 bytes**. The prior candidates table is historical: Library, listed diagnostic outputs and partial chunks have now been cleared.
+
+Managed archive requested for the clean `exploration-release` worktree. Tool returned queued; its 3.4 GiB is **not counted as reclaimed**. Other worktrees and source snapshots remain preserved.

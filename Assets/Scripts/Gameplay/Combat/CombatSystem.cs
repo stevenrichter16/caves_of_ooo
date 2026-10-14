@@ -632,9 +632,10 @@ namespace CavesOfOoo.Core
         /// <c>List&lt;WeaponSlot&gt;</c> per attack. Safe because combat is
         /// turn-serial: one <see cref="PerformBodyPartAwareAttack"/> call
         /// completes before the next begins. Caller must consume the
-        /// returned list before any nested combat call (none today). If a
-        /// future feature triggers nested melee resolution from inside an
-        /// attack, switch this to ArrayPool or gate re-entrance explicitly
+        /// returned list before any nested full multiweapon attack. Existing
+        /// selected-weapon counters call PerformSingleAttack without gathering
+        /// weapons. If a future callback nests full weapon gathering, switch
+        /// this to ArrayPool or gate re-entrance explicitly
         /// (mirrors the same pattern used by
         /// <c>MovementSystem._enteredCellScratch</c>).</para>
         /// </summary>

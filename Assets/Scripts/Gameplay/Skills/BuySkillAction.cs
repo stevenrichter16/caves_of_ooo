@@ -114,9 +114,16 @@ namespace CavesOfOoo.Skills
             }
             catch (System.Exception error)
             {
+                string detail=error.GetType().Name;
                 try { if(result.OldRank==0)skillsPart.RollbackAcquisition(skillClassName); }
+                catch (System.Exception cleanupError)
+                {
+                    // Rollback detaches in its finally block. A failing teardown
+                    // hook must still return a failed purchase and refund its cost.
+                    detail+="; cleanup: "+cleanupError.GetType().Name;
+                }
                 finally { spStat.BaseValue+=cost;result.SpAfter=spStat.BaseValue;result.CostPaid=0;result.NewRank=result.OldRank; }
-                return EmitAndReturn(actor,result,skillClassName,FailureReason.SetupFailed,error.GetType().Name);
+                return EmitAndReturn(actor,result,skillClassName,FailureReason.SetupFailed,detail);
             }
             finally { skillsPart.PurchaseInProgress=false; }
         }

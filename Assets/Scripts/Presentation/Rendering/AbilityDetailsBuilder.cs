@@ -67,13 +67,20 @@ namespace CavesOfOoo.Rendering
             bool guarded=guard!=null && !guard.Spent && guard.Duration>0;
             bool blade=BladeDefense.FindLongBlade(actor)!=null;
             bool blocked=actor.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true;
-            int passive=BladeDefense.DeflectChance(actor.GetPart<SkillsPart>()?.GetRank(nameof(LongBlades_Deflect))??0);
+            int rank=actor.GetPart<SkillsPart>()?.GetRank(nameof(LongBlades_Deflect))??0;
+            int passive=BladeDefense.DeflectChance(rank);
             int chance=passive+(guarded?BladeDefense.GuardBonus:0);
             text.Append("\n\nDefense now (guard ").Append(guarded?"active): ":"inactive): ")
                 .Append(!blade?"needs a held long blade.":blocked?"unable to react.":chance+"% parry on an eligible adjacent strike.");
             if(className==nameof(LongBlades_EnGarde))
                 text.Append("\nWhile guarding: ").Append(passive+BladeDefense.GuardBonus)
                     .Append("% parry (+").Append(BladeDefense.GuardBonus).Append(" points).");
+            else if(className==nameof(LongBlades_Deflect))
+            {
+                int previewRank=Math.Max(1,rank);
+                text.Append("\nWith Deflect rank ").Append(previewRank).Append(": ")
+                    .Append(BladeDefense.DeflectChance(previewRank)).Append("% parry (passive).");
+            }
             text.Append("\nGuard: ").Append(guarded?guard.Duration+" of your turns left; one eligible strike.":"inactive.");
             if(actor.GetPart<SkillsPart>()?.HasSkill(nameof(LongBlades_Riposte))==true)
                 text.Append("\nCounter allowance: ").Append(actor.GetPart<RiposteAllowancePart>()?.Spent==true?"spent until your turn completes.":"available.");

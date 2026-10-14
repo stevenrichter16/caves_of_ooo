@@ -102,5 +102,75 @@ namespace CavesOfOoo.Tests
             StringAssert.DoesNotContain("While guarding:",AbilityDetailsBuilder.BuildForSkill(actor,"LongBlades_Riposte"));
             StringAssert.DoesNotContain("guard inactive",AbilityDetailsBuilder.BuildForSkill(actor,"Axe_Decapitate"));
         }
+        [TestCase(0,0,15,false)] [TestCase(0,0,15,true)]
+        [TestCase(1,15,15,false)] [TestCase(1,15,15,true)]
+        [TestCase(2,22,22,false)] [TestCase(2,22,22,true)]
+        [TestCase(3,28,28,false)] [TestCase(3,28,28,true)]
+        public void DeflectSeparatesPassiveBenefitFromCurrentDefense(int rank,int current,int preview,bool guarding)
+        {
+            using(var f=new FiftySecondCombatFixture())
+            {
+                var reader=f.Actor(new LongBlades_EnGarde());
+                if(rank>0)
+                {
+                    var deflect=new LongBlades_Deflect();
+                    FiftySecondCombatFixture.Learn(reader,deflect);deflect.Rank=rank;
+                }
+                var guard=new EnGardeEffect();
+                if(guarding)Assert.True(reader.ApplyEffect(guard,reader,f.Zone));
+                int partCount=reader.Parts.Count;
+                string text=AbilityDetailsBuilder.BuildForSkill(reader,"LongBlades_Deflect");
+                int shownRank=rank==0?1:rank;
+                StringAssert.Contains("With Deflect rank "+shownRank+": "+preview+"% parry (passive).",text);
+                StringAssert.Contains("Defense now (guard "+(guarding?"active": "inactive")+"): "+(current+(guarding?30:0))+"%",text);
+                StringAssert.DoesNotContain("With Deflect rank "+shownRank+": "+(preview+30)+"%",text);
+                StringAssert.DoesNotContain("While guarding:",text);
+                Assert.AreEqual(rank,reader.GetPart<SkillsPart>().GetRank("LongBlades_Deflect"));
+                Assert.AreEqual(partCount,reader.Parts.Count,"Reading a future benefit cannot learn a skill.");
+                Assert.False(guard.Spent);Assert.AreEqual(2,guard.Duration);
+            }
+        }
+        [TestCase(true)] [TestCase(false)]
+        public void DeflectBenefitDoesNotHideCurrentWeaponOrActionRefusal(bool missingBlade)
+        {
+            using(var f=new FiftySecondCombatFixture())
+            {
+                var reader=f.Actor(new LongBlades_Deflect());
+                if(missingBlade)BladeDefense.FindLongBlade(reader).Attributes="Cudgel";
+                else Assert.True(reader.ApplyEffect(new StunnedEffect()));
+                string text=AbilityDetailsBuilder.BuildForSkill(reader,"LongBlades_Deflect");
+                StringAssert.Contains("With Deflect rank 1: 15% parry (passive).",text);
+                StringAssert.Contains("Defense now (guard inactive): "+
+                    (missingBlade?"needs a held long blade.":"unable to react."),text);
+                StringAssert.DoesNotContain("Defense now (guard inactive): 15%",text);
+            }
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void DeflectBenefitTracksPurchaseInManualAndOverviewWithoutAnActiveSlot(bool overview)
+        {
+            actor.GetPart<SkillsPart>().AddSkill(new LongBladesSkill());
+            var browser=new SkillBrowserModel();browser.Open(actor);browser.Overview=overview;
+            Assert.True(browser.SelectClass("LongBlades_Deflect"));
+            StringAssert.Contains("With Deflect rank 1: 15% parry (passive).",browser.Details);
+            Assert.True(browser.ReviewPurchase());browser.Cancel();
+            Assert.AreEqual(100,browser.Points);Assert.Zero(actor.GetPart<SkillsPart>().GetRank("LongBlades_Deflect"));
+            int[] chances={15,22,28};
+            for(int rank=1;rank<=3;rank++)
+            {
+                Assert.True(browser.ReviewPurchase());Assert.True(browser.ConfirmPurchase());
+                StringAssert.Contains("With Deflect rank "+rank+": "+chances[rank-1]+"% parry (passive).",browser.Details);
+                Assert.AreEqual(rank,browser.Selected.OwnedRank);
+                Assert.AreEqual(100-rank,browser.Points);Assert.AreEqual(overview,browser.Overview);
+                Assert.AreEqual("PASSIVE",browser.ActivationSummary);Assert.False(browser.CanAssign);
+                Assert.False(browser.Assign(0));Assert.Zero(actor.GetPart<ActivatedAbilitiesPart>().AbilityList.Count);
+            }
+            Assert.False(browser.ReviewPurchase());Assert.AreEqual(97,browser.Points);
+        }
+        [TestCase("LongBlades_Riposte")] [TestCase("LongBlades_EnGarde")] [TestCase("Axe_Decapitate")]
+        public void PassiveParryBenefitBelongsOnlyToDeflect(string className)
+        {
+            actor.GetPart<SkillsPart>().AddSkill(new LongBlades_Deflect());
+            StringAssert.DoesNotContain("With Deflect rank",AbilityDetailsBuilder.BuildForSkill(actor,className));
+        }
     }
 }

@@ -997,11 +997,17 @@ namespace CavesOfOoo.Core
 
             entity.Parts.Clear();
             int partCount = reader.ReadInt();
+            HashSet<Type> skillTypes = null;
             for (int i = 0; i < partCount; i++)
             {
                 Part part = LoadPart(reader);
                 if (part == null)
                     continue;
+                // The Part is the authoritative rank owner. Reject duplicates
+                // while decoding, before a session publishes globals or load hooks.
+                if (part is CavesOfOoo.Skills.BaseSkillPart
+                    && !(skillTypes ??= new HashSet<Type>()).Add(part.GetType()))
+                    throw new InvalidDataException("Duplicate saved skill: " + part.GetType().Name);
                 part.ParentEntity = entity;
                 entity.Parts.Add(part);
             }

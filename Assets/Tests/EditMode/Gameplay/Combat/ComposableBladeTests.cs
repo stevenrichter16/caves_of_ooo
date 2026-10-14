@@ -86,5 +86,24 @@ namespace CavesOfOoo.Tests
             Assert.True(f.Cast(attacker,skill,f.Zone.GetEntityCell(defender),rng:new Rolls()));
             Assert.IsEmpty(defender.GetPart<StatusEffectsPart>().GetAllEffects());
         }
+        [TestCase(true,false,true,"You parry the intruder's strike.")]
+        [TestCase(true,false,false,"You catch part of the strike on a measured guard.")]
+        [TestCase(false,true,true,"the watchman parries your strike.")]
+        [TestCase(false,true,false,"the watchman catches part of the strike on a measured guard.")]
+        [TestCase(false,false,true,"the watchman parries the intruder's strike.")]
+        [TestCase(false,false,false,"the watchman catches part of the strike on a measured guard.")]
+        public void DefenseNarrationUsesPlayerVerbsAndPossessives(bool playerDefender,bool playerAttacker,bool parries,string expected)
+        {
+            defender.GetPart<RenderPart>().DisplayName=playerDefender?"you":"the watchman";
+            attacker.GetPart<RenderPart>().DisplayName=playerAttacker?"you":"the intruder";
+            if(playerDefender)defender.SetTag("Player");
+            if(playerAttacker)attacker.SetTag("Player");
+            Assert.True(defender.ApplyEffect(new EnGardeEffect(),defender,f.Zone));
+            MessageLog.Clear();
+            var rng=new Rolls(parries?0:99);
+            Assert.AreEqual(parries,BladeDefense.TryParry(defender,attacker,f.Zone,rng,out bool guarded));
+            Assert.True(guarded);Assert.False(defender.HasEffect<EnGardeEffect>());Assert.AreEqual(1,rng.DefenseDraws);
+            Assert.AreEqual(expected,MessageLog.GetLast());
+        }
     }
 }
