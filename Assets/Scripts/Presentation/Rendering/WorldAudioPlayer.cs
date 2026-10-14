@@ -179,6 +179,7 @@ namespace CavesOfOoo.Rendering
             switch(cue)
             {
                 case WorldAudioCue.Swing:case WorldAudioCue.Hit:case WorldAudioCue.SwingBlade:
+                case WorldAudioCue.Parry:case WorldAudioCue.Guard:
                 case WorldAudioCue.SwingBlunt:case WorldAudioCue.SwingNatural:case WorldAudioCue.HitCutting:
                 case WorldAudioCue.HitPiercing:case WorldAudioCue.HitBlunt:case WorldAudioCue.HitNatural:break;
                 default:return false;

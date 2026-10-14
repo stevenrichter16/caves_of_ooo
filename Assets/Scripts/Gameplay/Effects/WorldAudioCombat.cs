@@ -17,13 +17,14 @@ namespace CavesOfOoo.Core
         {Attacker=attacker;Defender=defender;Zone=zone;Contact=contact;Family=family;TargetWasVisible=visible;}
     }
 
-    /// <summary>A swing has zero damage. An impact is emitted at the HP decrement, before death removes the owner.</summary>
+    /// <summary>Swings and defenses have zero damage. An impact is emitted at the HP decrement, before death removes the owner.</summary>
     public readonly struct WorldAudioCombatReceipt
     {
         public readonly WorldAudioCombatAttempt Attempt;
         public readonly WorldAudioCue Cue;
         public readonly int ActualDamage;
         public bool IsImpact=>ActualDamage>0;
+        public bool IsDefense=>Cue==WorldAudioCue.Parry||Cue==WorldAudioCue.Guard;
         internal WorldAudioCombatReceipt(WorldAudioCombatAttempt attempt,WorldAudioCue cue,int damage)
         {Attempt=attempt;Cue=cue;ActualDamage=damage;}
     }
@@ -67,6 +68,13 @@ namespace CavesOfOoo.Core
         /// <summary>Called only by the typed melee damage core after a positive actual HP decrement. Generic damage never supplies an attempt.</summary>
         public static void Impact(WorldAudioCombatAttempt attempt,int actualDamage)
         {if(attempt.IsValid&&actualDamage>0)Emit(new WorldAudioCombatReceipt(attempt,Hit(attempt.Family),actualDamage));}
+        /// <summary>One actual resolved defense, before riposte or guarded damage.
+        /// A successful guarded parry is only a parry; no fallback sound is layered on it.</summary>
+        public static void Defense(WorldAudioCombatAttempt attempt,bool parried,bool guarded)
+        {
+            if(attempt.IsValid&&(parried||guarded))
+                Emit(new WorldAudioCombatReceipt(attempt,parried?WorldAudioCue.Parry:WorldAudioCue.Guard,0));
+        }
         static void Emit(WorldAudioCombatReceipt receipt)
         {try{Callback?.Invoke(receipt);}catch(Exception){/* Optional audio cannot alter an already committed action. */}}
         static WorldAudioCue Swing(WorldAudioCombatFamily family)

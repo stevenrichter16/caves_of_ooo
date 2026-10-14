@@ -171,7 +171,8 @@ namespace CavesOfOoo.Tests
             var combat = new HashSet<WorldAudioCue> {
                 WorldAudioCue.Swing, WorldAudioCue.Hit, WorldAudioCue.SwingBlade,
                 WorldAudioCue.SwingBlunt, WorldAudioCue.SwingNatural, WorldAudioCue.HitCutting,
-                WorldAudioCue.HitPiercing, WorldAudioCue.HitBlunt, WorldAudioCue.HitNatural };
+                WorldAudioCue.HitPiercing, WorldAudioCue.HitBlunt, WorldAudioCue.HitNatural,
+                WorldAudioCue.Parry, WorldAudioCue.Guard };
             foreach (WorldAudioCue cue in Enum.GetValues(typeof(WorldAudioCue)))
                 if (!combat.Contains(cue)) Assert.False(audio.TryPlayCombat(cue), cue.ToString());
             Assert.False(audio.TryPlayCombat((WorldAudioCue)(-1)));
@@ -180,7 +181,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, audio.CombatFocusCount);
             Mix(1f);
             foreach (var cue in combat) Assert.True(audio.TryPlayCombat(cue), cue.ToString());
-            Assert.AreEqual(9, audio.CombatFocusCount);
+            Assert.AreEqual(11, audio.CombatFocusCount);
         }
 
         [Test] public void MissingClipDisposedPlayerAndDestroyedAudioGraphCannotFocus()

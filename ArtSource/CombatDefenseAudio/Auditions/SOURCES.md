@@ -25,4 +25,4 @@ Parry 1–2 and Guard 1/3 are wholly original deterministic procedural synthesis
 - `impact.3.ogg` from `impact_-_starninjas.zip` is used in Guard 2; `impact.6.ogg` in Guard 4.
 - Changes: normalization before processing (the decoded source can exceed 0 dBFS), leading silence trim, mono 48 kHz, 2300 Hz low-pass filtering, original body/metal layers, edge fades, explicit peak headroom, WAV and MP3 export. The source ZIP remains unmodified.
 
-Credits are retained although CC0 does not require attribution. These audition files are not yet included in the shipped game or its audio catalog.
+Credits are retained although CC0 does not require attribution. Parry 3 and Guard 4 were selected by the user on 2026-10-13. Their unchanged WAV masters now have runtime catalog bindings; the other candidates remain auditions. Runtime credits are also preserved in Assets/Resources/Audio/World/DEFENSE-CREDITS.txt.

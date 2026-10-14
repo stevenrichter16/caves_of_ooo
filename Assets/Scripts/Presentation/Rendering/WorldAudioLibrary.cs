@@ -56,7 +56,8 @@ namespace CavesOfOoo.Rendering
             var result=new WorldAudioLibrary();
             LoadCatalog(result,"Audio/World/catalog");LoadCatalog(result,"Audio/World/places-catalog");
             LoadCatalog(result,"Audio/World/atmospheric-catalog");LoadCatalog(result,"Audio/World/utility-catalog");
-            LoadCatalog(result,"Audio/World/regional-music-catalog");return result;
+            LoadCatalog(result,"Audio/World/regional-music-catalog");
+            LoadCatalog(result,"Audio/World/defense-catalog");return result;
         }
         static void LoadCatalog(WorldAudioLibrary result,string path)
         {

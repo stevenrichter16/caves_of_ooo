@@ -335,7 +335,9 @@ namespace CavesOfOoo.Core
                 return new MeleeStrikeResult(MeleeStrikeOutcome.NaturalMiss,provenance:provenance);
             }
 
-            if(BladeDefense.TryParry(defender,attacker,zone,rng,out bool guarded))
+            bool parried=BladeDefense.TryParry(defender,attacker,zone,rng,out bool guarded);
+            WorldAudioCombat.Defense(audioAttempt,parried,guarded);
+            if(parried)
             {
                 CavesOfOoo.Skills.LongBlades_Riposte.TryCounter(defender,attacker,zone,rng,provenance);
                 return new MeleeStrikeResult(MeleeStrikeOutcome.FullParry,provenance:provenance);

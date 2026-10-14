@@ -70,7 +70,8 @@ namespace CavesOfOoo.Rendering
                     ||attempt.Attacker.GetStatValue("Hitpoints",0)<=0
                     ||!Current(attempt.Defender,attempt.Zone,true,out var contact)
                     ||contact.X!=attempt.Contact.X||contact.Y!=attempt.Contact.Y)return;
-                // This callback is at the real HP decrement, before death removal.
+                // Impacts arrive at the real HP decrement, before death removal;
+                // defense contacts arrive after resolution, before any counterstrike.
                 // A dead/removed-owner fallback would incorrectly bless a lethal
                 // callback that first moved or hid the target.
                 audio.TryPlayCombat(receipt.Cue,Pan(contact.X));
@@ -82,6 +83,7 @@ namespace CavesOfOoo.Rendering
             switch(cue)
             {
                 case WorldAudioCue.Swing:case WorldAudioCue.Hit:
+                case WorldAudioCue.Parry:case WorldAudioCue.Guard:
                 case WorldAudioCue.SwingBlade:case WorldAudioCue.SwingBlunt:case WorldAudioCue.SwingNatural:
                 case WorldAudioCue.HitCutting:case WorldAudioCue.HitPiercing:case WorldAudioCue.HitBlunt:case WorldAudioCue.HitNatural:return true;
                 default:return false;

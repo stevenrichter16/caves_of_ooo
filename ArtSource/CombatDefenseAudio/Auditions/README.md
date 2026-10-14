@@ -1,6 +1,6 @@
 # Parry and guard auditions
 
-These are candidate sounds, not runtime assets. Nothing here has been imported into Unity or connected to a combat event.
+This folder preserves the audition sources. The user selected **Parry 3 + Guard 4** on 2026-10-13; byte-identical WAV masters are now imported under `Assets/Resources/Audio/World/Defense/` and connected to real defense outcomes. Other options remain auditions. See `Docs/DEFENSE-AUDIO.md`.
 
 The two MP3 reels play options **1, 2, 3, 4**, with one second of silence between clips and no voice-over. Individual 48 kHz mono, 24-bit WAV masters and 160 kbps MP3 previews are alongside them. Each individual master has a -6 dBFS four-times-oversampled peak estimate; guards use less high-frequency energy instead of simply lowering a parry's pitch.
 
