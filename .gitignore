@@ -67,3 +67,11 @@ ignore.conf
 
 # Unity Editor auto-recovery scene backups (machine-local, regenerated on crash)
 /Assets/_Recovery/
+
+# Runtime MCP diagnostics belong to the local editor, not source history.
+/Assets/UnityMCP/Log/*.log
+/Assets/UnityMCP/Log/*.log.meta
+
+# Regenerable Python bytecode and native crash dumps.
+__pycache__/
+/mono_crash.*.json
