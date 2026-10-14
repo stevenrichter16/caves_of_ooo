@@ -1,0 +1,272 @@
+{
+  "revision": 3,
+  "sampleRate": 48000,
+  "channels": 1,
+  "wavBits": 24,
+  "status": "Auditions only; not imported into Unity or bound to gameplay.",
+  "origin": "Four wholly original deterministic procedural cues and four mixes with documented CC0 recordings. No Qud assets, AI audio service or external compositions.",
+  "license": "Original synthesis layers plus CC0-1.0 recordings where individually declared below. Source credits retained voluntarily; see SOURCES.md. No exclusive-rights claim for procedural output.",
+  "tooling": "Python, NumPy, SciPy modal resonators and filtered noise; FFmpeg WAV/MP3 encoding.",
+  "synthesisSeeds": {
+    "parry": [
+      260114,
+      260115,
+      260116,
+      260117
+    ],
+    "guard": [
+      260214,
+      260215,
+      260216,
+      260217
+    ]
+  },
+  "auditionLevel": "Each cue has a -6 dBFS 4x-estimated true peak; no limiter normalization in playback. Guards are intentionally darker, not pitched versions of parries.",
+  "listeningBound": "Signal/decoding checks are automated. User audition and physical Steam Deck listening remain unverified.",
+  "clips": [
+    {
+      "id": "parry_01_clean_kachink",
+      "title": "Clean steel kachink",
+      "intent": "Dry contact followed by a crisp, narrow steel ring.",
+      "source": "Original procedural synthesis only.",
+      "wav": "parry_01_clean_kachink.wav",
+      "mp3": "parry_01_clean_kachink.mp3",
+      "durationSeconds": 0.658,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -21.081,
+      "energyCentroidHz": 2109.2,
+      "energyAbove3kHzPercent": 16.169,
+      "dcOffset": -4.631e-05,
+      "sha256": {
+        "parry_01_clean_kachink.wav": "3b95311e7816a3f83e2379e23b513d2493d2546bca0338a6831a5faf26aae0d4",
+        "parry_01_clean_kachink.mp3": "2363044682f3c2cf404e081cbfd91e41c6fcadc9a044f72971bc88675e456a82"
+      }
+    },
+    {
+      "id": "parry_02_broad_clash",
+      "title": "Broad blade clash",
+      "intent": "Heavier initial contact and a lower, broader metallic ring.",
+      "source": "Original procedural synthesis only.",
+      "wav": "parry_02_broad_clash.wav",
+      "mp3": "parry_02_broad_clash.mp3",
+      "durationSeconds": 0.798,
+      "samplePeakDbFS": -6.048,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -21.972,
+      "energyCentroidHz": 1414.4,
+      "energyAbove3kHzPercent": 11.286,
+      "dcOffset": -2.15e-05,
+      "sha256": {
+        "parry_02_broad_clash.wav": "d76592356e913adfeb29286fedb29474f86f466e11d798116482e6cf57d35515",
+        "parry_02_broad_clash.mp3": "9fdc369c55b8462f2474cf0ef962ff489e2bd0f6e9a045842b1fc8e4edee008a"
+      }
+    },
+    {
+      "id": "parry_03_dry_edge",
+      "title": "Recorded dry edge",
+      "intent": "Actual machete/spatula contact with a bright modal layer and softened high frequencies; shortest ringing tail.",
+      "source": "CYBERDEViL, Machete vs. Spatula, take 2, CC0-1.0; cropped, mono48kHz, 5500Hz lowpass, blended with original modal synthesis.",
+      "wav": "parry_03_dry_edge.wav",
+      "mp3": "parry_03_dry_edge.mp3",
+      "durationSeconds": 0.458,
+      "samplePeakDbFS": -6.072,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -23.981,
+      "energyCentroidHz": 2887.4,
+      "energyAbove3kHzPercent": 33.438,
+      "dcOffset": -2.251e-05,
+      "sha256": {
+        "parry_03_dry_edge.wav": "14f8289081d5a84fb0535b719442bf92795f283ebb7fa3e78f7940d79dfacce0",
+        "parry_03_dry_edge.mp3": "9093f7ce6cf676e95b6e2f60634be5f50eb968d5011b061bd094165dd9ed7607"
+      }
+    },
+    {
+      "id": "parry_04_rasped_catch",
+      "title": "Recorded ringing catch",
+      "intent": "A second actual metal contact blended with a textured scrape and restrained steel ring.",
+      "source": "CYBERDEViL, Machete vs. Spatula, take 1, CC0-1.0; cropped, mono48kHz, 3800Hz lowpass, blended with original modal synthesis.",
+      "wav": "parry_04_rasped_catch.wav",
+      "mp3": "parry_04_rasped_catch.mp3",
+      "durationSeconds": 0.618,
+      "samplePeakDbFS": -6.023,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -22.025,
+      "energyCentroidHz": 2456.1,
+      "energyAbove3kHzPercent": 33.538,
+      "dcOffset": -1.58e-05,
+      "sha256": {
+        "parry_04_rasped_catch.wav": "c0f66eb72ff0fdeb859baa9fed9994bd403ec810862e5de8ae59535eda122da7",
+        "parry_04_rasped_catch.mp3": "1c93e74a62728e675d79fce8f4d33b55015cd2dc089be92a29205503f2897f51"
+      }
+    },
+    {
+      "id": "guard_01_padded_catch",
+      "title": "Padded catch",
+      "intent": "Compact low thud with a faint, immediately damped metallic core.",
+      "source": "Original procedural synthesis only.",
+      "wav": "guard_01_padded_catch.wav",
+      "mp3": "guard_01_padded_catch.mp3",
+      "durationSeconds": 0.418,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -19.986,
+      "energyCentroidHz": 414.8,
+      "energyAbove3kHzPercent": 0.047,
+      "dcOffset": 3.73e-05,
+      "sha256": {
+        "guard_01_padded_catch.wav": "83591bdb67f35a359191fd6b27c2a7998684067f1cc00083213841a0aeb2b4f0",
+        "guard_01_padded_catch.mp3": "1c20a466ce596cf8fcfbab1194d529970938754fe8c883463bd43854cd4259e6"
+      }
+    },
+    {
+      "id": "guard_02_leather_wrap",
+      "title": "Wrapped guard",
+      "intent": "A recorded cardboard impact filtered into a muffled catch, with a small friction texture.",
+      "source": "StarNinjas, 10 Impact/Shield Blocks, impact.3.ogg, CC0-1.0; silence trimmed, mono48kHz, 2300Hz lowpass, original synthesis blend.",
+      "wav": "guard_02_leather_wrap.wav",
+      "mp3": "guard_02_leather_wrap.mp3",
+      "durationSeconds": 0.478,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -21.819,
+      "energyCentroidHz": 730.2,
+      "energyAbove3kHzPercent": 1.462,
+      "dcOffset": 1.731e-05,
+      "sha256": {
+        "guard_02_leather_wrap.wav": "c126b0614c475dd29976bee04eb0a0e37c3fd86a72a75ea7afed29d7335b9f6e",
+        "guard_02_leather_wrap.mp3": "aa0e1f137495125468f60902173c7819d67795650b249d29620025a53be01611"
+      }
+    },
+    {
+      "id": "guard_03_wood_brace",
+      "title": "Wooden brace",
+      "intent": "A dull wooden knock with body and a brief secondary rattle.",
+      "source": "Original procedural synthesis only.",
+      "wav": "guard_03_wood_brace.wav",
+      "mp3": "guard_03_wood_brace.mp3",
+      "durationSeconds": 0.498,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -20.786,
+      "energyCentroidHz": 482.7,
+      "energyAbove3kHzPercent": 0.061,
+      "dcOffset": 2.22e-06,
+      "sha256": {
+        "guard_03_wood_brace.wav": "a5da0ba7cf4ad3dcf6e970ee60579557e6b300aa6e987431027a02235c3a4e2f",
+        "guard_03_wood_brace.mp3": "a1fcba3d0d00cbc78f6baa1f612980868a8913ef549950d5e19ceefdaa88f45a"
+      }
+    },
+    {
+      "id": "guard_04_damped_steel",
+      "title": "Damped steel",
+      "intent": "Recorded soft contact under a restrained low metal knock; the ring is caught and quickly dies.",
+      "source": "StarNinjas, 10 Impact/Shield Blocks, impact.6.ogg, CC0-1.0; silence trimmed, mono48kHz, 2300Hz lowpass, original synthesis blend.",
+      "wav": "guard_04_damped_steel.wav",
+      "mp3": "guard_04_damped_steel.mp3",
+      "durationSeconds": 0.578,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -22.524,
+      "energyCentroidHz": 712.0,
+      "energyAbove3kHzPercent": 0.569,
+      "dcOffset": -5.84e-06,
+      "sha256": {
+        "guard_04_damped_steel.wav": "7d9394914cfd3cfb6bbb8a5c90af61d04afbd90693a0670362a7fdbf36e13767",
+        "guard_04_damped_steel.mp3": "eb100e97ac6d7da5857515415575acf33dfbcecabf05c443001d459fd5ff55f5"
+      }
+    }
+  ],
+  "reels": [
+    {
+      "kind": "parry",
+      "wav": "parry_options_01_to_04.wav",
+      "mp3": "parry_options_01_to_04.mp3",
+      "gapSeconds": 1,
+      "order": [
+        {
+          "option": 1,
+          "id": "parry_01_clean_kachink",
+          "startsAtSeconds": 0.3
+        },
+        {
+          "option": 2,
+          "id": "parry_02_broad_clash",
+          "startsAtSeconds": 1.958
+        },
+        {
+          "option": 3,
+          "id": "parry_03_dry_edge",
+          "startsAtSeconds": 3.756
+        },
+        {
+          "option": 4,
+          "id": "parry_04_rasped_catch",
+          "startsAtSeconds": 5.214
+        }
+      ],
+      "durationSeconds": 6.132,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -21.966,
+      "energyCentroidHz": 2031.9,
+      "energyAbove3kHzPercent": 20.219,
+      "dcOffset": -1.104e-05
+    },
+    {
+      "kind": "guard",
+      "wav": "guard_options_01_to_04.wav",
+      "mp3": "guard_options_01_to_04.mp3",
+      "gapSeconds": 1,
+      "order": [
+        {
+          "option": 1,
+          "id": "guard_01_padded_catch",
+          "startsAtSeconds": 0.3
+        },
+        {
+          "option": 2,
+          "id": "guard_02_leather_wrap",
+          "startsAtSeconds": 1.718
+        },
+        {
+          "option": 3,
+          "id": "guard_03_wood_brace",
+          "startsAtSeconds": 3.196
+        },
+        {
+          "option": 4,
+          "id": "guard_04_damped_steel",
+          "startsAtSeconds": 4.694
+        }
+      ],
+      "durationSeconds": 5.572,
+      "samplePeakDbFS": -6.006,
+      "truePeak4xDbFS": -6.0,
+      "activeRmsDbFS": -21.066,
+      "energyCentroidHz": 543.5,
+      "energyAbove3kHzPercent": 0.427,
+      "dcOffset": 3.88e-06
+    }
+  ],
+  "downloads": [
+    {
+      "file": "machete_vs_spatula_1.wav",
+      "url": "https://opengameart.org/sites/default/files/machete_vs_spatula_1.wav",
+      "bytes": 143684,
+      "sha256": "cbb868477c4da521b33b3065dc42a691d4ff5f15719f265192ab0049ea5e3a57"
+    },
+    {
+      "file": "machete_vs_spatula_2.wav",
+      "url": "https://opengameart.org/sites/default/files/machete_vs_spatula_2.wav",
+      "bytes": 69672,
+      "sha256": "38d5f9c39a737ebda41a444af3e60b946a36173955af706b7abeb0dd9f03053c"
+    },
+    {
+      "file": "impact_-_starninjas.zip",
+      "url": "https://opengameart.org/sites/default/files/impact_-_starninjas.zip",
+      "bytes": 128502,
+      "sha256": "4592764795344ae010561b0191b059a0e7ed8c2d2e6c0e96171debaa346cf311"
+    }
+  ]
+}
