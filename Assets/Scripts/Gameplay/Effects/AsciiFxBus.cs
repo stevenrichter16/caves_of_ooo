@@ -36,7 +36,8 @@ namespace CavesOfOoo.Core
         RingWave = 6,
         ChainArc = 7,
         ColumnRise = 8,
-        Particle = 9
+        Particle = 9,
+        EventText = 10
     }
 
     public class AsciiFxRequest
@@ -60,6 +61,7 @@ namespace CavesOfOoo.Core
         public int Height;
         public float LingerDuration;
         public char Glyph;
+        public string Text;
         public string ColorString;
         public float Lifetime;
         public float MoveInterval;
@@ -91,6 +93,7 @@ namespace CavesOfOoo.Core
             Height = 0;
             LingerDuration = 0f;
             Glyph = '\0';
+            Text = null;
             ColorString = null;
             Lifetime = 0f;
             MoveInterval = 0f;
@@ -103,6 +106,10 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class AsciiFxBus
     {
+        /// <summary>Maximum width of one reusable floating event label.</summary>
+        public const int MaxEventTextLength = 24;
+        private const int MaxPendingEventTexts = 64;
+        private const float EventTextLifetime = 1.1f;
         private static readonly Queue<AsciiFxRequest> PendingRequests = new Queue<AsciiFxRequest>();
 
         /// <summary>
@@ -370,6 +377,46 @@ namespace CavesOfOoo.Core
             req.DY = dy;
             req.MoveInterval = moveInterval;
             req.Delay = delay < 0f ? 0f : delay;
+            PendingRequests.Enqueue(req);
+        }
+
+        /// <summary>Readouts reveal only a currently visible physical owner. Also
+        /// checked by the renderer: queued text must not outlive visibility.</summary>
+        public static bool CanShowEventText(Zone zone, Entity anchor)
+        {
+            if (zone == null || anchor == null || anchor.SpatialZone != zone
+                || anchor.GetPart<RenderPart>()?.Visible != true) return false;
+            var cell = zone.GetEntityCell(anchor);
+            return cell != null && cell.ParentZone == zone && cell.Objects.Contains(anchor)
+                && cell.Explored && cell.IsVisible;
+        }
+
+        /// <summary>One brief presentation-only message at a visible owner. No
+        /// simulation state, RNG, action cost or turn blocking. Identical pending
+        /// labels coalesce; event groups and text width are bounded independently
+        /// of decorative requests. A null zone uses the owner's physical zone.</summary>
+        public static void EmitEventText(Zone zone, Entity anchor, string text, string colorString)
+        {
+            zone ??= anchor?.SpatialZone;
+            if (!CanShowEventText(zone, anchor) || string.IsNullOrWhiteSpace(text)) return;
+            for (int i = 0; i < text.Length; i++)
+                if (char.IsControl(text[i])) return;
+            text = text.Trim();
+            if (text.Length > MaxEventTextLength) text = text.Substring(0, MaxEventTextLength);
+            int count = 0;
+            foreach (var pending in PendingRequests)
+            {
+                if (pending.Type != AsciiFxRequestType.EventText) continue;
+                if (++count >= MaxPendingEventTexts || (pending.Zone == zone && pending.Anchor == anchor && pending.Text == text)) return;
+            }
+            var cell = zone.GetEntityCell(anchor);
+            var req = Rent();
+            req.Type = AsciiFxRequestType.EventText;
+            req.Zone = zone; req.Anchor = anchor; req.X = cell.X; req.Y = cell.Y;
+            req.Text = text;
+            req.ColorString = colorString != null && colorString.Length == 2 && colorString[0] == '&'
+                && "kKrRgGbBcCmMwWyY".IndexOf(colorString[1]) >= 0 ? colorString : "&W";
+            req.Lifetime = EventTextLifetime;
             PendingRequests.Enqueue(req);
         }
 

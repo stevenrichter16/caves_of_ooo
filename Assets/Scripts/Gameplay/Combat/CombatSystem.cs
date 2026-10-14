@@ -1031,6 +1031,7 @@ namespace CavesOfOoo.Core
                     fullyResistedVeto.SetParameter("Damage", (object)damage);
                     SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResistedVeto);
+                    AsciiFxBus.EmitEventText(zone,target,"Blocked","&Y");
                     return default;
                 }
 
@@ -1062,6 +1063,10 @@ namespace CavesOfOoo.Core
                     fullyResisted.SetParameter("Damage", (object)damage);
                     SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResisted);
+                    // BeforeTakeDamage can already have zeroed the amount;
+                    // only a positive input reduced by resistance earns that label.
+                    AsciiFxBus.EmitEventText(zone,target,amountBeforeResistance>0?"Resisted":"Blocked",
+                        amountBeforeResistance>0?"&C":"&Y");
                     return default;
                 }
 
@@ -1083,7 +1088,11 @@ namespace CavesOfOoo.Core
                 // Re-read damage.Amount after listeners — it may have been mutated.
                 // Clamp at 0 so over-mutation can't heal the target.
                 int amount = Math.Max(0, damage.Amount);
-                if (amount <= 0) return default;
+                if (amount <= 0)
+                {
+                    AsciiFxBus.EmitEventText(zone,target,"Blocked","&Y");
+                    return default;
+                }
 
                 // Floor at hpStat.Min. .Value already clamps to [Min, Max] for
                 // every existing "is it dead" read, so this doesn't change

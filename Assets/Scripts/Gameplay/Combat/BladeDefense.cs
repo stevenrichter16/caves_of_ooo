@@ -134,6 +134,7 @@ namespace CavesOfOoo.Core
                     MessageLog.Add(defenderName+(playerDefender?" parry ":" parries ")+possessive+" strike.");
                 }
                 else MessageLog.Add(defenderName+(playerDefender?" catch ":" catches ")+"part of the strike on a measured guard.");
+                AsciiFxBus.EmitEventText(zone,defender,parried?"Parried":"Guarded",parried?"&C":"&Y");
             }
             return parried;
         }

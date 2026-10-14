@@ -37,6 +37,8 @@ namespace CavesOfOoo.Skills
                 budget.Spent=true;
                 var counter=parent.Child(MeleeStrikeOrigin.ReactiveCounter,true);
                 var result=CombatSystem.PerformSingleAttack(actor,opponent,weapon,true,zone,rng,"(Riposte)",counter);
+                if(result.Outcome!=MeleeStrikeOutcome.Cancelled)
+                    AsciiFxBus.EmitEventText(zone,actor,"Riposte","&C");
                 if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"RiposteIssued",actor:actor,target:opponent,
                     payload:new{counter.ActionId,counter.RootStrikeId,counter.ParentStrikeId,counter.StrikeId,counter.Depth,
                         weapon=weapon.ParentEntity.ID,outcome=result.Outcome.ToString(),result.ActualDamage});

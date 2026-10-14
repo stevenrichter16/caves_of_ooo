@@ -96,6 +96,16 @@ namespace CavesOfOoo.Core
         public abstract string DisplayName { get; }
 
         /// <summary>
+        /// Whether another effect represents the same player-facing status for
+        /// onset feedback. Default identity is the runtime type; parameterized
+        /// effects may distinguish independently active benefits. Keep this
+        /// read-only and symmetric, independent of duration, severity or display
+        /// wording. It does not change stacking, ownership or save behavior.
+        /// </summary>
+        public virtual bool SharesStatusWith(Effect other)
+            => other != null && other.GetType() == GetType();
+
+        /// <summary>
         /// Cached effect class name (Qud-style semantic key).
         /// </summary>
         public string ClassName => GetType().Name;

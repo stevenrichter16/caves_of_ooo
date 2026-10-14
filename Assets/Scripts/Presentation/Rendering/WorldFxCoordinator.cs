@@ -120,7 +120,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Advance already-playing instances before accepting this frame's requests.
-            UpdateBackends(playbackDelta, nativeDelta);
+            UpdateBackends(playbackDelta, nativeDelta, wallDelta);
             if (recoveredContact && _native.ActiveCount > 0 && Diag.IsChannelEnabled("effect"))
                 Diag.Record("effect", "NativeSpellHitchRecovered", payload: new
                 {
@@ -158,14 +158,14 @@ namespace CavesOfOoo.Rendering
             }
             if (admitted)
             {
-                UpdateBackends(0f, 0f);
+                UpdateBackends(0f, 0f, 0f);
                 ReleaseCancelledNativePlaybacks();
             }
         }
-        private void UpdateBackends(float playbackDelta, float nativeDelta)
+        private void UpdateBackends(float playbackDelta, float nativeDelta, float readoutDelta)
         {
             BackendUpdatePassCount++;
-            _ascii.Update(playbackDelta); _sprites.Update(playbackDelta); _native.Update(nativeDelta);
+            _ascii.Update(playbackDelta, readoutDelta); _sprites.Update(playbackDelta); _native.Update(nativeDelta);
         }
 
         private void PrepareNative()
@@ -336,7 +336,7 @@ namespace CavesOfOoo.Rendering
             }
             _nativePlaybacks.Clear();
         }
-        private static bool IsStateOrReadout(AsciiFxRequest r) => r.Type == AsciiFxRequestType.AuraStart ||
+        private static bool IsStateOrReadout(AsciiFxRequest r) => r.Type == AsciiFxRequestType.EventText || r.Type == AsciiFxRequestType.AuraStart ||
             r.Type == AsciiFxRequestType.AuraStop || (r.Type == AsciiFxRequestType.Particle && char.IsDigit(r.Glyph));
 
         public void CancelAll()

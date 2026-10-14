@@ -8,6 +8,8 @@ namespace CavesOfOoo.Core
         public int Amount;
         public int AppliedAmount;
         public override string DisplayName => StatName + " surge";
+        public override bool SharesStatusWith(Effect other)
+            => other is TonicStatSurgeEffect surge && surge.StatName == StatName;
         public TonicStatSurgeEffect(string statName = "", int amount = 0, int duration = 20)
         { StatName = statName; Amount = amount; Duration = duration; }
         public override void OnApply(Entity target)

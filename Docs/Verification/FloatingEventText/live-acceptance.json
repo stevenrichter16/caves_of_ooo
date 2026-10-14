@@ -1,0 +1,54 @@
+{
+  "date_utc": "2026-10-14",
+  "unity": "6000.3.4f1",
+  "instance": "caves-of-ooo@4f5664cceff9ea5e",
+  "scenario": "FloatingEventTextShowcase",
+  "zone": "Overworld.11.10.0",
+  "seed": 729490642,
+  "native_editmode": {
+    "id": "2",
+    "testcasecount": "373",
+    "result": "Passed",
+    "total": "373",
+    "passed": "373",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-14 02:56:35Z",
+    "end-time": "2026-10-14 02:57:03Z",
+    "duration": "27.4214982"
+  },
+  "live_observations": {
+    "initial_successful_repetitions": 12,
+    "parry_and_status_resolver_success": true,
+    "active_labels": 5,
+    "blocks_turns": false,
+    "native_full": "readable parry and three status labels; screenshot inspected",
+    "native_fx_off": "labels preserved; screenshot inspected",
+    "ascii_fx_off": "labels preserved; screenshot inspected",
+    "active_after_1_11_wall_seconds": 0,
+    "fog_gate": {
+      "before": 5,
+      "hidden_player_origin": 3,
+      "visibility_restored_no_resurrection": 3
+    },
+    "console_errors": 0
+  },
+  "teardown": {
+    "playing": false,
+    "isolation_active": false,
+    "exit_code": 0,
+    "personal_preference_restored": true,
+    "personal_root_restored": true,
+    "fx_and_sprite_settings_restored": true
+  },
+  "limits": [
+    "Camera screenshots show world only; HUD is not captured.",
+    "Scenario invokes the real parry resolver and real status application, not a full scheduled NPC combat turn. Full strike contracts are covered by EditMode tests.",
+    "No physical Steam Deck test or new distribution build.",
+    "Targeted native tests, not the full project test suite."
+  ]
+}

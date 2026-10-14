@@ -31,6 +31,10 @@ namespace CavesOfOoo.Rendering
         private readonly List<ChainArcFxInstance> _chainArcs = new List<ChainArcFxInstance>();
         private readonly List<ColumnRiseFxInstance> _columnRises = new List<ColumnRiseFxInstance>();
         private readonly List<DustMoteFxInstance> _dustMotes = new List<DustMoteFxInstance>();
+        private const int MaxEventTexts = 32;
+        private const int EventTextLanes = 3;
+        private const int EventTextLaneStride = 2;
+        private readonly List<EventTextFxInstance> _eventTexts = new List<EventTextFxInstance>(MaxEventTexts);
 
         /// <summary>
         /// Scratch buffer for <see cref="UpdateAuras"/>'s expired-key
@@ -60,6 +64,7 @@ namespace CavesOfOoo.Rendering
         public int ActiveProjectileCount => _projectiles.Count;
         public int ActiveBurstCount => _bursts.Count;
         public int ActiveParticleCount => _particles.Count;
+        public int ActiveEventTextCount => _eventTexts.Count;
         public int ActiveAuraCount => _auras.Count;
         public int ActiveBeamCount => _beams.Count;
         public int ActiveChargeOrbitCount => _chargeOrbits.Count;
@@ -74,7 +79,9 @@ namespace CavesOfOoo.Rendering
             ClearAll();
         }
 
-        public void Update(float deltaTime)
+        /// <param name="readoutDelta">Unscaled wall time for readable event words.
+        /// Standalone callers may omit it; coordinated playback supplies it separately.</param>
+        public void Update(float deltaTime, float? readoutDelta = null)
         {
             using (PerformanceMarkers.Fx.Update.Auto())
             {
@@ -90,6 +97,7 @@ namespace CavesOfOoo.Rendering
                 UpdateBursts(deltaTime);
                 UpdateParticles(deltaTime);
                 UpdateDustMotes(deltaTime);
+                UpdateEventTexts(WorldFxPlayback.SanitizeDelta(readoutDelta ?? deltaTime));
                 Render();
                 HasBlockingFx = ComputeHasBlockingFx();
             }
@@ -108,6 +116,7 @@ namespace CavesOfOoo.Rendering
             _chainArcs.Clear();
             _columnRises.Clear();
             _dustMotes.Clear();
+            _eventTexts.Clear();
             HasBlockingFx = false;
             _hadVisibleFxLastFrame = false;
             if (_tilemap != null)
@@ -244,6 +253,10 @@ namespace CavesOfOoo.Rendering
                     });
                     break;
 
+                case AsciiFxRequestType.EventText:
+                    AcceptEventText(request);
+                    break;
+
                 case AsciiFxRequestType.ColumnRise:
                     _columnRises.Add(new ColumnRiseFxInstance
                     {
@@ -257,6 +270,89 @@ namespace CavesOfOoo.Rendering
                         DelayRemaining = request.Delay
                     });
                     break;
+            }
+        }
+
+        private void AcceptEventText(AsciiFxRequest request)
+        {
+            if (_eventTexts.Count >= MaxEventTexts || string.IsNullOrWhiteSpace(request.Text)
+                || request.Text.Length > AsciiFxBus.MaxEventTextLength || !(request.Lifetime > 0f) || float.IsInfinity(request.Lifetime)
+                || !EventTextVisible(request.Anchor, request.X, request.Y)) return;
+            int usedLanes = 0;
+            for (int i = 0; i < _eventTexts.Count; i++)
+            {
+                var active = _eventTexts[i];
+                if (active.Anchor != request.Anchor) continue;
+                if (active.Text == request.Text) return; // Repeated cues never renew an old cue's life.
+                usedLanes |= 1 << active.Lane;
+            }
+            int lane = 0;
+            while (lane < EventTextLanes && (usedLanes & (1 << lane)) != 0) lane++;
+            if (lane == EventTextLanes) return;
+            var text = new EventTextFxInstance
+            {
+                Anchor = request.Anchor, Text = request.Text, Color = request.ColorString,
+                OriginX = request.X, OriginY = request.Y, Lane = lane,
+                Duration = request.Lifetime, Remaining = request.Lifetime
+            };
+            UpdateEventTextPosition(ref text);
+            _eventTexts.Add(text);
+        }
+
+        private bool EventTextVisible(Entity anchor, int originX, int originY)
+        {
+            if (!AsciiFxBus.CanShowEventText(_currentZone, anchor)) return false;
+            var origin = _currentZone.GetCell(originX, originY);
+            return origin != null && origin.Explored && origin.IsVisible;
+        }
+
+        private void UpdateEventTexts(float delta)
+        {
+            for (int i = _eventTexts.Count - 1; i >= 0; i--)
+            {
+                var text = _eventTexts[i];
+                text.Remaining -= delta;
+                if (text.Remaining <= 0f || !EventTextVisible(text.Anchor, text.OriginX, text.OriginY))
+                    _eventTexts.RemoveAt(i);
+                else
+                {
+                    UpdateEventTextPosition(ref text);
+                    _eventTexts[i] = text;
+                }
+            }
+        }
+
+        private void UpdateEventTextPosition(ref EventTextFxInstance text)
+        {
+            var cell = _currentZone.GetEntityCell(text.Anchor);
+            text.StartX = Math.Max(0, Math.Min(Zone.Width - text.Text.Length, cell.X - (text.Text.Length - 1) / 2));
+            // All messages follow the same owner but retain their original visibility gate.
+            // A spare row per lane prevents differently aged words rising into one another.
+            int minimumRow = EventTextLaneStride * (EventTextLanes - 1) + 1;
+            text.BaseY = Math.Max(minimumRow, Math.Min(Zone.Height - 1, cell.Y - 1));
+        }
+
+        private static int EventTextRow(EventTextFxInstance text)
+            => text.BaseY - text.Lane * EventTextLaneStride - (text.Remaining <= text.Duration * .5f ? 1 : 0);
+
+        private bool EventTextCovers(int x, int y)
+        {
+            for (int i = 0; i < _eventTexts.Count; i++)
+            {
+                var text = _eventTexts[i];
+                if (y == EventTextRow(text) && x >= text.StartX && x < text.StartX + text.Text.Length) return true;
+            }
+            return false;
+        }
+
+        private void RenderEventTexts()
+        {
+            for (int i = 0; i < _eventTexts.Count; i++)
+            {
+                var text = _eventTexts[i];
+                int row = EventTextRow(text);
+                for (int j = 0; j < text.Text.Length; j++)
+                    RenderGlyphAt(text.StartX + j, row, text.Text[j], text.Color, isReadout: true);
             }
         }
 
@@ -607,7 +703,7 @@ namespace CavesOfOoo.Rendering
 
                     bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
                                         _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
-                                        _chainArcs.Count > 0 || _columnRises.Count > 0 ||
+                                        _chainArcs.Count > 0 || _columnRises.Count > 0 || _eventTexts.Count > 0 ||
                                         _dustMotes.Count > 0 || (SpellFxSettings.Mode == SpellFxMode.Off && _auras.Count > 0);
                     if (!hasVisibleFx && !_hadVisibleFxLastFrame)
                         return;
@@ -650,6 +746,8 @@ namespace CavesOfOoo.Rendering
 
                     for (int i = 0; i < _bursts.Count; i++)
                         RenderBurst(_bursts[i]);
+
+                    RenderEventTexts();
 
                     _hadVisibleFxLastFrame = hasVisibleFx;
                 }
@@ -827,21 +925,27 @@ namespace CavesOfOoo.Rendering
             RenderGlyphAt(particle.X, particle.Y, particle.Glyph, particle.ColorString, particle.IsAura);
         }
 
-        private void RenderGlyphAt(int x, int y, char glyph, string colorString, bool isAura = false)
+        private void RenderGlyphAt(int x, int y, char glyph, string colorString, bool isAura = false, bool isReadout = false)
         {
             if (_tilemap == null || _currentZone == null || !_currentZone.InBounds(x, y))
                 return;
 
             var cell = _currentZone.GetCell(x, y);
-            if (ClipToFieldOfView && (cell == null || !cell.Explored || !cell.IsVisible))
+            // Readouts have already passed strict origin AND current-owner visibility.
+            // Keep the whole word readable when its letters extend beyond that visible cell.
+            if (!isReadout && ClipToFieldOfView && (cell == null || !cell.Explored || !cell.IsVisible))
                 return;
 
-            Tile tile = CP437TilesetGenerator.GetTile(glyph);
+            Tile tile = isReadout ? CP437TilesetGenerator.GetUiTile(glyph) : CP437TilesetGenerator.GetTile(glyph);
             if (tile == null)
                 return;
 
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
-            if (NativeFrame?.TryDraw(x, y, glyph, colorString) == true)
+            // Whitespace refuses native geometry and removes any earlier native mark.
+            // Also suppress covered decoration before it can allocate a native view
+            // that the last-drawn word would immediately destroy on every frame.
+            bool readoutCell = isReadout || (NativeFrame != null && EventTextCovers(x, y));
+            if (NativeFrame?.TryDraw(x, y, readoutCell ? ' ' : glyph, colorString) == true)
             { _tilemap.SetTile(tilePos, null); return; }
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -1109,6 +1213,14 @@ namespace CavesOfOoo.Rendering
             public int DY;
             public float MoveInterval;
             public float MoveTimer;
+        }
+
+        private struct EventTextFxInstance
+        {
+            public Entity Anchor;
+            public string Text, Color;
+            public int OriginX, OriginY, StartX, BaseY, Lane;
+            public float Duration, Remaining;
         }
 
         private class AuraEmitterInstance

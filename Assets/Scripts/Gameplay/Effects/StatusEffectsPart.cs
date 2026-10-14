@@ -76,13 +76,15 @@ namespace CavesOfOoo.Core
 
             // Check for stacking with existing effects of the same type
             Type incomingType = effect.GetType();
+            bool alreadyActive = HasActiveEffect(effect);
             for (int i = 0; i < _effects.Count; i++)
             {
                 if (_effects[i].GetType() == incomingType)
                 {
+                    var existing = _effects[i];
                     bool stacked;
                     beforeChange?.Invoke();
-                    try { stacked = _effects[i].OnStack(effect); }
+                    try { stacked = existing.OnStack(effect); }
                     finally { afterChange?.Invoke(); }
                     if (stacked)
                     {
@@ -99,6 +101,7 @@ namespace CavesOfOoo.Core
                                 actor: source,
                                 payload: new { effect = incomingType.Name, forced = forced });
                         }
+                        if (!alreadyActive) TryNotifyStatusOnset(existing, zone);
                         return true; // stacking handled, don't add duplicate
                     }
                 }
@@ -178,7 +181,32 @@ namespace CavesOfOoo.Core
             }
 
             SendApplied(effect, source, zone, forced);
+            if (!alreadyActive) TryNotifyStatusOnset(effect, zone);
             return true;
+        }
+
+        private bool HasActiveEffect(Effect incoming)
+        {
+            for (int i = 0; i < _effects.Count; i++)
+                if (_effects[i].SharesStatusWith(incoming) && _effects[i].Duration != 0
+                    && _effects[i].Owner == ParentEntity) return true;
+            return false;
+        }
+
+        private void TryNotifyStatusOnset(Effect effect, Zone zone)
+        {
+            // Application callbacks and lifecycle listeners may immediately cure,
+            // expire or remove the status/owner. Describe only the surviving state.
+            var owner = ParentEntity;
+            if (owner == null || !owner.Parts.Contains(this) || effect.Owner != owner
+                || effect.Duration == 0 || !_effects.Contains(effect)
+                || !owner.HasTag("Creature") || owner.GetStatValue("Hitpoints") <= 0) return;
+            string label = effect.DisplayName;
+            if (string.IsNullOrWhiteSpace(label)) return;
+            label = label.Trim();
+            label = char.ToUpperInvariant(label[0]) + label.Substring(1);
+            AsciiFxBus.EmitEventText(zone ?? owner.SpatialZone, owner, label,
+                effect.IsOfType(Effect.TYPE_NEGATIVE) ? "&R" : "&C");
         }
 
         /// <summary>
