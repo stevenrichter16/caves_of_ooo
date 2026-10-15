@@ -17,7 +17,11 @@ for case in [1,2]:
   b += [box('left-arm',(-.22,.17,-.02),(.11,.18,.40),17),box('right-arm',(.22,.17,-.02),(.11,.18,.40),17),box('closed-eyes',(0,.327,-.37),(.17,.012,.02),11),box('salt-fold',(-.08,.329,-.06),(.14,.04,.25),5)]
  else:
   b += [box('left-arm',(-.20,.20,.02),(.11,.18,.34),17),box('folded-forearm',(.06,.343,.025),(.31,.09,.11),5),box('right-elbow',(.24,.225,-.08),(.10,.16,.23),17),box('closed-eyes',(.035,.327,-.37),(.16,.012,.02),11),box('salt-fold',(.02,.33,-.09),(.24,.03,.09),5)]
- b+=tag(case,0,.255,.29);model('salt-cured-body-'+str(case),b)
+ # Salt crust and a wrist tally distinguish preservation; retain the two existing body poses.
+ for i,(x,z,h) in enumerate([(-.24,-.30,.15),(.23,-.29,.19),(-.24,.35,.12),(.23,.35,.17),(-.19,-.42,.11),(.18,.43,.14)]):
+  b.append(box('salt-crystal-'+str(i),(x,.05+h/2,z),(.065,h,.075),17 if i%2 else 5))
+ b.append(box('wrist-tally-cord',(.095,.33,.11),(.018,.025,.15),20))
+ b+=tag(case,.095,.29,.22);model('salt-cured-body-'+str(case),b)
  b=[box('left-mark',(-.44,.022,0),(.06,.044,.94),17),box('right-mark',(.44,.022,0),(.06,.044,.94),17),box('end-mark',(0,.022,.44),(.86,.044,.06),17),box('label-foot',(.32,.08,-.36),(.22,.16,.19),11),box('label-stem',(.32,.21,-.36),(.05,.20,.045),19)]+tag(case,.32,.34,-.36)
  model('receiving-bay-'+str(case),b)
 model('intake-index',[

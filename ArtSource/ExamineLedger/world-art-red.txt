@@ -1,0 +1,61 @@
+FFFFFFF
+======================================================================
+FAIL: test_broken_lined_well_exposes_vertical_clay_to_explain_the_material (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_broken_lined_well_exposes_vertical_clay_to_explain_the_material)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 18, in test_broken_lined_well_exposes_vertical_clay_to_explain_the_material
+    self.assertGreaterEqual(sum(b['color'] == 18 and b['size']['y'] >= .12 for b in blocks), 8)
+AssertionError: 0 not greater than or equal to 8
+
+======================================================================
+FAIL: test_cured_body_salt_crystals_and_wrist_tally_preserve_case_identity (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_cured_body_salt_crystals_and_wrist_tally_preserve_case_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 58, in test_cured_body_salt_crystals_and_wrist_tally_preserve_case_identity
+    self.assertGreaterEqual(sum(b['name'].startswith('salt-crystal-') for b in blocks), 6)
+AssertionError: 0 not greater than or equal to 6
+
+======================================================================
+FAIL: test_gate_has_readable_metal_hinge_studs_in_each_native_state (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_gate_has_readable_metal_hinge_studs_in_each_native_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 34, in test_gate_has_readable_metal_hinge_studs_in_each_native_state
+    self.assertGreaterEqual(sum(b['color'] == 12 and b['size']['x'] < .055 and b['size']['y'] < .055 for b in blocks), 4)
+AssertionError: 0 not greater than or equal to 4
+
+======================================================================
+FAIL: test_hearthbulb_has_broad_exposed_shoulders_and_upright_split_leaves (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_hearthbulb_has_broad_exposed_shoulders_and_upright_split_leaves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 47, in test_hearthbulb_has_broad_exposed_shoulders_and_upright_split_leaves
+    self.assertGreaterEqual(sum(b['color'] == 18 and b['size']['x'] >= .23 for b in blocks), 4)
+AssertionError: 0 not greater than or equal to 4
+
+======================================================================
+FAIL: test_mature_seamleaf_pale_cross_stitches_are_geometry_not_ui_marks (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_mature_seamleaf_pale_cross_stitches_are_geometry_not_ui_marks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 53, in test_mature_seamleaf_pale_cross_stitches_are_geometry_not_ui_marks
+    self.assertGreaterEqual(sum(b['color'] == 17 and .04 <= b['size']['x'] <= .08 and b['size']['z'] <= .025 for b in blocks), 12)
+AssertionError: 0 not greater than or equal to 12
+
+======================================================================
+FAIL: test_only_mature_knotflax_has_hanging_harvestable_fiber_tassels (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_only_mature_knotflax_has_hanging_harvestable_fiber_tassels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 41, in test_only_mature_knotflax_has_hanging_harvestable_fiber_tassels
+    self.assertGreaterEqual(tassels(2), 8)
+AssertionError: 0 not greater than or equal to 8
+
+======================================================================
+FAIL: test_rope_well_has_multiple_winding_loops_with_a_broken_short_drop (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_rope_well_has_multiple_winding_loops_with_a_broken_short_drop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 25, in test_rope_well_has_multiple_winding_loops_with_a_broken_short_drop
+    self.assertGreaterEqual(sum(b['color'] in (4, 5) and b['center']['y'] > .94 for b in blocks), 10)
+AssertionError: 0 not greater than or equal to 10
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.007s
+
+FAILED (failures=7)

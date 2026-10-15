@@ -4,7 +4,7 @@ class SourceTests(unittest.TestCase):
  def setUp(self):
   self.kit=json.loads((Path(__file__).parent/'kit.json').read_text());self.models={m['id']:m for m in self.kit['models']}
  def test_exact_finite_original_pack(self):
-  self.assertEqual(len(self.models),37);self.assertEqual(len(self.kit['palette']),24)
+  self.assertEqual(len(self.models),38);self.assertEqual(len(self.kit['palette']),24)
   for m in self.models.values():
    self.assertTrue(3<=len(m['boxes'])<=100)
    for b in m['boxes']:

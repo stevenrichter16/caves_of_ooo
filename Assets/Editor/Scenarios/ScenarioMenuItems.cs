@@ -56,6 +56,10 @@ namespace CavesOfOoo.Editor.Scenarios
         // Combat Stress
         // =========================================================
 
+        [MenuItem("Caves Of Ooo/Scenarios/World/Examine Field Ledger", priority = 99)]
+        private static void Launch_ExamineLedgerShowcase()
+            => ScenarioRunner.Launch<ExamineLedgerShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Floating Event Text", priority = 98)]
         private static void Launch_FloatingEventTextShowcase()
             => ScenarioRunner.Launch<FloatingEventTextShowcase>();

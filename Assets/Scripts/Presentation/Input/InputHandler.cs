@@ -4530,6 +4530,7 @@ namespace CavesOfOoo.Rendering
             }
 
             string text;
+            AnnouncementDocument document = null;
             if (pile)
             {
                 // The summary names visible current objects, never another owner's full prose.
@@ -4545,10 +4546,25 @@ namespace CavesOfOoo.Rendering
                 string ground = CellStatusReadout.GroundLine(CurrentZone, cell);
                 if (!string.IsNullOrEmpty(ground)) text += "\n" + ground;
             }
-            else text = examinable.BuildWorldExamineLine(CurrentZone, cell, PlayerEntity);
+            else
+            {
+                text = examinable.BuildWorldExamineLine(CurrentZone, cell, PlayerEntity);
+                document = ExamineDocumentBuilder.BuildWorld(target, CurrentZone, cell, PlayerEntity);
+                if (document == null) { MessageLog.Add("That selection is no longer available to examine."); return; }
+            }
 
             string surface = InventoryDecisionDetails.Surface(CurrentZone, cell);
             if (!string.IsNullOrEmpty(surface)) text += "\n\nSurface details\n" + surface;
+
+            if (document != null && !string.IsNullOrEmpty(surface))
+            {
+                var sections = new List<AnnouncementSection>(document.Sections);
+                // Keep current warnings and status ahead of extra surface details and long flavor.
+                int position = sections.FindIndex(section => section.Heading == "Description");
+                sections.Insert(position < 0 ? 0 : position, new AnnouncementSection("Surface details", surface));
+                document = new AnnouncementDocument(document.Title,document.Kind,sections,document.Facts,
+                    document.BlueprintName,document.Glyph,document.GlyphColor,document.Subject,document.SubjectZone,document.SubjectCell,document.SubjectViewer);
+            }
 
             // Describers may consult parts. Recheck the same selected instance before publication.
             if (!IsCurrentExamineOwner(target, cell) || (!pile &&
@@ -4560,7 +4576,7 @@ namespace CavesOfOoo.Rendering
             if (AnnouncementUI == null) MessageLog.Add(text);
             else
             {
-                MessageLog.AddAnnouncement(text);
+                MessageLog.AddPresentedAnnouncement(text,document);
                 TryOpenAnnouncement();
             }
         }
@@ -4572,7 +4588,7 @@ namespace CavesOfOoo.Rendering
             if (AnnouncementUI == null || !MessageLog.HasPendingAnnouncement)
                 return false;
 
-            string msg = MessageLog.ConsumeAnnouncement(out var documentAudio);
+            string msg = MessageLog.ConsumeAnnouncementWithPresentation(out var documentAudio,out var document);
             if (msg == null)
                 return false;
 
@@ -4597,7 +4613,7 @@ namespace CavesOfOoo.Rendering
                 EnterCenteredPopupOverlayView();
             }
 
-            AnnouncementUI.Open(msg,documentAudio);
+            AnnouncementUI.Open(msg,documentAudio,document);
             _inputState = InputState.AnnouncementOpen;
             return true;
         }

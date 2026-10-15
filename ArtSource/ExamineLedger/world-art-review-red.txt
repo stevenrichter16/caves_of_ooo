@@ -1,0 +1,21 @@
+.F......F
+======================================================================
+FAIL: test_clay_lining_is_on_the_exposed_inner_shaft_face (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_clay_lining_is_on_the_exposed_inner_shaft_face)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 37, in test_clay_lining_is_on_the_exposed_inner_shaft_face
+    self.assertLessEqual(abs(b['center'][depth_axis]), .2, 'lining must project inside the masonry interior edge at .205')
+AssertionError: 0.24 not less than or equal to 0.2 : lining must project inside the masonry interior edge at .205
+
+======================================================================
+FAIL: test_well_rim_has_four_solid_corners (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_well_rim_has_four_solid_corners)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 28, in test_well_rim_has_four_solid_corners
+    self.assertTrue(any(abs(b['center']['x']-x) < .001 and abs(b['center']['z']-z) < .001
+AssertionError: False is not true : ('lined-well', 'broken', -0.3, -0.3)
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.011s
+
+FAILED (failures=2)

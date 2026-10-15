@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
   public const string Prefix="repair-cultivation-",SoilModel=Prefix+"cultivated-soil";
   public static bool Handles(string bp)
   {
-   switch(bp){case "KnotflaxCrop":case "HearthbulbCrop":case "SeamleafCrop":case "RepairLinedWell":case "RepairRopeWell":case "RepairWoodenGate":case "RepairClayBank":case "RepairTimberPile":case "RepairCordBundle":case "KnotflaxSeed":case "HearthbulbSeed":case "SeamleafSeed":case "KnotflaxCord":case "Hearthbulb":case "RoastedHearthbulb":case "SeamleafSprig":case "SalvagedTimber":return true;default:return false;}
+   switch(bp){case "KnotflaxCrop":case "HearthbulbCrop":case "SeamleafCrop":case "RepairLinedWell":case "RepairRopeWell":case "RepairWoodenGate":case "RepairClayBank":case "RepairTimberPile":case "RepairCordBundle":case "KnotflaxSeed":case "HearthbulbSeed":case "SeamleafSeed":case "KnotflaxCord":case "Hearthbulb":case "RoastedHearthbulb":case "SeamleafSprig":case "SalvagedTimber":case "FireClay":return true;default:return false;}
   }
   static bool Current(Zone zone,Entity e,bool retainNativeTerrain=false)
   {
@@ -62,10 +62,22 @@ namespace CavesOfOoo.Rendering
     if(p.Takeable||e.HasTag("Item")||h?.ParentEntity!=e||h.Harvested||!Appearance(e,bp=="RepairTimberPile"?"=":"~",bp=="RepairClayBank"?"&R":bp=="RepairTimberPile"?"&y":"&w"))return null;
     return Prefix+family;
    }
-   if(!p.Takeable||!e.HasTag("Item")||e.HasTag("Natural"))return null;
+   return PortableModel(e);
+  }
+  /// <summary>Shared current portable identity; callers establish world presence
+  /// or carried ownership separately. Never moves an item to obtain a recipe.</summary>
+  public static string PortableModel(Entity e)
+  {
+   if(e==null||!Handles(e.BlueprintName))return null;
+   var p=e.GetPart<PhysicsPart>();var r=e.GetPart<RenderPart>();var d=e.GetPart<DestructiblePart>();
+   if(p?.ParentEntity!=e||!p.Takeable||r?.ParentEntity!=e||!r.Visible
+    ||!e.HasTag("Item")||e.HasTag("Natural")||e.HasTag("Creature")
+    ||e.HasPart<SpatialFootprintPart>()||e.HasPart<MultiCellPilotPropPart>()
+    ||!string.IsNullOrEmpty(r.VisualID)||!string.IsNullOrEmpty(r.VisualVariant)||!string.IsNullOrEmpty(r.GlyphVariants)
+    ||d!=null&&(d.ParentEntity!=e||d.Gone||d.HP<=0))return null;
    var stack=e.GetPart<StackerPart>();if(stack!=null&&(stack.ParentEntity!=e||stack.StackCount<=0))return null;
    string model=null,glyph=null,color=null;
-   switch(bp)
+   switch(e.BlueprintName)
    {
     case "KnotflaxSeed":model="knotflax-seed";glyph=",";color="&w";break;
     case "HearthbulbSeed":model="hearthbulb-seed";glyph=",";color="&w";break;
@@ -75,6 +87,7 @@ namespace CavesOfOoo.Rendering
     case "RoastedHearthbulb":model="roasted-hearthbulb";glyph="%";color="&o";break;
     case "SeamleafSprig":model="seamleaf-sprig";glyph=";";color="&G";break;
     case "SalvagedTimber":model="salvaged-timber";glyph="=";color="&y";break;
+    case "FireClay":model="fire-clay";glyph="*";color="&R";break;
    }
    return model!=null&&Appearance(e,glyph,color)?Prefix+model:null;
   }

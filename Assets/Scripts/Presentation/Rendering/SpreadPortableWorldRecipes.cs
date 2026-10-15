@@ -24,7 +24,7 @@ namespace CavesOfOoo.Rendering
                 return new SpawnRing3DRecipe(owner, null, null, Vector3.zero, false, false, "unsupported-current-spread-portable");
             return new SpawnRing3DRecipe(owner, modelId, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
         }
-        private static bool ValidConstructedQuest(Entity owner)
+        internal static bool ValidConstructedQuest(Entity owner)
         {
             bool notebook = owner.BlueprintName == "DetectiveNotebook";
             if (!notebook && owner.BlueprintName != "CrunchyLocket") return true;

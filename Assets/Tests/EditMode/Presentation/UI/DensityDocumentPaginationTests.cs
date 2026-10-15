@@ -81,7 +81,7 @@ namespace CavesOfOoo.Tests
             ui.Open(original.ToString());
             int x = (int)typeof(AnnouncementUI).GetField("_worldOriginX", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(ui);
             int y = (int)typeof(AnnouncementUI).GetField("_worldTopY", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(ui);
-            Assert.AreSame(CP437TilesetGenerator.GetUiTile(visible), ui.Tilemap.GetTile(new Vector3Int(x + 2, y - 1, 0)));
+            Assert.AreSame(HudPixelFont.GetTile(visible), ui.Tilemap.GetTile(new Vector3Int(x + 2, y - 8, 0)));
             CollectionAssert.AreEqual(new[] { original.ToString() }, CurrentLines());
         }
 

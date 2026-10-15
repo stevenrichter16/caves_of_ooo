@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
  public sealed class CurationYard3DLibrary:ScriptableObject
  {
   public const string Folder="Assets/Resources/CurationYard3D",ResourcePath="CurationYard3D/Library";
-  public const string ReviewedSourceSha256="d70059d55a1a491e42bf7e2eb51f65e5bbc495c22659fe611f5f75479f2126ea";
+  public const string ReviewedSourceSha256="3b4bf3f17916960eee9bbaf0f37ebae77b7944aaf2a0965c75a018e66a6165ae";
   [Serializable]public sealed class Entry{public string Id;public Mesh Mesh;public GameObject Prefab;public SpawnRing3DCatalog.Model Spec;}
   public string SourceSha256;public Material Material;public Entry[] Entries;
   Dictionary<string,Entry> index;

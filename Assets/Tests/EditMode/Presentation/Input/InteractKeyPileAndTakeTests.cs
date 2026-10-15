@@ -120,14 +120,17 @@ namespace CavesOfOoo.Tests
         }
 
         // These four reader assertions concern visible world owners. The old
-        // bare entities had no RenderPart and the cell was unexplored/unseen;
+        // bare entities lacked physical/render parts and the cell was unexplored/unseen;
         // production correctly refuses that context instead of leaking prose.
         private static InputHandler BuildVisibleExamineInput(Entity player, Zone zone)
         {
             var cell = zone.GetCell(11, 10);
             cell.IsVisible = cell.Explored = true;
             foreach (var owner in cell.Occupants)
+            {
                 owner.AddPart(new RenderPart { Visible = true });
+                if (owner.GetPart<PhysicsPart>() == null) owner.AddPart(new PhysicsPart());
+            }
             var input = BuildInputHandler(player, zone);
             // Owned by the existing input teardown, never a leaked modal root.
             input.AnnouncementUI = input.gameObject.AddComponent<AnnouncementUI>();

@@ -31,8 +31,8 @@ namespace CavesOfOoo.Core
         // Public Restore/Clear intentionally discard transient physical origins.
         private readonly struct AnnouncementOrigin
         {
-            internal readonly string Text;internal readonly DocumentReadAudio Reading;
-            internal AnnouncementOrigin(string text,DocumentReadAudio reading){Text=text;Reading=reading;}
+            internal readonly string Text;internal readonly DocumentReadAudio Reading;internal readonly AnnouncementDocument Presentation;
+            internal AnnouncementOrigin(string text,DocumentReadAudio reading,AnnouncementDocument presentation=null){Text=text;Reading=reading;Presentation=presentation;}
         }
         private static readonly Queue<AnnouncementOrigin> AnnouncementOrigins=new Queue<AnnouncementOrigin>();
         private static int NextSerial;
@@ -111,7 +111,11 @@ namespace CavesOfOoo.Core
         /// Announcements are displayed as modal popups by AnnouncementUI.
         /// </summary>
         public static void AddAnnouncement(string message)=>AddAnnouncement(message,null);
-        internal static void AddAnnouncement(string message,DocumentReadAudio reading)
+        internal static void AddAnnouncement(string message,DocumentReadAudio reading)=>EnqueueAnnouncement(message,reading,null);
+        /// <summary>Retains exact authored log text while attaching an optional transient reader snapshot.</summary>
+        public static void AddPresentedAnnouncement(string message,AnnouncementDocument presentation)
+            =>EnqueueAnnouncement(message,null,presentation);
+        private static void EnqueueAnnouncement(string message,DocumentReadAudio reading,AnnouncementDocument presentation)
         {
             // Announcements include authored lore and quoted documents. Preserve
             // their exact bytes in both the log and the popup queue.
@@ -121,7 +125,7 @@ namespace CavesOfOoo.Core
             if(AnnouncementOrigins.Count!=Announcements.Count)
             {AnnouncementOrigins.Clear();foreach(var text in Announcements)AnnouncementOrigins.Enqueue(new AnnouncementOrigin(text,null));}
             Announcements.Enqueue(message);
-            AnnouncementOrigins.Enqueue(new AnnouncementOrigin(message,reading));
+            AnnouncementOrigins.Enqueue(new AnnouncementOrigin(message,reading,presentation));
             FlashStamp++;
         }
 
@@ -129,12 +133,14 @@ namespace CavesOfOoo.Core
 
         public static string ConsumeAnnouncement()=>ConsumeAnnouncement(out _);
         internal static string ConsumeAnnouncement(out DocumentReadAudio reading)
+            =>ConsumeAnnouncementWithPresentation(out reading,out _);
+        internal static string ConsumeAnnouncementWithPresentation(out DocumentReadAudio reading,out AnnouncementDocument presentation)
         {
-            reading=null;int before=Announcements.Count;
+            reading=null;presentation=null;int before=Announcements.Count;
             if(before==0){AnnouncementOrigins.Clear();return null;}
             string text=Announcements.Dequeue();
             if(AnnouncementOrigins.Count==before)
-            {var origin=AnnouncementOrigins.Dequeue();if(ReferenceEquals(text,origin.Text))reading=origin.Reading;else AnnouncementOrigins.Clear();}
+            {var origin=AnnouncementOrigins.Dequeue();if(ReferenceEquals(text,origin.Text)){reading=origin.Reading;presentation=origin.Presentation;}else AnnouncementOrigins.Clear();}
             else AnnouncementOrigins.Clear();
             return text;
         }

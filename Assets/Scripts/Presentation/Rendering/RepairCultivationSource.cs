@@ -59,6 +59,7 @@ namespace CavesOfOoo.Rendering
             "repair-cultivation-salvaged-timber",
             "repair-cultivation-timber-pile",
             "repair-cultivation-clay-bank",
+            "repair-cultivation-fire-clay",
             "repair-cultivation-cultivated-soil",
         };
         public static bool IsModelId(string value)=>value!=null&&KnownIds.Contains(value);

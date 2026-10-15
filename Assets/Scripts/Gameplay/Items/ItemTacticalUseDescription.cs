@@ -11,6 +11,11 @@ namespace CavesOfOoo.Core
             switch (item?.BlueprintName)
             {
                 case "HealingTonic": case "KnitmossPad":
+                    // The payload can change after an inventory menu opens. An
+                    // empty remedy must not regain supported details through a
+                    // blueprint-only hint (DensityItemExamineInventoryTests).
+                    var tonic = item.GetPart<TonicPart>();
+                    if (tonic?.ParentEntity != item || string.IsNullOrWhiteSpace(tonic.Healing)) return null;
                     use = "Treat an injured adjacent companion with the healing payload above."; break;
                 case "Antidote": case "SumpsievePad":
                     use = "Treat an adjacent companion's ordinary or lingering gas poison. Fresh exposure can poison them again."; break;

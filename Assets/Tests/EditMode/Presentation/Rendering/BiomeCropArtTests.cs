@@ -69,9 +69,9 @@ namespace CavesOfOoo.Tests
    using(var f=new SpawnRing3DIntegrationFixture())
    {var e=f.Add("LampveinCrop");Stage(e,2,4);Exact(f,e,Prefix+"lampvein-2-wet");string id=e.ID;var at=f.Zone.GetEntityPosition(e);var loaded=f.RoundTrip();f.BindLoaded(loaded);var next=f.Zone.GetReadOnlyEntities().Single(x=>x.ID==id);Assert.AreNotSame(e,next);Assert.AreEqual(at,f.Zone.GetEntityPosition(next));Exact(f,next,Prefix+"lampvein-2-wet");Assert.Null(Recipe(f,e).ModelId);}
   }
-  [Test] public void ExactClosedLibraryContains280InertNativeModelsAndOld37Remain()
+  [Test] public void ExactClosedLibraryContains280InertNativeModelsAnd38RepairModelsRemain()
   {
-   var type=typeof(Village3DPresenter).Assembly.GetType("CavesOfOoo.Rendering.BiomeCrop3DLibrary");Assert.NotNull(type,"New library is absent before this feature.");var lib=Resources.Load("BiomeCrops3D/Library",type);Assert.NotNull(lib);type.GetMethod("Validate").Invoke(lib,null);Assert.AreEqual(280,((Array)type.GetField("Entries").GetValue(lib)).Length);Assert.AreEqual(37,RepairCultivation3DLibrary.Load().Entries.Length);
+   var type=typeof(Village3DPresenter).Assembly.GetType("CavesOfOoo.Rendering.BiomeCrop3DLibrary");Assert.NotNull(type,"New library is absent before this feature.");var lib=Resources.Load("BiomeCrops3D/Library",type);Assert.NotNull(lib);type.GetMethod("Validate").Invoke(lib,null);Assert.AreEqual(280,((Array)type.GetField("Entries").GetValue(lib)).Length);Assert.AreEqual(38,RepairCultivation3DLibrary.Load().Entries.Length);
   }
  }
 }

@@ -50,7 +50,7 @@ namespace CavesOfOoo.Tests
             if (!reader.IsOpen) Invoke(input, "TryOpenAnnouncement");
         }
         string AllText()
-        { Assert.True(reader.IsOpen, "Actual world Examine must reach the complete paginated reader."); var lines = new List<string>(); for (int i=0;i<reader.PageCount;i++){ Assert.True(reader.GoToPage(i)); lines.AddRange(reader.VisibleLines); } return string.Join("\n", lines); }
+        { Assert.True(reader.IsOpen, "Actual world Examine must reach the complete paginated reader."); var lines = new List<string>(); for (int i=0;i<reader.PageCount;i++){ Assert.True(reader.GoToPage(i)); lines.AddRange(reader.VisibleLines); } return (reader.Document?.Title ?? "") + "\n" + string.Join("\n", lines); }
         void Close() { reader.Close(); Invoke(input, "CloseAnnouncement"); }
         void AssertFree(int tick, int energy, int hp, Entity[] owners)
         { Assert.AreEqual(tick,input.TurnManager.TickCount); Assert.AreEqual(energy,input.TurnManager.GetEnergy(player)); Assert.AreEqual(hp,player.GetStatValue("Hitpoints")); CollectionAssert.AreEqual(owners,zone.GetReadOnlyEntities()); }

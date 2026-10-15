@@ -317,6 +317,7 @@ namespace CavesOfOoo.Rendering
         public static bool TryRecipe(Entity owner, out string modelId)
         {
             modelId = null;
+            if (owner?.BlueprintName == "FireClay") { modelId = RepairCultivationRecipes.PortableModel(owner); return modelId != null; }
             if (FiftySecondVisualAliases.IsPortable(owner?.BlueprintName)) return FiftySecondVisualAliases.TryPortable(owner, out modelId);
             if (EquipmentDiscoveryRecipes.Handles(owner)) return EquipmentDiscoveryRecipes.TryRecipe(owner, out modelId);
             if(ConnectedSpread3DLibrary.IsPortable(owner?.BlueprintName)){modelId=ConnectedSpread3DLibrary.PortableModel(owner);return modelId!=null;}

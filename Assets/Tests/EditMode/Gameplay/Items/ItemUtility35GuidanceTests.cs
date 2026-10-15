@@ -54,6 +54,22 @@ namespace CavesOfOoo.Tests
             Assert.True(ItemExamineService.TryDescribeDetails(item, out var details));
             StringAssert.DoesNotContain("Tactical use:", details);
         }
+        [TestCase("HealingTonic")]
+        [TestCase("KnitmossPad")]
+        public void HealingGuidanceRequiresTheCurrentHealingPayload(string blueprint)
+        {
+            var item = Factory.CreateEntity(blueprint);
+            var tonic = item.GetPart<TonicPart>();
+            Assert.NotNull(tonic);
+            string healing = tonic.Healing;
+            Assert.IsNotEmpty(healing);
+            tonic.Healing = "";
+            Assert.IsNull(ItemTacticalUseDescription.Describe(item), "A blueprint name is not a healing payload.");
+            tonic.Healing = "   ";
+            Assert.IsNull(ItemTacticalUseDescription.Describe(item));
+            tonic.Healing = healing;
+            StringAssert.Contains("healing payload", ItemTacticalUseDescription.Describe(item));
+        }
         [Test] public void TacticalGuidancePreservesActualWeaponArmorAndTonicDetails()
         {
             var boots = Factory.CreateEntity("IronshodBoots");

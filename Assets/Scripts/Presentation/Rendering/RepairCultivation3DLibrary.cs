@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "RepairCultivation3D/Library";
         public const string Folder = "Assets/Resources/RepairCultivation3D";
-        public const string ReviewedSourceSha256 = "14664f5ed987b81e361a2eea25734bcfdaba2c251da0a24af84b41c601ca843b";
+        public const string ReviewedSourceSha256 = "17299a7f1ecec755c168487ac8ff6f9c51438d639556bdf24d2a5ad7aa64c4cc";
         public string SourceSha256;
         public Material Material;
         [Serializable] public sealed class Entry

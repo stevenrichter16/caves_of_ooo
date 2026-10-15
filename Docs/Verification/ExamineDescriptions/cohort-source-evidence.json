@@ -1,0 +1,746 @@
+[
+  {
+    "blueprint": "Bone",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:369",
+    "description": "A pale length of bone, worn smooth on the outside and porous at its broken end."
+  },
+  {
+    "blueprint": "GoldCoin",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:173",
+    "description": "A small gold coin with a worn rim. The stamped face has been rubbed down to a shallow relief."
+  },
+  {
+    "blueprint": "Rubble",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CathedralCompositionBuilder.cs:86",
+    "description": "Broken stone lies in a loose scatter, with sharp fresh faces among the weathered pieces."
+  },
+  {
+    "blueprint": "Starapple",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:857",
+    "description": "A round fruit with firm skin and a small, star-shaped crown at the stem."
+  },
+  {
+    "blueprint": "HealingTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:73",
+    "description": "A medicinal dose in a small stoppered vessel. Its label is worn where a thumb finds the grip."
+  },
+  {
+    "blueprint": "PoisonTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:537",
+    "description": "A tightly stoppered dose with a sharply marked warning. The contents are meant to be handled more carefully than ordinary medicine."
+  },
+  {
+    "blueprint": "FireTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:541",
+    "description": "A flame mark runs up the side of the vessel. The stopper has been tied down for travel."
+  },
+  {
+    "blueprint": "SteelBladeComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:513",
+    "description": "An unmounted steel blade with a bare tang. It can become a long blade at a forge, or supply metal to repair damaged metal gear."
+  },
+  {
+    "blueprint": "IronSpikeComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:507",
+    "description": "An iron point with a thick base left for mounting. Its narrow tip concentrates the force of a thrust."
+  },
+  {
+    "blueprint": "OakHaftComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:635",
+    "description": "A straight oak haft, shaped at one end to receive a weapon head. The grain runs along its length."
+  },
+  {
+    "blueprint": "WillowHaftComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:984",
+    "description": "A slim willow haft with a smoothly pared grip. The mounting end is still bare."
+  },
+  {
+    "blueprint": "LeatherBindingComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:639",
+    "description": "A long strip of leather cut for a firm winding. It can bind a weapon grip or help repair damaged leather gear."
+  },
+  {
+    "blueprint": "SerratedEdgeComponent",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:643",
+    "description": "A set of close-set teeth and fastenings for dressing an edge. It is a finishing component, not a blade by itself."
+  },
+  {
+    "blueprint": "AlchemyStill",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:148",
+    "description": "A receiving vessel sits below a coiled condenser. The still separates a mixture one patient drop at a time."
+  },
+  {
+    "blueprint": "TinkersForge",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CinderholdCompositionBuilder.cs:67",
+    "description": "A hearth and work surface share the same worn reach. Fitting a blade, haft and binding here makes a working weapon."
+  },
+  {
+    "blueprint": "FireMoss",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:747",
+    "description": "A warm, brittle mat of moss. Loose crumbs catch with a tiny spark."
+  },
+  {
+    "blueprint": "LampOil",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:159",
+    "description": "A slow, greasy oil that clings to its container. It serves both the still and a torch in need of fuel."
+  },
+  {
+    "blueprint": "EmberFruit",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:946",
+    "description": "The flesh holds a lingering warmth beneath its sweetness. Alchemists keep it among their heating ingredients."
+  },
+  {
+    "blueprint": "FrostLichen",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:751",
+    "description": "Rime outlines the little fronds. Even a brief touch leaves an ache in the fingertips."
+  },
+  {
+    "blueprint": "GlacierSalt",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:936",
+    "description": "Large, cold crystals fit tightly against one another. When crushed, they leave a fine binding powder."
+  },
+  {
+    "blueprint": "GlimmerBrine",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:941",
+    "description": "The brine gives off a sharp smell. A faint hum follows the vessel when it is moved."
+  },
+  {
+    "blueprint": "SparkRoot",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:918",
+    "description": "Fine root-hairs stand around the severed end. Nearby loose hairs rise to meet them."
+  },
+  {
+    "blueprint": "VenomGland",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:743",
+    "description": "A small gland with its duct still attached. The swollen part holds what the fang once delivered."
+  },
+  {
+    "blueprint": "BogSap",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:908",
+    "description": "Thick sap draws into reluctant threads. Its sour smell persists after the container is closed."
+  },
+  {
+    "blueprint": "CandyHeartRoot",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:409",
+    "description": "A thick heartroot with a faint, slow beat. Its mild taste gives little warning of the life in it."
+  },
+  {
+    "blueprint": "MendleafSprig",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:739",
+    "description": "Small bruised leaves curl around the stem. The torn edges are drawing together again."
+  },
+  {
+    "blueprint": "StoneburrSeed",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:913",
+    "description": "A hard seed with a knuckled shell. Its crushed substance binds into a close, stiff mass."
+  },
+  {
+    "blueprint": "BlastcapSpore",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:545",
+    "description": "A gathered blastcap spore, kept apart from heat and careless shaking."
+  },
+  {
+    "blueprint": "CandyCarrotCrop",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationResidents.cs:47",
+    "description": "Gladroot grows below a low spray of leaves. The edible part stays tucked beneath the growing bed."
+  },
+  {
+    "blueprint": "EmberwheatCrop",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationResidents.cs:48",
+    "description": "A cultivated grain with narrow leaves and upright stalks. Its heads fill as the plant matures."
+  },
+  {
+    "blueprint": "AcidTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1209",
+    "description": "A narrow vessel with an acid warning on its wrapping. The mouth is kept well clear of the grip."
+  },
+  {
+    "blueprint": "LightningTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1213",
+    "description": "A branching mark identifies the dose. Its wrapping leaves only the neck exposed."
+  },
+  {
+    "blueprint": "FrostTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1205",
+    "description": "A pale frost mark is worked around the neck. The stopper fits below a tightly wound band."
+  },
+  {
+    "blueprint": "WaterTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:83",
+    "description": "A rounded water mark identifies the stoppered dose. The vessel is small enough to hold in one hand."
+  },
+  {
+    "blueprint": "BleedTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1217",
+    "description": "A red cut-mark runs across the label. The dose is sealed beneath a close-fitting stopper."
+  },
+  {
+    "blueprint": "Antidote",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:231",
+    "description": "A measured remedy with its name written plainly. The stopper is broad enough for an unsteady hand."
+  },
+  {
+    "blueprint": "BurnSalve",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:78",
+    "description": "A thick preparation kept beneath a close lid. A flat scrap tucked into the wrapping serves for spreading it."
+  },
+  {
+    "blueprint": "Panacea",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:735",
+    "description": "A carefully sealed remedy, its label crowded by the names of several ailments."
+  },
+  {
+    "blueprint": "Sand",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/DesertBuilder.cs:15",
+    "description": "Fine grains collect in the shallow hollows; the higher ridges have been swept nearly smooth."
+  },
+  {
+    "blueprint": "SandstoneWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/BeatingFormationBuilder.cs:172",
+    "description": "Packed grains show through the worn face of the stone. Its layers make faint bands across the wall."
+  },
+  {
+    "blueprint": "Rock",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/BeatingFormationBuilder.cs:262",
+    "description": "An uneven mass of stone, broad enough to interrupt the path around it."
+  },
+  {
+    "blueprint": "Grass",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CathedralCompositionBuilder.cs:66",
+    "description": "Narrow blades crowd the ground, bending over older growth at their roots."
+  },
+  {
+    "blueprint": "StoneFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CinderholdCompositionBuilder.cs:61",
+    "description": "The exposed stone has been worn smoother along the places feet keep finding."
+  },
+  {
+    "blueprint": "StoneWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/ConnectedSpreadSatellite.cs:120",
+    "description": "Close-set stone fills the space from side to side. Small chips have gathered at its foot."
+  },
+  {
+    "blueprint": "LimestoneWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:45",
+    "description": "Pale stone, dull on its weathered face and lighter where a corner has chipped away."
+  },
+  {
+    "blueprint": "ShaleWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:46",
+    "description": "Thin dark layers lie pressed together. At the broken edges they separate like pages."
+  },
+  {
+    "blueprint": "SlateWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:47",
+    "description": "Dense, dark stone with flat cleavage lines and a faint blue cast."
+  },
+  {
+    "blueprint": "QuartziteWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:48",
+    "description": "Small bright grains are locked into a hard, uneven face. They catch the light at different angles."
+  },
+  {
+    "blueprint": "ObsidianWall",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:49",
+    "description": "Dark volcanic glass curves around old fractures. The broken edges have a much finer line than the weathered face."
+  },
+  {
+    "blueprint": "SandstoneFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CathedralCompositionBuilder.cs:66",
+    "description": "A granular stone surface with shallow hollows where softer bands have worn away."
+  },
+  {
+    "blueprint": "LimestoneFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:45",
+    "description": "Pale stone underfoot, marked by a loose dust that gathers in its small pits."
+  },
+  {
+    "blueprint": "ShaleFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:46",
+    "description": "Flat flakes overlap along the dark stone. Their exposed edges give the surface a ragged grain."
+  },
+  {
+    "blueprint": "SlateFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:47",
+    "description": "Broad, close-fitting planes of dark stone make a surface broken by narrow seams."
+  },
+  {
+    "blueprint": "QuartziteFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:48",
+    "description": "The stone is speckled with hard pale grains. Worn patches interrupt its rougher surface."
+  },
+  {
+    "blueprint": "ObsidianFloor",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs:49",
+    "description": "Black glass shows dull patches of wear between curved, reflective fractures."
+  },
+  {
+    "blueprint": "StairsDown",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/CaveEntranceBuilder.cs:45",
+    "description": "The treads descend beyond the lip of the opening. Their edges have rounded under passing feet."
+  },
+  {
+    "blueprint": "StairsUp",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/GleanersCellarBuilder.cs:24",
+    "description": "A close flight of steps rises toward the opening above. The middle of each tread is worn."
+  },
+  {
+    "blueprint": "SpeedTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:193",
+    "description": "The dose bears a small running figure. Creases in its wrapping converge beneath the stopper."
+  },
+  {
+    "blueprint": "StrengthTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:727",
+    "description": "A clenched hand marks the vessel. The dose is secured with a short, stout tie."
+  },
+  {
+    "blueprint": "StoneskinTonic",
+    "group": "tonics",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:731",
+    "description": "A stone pattern is drawn around the label. The vessel itself is small enough to fit in a palm."
+  },
+  {
+    "blueprint": "Mushroom",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:63",
+    "description": "A fleshy cap spreads above a short stem. Fine gills fold into the shaded underside."
+  },
+  {
+    "blueprint": "LoanerDagger",
+    "group": "weapons",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:855",
+    "description": "A serviceable short blade with a repeatedly wrapped grip. Several hands have worn the same places smooth."
+  },
+  {
+    "blueprint": "LoanerSpear",
+    "group": "weapons",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:856",
+    "description": "A plain spear with a carefully reseated head. Marks on the shaft stop where a steady grip begins."
+  },
+  {
+    "blueprint": "LoanerLongsword",
+    "group": "weapons",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:857",
+    "description": "A long sword kept in working order through repeated sharpening. Older wear remains beneath the newer edge."
+  },
+  {
+    "blueprint": "ChoirSpine",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:401",
+    "description": "A stiff spine of bone narrows to a piercing tip. The thicker end is smooth enough to grip."
+  },
+  {
+    "blueprint": "OldWorldPipe",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1029",
+    "description": "A length of old metal pipe, hollow at both ends. One end has been battered flatter than the other."
+  },
+  {
+    "blueprint": "Sporeblade",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:393",
+    "description": "Fine fungal patterns spread over the blade. The sharpened edge cuts a clean line through them."
+  },
+  {
+    "blueprint": "FlamingSword",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1059",
+    "description": "The steel blade has a heat-darkened finish near the guard. A broad crosspiece separates the edge from the grip."
+  },
+  {
+    "blueprint": "IceSword",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1063",
+    "description": "Pale steel catches the light along a long, straight edge. The guard curves clear of the hand."
+  },
+  {
+    "blueprint": "CryoLance",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1067",
+    "description": "A narrow steel point extends well beyond its reinforced socket. The grip is set behind a small protective collar."
+  },
+  {
+    "blueprint": "EmberSpear",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1071",
+    "description": "A steel spearhead draws into a long point. Dark bands mark the metal close to its socket."
+  },
+  {
+    "blueprint": "AcidicDagger",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1075",
+    "description": "The short steel blade is etched around its sharpened point. A close guard keeps the grip clear of the working edge."
+  },
+  {
+    "blueprint": "VenomDagger",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:223",
+    "description": "A slender dagger with a narrow channel alongside the point. Its grip is well separated from the blade."
+  },
+  {
+    "blueprint": "ThunderHammer",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1079",
+    "description": "A dense steel head sits across a long handle. Bright metal shows through the worn striking faces."
+  },
+  {
+    "blueprint": "EchoKnife",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:3091",
+    "description": "A thin crystal blade catches light in fine internal lines. Its short grip leaves the cutting edge clear."
+  },
+  {
+    "blueprint": "SeveranceEdge",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:463",
+    "description": "A long blade with an unbroken sweep from shoulder to point. Its substantial weight gathers forward of the guard."
+  },
+  {
+    "blueprint": "GlassblownStiletto",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:2996",
+    "description": "Glass narrows to an exceptionally fine point. Tiny changes in thickness bend the view through it."
+  },
+  {
+    "blueprint": "DissolutionMaul",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1101",
+    "description": "A broad steel head sits on a haft made for both hands. Shallow pits mark the metal around its striking faces."
+  },
+  {
+    "blueprint": "FirstRootGlaive",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:397",
+    "description": "The long wooden haft and curved edge share a continuous grain. Fine living fibers remain beneath the worked surface."
+  },
+  {
+    "blueprint": "PalimpsestBlade",
+    "group": "weapons",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:459",
+    "description": "Old strokes and newer sharpening marks cross the steel. Repeated polishing has left only fragments of the decoration."
+  },
+  {
+    "blueprint": "Cactus",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/BeatingFormationBuilder.cs:313",
+    "description": "A thick, ribbed stem carries close ranks of spines. The folds leave narrow shadows between them."
+  },
+  {
+    "blueprint": "Pillar",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:392",
+    "description": "A solid stone shaft occupies the space between its broad foot and the structure above."
+  },
+  {
+    "blueprint": "BrokenColumn",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/ReferenceGladeBuilder.cs:21",
+    "description": "The surviving section ends in an irregular break. Its fallen pieces have settled around the base."
+  },
+  {
+    "blueprint": "WoodenBarrel",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/ReferenceGladeBuilder.cs:19",
+    "description": "Curved wooden staves meet beneath tight hoops. The rim is polished where hands have tipped the barrel."
+  },
+  {
+    "blueprint": "WaterPuddle",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/ConnectedSpreadSatellite.cs:121",
+    "description": "A shallow spread of water follows the low places in the ground."
+  },
+  {
+    "blueprint": "OilSlick",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/HazardTerrainBuilder.cs:128",
+    "description": "A dark film of oil lies over the ground, drawing into thicker beads along the uneven edges."
+  },
+  {
+    "blueprint": "AcidPool",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/HazardTerrainBuilder.cs:110",
+    "description": "A sharp-smelling pool lies in a shallow depression. A pale line marks its edge."
+  },
+  {
+    "blueprint": "Bank",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/RiverChunkBuilder.cs:99",
+    "description": "A strip of ground follows the water. Small ridges mark where the edge has stood before."
+  },
+  {
+    "blueprint": "OilSeep",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/HazardTerrainBuilder.cs:129",
+    "description": "Dark oil has gathered around a narrow opening in the ground. Its heavier folds barely move."
+  },
+  {
+    "blueprint": "LanternOil",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:421",
+    "description": "A stoppered flask of fuel oil. The outside is rubbed clean where a hand grips it."
+  },
+  {
+    "blueprint": "CookedMeat",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:2602",
+    "description": "A portion of meat browned at the edges. The surface has tightened around the softer middle."
+  },
+  {
+    "blueprint": "RoastedStarapple",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:2608",
+    "description": "Heat has wrinkled the skin and softened the flesh beneath it. A little juice has dried along the split."
+  },
+  {
+    "blueprint": "Torch",
+    "group": "hazards",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:7",
+    "description": "A wooden shaft supports a tightly gathered head of fuel. The lower end leaves room for a hand away from the flame."
+  },
+  {
+    "blueprint": "CampfireGroundMarker",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:767",
+    "description": "Repeated fires have darkened this patch of earth. Fine ash has worked into the cracks."
+  },
+  {
+    "blueprint": "WellGroundMarker",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:592",
+    "description": "Flagstones beneath the drawing place are worn into shallow channels by spilled water."
+  },
+  {
+    "blueprint": "SilverSand",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/TradeStockBuilder.cs:53",
+    "description": "Fine, pale grains flash as they move. Settled together, they look duller than a single grain does."
+  },
+  {
+    "blueprint": "LockedDoor",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:440",
+    "description": "Wooden panels surround a fitted lock. The hinges and keyhole have received more care than the face of the door."
+  },
+  {
+    "blueprint": "LockedChest",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:1269",
+    "description": "A lock plate is set into the front of this wooden chest. Scratches gather around the keyhole."
+  },
+  {
+    "blueprint": "Oven",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationResidents.cs:49",
+    "description": "A deep baking chamber sits behind a narrow mouth. Soot has settled where the heat passes out."
+  },
+  {
+    "blueprint": "OvenGroundMarker",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:659",
+    "description": "A scatter of soot works its way into the joints between the stones."
+  },
+  {
+    "blueprint": "FireClay",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:32",
+    "description": "Dense clay that keeps the shape pressed into it. It is used to patch fired well linings and cracked batch pans."
+  },
+  {
+    "blueprint": "WatchLantern",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:693",
+    "description": "A guarded lamp with a broad base, made to stand at a place people return to."
+  },
+  {
+    "blueprint": "LanternGroundMarker",
+    "group": "terrain",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:726",
+    "description": "The stone beneath the lantern bears old splashes and the scuffs of people stopping beside it."
+  },
+  {
+    "blueprint": "WardOil",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs:794",
+    "description": "A measured portion of oil kept for the settlement watch lamps. A dark residue rings the mouth of its container."
+  },
+  {
+    "blueprint": "SpikeTrap",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:441",
+    "description": "A bed of pointed spikes is joined to a pressure mechanism. Narrow seams separate the moving plate from its frame."
+  },
+  {
+    "blueprint": "FireTrap",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:464",
+    "description": "A small pressure mechanism sits above a fuel outlet. Soot has gathered around the opening."
+  },
+  {
+    "blueprint": "BearTrap",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:415",
+    "description": "Curved metal jaws meet around a central pressure plate. The hinge is heavier than the teeth."
+  },
+  {
+    "blueprint": "PressurePlate",
+    "group": "hazards",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:218",
+    "description": "A fitted plate sits slightly apart from its surround. A narrow linkage disappears beneath its edge."
+  },
+  {
+    "blueprint": "PaleSalt",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:581",
+    "description": "Pale crystals leave a dry dust wherever they rest. The Curation values things that resist decay, including its supplies."
+  },
+  {
+    "blueprint": "ChoirIron",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:405",
+    "description": "Heavy ore with an uneven, dark metallic grain. Small reddish crumbs gather along its fractured edges."
+  },
+  {
+    "blueprint": "WildBerries",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1933",
+    "description": "A handful of small berries, some still carrying the fine stems they grew on."
+  },
+  {
+    "blueprint": "Honeycomb",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:1937",
+    "description": "Thin wax walls divide the comb into close cells. Honey clings to the broken edges."
+  },
+  {
+    "blueprint": "MushroomRing",
+    "group": "plants-and-food",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/ReferenceGladeBuilder.cs:20",
+    "description": "Fungal caps trace a loose ring in the ground. Small new heads crowd beneath the older ones."
+  },
+  {
+    "blueprint": "GlowQuartz",
+    "group": "craft-and-gathering",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:813",
+    "description": "Pale crystal faces catch and carry a nearby gleam. The interior breaks it into smaller points."
+  },
+  {
+    "blueprint": "PoisonGasGrenade",
+    "group": "hazards",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:205",
+    "description": "A sealed canister marked for poison vapor. Throwing it releases its contents into the surrounding air."
+  },
+  {
+    "blueprint": "SleepGasGrenade",
+    "group": "hazards",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:551",
+    "description": "A sealed canister marked for sleep vapor. The cloud released by a throw is not confined to the struck creature."
+  },
+  {
+    "blueprint": "StunGasGrenade",
+    "group": "hazards",
+    "source_evidence": "Assets/Resources/Content/Data/Loot/LootTables.json:339",
+    "description": "A sealed canister marked for stun vapor. Its charge is meant to spread through the air after a throw."
+  },
+  {
+    "blueprint": "Urn",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:61",
+    "description": "A clay vessel with a rounded shoulder and narrow mouth. Its thick rim is smoother than the body."
+  },
+  {
+    "blueprint": "StrongBox",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:57",
+    "description": "Iron plates enclose a compact box. The lid meets a close-set lock plate."
+  },
+  {
+    "blueprint": "OreCache",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:55",
+    "description": "Rough mineral fragments have been gathered into a sheltered recess. Finer dust fills the spaces between them."
+  },
+  {
+    "blueprint": "BoneCache",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:64",
+    "description": "Bones have been fitted into a compact pile. Narrow gaps run beneath the larger pieces."
+  },
+  {
+    "blueprint": "Reliquary",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs:184",
+    "description": "A carefully fitted case with a lock across its opening. The care taken over the outside says little about what remains inside."
+  },
+  {
+    "blueprint": "WeaponRack",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:114",
+    "description": "Wooden rests are spaced to keep hafts and blades apart. Repeated lifting has polished their upper edges."
+  },
+  {
+    "blueprint": "AlchemyShelf",
+    "group": "workplaces-and-containers",
+    "source_evidence": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationWorksites.cs:39",
+    "description": "A wooden shelf with narrow compartments and circular stains where vessels have stood."
+  }
+]

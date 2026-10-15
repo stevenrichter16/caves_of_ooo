@@ -20,11 +20,32 @@ namespace CavesOfOoo.Rendering
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
-        private const int PAGE_LINES = 33; // Leave space above the underlying inventory action rows.
-        private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
+        public const int PageLineCapacity = 25;
+        private const int PAGE_LINES = PageLineCapacity; // Leave space above the underlying inventory action rows.
+        private static readonly Color PopupBgColor = new Color(.035f, .044f, .038f, 1f);
+        private static readonly Color Bronze = new Color(.67f, .46f, .23f, 1f);
+        private static readonly Color Ivory = new Color(.89f, .87f, .77f, 1f);
+        private static readonly Color SeaGreen = new Color(.42f, .69f, .57f, 1f);
+        private static readonly Color Amber = new Color(.97f, .72f, .32f, 1f);
+        private static readonly Color RuleColor = new Color(.41f, .45f, .29f, 1f);
+        private const int BodyTop = 8;
+        private readonly List<LedgerLine> _ledgerLines = new List<LedgerLine>();
+        private readonly List<string> _titleLines = new List<string>();
+        public AnnouncementDocument Document { get; private set; }
+        public int CurrentPage => _pageIndex;
+        public string FooterText => BuildFooter(NativeGamepadInput.IsConnected);
+        private struct LedgerLine
+        {
+            public string Text; public Color Color; public string Label;
+            public LedgerLine(string text, Color color, string label = null)
+            { Text = text; Color = color; Label = label; }
+        }
 
         private bool _isOpen;
         private DocumentReadAudio _documentAudio;
+        private ExaminePortraitRenderer _portraitRenderer;
+        private ExaminePortrait _portrait;
+        private bool _controllerHints;
         private string _message;
         private readonly List<string> _wrappedLines = new List<string>();
         private int _pageIndex;
@@ -73,17 +94,64 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        public void Open(string message)=>Open(message,null);
-        internal void Open(string message,DocumentReadAudio reading)
+        public void Open(string message)=>Open(message,null,null);
+        internal void Open(string message,DocumentReadAudio reading)=>Open(message,reading,null);
+        public void OpenDocument(AnnouncementDocument document)
+        {
+            if (document == null) return;
+            Open(document.ToPlainText(), null, document);
+        }
+        internal void Open(string message, DocumentReadAudio reading, AnnouncementDocument document)
         {
             if (string.IsNullOrEmpty(message)) return;
             _documentAudio=reading;
             _message = message;
+            Document = document;
             _isOpen = true;
-            _wrappedLines.Clear();
+            _wrappedLines.Clear(); _ledgerLines.Clear(); _titleLines.Clear();
             _pageIndex = 0;
-            WrapText(message, MAX_TEXT_WIDTH, _wrappedLines);
+            WrapText(document?.Title ?? "Field notes", 32, _titleLines);
+            if (document == null) AddLines(message, Ivory);
+            else
+            {
+                foreach (var section in document.Sections)
+                {
+                    if (string.IsNullOrEmpty(section.Text)) continue;
+                    if (_ledgerLines.Count > 0) AddLines("", Ivory);
+                    if (!string.IsNullOrEmpty(section.Heading) && section.Heading != "Description")
+                    { AddLines(section.Heading.ToUpperInvariant(), SeaGreen); AddLines("", Ivory); }
+                    AddLines(section.Text, section.Tone == AnnouncementTone.Warning ? Amber : Ivory);
+                }
+                if (document.Facts.Count > 0 && _ledgerLines.Count > 0) AddLines("", Ivory);
+                foreach (var fact in document.Facts)
+                {
+                    var values = new List<string>(); WrapText(fact.Value, MAX_TEXT_WIDTH - 15, values);
+                    for (int i = 0; i < values.Count; i++)
+                    {
+                        string label = i == 0 ? fact.Label : "";
+                        // Long labels are wrapped as ordinary text, never silently clipped.
+                        if (label.Length > 13) { AddLines(label, SeaGreen); label = ""; }
+                        _ledgerLines.Add(new LedgerLine(values[i], Ivory, label));
+                        _wrappedLines.Add((label.Length == 0 ? "" : label + ": ") + values[i]);
+                    }
+                }
+                if (_ledgerLines.Count == 0) AddLines(message, Ivory);
+                if (_titleLines.Count > 2) { AddLines("Full name", SeaGreen); AddLines(document.Title, Ivory); }
+            }
+            _portrait = default;
+            if (Application.isPlaying && ExamineDocumentBuilder.IsCurrentSubject(document))
+            {
+                if (_portraitRenderer == null) _portraitRenderer = new ExaminePortraitRenderer();
+                _portrait = _portraitRenderer.GetPortrait(document);
+            }
+            else _portraitRenderer?.Clear();
             Render();
+        }
+
+        private void AddLines(string text, Color color)
+        {
+            var lines = new List<string>(); WrapText(text, MAX_TEXT_WIDTH, lines);
+            foreach (var line in lines) { _ledgerLines.Add(new LedgerLine(line, color)); _wrappedLines.Add(line); }
         }
 
         public void Close()
@@ -93,6 +161,9 @@ namespace CavesOfOoo.Rendering
             ClearBgRegion();
             _isOpen = false;
             _documentAudio=null;
+            Document=null;
+            _portrait=default;
+            _portraitRenderer?.Clear();
         }
 
         public void HandleInput()
@@ -115,85 +186,120 @@ namespace CavesOfOoo.Rendering
                 GoToPage(_pageIndex + 1);
                 return;
             }
+            if (Input.GetMouseButtonDown(0) && CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap,
+                Input.mousePosition, out int gx, out int gy))
+            { HandlePointerCell(gx,gy); return; }
             if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space)
-                || Input.GetMouseButtonDown(0))
+                )
             {
                 if (!GoToPage(_pageIndex + 1)) Close();
                 return;
             }
         }
 
+        private void HandlePointerCell(int gx,int gy)
+        {
+            if (!_isOpen || gx < _worldOriginX || gx >= _worldOriginX + POPUP_W || gy > _worldTopY || gy <= _worldTopY - _popupH) return;
+            if (gy == _worldTopY - (_popupH - 3))
+            {
+                string footer=BuildFooter(_controllerHints);int x=gx-_worldOriginX-2;
+                int back=footer.IndexOf(_controllerHints?"[B]":"[Esc]");
+                int confirm=footer.IndexOf(_controllerHints?"[A]":"[Enter]");
+                int next=footer.IndexOf(_controllerHints?"[RB]":"[Right]");
+                if(x>=back && back>=0){Close();return;}
+                if(PageCount>1 && x>=0 && x<next){GoToPage(_pageIndex-1);return;}
+                if(PageCount>1 && x>=next && x<confirm){GoToPage(_pageIndex+1);return;}
+                if(x<confirm)return;
+            }
+            if(!GoToPage(_pageIndex+1))Close();
+        }
+
+        private void Update()
+        {
+            if(_isOpen && _controllerHints!=NativeGamepadInput.IsConnected)Render();
+        }
+        private void OnDestroy(){_portraitRenderer?.Dispose();_portraitRenderer=null;}
+        private void OnDisable(){Close();}
+        private void OnGUI()
+        {
+            if(!_isOpen || _portrait.Texture==null || PopupCamera==null || !PopupCamera.enabled || Tilemap==null || Event.current.type!=EventType.Repaint)return;
+            // Convert the header's tile rectangle through the same overlay camera.
+            // The texture is captured only on Open, never in this repaint callback.
+            var bottom=PopupCamera.WorldToScreenPoint(Tilemap.CellToWorld(new Vector3Int(_worldOriginX+43,_worldTopY-6,0)));
+            var top=PopupCamera.WorldToScreenPoint(Tilemap.CellToWorld(new Vector3Int(_worldOriginX+54,_worldTopY,0)));
+            float side=Mathf.Min(top.x-bottom.x,top.y-bottom.y);
+            var rect=new Rect(bottom.x+(top.x-bottom.x-side)*.5f,Screen.height-top.y+(top.y-bottom.y-side)*.5f,side,side);
+            var color=GUI.color;int depth=GUI.depth;
+            try{GUI.color=_portrait.Tint;GUI.depth=-20;GUI.DrawTextureWithTexCoords(rect,_portrait.Texture,_portrait.Uv,true);}
+            finally{GUI.color=color;GUI.depth=depth;}
+        }
+
         // ===== Rendering =====
 
         private void ComputePopupPosition()
         {
-            int textLines = VisibleLineCount;
-
-            // Layout: top border + blank + text lines + blank + action bar + bottom border
-            _popupH = 2 + textLines + 2 + 1;
+            _popupH = BodyTop + System.Math.Max(1, VisibleLineCount) + 4;
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
+        }
+
+        private string BuildFooter(bool controller)
+        {
+            bool last = _pageIndex + 1 >= PageCount;
+            if (controller) return PageCount > 1
+                ? "[LB] prev [RB] next [A] " + (last ? "close" : "next") + "  [B] back"
+                : "[A] Close   [B] Back";
+            return PageCount > 1 ? "[Left] prev [Right] next [Enter] " + (last ? "close" : "next") + "  [Esc] back"
+                : "[Enter] Close   [Esc] Back";
         }
 
         private void Render()
         {
             if (Tilemap == null) return;
-
-            // Erase whatever was drawn by the previous Open() call FIRST —
-            // the new popup's rectangle may not fully overlap the old one's
-            // (different text wraps to different heights, shifting the
-            // centered origin), so tiles outside the new rectangle would
-            // otherwise be left behind as ghost artifacts.
-            ClearFgRegion();
-            ClearBgRegion();
-            ComputePopupPosition();
-
-            int textLines = VisibleLineCount;
-
-            DrawBgFill(0, 0, POPUP_W, _popupH - 1);
-
-            // Top border
-            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
-            for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, 0, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, QudColorParser.Gray);
-
-            // Message text lines
-            int y = 1;
-            for (int i = 0; i < textLines; i++)
+            ClearFgRegion(); ClearBgRegion(); ComputePopupPosition();
+            _controllerHints=NativeGamepadInput.IsConnected;
+            DrawBgFill(0, 0, POPUP_W, _popupH);
+            for (int y = 1; y < _popupH - 1; y++)
             {
-                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-                DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-                DrawText(2, y, _wrappedLines[_pageIndex * PAGE_LINES + i], QudColorParser.BrightYellow);
-                y++;
+                DrawChar(0, y, CP437TilesetGenerator.BoxVertical, Bronze);
+                DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, Bronze);
             }
+            for (int x = 1; x < POPUP_W - 1; x++)
+            {
+                DrawChar(x, 0, CP437TilesetGenerator.BoxHorizontal, Bronze);
+                DrawChar(x, _popupH - 1, CP437TilesetGenerator.BoxHorizontal, Bronze);
+            }
+            DrawChar(0, 0, CP437TilesetGenerator.BoxTopLeft, Bronze);
+            DrawChar(POPUP_W - 1, 0, CP437TilesetGenerator.BoxTopRight, Bronze);
+            DrawChar(0, _popupH - 1, CP437TilesetGenerator.BoxBottomLeft, Bronze);
+            DrawChar(POPUP_W - 1, _popupH - 1, CP437TilesetGenerator.BoxBottomRight, Bronze);
+            DrawText(2, 1, HudHotbarPresentation.Fit(Document?.Kind ?? "NOTICE", 40), SeaGreen);
+            for (int i = 0; i < System.Math.Min(2,_titleLines.Count); i++)
+                DrawText(2, 3 + i*2, i == 1 && _titleLines.Count > 2 ? HudHotbarPresentation.Fit(_titleLines[i] + ">",32) : _titleLines[i], Amber, 2.1f, 1.25f);
+            DrawRule(7);
+            for (int i = 0; i < VisibleLineCount; i++)
+            {
+                var line = _ledgerLines[_pageIndex * PAGE_LINES + i];
+                if (line.Label == null) DrawText(2, BodyTop + i, line.Text, line.Color);
+                else
+                {
+                    DrawText(2, BodyTop + i, line.Label, SeaGreen);
+                    DrawChar(16, BodyTop + i, CP437TilesetGenerator.BoxVertical, RuleColor);
+                    DrawText(17, BodyTop + i, line.Text, line.Color);
+                }
+            }
+            DrawRule(_popupH - 4);
+            DrawText(2, _popupH - 3, FooterText, Ivory);
+            DrawText(2, _popupH - 2, "READING  /  no turn passes", SeaGreen);
+            string pages = (_pageIndex + 1) + " / " + PageCount;
+            DrawText(POPUP_W - 2 - pages.Length, _popupH - 2, pages, SeaGreen);
+            _fgDrawn = true; _fgDrawnW = POPUP_W; _fgDrawnH = _popupH;
+            _fgDrawnOriginX = _worldOriginX; _fgDrawnTopY = _worldTopY;
+        }
 
-            // Blank line before action bar
-            DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-            y++;
-
-            // Bottom border
-            DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, QudColorParser.Gray);
-            for (int i = 1; i < POPUP_W - 1; i++)
-                DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
-            DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxBottomRight, QudColorParser.Gray);
-            y++;
-
-            // Action bar
-            string actions = PageCount > 1
-                ? $" {_pageIndex + 1}/{PageCount} [Left/Right] page [Enter] next [Esc] close"
-                : " [Enter] okay";
-            DrawText(0, y, actions, QudColorParser.DarkGray);
-
-            // Record the full FG footprint we just painted (box rows +
-            // action bar row below) so the NEXT Render/Close can erase it
-            // even if _worldOriginX/_worldTopY/_popupH change in between.
-            _fgDrawn = true;
-            _fgDrawnW = POPUP_W;
-            _fgDrawnH = _popupH + 1;
-            _fgDrawnOriginX = _worldOriginX;
-            _fgDrawnTopY = _worldTopY;
+        private void DrawRule(int y)
+        {
+            for (int x = 2; x < POPUP_W - 2; x++) DrawChar(x,y,CP437TilesetGenerator.BoxHorizontal,RuleColor);
         }
 
         // ===== Word Wrap =====
@@ -316,16 +422,23 @@ namespace CavesOfOoo.Rendering
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);
             Tilemap.SetColor(tilePos, color);
+            Tilemap.SetTransformMatrix(tilePos, Matrix4x4.identity);
         }
 
-        private void DrawText(int gx, int gy, string text, Color color)
+        private void DrawText(int gx, int gy, string text, Color color, float scale=1.6f, float advance=1f)
         {
             if (text == null || Tilemap == null) return;
+            float cellWidth = Mathf.Abs(Tilemap.GetCellCenterLocal(Vector3Int.right).x - Tilemap.GetCellCenterLocal(Vector3Int.zero).x);
+            if (advance > 1) scale = Mathf.Min(scale, cellWidth * advance * 2f);
             for (int i = 0; i < text.Length; i++)
             {
                 char c = text[i];
                 if (c == ' ') continue;
-                DrawChar(gx + i, gy, c, color);
+                var tilePos = new Vector3Int(_worldOriginX + gx + i, _worldTopY - gy, 0);
+                Tilemap.SetTile(tilePos, HudPixelFont.GetTile(c));
+                Tilemap.SetTileFlags(tilePos, TileFlags.None);
+                Tilemap.SetColor(tilePos, color);
+                Tilemap.SetTransformMatrix(tilePos, Matrix4x4.TRS(new Vector3(i*(advance-1)*cellWidth,0,0),Quaternion.identity,new Vector3(scale,scale,1)));
             }
         }
     }

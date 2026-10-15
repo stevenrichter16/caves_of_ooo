@@ -22,10 +22,18 @@ def crop(species,stage,wet):
    if stage==2:
     box(x,h+.075,z,.095,.10,.08,17);box(x-.035,h+.13,z,.10,.036,.045,12);box(x+.027,h+.10,z+.04,.038,.067,.047,5)
     box(x+.042,h*.48,z,.026,h*.67,.03,4)
+    # Fiber tassels hang below the pale knots: the mature repair crop is legible at world scale.
+    for offset,length in [(-.055,.22),(.045,.18)]:
+     box(x+offset,h-.025,z-.045,.025,length,.027,5)
+    box(x,h+.075,z,.12,.065,.115,12);box(x-.017,h+.12,z-.012,.075,.035,.08,17)
   elif species=='hearthbulb':
    h=.10 if stage==1 else .25
    if stage==2:
-    box(x,.14,z,.195,.20,.19,18);box(x,.24,z,.15,.095,.15,22);box(x-.015,.293,z,.087,.03,.09,5)
+    box(x,.14,z,.245,.20,.235,18);box(x,.24,z,.19,.095,.18,22);box(x-.015,.293,z,.11,.03,.105,5)
+    box(x-.067,.135,z-.025,.07,.13,.21,20);box(x+.067,.17,z+.02,.065,.13,.21,18)
+    for side in (-1,1):
+     box(x+side*.055,.40,z,.043,.23,.045,8 if side<0 else 9)
+     box(x+side*.075,.51,z,.08,.055,.047,9)
    box(x,.11+h,z,.04,.15,.04,7)
    box(x-.065,.10+h,z,.15,.04,.065,8);box(x+.064,.14+h,z,.14,.05,.06,9)
    box(x,.18+h,z+.055,.05,.04,.14,8)
@@ -38,6 +46,10 @@ def crop(species,stage,wet):
    if stage==2:
     box(x-.014,.38,z-.027,.075,.052,.155,13);box(x-.014,.414,z-.031,.025,.017,.115,17)
     box(x+.05,.245,z+.06,.13,.033,.085,8)
+    # Upright central leaf with a pale seam and real cross stitches.
+    box(x,.405,z-.05,.18,.23,.045,8);box(x,.405,z-.077,.018,.215,.012,17)
+    for stitch in range(3):box(x,.34+stitch*.065,z-.085,.067,.017,.018,17)
+    box(x-.025,.53,z-.05,.075,.035,.055,5)
 for f in ('knotflax','hearthbulb','seamleaf'):
  for stage in range(3):
   for wet in (False,True):crop(f,stage,wet)
@@ -52,13 +64,28 @@ for f in ('lined-well','rope-well'):
     if f=='lined-well' and not repaired and side==2 and i==1:h=.17
     if side%2:x,z=z,x
     if side>=2:x,z=-x,-z
-    box(x,h/2+.05,z,.18 if side%2==0 else .19,h,.19 if side%2==0 else .18,11)
+    for course in range(3):
+     brick_h=min(.13,h-course*.145)
+     if brick_h>0:
+      box(x,.05+course*.145+brick_h/2,z,.18 if side%2==0 else .19,brick_h,.19 if side%2==0 else .18,10 if course==0 else 11)
     box(x,h+.065,z,.195,.03,.195,12)
-    if repaired and f=='lined-well':box(x,.26,z*.80,.12,.17,.045 if side%2==0 else .12,18)
+    if f=='lined-well' and not (not repaired and side==2 and i==1):
+     # Exposed lining remains visible before repair; the missing segment is its fault.
+     ix,iz=(.1975 if x>0 else -.1975,z) if side%2 else (x,.1975 if z>0 else -.1975)
+     box(ix,.26,iz,.035 if side%2 else .18,.29,.18 if side%2 else .035,18)
+  # Complete the square rim; side-center stones alone left four false holes.
+  for cx in (-.30,.30):
+   for cz in (-.30,.30):
+    for course in range(3):box(cx,.115+course*.145,cz,.19,.13,.19,10 if course==0 else 11)
+    box(cx,.495,cz,.195,.03,.195,12)
   for x in (-.36,.36):box(x,.54,0,.065,1.00,.07,20);box(x+.01,1.055,0,.075,.05,.095,22)
   box(0,1.0,0,.81,.075,.075,21)
   if f=='rope-well':
-   box(.04,.97,0,.10,.15,.11,19);box(.04,.975,0,.04,.10,.16,22)
+   box(.04,.97,0,.10,.15,.11,19)
+   for coil in range(4):
+    cx=-.08+coil*.065
+    for y,z,w,h,d in [(1.055,0,.03,.025,.16),(.945,0,.03,.025,.16),(1.0,-.08,.03,.11,.025),(1.0,.08,.03,.11,.025)]:
+     box(cx,y,z,w,h,d,5 if coil%2==0 else 4)
    if repaired:
     box(.04,.655,0,.026,.64,.026,5);box(.04,.27,0,.18,.12,.16,20);box(.04,.34,0,.17,.032,.15,22)
    else:
@@ -71,7 +98,9 @@ for f in ('lined-well','rope-well'):
 for state in ('broken','closed','open'):
  box=shape('wooden-gate-'+state)
  for x in (-.435,.435):box(x,.40,0,.09,.80,.09,20);box(x,.817,0,.102,.035,.102,22);box(x,.14,.075,.12,.09,.15,10)
- for y in (.25,.66):box(-.372,y,0,.08,.08,.12,11)
+ for y in (.25,.66):
+  box(-.372,y,0,.08,.08,.12,11)
+  for x in (-.39,-.355):box(x,y,-.068,.025,.027,.018,12)
  def leaf(x,y,z,w,h,d,c):
   if state=='open':x,z=-.37+z,-.37+(x+.37);w,d=d,w
   if state=='broken':x,z=-.36+z,.08+(x+.36)*.46;y=y*.43;h=h*.43;w,d=d,w*.46
@@ -104,6 +133,19 @@ for f in ('salvaged-timber','timber-pile'):
 box=shape('clay-bank')
 for i,(x,z) in enumerate([(-.25,-.17),(.01,-.20),(.24,-.08),(-.18,.15),(.12,.17)]):
  h=.10+(i%3)*.045;box(x,h/2,z,.27,h,.26,18);box(x-.02,h+.015,z-.02,.21,.03,.20,20);box(x+.065,h+.042,z,.055,.025,.065,22)
+# Compact, chipped clay pieces replace FireClay's old crystal silhouette.
+# One bounded native model; the large borrowed portable source pack stays intact.
+box=shape('fire-clay')
+for x,y,z,w,h,d in [(-.105,.07,-.07,.22,.14,.22),(.135,.06,.065,.18,.12,.20),(.005,.205,.045,.22,.23,.22)]:
+ box(x,y,z,w,h,d,18)
+ box(x-.025,y-h*.36,z-.012,w*.78,h*.22,d*.93,20)
+ box(x-.035,y+h*.5+.006,z-.032,w*.50,.012,d*.52,22)
+# Offset steps keep the clods irregular rather than manufactured bricks.
+box(-.13,.151,-.08,.14,.025,.15,18);box(.052,.312,.055,.12,.016,.16,18)
+box(.116,.17,.034,.028,.13,.16,18);box(-.115,.202,.055,.022,.17,.15,20)
+for x,y,z in [(-.145,.085,-.183),(-.025,.223,-.068),(.15,.075,-.037),(.045,.281,.158)]:
+ box(x,y,z,.025,.026,.009,17)
+box(.053,.205,-.069,.014,.085,.011,19);box(-.018,.327,.06,.016,.008,.075,19)
 box=shape('cultivated-soil')
 # Sparse raised furrows expose the actual native ground between rows.
 for z in (-.29,0,.29):

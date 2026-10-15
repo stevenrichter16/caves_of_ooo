@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CavesOfOoo.Core
 {
@@ -64,7 +65,8 @@ namespace CavesOfOoo.Core
                 }
 
                 // +1 MP for mutation advancement
-                entity.GainMP(1);
+                var mpStat = entity.GetStat("MP");
+                bool gainedMP = entity.GainMP(1);
 
                 // ST.4: +1 SP for skill-tree progression. The grant is
                 // null-safe: NPCs / minor actors that don't carry an SP
@@ -84,7 +86,23 @@ namespace CavesOfOoo.Core
                             AsciiFxTheme.Holy, blocksTurnAdvance: false);
                 }
 
-                MessageLog.AddAnnouncement($"You advance to level {newLevel}!");
+                string announcement = $"You advance to level {newLevel}!";
+                var rewards = new List<AnnouncementFact>();
+                // Report only grants made to the current stat instances. GainedMP
+                // callbacks may remove or replace a stat before this snapshot.
+                // Computed totals honor caps/modifiers; current health makes no
+                // claim that dead or penalized actors were healed to full.
+                if (hp != null && ReferenceEquals(entity.GetStat("Hitpoints"), hp))
+                {
+                    rewards.Add(new AnnouncementFact("Maximum HP", $"+2; now {hp.Max}"));
+                    rewards.Add(new AnnouncementFact("Health", $"{hp.Value} / {hp.Max}"));
+                }
+                if (gainedMP && mpStat != null && ReferenceEquals(entity.GetStat("MP"), mpStat))
+                    rewards.Add(new AnnouncementFact("MP gained", $"+1; now {mpStat.Value}"));
+                if (spStat != null && ReferenceEquals(entity.GetStat("SP"), spStat))
+                    rewards.Add(new AnnouncementFact("SP gained", $"+1; now {spStat.Value}"));
+                MessageLog.AddPresentedAnnouncement(announcement,new AnnouncementDocument(
+                    $"Level {newLevel}","LEVEL UP",new[]{new AnnouncementSection("",announcement,AnnouncementTone.Positive)},rewards));
             }
         }
     }

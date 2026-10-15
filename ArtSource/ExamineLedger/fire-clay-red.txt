@@ -1,0 +1,22 @@
+...F......F.......
+======================================================================
+FAIL: test_fire_clay_is_a_compact_chipped_clay_material_not_upright_crystals (ArtSource.ExamineLedger.test_world_refinements.WorldRefinementTests.test_fire_clay_is_a_compact_chipped_clay_material_not_upright_crystals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ExamineLedger/test_world_refinements.py", line 81, in test_fire_clay_is_a_compact_chipped_clay_material_not_upright_crystals
+    self.assertIsNotNone(blocks, 'Fire clay needs an individual clay-chunk model in the bounded repair kit.')
+AssertionError: unexpectedly None : Fire clay needs an individual clay-chunk model in the bounded repair kit.
+
+======================================================================
+FAIL: test_exact_finite_original_pack (ArtSource.RepairCultivation3D.test_source.SourceTests.test_exact_finite_original_pack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/RepairCultivation3D/test_source.py", line 7, in test_exact_finite_original_pack
+    self.assertEqual(len(self.models),38);self.assertEqual(len(self.kit['palette']),24)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 37 != 38
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.018s
+
+FAILED (failures=2)

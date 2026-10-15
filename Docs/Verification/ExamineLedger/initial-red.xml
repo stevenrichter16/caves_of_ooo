@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="32" result="Failed(Child)" total="32" passed="2" failed="30" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.0624322">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29078" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.062432" total="32" passed="2" failed="30" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="35827" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29078" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.056525" total="32" passed="2" failed="30" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="35828" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29078" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.054365" total="32" passed="2" failed="30" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="35829" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29078" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.053207" total="32" passed="2" failed="30" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="7900" name="ExamineDocumentTests" fullname="CavesOfOoo.Tests.ExamineDocumentTests" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="1.000020" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="7915" name="ConditionsPrecedeLongFlavorAndRetainCurrentDurationWithoutMutatingIt" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ConditionsPrecedeLongFlavorAndRetainCurrentDurationWithoutMutatingIt" methodname="ConditionsPrecedeLongFlavorAndRetainCurrentDurationWithoutMutatingIt" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1563442430" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.037521" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ConditionsPrecedeLongFlavorAndRetainCurrentDurationWithoutMutatingIt () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:107
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="7933" name="EmptySubjectsAreRefused" fullname="CavesOfOoo.Tests.ExamineDocumentTests.EmptySubjectsAreRefused" methodname="EmptySubjectsAreRefused" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1606485667" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.019915" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.EmptySubjectsAreRefused () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:159
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="7916" name="EquipmentUsesLiveMechanicsAndHasNoInventedPriceOrRarity" fullname="CavesOfOoo.Tests.ExamineDocumentTests.EquipmentUsesLiveMechanicsAndHasNoInventedPriceOrRarity" methodname="EquipmentUsesLiveMechanicsAndHasNoInventedPriceOrRarity" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1889422018" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.021984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.EquipmentUsesLiveMechanicsAndHasNoInventedPriceOrRarity () [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:118
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="7923" name="ExistingConsumableAndEquipmentPayloadsRemainReadable" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.101084" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="7918" name="ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;HealingTonic&quot;,&quot;Heals&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;HealingTonic&quot;,&quot;Heals&quot;)" methodname="ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="2114155310" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.020584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable (System.String blueprint, System.String expected) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7919" name="ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;Mace&quot;,&quot;Stunned&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;Mace&quot;,&quot;Stunned&quot;)" methodname="ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1804591462" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.020825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable (System.String blueprint, System.String expected) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7920" name="ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;LongSword&quot;,&quot;Bleeding&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;LongSword&quot;,&quot;Bleeding&quot;)" methodname="ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1224136389" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.019400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable (System.String blueprint, System.String expected) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7921" name="ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;Spear&quot;,&quot;Confused&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;Spear&quot;,&quot;Confused&quot;)" methodname="ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="689253599" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.019367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable (System.String blueprint, System.String expected) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7922" name="ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;VenomDagger&quot;,&quot;Poisoned&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable(&quot;VenomDagger&quot;,&quot;Poisoned&quot;)" methodname="ExistingConsumableAndEquipmentPayloadsRemainReadable" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="2015702737" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.019513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.ExistingConsumableAndEquipmentPayloadsRemainReadable (System.String blueprint, System.String expected) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="7917" name="HealthyObjectDoesNotReceiveAnInventedAffliction" fullname="CavesOfOoo.Tests.ExamineDocumentTests.HealthyObjectDoesNotReceiveAnInventedAffliction" methodname="HealthyObjectDoesNotReceiveAnInventedAffliction" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="121207884" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.059125" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.HealthyObjectDoesNotReceiveAnInventedAffliction () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:125
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="7914" name="InventoryReaderRequiresCurrentCarriedOwnerAndNeverReadsAWorldAlias" fullname="CavesOfOoo.Tests.ExamineDocumentTests.InventoryReaderRequiresCurrentCarriedOwnerAndNeverReadsAWorldAlias" methodname="InventoryReaderRequiresCurrentCarriedOwnerAndNeverReadsAWorldAlias" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="645321050" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:07Z" duration="0.061307" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.InventoryReaderRequiresCurrentCarriedOwnerAndNeverReadsAWorldAlias () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:98
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="7905" name="NameNeverInventsCompositionOrReactiveMaterial" fullname="CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="0.178051" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="7902" name="NameNeverInventsCompositionOrReactiveMaterial(&quot;no-material&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial(&quot;no-material&quot;)" methodname="NameNeverInventsCompositionOrReactiveMaterial" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="782363637" result="Failed" start-time="2026-10-15 03:35:07Z" end-time="2026-10-15 03:35:08Z" duration="0.059918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial (System.String mode) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7903" name="NameNeverInventsCompositionOrReactiveMaterial(&quot;generic&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial(&quot;generic&quot;)" methodname="NameNeverInventsCompositionOrReactiveMaterial" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="915990624" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.057485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial (System.String mode) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7904" name="NameNeverInventsCompositionOrReactiveMaterial(&quot;blank&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial(&quot;blank&quot;)" methodname="NameNeverInventsCompositionOrReactiveMaterial" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="741498249" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.057889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.NameNeverInventsCompositionOrReactiveMaterial (System.String mode) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="7901" name="RealSubjectHasSnapshotMetadataAndExplicitComposition" fullname="CavesOfOoo.Tests.ExamineDocumentTests.RealSubjectHasSnapshotMetadataAndExplicitComposition" methodname="RealSubjectHasSnapshotMetadataAndExplicitComposition" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1028501183" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.072505" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.RealSubjectHasSnapshotMetadataAndExplicitComposition () [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:64
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="7932" name="StructuralConditionIsIndependentFromRepairAndNeverClaimsHealedCombatHp" fullname="CavesOfOoo.Tests.ExamineDocumentTests.StructuralConditionIsIndependentFromRepairAndNeverClaimsHealedCombatHp" methodname="StructuralConditionIsIndependentFromRepairAndNeverClaimsHealedCombatHp" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="642873229" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.148613" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.StructuralConditionIsIndependentFromRepairAndNeverClaimsHealedCombatHp () [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:152
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="7931" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.150662" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="7924" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Chest&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="839755416" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7925" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;MarlbackScrabbler&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;MarlbackScrabbler&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="2069164818" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.022550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7926" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Warden&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Warden&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="235488555" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.023078" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7927" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;StoneWall&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1217788130" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7928" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;Floor&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="817658699" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7929" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;FireClay&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;FireClay&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1083295442" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7930" name="WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;KnotflaxCord&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions(&quot;KnotflaxCord&quot;)" methodname="WorldContentFamiliesHaveTruthfulNonemptyDescriptions" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1461583076" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.021073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldContentFamiliesHaveTruthfulNonemptyDescriptions (System.String blueprint) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="7913" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.143570" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="7906" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;cell&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;cell&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="142180842" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020209" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7907" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;unexplored&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="2139752341" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7908" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;render&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;render&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1585900175" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7909" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;wrong-cell&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;wrong-cell&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="953220871" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7910" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;other-zone&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;other-zone&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="2111146566" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7911" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;removed&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="1646800006" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="7912" name="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;carried-alias&quot;)" fullname="CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects(&quot;carried-alias&quot;)" methodname="WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects" classname="CavesOfOoo.Tests.ExamineDocumentTests" runstate="Runnable" seed="541492174" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.020548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The shared field-ledger reader needs a truthful structured examine builder.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineDocumentTests.Build (System.String name, System.Object[] arguments) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:25
+at CavesOfOoo.Tests.ExamineDocumentTests.WorldReaderRejectsHiddenStaleOrNonPhysicalSubjects (System.String reason) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/ExamineDocumentTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="34667" name="ExamineLedgerUITests" fullname="CavesOfOoo.Tests.ExamineLedgerUITests" classname="CavesOfOoo.Tests.ExamineLedgerUITests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.044067" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="34669" name="FooterIsInsideAnOpaqueFrame_AndShortNoticeCollapses" fullname="CavesOfOoo.Tests.ExamineLedgerUITests.FooterIsInsideAnOpaqueFrame_AndShortNoticeCollapses" methodname="FooterIsInsideAnOpaqueFrame_AndShortNoticeCollapses" classname="CavesOfOoo.Tests.ExamineLedgerUITests" runstate="Runnable" seed="1146414576" result="Passed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.009337" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="34668" name="GenericNotice_UsesBronzeFrameAndNormalProportionHudGlyphs" fullname="CavesOfOoo.Tests.ExamineLedgerUITests.GenericNotice_UsesBronzeFrameAndNormalProportionHudGlyphs" methodname="GenericNotice_UsesBronzeFrameAndNormalProportionHudGlyphs" classname="CavesOfOoo.Tests.ExamineLedgerUITests" runstate="Runnable" seed="1209205997" result="Failed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.001277" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  C's warm bronze frame
+  Expected: greater than 0.820000052f
+  But was:  0.670000017f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ExamineLedgerUITests.GenericNotice_UsesBronzeFrameAndNormalProportionHudGlyphs () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/ExamineLedgerUITests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34670" name="LongThenShortThenClose_DoesNotLeaveOldTiles" fullname="CavesOfOoo.Tests.ExamineLedgerUITests.LongThenShortThenClose_DoesNotLeaveOldTiles" methodname="LongThenShortThenClose_DoesNotLeaveOldTiles" classname="CavesOfOoo.Tests.ExamineLedgerUITests" runstate="Runnable" seed="2132415407" result="Passed" start-time="2026-10-15 03:35:08Z" end-time="2026-10-15 03:35:08Z" duration="0.032524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

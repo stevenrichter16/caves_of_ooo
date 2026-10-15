@@ -187,7 +187,7 @@ private DensityLootTestScope scope;
 [TestCase("Codex11")]
 [TestCase("Codex12")]
 [TestCase("Codex13")]
-public void ActualConcretePortableHasExactDistinctRecipe(string name){var item=scope.Factory.CreateEntity(name);Assert.True(SpreadPortableRecipes.TryRecipe(item,out string id),name);Assert.AreEqual("spread-portable-"+name.ToLowerInvariant(),id);}
+public void ActualConcretePortableHasExactDistinctRecipe(string name){var item=scope.Factory.CreateEntity(name);Assert.True(SpreadPortableRecipes.TryRecipe(item,out string id),name);Assert.AreEqual(name=="FireClay"?"repair-cultivation-fire-clay":"spread-portable-"+name.ToLowerInvariant(),id);}
 [TestCase("Item")][TestCase("MeleeWeapon")][TestCase("FoodItem")][TestCase("TonicItem")][TestCase("WeaponComponentItem")][TestCase("ReagentItem")][TestCase("ArmorItem")][TestCase("Player")][TestCase("MarlbackScrabbler")]
 public void AbstractOrCreatureCannotBecomeAnItem(string name){Assert.False(SpreadPortableRecipes.TryRecipe(scope.Factory.CreateEntity(name),out _));}
 [TestCase("WarlordCleaver")][TestCase("UnknownItem")][TestCase("dagger")][TestCase("Dagger/Other")]

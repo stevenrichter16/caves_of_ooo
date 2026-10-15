@@ -58,8 +58,22 @@ namespace CavesOfOoo.Rendering
      ||r.RenderString!=crop.GlyphForStage(crop.GrowthStage).ToString()||r.ColorString!=crop.ColorForStage(crop.GrowthStage))return null;
     return prefix+"-"+crop.GrowthStage+(crop.MoistureTicks>0?"-wet":"-dry");
    }
-   if(!p.Takeable||p.Solid||!entity.HasTag("Item")||entity.HasTag("Crop"))return null;
+   return PortableModel(entity);
+  }
+  /// <summary>Seed and harvest identity shared by floor and carried portraits.
+  /// Physical ownership remains the caller's responsibility.</summary>
+  public static string PortableModel(Entity entity)
+  {
+   var row=entity==null?null:BiomeCropCatalog.ByBlueprint(entity.BlueprintName);
+   if(row==null||entity.BlueprintName==row.CropBlueprint)return null;
+   var p=entity.GetPart<PhysicsPart>();var r=entity.GetPart<RenderPart>();var destroyed=entity.GetPart<DestructiblePart>();
+   if(p?.ParentEntity!=entity||!p.Takeable||p.Solid||r?.ParentEntity!=entity||!r.Visible
+    ||!entity.HasTag("Item")||entity.HasTag("Crop")||entity.HasTag("Creature")||entity.HasTag("Natural")
+    ||entity.HasPart<SpatialFootprintPart>()||entity.HasPart<MultiCellPilotPropPart>()
+    ||!string.IsNullOrEmpty(r.VisualID)||!string.IsNullOrEmpty(r.VisualVariant)||!string.IsNullOrEmpty(r.GlyphVariants)
+    ||destroyed!=null&&(destroyed.ParentEntity!=entity||destroyed.Gone||destroyed.HP<=0))return null;
    var stack=entity.GetPart<StackerPart>();if(stack!=null&&(stack.ParentEntity!=entity||stack.StackCount<=0))return null;
+   string prefix=Prefix+row.ModelStem;
    if(entity.BlueprintName==row.SeedBlueprint)
    {
     var seed=entity.GetPart<SeedPart>();if(seed?.ParentEntity!=entity||seed.CropBlueprint!=row.CropBlueprint||!seed.RequireCultivatedSoil)return null;

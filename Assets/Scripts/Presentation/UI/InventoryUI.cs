@@ -1394,7 +1394,19 @@ namespace CavesOfOoo.Rendering
                         Render();
                         return;
                     }
-                    MessageLog.AddAnnouncement(materialText);
+                    // A rejected snapshot is not permission to publish stale legacy prose.
+                    // Description callbacks can invalidate ownership after the first check;
+                    // see ExamineLedgerInventoryTests.
+                    var materialDocument = ExamineDocumentBuilder.BuildInventory(item, PlayerEntity);
+                    if (materialDocument == null)
+                    {
+                        SetActionFailure("That material's details are no longer available.");
+                        Diag.Record("event", "MaterialExamineRejected", actor: PlayerEntity, target: item,
+                            payload: new { reason = "invalid-examine-snapshot" });
+                        Render();
+                        return;
+                    }
+                    MessageLog.AddPresentedAnnouncement(materialText, materialDocument);
                     Diag.Record("event", "MaterialExamined", actor: PlayerEntity, target: item,
                         payload: new { blueprint = item.BlueprintName });
                     _itemActionPopup = null;
@@ -1419,7 +1431,14 @@ namespace CavesOfOoo.Rendering
                             "That item's details are no longer available.");
                         return;
                     }
-                    MessageLog.AddAnnouncement(itemText);
+                    var itemDocument = ExamineDocumentBuilder.BuildInventory(item, PlayerEntity);
+                    if (itemDocument == null)
+                    {
+                        RejectItemExamine(item, "invalid-examine-snapshot",
+                            "That item's details are no longer available.");
+                        return;
+                    }
+                    MessageLog.AddPresentedAnnouncement(itemText, itemDocument);
                     Diag.Record("event", "ItemExamined", actor: PlayerEntity, target: item,
                         payload: new { blueprint = item.BlueprintName });
                     _itemActionPopup = null;
