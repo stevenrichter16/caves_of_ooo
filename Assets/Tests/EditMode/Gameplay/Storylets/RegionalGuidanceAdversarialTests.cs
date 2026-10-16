@@ -44,6 +44,9 @@ namespace CavesOfOoo.Tests
                 Assert.GreaterOrEqual(index,0,"The actual nearby clerk must expose regional guidance through normal dialogue.");
                 ConversationManager.SelectChoice(index);
                 Assert.AreEqual(4,ConversationManager.VisibleChoices.Count(c=>c.Actions.Any(a=>a.Key==RegionalGuidance.ActionName)));
+                foreach(var lead in RegionalGuidance.Build(zone,speaker,player))
+                    StringAssert.Contains(lead.Text,ConversationManager.CurrentText,"The actual clerk must describe each offered destination.");
+                Assert.IsFalse(ConversationManager.VisibleChoices.Any(c=>c.Actions.Any(a=>a.Key==SpreadDiscoveryReports.ActionName)));
                 var impostor=CinderholdCompositionTests.Player();impostor.Tags.Remove("Player");impostor.AddPart(new ConversationPart{ConversationID="Morrowfast_Vennit"});
                 Cell impostorSeat=null;
                 for(int dx=-1;dx<=1;dx++)for(int dy=-1;dy<=1;dy++)

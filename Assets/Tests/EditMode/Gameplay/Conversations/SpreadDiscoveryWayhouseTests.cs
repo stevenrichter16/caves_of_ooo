@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
     {
         const string Family = "turnbank-wayhouse";
 
-        [TestCase("Scribe_1", "RegionOverview")]
+        [TestCase("Scribe_1", "WildernessReports")]
         [TestCase("Innkeeper_1", "Rumors")]
         public void RealFrozenSelectionAddsThirdHistoricalReportWithoutVisitOrReward(string conversation, string node)
         {

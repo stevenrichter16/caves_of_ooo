@@ -166,17 +166,8 @@ namespace CavesOfOoo.Core
         /// supplied authored text when inapplicable; never mutates shared dialogue.</summary>
         public static string DescribeConversation(Entity speaker, Entity listener, string conversation, string node, string fallback)
         {
-            if (conversation != "Villager_1" || (node != "Start" && node != "PassingThrough" && node != "Dangers")
-                || speaker == null || (speaker.BlueprintName != "Villager" && speaker.BlueprintName != "Undertaker") || listener == null) return fallback;
-            var zone = speaker.SpatialZone; var manager = WorldLocationContext.For(zone);
-            if (manager == null || listener.SpatialZone != zone || !manager.CachedZones.TryGetValue(zone.ZoneID, out var cached) || !ReferenceEquals(cached, zone)
-                || speaker.GetStatValue("Hitpoints") <= 0 || listener.GetStatValue("Hitpoints") <= 0 || CombatSystem.IsDeathHandled(speaker)
-                || CombatSystem.IsDeathHandled(listener) || FactionManager.IsHostile(speaker, listener)) return fallback;
-            var loc = WorldMap.FromZoneID(zone.ZoneID); var poi = manager.WorldMap.GetPOI(loc.x, loc.y);
-            if (loc.z != 0 || poi?.Type != POIType.Village || string.IsNullOrWhiteSpace(poi.Name)) return fallback;
-            string culture = speaker.GetProperty("LocalCulture", FactionManager.GetFaction(speaker));
-            if (!Pools.ContainsKey(culture ?? "")) return fallback;
-            if (node == "Start") return Observation(culture, poi.Name);
+            if (!TryConversationContext(speaker, listener, conversation, node, out var zone, out var manager, out string place, out string culture)) return fallback;
+            if (node == "Start") return Observation(culture, place);
             if (node == "PassingThrough")
             {
                 Entity contact = null;
@@ -194,6 +185,37 @@ namespace CavesOfOoo.Core
             if (site == null || !zone.GetReadOnlyEntities().Any(e => e.HasPart<WellSitePart>())) return "I have no current word on a well here.";
             return Water(culture, site.Stage);
         }
+
+        /// <summary>Keep replies aligned with the same current-local body without
+        /// changing authored navigation, predicates, actions or fallback wording.</summary>
+        internal static ChoiceData PresentChoice(Entity speaker, Entity listener, string conversation, string node, ChoiceData choice)
+        {
+            if (choice == null || !TryConversationContext(speaker, listener, conversation, node, out _, out _, out _, out _)) return choice;
+            string label = null;
+            if (node == "Start" && choice.Target == "Dangers") label = "Anything I should be careful about?";
+            else if (node == "PassingThrough" && choice.Target == "Start") label = "Thanks for the directions.";
+            else if (node == "Dangers" && choice.Target == "DeeperCaves") label = "What have you heard about the caves?";
+            return label == null ? choice : new ChoiceData { Text = label, Target = choice.Target, Actions = choice.Actions, Predicates = choice.Predicates };
+        }
+
+        private static bool TryConversationContext(Entity speaker, Entity listener, string conversation, string node,
+            out Zone zone, out OverworldZoneManager manager, out string place, out string culture)
+        {
+            zone = null; manager = null; place = null; culture = null;
+            if (conversation != "Villager_1" || (node != "Start" && node != "PassingThrough" && node != "Dangers")
+                || speaker == null || (speaker.BlueprintName != "Villager" && speaker.BlueprintName != "Undertaker") || listener == null) return false;
+            zone = speaker.SpatialZone; manager = WorldLocationContext.For(zone);
+            if (manager == null || listener.SpatialZone != zone || !manager.CachedZones.TryGetValue(zone.ZoneID, out var cached) || !ReferenceEquals(cached, zone)
+                || speaker.GetStatValue("Hitpoints") <= 0 || listener.GetStatValue("Hitpoints") <= 0 || CombatSystem.IsDeathHandled(speaker)
+                || CombatSystem.IsDeathHandled(listener) || FactionManager.IsHostile(speaker, listener)) return false;
+            var loc = WorldMap.FromZoneID(zone.ZoneID); var poi = manager.WorldMap.GetPOI(loc.x, loc.y);
+            if (loc.z != 0 || poi?.Type != POIType.Village || string.IsNullOrWhiteSpace(poi.Name)) return false;
+            culture = speaker.GetProperty("LocalCulture", FactionManager.GetFaction(speaker));
+            if (!Pools.ContainsKey(culture ?? "")) return false;
+            place = poi.Name;
+            return true;
+        }
+
         private static string Observation(string culture, string place)
         {
             switch (culture)

@@ -66,6 +66,28 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [TestCase("SpreadSeedKeeper")][TestCase("SpreadWaysideCook")]
+        public void AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports(string blueprint)
+        {
+            using (var f = new Fixture(blueprint))
+            {
+                var file = UnityEngine.JsonUtility.FromJson<ConversationFileData>(File.ReadAllText(Path.Combine(
+                    UnityEngine.Application.dataPath, "Resources/Content/Conversations/SpreadFieldResidents.json")));
+                var conversation = file.Conversations.Single(c => c.ID == f.Speaker.GetPart<ConversationPart>().ConversationID);
+                ConversationManager.CurrentConversation = conversation; ConversationManager.CurrentNode = conversation.GetStartNode(); f.Refresh();
+                var topic = ConversationManager.VisibleChoices.Single(c => c.Target == "Nearby");
+                StringAssert.DoesNotContain("useful nearby", topic.Text.ToLowerInvariant(), "The question must allow the existing cross-region lead.");
+                Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(topic)));
+                Assert.AreEqual("Nearby", ConversationManager.CurrentNode.ID);
+                StringAssert.Contains("farther afield", ConversationManager.CurrentNode.Text);
+                StringAssert.Contains("fields", ConversationManager.CurrentNode.Text);
+                Assert.AreEqual(3, f.Reports.Length);
+                StringAssert.Contains("beyond Sumphold", ConversationManager.CurrentText);
+                Assert.True(f.Reports.Any(c => c.Actions.Single(a => a.Key == SpreadDiscoveryReports.ActionName).Value.StartsWith("sodden-peat-works|", StringComparison.Ordinal)));
+                Assert.IsEmpty(SpreadDiscoveryNotes.Read(f.Player, f.Manager.Exploration.WorldKey));
+            }
+        }
+
         [TestCase("node")][TestCase("blueprint")][TestCase("dead")][TestCase("plan")][TestCase("moved")][TestCase("hostile")]
         public void StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(string change)
         {

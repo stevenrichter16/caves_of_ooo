@@ -35,6 +35,14 @@ namespace CavesOfOoo.Rendering
 
         private bool _isOpen;
         private int _cursorIndex;
+        private int _choiceScrollOffset;
+        private int _textPage;
+        private int VisibleChoiceCount => Mathf.Min(ConversationManager.VisibleChoices.Count, POPUP_MAX_VISIBLE_CHOICES);
+        // Keep an outer row on both sides of a full-height page for the font's ascenders and footer.
+        private int TextPageCapacity => Mathf.Max(1, CenteredPopupLayout.GridHeight - VisibleChoiceCount - 6);
+        private int TextPageCount => Mathf.Max(1, (_wrappedTextLines.Count + TextPageCapacity - 1) / TextPageCapacity);
+        private int TextStart => _textPage * TextPageCapacity;
+        private int VisibleTextLineCount => Mathf.Min(TextPageCapacity, Mathf.Max(0, _wrappedTextLines.Count - TextStart));
         private List<string> _wrappedTextLines = new List<string>();
         private bool _conversationEnded;
 
@@ -158,6 +166,13 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Page movement is presentation only. At either endpoint it leaves
+            // reveal state untouched, so it cannot eat the next confirmation.
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.PageUp))
+            { MoveTextPage(-1); return; }
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.PageDown))
+            { MoveTextPage(1); return; }
+
             // While text is still streaming, ANY confirm input (Enter/Space/click/hotkey)
             // fast-forwards the reveal instead of selecting a choice. The next press
             // then performs the normal action.
@@ -221,8 +236,9 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Positional labels share this mapping with reveal detection.
-            for (int i = 0; i < choices.Count; i++)
+            // Labels remain absolute, but an unseen shortcut must not activate
+            // an action outside the drawn window (including injected attack).
+            for (int i = _choiceScrollOffset; i < _choiceScrollOffset + VisibleChoiceCount; i++)
             {
                 var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i));
                 if (key == KeyCode.None) break;
@@ -253,6 +269,8 @@ namespace CavesOfOoo.Rendering
         private void RebuildText()
         {
             _wrappedTextLines.Clear();
+            _textPage = 0;
+            _choiceScrollOffset = 0;
             if (ConversationManager.CurrentNode == null)
             {
                 _popupW = POPUP_MIN_W;
@@ -280,8 +298,7 @@ namespace CavesOfOoo.Rendering
             //   space(1) + choiceText + padding(1) + border(1) = choiceText + tagLen + 9
             int longestChoiceRow = 0;
             var choices = ConversationManager.VisibleChoices;
-            int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
-            for (int i = 0; i < choiceCount; i++)
+            for (int i = 0; i < choices.Count; i++)
             {
                 InferChoiceTag(choices[i], out string tag, out Color _);
                 int tagLen = string.IsNullOrEmpty(tag) ? 0 : tag.Length + 1; // tag + trailing space
@@ -308,10 +325,31 @@ namespace CavesOfOoo.Rendering
             if (_maxTextWidth < 1) _maxTextWidth = 1;
 
             WrapText(text, _maxTextWidth, _wrappedTextLines);
+            if (_wrappedTextLines.Count > TextPageCapacity)
+            {
+                // Long reports need room for paired keyboard/controller hints.
+                // Ordinary nodes retain their existing dynamic width exactly.
+                _popupW = POPUP_MAX_W;
+                _maxTextWidth = _popupW - 4 - portraitOverhead;
+                _wrappedTextLines.Clear();
+                WrapText(text, _maxTextWidth, _wrappedTextLines);
+            }
+            ResetReveal();
+        }
 
-            // Reset typewriter reveal for the new node.
+        private void MoveTextPage(int delta)
+        {
+            int page = Mathf.Clamp(_textPage + delta, 0, TextPageCount - 1);
+            if (page == _textPage) return;
+            _textPage = page;
+            ResetReveal();
+            Render();
+        }
+
+        private void ResetReveal()
+        {
             _totalRevealChars = 0;
-            for (int i = 0; i < _wrappedTextLines.Count; i++)
+            for (int i = TextStart; i < TextStart + VisibleTextLineCount; i++)
                 _totalRevealChars += _wrappedTextLines[i].Length;
             _revealCount = 0;
             _revealTimer = 0f;
@@ -368,8 +406,14 @@ namespace CavesOfOoo.Rendering
         private void ComputePopupPosition()
         {
             var choices = ConversationManager.VisibleChoices;
-            int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
-            int textLines = _wrappedTextLines.Count;
+            int choiceCount = VisibleChoiceCount;
+            _cursorIndex = Mathf.Clamp(_cursorIndex, 0, Mathf.Max(0, choices.Count - 1));
+            _choiceScrollOffset = Mathf.Clamp(_choiceScrollOffset, 0, Mathf.Max(0, choices.Count - choiceCount));
+            if (_cursorIndex < _choiceScrollOffset) _choiceScrollOffset = _cursorIndex;
+            if (_cursorIndex >= _choiceScrollOffset + choiceCount)
+                _choiceScrollOffset = Mathf.Max(0, _cursorIndex - choiceCount + 1);
+            _textPage = Mathf.Clamp(_textPage, 0, TextPageCount - 1);
+            int textLines = VisibleTextLineCount;
 
             // Layout: top border (with embedded title) + text lines + blank + choices + bottom border + action bar
             // = 1 + textLines + 1 + choiceCount + 1 + 1
@@ -397,8 +441,8 @@ namespace CavesOfOoo.Rendering
                 ComputePopupPosition();
 
                 var choices = ConversationManager.VisibleChoices;
-                int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
-                int textLines = _wrappedTextLines.Count;
+                int choiceCount = VisibleChoiceCount;
+                int textLines = VisibleTextLineCount;
 
                 // Opaque bg fill behind everything except the action bar (last row)
                 DrawBgFill(0, 0, _popupW, _popupH - 1);
@@ -463,7 +507,7 @@ namespace CavesOfOoo.Rendering
                     if (dividerX > 0)
                         DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
 
-                    string line = _wrappedTextLines[i];
+                    string line = _wrappedTextLines[TextStart + i];
                     int drawCount;
                     if (!_revealing)
                     {
@@ -490,10 +534,14 @@ namespace CavesOfOoo.Rendering
                 DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
                 if (dividerX > 0)
                     DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                if (choices.Count > choiceCount)
+                    DrawText(contentOffsetX + 2, y, "Choices " + (_choiceScrollOffset + 1) + "-"
+                        + (_choiceScrollOffset + choiceCount) + " of " + choices.Count, QudColorParser.DarkGray);
                 y++;
 
-                for (int i = 0; i < choiceCount; i++)
+                for (int row = 0; row < choiceCount; row++)
                 {
+                    int i = _choiceScrollOffset + row;
                     DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
                     DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
                     if (dividerX > 0)
@@ -590,7 +638,9 @@ namespace CavesOfOoo.Rendering
                     }
                 }
 
-                string actions = " [Enter]select [a-z]quick [Esc]close";
+                string actions = TextPageCount > 1
+                    ? " [Left/LB]prev [Right/RB]next " + (_textPage + 1) + "/" + TextPageCount + " [Enter/A]select [Esc/B]close"
+                    : " [Enter]select [a-z]quick [Esc]close";
                 if (actions.Length > _popupW)
                     actions = actions.Substring(0, _popupW);
                 DrawText(0, y, actions, QudColorParser.DarkGray);
@@ -695,21 +745,21 @@ namespace CavesOfOoo.Rendering
             if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition, out int gridX, out int gridY))
                 return -1;
 
-            int gx = gridX - _worldOriginX;
-            int gy = _worldTopY - gridY;
+            return GetChoiceRowAtCell(gridX - _worldOriginX, _worldTopY - gridY);
+        }
 
-            int textLines = _wrappedTextLines.Count;
-            int choicesStartY = 1 + textLines + 1; // after top border + text + blank
-
-            var choices = ConversationManager.VisibleChoices;
-            int choiceCount = Mathf.Min(choices.Count, POPUP_MAX_VISIBLE_CHOICES);
+        // Shared by the actual pointer path and focused-window regression tests.
+        private int GetChoiceRowAtCell(int gx, int gy)
+        {
+            int choicesStartY = 1 + VisibleTextLineCount + 1;
+            int choiceCount = VisibleChoiceCount;
 
             // Only count clicks in the right panel (not the portrait column).
             int leftEdge = UsePortraitPanel ? PORTRAIT_W : 1;
             if (gx >= leftEdge && gx < _popupW - 1
                 && gy >= choicesStartY && gy < choicesStartY + choiceCount)
             {
-                return gy - choicesStartY;
+                return _choiceScrollOffset + gy - choicesStartY;
             }
             return -1;
         }

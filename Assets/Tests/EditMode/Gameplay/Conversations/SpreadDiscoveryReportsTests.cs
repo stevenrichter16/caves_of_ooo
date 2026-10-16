@@ -24,7 +24,7 @@ namespace CavesOfOoo.Tests
         public readonly Entity Player;
         public readonly Entity Speaker;
 
-        public SpreadDiscoveryFixture(string conversation = "Scribe_1", string node = "RegionOverview", bool includeWayhouse = false)
+        public SpreadDiscoveryFixture(string conversation = "Scribe_1", string node = "WildernessReports", bool includeWayhouse = false)
         {
             Snapshot(typeof(ConversationActions));
             var reportType = typeof(Entity).Assembly.GetType("CavesOfOoo.Core.SpreadDiscoveryReports");
@@ -120,7 +120,7 @@ namespace CavesOfOoo.Tests
 
     public class SpreadDiscoveryReportsTests
     {
-        [TestCase("Scribe_1", "RegionOverview")]
+        [TestCase("Scribe_1", "WildernessReports")]
         [TestCase("Innkeeper_1", "Rumors")]
         public void CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating(string conversation, string node)
         {
@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(2, f.Reports.Length); Assert.AreEqual(cached, f.Manager.CachedZoneCount);
             Assert.AreEqual(pair, f.Manager.RareEncounters.PairZoneID); Assert.AreEqual(viper, f.Manager.RareEncounters.ViperZoneID);
             Assert.AreEqual(0, f.NoteCount); Assert.IsEmpty(StoryletPart.Current.GetActiveQuests());
-            Assert.AreEqual(4, ConversationManager.VisibleChoices.Count(c => c.Actions?.Any(a => a.Key == RegionalGuidance.ActionName) == true));
+            Assert.AreEqual(0, ConversationManager.VisibleChoices.Count(c => c.Actions?.Any(a => a.Key == RegionalGuidance.ActionName) == true));
         }
 
         [TestCase("Scribe_1", "Start")][TestCase("Innkeeper_1", "RegionOverview")]

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="68" result="Failed(Child)" total="68" passed="66" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:18Z" duration="10.007526">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29233" result="Failed" site="Child" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:18Z" duration="10.007526" total="68" passed="66" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36038" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29233" result="Failed" site="Child" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:18Z" duration="9.903044" total="68" passed="66" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36039" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29233" result="Failed" site="Child" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:18Z" duration="9.710795" total="68" passed="66" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36040" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29233" result="Failed" site="Child" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:18Z" duration="9.510855" total="68" passed="66" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="6464" name="DensityLocalPeopleTests" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:14Z" duration="6.159033" total="35" passed="34" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="6495" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-16 02:33:08Z" end-time="2026-10-16 02:33:11Z" duration="2.285474" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6488" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.10.10.0&quot;,&quot;Sill&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.10.10.0&quot;,&quot;Sill&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1529968934" result="Passed" start-time="2026-10-16 02:33:09Z" end-time="2026-10-16 02:33:09Z" duration="0.180743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Loaded 79 conversations from 31 files.
+]]></output>
+              </test-case>
+              <test-case id="6489" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.14.9.0&quot;,&quot;Quillhold&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.14.9.0&quot;,&quot;Quillhold&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="526415853" result="Passed" start-time="2026-10-16 02:33:09Z" end-time="2026-10-16 02:33:09Z" duration="0.077365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+              </test-case>
+              <test-case id="6490" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.10.14.0&quot;,&quot;Tally&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.10.14.0&quot;,&quot;Tally&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1503645125" result="Passed" start-time="2026-10-16 02:33:09Z" end-time="2026-10-16 02:33:09Z" duration="0.065819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6491" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.12.12.0&quot;,&quot;Marrowstye&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.12.12.0&quot;,&quot;Marrowstye&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="312595071" result="Passed" start-time="2026-10-16 02:33:09Z" end-time="2026-10-16 02:33:10Z" duration="1.558829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6492" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.5.9.0&quot;,&quot;Posy&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.5.9.0&quot;,&quot;Posy&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="524233186" result="Passed" start-time="2026-10-16 02:33:10Z" end-time="2026-10-16 02:33:11Z" duration="0.067509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6493" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.8.16.0&quot;,&quot;Wellmeet&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.8.16.0&quot;,&quot;Wellmeet&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="80133103" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:11Z" duration="0.067886" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6494" name="ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.16.1.0&quot;,&quot;the Quiet's Door&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualConversationKnowsItsSettlementWithoutMutatingSharedData(&quot;Overworld.16.1.0&quot;,&quot;the Quiet's Door&quot;)" methodname="ActualConversationKnowsItsSettlementWithoutMutatingSharedData" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1537392243" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:11Z" duration="0.065577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6472" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:13Z" duration="1.955270" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6465" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.10.10.0&quot;,&quot;Villagers&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.10.10.0&quot;,&quot;Villagers&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1224675885" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:11Z" duration="0.074924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6466" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.14.9.0&quot;,&quot;Palimpsest&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.14.9.0&quot;,&quot;Palimpsest&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="864882022" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:11Z" duration="0.060746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6467" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.10.14.0&quot;,&quot;SaccharineConcord&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.10.14.0&quot;,&quot;SaccharineConcord&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="2716994" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:11Z" duration="0.061442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6468" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.12.12.0&quot;,&quot;PaleCuration&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.12.12.0&quot;,&quot;PaleCuration&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="181665959" result="Passed" start-time="2026-10-16 02:33:11Z" end-time="2026-10-16 02:33:12Z" duration="1.549421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6469" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.5.9.0&quot;,&quot;BowerFolk&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.5.9.0&quot;,&quot;BowerFolk&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="679161766" result="Passed" start-time="2026-10-16 02:33:12Z" end-time="2026-10-16 02:33:12Z" duration="0.068015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6470" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.8.16.0&quot;,&quot;TentRight&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.8.16.0&quot;,&quot;TentRight&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="166188188" result="Passed" start-time="2026-10-16 02:33:12Z" end-time="2026-10-16 02:33:13Z" duration="0.064477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6471" name="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.16.1.0&quot;,&quot;CatacombFolk&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles(&quot;Overworld.16.1.0&quot;,&quot;CatacombFolk&quot;)" methodname="ActualSettlementResidentsGainPersonalNamesAndKeepTheirRoles" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1289146960" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.064629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6474" name="AuthoredQuestOwnersAndNamedCastKeepNamesAndFrozenKeys" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.AuthoredQuestOwnersAndNamedCastKeepNamesAndFrozenKeys" methodname="AuthoredQuestOwnersAndNamedCastKeepNamesAndFrozenKeys" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="875713453" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.093825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6475" name="CachedOldResidentsAreNeverRenamedOnAccessOrFullLoad" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.CachedOldResidentsAreNeverRenamedOnAccessOrFullLoad" methodname="CachedOldResidentsAreNeverRenamedOnAccessOrFullLoad" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1441226408" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.045787" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6485" name="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.138905" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6482" name="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;dead&quot;)" methodname="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="775611037" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.042073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6483" name="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;removed&quot;)" methodname="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="118250130" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.035655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6484" name="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;unloaded&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad(&quot;unloaded&quot;)" methodname="ClaimedOwnerDoesNotRespawnAfterAbsenceAndFullSaveLoad" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="301469855" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.044254" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6505" name="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.391731" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6502" name="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;removed&quot;,&quot;Start&quot;,&quot;Dangers&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;removed&quot;,&quot;Start&quot;,&quot;Dangers&quot;)" methodname="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1180694947" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.169422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6503" name="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;foreign-listener&quot;,&quot;Dangers&quot;,&quot;DeeperCaves&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;foreign-listener&quot;,&quot;Dangers&quot;,&quot;DeeperCaves&quot;)" methodname="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1916087199" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.071821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6504" name="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;unsupported-culture&quot;,&quot;PassingThrough&quot;,&quot;Start&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(&quot;unsupported-culture&quot;,&quot;PassingThrough&quot;,&quot;Start&quot;)" methodname="IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="950172697" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.072157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6501" name="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:14Z" duration="0.306643" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6498" name="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;Start&quot;,&quot;Dangers&quot;,&quot;Anything I should be careful about?&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;Start&quot;,&quot;Dangers&quot;,&quot;Anything I should be careful about?&quot;)" methodname="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1219464784" result="Failed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:13Z" duration="0.074789" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: collection containing <CavesOfOoo.Data.ChoiceData>
+  But was:  < <CavesOfOoo.Data.ChoiceData>, <CavesOfOoo.Data.ChoiceData>, <CavesOfOoo.Data.ChoiceData>, <CavesOfOoo.Data.ChoiceData>, <CavesOfOoo.Data.ChoiceData>, <CavesOfOoo.Data.ChoiceData> >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DensityLocalPeopleTests.LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute (System.String nodeId, System.String target, System.String expected) [0x00182] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/DensityLocalPeopleTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6499" name="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;PassingThrough&quot;,&quot;Start&quot;,&quot;Thanks for the directions.&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;PassingThrough&quot;,&quot;Start&quot;,&quot;Thanks for the directions.&quot;)" methodname="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="752251107" result="Passed" start-time="2026-10-16 02:33:13Z" end-time="2026-10-16 02:33:14Z" duration="0.071387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6500" name="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;Dangers&quot;,&quot;DeeperCaves&quot;,&quot;What have you heard about the caves?&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(&quot;Dangers&quot;,&quot;DeeperCaves&quot;,&quot;What have you heard about the caves?&quot;)" methodname="LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1342778465" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.073753" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6496" name="LocalLeadStopsNamingAnAbsentOrDeadServiceOwner" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalLeadStopsNamingAnAbsentOrDeadServiceOwner" methodname="LocalLeadStopsNamingAnAbsentOrDeadServiceOwner" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1075896661" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.076213" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6497" name="LocalWaterLineTracksSavedRepairStateRatherThanInventingAWorkingWell" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.LocalWaterLineTracksSavedRepairStateRatherThanInventingAWorkingWell" methodname="LocalWaterLineTracksSavedRepairStateRatherThanInventingAWorkingWell" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="658289223" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.074103" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6473" name="SameSeedReplaysNamesButDifferentSeedCanChooseDifferentPeople" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SameSeedReplaysNamesButDifferentSeedCanChooseDifferentPeople" methodname="SameSeedReplaysNamesButDifferentSeedCanChooseDifferentPeople" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="773143133" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.154389" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6487" name="SavingLegacyCachedOwnerAdoptsItWithoutRenamingOrRemovingIt" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SavingLegacyCachedOwnerAdoptsItWithoutRenamingOrRemovingIt" methodname="SavingLegacyCachedOwnerAdoptsItWithoutRenamingOrRemovingIt" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="672495259" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.035328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6481" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.379457" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6476" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Mogu&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Mogu&quot;)" methodname="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="319609129" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.034665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6477" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Grib&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Grib&quot;)" methodname="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="2032020324" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.032214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6478" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Nam&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Nam&quot;)" methodname="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="1081699103" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.075114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6479" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Sien&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Sien&quot;)" methodname="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="427868059" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.104294" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6480" name="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Sopp&quot;)" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SecondFreshGroveCannotCloneAnAlreadyPlacedPerson(&quot;Sopp&quot;)" methodname="SecondFreshGroveCannotCloneAnAlreadyPlacedPerson" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="560566558" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.093230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6486" name="SeparateManagersEvenWithSameSeedKeepIndependentClaims" fullname="CavesOfOoo.Tests.DensityLocalPeopleTests.SeparateManagersEvenWithSameSeedKeepIndependentClaims" methodname="SeparateManagersEvenWithSameSeedKeepIndependentClaims" classname="CavesOfOoo.Tests.DensityLocalPeopleTests" runstate="Runnable" seed="53619412" result="Passed" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:14Z" duration="0.118095" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25226" name="DialogueTravelPagingTests" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-16 02:33:14Z" end-time="2026-10-16 02:33:15Z" duration="0.841962" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25242" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.432369" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25240" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1069811152" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.204519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25241" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="685643098" result="Failed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.106481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 5 but was 7. Strings differ at index 0.
+  Expected: "Start"
+  But was:  "Chosen0"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow (System.Boolean hidden) [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:148
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25245" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.289381" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25243" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="756922818" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.100747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25244" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="735860590" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:15Z" duration="0.099622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6506" name="DialogueTravelTopicTests" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:16Z" duration="1.133365" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="6509" name="AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:15Z" end-time="2026-10-16 02:33:16Z" duration="0.254342" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6507" name="AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" methodname="AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="20888573" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.033452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Loaded 79 conversations from 31 files.
+]]></output>
+              </test-case>
+              <test-case id="6508" name="AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" methodname="AuthoredRootsExposeTwoDistinctTopicsAndBackPreservesNotes" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="1539659050" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.019541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Loaded 79 conversations from 31 files.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6521" name="EmptySettlementSelectionHasNoUnmentionedOrInventedDestination" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.EmptySettlementSelectionHasNoUnmentionedOrInventedDestination" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.072173" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6519" name="EmptySettlementSelectionHasNoUnmentionedOrInventedDestination(&quot;Scribe_1&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.EmptySettlementSelectionHasNoUnmentionedOrInventedDestination(&quot;Scribe_1&quot;)" methodname="EmptySettlementSelectionHasNoUnmentionedOrInventedDestination" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="645454580" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.013491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6520" name="EmptySettlementSelectionHasNoUnmentionedOrInventedDestination(&quot;Innkeeper_1&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.EmptySettlementSelectionHasNoUnmentionedOrInventedDestination(&quot;Innkeeper_1&quot;)" methodname="EmptySettlementSelectionHasNoUnmentionedOrInventedDestination" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="1566609604" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.012876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6518" name="ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.212707" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6516" name="ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" methodname="ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="79654345" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.025512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6517" name="ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" methodname="ExplicitNotesRemainInTheirTopicAndSwitchingInvalidatesOldReport" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="1561314154" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.013168" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6512" name="SettlementDescriptionsAndChoicesUseSameOrderedDestinations" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.SettlementDescriptionsAndChoicesUseSameOrderedDestinations" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.197998" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6510" name="SettlementDescriptionsAndChoicesUseSameOrderedDestinations(&quot;Scribe_1&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.SettlementDescriptionsAndChoicesUseSameOrderedDestinations(&quot;Scribe_1&quot;)" methodname="SettlementDescriptionsAndChoicesUseSameOrderedDestinations" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="144113237" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.023555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6511" name="SettlementDescriptionsAndChoicesUseSameOrderedDestinations(&quot;Innkeeper_1&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.SettlementDescriptionsAndChoicesUseSameOrderedDestinations(&quot;Innkeeper_1&quot;)" methodname="SettlementDescriptionsAndChoicesUseSameOrderedDestinations" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="930221159" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.012954" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6524" name="UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.208940" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6522" name="UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions(&quot;Scribe_1&quot;,&quot;Explain&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions(&quot;Scribe_1&quot;,&quot;Explain&quot;)" methodname="UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="413677899" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.020431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6523" name="UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions(&quot;Innkeeper_1&quot;,&quot;GossipSeed&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions(&quot;Innkeeper_1&quot;,&quot;GossipSeed&quot;)" methodname="UnrelatedDialogueKeepsItsOwnTextAndNoTravelOptions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="450071362" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.025829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6515" name="WildernessReportsMatchChoicesAndExcludeSettlementActions" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.WildernessReportsMatchChoicesAndExcludeSettlementActions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.087790" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6513" name="WildernessReportsMatchChoicesAndExcludeSettlementActions(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.WildernessReportsMatchChoicesAndExcludeSettlementActions(&quot;Scribe_1&quot;,&quot;WildernessReports&quot;)" methodname="WildernessReportsMatchChoicesAndExcludeSettlementActions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="210371543" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.021708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6514" name="WildernessReportsMatchChoicesAndExcludeSettlementActions(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" fullname="CavesOfOoo.Tests.DialogueTravelTopicTests.WildernessReportsMatchChoicesAndExcludeSettlementActions(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" methodname="WildernessReportsMatchChoicesAndExcludeSettlementActions" classname="CavesOfOoo.Tests.DialogueTravelTopicTests" runstate="Runnable" seed="1726748242" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:16Z" duration="0.012125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="15837" name="RegionalGuidanceAdversarialTests" fullname="CavesOfOoo.Tests.RegionalGuidanceAdversarialTests" classname="CavesOfOoo.Tests.RegionalGuidanceAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-16 02:33:16Z" end-time="2026-10-16 02:33:17Z" duration="0.268520" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="15838" name="ActualMorrowfastClerkOffersNearbyDirectionsButAnImpostorCannot" fullname="CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.ActualMorrowfastClerkOffersNearbyDirectionsButAnImpostorCannot" methodname="ActualMorrowfastClerkOffersNearbyDirectionsButAnImpostorCannot" classname="CavesOfOoo.Tests.RegionalGuidanceAdversarialTests" runstate="Runnable" seed="1843336289" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.101541" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="6828" name="SpreadResidentReportsTests" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:18Z" duration="0.908345" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="6834" name="AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.183446" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6832" name="AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports(&quot;SpreadSeedKeeper&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports(&quot;SpreadSeedKeeper&quot;)" methodname="AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1851991197" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.048471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6833" name="AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports(&quot;SpreadWaysideCook&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports(&quot;SpreadWaysideCook&quot;)" methodname="AuthoredResidentTopicAcknowledgesItsFartherRegionalRouteAndKeepsAllThreeMatchingReports" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1531956712" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.034680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6848" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.117445" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6843" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;field-alembic&quot;,&quot;field alembic&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;field-alembic&quot;,&quot;field alembic&quot;)" methodname="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="425309320" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.000768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6844" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;tempering-shelter&quot;,&quot;tempering shelter&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;tempering-shelter&quot;,&quot;tempering shelter&quot;)" methodname="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="187155420" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.000066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6845" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;trappers-store&quot;,&quot;trapper's store&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;trappers-store&quot;,&quot;trapper's store&quot;)" methodname="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1280290362" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.000053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6846" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;seed-keepers-plot&quot;,&quot;seed keeper's plot&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;seed-keepers-plot&quot;,&quot;seed keeper's plot&quot;)" methodname="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1878666453" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.000051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6847" name="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;wayside-kitchen&quot;,&quot;wayside kitchen&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation(&quot;wayside-kitchen&quot;,&quot;wayside kitchen&quot;)" methodname="EachExplicitFieldNoteSurvivesSerializationButRejectsUnknownFormation" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="988398120" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.000049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6842" name="RememberedPlaceRemainsHistoricalAfterRemoteStateChangesAndSaveReadback" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.RememberedPlaceRemainsHistoricalAfterRemoteStateChangesAndSaveReadback" methodname="RememberedPlaceRemainsHistoricalAfterRemoteStateChangesAndSaveReadback" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1853017100" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.038619" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6831" name="ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.130222" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6829" name="ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes(&quot;SpreadSeedKeeper&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes(&quot;SpreadSeedKeeper&quot;)" methodname="ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1801397423" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.035484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6830" name="ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes(&quot;SpreadWaysideCook&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes(&quot;SpreadWaysideCook&quot;)" methodname="ResidentsKeepTwoNearbyPlacesAndAddOneHistoricalRegionalLeadWithoutCreatingGraphsOrNotes" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="565779060" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.034337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6841" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:18Z" duration="0.341069" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6835" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;node&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;node&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1450264908" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.034304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6836" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;blueprint&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;blueprint&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1838477327" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.038287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6837" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;dead&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="640822148" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:17Z" duration="0.079925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6838" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;plan&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;plan&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1207369911" result="Passed" start-time="2026-10-16 02:33:17Z" end-time="2026-10-16 02:33:18Z" duration="0.087036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6839" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;moved&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="502944083" result="Passed" start-time="2026-10-16 02:33:18Z" end-time="2026-10-16 02:33:18Z" duration="0.035491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6840" name="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.SpreadResidentReportsTests.StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport(&quot;hostile&quot;)" methodname="StaleOrIneligibleResidentCannotWriteThePreviouslyOfferedReport" classname="CavesOfOoo.Tests.SpreadResidentReportsTests" runstate="Runnable" seed="1151506662" result="Passed" start-time="2026-10-16 02:33:18Z" end-time="2026-10-16 02:33:18Z" duration="0.035439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -48,7 +48,11 @@
               ]
             },
             {
-              "Text": "What do you hear around the hearth?",
+              "Text": "Where are the nearby settlements?",
+              "Target": "RegionOverview"
+            },
+            {
+              "Text": "Any reports from the wilderness?",
               "Target": "Rumors"
             },
             {
@@ -58,8 +62,18 @@
           ]
         },
         {
+          "ID": "RegionOverview",
+          "Text": "I can mark nearby settlements in your travel notes. These directions begin here; ask at the destination about local work.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
           "ID": "Rumors",
-          "Text": "Travelers bring news of nearby settlements. I can mark directions in your travel notes; they start from here. Ask there about local work.",
+          "Text": "Travelers bring old reports from the wilderness, sometimes from far away. I can record what they heard; I cannot promise it is still there.",
           "Choices": [
             {
               "Text": "Good to know.",

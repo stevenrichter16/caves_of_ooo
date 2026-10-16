@@ -17,12 +17,12 @@ namespace CavesOfOoo.Core
         public static bool IsActive => CurrentConversation != null;
 
         /// <summary>Per-speaker presentation; shared authored nodes remain immutable.</summary>
-        public static string CurrentText => SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
+        public static string CurrentText => RegionalGuidance.AppendText(SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             WorldTravellers.DescribeConversation(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             LocalPeople.DescribeConversation(Speaker, Listener,
-                CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? ""))));
+                CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? "")))));
 
         /// <summary>
         /// Set by the StartTrade action before conversation ends.
@@ -205,7 +205,8 @@ namespace CavesOfOoo.Core
             {
                 var choice = CurrentNode.Choices[i];
                 if (ConversationPredicates.CheckAll(choice.Predicates, Speaker, Listener))
-                    _visibleChoices.Add(FirstHourGuidance.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID, choice));
+                    _visibleChoices.Add(FirstHourGuidance.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID,
+                        LocalPeople.PresentChoice(Speaker, Listener, CurrentConversation?.ID, CurrentNode.ID, choice)));
             }
 
             RegionalGuidance.AppendChoices(_visibleChoices);

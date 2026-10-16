@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="16" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 02:50:54Z" end-time="2026-10-16 02:50:57Z" duration="2.8204828">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29238" result="Failed" site="Child" start-time="2026-10-16 02:50:54Z" end-time="2026-10-16 02:50:57Z" duration="2.820483" total="21" passed="16" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36044" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29238" result="Failed" site="Child" start-time="2026-10-16 02:50:54Z" end-time="2026-10-16 02:50:57Z" duration="2.619111" total="21" passed="16" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36045" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29238" result="Failed" site="Child" start-time="2026-10-16 02:50:54Z" end-time="2026-10-16 02:50:57Z" duration="2.525792" total="21" passed="16" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36046" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29238" result="Failed" site="Child" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:57Z" duration="2.425548" total="21" passed="16" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25232" name="DialogueTravelPagingTests" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:57Z" duration="2.067973" total="16" passed="12" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25248" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:55Z" duration="0.445386" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25246" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="576623082" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:55Z" duration="0.182163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25247" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="774274772" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:55Z" duration="0.102016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25243" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:56Z" duration="0.207820" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25241" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(10)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(10)" methodname="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="2011168377" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:55Z" duration="0.099363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25242" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(12)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(12)" methodname="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1571570240" result="Passed" start-time="2026-10-16 02:50:55Z" end-time="2026-10-16 02:50:56Z" duration="0.094324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25235" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.164125" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25233" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,800)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,800)" methodname="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="2028481042" result="Failed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.080225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Leave one row above and below long dialogue so title glyphs and paging hints do not touch the viewport edge.
+  Expected: less than or equal to 43
+  But was:  45
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DialogueTravelPagingTests.AssertFits (CavesOfOoo.Rendering.DialogueUI ui) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:56
+at CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay (System.Int32 width, System.Int32 height) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:87
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25234" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,720)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,720)" methodname="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="860932434" result="Failed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.078140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Leave one row above and below long dialogue so title glyphs and paging hints do not touch the viewport edge.
+  Expected: less than or equal to 43
+  But was:  45
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DialogueTravelPagingTests.AssertFits (CavesOfOoo.Rendering.DialogueUI ui) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:56
+at CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay (System.Int32 width, System.Int32 height) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:87
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25236" name="LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" methodname="LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1923734017" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.076880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25240" name="NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" methodname="NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="428710251" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.091037" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25251" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.252462" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25249" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="952327727" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.081057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25250" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1041661217" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.098003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25245" name="ReturningCursorToTheTopRestoresTheFirstChoices" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ReturningCursorToTheTopRestoresTheFirstChoices" methodname="ReturningCursorToTheTopRestoresTheFirstChoices" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1104389062" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.110382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25244" name="ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" methodname="ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="231174037" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.091300" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25253" name="ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" methodname="ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1525675020" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.102063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25252" name="ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" methodname="ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="31744697" result="Passed" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:56Z" duration="0.078704" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25239" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 02:50:56Z" end-time="2026-10-16 02:50:57Z" duration="0.308004" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25237" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(RightArrow,LeftArrow)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(RightArrow,LeftArrow)" methodname="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="688836064" result="Failed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.117452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Leave one row above and below long dialogue so title glyphs and paging hints do not touch the viewport edge.
+  Expected: less than or equal to 43
+  But was:  45
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DialogueTravelPagingTests.AssertFits (CavesOfOoo.Rendering.DialogueUI ui) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:56
+at CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText (UnityEngine.InputSystem.Key next, UnityEngine.InputSystem.Key previous) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25238" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(PageDown,PageUp)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(PageDown,PageUp)" methodname="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1599735987" result="Failed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.147776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Leave one row above and below long dialogue so title glyphs and paging hints do not touch the viewport edge.
+  Expected: less than or equal to 43
+  But was:  45
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DialogueTravelPagingTests.AssertFits (CavesOfOoo.Rendering.DialogueUI ui) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:56
+at CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText (UnityEngine.InputSystem.Key next, UnityEngine.InputSystem.Key previous) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/DialogueTravelPagingTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6207" name="ThrowingAuditBaselineTests" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.156427" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="6208" name="ClearNoSkillThrowHasOneOriginalLandedUnitAndDeterministicCombatAndFx" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests.ClearNoSkillThrowHasOneOriginalLandedUnitAndDeterministicCombatAndFx" methodname="ClearNoSkillThrowHasOneOriginalLandedUnitAndDeterministicCombatAndFx" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" seed="597704966" result="Passed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.041291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Baseline damage=1; landing=(16,10); RNG=1:17=16,1:11=10,1:11=8,1:11=9,1:11=8,1:11=1,1:11=1,1:11=2,1:5=1,0:100=63
+]]></output>
+            </test-case>
+            <test-case id="6211" name="DeliberatelySelectedDaggerCellRemainsAnAffectedLowTarget" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests.DeliberatelySelectedDaggerCellRemainsAnAffectedLowTarget" methodname="DeliberatelySelectedDaggerCellRemainsAnAffectedLowTarget" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" seed="1485221614" result="Passed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.021097" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6209" name="OrdinaryThrowAtStandingCreatureClearsShippedFloorDaggerWithoutChangingRngOrItem" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests.OrdinaryThrowAtStandingCreatureClearsShippedFloorDaggerWithoutChangingRngOrItem" methodname="OrdinaryThrowAtStandingCreatureClearsShippedFloorDaggerWithoutChangingRngOrItem" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" seed="503771314" result="Failed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.021872" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A floor dagger must not steal a body-directed throw.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingAuditBaselineTests.OrdinaryThrowAtStandingCreatureClearsShippedFloorDaggerWithoutChangingRngOrItem () [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowingAuditBaselineTests.cs:85
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6212" name="PhysicalAccuracyMissStopsAtTheFirstCreatureAndStillLandsOnePaidUnit" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests.PhysicalAccuracyMissStopsAtTheFirstCreatureAndStillLandsOnePaidUnit" methodname="PhysicalAccuracyMissStopsAtTheFirstCreatureAndStillLandsOnePaidUnit" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" seed="460508537" result="Passed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.020820" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6210" name="RealWallStillInterceptsAndLandsOnApproachSideWithoutCombatRolls" fullname="CavesOfOoo.Tests.ThrowingAuditBaselineTests.RealWallStillInterceptsAndLandsOnApproachSideWithoutCombatRolls" methodname="RealWallStillInterceptsAndLandsOnApproachSideWithoutCombatRolls" classname="CavesOfOoo.Tests.ThrowingAuditBaselineTests" runstate="Runnable" seed="177600910" result="Passed" start-time="2026-10-16 02:50:57Z" end-time="2026-10-16 02:50:57Z" duration="0.020670" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

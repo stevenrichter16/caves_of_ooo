@@ -1315,8 +1315,12 @@
               "Target": "Explain"
             },
             {
-              "Text": "What's around here that I should know about?",
+              "Text": "Where are the nearby settlements?",
               "Target": "RegionOverview"
+            },
+            {
+              "Text": "Any reports from the wilderness?",
+              "Target": "WildernessReports"
             },
             {
               "Text": "Something's been said, down by the water.",
@@ -1384,6 +1388,16 @@
           "Choices": [
             {
               "Text": "Thank you.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "WildernessReports",
+          "Text": "These are old reports from the wilderness. Some places are a long way from here. I can put a report in your travel notes, but I cannot tell you what remains there now.",
+          "Choices": [
+            {
+              "Text": "Back.",
               "Target": "Start"
             }
           ]

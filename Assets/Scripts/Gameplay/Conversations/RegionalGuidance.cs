@@ -90,14 +90,32 @@ namespace CavesOfOoo.Core
         }
         public static void AppendChoices(List<CavesOfOoo.Data.ChoiceData> choices)
         {
-            string conversation=ConversationManager.CurrentConversation?.ID,node=ConversationManager.CurrentNode?.ID;
-            if(!(((conversation=="Scribe_1"||conversation=="Morrowfast_Vennit")&&node=="RegionOverview")||(conversation=="Innkeeper_1"&&node=="Rumors")))return;
+            if(choices==null||!IsSettlementTopic())return;
             foreach(var lead in Build(SettlementRuntime.ActiveZone,ConversationManager.Speaker,ConversationManager.Listener))
             {
                 var at=WorldMap.FromZoneID(lead.DestinationZoneID);
                 choices.Add(new CavesOfOoo.Data.ChoiceData{Text="Note "+lead.DestinationName+" ("+at.x+","+at.y+")"+(lead.QuestID!=null?" - local work":""),Target="",
                     Actions=new List<CavesOfOoo.Data.ConversationParam>{new CavesOfOoo.Data.ConversationParam{Key=ActionName,Value=lead.DestinationZoneID}}});
             }
+        }
+
+        // Speech and choices use the same ordered, read-only destination query.
+        // Keeping the topic gate here prevents another caller from merging
+        // settlement actions into an unrelated report or service conversation.
+        private static bool IsSettlementTopic()
+        {
+            string conversation=ConversationManager.CurrentConversation?.ID;
+            return ConversationManager.CurrentNode?.ID=="RegionOverview"
+                &&(conversation=="Scribe_1"||conversation=="Innkeeper_1"||conversation=="Morrowfast_Vennit");
+        }
+
+        public static string AppendText(string original)
+        {
+            if(!IsSettlementTopic())return original;
+            var leads=Build(SettlementRuntime.ActiveZone,ConversationManager.Speaker,ConversationManager.Listener);
+            string details=leads.Count==0?"I have no settlement directions to offer from here."
+                :string.Join("\n\n",leads.Select(lead=>lead.Text));
+            return string.IsNullOrEmpty(original)?details:original+"\n\n"+details;
         }
     }
     public static class RegionalTravelNotes

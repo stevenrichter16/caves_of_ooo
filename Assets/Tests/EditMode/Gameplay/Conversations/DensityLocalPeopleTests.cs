@@ -159,6 +159,51 @@ namespace CavesOfOoo.Tests
             Assert.AreNotEqual(broken, repaired); Assert.AreEqual(RepairStage.StableRepair, site.Stage);
         }
 
+        [TestCase("Start", "Dangers", "Anything I should be careful about?")]
+        [TestCase("PassingThrough", "Start", "Thanks for the directions.")]
+        [TestCase("Dangers", "DeeperCaves", "What have you heard about the caves?")]
+        public void LocalDialogueRepliesMatchItsCurrentSubjectWithoutChangingTheirAuthoredRoute(string nodeId, string target, string expected)
+        {
+            var manager = Manager(); var zone = manager.GetZone("Overworld.10.10.0");
+            var speaker = Residents(zone).First(); var player = Factory.CreateEntity("Player"); Assert.True(zone.AddEntity(player, 2, 2));
+            Assert.True(ConversationManager.StartConversation(speaker, player));
+            ConversationManager.CurrentNode = ConversationManager.CurrentConversation.GetNode(nodeId);
+            var node = ConversationManager.CurrentNode; var original = node.Choices.Single(c => c.Target == target);
+            string originalText = original.Text, originalBody = node.Text; int zones = manager.CachedZoneCount;
+            ConversationManager.RefreshVisibleChoices();
+            Assert.AreNotEqual(originalBody, RenderedText(), "The paired body really is the local replacement.");
+            var offered = ConversationManager.VisibleChoices.Single(c => c.Target == target);
+            Assert.AreEqual(expected, offered.Text);
+            Assert.AreNotSame(original, offered); Assert.AreEqual(originalText, original.Text); Assert.AreEqual(originalBody, node.Text);
+            Assert.AreSame(original.Actions, offered.Actions); Assert.AreSame(original.Predicates, offered.Predicates);
+            foreach (var other in node.Choices.Where(c => c != original))
+            {
+                bool eligible = ConversationPredicates.CheckAll(other.Predicates, speaker, player);
+                Assert.AreEqual(eligible, ConversationManager.VisibleChoices.Contains(other),
+                    "Unrelated authored choices must retain both their original identity and predicate visibility: " + other.Target);
+            }
+            Assert.True(ConversationManager.SelectChoice(ConversationManager.VisibleChoices.ToList().IndexOf(offered)));
+            Assert.AreEqual(target, ConversationManager.CurrentNode.ID); Assert.AreEqual(zones, manager.CachedZoneCount);
+        }
+
+        [TestCase("removed", "Start", "Dangers")]
+        [TestCase("foreign-listener", "Dangers", "DeeperCaves")]
+        [TestCase("unsupported-culture", "PassingThrough", "Start")]
+        public void IneligibleLocalDialogueKeepsTheOriginalBodyAndReplyTogether(string fault, string nodeId, string target)
+        {
+            var manager = Manager(); var zone = manager.GetZone("Overworld.10.10.0");
+            var speaker = Residents(zone).First(); var player = Factory.CreateEntity("Player"); Assert.True(zone.AddEntity(player, 2, 2));
+            Assert.True(ConversationManager.StartConversation(speaker, player));
+            ConversationManager.CurrentNode = ConversationManager.CurrentConversation.GetNode(nodeId);
+            var node = ConversationManager.CurrentNode; var original = node.Choices.Single(c => c.Target == target);
+            if (fault == "removed") zone.RemoveEntity(speaker);
+            if (fault == "foreign-listener") { zone.RemoveEntity(player); Assert.True(new Zone("Overworld.9.10.0").AddEntity(player, 2, 2)); }
+            if (fault == "unsupported-culture") speaker.Properties["LocalCulture"] = "NoKnownCulture";
+            ConversationManager.RefreshVisibleChoices();
+            Assert.AreEqual(node.Text, RenderedText());
+            Assert.AreSame(original, ConversationManager.VisibleChoices.Single(c => c.Target == target));
+        }
+
         static string RenderedText()
         {
             var p = typeof(ConversationManager).GetProperty("CurrentText", BindingFlags.Public | BindingFlags.Static);

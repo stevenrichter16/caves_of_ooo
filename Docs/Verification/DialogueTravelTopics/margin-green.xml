@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="80" result="Passed" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 02:52:48Z" end-time="2026-10-16 02:52:57Z" duration="8.7389535">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 02:52:48Z" end-time="2026-10-16 02:52:57Z" duration="8.738954" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="36044" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 02:52:48Z" end-time="2026-10-16 02:52:57Z" duration="8.635509" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="36045" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 02:52:48Z" end-time="2026-10-16 02:52:57Z" duration="8.443900" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="36046" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 02:52:48Z" end-time="2026-10-16 02:52:57Z" duration="8.343536" total="80" passed="80" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="25036" name="CenteredModalUIViewTests" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.456766" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25037" name="AnnouncementQueue_UsesPopupOverlayView_UntilQueueIsExhausted" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.AnnouncementQueue_UsesPopupOverlayView_UntilQueueIsExhausted" methodname="AnnouncementQueue_UsesPopupOverlayView_UntilQueueIsExhausted" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="758691641" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.198084" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25042" name="CenteredPopupTilemaps_RenderOnPopupOverlayLayer_WithUnlitMaterial" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.CenteredPopupTilemaps_RenderOnPopupOverlayLayer_WithUnlitMaterial" methodname="CenteredPopupTilemaps_RenderOnPopupOverlayLayer_WithUnlitMaterial" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="1467604387" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.008096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25039" name="DialogueAndAttackConfirmation_StayInPopupOverlayView_AndRestoreAfterDecline" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.DialogueAndAttackConfirmation_StayInPopupOverlayView_AndRestoreAfterDecline" methodname="DialogueAndAttackConfirmation_StayInPopupOverlayView_AndRestoreAfterDecline" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="1381339496" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.013781" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25041" name="DialogueTransitionsToAnnouncementWithoutLeavingPopupOverlayView" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.DialogueTransitionsToAnnouncementWithoutLeavingPopupOverlayView" methodname="DialogueTransitionsToAnnouncementWithoutLeavingPopupOverlayView" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="645210460" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.009756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25040" name="DialogueTransitionsToTradeWithoutRestoringGameplayView" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.DialogueTransitionsToTradeWithoutRestoringGameplayView" methodname="DialogueTransitionsToTradeWithoutRestoringGameplayView" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="1923728719" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.010339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25038" name="PickupAndContainerPicker_UsePopupOverlayView_AndRestoreAfterClose" fullname="CavesOfOoo.Tests.CenteredModalUIViewTests.PickupAndContainerPicker_UsePopupOverlayView_AndRestoreAfterClose" methodname="PickupAndContainerPicker_UsePopupOverlayView_AndRestoreAfterClose" classname="CavesOfOoo.Tests.CenteredModalUIViewTests" runstate="Runnable" seed="483899631" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.011896" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="25232" name="DialogueTravelPagingTests" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:51Z" duration="1.991802" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="25248" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:50Z" duration="0.320675" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25246" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(False)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1463813528" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:49Z" duration="0.151849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25247" name="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow(True)" methodname="AbsoluteShortcutCanSelectOnlyAChoiceInTheDrawnWindow" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1122145180" result="Passed" start-time="2026-10-16 02:52:49Z" end-time="2026-10-16 02:52:50Z" duration="0.096275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25243" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.248838" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25241" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(10)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(10)" methodname="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="32343456" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.100179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25242" name="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(12)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice(12)" methodname="CursorFollowsTheVisibleWindowBeforeConfirmingItsAbsoluteChoice" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="395764211" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.096669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25235" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.176456" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25233" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,800)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,800)" methodname="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1767720033" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.083395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25234" name="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,720)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay(1280,720)" methodname="LongSpeechAndChoicesStayInsideTheSame45RowDeckOverlay" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1858855786" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.090274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25236" name="LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" methodname="LongSpeechHasVisiblePagingHintsAndNoHiddenTailOnFirstPage" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1173902400" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.103785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25240" name="NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" methodname="NewSpeechPageStillConsumesFirstConfirmToRevealBeforeSelecting" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1453284457" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.156059" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25251" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.251754" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25249" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(False)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1100069464" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.081993" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25250" name="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm(True)" methodname="PagingPastAnEndpointDoesNotRestartRevealOrEatTheNextConfirm" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="687210062" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:50Z" duration="0.103122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25245" name="ReturningCursorToTheTopRestoresTheFirstChoices" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ReturningCursorToTheTopRestoresTheFirstChoices" methodname="ReturningCursorToTheTopRestoresTheFirstChoices" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="616282049" result="Passed" start-time="2026-10-16 02:52:50Z" end-time="2026-10-16 02:52:51Z" duration="0.112189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25244" name="ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" methodname="ScrolledChoiceMouseMappingUsesAbsoluteIndexAndRejectsPortraitAndFooter" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="39353747" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.092077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25253" name="ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" methodname="ShorterReplyClearsPreviousPageForegroundAndBackgroundAndResetsPaging" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1601397797" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.102161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25252" name="ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" methodname="ShortOrdinaryNodeKeepsItsLayoutAndPagingKeysDoNothing" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="16606462" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.070487" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25239" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.286821" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25237" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(RightArrow,LeftArrow)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(RightArrow,LeftArrow)" methodname="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="1234873449" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.125813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25238" name="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(PageDown,PageUp)" fullname="CavesOfOoo.Tests.DialogueTravelPagingTests.SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText(PageDown,PageUp)" methodname="SpeechPagesCanReachTheTailAndReturnWithoutChoosingOrChangingText" classname="CavesOfOoo.Tests.DialogueTravelPagingTests" runstate="Runnable" seed="317699419" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.123438" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25629" name="GameAuditShortcutAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="31" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:54Z" duration="3.137060" total="31" passed="31" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25667" name="ContainerOverflowUsesEnterWithoutFabricatedLabel" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ContainerOverflowUsesEnterWithoutFabricatedLabel" methodname="ContainerOverflowUsesEnterWithoutFabricatedLabel" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="962458632" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.088326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25668" name="DialogueDrawsTheSameTenthKeyThatRevealAndDispatchUse" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.DialogueDrawsTheSameTenthKeyThatRevealAndDispatchUse" methodname="DialogueDrawsTheSameTenthKeyThatRevealAndDispatchUse" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1486057698" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.070551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25648" name="DuplicateCasePreferencesPreserveFirstAndAllocateSecond" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.DuplicateCasePreferencesPreserveFirstAndAllocateSecond" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:52Z" duration="0.162472" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25646" name="DuplicateCasePreferencesPreserveFirstAndAllocateSecond('q','Q')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.DuplicateCasePreferencesPreserveFirstAndAllocateSecond('q','Q')" methodname="DuplicateCasePreferencesPreserveFirstAndAllocateSecond" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="327395975" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:51Z" duration="0.072926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25647" name="DuplicateCasePreferencesPreserveFirstAndAllocateSecond('Q','q')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.DuplicateCasePreferencesPreserveFirstAndAllocateSecond('Q','q')" methodname="DuplicateCasePreferencesPreserveFirstAndAllocateSecond" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1721751243" result="Passed" start-time="2026-10-16 02:52:51Z" end-time="2026-10-16 02:52:52Z" duration="0.068495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25672" name="EmptyWorldMenuHasNoSelectionAndCanCancel" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.EmptyWorldMenuHasNoSelectionAndCanCancel" methodname="EmptyWorldMenuHasNoSelectionAndCanCancel" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="731362235" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.069978" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=0 Tilemap=set BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25645" name="FallbackNeverStealsLaterAuthoredPreference" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.FallbackNeverStealsLaterAuthoredPreference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.246679" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25643" name="FallbackNeverStealsLaterAuthoredPreference(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.FallbackNeverStealsLaterAuthoredPreference(False)" methodname="FallbackNeverStealsLaterAuthoredPreference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="536892927" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.072034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25644" name="FallbackNeverStealsLaterAuthoredPreference(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.FallbackNeverStealsLaterAuthoredPreference(True)" methodname="FallbackNeverStealsLaterAuthoredPreference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="658889557" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.085833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25651" name="HeadingNeverReservesOrConsumesASelectionLetter" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.HeadingNeverReservesOrConsumesASelectionLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.258867" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25649" name="HeadingNeverReservesOrConsumesASelectionLetter(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.HeadingNeverReservesOrConsumesASelectionLetter(False)" methodname="HeadingNeverReservesOrConsumesASelectionLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="651181593" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.146666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25650" name="HeadingNeverReservesOrConsumesASelectionLetter(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.HeadingNeverReservesOrConsumesASelectionLetter(True)" methodname="HeadingNeverReservesOrConsumesASelectionLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="125446245" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.070369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25663" name="PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.235069" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25661" name="PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference(False)" methodname="PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="2082803376" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.078576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25662" name="PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference(True)" methodname="PickupRemovalUpdatesAbsoluteBindingAndDoesNotReuseOldReference" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1669075842" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.074298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25666" name="PickupScrolledLastBindingAndOverflowRemainAccessible" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupScrolledLastBindingAndOverflowRemainAccessible" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:53Z" duration="0.222832" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25664" name="PickupScrolledLastBindingAndOverflowRemainAccessible(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupScrolledLastBindingAndOverflowRemainAccessible(False)" methodname="PickupScrolledLastBindingAndOverflowRemainAccessible" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="347289764" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:52Z" duration="0.087825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25665" name="PickupScrolledLastBindingAndOverflowRemainAccessible(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PickupScrolledLastBindingAndOverflowRemainAccessible(True)" methodname="PickupScrolledLastBindingAndOverflowRemainAccessible" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1269099532" result="Passed" start-time="2026-10-16 02:52:52Z" end-time="2026-10-16 02:52:53Z" duration="0.087189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25671" name="PositionalOutOfRangeHasNoKey" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PositionalOutOfRangeHasNoKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.161808" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25669" name="PositionalOutOfRangeHasNoKey(-1)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PositionalOutOfRangeHasNoKey(-1)" methodname="PositionalOutOfRangeHasNoKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1855931486" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.068916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25670" name="PositionalOutOfRangeHasNoKey(24)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.PositionalOutOfRangeHasNoKey(24)" methodname="PositionalOutOfRangeHasNoKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="103410756" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.068285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25660" name="ReopenedConfirmOrCancelCannotReusePriorLetter" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReopenedConfirmOrCancelCannotReusePriorLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.202799" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25658" name="ReopenedConfirmOrCancelCannotReusePriorLetter(Enter)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReopenedConfirmOrCancelCannotReusePriorLetter(Enter)" methodname="ReopenedConfirmOrCancelCannotReusePriorLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1503040653" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.068777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25659" name="ReopenedConfirmOrCancelCannotReusePriorLetter(Escape)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReopenedConfirmOrCancelCannotReusePriorLetter(Escape)" methodname="ReopenedConfirmOrCancelCannotReusePriorLetter" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="490202231" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.070917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25637" name="ReservedAuthoredKeysGetFallbackAndKeepNavigation" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReservedAuthoredKeysGetFallbackAndKeepNavigation" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.199611" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25635" name="ReservedAuthoredKeysGetFallbackAndKeepNavigation('j')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReservedAuthoredKeysGetFallbackAndKeepNavigation('j')" methodname="ReservedAuthoredKeysGetFallbackAndKeepNavigation" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1081100329" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.069392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25636" name="ReservedAuthoredKeysGetFallbackAndKeepNavigation('k')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ReservedAuthoredKeysGetFallbackAndKeepNavigation('k')" methodname="ReservedAuthoredKeysGetFallbackAndKeepNavigation" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="516868007" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.069778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25654" name="ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.214762" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25652" name="ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey(False)" methodname="ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="75353889" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.077201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=28 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25653" name="ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey(True)" methodname="ScrolledWorldBindingIsAbsoluteAndOverflowHasNoInventedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1823172936" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.077618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=28 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25657" name="SelectionProvenanceClearsOnConsumeAndReopen" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.SelectionProvenanceClearsOnConsumeAndReopen" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:54Z" duration="0.185478" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25655" name="SelectionProvenanceClearsOnConsumeAndReopen(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.SelectionProvenanceClearsOnConsumeAndReopen(False)" methodname="SelectionProvenanceClearsOnConsumeAndReopen" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="870077276" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:53Z" duration="0.070149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25656" name="SelectionProvenanceClearsOnConsumeAndReopen(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.SelectionProvenanceClearsOnConsumeAndReopen(True)" methodname="SelectionProvenanceClearsOnConsumeAndReopen" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="72101540" result="Passed" start-time="2026-10-16 02:52:53Z" end-time="2026-10-16 02:52:54Z" duration="0.069856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25634" name="UnsupportedOrMissingAuthoredKeyGetsUsableFallback" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.UnsupportedOrMissingAuthoredKeyGetsUsableFallback" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.424351" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25630" name="UnsupportedOrMissingAuthoredKeyGetsUsableFallback('!')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.UnsupportedOrMissingAuthoredKeyGetsUsableFallback('!')" methodname="UnsupportedOrMissingAuthoredKeyGetsUsableFallback" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1417524189" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.070416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25631" name="UnsupportedOrMissingAuthoredKeyGetsUsableFallback('1')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.UnsupportedOrMissingAuthoredKeyGetsUsableFallback('1')" methodname="UnsupportedOrMissingAuthoredKeyGetsUsableFallback" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1994036162" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.073689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25632" name="UnsupportedOrMissingAuthoredKeyGetsUsableFallback('\0')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.UnsupportedOrMissingAuthoredKeyGetsUsableFallback('\0')" methodname="UnsupportedOrMissingAuthoredKeyGetsUsableFallback" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1024770754" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.096278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25633" name="UnsupportedOrMissingAuthoredKeyGetsUsableFallback(' ')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.UnsupportedOrMissingAuthoredKeyGetsUsableFallback(' ')" methodname="UnsupportedOrMissingAuthoredKeyGetsUsableFallback" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1423121783" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.123392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25642" name="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.322218" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25638" name="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('B','b')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('B','b')" methodname="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1068701579" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.070185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25639" name="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('G','g')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('G','g')" methodname="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1330128149" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.072263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25640" name="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('S','s')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('S','s')" methodname="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="1163918652" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.071501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25641" name="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('W','w')" fullname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests.ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey('W','w')" methodname="ValidUppercasePreferenceDisplaysAndDispatchesNormalizedKey" classname="CavesOfOoo.Tests.GameAuditShortcutAdversarialTests" runstate="Runnable" seed="534963864" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:54Z" duration="0.071839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25684" name="GameAuditShortcutTests" fullname="CavesOfOoo.Tests.GameAuditShortcutTests" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:57Z" duration="2.556942" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="25700" name="ActualBreakRowHasUsableShortcutOnlyWhenDestructible" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ActualBreakRowHasUsableShortcutOnlyWhenDestructible" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:55Z" duration="0.325731" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25698" name="ActualBreakRowHasUsableShortcutOnlyWhenDestructible(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ActualBreakRowHasUsableShortcutOnlyWhenDestructible(False)" methodname="ActualBreakRowHasUsableShortcutOnlyWhenDestructible" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="6425621" result="Passed" start-time="2026-10-16 02:52:54Z" end-time="2026-10-16 02:52:55Z" duration="0.073560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25699" name="ActualBreakRowHasUsableShortcutOnlyWhenDestructible(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ActualBreakRowHasUsableShortcutOnlyWhenDestructible(True)" methodname="ActualBreakRowHasUsableShortcutOnlyWhenDestructible" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1805202798" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.071120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25701" name="ActualStillSingleThenBatchHaveDistinctShownKeysAndPayments" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ActualStillSingleThenBatchHaveDistinctShownKeysAndPayments" methodname="ActualStillSingleThenBatchHaveDistinctShownKeysAndPayments" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="998045541" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.076687" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=4 Tilemap=set BgTilemap=NULL
+[ActionMenu:ui-open] actions=4 Tilemap=set BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25720" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.507492" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25714" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;pickup&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;pickup&quot;,False)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1341572210" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.082757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25715" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;pickup&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;pickup&quot;,True)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1545615322" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.070542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25716" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;container&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;container&quot;,False)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="530951166" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.070224" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25717" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;container&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;container&quot;,True)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1176783129" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.068582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25718" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;dialogue&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;dialogue&quot;,False)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1914323200" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.068606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25719" name="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;dialogue&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement(&quot;dialogue&quot;,True)" methodname="ClosingSelectionDoesNotTurnOneHeldLetterIntoMovement" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="372178740" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.068937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25697" name="CrowdedContainerPickerSelectsShownSeventhOrCloses" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.CrowdedContainerPickerSelectsShownSeventhOrCloses" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.214175" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25695" name="CrowdedContainerPickerSelectsShownSeventhOrCloses(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.CrowdedContainerPickerSelectsShownSeventhOrCloses(False)" methodname="CrowdedContainerPickerSelectsShownSeventhOrCloses" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="91007202" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.070720" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25696" name="CrowdedContainerPickerSelectsShownSeventhOrCloses(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.CrowdedContainerPickerSelectsShownSeventhOrCloses(True)" methodname="CrowdedContainerPickerSelectsShownSeventhOrCloses" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="166315487" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:55Z" duration="0.073209" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25713" name="DialogueEscapeStillHonorsNodeRule" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueEscapeStillHonorsNodeRule" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:56Z" duration="0.245101" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25711" name="DialogueEscapeStillHonorsNodeRule(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueEscapeStillHonorsNodeRule(False)" methodname="DialogueEscapeStillHonorsNodeRule" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="842559817" result="Passed" start-time="2026-10-16 02:52:55Z" end-time="2026-10-16 02:52:56Z" duration="0.076785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25712" name="DialogueEscapeStillHonorsNodeRule(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueEscapeStillHonorsNodeRule(True)" methodname="DialogueEscapeStillHonorsNodeRule" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="776052122" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.112744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25710" name="DialogueReservedNavigationDoesNotRevealOrSelect" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueReservedNavigationDoesNotRevealOrSelect" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.202525" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25708" name="DialogueReservedNavigationDoesNotRevealOrSelect(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueReservedNavigationDoesNotRevealOrSelect(False)" methodname="DialogueReservedNavigationDoesNotRevealOrSelect" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="2107079282" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.117536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25709" name="DialogueReservedNavigationDoesNotRevealOrSelect(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DialogueReservedNavigationDoesNotRevealOrSelect(True)" methodname="DialogueReservedNavigationDoesNotRevealOrSelect" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="749013955" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.074287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25689" name="DisplayedPickupLetterTakesExactAbsoluteRow" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DisplayedPickupLetterTakesExactAbsoluteRow" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.291391" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25685" name="DisplayedPickupLetterTakesExactAbsoluteRow(5,'f')" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DisplayedPickupLetterTakesExactAbsoluteRow(5,'f')" methodname="DisplayedPickupLetterTakesExactAbsoluteRow" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="640710822" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.073200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25686" name="DisplayedPickupLetterTakesExactAbsoluteRow(6,'h')" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DisplayedPickupLetterTakesExactAbsoluteRow(6,'h')" methodname="DisplayedPickupLetterTakesExactAbsoluteRow" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="425483568" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.071995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25687" name="DisplayedPickupLetterTakesExactAbsoluteRow(9,'m')" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DisplayedPickupLetterTakesExactAbsoluteRow(9,'m')" methodname="DisplayedPickupLetterTakesExactAbsoluteRow" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="886954180" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.069435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25688" name="DisplayedPickupLetterTakesExactAbsoluteRow(10,'n')" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.DisplayedPickupLetterTakesExactAbsoluteRow(10,'n')" methodname="DisplayedPickupLetterTakesExactAbsoluteRow" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1749198709" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.068409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25692" name="PickupCloseKeysNeverTakeAnItem" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.PickupCloseKeysNeverTakeAnItem" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.162191" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25690" name="PickupCloseKeysNeverTakeAnItem(G)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.PickupCloseKeysNeverTakeAnItem(G)" methodname="PickupCloseKeysNeverTakeAnItem" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="2081019919" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.074871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25691" name="PickupCloseKeysNeverTakeAnItem(Escape)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.PickupCloseKeysNeverTakeAnItem(Escape)" methodname="PickupCloseKeysNeverTakeAnItem" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="924532889" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.071594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25693" name="PickupNavigationKeepsItsReservedKeys" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.PickupNavigationKeepsItsReservedKeys" methodname="PickupNavigationKeepsItsReservedKeys" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="56580833" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.074494" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25694" name="SeventhRealChestEntryUsesUsableShortcut" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.SeventhRealChestEntryUsesUsableShortcut" methodname="SeventhRealChestEntryUsesUsableShortcut" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1378809116" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:56Z" duration="0.074652" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25707" name="TenthDialogueShortcutRevealsBeforeSelecting" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.TenthDialogueShortcutRevealsBeforeSelecting" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:57Z" duration="0.149789" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25705" name="TenthDialogueShortcutRevealsBeforeSelecting(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.TenthDialogueShortcutRevealsBeforeSelecting(False)" methodname="TenthDialogueShortcutRevealsBeforeSelecting" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="2118834096" result="Passed" start-time="2026-10-16 02:52:56Z" end-time="2026-10-16 02:52:57Z" duration="0.073232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25706" name="TenthDialogueShortcutRevealsBeforeSelecting(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.TenthDialogueShortcutRevealsBeforeSelecting(True)" methodname="TenthDialogueShortcutRevealsBeforeSelecting" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1908915949" result="Passed" start-time="2026-10-16 02:52:57Z" end-time="2026-10-16 02:52:57Z" duration="0.071840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25704" name="WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 02:52:57Z" end-time="2026-10-16 02:52:57Z" duration="0.198571" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25702" name="WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey(False)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey(False)" methodname="WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1936557023" result="Passed" start-time="2026-10-16 02:52:57Z" end-time="2026-10-16 02:52:57Z" duration="0.073049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="25703" name="WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey(True)" fullname="CavesOfOoo.Tests.GameAuditShortcutTests.WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey(True)" methodname="WorldReleaseGateUsesActualActivationRatherThanRawAuthoredKey" classname="CavesOfOoo.Tests.GameAuditShortcutTests" runstate="Runnable" seed="1173002733" result="Passed" start-time="2026-10-16 02:52:57Z" end-time="2026-10-16 02:52:57Z" duration="0.070434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

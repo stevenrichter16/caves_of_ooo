@@ -112,7 +112,7 @@ namespace CavesOfOoo.Core
             var node = ConversationManager.CurrentNode;
             string conversationID = conversation?.ID;
             bool resident = ResidentNode(speaker, conversationID, node?.ID);
-            if (!((conversationID == "Scribe_1" && node?.ID == "RegionOverview")
+            if (!((conversationID == "Scribe_1" && node?.ID == "WildernessReports")
                 || (conversationID == "Innkeeper_1" && node?.ID == "Rumors") || resident)) return false;
             var zone = speaker?.SpatialZone;
             var manager = WorldLocationContext.For(zone);

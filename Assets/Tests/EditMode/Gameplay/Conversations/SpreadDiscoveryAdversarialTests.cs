@@ -30,7 +30,7 @@ namespace CavesOfOoo.Tests
                 case "foreign-render": f.Speaker.GetPart<RenderPart>().ParentEntity = new Entity(); break;
                 case "hostile": f.Speaker.SetTag("Faction", "Villagers"); PlayerReputation.Set("Villagers", -200); Assert.True(FactionManager.IsHostile(f.Speaker, f.Player)); break;
                 case "cache-replaced": f.Manager.SetActiveZone(new Zone(f.Zone.ZoneID)); break;
-                case "node-replaced": ConversationManager.CurrentNode = new NodeData { ID = "RegionOverview" }; break;
+                case "node-replaced": ConversationManager.CurrentNode = new NodeData { ID = "WildernessReports" }; break;
                 case "conversation-ended": ConversationManager.EndConversation(); break;
                 case "map-changed":
                     var at = WorldMap.FromZoneID(f.Manager.RareEncounters.PairZoneID); f.Manager.WorldMap.Tiles[at.x, at.y] = BiomeType.Beating; break;

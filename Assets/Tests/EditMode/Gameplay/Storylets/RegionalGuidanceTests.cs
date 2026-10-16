@@ -101,7 +101,7 @@ namespace CavesOfOoo.Tests
             }
             finally{UnityEngine.Object.DestroyImmediate(go);}
         }
-        [TestCase("Scribe_1","RegionOverview")][TestCase("Innkeeper_1","Rumors")]
+        [TestCase("Scribe_1","RegionOverview")][TestCase("Innkeeper_1","RegionOverview")]
         public void RealConversationChoiceRouteRecordsDirectionsAndDoesNotLeakIntoOtherNodes(string conversation,string node)
         {
             speaker.GetPart<ConversationPart>().ConversationID=conversation;

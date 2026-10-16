@@ -6,7 +6,7 @@ namespace CavesOfOoo.Tests
 {
     public class SpreadDiscoveryTextTests
     {
-        [TestCase("Scribe_1", "RegionOverview")]
+        [TestCase("Scribe_1", "WildernessReports")]
         [TestCase("Innkeeper_1", "Rumors")]
         public void FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode(string conversation, string node)
         {
