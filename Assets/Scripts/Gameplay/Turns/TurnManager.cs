@@ -393,6 +393,8 @@ namespace CavesOfOoo.Core
             {
             using (PerformanceMarkers.Turns.EndTurn.Auto())
             {
+                try
+                {
                 // Fire EndTurn event so parts can react (cooldown ticking, regeneration, etc.)
                 var endTurn = GameEvent.New("EndTurn");
                 if (zone != null)
@@ -431,10 +433,24 @@ namespace CavesOfOoo.Core
                 if (MessageLog.Count > _turnStartMessageCount)
                     MessageLog.Add(TURN_DIVIDER);
 
-                if(ownerBoundary && actor.GetPart<RiposteAllowancePart>() is RiposteAllowancePart allowance)allowance.Spent=false;
-                SpendEnergy(actor);
-                CurrentActor = null;
-                WaitingForInput = false;
+                }
+                finally
+                {
+                    // A failed observer cannot refund the completed action or
+                    // leave its mandatory owner cooldown boundary unclosed.
+                    // These operations run once; no event handler is retried.
+                    try
+                    {
+                        if(ownerBoundary && actor.GetPart<RiposteAllowancePart>() is RiposteAllowancePart allowance)allowance.Spent=false;
+                        if (ownerBoundary) ThrowingRules.OnOwnerTurnEnded(actor, zone);
+                    }
+                    finally
+                    {
+                        SpendEnergy(actor);
+                        CurrentActor = null;
+                        WaitingForInput = false;
+                    }
+                }
 
                 if (World != null)
                 {

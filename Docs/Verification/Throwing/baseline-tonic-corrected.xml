@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.9663152">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.966315" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="36044" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.861064" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="36045" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.768446" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="36046" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29238" result="Passed" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.568373" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="12168" name="ThrowableTonicTests" fullname="CavesOfOoo.Tests.ThrowableTonicTests" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-16 03:03:02Z" end-time="2026-10-16 03:03:03Z" duration="0.367345" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="12179" name="ThrownNonTonicItem_HitsWall_LandsAtLastTraversable_NotConsumed" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownNonTonicItem_HitsWall_LandsAtLastTraversable_NotConsumed" methodname="ThrownNonTonicItem_HitsWall_LandsAtLastTraversable_NotConsumed" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="418179625" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.016345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12174" name="ThrownNonTonicItem_MissesEmptyCell_LandsOnGroundUnchanged" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownNonTonicItem_MissesEmptyCell_LandsOnGroundUnchanged" methodname="ThrownNonTonicItem_MissesEmptyCell_LandsOnGroundUnchanged" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1131901675" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.001271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12175" name="ThrownTonic_AoeHits_AllCreaturesInRadius" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_AoeHits_AllCreaturesInRadius" methodname="ThrownTonic_AoeHits_AllCreaturesInRadius" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1807487665" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.017074" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12176" name="ThrownTonic_AoeHitsAllCreatures_RegardlessOfFaction" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_AoeHitsAllCreatures_RegardlessOfFaction" methodname="ThrownTonic_AoeHitsAllCreatures_RegardlessOfFaction" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1782503410" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.005547" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12169" name="ThrownTonic_DirectHit_AdjacentCreatureAlsoReceivesEffect" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_DirectHit_AdjacentCreatureAlsoReceivesEffect" methodname="ThrownTonic_DirectHit_AdjacentCreatureAlsoReceivesEffect" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="653921655" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.003788" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12170" name="ThrownTonic_DirectHit_CreatureOutsideRadius_DoesNotReceiveEffect" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_DirectHit_CreatureOutsideRadius_DoesNotReceiveEffect" methodname="ThrownTonic_DirectHit_CreatureOutsideRadius_DoesNotReceiveEffect" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="817179725" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.003708" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12180" name="ThrownTonic_DirectHit_TonicConsumed_VictimReceivesEffect" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_DirectHit_TonicConsumed_VictimReceivesEffect" methodname="ThrownTonic_DirectHit_TonicConsumed_VictimReceivesEffect" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="606476868" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.004182" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12178" name="ThrownTonic_HitsWall_ShattersAtLastTraversable_ItemNotOnGround" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_HitsWall_ShattersAtLastTraversable_ItemNotOnGround" methodname="ThrownTonic_HitsWall_ShattersAtLastTraversable_ItemNotOnGround" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1331482984" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.003526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12172" name="ThrownTonic_MissCellWithCreature_AppliesEffect" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_MissCellWithCreature_AppliesEffect" methodname="ThrownTonic_MissCellWithCreature_AppliesEffect" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="924230422" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.003500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12173" name="ThrownTonic_MissToEmptyArea_LogsShatter_AndStillConsumes" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_MissToEmptyArea_LogsShatter_AndStillConsumes" methodname="ThrownTonic_MissToEmptyArea_LogsShatter_AndStillConsumes" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1900918620" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.004806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12171" name="ThrownTonic_MissToEmptyCell_ItemConsumed_NotOnGround" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_MissToEmptyCell_ItemConsumed_NotOnGround" methodname="ThrownTonic_MissToEmptyCell_ItemConsumed_NotOnGround" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="805390484" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.040974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12177" name="ThrownTonic_StackOfTonics_StackSurvives_ButShrinks" fullname="CavesOfOoo.Tests.ThrowableTonicTests.ThrownTonic_StackOfTonics_StackSurvives_ButShrinks" methodname="ThrownTonic_StackOfTonics_StackSurvives_ButShrinks" classname="CavesOfOoo.Tests.ThrowableTonicTests" runstate="Runnable" seed="1597791614" result="Passed" start-time="2026-10-16 03:03:03Z" end-time="2026-10-16 03:03:03Z" duration="0.002114" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

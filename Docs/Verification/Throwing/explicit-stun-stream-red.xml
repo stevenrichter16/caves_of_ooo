@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 06:25:11Z" end-time="2026-10-16 06:25:13Z" duration="1.2794642">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29475" result="Failed" site="Child" start-time="2026-10-16 06:25:11Z" end-time="2026-10-16 06:25:13Z" duration="1.279464" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36331" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29475" result="Failed" site="Child" start-time="2026-10-16 06:25:11Z" end-time="2026-10-16 06:25:13Z" duration="1.063742" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84783" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36332" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29475" result="Failed" site="Child" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:13Z" duration="0.676452" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36333" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29475" result="Failed" site="Child" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:13Z" duration="0.458511" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="15429" name="ThrowingPayloadComparisonTests" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:13Z" duration="0.200264" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="15458" name="ComparisonStunSeedPreservesExplicitGameplayStreams" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:13Z" duration="0.198211" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15453" name="ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;world&quot;)" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;world&quot;)" methodname="ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" seed="1064121514" result="Failed" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:12Z" duration="0.098317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <System.Random>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams (System.String source) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingPayloadComparisonTests.cs:202
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+              <test-case id="15454" name="ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;own-brain&quot;)" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;own-brain&quot;)" methodname="ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" seed="513654324" result="Failed" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:12Z" duration="0.024115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <System.Random>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams (System.String source) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingPayloadComparisonTests.cs:202
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+              <test-case id="15455" name="ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;other-brain&quot;)" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;other-brain&quot;)" methodname="ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" seed="1393712384" result="Failed" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:12Z" duration="0.023385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <System.Random>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams (System.String source) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingPayloadComparisonTests.cs:202
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+              <test-case id="15456" name="ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;source-brain&quot;)" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;source-brain&quot;)" methodname="ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" seed="214989508" result="Failed" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:12Z" duration="0.023316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <System.Random>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams (System.String source) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingPayloadComparisonTests.cs:202
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+              <test-case id="15457" name="ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;fallback&quot;)" fullname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests.ComparisonStunSeedPreservesExplicitGameplayStreams(&quot;fallback&quot;)" methodname="ComparisonStunSeedPreservesExplicitGameplayStreams" classname="CavesOfOoo.Tests.ThrowingPayloadComparisonTests" runstate="Runnable" seed="2051821832" result="Passed" start-time="2026-10-16 06:25:12Z" end-time="2026-10-16 06:25:13Z" duration="0.024850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

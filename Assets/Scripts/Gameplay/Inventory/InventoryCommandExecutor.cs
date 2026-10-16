@@ -20,39 +20,38 @@ namespace CavesOfOoo.Core.Inventory
                     "Inventory context is null.");
             }
 
-            var validation = command.Validate(context);
-            if (validation == null)
+            using (ActionResolutionGuard.Enter())
             {
-                validation = InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.Unknown,
-                    $"Command '{command.Name}' returned null validation.");
-            }
-
-            if (!validation.IsValid)
-                return InventoryCommandResult.ValidationFailure(validation);
-
-            var transaction = new InventoryTransaction();
-
-            try
-            {
-                var result = command.Execute(context, transaction)
-                    ?? InventoryCommandResult.Fail(
-                        InventoryCommandErrorCode.ExecutionFailed,
-                        $"Command '{command.Name}' returned null result.");
-
-                if (result.Success)
+                InventoryValidationResult validation = null;
+                var transaction = new InventoryTransaction();
+                try
                 {
-                    transaction.Commit();
+                    validation = command.Validate(context) ?? InventoryValidationResult.Invalid(
+                        InventoryValidationErrorCode.Unknown, $"Command '{command.Name}' returned null validation.");
+                    if (!validation.IsValid) return InventoryCommandResult.ValidationFailure(validation);
+                    var result = command.Execute(context, transaction) ?? InventoryCommandResult.Fail(
+                        InventoryCommandErrorCode.ExecutionFailed, $"Command '{command.Name}' returned null result.");
+                    if (result.Success || transaction.ActionCommitted)
+                    {
+                        transaction.Commit();
+                        if (transaction.ActionCommitted)
+                            result = result.Success ? result.WithActionCommitted()
+                                : InventoryCommandResult.CommittedPartial(result.ErrorMessage, "outer-command");
+                        return result.WithValidation(validation);
+                    }
+                    transaction.Rollback();
                     return result.WithValidation(validation);
                 }
-
-                transaction.Rollback();
-                return result.WithValidation(validation);
-            }
-            catch (Exception exception)
-            {
-                transaction.Rollback();
-                return InventoryCommandResult.FromException(exception).WithValidation(validation);
+                catch (Exception exception)
+                {
+                    if (transaction.ActionCommitted)
+                    {
+                        transaction.Commit();
+                        return InventoryCommandResult.CommittedPartial(exception.Message, "command-exception").WithValidation(validation);
+                    }
+                    transaction.Rollback();
+                    return InventoryCommandResult.FromException(exception).WithValidation(validation);
+                }
             }
         }
     }

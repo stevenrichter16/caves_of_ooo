@@ -16,16 +16,19 @@ namespace CavesOfOoo.Core.Inventory
         private static readonly ConditionalWeakTable<Entity, InventoryTransaction> ActiveTransfers
             = new ConditionalWeakTable<Entity, InventoryTransaction>();
         private readonly List<Entity> _claimedItems = new List<Entity>();
+        private readonly List<IDisposable> _actionLeases = new List<IDisposable>();
         private readonly Dictionary<Entity, long> _currencyDeltas = new Dictionary<Entity, long>();
         private List<Action> _committedObservers;
         private List<Func<bool>> _commitConditions;
+        private List<CurrencyChange> _sealedCurrencyChanges;
+        public bool ActionCommitted { get; private set; }
 
         /// <summary>Recheck a captured target after inventory event callbacks,
         /// before any payment is committed. Predicates must be read-only. A false
         /// result or exception leaves undo intact for the command executor.</summary>
         internal void BeforeCommit(Func<bool> condition)
         {
-            if (_completed) throw new InvalidOperationException("Transaction is already complete.");
+            if (_completed || ActionCommitted) throw new InvalidOperationException("Transaction validation is already sealed.");
             if (condition != null) (_commitConditions ??= new List<Func<bool>>()).Add(condition);
         }
 
@@ -51,7 +54,7 @@ namespace CavesOfOoo.Core.Inventory
         }
         private void AddCurrencyDelta(Entity actor, long amount)
         {
-            if (_completed) throw new InvalidOperationException("Transaction is already complete.");
+            if (_completed || ActionCommitted) throw new InvalidOperationException("Transaction payment is already sealed.");
             _currencyDeltas.TryGetValue(actor, out long pending);
             _currencyDeltas[actor] = pending + amount;
         }
@@ -84,6 +87,21 @@ namespace CavesOfOoo.Core.Inventory
             return guard;
         }
 
+        /// <summary>Own one paid action through rollback/final observer cleanup.
+        /// Never reuse this lease to authorize a second throw in a callback.</summary>
+        internal bool TryClaimAction(Entity actor)
+        {
+            if (_completed) return false;
+            var lease = ActionResolutionGuard.TryEnterAction(actor);
+            if (lease == null) return false;
+            _actionLeases.Add(lease); return true;
+        }
+        private void ReleaseActions()
+        {
+            foreach (var lease in _actionLeases) lease.Dispose();
+            _actionLeases.Clear();
+        }
+
         private void ReleaseClaims()
         {
             foreach (var item in _claimedItems) ActiveTransfers.Remove(item);
@@ -103,8 +121,20 @@ namespace CavesOfOoo.Core.Inventory
 
             apply?.Invoke();
 
-            if (undo != null)
+            if (undo != null && !ActionCommitted)
                 _undoActions.Add(undo);
+        }
+
+        /// <summary>Cross an irreversible gameplay boundary without publishing
+        /// receipts or releasing item claims. Authoritative effects run inline
+        /// after this call. Final Commit still disposes claims and notifies observers.</summary>
+        public void SealAction()
+        {
+            if (_completed) throw new InvalidOperationException("Transaction is already complete.");
+            if (ActionCommitted) return;
+            _sealedCurrencyChanges = PrepareCommit();
+            _undoActions.Clear();
+            ActionCommitted = true;
         }
 
         /// <summary>Validate queued wallet changes, then commit. A refused wallet
@@ -113,6 +143,19 @@ namespace CavesOfOoo.Core.Inventory
         public void Commit()
         {
             if (_completed) return;
+            var changes = ActionCommitted ? _sealedCurrencyChanges : PrepareCommit();
+            _sealedCurrencyChanges = null;
+            _undoActions.Clear();
+            ReleaseClaims();
+            _completed = true;
+            IsCommitted = true;
+            IsRolledBack = false;
+            try { PublishCommit(changes); }
+            finally { ReleaseActions(); }
+        }
+
+        private List<CurrencyChange> PrepareCommit()
+        {
             if (_commitConditions != null)
                 foreach (var condition in _commitConditions)
                     if (!condition())
@@ -144,11 +187,11 @@ namespace CavesOfOoo.Core.Inventory
             }
             _currencyDeltas.Clear();
             _commitConditions = null;
-            _undoActions.Clear();
-            ReleaseClaims();
-            _completed = true;
-            IsCommitted = true;
-            IsRolledBack = false;
+            return changes;
+        }
+
+        private void PublishCommit(List<CurrencyChange> changes)
+        {
             var observers = _committedObservers;
             _committedObservers = null;
             if (observers != null)
@@ -194,6 +237,7 @@ namespace CavesOfOoo.Core.Inventory
         {
             if (_completed)
                 return;
+            if (ActionCommitted) { Commit(); return; }
 
             for (int i = _undoActions.Count - 1; i >= 0; i--)
             {
@@ -215,6 +259,7 @@ namespace CavesOfOoo.Core.Inventory
             _completed = true;
             IsCommitted = false;
             IsRolledBack = true;
+            ReleaseActions();
         }
     }
 }

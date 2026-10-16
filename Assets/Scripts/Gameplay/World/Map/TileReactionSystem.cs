@@ -401,7 +401,8 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < occupants.Count; i++)
             {
                 var target = occupants[i];
-                if(zone.GetEntityCell(target)==null) continue;
+                if(zone.GetEntityCell(target)?.Objects.Contains(target) != true || !cell.Occupants.Contains(target)
+                    || CombatSystem.IsDeathHandled(target) || target.GetStatValue("Hitpoints", 0) <= 0) continue;
                 var bodyHits=CurrentFrame.Hits;
                 if(target.HasPart<SpatialFootprintPart>() && bodyHits!=null && !bodyHits.Add((target,r.ID))) continue;
                 // A reaction can be the spell's first (or lethal) contact, before its direct
@@ -417,7 +418,8 @@ namespace CavesOfOoo.Core
                 }
 
                 if (!string.IsNullOrEmpty(r.OccupantEffect)
-                    && target.GetStatValue("Hitpoints", 0) > 0)
+                    && target.GetStatValue("Hitpoints", 0) > 0 && cell.Occupants.Contains(target)
+                    && zone.GetEntityCell(target)?.Objects.Contains(target) == true)
                 {
                     var fx = MakeEffect(r.OccupantEffect);
                     if (fx != null) target.ApplyEffect(fx, cause, zone);

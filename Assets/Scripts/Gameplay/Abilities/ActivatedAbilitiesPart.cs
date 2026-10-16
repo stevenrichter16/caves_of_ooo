@@ -200,6 +200,9 @@ namespace CavesOfOoo.Core
         {
             for (int i = 0; i < AbilityList.Count; i++)
             {
+                // Throwing debt belongs to the actor and advances only at the
+                // genuine scheduled owner boundary, including while unlearned.
+                if (ThrowingRules.IsCooldownSkill(AbilityList[i].SourcePowerClass)) continue;
                 if (AbilityList[i].CooldownRemaining > 0)
                     AbilityList[i].CooldownRemaining--;
             }

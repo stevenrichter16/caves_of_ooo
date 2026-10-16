@@ -113,6 +113,8 @@ namespace CavesOfOoo.Core
             string baseLine = $"You see {article}{name}.";
             if (!string.IsNullOrEmpty(intent)) baseLine += "\n" + intent;
             if (!string.IsNullOrEmpty(threat)) baseLine += "\n" + threat;
+            var film = ParentEntity?.GetPart<FiniteLiquidFilmPart>()?.Describe();
+            if (!string.IsNullOrEmpty(film)) baseLine += "\n" + film;
             var batch = ParentEntity?.GetPart<KitchenBatchPart>()?.Describe();
             if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
             var dressing = ParentEntity?.GetPart<SoddenPreparationPart>()?.Describe();

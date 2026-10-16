@@ -244,7 +244,7 @@ namespace CavesOfOoo.Core
         }
         static string ValidSource(Zone zone, Entity actor, Entity source, LiquidPoolPart pool, LiquidVesselPart vessel)
         {
-            if (pool == null || pool.Volume <= 0 || source.HasTag("Creature")
+            if (pool == null || pool.Volume <= 0 || source.HasPart<FiniteLiquidFilmPart>() || source.HasTag("Creature")
                 || source.GetPart<PhysicsPart>()?.Takeable == true || source.GetPart<PhysicsPart>()?.InInventory != null
                 || source.GetPart<PhysicsPart>()?.Equipped != null || SpatialQuery.Distance(zone, actor, source) > 1) return "source-unavailable";
             if (LiquidRegistry.Get(pool.LiquidId) == null) return "unknown-liquid";
@@ -262,7 +262,7 @@ namespace CavesOfOoo.Core
             foreach (var entity in cell.Occupants)
             {
                 var candidate = entity.GetPart<LiquidPoolPart>();
-                if (candidate == null) continue;
+                if (candidate == null || entity.HasPart<FiniteLiquidFilmPart>()) continue;
                 var physical = entity.GetPart<PhysicsPart>();
                 if (physical?.Takeable == true || physical?.InInventory != null || physical?.Equipped != null)
                     return "destination-not-ground";
@@ -290,7 +290,7 @@ namespace CavesOfOoo.Core
         public static bool IsUnmixedPool(Zone zone, Entity source)
         {
             var part = source?.GetPart<LiquidPoolPart>();
-            if (part == null || part.Volume <= 0 || string.IsNullOrEmpty(part.LiquidId) || zone?.GetEntityCell(source) == null) return false;
+            if (part == null || part.Volume <= 0 || source.HasPart<FiniteLiquidFilmPart>() || string.IsNullOrEmpty(part.LiquidId) || zone?.GetEntityCell(source) == null) return false;
             return IsUnmixedSource(zone, source, part.LiquidId);
         }
         /// <summary>Checks every occupied source cell, including renewing springs

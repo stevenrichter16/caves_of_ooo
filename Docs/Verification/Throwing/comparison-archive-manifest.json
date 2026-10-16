@@ -1,0 +1,701 @@
+{
+  "created_utc": "2026-10-16T04:28:42.523002+00:00",
+  "purpose": "Lossless completed native comparison receipts; source removed only after SHA256 round-trip verification. No trials or fields omitted.",
+  "archives": [
+    {
+      "source": "comparisons/W1-0-measured-r1.json",
+      "archive": "comparisons/W1-0-measured-r1.json.gz",
+      "sha256_uncompressed": "95dcb1aebb0228c43a89ffc6fbcc65438d3af01593efdbc2495ab0a7dc22d307",
+      "uncompressed_bytes": 2305122,
+      "archive_bytes": 48989,
+      "trials": 960,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W1-0.json",
+      "archive": "comparisons/W1-0.json.gz",
+      "sha256_uncompressed": "a35a1dfb84e48db39cf65382648121dfe66091ac954293cdcbcdd539d645b78d",
+      "uncompressed_bytes": 2273068,
+      "archive_bytes": 36870,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W1-2-measured-r1.json",
+      "archive": "comparisons/W1-2-measured-r1.json.gz",
+      "sha256_uncompressed": "b26ca8f8095bcb027fc3334efde28d1a35b89ffdd9fbb664712eaa02aec01108",
+      "uncompressed_bytes": 5873439,
+      "archive_bytes": 126788,
+      "trials": 2160,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W1-2-precision100-measured-r1.json",
+      "archive": "comparisons/W1-2-precision100-measured-r1.json.gz",
+      "sha256_uncompressed": "ec2bcd86fb9779fab419f9eaec98b123441d41dcb026b9034fa319d6068ad631",
+      "uncompressed_bytes": 4781973,
+      "archive_bytes": 97841,
+      "trials": 1600,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W1-2-precision100.json",
+      "archive": "comparisons/W1-2-precision100.json.gz",
+      "sha256_uncompressed": "b2d74c921ef7b1e1528a24bcf5edd3beacf5ac54c7526cbe0ef8e84b4aebf28c",
+      "uncompressed_bytes": 4828729,
+      "archive_bytes": 101072,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W1-2.json",
+      "archive": "comparisons/W1-2.json.gz",
+      "sha256_uncompressed": "eeecc8f79b7701da7ae7b2ff632167b52474c9dbec69802786f25138016aef59",
+      "uncompressed_bytes": 5797211,
+      "archive_bytes": 95028,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W1-4-measured-r1.json",
+      "archive": "comparisons/W1-4-measured-r1.json.gz",
+      "sha256_uncompressed": "0a9cbca6135737eca0cb28a3642ef0c37c4361912cdc0799db968b6b8b1a7bd2",
+      "uncompressed_bytes": 4626531,
+      "archive_bytes": 98142,
+      "trials": 1680,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W1-4.json",
+      "archive": "comparisons/W1-4.json.gz",
+      "sha256_uncompressed": "9d872fdee3756116c719e5c383e9e9e55e61a38d59d15e9870d39fcbf2298fb2",
+      "uncompressed_bytes": 4598994,
+      "archive_bytes": 76648,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W1-6-measured-r1.json",
+      "archive": "comparisons/W1-6-measured-r1.json.gz",
+      "sha256_uncompressed": "1e1a1f51ce12d54a88a96c17e26139ef333817f0659798c02b4b2e17709717ec",
+      "uncompressed_bytes": 5471041,
+      "archive_bytes": 116595,
+      "trials": 1920,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W1-6.json",
+      "archive": "comparisons/W1-6.json.gz",
+      "sha256_uncompressed": "a28635f38ab2c22d1bb2535b4d31269af1fdfc3b7fc28f58ef275a86e8a60266",
+      "uncompressed_bytes": 5428820,
+      "archive_bytes": 89110,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W2-0.json",
+      "archive": "comparisons/W2-0.json.gz",
+      "sha256_uncompressed": "31dadcca2dc7e2184cbaad49abe62a9e8ca21f1164d941097049914fd36a9578",
+      "uncompressed_bytes": 241532,
+      "archive_bytes": 2616,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W2-2.json",
+      "archive": "comparisons/W2-2.json.gz",
+      "sha256_uncompressed": "d521ede9103bf13f6d03d8b523aa3b30465d8b91852ea3da0ec2892d9602d8f0",
+      "uncompressed_bytes": 498244,
+      "archive_bytes": 4909,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W2-4.json",
+      "archive": "comparisons/W2-4.json.gz",
+      "sha256_uncompressed": "32d0539bdfacce02bb25cf08da7bf92a2ab2100aebf49f74b0ee9b5e0f1ffe37",
+      "uncompressed_bytes": 498244,
+      "archive_bytes": 4910,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W2-6.json",
+      "archive": "comparisons/W2-6.json.gz",
+      "sha256_uncompressed": "fc9d1edbb5b174b7557ee0c0c9cba9da6e6bee6e5624c5c2c4a3a0c711c0c8bc",
+      "uncompressed_bytes": 498244,
+      "archive_bytes": 4911,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W3-budget-0.json",
+      "archive": "comparisons/W3-budget-0.json.gz",
+      "sha256_uncompressed": "2a22178869d9262b4f3e3407767db71c4cbd014b72b1b3719e5bd7b60d523a81",
+      "uncompressed_bytes": 286209,
+      "archive_bytes": 4125,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W3-budget-2.json",
+      "archive": "comparisons/W3-budget-2.json.gz",
+      "sha256_uncompressed": "4fcd76715b5b305e161efc69f625e948a14248ef14363e1d66875f14b5e2f198",
+      "uncompressed_bytes": 1480421,
+      "archive_bytes": 18528,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W3-budget-4.json",
+      "archive": "comparisons/W3-budget-4.json.gz",
+      "sha256_uncompressed": "b96ffd0cd21ae58353448fa93469c0d032b177f47c667253ab398e3d67026bb9",
+      "uncompressed_bytes": 1215988,
+      "archive_bytes": 15206,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W3-budget-6.json",
+      "archive": "comparisons/W3-budget-6.json.gz",
+      "sha256_uncompressed": "bee94e441edd210e7d131ce129bf4749cbafd6c850b9fd6a4dd8c45554c3c926",
+      "uncompressed_bytes": 1243828,
+      "archive_bytes": 15465,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-0.json",
+      "archive": "comparisons/W4-0.json.gz",
+      "sha256_uncompressed": "b83e6be041c3c7585ca84eeefbf84bfaf7fcfeb0776fbcec49dd4f38ac87be37",
+      "uncompressed_bytes": 244542,
+      "archive_bytes": 2857,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-2-precision100.json",
+      "archive": "comparisons/W4-2-precision100.json.gz",
+      "sha256_uncompressed": "ebfba5065559a16ef0524786821b42475450313ca57adbb243aed56c4e0f1432",
+      "uncompressed_bytes": 1453851,
+      "archive_bytes": 14321,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-2.json",
+      "archive": "comparisons/W4-2.json.gz",
+      "sha256_uncompressed": "1eb3ace0af01235841c9d858ac59fbf92d8604ef39dcb3f63dd60e04693784db",
+      "uncompressed_bytes": 1023153,
+      "archive_bytes": 9497,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-4.json",
+      "archive": "comparisons/W4-4.json.gz",
+      "sha256_uncompressed": "1242d6674269b110dacddd38d5b6f5c56822245851a31c4ab3209e51c7bc5652",
+      "uncompressed_bytes": 1047794,
+      "archive_bytes": 9620,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-6.json",
+      "archive": "comparisons/W4-6.json.gz",
+      "sha256_uncompressed": "d1b30f8844d8b369de54f6e314872ee614dfb207f63e5638acfc5e0eba02bef6",
+      "uncompressed_bytes": 1071453,
+      "archive_bytes": 10350,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-reversal-2-precision100.json",
+      "archive": "comparisons/W4-reversal-2-precision100.json.gz",
+      "sha256_uncompressed": "2ea9d6d7e70705ca8d3cd3038da265ae2717bb2cec30effa43c8b4a30436c26c",
+      "uncompressed_bytes": 702641,
+      "archive_bytes": 8073,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-reversal-2.json",
+      "archive": "comparisons/W4-reversal-2.json.gz",
+      "sha256_uncompressed": "7c8a1ad3797e3835ca60ea3048022a7c3610e7042b55c5f22a28d79666a7ecbb",
+      "uncompressed_bytes": 140529,
+      "archive_bytes": 2271,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-reversal-4.json",
+      "archive": "comparisons/W4-reversal-4.json.gz",
+      "sha256_uncompressed": "95947b06712f4e6042157d114afb002af7211d739e6007a7a28ae243b82682e0",
+      "uncompressed_bytes": 144169,
+      "archive_bytes": 2314,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W4-reversal-6.json",
+      "archive": "comparisons/W4-reversal-6.json.gz",
+      "sha256_uncompressed": "bded483e8c50db155f187067915de91616bd0e9518df951d7f1a177520a22e75",
+      "uncompressed_bytes": 147449,
+      "archive_bytes": 2359,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W5-0.json",
+      "archive": "comparisons/W5-0.json.gz",
+      "sha256_uncompressed": "a6014e19f2c0304eb0fa00b5648fb21c4dec15c5d8950f20a36d2d73ac489b40",
+      "uncompressed_bytes": 519308,
+      "archive_bytes": 5433,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W5-2-precision100.json",
+      "archive": "comparisons/W5-2-precision100.json.gz",
+      "sha256_uncompressed": "abcd6177449012d65b7a5699d3f83bcbef4c389cb4a6d46303db6ec1f40f6442",
+      "uncompressed_bytes": 2019092,
+      "archive_bytes": 16185,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W5-2.json",
+      "archive": "comparisons/W5-2.json.gz",
+      "sha256_uncompressed": "3f61f985ea716991a4ae05e5d37f64fc298fae3bb2c15d99d6e29838a7e95105",
+      "uncompressed_bytes": 1608816,
+      "archive_bytes": 15610,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W5-4.json",
+      "archive": "comparisons/W5-4.json.gz",
+      "sha256_uncompressed": "5df0fcc1d56f846ee163b7b488d2dd32e7ff2c574c2ac12a9d878dbd9079f2d4",
+      "uncompressed_bytes": 1661016,
+      "archive_bytes": 15885,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W5-6.json",
+      "archive": "comparisons/W5-6.json.gz",
+      "sha256_uncompressed": "2fa4f846b7ab2f35e16d63ecf1a2cedd38528b5b3ed2632c12c14abb9d956585",
+      "uncompressed_bytes": 1710516,
+      "archive_bytes": 16286,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/W6-0.json",
+      "archive": "comparisons/W6-0.json.gz",
+      "sha256_uncompressed": "936a67de59e2ee9ea403334a79f754d911a213446268a068327aa6fdef4d5869",
+      "uncompressed_bytes": 201334,
+      "archive_bytes": 7956,
+      "trials": 40,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W6-2.json",
+      "archive": "comparisons/W6-2.json.gz",
+      "sha256_uncompressed": "b157e1b9d78dd2b202c5c30349b788f3b04bbd6a5ed6dc6e7d9242af3542f6eb",
+      "uncompressed_bytes": 1511016,
+      "archive_bytes": 53582,
+      "trials": 280,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W6-2.json.gz"
+    },
+    {
+      "source": "comparisons/W6-4.json",
+      "archive": "comparisons/W6-4.json.gz",
+      "sha256_uncompressed": "c3285292c2b811342499fcf3916a45b083d90088230a3f1c0a903a136b2035b7",
+      "uncompressed_bytes": 1122092,
+      "archive_bytes": 39868,
+      "trials": 200,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W6-4.json.gz"
+    },
+    {
+      "source": "comparisons/W6-6-precision100.json",
+      "archive": "comparisons/W6-6-precision100.json.gz",
+      "sha256_uncompressed": "2c7c600d5c4292fb56a02ee51f10c0dcdd9c08b11d65f6c1e335ca60192df55d",
+      "uncompressed_bytes": 2096725,
+      "archive_bytes": 67116,
+      "trials": 300,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W6-6-precision100.json.gz"
+    },
+    {
+      "source": "comparisons/W6-6.json",
+      "archive": "comparisons/W6-6.json.gz",
+      "sha256_uncompressed": "ef1001282452483c387748bec375a2983245829f79e19e6beba9e8b725acb917",
+      "uncompressed_bytes": 953054,
+      "archive_bytes": 34458,
+      "trials": 160,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W6-6.json.gz"
+    },
+    {
+      "source": "comparisons/W7-budget-0.json",
+      "archive": "comparisons/W7-budget-0.json.gz",
+      "sha256_uncompressed": "37dc61ea052c59ce16bff9c01f3323bc065a8889a8ac07ecdec494b449705bf5",
+      "uncompressed_bytes": 1927198,
+      "archive_bytes": 21288,
+      "trials": 700,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-0.json.gz"
+    },
+    {
+      "source": "comparisons/W7-budget-2.json",
+      "archive": "comparisons/W7-budget-2.json.gz",
+      "sha256_uncompressed": "6da5f6315c47447532797eed31e675ed43742c76c4106f0dd572a4132e4928fc",
+      "uncompressed_bytes": 9924551,
+      "archive_bytes": 107299,
+      "trials": 3500,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-2.json.gz"
+    },
+    {
+      "source": "comparisons/W7-budget-4.json",
+      "archive": "comparisons/W7-budget-4.json.gz",
+      "sha256_uncompressed": "a8bc2b9d76b5bfb13f698da2914e6251da96407c14d2a19db1751fd8ea7a3d05",
+      "uncompressed_bytes": 8124810,
+      "archive_bytes": 89389,
+      "trials": 2800,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-4.json.gz"
+    },
+    {
+      "source": "comparisons/W7-budget-6.json",
+      "archive": "comparisons/W7-budget-6.json.gz",
+      "sha256_uncompressed": "9461d1b9ee297395b879470d2a03251d115ef221ca3dcbf451dec648997e3d72",
+      "uncompressed_bytes": 8287304,
+      "archive_bytes": 89895,
+      "trials": 2800,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-6.json.gz"
+    },
+    {
+      "source": "comparisons/W7-order-budget-0.json",
+      "archive": "comparisons/W7-order-budget-0.json.gz",
+      "sha256_uncompressed": "69ad2893f96f7700449b61672b0ea63e9c10e511cb585d1edd999f579fb1b155",
+      "uncompressed_bytes": 324850,
+      "archive_bytes": 4784,
+      "trials": 120,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-0.json.gz"
+    },
+    {
+      "source": "comparisons/W7-order-budget-2.json",
+      "archive": "comparisons/W7-order-budget-2.json.gz",
+      "sha256_uncompressed": "2bb159ab287c811f2fec2af4d61139d280243b3105ec66604b22eb9febd371b8",
+      "uncompressed_bytes": 1674193,
+      "archive_bytes": 21351,
+      "trials": 600,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-2.json.gz"
+    },
+    {
+      "source": "comparisons/W7-order-budget-4.json",
+      "archive": "comparisons/W7-order-budget-4.json.gz",
+      "sha256_uncompressed": "eafbce4651c1a0e6bfc9b82b8e3e75475a71249d7c0c6c8b44e0af8a40e1b217",
+      "uncompressed_bytes": 1371694,
+      "archive_bytes": 17657,
+      "trials": 480,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-4.json.gz"
+    },
+    {
+      "source": "comparisons/W7-order-budget-6.json",
+      "archive": "comparisons/W7-order-budget-6.json.gz",
+      "sha256_uncompressed": "f6fb00a9fabb6784f3ee4624346846660cce87e7c7a28639793f33271d94c86d",
+      "uncompressed_bytes": 1399300,
+      "archive_bytes": 17798,
+      "trials": 480,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+      "previous_canonical_retained": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-6.json.gz"
+    },
+    {
+      "source": "comparisons/W7-precision100-0-bank-open-broad-ground.json",
+      "archive": "comparisons/W7-precision100-0-bank-open-broad-ground.json.gz",
+      "sha256_uncompressed": "bdfddfacc5403cd96998a304152453362d6a145a7eebf3902c12cf28e77141c2",
+      "uncompressed_bytes": 294381,
+      "archive_bytes": 4144,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-0-bank-open-direct.json",
+      "archive": "comparisons/W7-precision100-0-bank-open-direct.json.gz",
+      "sha256_uncompressed": "15fba67dd90c2933db9439bc75c6d9c572c0c5c0665fa2eccc5575e52bc67a66",
+      "uncompressed_bytes": 293324,
+      "archive_bytes": 2754,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-acid-immune-broad-ground.json",
+      "archive": "comparisons/W7-precision100-2-focused-acid-immune-broad-ground.json.gz",
+      "sha256_uncompressed": "76e11fa6eb1e43664d7af9db16251c686c06b83ccdc18061ed9de589e3f31912",
+      "uncompressed_bytes": 305036,
+      "archive_bytes": 4797,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-acid-immune-focused-if-owned.json",
+      "archive": "comparisons/W7-precision100-2-focused-acid-immune-focused-if-owned.json.gz",
+      "sha256_uncompressed": "147665ef895dee494271f49d685c8546d0c45c9143d2f6d32902a0cbf9527884",
+      "uncompressed_bytes": 305736,
+      "archive_bytes": 4870,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-fast-broad-ground.json",
+      "archive": "comparisons/W7-precision100-2-focused-fast-broad-ground.json.gz",
+      "sha256_uncompressed": "5b8954cc162c3490bde31d0b1e2c10bb409f51e4e121a1f314685824d80bda58",
+      "uncompressed_bytes": 292424,
+      "archive_bytes": 2774,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-fast-focused-if-owned.json",
+      "archive": "comparisons/W7-precision100-2-focused-fast-focused-if-owned.json.gz",
+      "sha256_uncompressed": "0940846a0e907a92c64408f38a618a7c119ea16b50a34b234d5193b56d0968bb",
+      "uncompressed_bytes": 293712,
+      "archive_bytes": 4803,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-open-broad-ground.json",
+      "archive": "comparisons/W7-precision100-2-focused-open-broad-ground.json.gz",
+      "sha256_uncompressed": "d50ca55bbe03e97c8a87a669c37033c6a16dcca3ae4882a00916b5808a0165ba",
+      "uncompressed_bytes": 305164,
+      "archive_bytes": 4239,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-focused-open-focused-if-owned.json",
+      "archive": "comparisons/W7-precision100-2-focused-open-focused-if-owned.json.gz",
+      "sha256_uncompressed": "56e9e04c9b38f53f698f9f244ffed282040ec088bca56012336b27c6eb7df6e4",
+      "uncompressed_bytes": 305236,
+      "archive_bytes": 4818,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/W7-precision100-2-jet-open-available-control.json",
+      "archive": "comparisons/W7-precision100-2-jet-open-available-control.json.gz",
+      "sha256_uncompressed": "c5f2b4d36759e62abd8bca5385c622d40d7d8e0d951087bf62a75ab7525c51f9",
+      "uncompressed_bytes": 307146,
+      "archive_bytes": 3122,
+      "trials": 100,
+      "round_trip_verified": true,
+      "completed_native_receipt": "explicit-stream-comparisons-green.xml",
+      "updated_utc": "2026-10-16T06:37:15.277190+00:00"
+    },
+    {
+      "source": "comparisons/baseline-measured-plus2/W1-0.json",
+      "archive": "comparisons/baseline-measured-plus2/W1-0.json.gz",
+      "sha256_uncompressed": "a35a1dfb84e48db39cf65382648121dfe66091ac954293cdcbcdd539d645b78d",
+      "uncompressed_bytes": 2273068,
+      "archive_bytes": 36870,
+      "round_trip_verified": true,
+      "purpose": "Frozen Measured +2 baseline retained before revision1 normal-method reruns"
+    },
+    {
+      "source": "comparisons/baseline-measured-plus2/W1-2-precision100.json",
+      "archive": "comparisons/baseline-measured-plus2/W1-2-precision100.json.gz",
+      "sha256_uncompressed": "b2d74c921ef7b1e1528a24bcf5edd3beacf5ac54c7526cbe0ef8e84b4aebf28c",
+      "uncompressed_bytes": 4828729,
+      "archive_bytes": 101072,
+      "round_trip_verified": true,
+      "purpose": "Frozen Measured +2 baseline retained before revision1 normal-method reruns"
+    },
+    {
+      "source": "comparisons/baseline-measured-plus2/W1-2.json",
+      "archive": "comparisons/baseline-measured-plus2/W1-2.json.gz",
+      "sha256_uncompressed": "eeecc8f79b7701da7ae7b2ff632167b52474c9dbec69802786f25138016aef59",
+      "uncompressed_bytes": 5797211,
+      "archive_bytes": 95028,
+      "round_trip_verified": true,
+      "purpose": "Frozen Measured +2 baseline retained before revision1 normal-method reruns"
+    },
+    {
+      "source": "comparisons/baseline-measured-plus2/W1-4.json",
+      "archive": "comparisons/baseline-measured-plus2/W1-4.json.gz",
+      "sha256_uncompressed": "9d872fdee3756116c719e5c383e9e9e55e61a38d59d15e9870d39fcbf2298fb2",
+      "uncompressed_bytes": 4598994,
+      "archive_bytes": 76648,
+      "round_trip_verified": true,
+      "purpose": "Frozen Measured +2 baseline retained before revision1 normal-method reruns"
+    },
+    {
+      "source": "comparisons/baseline-measured-plus2/W1-6.json",
+      "archive": "comparisons/baseline-measured-plus2/W1-6.json.gz",
+      "sha256_uncompressed": "a28635f38ab2c22d1bb2535b4d31269af1fdfc3b7fc28f58ef275a86e8a60266",
+      "uncompressed_bytes": 5428820,
+      "archive_bytes": 89110,
+      "round_trip_verified": true,
+      "purpose": "Frozen Measured +2 baseline retained before revision1 normal-method reruns"
+    },
+    {
+      "source": "comparisons/packages-0.json",
+      "archive": "comparisons/packages-0.json.gz",
+      "sha256_uncompressed": "e1077ea5d86a3ff7011660c8725632b32888f1b84fcfcf3c421847baf9ed4a46",
+      "uncompressed_bytes": 1287,
+      "archive_bytes": 402,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/packages-2.json",
+      "archive": "comparisons/packages-2.json.gz",
+      "sha256_uncompressed": "4402b23195b058146f5a4d81f3afb6b4ff51cc15fed69f2739de6ab735a86442",
+      "uncompressed_bytes": 14845,
+      "archive_bytes": 723,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/packages-4.json",
+      "archive": "comparisons/packages-4.json.gz",
+      "sha256_uncompressed": "a5a7d596eca325ec609c23fea95e9bcdd8cdb7784f2ab25c9138f4de78c73e9f",
+      "uncompressed_bytes": 12739,
+      "archive_bytes": 740,
+      "round_trip_verified": true
+    },
+    {
+      "source": "comparisons/packages-6.json",
+      "archive": "comparisons/packages-6.json.gz",
+      "sha256_uncompressed": "ef7aed6e13dbaca87a3b7be2e22e43d559fd5409ec58430d78d60975fb1b5bb2",
+      "uncompressed_bytes": 11834,
+      "archive_bytes": 760,
+      "round_trip_verified": true
+    }
+  ],
+  "updated_utc": "2026-10-16T06:37:15.277190+00:00",
+  "final_explicit_stream_archive": {
+    "nativeReceipt": "explicit-stream-comparisons-green.xml",
+    "updatedArchives": 27,
+    "recoveredLogicalBytes": 63581269,
+    "previousCanonicalRetained": [
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W6-2.json.gz",
+        "sha256_uncompressed": "80ade9144fadd33b0ccf3374c5abf2a4d80485369cf5acddd199f3b2df2f4357",
+        "uncompressed_bytes": 1513661,
+        "archive_bytes": 53728,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W6-4.json.gz",
+        "sha256_uncompressed": "aa061bf3875a79ce3c0c0ee790fb3e8c0016cd9cd7cc528a80b16968c021b09e",
+        "uncompressed_bytes": 1123348,
+        "archive_bytes": 39933,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W6-6-precision100.json.gz",
+        "sha256_uncompressed": "63decaf74137987d99569414535ebdba984c0d891e9205f57867e0ca4f8da703",
+        "uncompressed_bytes": 2101735,
+        "archive_bytes": 67227,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W6-6.json.gz",
+        "sha256_uncompressed": "194ee5f410a1b412d78bf834f3d5b3d4ee0cbc68944f56ac657a30787973eac8",
+        "uncompressed_bytes": 954413,
+        "archive_bytes": 34293,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-0.json.gz",
+        "sha256_uncompressed": "95d6f260413a0d0fcfb4702b86cb74357de344276d094a2fd27617d72f943db4",
+        "uncompressed_bytes": 1911836,
+        "archive_bytes": 20011,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-2.json.gz",
+        "sha256_uncompressed": "60be498dee6c85bae92cda2e1e94aa694fdc8e46d23979b3f8f66c5b7aabd767",
+        "uncompressed_bytes": 9847722,
+        "archive_bytes": 99672,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-4.json.gz",
+        "sha256_uncompressed": "d18349486d9fcbe6bc6ddb8191a9cfdaca3a243ccddcdec23560e23e2768f0b6",
+        "uncompressed_bytes": 8063357,
+        "archive_bytes": 84013,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-budget-6.json.gz",
+        "sha256_uncompressed": "b2fe0a496082910ca717c687bbfa528b005becbf5ada0a1fa661839278aa43c0",
+        "uncompressed_bytes": 8225839,
+        "archive_bytes": 84300,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-0.json.gz",
+        "sha256_uncompressed": "276c1c294cdc28827095cb1a3c1f24839e85112baa1366751d3c5f6ffc09817d",
+        "uncompressed_bytes": 322689,
+        "archive_bytes": 4727,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-2.json.gz",
+        "sha256_uncompressed": "985ffe1b2cafb28166d0cc1681283125030cd9a2311e67f62e53240ed31389f6",
+        "uncompressed_bytes": 1663390,
+        "archive_bytes": 21299,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-4.json.gz",
+        "sha256_uncompressed": "7cd937f35dc8f89e11714c23e9a17be2ee5d7045c6c41134ed13823d4cb28c1b",
+        "uncompressed_bytes": 1363049,
+        "archive_bytes": 17549,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      },
+      {
+        "archive": "comparisons/superseded-canonical-before-final-explicit-stream/W7-order-budget-6.json.gz",
+        "sha256_uncompressed": "c40dcd53981f9bcb1da054b57d328341f138fc2ae0b6c14673769cefbd31b7fc",
+        "uncompressed_bytes": 1390657,
+        "archive_bytes": 17744,
+        "purpose": "Retained prior canonical checkpoint; superseded by corrected explicit-stream terminal28-case run."
+      }
+    ],
+    "productionRngChanged": false
+  }
+}

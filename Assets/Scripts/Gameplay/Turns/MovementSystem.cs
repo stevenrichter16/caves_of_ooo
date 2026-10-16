@@ -382,6 +382,7 @@ namespace CavesOfOoo.Core
             // A nested entry (a trap teleports someone) owns a different pooled
             // buffer. Snapshot both the recipient and contact cell before events.
             var entries = UnityEngine.Pool.ListPool<(Entity owner, Cell cell)>.Get();
+            var filmContacts = UnityEngine.Pool.HashSetPool<(string source, string serial, string liquid)>.Get();
             try
             {
                 var oldCells = sourceCell == null ? default : zone.GetOccupiedCells(mover,sourceCell.X,sourceCell.Y);
@@ -428,10 +429,15 @@ namespace CavesOfOoo.Core
                     ev.SetParameter("Actor", (object)mover);
                     ev.SetParameter("Cell", (object)entry.cell);
                     ev.SetParameter("Zone", (object)zone);
+                    ev.SetParameter("FiniteLiquidContacts", (object)filmContacts);
                     entry.owner.FireEventAndRelease(ev);
                 }
             }
-            finally { UnityEngine.Pool.ListPool<(Entity owner, Cell cell)>.Release(entries); }
+            finally
+            {
+                UnityEngine.Pool.HashSetPool<(string source, string serial, string liquid)>.Release(filmContacts);
+                UnityEngine.Pool.ListPool<(Entity owner, Cell cell)>.Release(entries);
+            }
         }
 
         /// <summary>

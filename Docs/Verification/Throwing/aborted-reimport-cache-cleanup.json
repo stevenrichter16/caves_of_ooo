@@ -1,0 +1,23 @@
+{
+  "timeUTC": "2026-10-16T06:19:34.279572+00:00",
+  "reason": "Editor and orphaned Bee worker closed, lsof found no open handles, git check-ignore verified caches. Removed regenerated caches from aborted low-space reimport. Not additional net recovery over previous cache cleanup.",
+  "removed": [
+    {
+      "path": "Library/Bee",
+      "allocatedKiBBefore": 211052
+    },
+    {
+      "path": "Library/BurstCache",
+      "allocatedKiBBefore": 104608
+    },
+    {
+      "path": "/Users/steven/Library/Caches/Unity/upm/db",
+      "allocatedKiBBefore": 428548,
+      "reason": "Regenerated download and abandoned extraction cache; no open handles, no editor/package-manager process. Installed Library/PackageCache preserved."
+    }
+  ],
+  "sourceDeleted": false,
+  "freeSpaceAfterMiB": 362,
+  "forcedDeletionRejected": "Automatic review prohibited rm -f style command. Successful deletion used non-force rm -r of two explicit validated cache directories.",
+  "freeSpaceAfterAdditionalCleanupBytes": 1267232768
+}

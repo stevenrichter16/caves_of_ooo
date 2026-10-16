@@ -148,6 +148,7 @@ namespace CavesOfOoo.Rendering
                         {
                             Theme = request.Theme,
                             Path = request.Path,
+                            ThrowFlight = request.ThrowFlight,
                             Trail = request.Trail,
                             BlocksTurnAdvance = request.BlocksTurnAdvance,
                             DelayRemaining = request.Delay,
@@ -884,15 +885,18 @@ namespace CavesOfOoo.Rendering
                         trailPoint.X,
                         trailPoint.Y,
                         ResolveTrailGlyph(config),
-                        ResolveTrailColor(config));
+                        ResolveTrailColor(config),flight:FlightSample(projectile,i));
                 }
             }
 
             Point head = projectile.Path[currentIndex];
             char glyph = ResolveProjectileGlyph(config, currentIndex);
             string color = ResolveProjectileColor(config, currentIndex);
-            RenderGlyphAt(head.X, head.Y, glyph, color);
+            RenderGlyphAt(head.X, head.Y, glyph, color,flight:FlightSample(projectile,currentIndex));
         }
+
+        private static ThrowFlightPoint? FlightSample(ProjectileFxInstance projectile,int index)
+            => projectile.ThrowFlight!=null && index<projectile.ThrowFlight.Count ? projectile.ThrowFlight[index] : (ThrowFlightPoint?)null;
 
         private void RenderBurst(BurstFxInstance burst)
         {
@@ -925,7 +929,7 @@ namespace CavesOfOoo.Rendering
             RenderGlyphAt(particle.X, particle.Y, particle.Glyph, particle.ColorString, particle.IsAura);
         }
 
-        private void RenderGlyphAt(int x, int y, char glyph, string colorString, bool isAura = false, bool isReadout = false)
+        private void RenderGlyphAt(int x, int y, char glyph, string colorString, bool isAura = false, bool isReadout = false, ThrowFlightPoint? flight = null)
         {
             if (_tilemap == null || _currentZone == null || !_currentZone.InBounds(x, y))
                 return;
@@ -945,13 +949,15 @@ namespace CavesOfOoo.Rendering
             // Also suppress covered decoration before it can allocate a native view
             // that the last-drawn word would immediately destroy on every frame.
             bool readoutCell = isReadout || (NativeFrame != null && EventTextCovers(x, y));
-            if (NativeFrame?.TryDraw(x, y, readoutCell ? ' ' : glyph, colorString) == true)
+            var offset=flight.HasValue ? new Vector3((float)(flight.Value.X-x),(float)flight.Value.Height-.64f,(float)(y-flight.Value.Y)) : Vector3.zero;
+            if(!Village3DProjection.Finite(offset.x)||!Village3DProjection.Finite(offset.y)||!Village3DProjection.Finite(offset.z))offset=Vector3.zero;
+            if (NativeFrame?.TryDraw(x, y, readoutCell ? ' ' : glyph, colorString,offset) == true)
             { _tilemap.SetTile(tilePos, null); return; }
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
             // Reset every draw: explicit feedback can reuse an aura cell within
             // this frame, or after the coordinator returns to fallback presentation.
-            _tilemap.SetTransformMatrix(tilePos, isAura && CompactAuras ? CompactAuraTransform : Matrix4x4.identity);
+            _tilemap.SetTransformMatrix(tilePos, isAura && CompactAuras ? CompactAuraTransform : Matrix4x4.Translate(new Vector3(offset.x,offset.z,0)));
             _tilemap.SetColor(tilePos, QudColorParser.Parse(colorString));
         }
 
@@ -1182,6 +1188,7 @@ namespace CavesOfOoo.Rendering
         {
             public AsciiFxTheme Theme;
             public List<Point> Path;
+            public List<ThrowFlightPoint> ThrowFlight;
             public bool Trail;
             public bool BlocksTurnAdvance;
             public int CurrentIndex;

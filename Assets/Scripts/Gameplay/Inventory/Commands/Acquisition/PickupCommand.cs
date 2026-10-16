@@ -9,17 +9,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly int _expectedQuantity;
         private readonly Entity _retrievalRecipient;
         private readonly bool _requireAlliedRecipient;
+        private readonly bool _selfRecovery;
+
+        internal static PickupCommand ForSelfRecovery(Entity item) =>
+            new PickupCommand(item, 1, null, false, true);
 
         internal static PickupCommand ForRetrieval(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient) =>
             new PickupCommand(item, expectedQuantity, recipient, requireAlliedRecipient);
 
-        private PickupCommand(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient)
+        private PickupCommand(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient, bool selfRecovery = false)
         {
             _item = item;
             _retainIdentity = true;
             _expectedQuantity = expectedQuantity;
             _retrievalRecipient = recipient;
             _requireAlliedRecipient = requireAlliedRecipient;
+            _selfRecovery = selfRecovery;
         }
 
         public string Name => "Pickup";
@@ -206,9 +211,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var actor = context.Actor;
             return GoFetchGoal.LiveMember(actor, context.Zone)
-                && _retrievalRecipient != actor && _retrievalRecipient != _item
-                && GoFetchGoal.LiveMember(_retrievalRecipient, context.Zone)
-                && (!_requireAlliedRecipient || FactionManager.IsAllied(actor, _retrievalRecipient))
+                && (_selfRecovery
+                    ? context.Zone.GetEntityCell(actor) == context.Zone.GetEntityCell(_item)
+                    : _retrievalRecipient != actor && _retrievalRecipient != _item
+                      && GoFetchGoal.LiveMember(_retrievalRecipient, context.Zone)
+                      && (!_requireAlliedRecipient || FactionManager.IsAllied(actor, _retrievalRecipient)))
                 && actor.GetPart<InventoryPart>() == context.Inventory && context.Inventory.ParentEntity == actor
                 && GoFetchGoal.GroundItem(_item, context.Zone, null, _expectedQuantity)
                 && SpatialQuery.Distance(context.Zone, actor, _item) <= 1

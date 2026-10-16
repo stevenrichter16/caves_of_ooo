@@ -19,6 +19,7 @@ namespace CavesOfOoo.Rendering
         private void OnGUI()
         {
             _controllerLabelsDrawn = 0;
+            if(RenderThrowControls())return;
             if (!NativeGamepadInput.IsConnected || !isActiveAndEnabled || PlayerEntity == null
                 || CurrentZone == null || TurnManager == null || ControllerContext() == GamepadInputContext.Menu || ControllerContext() == GamepadInputContext.Skills)
             { _controllerHighlighted = false; return; }

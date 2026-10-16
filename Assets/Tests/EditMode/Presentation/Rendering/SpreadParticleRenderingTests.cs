@@ -32,6 +32,19 @@ namespace CavesOfOoo.Tests
   {using(var f=new Fixture()){var z=f.Map.Zone;int version=z.EntityVersion;string state=z.TileState.ToSaveString();var path=new[]{new Point(20,10),new Point(21,10)};
    switch(kind){case "particle":f.Emit();break;case "burst":AsciiFxBus.EmitBurst(z,20,10,AsciiFxTheme.Fire,false);break;case "projectile":AsciiFxBus.EmitProjectile(z,path,AsciiFxTheme.Fire,true,true);break;case "beam":AsciiFxBus.EmitBeam(z,path,1,0,AsciiFxTheme.Fire,1,true);break;case "ring":AsciiFxBus.EmitRingWave(z,20,10,2,.2f,AsciiFxTheme.Fire,true);break;case "orbit":AsciiFxBus.EmitChargeOrbit(z,f.Map.Player,1,1,AsciiFxTheme.Fire,true);break;case "chain":AsciiFxBus.EmitChainArc(z,path,AsciiFxTheme.Fire,.2f,true);break;case "column":AsciiFxBus.EmitColumnRise(z,20,10,3,.2f,.2f,AsciiFxTheme.Earth,true);break;case "aura":AsciiFxBus.StartAura(z,f.Map.Player,AsciiFxTheme.Fire);break;case "dust":f.Ascii.SpawnDustMote(20,10);break;}
    f.World.Update(0);if(kind=="aura"){Assert.AreEqual(1,f.Ascii.ActiveAuraCount);for(int i=0;i<12&&!f.Any();i++)f.World.Update(.02f);}Assert.True(f.Any(),kind);Assert.AreEqual(version,z.EntityVersion);Assert.AreEqual(state,z.TileState.ToSaveString());Assert.Zero(AsciiFxBus.PendingCount);f.World.CancelAll();Assert.False(f.Any());Assert.False(f.World.HasBlockingFx);}}
+  [Test]public void ResolvedThrownGeometryControlsNativeFlightPositionAndPooledFallbackResetsIt()
+  {
+   using(var f=new Fixture())
+   {
+    var trace=new ThrowTraceResult();trace.Path.Add(new Point(20,10));trace.FlightPath.Add(new ThrowFlightPoint(20.2,10,1.2));
+    AsciiFxBus.EmitThrow(f.Map.Zone,trace);f.World.Update(0);
+    Assert.True(f.View(20,10,out var root));
+    var expected=Village3DProjection.CellCentre(20,10)+new Vector3(.2f,1.2f-.64f,0);
+    Assert.That(Vector3.Distance(root.transform.position,expected),Is.LessThan(.0001f));
+    f.World.CancelAll();f.Emit();f.World.Update(0);Assert.True(f.View(20,10,out root));
+    Assert.AreEqual(Village3DProjection.CellCentre(20,10),root.transform.position);
+   }
+  }
   [Test]public void NativeMarkHasExactSemanticMaterialFogAndNoPhysics()
   {using(var f=new Fixture()){f.Emit();f.World.Update(0);Assert.True(f.View(20,10,out var root));var surface=((SpawnRing3DPresenter)f.Map.Presenter).ActiveSurface;var r=root.GetComponent<MeshRenderer>();var mesh=root.GetComponent<MeshFilter>().sharedMesh;Assert.NotNull(mesh);Assert.Greater(mesh.vertexCount,0);Assert.Greater(mesh.triangles.Length,0);Assert.AreSame(surface.ContentRoot,root.transform.parent);Assert.AreEqual(NativeZone3DRenderSurface.WorldLayer,root.layer);Assert.AreSame(surface.MaterialFor(f.Map.Library.WorldMaterial),r.sharedMaterial);var b=new MaterialPropertyBlock();r.GetPropertyBlock(b);NearColor(QudColorParser.Parse("&M").linear,b.GetColor("_BaseColor"));Assert.AreEqual(1,b.GetFloat("_Transient"));Assert.AreSame(surface.FogTexture,r.sharedMaterial.GetTexture("_FogLight"));Assert.Zero(root.GetComponents<Collider>().Length);Assert.Null(f.Tile());}}
   [TestCase(false)][TestCase(true)]public void NumericReadoutRemainsAUiGlyphAndOverwritesDecoration(bool number)

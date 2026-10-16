@@ -93,7 +93,17 @@ namespace CavesOfOoo.Core
             var parts = new List<string>();
             bool gritted = LiquidSlipSystem.HasGrit(zone, cell.X, cell.Y);
             for (int i = 0; i < state.Coatings.Count; i++)
-                parts.Add(DescribeLayer(state.Coatings[i], withCounts, gritted));
+            {
+                var layer = state.Coatings[i]; bool duplicate = false;
+                for (int j = 0; j < i; j++) if (state.Coatings[j].Id == layer.Id) { duplicate = true; break; }
+                if (duplicate) continue;
+                // Multiple finite owners share one named ground condition. Show the longest
+                // current lease, not repeated copies of the same liquid in the focus panel.
+                var longest = layer;
+                for (int j = i + 1; j < state.Coatings.Count; j++)
+                    if (state.Coatings[j].Id == layer.Id && state.Coatings[j].Turns > longest.Turns) longest = state.Coatings[j];
+                parts.Add(DescribeLayer(longest, withCounts, gritted));
+            }
             for (int i = 0; i < state.Residues.Count; i++)
                 parts.Add(DescribeLayer(state.Residues[i], withCounts));
             if (state.Heat > 0) parts.Add("hot");

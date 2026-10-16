@@ -17,7 +17,7 @@ namespace CavesOfOoo.Rendering
   readonly HashSet<int> seen=new HashSet<int>();readonly List<int> remove=new List<int>();
   readonly List<int> priorKeys=new List<int>();int reuseCursor;readonly List<Material> materials=new List<Material>(2);
   readonly MaterialPropertyBlock block=new MaterialPropertyBlock();Zone zone;bool disposed,frame;
-  sealed class View{public GameObject Root;public MeshFilter Filter;public MeshRenderer Renderer;public SpreadParticleSample Sample;}
+  sealed class View{public GameObject Root;public MeshFilter Filter;public MeshRenderer Renderer;public SpreadParticleSample Sample;public Vector3 Offset;}
   public SpreadParticleFrame(NativeZone3DRenderSurface surface,Material borrowedMaterial)
   {this.surface=surface??throw new ArgumentNullException(nameof(surface));material=surface.MaterialFor(borrowedMaterial);if(surface.ContentRoot==null)throw new ArgumentException("Native particle surface is unavailable.");}
   public void BeginFrame(Zone current)
@@ -26,9 +26,9 @@ namespace CavesOfOoo.Rendering
   /// <summary>Called for every resolved visible mark in original draw order.
   /// Returning true proves this exact mark now has a submitted native view.
   /// Refusals remove an earlier native mark at this cell, preserving last draw.</summary>
-  public bool TryDraw(int x,int y,char glyph,string color)
+  public bool TryDraw(int x,int y,char glyph,string color,Vector3 offset=default)
   {
-   if(disposed||zone==null||!zone.InBounds(x,y))return false;int key=y*Zone.Width+x;
+   if(disposed||zone==null||!zone.InBounds(x,y)||!Village3DProjection.Finite(offset.x)||!Village3DProjection.Finite(offset.y)||!Village3DProjection.Finite(offset.z))return false;int key=y*Zone.Width+x;
    if(!frame||!SpreadParticleSource.TrySample(zone,x,y,glyph,color,out var sample)){Forget(key);return false;}
    if(!views.TryGetValue(key,out var view))
    {
@@ -50,7 +50,7 @@ namespace CavesOfOoo.Rendering
    }
    if(!meshes.TryGetValue(sample.Shape,out var mesh)||mesh==null){mesh=Build(sample.Shape);meshes[sample.Shape]=mesh;}
    if(view.Root==null||view.Filter==null||view.Renderer==null){Forget(key);return false;}
-   view.Sample=sample;view.Filter.sharedMesh=mesh;var t=view.Root.transform;t.SetParent(surface.ContentRoot,false);t.position=Village3DProjection.CellCentre(x,y);t.rotation=Quaternion.identity;t.localScale=Vector3.one;view.Root.layer=NativeZone3DRenderSurface.WorldLayer;
+   view.Sample=sample;view.Offset=offset;view.Filter.sharedMesh=mesh;var t=view.Root.transform;t.SetParent(surface.ContentRoot,false);t.position=Village3DProjection.CellCentre(x,y)+offset;t.rotation=Quaternion.identity;t.localScale=Vector3.one;view.Root.layer=NativeZone3DRenderSurface.WorldLayer;
    view.Renderer.GetSharedMaterials(materials);if(materials.Count!=1||materials[0]!=material)view.Renderer.sharedMaterials=new[]{material};materials.Clear();
    view.Renderer.SetPropertyBlock(null,0);
    view.Renderer.GetPropertyBlock(block);block.SetTexture("_BaseMap",Texture2D.whiteTexture);block.SetColor("_BaseColor",QudColorParser.Parse(sample.Color).linear);block.SetFloat("_Transient",1);view.Renderer.SetPropertyBlock(block);block.Clear();
@@ -64,7 +64,7 @@ namespace CavesOfOoo.Rendering
    var s=view.Sample;
    if(!surface.IsVisible||surface.ContentRoot==null||!SpreadParticleSource.TrySample(zone,s.X,s.Y,s.Glyph,s.Color,out _)
       ||view.Root==null||view.Filter==null||view.Renderer==null||!view.Root.activeInHierarchy||view.Root.layer!=NativeZone3DRenderSurface.WorldLayer
-      ||view.Root.transform.parent!=surface.ContentRoot||view.Root.transform.position!=Village3DProjection.CellCentre(s.X,s.Y)||view.Root.transform.rotation!=Quaternion.identity||view.Root.transform.localScale!=Vector3.one
+      ||view.Root.transform.parent!=surface.ContentRoot||view.Root.transform.position!=Village3DProjection.CellCentre(s.X,s.Y)+view.Offset||view.Root.transform.rotation!=Quaternion.identity||view.Root.transform.localScale!=Vector3.one
       ||!view.Renderer.enabled||view.Renderer.forceRenderingOff||!meshes.TryGetValue(s.Shape,out var mesh)||mesh==null||mesh.vertexCount==0||view.Filter.sharedMesh!=mesh)return false;
    view.Renderer.GetSharedMaterials(materials);bool result=materials.Count==1&&materials[0]==material;materials.Clear();if(!result)return false;
    view.Renderer.GetPropertyBlock(block);result=Matches(s);block.Clear();view.Renderer.GetPropertyBlock(block,0);if(!block.isEmpty)result &= Matches(s);block.Clear();return result;

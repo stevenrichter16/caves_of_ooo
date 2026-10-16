@@ -48,6 +48,10 @@ namespace CavesOfOoo.Core
         /// creature (e.g. "water", "oil", "acid").</summary>
         public string LiquidId;
 
+        /// <summary>Optional finite-spill source ID. Mixed/unknown exposure clears credit;
+        /// Effect.Owner remains the wearer and is never mistaken for the attacker.</summary>
+        public string SourceActorId = "";
+
         /// <summary>Scalar contact amount. Drives dry-down and the
         /// downstream consequence hooks (LQ.5+). Clamped to ≥ 0.</summary>
         public int Amount;
@@ -179,6 +183,8 @@ namespace CavesOfOoo.Core
         {
             if (incoming is LiquidCoveredEffect other)
             {
+                if (string.IsNullOrEmpty(SourceActorId)
+                    || !string.Equals(SourceActorId, other.SourceActorId, System.StringComparison.Ordinal)) SourceActorId = "";
                 bool idChanges = other.LiquidId != LiquidId && other.Amount > Amount;
                 if (idChanges)
                 {
@@ -276,7 +282,7 @@ namespace CavesOfOoo.Core
                 if (!string.IsNullOrEmpty(def.PerTurnDamage.Type))
                     dmg.AddAttribute(def.PerTurnDamage.Type);
                 var zone = context?.GetParameter<Zone>("Zone");
-                CombatSystem.ApplyDamage(target, dmg, source: null, zone);
+                CombatSystem.ApplyDamage(target, dmg, FiniteLiquidFilmPart.ResolveSource(zone, SourceActorId), zone);
                 return;
             }
 

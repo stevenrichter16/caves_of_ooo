@@ -24,6 +24,12 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool Takeable = false;
 
+        // Numeric throwing silhouette, independent of movement, mass and art.
+        // -1 selects the conservative category fallback, including old saves.
+        public float ThrowBase = 0f;
+        public float ThrowHeight = -1f;
+        public int ThrowIntercept = -1;
+
         /// <summary>
         /// Inventory display category (e.g. "Melee Weapons", "Armor", "Food").
         /// Matches Qud's Physics.Category field. Used for grouping in inventory UI.

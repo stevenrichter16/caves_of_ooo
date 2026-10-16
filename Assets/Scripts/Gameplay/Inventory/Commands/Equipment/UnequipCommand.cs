@@ -150,61 +150,62 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (!transaction.TryClaim(item, context.Actor, "Unequip")) return false;
 
             var actor = context.Actor;
+            var originalCell = context.Zone?.GetEntityCell(actor) ?? actor.SpatialZone?.GetEntityCell(actor);
             var rollbackState = CaptureEquippedState(context, item);
             if (!rollbackState.HasLocation)
                 return false;
 
             var equippable = item.GetPart<EquippablePart>();
-            // Same undo order and restoration gate as ordinary unequip.
-            bool restoreBonuses = true;
+            bool restoreBonuses = true, bonusesRemoved = false, enhancementRemoved = false, detachAttempted = false;
 
-            // Fire BeforeUnequip on actor (can veto, e.g. cursed items).
             var beforeUnequip = GameEvent.New("BeforeUnequip");
             beforeUnequip.SetParameter("Actor", (object)actor);
             beforeUnequip.SetParameter("Item", (object)item);
-            if (!actor.FireEventAndRelease(beforeUnequip))
-                return false;
+            if (!actor.FireEventAndRelease(beforeUnequip)) return false;
 
-            // Remove equip stat bonuses before detaching item.
+            // Register the full recovery before any mutation can invoke a listener.
+            // Reverse order restores the location first, then gated enhancement/stat
+            // contributions. A refused detach retains its original contributions.
+            transaction.Do(null, () =>
+            {
+                if (restoreBonuses && bonusesRemoved && equippable != null)
+                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
+            });
+            transaction.Do(null, () =>
+            {
+                if (restoreBonuses && enhancementRemoved) ItemEnhancementDispatch.DispatchOnEquip(actor, item);
+            });
+            transaction.Do(null, () =>
+            {
+                if (!detachAttempted) return;
+                bool liveBody = actor.GetPart<Body>() == context.Body;
+                bool original = liveBody && rollbackState.BodyParts.Count > 0;
+                if (original)
+                    foreach (var part in rollbackState.BodyParts)
+                        original &= part != null && part._Equipped == item && context.Body?.GetParts().Contains(part) == true;
+                else if (rollbackState.BodyParts.Count == 0)
+                    original = context.Inventory.GetEquipped(rollbackState.LegacySlot) == item;
+                restoreBonuses = original || TryForceRestore(context, item, rollbackState);
+                if (!restoreBonuses) RetainRefusedUnit(context, item, originalCell);
+            });
             if (equippable != null)
             {
+                bonusesRemoved = true;
                 EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
-                transaction.Do(
-                    apply: null,
-                    undo: () =>
-                    {
-                        if (restoreBonuses) EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
-                    });
             }
+            detachAttempted = true;
+            if (!TryForceUnequip(context, item, rollbackState)) return false;
 
-            if (!TryForceUnequip(context, item, rollbackState))
-                return false;
-
-            // Fire AfterUnequip on actor.
             var afterUnequip = GameEvent.New("AfterUnequip");
             afterUnequip.SetParameter("Actor", (object)actor);
             afterUnequip.SetParameter("Item", (object)item);
             actor.FireEventAndRelease(afterUnequip);
 
-            // Item-enhancement on-unequip hook (E.2.1).
-            // E.4.2 cold-eye Finding #1 fix: wrap in transaction.Do so
-            // rollback re-fires OnEquipped (AppliedBonus eager-flag makes
-            // the redo idempotent).
+            enhancementRemoved = true;
             ItemEnhancementDispatch.DispatchOnUnequip(actor, item);
-            transaction.Do(
-                apply: null,
-                undo: () =>
-                {
-                    if (restoreBonuses) ItemEnhancementDispatch.DispatchOnEquip(actor, item);
-                });
-
-            transaction.Do(
-                apply: null,
-                undo: () => restoreBonuses = TryForceRestore(context, item, rollbackState));
-
-            // Item is now in inventory (deposited by TryForceUnequip). Remove it so
-            // the caller can do what it likes with the entity (e.g. throw it).
-            context.Inventory.RemoveObject(item);
+            // Exact retrieval keeps identity; a rollback must never merge this
+            // unit into an unrelated carried stack before restoring its slot.
+            if (!context.Inventory.RemoveObject(item)) return false;
 
             return true;
         }
@@ -253,7 +254,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             Entity item,
             EquippedStateSnapshot snapshot)
         {
-            if (context?.Inventory == null || item == null || snapshot == null || !snapshot.HasLocation)
+            if (context?.Inventory == null || item == null || snapshot == null || !snapshot.HasLocation
+                || context.Actor?.GetPart<InventoryPart>() != context.Inventory)
                 return false;
 
             var inventory = context.Inventory;
@@ -263,7 +265,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 // Snapshot references survive dismemberment and body replacement.
                 // They are valid destinations only while still in the live Body.
                 // Validate every part before writing any equipment/cache entry.
-                var liveParts = context.Body?.GetParts();
+                var liveParts = context.Actor.GetPart<Body>() == context.Body ? context.Body?.GetParts() : null;
                 if (liveParts == null) return false;
                 for (int i = 0; i < snapshot.BodyParts.Count; i++)
                 {
@@ -292,6 +294,33 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             return false;
+        }
+
+        // Removed parts are not rollback destinations. Prefer the live carried
+        // list, then the actor's current/original cell if no inventory survives.
+        // Retain the exact unit without emitting a launch or acquisition event.
+        private static void RetainRefusedUnit(InventoryContext context, Entity item, Cell originalCell)
+        {
+            var inventory = context.Actor?.GetPart<InventoryPart>();
+            var physics = item?.GetPart<PhysicsPart>();
+            if (physics?.ParentEntity != item || item.SpatialZone != null
+                || physics.Equipped != null || physics.InInventory != null && physics.InInventory != context.Actor) return;
+            if (inventory?.ParentEntity == context.Actor)
+            {
+                if (context.Inventory != inventory) context.Inventory?.Objects.Remove(item);
+                if (!inventory.Objects.Contains(item)) inventory.Objects.Add(item);
+                physics.InInventory = context.Actor;
+                inventory.RefreshHandlingCarryPenalty();
+                return;
+            }
+            // A callback may remove InventoryPart after detachment. Writing the
+            // old orphan list would hide the refused item from both save and UI.
+            context.Inventory?.Objects.Remove(item);
+            physics.InInventory = null;
+            var currentCell = context.Actor?.SpatialZone?.GetEntityCell(context.Actor);
+            if (currentCell != null && currentCell.ParentZone.AddEntity(item, currentCell.X, currentCell.Y)) return;
+            if (item.SpatialZone == null && originalCell != null && originalCell != currentCell)
+                originalCell.ParentZone.AddEntity(item, originalCell.X, originalCell.Y);
         }
 
         private static List<BodyPart> CaptureEquippedBodyParts(Body body, Entity item)

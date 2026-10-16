@@ -262,6 +262,7 @@ namespace CavesOfOoo.Core
             if(entity.HasPart<SpatialFootprintPart>()) Spatial.Register(entity,anchor);
             ProjectPool(entity,anchor);
             EntityVersion++;
+            ThrowingRules.OnEntityRelocated(entity);
             PublishFootprintDirty(oldCells,"FootprintChanged");
             PublishFootprintDirty(GetOccupiedCells(entity),"FootprintChanged");
             ZoneRenderHooks.MarkCellDirty(anchor,"FootprintChanged");
@@ -291,7 +292,9 @@ namespace CavesOfOoo.Core
             _entityCells[a]=bc;_entityCells[b]=ac;
             if(a.HasPart<SpatialFootprintPart>()) Spatial.Register(a,bc);
             if(b.HasPart<SpatialFootprintPart>()) Spatial.Register(b,ac);
-            EntityVersion+=2;ProjectPool(a,bc);ProjectPool(b,ac);
+            EntityVersion+=2;
+            ThrowingRules.OnEntityRelocated(a);ThrowingRules.OnEntityRelocated(b);
+            ProjectPool(a,bc);ProjectPool(b,ac);
             PublishFootprintDirty(oldA,"FootprintSwapped");PublishFootprintDirty(oldB,"FootprintSwapped");
             PublishFootprintDirty(nextA,"FootprintSwapped");PublishFootprintDirty(nextB,"FootprintSwapped");
             return true;
@@ -374,6 +377,7 @@ namespace CavesOfOoo.Core
         public Zone(string zoneID = null)
         {
             ZoneID = zoneID ?? "Zone";
+            TileState.OnCoatingConsumed = (x, y, liquid) => FiniteLiquidFilmPart.OnCoatingConsumed(this, x, y, liquid);
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -450,6 +454,7 @@ namespace CavesOfOoo.Core
             }
 
             EntityVersion++;
+            if (isFreshAdd || oldCell != cell) ThrowingRules.OnEntityRelocated(entity);
             if(hasFootprint)
             {
                 PublishFootprintDirty(oldBody,"FootprintMoved");
@@ -480,6 +485,7 @@ namespace CavesOfOoo.Core
                 if (entity.SpatialZone == this) entity.SpatialZone = null;
                 UnindexEntityTags(entity);
                 EntityVersion++;
+                ThrowingRules.OnEntityRelocated(entity);
                 DragSystem.DetachRemovedEntity(entity);
                 if(hasFootprint)
                 {
@@ -792,8 +798,13 @@ namespace CavesOfOoo.Core
             if (entity == null || cell == null) return;
             var pool = entity.GetPart<LiquidPoolPart>();
             if (pool == null || string.IsNullOrEmpty(pool.LiquidId)) return;
+            var film = entity.GetPart<FiniteLiquidFilmPart>();
             foreach (var occupied in GetOccupiedCells(entity))
-                if (occupied != null) TileState.WriteCoating(occupied.X, occupied.Y, pool.LiquidId, ZoneTileState.Permanent);
+                if (occupied != null)
+                {
+                    if (film != null) film.Project(this, occupied);
+                    else TileState.WriteCoating(occupied.X, occupied.Y, pool.LiquidId, ZoneTileState.Permanent);
+                }
         }
 
         /// <summary>Remove the committed body's projection before changing its
@@ -814,12 +825,15 @@ namespace CavesOfOoo.Core
             foreach (var cell in oldBody)
             {
                 if (cell == null) continue;
+                if (entity.HasPart<FiniteLiquidFilmPart>())
+                { TileState.RemoveProjectedCoating(cell.X, cell.Y, pool.LiquidId, entity.ID); continue; }
                 bool retained = false;
                 foreach (var other in cell.Occupants)
                     if (other != null && other != entity && other != alsoLeaving
+                        && !other.HasPart<FiniteLiquidFilmPart>()
                         && other.GetPart<LiquidPoolPart>()?.LiquidId == pool.LiquidId)
                     { retained = true; break; }
-                if (!retained) TileState.RemoveCoating(cell.X, cell.Y, pool.LiquidId);
+                if (!retained) TileState.RemoveUnprojectedCoating(cell.X, cell.Y, pool.LiquidId);
             }
         }
     }

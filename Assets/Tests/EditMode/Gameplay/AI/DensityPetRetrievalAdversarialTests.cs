@@ -255,7 +255,7 @@ namespace CavesOfOoo.Tests
             if (exhausted) Assert.AreSame(zone.GetCell(5, 5), zone.GetEntityCell(item)); else Returned(zone, dog, thrower, item);
         }
         [Test]
-        public void RolledBackThrowCannotBeRetrievedFromTheThrowersRestoredInventory()
+        public void RollbackAfterLaunchedThrowFinalizesPaidLandingBeforeDogRetrieval()
         {
             dog.GetPart<BrainPart>().ClearGoals(); Assert.True(zone.RemoveEntity(item));
             Assert.True(thrower.GetPart<InventoryPart>().AddObject(item));
@@ -264,12 +264,30 @@ namespace CavesOfOoo.Tests
             var transaction = new CavesOfOoo.Core.Inventory.InventoryTransaction();
             try
             {
-                Assert.True(command.Execute(context, transaction).Success);
-                Assert.NotNull(zone.GetEntityCell(item)); Assert.NotNull(Fetch(dog));
+                var result = command.Execute(context, transaction);
+                Assert.True(result.Success); Assert.True(result.ActionCommitted);
+                Assert.NotNull(zone.GetEntityCell(item));
+                Assert.Null(Fetch(dog), "Receipts wait for transaction finalization.");
             }
             finally { transaction.Rollback(); }
-            Assert.IsNull(zone.GetEntityCell(item)); Assert.AreSame(thrower, item.GetPart<PhysicsPart>().InInventory);
-            Advance(dog); Assert.IsNull(Fetch(dog)); Assert.True(thrower.GetPart<InventoryPart>().Objects.Contains(item));
+            Assert.True(transaction.IsCommitted); Assert.False(transaction.IsRolledBack);
+            Assert.NotNull(zone.GetEntityCell(item)); Assert.Null(item.GetPart<PhysicsPart>().InInventory);
+            Assert.False(thrower.GetPart<InventoryPart>().Objects.Contains(item)); Assert.NotNull(Fetch(dog));
+            Advance(dog); Returned(zone, dog, thrower, item);
+            Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
+        }
+
+        [Test]
+        public void PrelaunchRefusalNeverPublishesLandingOrLetsDogRetrieveCarriedUnit()
+        {
+            dog.GetPart<BrainPart>().ClearGoals(); Assert.True(zone.RemoveEntity(item));
+            Assert.True(thrower.GetPart<InventoryPart>().AddObject(item));
+            item.GetPart<HandlingPart>().Throwable = false;
+            var result = InventorySystem.ExecuteCommand(new ThrowItemCommand(item, 8, 6, new Random(19)), thrower, zone);
+            Assert.False(result.Success); Assert.False(result.ActionCommitted);
+            Assert.Null(zone.GetEntityCell(item)); Assert.AreSame(thrower, item.GetPart<PhysicsPart>().InInventory);
+            Assert.Null(Fetch(dog)); Advance(dog); Assert.Null(Fetch(dog));
+            Assert.True(thrower.GetPart<InventoryPart>().Objects.Contains(item));
             Assert.False(dog.GetPart<InventoryPart>().Contains(item)); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
         }
 

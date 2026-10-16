@@ -278,6 +278,8 @@ namespace CavesOfOoo.Rendering
             if (button == 0 || button == RightTrigger) return KeyCode.Return;
             if (button == 1) return KeyCode.Escape;
             if (button == 2) return KeyCode.Period;
+            if (button == 3) return KeyCode.Tab;
+            if (button == 4) return KeyCode.F;
             return KeyCode.None;
         }
         static void Add(KeyCode key) { if (key != KeyCode.None) held.Add(key); }

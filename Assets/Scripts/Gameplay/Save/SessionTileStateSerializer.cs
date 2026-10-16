@@ -117,6 +117,10 @@ namespace CavesOfOoo.Core
                         Heat = state.Heat, Cold = state.Cold, Charge = state.Charge,
                         Cloud = state.Cloud ?? "", CloudTurns = state.CloudTurns
                     };
+                    // Film projections are rebuilt from saved finite owners; serializing them
+                    // as ordinary liquid would turn a spent film into permanent/free matter.
+                    if (tile.Coatings.Length == 0 && tile.Residues.Length == 0 && tile.Heat == 0
+                        && tile.Cold == 0 && tile.Charge == 0 && tile.Cloud.Length == 0 && tile.CloudTurns == 0) continue;
                     ValidateTile(tile);
                     record.Tiles.Add(tile);
                 }
@@ -127,18 +131,20 @@ namespace CavesOfOoo.Core
 
         private static LayerRecord[] CopyLayers(List<ZoneTileState.Layer> layers)
         {
-            Require(layers != null && layers.Count <= MaxLayers, "Invalid tile layer count.");
-            var result = new LayerRecord[layers.Count];
+            Require(layers != null, "Invalid tile layer count.");
+            var result = new List<LayerRecord>();
             var ids = new HashSet<string>(StringComparer.Ordinal);
             for (int i = 0; i < layers.Count; i++)
             {
                 var layer = layers[i];
                 Require(layer != null, "Null tile layer.");
+                if (!string.IsNullOrEmpty(layer.ProjectionOwnerId)) continue;
                 ValidateText(layer.Id, false);
                 Require(layer.Turns > 0 && ids.Add(layer.Id), "Invalid duration or duplicate tile layer.");
-                result[i] = new LayerRecord(layer.Id, layer.Turns);
+                result.Add(new LayerRecord(layer.Id, layer.Turns));
             }
-            return result;
+            Require(result.Count <= MaxLayers, "Invalid tile layer count.");
+            return result.ToArray();
         }
 
         private static LayerRecord[] ReadLayers(SaveReader reader)
@@ -215,7 +221,8 @@ namespace CavesOfOoo.Core
                 foreach (var record in Zones)
                 {
                     ZoneTileState target = record.Zone.TileState;
-                    if (Matches(target, record.Tiles)) continue;
+                    if (Matches(target, record.Tiles))
+                    { FiniteLiquidFilmPart.ReprojectAll(record.Zone); continue; }
                     var callback = target.OnCellChanged;
                     target.OnCellChanged = null;
                     try
@@ -233,12 +240,24 @@ namespace CavesOfOoo.Core
                         }
                     }
                     finally { target.OnCellChanged = callback; }
+                    FiniteLiquidFilmPart.ReprojectAll(record.Zone);
                 }
             }
 
             private static bool Matches(ZoneTileState state, List<TileRecord> tiles)
             {
-                if (state.WrittenCount != tiles.Count) return false;
+                int ordinaryWritten = 0;
+                var keys = new List<int>(); state.CollectWrittenKeys(keys);
+                foreach (int key in keys)
+                {
+                    var actual = state.Get(key % Zone.Width, key / Zone.Width);
+                    bool independent = actual.Residues.Count > 0 || actual.Heat != 0 || actual.Cold != 0
+                        || actual.Charge != 0 || !string.IsNullOrEmpty(actual.Cloud);
+                    if (!independent) foreach (var layer in actual.Coatings)
+                        if (string.IsNullOrEmpty(layer.ProjectionOwnerId)) { independent = true; break; }
+                    if (independent) ordinaryWritten++;
+                }
+                if (ordinaryWritten != tiles.Count) return false;
                 foreach (var tile in tiles)
                 {
                     var actual = state.Get(tile.Key % Zone.Width, tile.Key / Zone.Width);
@@ -250,10 +269,17 @@ namespace CavesOfOoo.Core
             }
             private static bool SameLayers(List<ZoneTileState.Layer> actual, LayerRecord[] saved)
             {
-                if (actual == null || actual.Count != saved.Length) return false;
-                for (int i = 0; i < saved.Length; i++)
-                    if (actual[i] == null || actual[i].Id != saved[i].Id || actual[i].Turns != saved[i].Turns) return false;
-                return true;
+                if (actual == null) return false;
+                int next = 0;
+                for (int i = 0; i < actual.Count; i++)
+                {
+                    var layer = actual[i];
+                    if (layer == null) return false;
+                    if (!string.IsNullOrEmpty(layer.ProjectionOwnerId)) continue;
+                    if (next >= saved.Length || layer.Id != saved[next].Id || layer.Turns != saved[next].Turns) return false;
+                    next++;
+                }
+                return next == saved.Length;
             }
         }
         internal sealed class ZoneRecord

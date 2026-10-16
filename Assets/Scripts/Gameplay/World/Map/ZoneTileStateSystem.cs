@@ -44,6 +44,7 @@ namespace CavesOfOoo.Core
             ResolveWorld(zone);
 
             zone.TileState.Tick();
+            FiniteLiquidFilmPart.OnPlayerTurnEnd(zone);
         }
 
         /// <summary>

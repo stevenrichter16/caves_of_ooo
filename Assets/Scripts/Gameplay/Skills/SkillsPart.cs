@@ -144,6 +144,7 @@ namespace CavesOfOoo.Skills
                 }
             }
 
+            if (skill is ThrowingSkillPart) ThrowingRules.SynchronizeAbilityDebt(ParentEntity);
             EmitAddedDiag(skill, source);
             return true;
         }

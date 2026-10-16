@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Diagnostics;
 
@@ -7,464 +6,271 @@ namespace CavesOfOoo.Core.Inventory.Commands
 {
     public sealed class ThrowItemCommand : IInventoryCommand
     {
-        private enum ThrowSourceKind
-        {
-            None,
-            Carried,
-            Equipped,
-            World
-        }
-
+        private enum ThrowSourceKind { None, Carried, Equipped, World }
         private readonly Entity _item;
-        private readonly int _targetX;
-        private readonly int _targetY;
+        private readonly ThrowIntent _intent;
         private readonly Random _rng;
-
+        private readonly ThrowMode _mode;
+        private readonly bool _focused;
         public string Name => "Throw";
 
-        /// <param name="rng">
-        /// SM4/D6 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): injected RNG,
-        /// mirroring melee's InputHandler._combatRng convention. Defaults
-        /// to a fresh Random() so existing callers keep compiling, but
-        /// production call sites should thread a real combat RNG for
-        /// determinism/diag-replay parity with melee.
-        /// </param>
         public ThrowItemCommand(Entity item, int targetX, int targetY, Random rng = null)
-        {
-            _item = item;
-            _targetX = targetX;
-            _targetY = targetY;
-            _rng = rng ?? new Random();
-        }
+            : this(item, ThrowIntent.AtCell(targetX, targetY), rng) { }
+        public ThrowItemCommand(Entity item, ThrowIntent intent, Random rng = null,
+            ThrowMode mode = ThrowMode.Ordinary, bool focused = false)
+        { _item = item; _intent = intent; _rng = rng ?? new Random(); _mode = mode; _focused = focused; }
+
+        private ThrowIntent ResolveIntent(InventoryContext context) => _intent?.Kind == ThrowAimKind.Automatic
+            ? ThrowTrajectory.ResolveIntent(context.Zone, context.Actor, _intent.X, _intent.Y) : _intent;
 
         public InventoryValidationResult Validate(InventoryContext context)
         {
-            if (context == null || context.Actor == null)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.InvalidActor,
-                    "Throw requires a valid actor.");
-            }
-
-            if (_item == null)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.InvalidItem,
-                    "Throw requires a valid item.");
-            }
-
-            if (context.Zone == null)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.InvalidZone,
-                    "Throw requires a valid zone.");
-            }
-
-            var actorCell = context.Zone.GetEntityCell(context.Actor);
-            if (actorCell == null)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.BlockedByRule,
-                    "Actor has no valid position to throw from.");
-            }
-
-            var physics = _item.GetPart<PhysicsPart>();
-            if (physics == null || !physics.Takeable)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.NotTakeable,
-                    "That cannot be thrown.");
-            }
-
-            if (!HandlingService.CanThrow(context.Actor, _item, out string reason))
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.BlockedByRule,
-                    reason);
-            }
-
-            ThrowSourceKind source = DetectSource(context, out Cell sourceCell);
-            if (source == ThrowSourceKind.None)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.NotOwned,
-                    "You do not have access to that item to throw it.");
-            }
-
-            if (source == ThrowSourceKind.World)
-            {
-                int manhattan = Math.Abs(sourceCell.X - actorCell.X) + Math.Abs(sourceCell.Y - actorCell.Y);
-                if (manhattan > 1)
-                {
-                    return InventoryValidationResult.Invalid(
-                        InventoryValidationErrorCode.BlockedByRule,
-                        "You can only throw objects from your tile or a cardinal-adjacent tile.");
-                }
-            }
-
-            if (!context.Zone.InBounds(_targetX, _targetY))
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.BlockedByRule,
-                    "That target is out of bounds.");
-            }
-
+            if (context?.Actor == null || !ActorReady(context))
+                return Invalid("Actor has no valid living position to throw from.");
+            var physics = _item?.GetPart<PhysicsPart>();
+            var stack = _item?.GetPart<StackerPart>();
+            if (_item == null || physics?.ParentEntity != _item || !physics.Takeable
+                || stack != null && (stack.ParentEntity != _item || stack.StackCount <= 0))
+                return Invalid("That item cannot be thrown.");
+            if (!HandlingService.CanThrow(context.Actor, _item, out string reason)) return Invalid(reason);
+            var source = DetectSource(context, out Cell sourceCell);
+            if (source == ThrowSourceKind.None) return Invalid("You do not have access to that item to throw it.");
+            var origin = context.Zone.GetEntityCell(context.Actor);
+            if (source == ThrowSourceKind.World && Math.Abs(sourceCell.X-origin.X)+Math.Abs(sourceCell.Y-origin.Y)>1)
+                return Invalid("You can only throw objects from your tile or a cardinal-adjacent tile.");
+            var intent = ResolveIntent(context);
+            if (!ThrowTrajectory.ValidateIntent(context.Zone, context.Actor, intent, false, out reason)) return Invalid(reason);
             int range = HandlingService.GetThrowRange(context.Actor, _item);
-            int distance = AIHelpers.ChebyshevDistance(actorCell.X, actorCell.Y, _targetX, _targetY);
-            if (distance > range)
-            {
-                return InventoryValidationResult.Invalid(
-                    InventoryValidationErrorCode.BlockedByRule,
-                    $"That target is out of range ({range}).");
-            }
-
+            if (AIHelpers.ChebyshevDistance(origin.X,origin.Y,intent.X,intent.Y)>range)
+                return Invalid($"That target is out of range ({range}).");
+            if (!ThrowingRules.ValidateMode(context.Actor, _item, context.Zone, intent.Target,
+                context.Zone.GetCell(intent.X,intent.Y), _mode, _focused, out reason)) return Invalid(reason);
             return InventoryValidationResult.Valid();
         }
+        private static InventoryValidationResult Invalid(string message) =>
+            InventoryValidationResult.Invalid(InventoryValidationErrorCode.BlockedByRule, message);
+        private static InventoryCommandResult Fail(string message) =>
+            InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, message);
+        private static bool ActorReady(InventoryContext context) => context?.Actor != null && context.Zone != null
+            && context.Actor.SpatialZone == context.Zone
+            && context.Zone.GetEntityCell(context.Actor)?.Objects.Contains(context.Actor) == true
+            && context.Actor.GetStatValue("Hitpoints",1)>0 && !CombatSystem.IsDeathHandled(context.Actor)
+            && context.Actor.GetPart<InventoryPart>() == context.Inventory
+            && (context.Inventory == null || context.Inventory.ParentEntity == context.Actor)
+            && context.Actor.GetPart<Body>() == context.Body
+            && (context.Body == null || context.Body.ParentEntity == context.Actor);
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
-            var actor = context.Actor;
-            var zone = context.Zone;
-            var actorCell = zone.GetEntityCell(actor);
-            if (actorCell == null)
+            if (_mode == ThrowMode.Measured) return Fail("Measured Throw prepares an item; it does not launch it.");
+            var validation = Validate(context);
+            if (!validation.IsValid) return InventoryCommandResult.ValidationFailure(validation);
+            if (!transaction.TryClaimAction(context.Actor)) return Fail("That actor is already resolving an action.");
+            if (!transaction.TryClaim(_item, context.Actor, Name)) return Fail("That item is already being transferred.");
+            var actor = context.Actor; var zone = context.Zone; var origin = zone.GetEntityCell(actor);
+            var intent = ResolveIntent(context);
+            var source = DetectSource(context, out Cell sourceCell);
+            var physics = _item.GetPart<PhysicsPart>(); var stack = _item.GetPart<StackerPart>();
+            int quantity = stack?.StackCount ?? 1;
+            var launch = ThrowingRules.CaptureLaunch(actor, _item, zone, intent.Target,
+                zone.GetCell(intent.X,intent.Y), _mode);
+            transaction.Do(null, () => ThrowingRules.RestorePreparationAfterRefusal(launch));
+            var gathering = source == ThrowSourceKind.World ? LocalGatheringClaims.CaptureTake(actor,_item,zone) : null;
+            Entity unit = Extract(context, transaction, source, sourceCell);
+            if (unit == null) return Fail("Unable to ready that item to throw.");
+            // Unequip/clone listeners may relocate, replace parts or alter the chosen
+            // target. None of those changes authorizes a throw from a stale snapshot.
+            if (!ActorReady(context) || zone.GetEntityCell(actor) != origin
+                || _item.GetPart<PhysicsPart>() != physics || _item.GetPart<StackerPart>() != stack
+                || !Detached(unit) || !ThrowingRules.IsCurrentLaunch(launch)
+                || !HandlingService.CanThrow(actor,unit,out _)
+                || !ThrowTrajectory.ValidateIntent(zone,actor,intent,false,out _))
+                return Fail("The thrower, item or selected target changed while readying the throw.");
+            if (quantity > 1 && (stack.StackCount != quantity-1 || DetectSource(context,out var remainingCell) != source
+                || source == ThrowSourceKind.World && remainingCell != sourceCell))
+                return Fail("The source stack changed while readying the throw.");
+            var trace = ThrowTrajectory.Trace(zone,actor,unit,intent,HandlingService.GetThrowRange(actor,unit));
+            if (trace.ImpactCell == null) return Fail("The throw no longer has a valid trajectory.");
+            bool consumed = ThrowPayloadResolver.HasTonicPayload(unit) || unit.HasPart<GasGrenadePart>();
+            LocalGatheringClaims.RecordTake(gathering, transaction, unit);
+
+            // This is the sole launch boundary. Claims remain held through impact
+            // and disposition; authoritative gameplay never runs in AfterCommit.
+            transaction.SealAction();
+            string phase = "launch"; Exception failure = null;
+            try
             {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Actor has no valid position to throw from.");
-            }
-
-            ThrowSourceKind source = DetectSource(context, out Cell sourceCell);
-            if (source == ThrowSourceKind.None)
-            {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "You do not have access to that item to throw it.");
-            }
-
-            // Lifting claimed produce straight from the ground is a taking,
-            // even when it never passes through the player inventory. Keep the
-            // original source for witnessing and release only the thrown unit.
-            var gathering = source == ThrowSourceKind.World
-                ? LocalGatheringClaims.CaptureTake(actor, _item, zone) : null;
-            Entity itemToThrow = ExtractItemForThrow(context, transaction, source, sourceCell);
-            if (itemToThrow == null)
-            {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Unable to ready that item to throw.");
-            }
-
-            var rng = _rng;
-
-            LineTraceResult trace = LineTargeting.TraceFirstImpactToTarget(
-                zone,
-                actor,
-                actorCell.X,
-                actorCell.Y,
-                _targetX,
-                _targetY,
-                HandlingService.GetThrowRange(actor, _item));
-
-            if (trace.Path.Count > 0)
-                AsciiFxBus.EmitProjectile(zone, trace.Path, AsciiFxTheme.ThrownObject, trail: true, blocksTurnAdvance: true);
-
-            Entity hitTarget = trace.HitEntity;
-            Cell landingCell;
-            bool consumedOnImpact = false;
-            bool isThrowableTonic = HasThrowablePayload(itemToThrow);
-            bool isGasGrenade = HasGasGrenadePayload(itemToThrow);
-
-            if (hitTarget != null)
-            {
-                if (isThrowableTonic)
+                if (consumed && unit.GetPart<StackerPart>() is StackerPart spent) spent.StackCount = 0;
+                ThrowingRules.CommitLaunch(launch);
+                if (trace.Path.Count > 0)
+                    AsciiFxBus.EmitThrow(zone,trace);
+                phase = "impact";
+                if (ThrowPayloadResolver.HasTonicPayload(unit))
+                    ThrowPayloadResolver.Resolve(actor,unit,zone,trace.BurstCell,trace.HitEntity,trace.ImpactCell,_focused,_rng,actor.ID + ":" + launch.Serial.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                else if (unit.GetPart<GasGrenadePart>() is GasGrenadePart grenade)
                 {
-                    // Tonic shatters on the hit cell with AOE radius 1.
-                    // The hit creature is in the AOE so it gets the effect.
-                    landingCell = trace.ImpactCell ?? zone.GetEntityCell(hitTarget);
-                    ApplyTonicAoe(actor, itemToThrow, landingCell, zone, rng);
-                    consumedOnImpact = true;
-                    landingCell = null;
+                    int spawned = grenade.Detonate(actor,trace.BurstCell ?? origin,zone);
+                    MessageLog.Add(spawned > 0 ? $"{unit.GetDisplayName()} releases a cloud of gas."
+                        : $"{unit.GetDisplayName()} detonates with no effect.");
                 }
-                else if (isGasGrenade)
+                else ResolvePhysical(actor,unit,zone,trace,launch);
+            }
+            catch (Exception error) { failure = error; }
+            finally
+            {
+                if (!consumed)
                 {
-                    // G.7a: gas grenade detonates on the hit cell (or
-                    // the target's cell as fallback), spawning a 3×3
-                    // gas cloud. The hit creature is in the cloud and
-                    // takes immediate gas damage on the next ApplyGas
-                    // pass. Friendly fire is intentional.
-                    landingCell = trace.ImpactCell ?? zone.GetEntityCell(hitTarget);
-                    // A targetable closed door/scenery is still solid geometry.
-                    // Burst on its approach side, just as the wall branch does;
-                    // an occupied but passable creature cell remains the center.
-                    if (landingCell?.IsSolid() == true)
-                        landingCell = trace.LastTraversableCell ?? actorCell;
-                    DetonateGasGrenade(actor, itemToThrow, landingCell, zone);
-                    consumedOnImpact = true;
-                    landingCell = null;
-                }
-                else if (!RollThrowAccuracy(actor, itemToThrow, hitTarget, rng))
-                {
-                    // SM5/D3+D4 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): a
-                    // missed throw folds into the same landing behavior as
-                    // the "no HitEntity" case -- it sails past and lands at
-                    // the traced impact cell, dealing no damage.
-                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()}, but misses!");
-                    landingCell = trace.ImpactCell;
-                }
-                else
-                {
-                    int rawDamage = GetThrownDamage(actor, itemToThrow, hitTarget, rng);
-                    if (rawDamage > 0)
+                    try
                     {
-                        // SM1/D1 (Docs/THROWN-MUTATION-COMBAT-PLAN.md): wrap in
-                        // a real, attribute-tagged Damage object (parallel to
-                        // melee's CombatSystem.cs "Melee"/weapon.Attributes
-                        // tagging) instead of the raw-int ApplyDamage overload,
-                        // so ApplyResistances actually runs for thrown weapons.
-                        var thrownDamage = new Damage(rawDamage);
-                        thrownDamage.AddAttribute("Thrown");
-                        var thrownWeaponPart = itemToThrow.GetPart<MeleeWeaponPart>();
-                        if (thrownWeaponPart != null && !string.IsNullOrEmpty(thrownWeaponPart.Attributes))
-                            thrownDamage.AddAttributes(thrownWeaponPart.Attributes);
-
-                        // SM2/D5: log the TRUE post-resistance landed damage
-                        // (hpBefore/hpAfter delta), mirroring melee's fix at
-                        // CombatSystem.cs:378-399 -- rawDamage is the
-                        // pre-resistance dice roll and would misreport the
-                        // number on any resistant target ("the HP bar told
-                        // the truth, the log lied").
-                        int hpBefore = hitTarget.GetStatValue("Hitpoints", 0);
-                        CombatSystem.ApplyDamage(hitTarget, thrownDamage, actor, zone);
-                        int hpAfter = hitTarget.GetStatValue("Hitpoints", 0);
-                        int actualDamage = Math.Max(0, hpBefore - hpAfter);
-
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()} for {actualDamage} damage!");
-
-                        // SM3/D2: route thrown hits through the same on-hit
-                        // dispatch chain melee uses, gated the same way melee
-                        // gates it (CombatSystem.cs's `if (hpAfter > 0)`
-                        // survivor-only block) -- a thrown Serrated dagger or
-                        // Lifesteal weapon should bleed/heal the same as a
-                        // melee-swung one. Each dispatcher self-gates on
-                        // actualDamage<=0 internally (matching melee exactly,
-                        // not duplicating the check at the call site).
-                        if (hpAfter > 0)
+                        phase = failure == null ? "landing" : phase;
+                        var landing = LandExactUnit(context,unit,trace,origin,out bool lost,out Exception landingFailure);
+                        if (failure == null && landingFailure != null) failure = landingFailure;
+                        if (lost && failure == null) failure = new InvalidOperationException("The thrown item was lost because no legal resting place remained.");
+                        if (landing != null)
                         {
-                            OnHitClassEffects.Apply(thrownDamage, actualDamage, hitTarget, actor, zone, rng);
-                            OnHitWeaponEffects.Apply(thrownWeaponPart, thrownDamage, actualDamage, hitTarget, actor, zone, rng);
-                            OnHitGasEmit.Apply(thrownWeaponPart, thrownDamage, actualDamage, hitTarget, actor, zone, rng);
-                            ItemEnhancementDispatch.DispatchOnHit(
-                                itemToThrow, hitTarget, actor, thrownDamage, actualDamage, zone, rng);
+                            ThrowingRules.RecordLanded(launch,actor,unit,zone);
+                            transaction.AfterCommit(() => ItemLandedEvent.Broadcast(zone,actor,unit,landing));
                         }
                     }
-                    else
-                    {
-                        // SM5c/D3-Layer3: hit the target but failed to
-                        // penetrate its armor -- a NEW failure mode distinct
-                        // from an accuracy miss (D3/D4 above), needing its
-                        // own message so it isn't a silent no-op (mirrors
-                        // melee's "hits {defender} but fails to penetrate!").
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()} at {hitTarget.GetDisplayName()}, but it fails to penetrate!");
-                    }
-
-                    landingCell = trace.ImpactCell;
+                    catch (Exception error) { if (failure == null) failure = error; }
                 }
             }
-            else if (trace.BlockedBySolid)
-            {
-                Cell impactCell = trace.LastTraversableCell ?? actorCell;
-                if (isThrowableTonic)
-                {
-                    // Tonic hits a wall — shatter at last traversable cell.
-                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}; it strikes an obstacle and shatters.");
-                    ApplyTonicAoe(actor, itemToThrow, impactCell, zone, rng);
-                    consumedOnImpact = true;
-                    landingCell = null;
-                }
-                else if (isGasGrenade)
-                {
-                    // G.7a: grenade hits a wall — detonate at last
-                    // traversable cell. Some of the 3×3 cells may be
-                    // inside the wall; gas there is still spawned and
-                    // dispersal handles non-seeping containment.
-                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}; it strikes an obstacle and detonates.");
-                    DetonateGasGrenade(actor, itemToThrow, impactCell, zone);
-                    consumedOnImpact = true;
-                    landingCell = null;
-                }
-                else
-                {
-                    MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}, but it strikes an obstacle.");
-                    landingCell = impactCell;
-                }
-            }
-            else
-            {
-                Cell impactCell = trace.ImpactCell ?? actorCell;
-                if (isThrowableTonic)
-                {
-                    // Missed — tonic still shatters on whatever empty cell
-                    // it landed in, splashing creatures in radius 1.
-                    if (impactCell == actorCell)
-                        MessageLog.Add($"{actor.GetDisplayName()} fumbles {itemToThrow.GetDisplayName()}; it shatters at their feet.");
-                    else
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}.");
-                    ApplyTonicAoe(actor, itemToThrow, impactCell, zone, rng);
-                    consumedOnImpact = true;
-                    landingCell = null;
-                }
-                else if (isGasGrenade)
-                {
-                    // G.7a: missed throw — grenade lands and detonates
-                    // wherever it stopped. Fumble fires at the thrower's
-                    // feet (friendly fire — they're now coated in their
-                    // own gas).
-                    if (impactCell == actorCell)
-                        MessageLog.Add($"{actor.GetDisplayName()} fumbles {itemToThrow.GetDisplayName()}; it detonates at their feet.");
-                    else
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}; it detonates.");
-                    DetonateGasGrenade(actor, itemToThrow, impactCell, zone);
-                    consumedOnImpact = true;
-                    landingCell = null;
-                }
-                else
-                {
-                    landingCell = impactCell;
-                    if (landingCell == actorCell)
-                        MessageLog.Add($"{actor.GetDisplayName()} drops {itemToThrow.GetDisplayName()} at {actor.GetDisplayName()}'s feet.");
-                    else
-                        MessageLog.Add($"{actor.GetDisplayName()} throws {itemToThrow.GetDisplayName()}.");
-                }
-            }
-
-            if (landingCell == null)
-                landingCell = actorCell;
-
-            if (!consumedOnImpact && !zone.AddEntity(itemToThrow, landingCell.X, landingCell.Y))
-            {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "The thrown item could not land.");
-            }
-
-            if (!consumedOnImpact)
-            {
-                // M3.2: broadcast ItemLanded to every creature in the zone
-                // so AIRetrieverPart wearers (pet dogs, fetch companions)
-                // can push GoFetchGoal.
-                //
-                // Fired AFTER AddEntity succeeds so the item is already on
-                // the ground and GoFetchGoal's zone.GetEntityCell lookup
-                // will succeed. Consumed-on-impact items (thrown tonic
-                // applied directly) are excluded by the outer if — there's
-                // no landed item to fetch.
-                //
-                // Rollback safety: if the throw's outer transaction is
-                // ever rolled back, the undo below removes itemToThrow
-                // from the zone. Any GoFetchGoal pushed by this broadcast
-                // will then see a null cell lookup and self-pop — see
-                // GoFetchGoal.TakeAction's itemCell == null guards.
-                ItemLandedEvent.Broadcast(zone, actor, itemToThrow, landingCell);
-
-                transaction.Do(
-                    apply: null,
-                    undo: () => zone.RemoveEntity(itemToThrow));
-            }
-
-            LocalGatheringClaims.RecordTake(gathering, transaction, itemToThrow);
-            return InventoryCommandResult.Ok();
+            if (failure == null) return InventoryCommandResult.Ok(actionCommitted:true);
+            Diag.Record("event","ThrowCommittedPartial",actor:actor,target:unit,
+                payload:new { phase, error=failure.GetType().Name, message=failure.Message });
+            return InventoryCommandResult.CommittedPartial(failure.Message,phase);
         }
 
-        private ThrowSourceKind DetectSource(InventoryContext context, out Cell sourceCell)
+        private void ResolvePhysical(Entity actor,Entity unit,Zone zone,ThrowTraceResult trace,ThrowSkillLaunch launch)
+        {
+            var target = trace.HitEntity;
+            if (target == null)
+            { MessageLog.Add($"{actor.GetDisplayName()} throws {unit.GetDisplayName()}."); return; }
+            if (!RollThrowAccuracy(actor,unit,target,_rng) && !ThrowingRules.RetryPhysicalAccuracy(launch,actor,_rng))
+            { MessageLog.Add($"{actor.GetDisplayName()} throws {unit.GetDisplayName()} at {target.GetDisplayName()}, but misses!"); return; }
+            int raw = GetThrownDamage(actor,unit,target,_rng,ThrowingRules.PenetrationBonusFor(launch,target));
+            if (raw <= 0)
+            { MessageLog.Add($"{actor.GetDisplayName()}'s thrown {unit.GetDisplayName()} fails to penetrate {target.GetDisplayName()}'s armor."); return; }
+            var damage = new Damage(raw); damage.AddAttribute("Thrown");
+            var weapon = unit.GetPart<MeleeWeaponPart>();
+            if (!string.IsNullOrEmpty(weapon?.Attributes)) damage.AddAttributes(weapon.Attributes);
+            int before = target.GetStatValue("Hitpoints",0);
+            CombatSystem.ApplyDamage(target,damage,actor,zone);
+            int after = target.GetStatValue("Hitpoints",0), actual = Math.Max(0,before-after);
+            MessageLog.Add($"{actor.GetDisplayName()} throws {unit.GetDisplayName()} at {target.GetDisplayName()} for {actual} damage!");
+            if (after > 0)
+            {
+                OnHitClassEffects.Apply(damage,actual,target,actor,zone,_rng);
+                OnHitWeaponEffects.Apply(weapon,damage,actual,target,actor,zone,_rng);
+                OnHitGasEmit.Apply(weapon,damage,actual,target,actor,zone,_rng);
+                ItemEnhancementDispatch.DispatchOnHit(unit,target,actor,damage,actual,zone,_rng);
+            }
+            ThrowingRules.ApplyDriving(launch,actor,target,zone,trace.ImpactCell,actual);
+        }
+
+        private ThrowSourceKind DetectSource(InventoryContext context,out Cell sourceCell)
         {
             sourceCell = null;
-            if (context == null || _item == null)
-                return ThrowSourceKind.None;
-
-            var equippedState = UnequipCommand.CaptureEquippedState(context, _item);
-            if (equippedState.HasLocation)
-                return ThrowSourceKind.Equipped;
-
-            if (context.Inventory != null && context.Inventory.Objects.Contains(_item))
-                return ThrowSourceKind.Carried;
-
+            var physics = _item?.GetPart<PhysicsPart>();
+            if (physics == null || physics.ParentEntity != _item) return ThrowSourceKind.None;
+            var equipped = UnequipCommand.CaptureEquippedState(context,_item);
+            if (equipped.HasLocation)
+                return physics.Equipped == context.Actor && physics.InInventory == null && _item.SpatialZone == null
+                    && context.Inventory?.Objects.Contains(_item) != true ? ThrowSourceKind.Equipped : ThrowSourceKind.None;
+            if (context.Inventory?.Objects.Contains(_item) == true)
+            {
+                int references = 0;
+                foreach (var entry in context.Inventory.Objects) if (ReferenceEquals(entry,_item)) references++;
+                return references == 1 && physics.InInventory == context.Actor && physics.Equipped == null
+                    && _item.SpatialZone == null && context.Zone?.GetEntityCell(_item) == null
+                    ? ThrowSourceKind.Carried : ThrowSourceKind.None;
+            }
             sourceCell = context.Zone?.GetEntityCell(_item);
-            if (sourceCell != null)
-                return ThrowSourceKind.World;
-
+            if (sourceCell?.Objects.Contains(_item) == true && _item.SpatialZone == context.Zone
+                && physics.InInventory == null && physics.Equipped == null) return ThrowSourceKind.World;
             return ThrowSourceKind.None;
         }
-
-        private Entity ExtractItemForThrow(
-            InventoryContext context,
-            InventoryTransaction transaction,
-            ThrowSourceKind source,
-            Cell sourceCell)
+        private static bool Detached(Entity unit)
         {
-            if (_item == null)
-                return null;
-
-            var sourceStacker = _item.GetPart<StackerPart>();
-            if (sourceStacker != null && sourceStacker.StackCount > 1)
+            var physics = unit?.GetPart<PhysicsPart>(); var stack = unit?.GetPart<StackerPart>();
+            return unit != null && unit.SpatialZone == null && physics?.ParentEntity == unit
+                && physics.InInventory == null && physics.Equipped == null
+                && (stack == null || stack.ParentEntity == unit && stack.StackCount == 1);
+        }
+        private Entity Extract(InventoryContext context,InventoryTransaction transaction,ThrowSourceKind source,Cell sourceCell)
+        {
+            var stack = _item.GetPart<StackerPart>();
+            if (stack != null && stack.StackCount > 1)
             {
-                Entity split = sourceStacker.RemoveOne();
-                if (source == ThrowSourceKind.Carried && context.Inventory != null)
-                    context.Inventory.RefreshHandlingCarryPenalty();
-                transaction.Do(
-                    apply: null,
-                    undo: () => RestoreSplitStack(context.Inventory, source, sourceStacker, split));
+                int count = stack.StackCount; var clay = new ConnectedClayProvenance.Snapshot(_item); Entity split = null;
+                transaction.Do(null, () =>
+                {
+                    stack.StackCount = count; clay.Restore(_item);
+                    if (split?.GetPart<StackerPart>() is StackerPart splitCount) splitCount.StackCount = 0;
+                    context.Inventory?.RefreshHandlingCarryPenalty();
+                });
+                split = stack.RemoveOne();
+                if (split == null || !transaction.TryClaim(split,context.Actor,Name)) return null;
+                context.Inventory?.RefreshHandlingCarryPenalty();
                 return split;
             }
-
-            switch (source)
+            if (source == ThrowSourceKind.Carried)
             {
-                case ThrowSourceKind.Carried:
-                    if (context.Inventory == null || !context.Inventory.RemoveObject(_item))
-                        return null;
-
-                    transaction.Do(
-                        apply: null,
-                        undo: () => context.Inventory.AddObject(_item));
-                    return _item;
-
-                case ThrowSourceKind.Equipped:
-                {
-                    if (!UnequipCommand.UnequipAndRemove(context, _item, transaction))
-                        return null;
-
-                    // Item has been removed from inventory by UnequipAndRemove.
-                    // Register undo to put it back there if the throw is rolled back.
-                    transaction.Do(
-                        apply: null,
-                        undo: () => context.Inventory?.AddObject(_item));
-                    return _item;
-                }
-
-                case ThrowSourceKind.World:
-                    if (sourceCell == null || context.Zone == null || !context.Zone.RemoveEntity(_item))
-                        return null;
-
-                    transaction.Do(
-                        apply: null,
-                        undo: () => context.Zone.AddEntity(_item, sourceCell.X, sourceCell.Y));
-                    return _item;
+                var snapshot = InventoryTransferSnapshot.Capture(context.Inventory,_item);
+                transaction.Do(null,snapshot.Restore);
+                return snapshot.Apply(() => context.Inventory.RemoveObject(_item)) ? _item : null;
             }
-
+            if (source == ThrowSourceKind.Equipped)
+                return UnequipCommand.UnequipAndRemove(context,_item,transaction) ? _item : null;
+            if (source == ThrowSourceKind.World)
+            {
+                transaction.Do(null, () =>
+                {
+                    if (_item.SpatialZone == null && _item.GetPart<PhysicsPart>()?.InInventory == null
+                        && _item.GetPart<PhysicsPart>()?.Equipped == null)
+                        context.Zone.AddEntity(_item,sourceCell.X,sourceCell.Y);
+                });
+                return context.Zone.RemoveEntity(_item) ? _item : null;
+            }
             return null;
         }
-
-        private static void RestoreSplitStack(InventoryPart inventory, ThrowSourceKind source, StackerPart sourceStacker, Entity split)
+        private static Cell LandExactUnit(InventoryContext context,Entity unit,ThrowTraceResult trace,Cell origin,out bool lost,out Exception landingFailure)
         {
-            if (sourceStacker == null || split == null)
-                return;
-
-            var splitStacker = split.GetPart<StackerPart>();
-            int splitCount = splitStacker?.StackCount ?? 1;
-            sourceStacker.StackCount += Math.Max(1, splitCount);
-            if (splitStacker != null)
-                splitStacker.StackCount = 0;
-            if (source == ThrowSourceKind.Carried && inventory != null)
-                inventory.RefreshHandlingCarryPenalty();
+            lost = false; landingFailure = null;
+            // Never create a second owner if a forceful callback already gave
+            // this exact object a stable custody. Normal nested commands are claimed.
+            if (unit.SpatialZone != null) return unit.SpatialZone == context.Zone ? context.Zone.GetEntityCell(unit) : null;
+            var physics = unit.GetPart<PhysicsPart>();
+            if (physics?.InInventory != null || physics?.Equipped != null) return null;
+            var zone = context.Zone;
+            var landing = trace.RestCell;
+            if (ThrowTrajectory.CanRestItem(zone,unit,landing,context.Actor)
+                && TryLand(zone,unit,landing,ref landingFailure)) return landing;
+            for (int i=trace.Path.Count-1;i>=0;i--)
+            {
+                var point = trace.Path[i]; var cell = zone.GetCell(point.X,point.Y);
+                if (ThrowTrajectory.CanRestItem(zone,unit,cell,context.Actor)
+                    && TryLand(zone,unit,cell,ref landingFailure)) return cell;
+            }
+            if (ThrowTrajectory.CanRestItem(zone,unit,origin,context.Actor)
+                && TryLand(zone,unit,origin,ref landingFailure)) return origin;
+            // A footprint can lose every legal resting cell during callbacks.
+            // Loss is an explicit paid partial outcome, never a refunded projectile.
+            if (unit.GetPart<StackerPart>() is StackerPart spent) spent.StackCount = 0;
+            lost = true;
+            MessageLog.Add($"{unit.GetDisplayName()} is lost; there is no room for it to land.");
+            return null;
+        }
+        private static bool TryLand(Zone zone,Entity unit,Cell cell,ref Exception failure)
+        {
+            try { return zone.AddEntity(unit,cell.X,cell.Y); }
+            catch (Exception error)
+            {
+                if (failure == null) failure = error;
+                Diag.Record("event","ThrowLandingCallbackFailed",target:unit,
+                    payload:new { error=error.GetType().Name, message=error.Message });
+                return unit.SpatialZone == zone && zone.GetEntityCell(unit) == cell;
+            }
         }
 
         /// <summary>
@@ -527,13 +333,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
         /// inputs mirror melee's non-crit, non-skill terms
         /// (<c>StatUtils.GetModifier(actor, weapon.Stat)</c> + weapon
         /// <c>PenBonus</c>/<c>MaxStrengthBonus</c>) -- deliberately excludes
-        /// <c>SkillEventDispatcher.GetSkillPenetrationModifier</c> and
-        /// crit/AutoPen, for the same reason D2 defers the on-hit skill
-        /// hooks: "do skills fire off a thrown weapon the same as a
-        /// wielded one?" is an open design question, so no skill hook gets
-        /// partial wiring while it's unresolved.
+        /// melee skill penetration, crit and AutoPen. A validated Measured
+        /// Throw snapshot adds its explicit bonus to both penetration and
+        /// its cap; unrelated weapon-family skills remain melee-only.
         /// </summary>
-        private static int GetThrownDamage(Entity actor, Entity item, Entity target, Random rng)
+        private static int GetThrownDamage(Entity actor, Entity item, Entity target, Random rng, int preparationBonus = 0)
         {
             var weapon = item?.GetPart<MeleeWeaponPart>();
             string statName = weapon?.Stat ?? "Strength";
@@ -542,8 +346,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             int strMod = StatUtils.GetModifier(actor, statName);
             int effectiveMaxStrBonus = (maxStrBonus < 0) ? CombatSystem.LEGACY_UNCAPPED_MAX_STR_BONUS : maxStrBonus;
-            int bonus = strMod + weaponPenBonus;
-            int maxBonus = effectiveMaxStrBonus + weaponPenBonus;
+            int bonus = strMod + weaponPenBonus + preparationBonus;
+            int maxBonus = effectiveMaxStrBonus + weaponPenBonus + preparationBonus;
 
             Body targetBody = target?.GetPart<Body>();
             BodyPart hitPart = targetBody != null ? CombatSystem.SelectHitLocation(targetBody, rng) : null;
@@ -587,112 +391,5 @@ namespace CavesOfOoo.Core.Inventory.Commands
             return perPenetration * penetrations;
         }
 
-        /// <summary>
-        /// True if the item is a tonic with a throwable payload (healing,
-        /// stat boost, cure tonic, or status tonic). Used by the impact
-        /// paths to decide whether to shatter (consume item + AOE) or
-        /// fall through to the standard "thrown projectile" damage /
-        /// ground-land behavior.
-        /// </summary>
-        private static bool HasThrowablePayload(Entity item)
-        {
-            var tonic = item?.GetPart<TonicPart>();
-            return tonic != null && tonic.HasThrowablePayload();
-        }
-
-        /// <summary>G.7a — true if the item carries a
-        /// <see cref="GasGrenadePart"/>. Parallel to
-        /// <see cref="HasThrowablePayload"/>: both produce a "shatter on
-        /// impact" item that consumes itself + triggers AOE. The two are
-        /// mutually exclusive in current content (no item is both a
-        /// tonic and a grenade), but if a future item carries both, the
-        /// tonic branch wins by code order in the impact dispatch.</summary>
-        private static bool HasGasGrenadePayload(Entity item)
-        {
-            return item?.GetPart<GasGrenadePart>() != null;
-        }
-
-        /// <summary>G.7a — delegate the 3×3 spawn to the Part. Parallel
-        /// in shape to <see cref="ApplyTonicAoe"/>: take the item +
-        /// center + zone, do the AOE work, return.</summary>
-        private static void DetonateGasGrenade(Entity actor, Entity item, Cell center, Zone zone)
-        {
-            var grenade = item?.GetPart<GasGrenadePart>();
-            if (grenade == null || center == null || zone == null) return;
-            int spawned = grenade.Detonate(actor, center, zone);
-            string itemName = item.GetDisplayName() ?? "gas grenade";
-            if (spawned > 0)
-                MessageLog.Add($"{itemName} releases a cloud of gas.");
-            else
-                MessageLog.Add($"{itemName} detonates with no effect.");
-        }
-
-        /// <summary>One dose per physical owner in the impact square, including
-        /// secondary body cells. Creatures retain intentional friendly fire;
-        /// scenery receives only eligible elemental payloads.</summary>
-        private static void ApplyTonicAoe(Entity actor, Entity item, Cell center, Zone zone, Random rng)
-        {
-            var tonic = item?.GetPart<TonicPart>();
-            if (tonic == null || center == null || zone == null)
-                return;
-
-            // Freeze owner identity before payload callbacks. A wide body's
-            // exposed contact counts, but its other contacts never multiply doses.
-            var owners = new List<Entity>();
-            var seen = new HashSet<Entity>();
-            for (int dx = -1; dx <= 1; dx++)
-                for (int dy = -1; dy <= 1; dy++)
-                {
-                    var cell = zone.GetCell(center.X + dx, center.Y + dy);
-                    if (cell == null) continue;
-                    foreach (var occupant in cell.Occupants)
-                        if (CurrentOwner(occupant, zone) && seen.Add(occupant)
-                            && (occupant.HasTag("Creature") || AbilityTargeting.IsElementalTarget(occupant, actor)))
-                            owners.Add(occupant);
-                }
-            int hitCount = 0;
-            foreach (var owner in owners)
-            {
-                if (!CurrentOwner(owner, zone)) continue;
-                bool applied = owner.HasTag("Creature")
-                    ? tonic.ApplyTo(owner, actor, zone, rng, consumeItem: false, showUseMessage: false)
-                    : ApplySceneryTonicPayload(item, owner, actor, zone);
-                if (applied) hitCount++;
-            }
-
-            string itemName = item?.GetDisplayName() ?? "tonic";
-            if (hitCount == 0)
-                MessageLog.Add($"{itemName} shatters with no effect.");
-            else
-                MessageLog.Add($"{itemName} shatters, splashing {hitCount} target{(hitCount > 1 ? "s" : "")}.");
-        }
-        private static bool CurrentOwner(Entity owner, Zone zone)
-            => owner != null && owner.SpatialZone == zone
-                && zone.GetEntityCell(owner)?.Objects.Contains(owner) == true
-                && !CombatSystem.IsDeathHandled(owner) && owner.GetStatValue("Hitpoints", 1) > 0
-                && !(owner.GetPart<DestructiblePart>() is DestructiblePart structural && structural.Gone);
-
-        // Scenery receives elemental payloads only. Calling Tonic.ApplyTo here
-        // would also heal architecture, boost its stats or apply medical cures.
-        private static bool ApplySceneryTonicPayload(Entity item, Entity target, Entity source, Zone zone)
-        {
-            bool applied = false;
-            var status = item.GetPart<StatusTonicPart>();
-            if (status != null)
-                applied |= ApplyElement(TonicEffectFactory.Create(status.EffectName, status.EffectDuration,
-                    status.EffectDamageDice, status.EffectMagnitude, source), target, source, zone);
-            var brew = item.GetPart<BrewItemPart>();
-            if (brew != null)
-                foreach (var entry in brew.GetEffects())
-                    applied |= ApplyElement(TonicEffectFactory.Create(entry.Property, 0, "", entry.Potency, source), target, source, zone);
-            return applied;
-        }
-        private static bool ApplyElement(Effect effect, Entity target, Entity source, Zone zone)
-        {
-            if (!(effect is BurningEffect || effect is FrozenEffect || effect is WetEffect
-                || effect is AcidicEffect || effect is ElectrifiedEffect || effect is CharredEffect)) return false;
-            return ObjectStatusMatrix.Evaluate(effect, target) == ObjectStatusVerdict.Applies
-                && target.ApplyEffect(effect, source, zone);
-        }
     }
 }

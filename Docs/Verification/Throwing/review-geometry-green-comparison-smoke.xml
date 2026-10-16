@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="89" result="Failed(Child)" total="89" passed="85" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:53Z" duration="4.8569285">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29402" result="Failed" site="Child" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:53Z" duration="4.856929" total="89" passed="85" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36240" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29402" result="Failed" site="Child" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:53Z" duration="4.840579" total="89" passed="85" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36241" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29402" result="Failed" site="Child" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:53Z" duration="4.833949" total="89" passed="85" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36242" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29402" result="Failed" site="Child" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:53Z" duration="4.827126" total="89" passed="85" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26248" name="ThrowCursorInputTests" fullname="CavesOfOoo.Tests.ThrowCursorInputTests" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.351608" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="26254" name="CancelAndReopenReturnsFreshBroadIntentWithoutTurnCost" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.CancelAndReopenReturnsFreshBroadIntentWithoutTurnCost" methodname="CancelAndReopenReturnsFreshBroadIntentWithoutTurnCost" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="893942025" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.065101" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26255" name="CursorCannotLeakInvisibleHostilityOrLootColors" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.CursorCannotLeakInvisibleHostilityOrLootColors" methodname="CursorCannotLeakInvisibleHostilityOrLootColors" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="865094680" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.024809" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26258" name="MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.080945" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26256" name="MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(False)" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(False)" methodname="MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="970675139" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.052992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26257" name="MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(True)" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(True)" methodname="MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="75368603" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.024466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26259" name="NewlyVisibleFrontierRefreshesCachedPreviewWithoutAnEntityOrTurnChange" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.NewlyVisibleFrontierRefreshesCachedPreviewWithoutAnEntityOrTurnChange" methodname="NewlyVisibleFrontierRefreshesCachedPreviewWithoutAnEntityOrTurnChange" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="1340605213" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.024545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26260" name="PendingActionChargesItsOriginalActorIfAdapterReferenceChanges" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.PendingActionChargesItsOriginalActorIfAdapterReferenceChanges" methodname="PendingActionChargesItsOriginalActorIfAdapterReferenceChanges" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="1956964441" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.024394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26249" name="PreviewUsesKnownTraceAndExplainsBodyVersusGroundWithoutMutating" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.PreviewUsesKnownTraceAndExplainsBodyVersusGroundWithoutMutating" methodname="PreviewUsesKnownTraceAndExplainsBodyVersusGroundWithoutMutating" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="548974812" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.027471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26253" name="TargetModeBindingsAreNativeAndDoNotSpendAnAction" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.TargetModeBindingsAreNativeAndDoNotSpendAnAction" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.071404" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26251" name="TargetModeBindingsAreNativeAndDoNotSpendAnAction(Y,Tab)" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.TargetModeBindingsAreNativeAndDoNotSpendAnAction(Y,Tab)" methodname="TargetModeBindingsAreNativeAndDoNotSpendAnAction" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="1494808784" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.041377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26252" name="TargetModeBindingsAreNativeAndDoNotSpendAnAction(LeftShoulder,F)" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.TargetModeBindingsAreNativeAndDoNotSpendAnAction(LeftShoulder,F)" methodname="TargetModeBindingsAreNativeAndDoNotSpendAnAction" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="1525910320" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.027086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26250" name="UnknownPreviewNamesNeitherHiddenOwnerNorHiddenObstruction" fullname="CavesOfOoo.Tests.ThrowCursorInputTests.UnknownPreviewNamesNeitherHiddenOwnerNorHiddenObstruction" methodname="UnknownPreviewNamesNeitherHiddenOwnerNorHiddenObstruction" classname="CavesOfOoo.Tests.ThrowCursorInputTests" runstate="Runnable" seed="1775284931" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:48Z" duration="0.023353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="15369" name="ThrowingOpportunityComparisonTests" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:50Z" duration="1.453661" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties>
+              <property name="Category" value="ThrowingComparison" />
+            </properties>
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="15384" name="A3W2ClutterClearanceIsUniversalAndIntentRemainsExplicit" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W2ClutterClearanceIsUniversalAndIntentRemainsExplicit" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:49Z" duration="0.558360" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="15380" name="A3W2ClutterClearanceIsUniversalAndIntentRemainsExplicit(0)" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W2ClutterClearanceIsUniversalAndIntentRemainsExplicit(0)" methodname="A3W2ClutterClearanceIsUniversalAndIntentRemainsExplicit" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" seed="355458324" result="Passed" start-time="2026-10-16 03:54:48Z" end-time="2026-10-16 03:54:49Z" duration="0.557407" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+W2-0: 160 actual-command trials; production RNG streams diverge after differing skills/actions.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15389" name="A3W4DrivingUsesRealEntryAndEnemyResponses" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W4DrivingUsesRealEntryAndEnemyResponses" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-16 03:54:49Z" end-time="2026-10-16 03:54:49Z" duration="0.080942" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15385" name="A3W4DrivingUsesRealEntryAndEnemyResponses(0)" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W4DrivingUsesRealEntryAndEnemyResponses(0)" methodname="A3W4DrivingUsesRealEntryAndEnemyResponses" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" seed="1953603986" result="Failed" start-time="2026-10-16 03:54:49Z" end-time="2026-10-16 03:54:49Z" duration="0.077969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W4DrivingUsesRealEntryAndEnemyResponses (System.Int32 budget) [0x00366] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingOpportunityComparisonTests.cs:208
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="15394" name="A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-16 03:54:49Z" end-time="2026-10-16 03:54:50Z" duration="0.811167" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="15390" name="A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog(0)" fullname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog(0)" methodname="A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog" classname="CavesOfOoo.Tests.ThrowingOpportunityComparisonTests" runstate="Runnable" seed="49391186" result="Failed" start-time="2026-10-16 03:54:49Z" end-time="2026-10-16 03:54:50Z" duration="0.809947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A genuinely busy dog needs an actual pending fetch.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowingOpportunityComparisonTests.A3W5RecoveryCompetesWithGroundReuseOrdinaryPickupAndRealDog (System.Int32 budget) [0x00206] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/ThrowingOpportunityComparisonTests.cs:238
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+[FactionLoader] Loaded 14 factions.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="12226" name="ThrowPayloadPersistenceTests" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="60" result="Failed" site="Child" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:52Z" duration="1.851298" total="60" passed="58" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="12260" name="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.097036" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12256" name="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;FireTonic&quot;,&quot;heat&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;FireTonic&quot;,&quot;heat&quot;)" methodname="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="939074839" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.028097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12257" name="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;CinderpeaOil&quot;,&quot;heat&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;CinderpeaOil&quot;,&quot;heat&quot;)" methodname="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1054894611" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12258" name="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;FrostTonic&quot;,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;FrostTonic&quot;,&quot;cold&quot;)" methodname="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="746304788" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12259" name="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;LightningTonic&quot;,&quot;charge&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap(&quot;LightningTonic&quot;,&quot;charge&quot;)" methodname="BareFloorEnergyIsOnePerCellWithoutInventingAnEnduringTrap" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1133828469" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12229" name="BroadAndFocusedConserveTheSameNineExposureUnits" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BroadAndFocusedConserveTheSameNineExposureUnits" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.046538" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12227" name="BroadAndFocusedConserveTheSameNineExposureUnits(&quot;WaterTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BroadAndFocusedConserveTheSameNineExposureUnits(&quot;WaterTonic&quot;)" methodname="BroadAndFocusedConserveTheSameNineExposureUnits" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="296388100" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12228" name="BroadAndFocusedConserveTheSameNineExposureUnits(&quot;AcidTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.BroadAndFocusedConserveTheSameNineExposureUnits(&quot;AcidTonic&quot;)" methodname="BroadAndFocusedConserveTheSameNineExposureUnits" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="231061907" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12271" name="ChargeConsumesEnergyButNotTheWaterFilm" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ChargeConsumesEnergyButNotTheWaterFilm" methodname="ChargeConsumesEnergyButNotTheWaterFilm" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="308322326" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.024044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12231" name="ClippingLosesAllocatedMatterWithoutRedistributingItThroughWalls" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ClippingLosesAllocatedMatterWithoutRedistributingItThroughWalls" methodname="ClippingLosesAllocatedMatterWithoutRedistributingItThroughWalls" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1016064159" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12270" name="ConsumingReactionRetiresActualWaterFilmWithoutResurrection" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ConsumingReactionRetiresActualWaterFilmWithoutResurrection" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.047024" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12268" name="ConsumingReactionRetiresActualWaterFilmWithoutResurrection(False)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ConsumingReactionRetiresActualWaterFilmWithoutResurrection(False)" methodname="ConsumingReactionRetiresActualWaterFilmWithoutResurrection" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="790348476" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12269" name="ConsumingReactionRetiresActualWaterFilmWithoutResurrection(True)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ConsumingReactionRetiresActualWaterFilmWithoutResurrection(True)" methodname="ConsumingReactionRetiresActualWaterFilmWithoutResurrection" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1974753556" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12230" name="CropAcidDoseCreatesThreeUnitsRatherThanANineUnitFlask" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.CropAcidDoseCreatesThreeUnitsRatherThanANineUnitFlask" methodname="CropAcidDoseCreatesThreeUnitsRatherThanANineUnitFlask" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1232253133" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023035" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12255" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:51Z" duration="0.566697" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12235" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;HealingTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1354232849" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12236" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;Antidote&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;Antidote&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1502268761" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12237" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BurnSalve&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BurnSalve&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1642515215" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12238" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;Panacea&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;Panacea&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1124036787" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12239" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SpeedTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SpeedTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1678516302" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.038016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12240" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;StrengthTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;StrengthTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1985171684" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.049743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12241" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;StoneskinTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;StoneskinTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="802691626" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.086911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12242" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;PoisonTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;PoisonTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1279519516" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12243" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BleedTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BleedTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="314532534" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12244" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;CharredTonic&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;CharredTonic&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1559198937" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12245" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnitmossPad&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnitmossPad&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="231283008" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12246" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;ShalebeanWax&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;ShalebeanWax&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="420284948" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12247" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnotflaxBandage&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnotflaxBandage&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="186055406" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.023027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12248" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;ClaspbeanPulp&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;ClaspbeanPulp&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="7000402" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:50Z" duration="0.022953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12249" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SumpsievePad&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SumpsievePad&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1153143246" result="Passed" start-time="2026-10-16 03:54:50Z" end-time="2026-10-16 03:54:51Z" duration="0.023287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12250" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;AbsentmintLeaf&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;AbsentmintLeaf&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1349691234" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12251" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;MargincressRibbon&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;MargincressRibbon&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="642075438" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12252" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SootrootPulp&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;SootrootPulp&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2055326411" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022783" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12253" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BrinebuttonPaste&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;BrinebuttonPaste&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1974563376" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12254" name="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnucklecapWax&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain(&quot;KnucklecapWax&quot;)" methodname="DirectOnlyFamiliesNeverInventCollectibleOrContactTerrain" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1828373752" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12279" name="DirectOnlyTonicDoesNotClaimOrResolveUnrelatedPrimedGround" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DirectOnlyTonicDoesNotClaimOrResolveUnrelatedPrimedGround" methodname="DirectOnlyTonicDoesNotClaimOrResolveUnrelatedPrimedGround" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2141466046" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022206" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12232" name="DoseRevalidatesCurrentPositionAfterAnEarlierTargetCallbackMovesAnotherOwner" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.DoseRevalidatesCurrentPositionAfterAnEarlierTargetCallbackMovesAnotherOwner" methodname="DoseRevalidatesCurrentPositionAfterAnEarlierTargetCallbackMovesAnotherOwner" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="585933252" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12288" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.134822" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12282" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;WaterTonic&quot;,&quot;9 contact units&quot;,&quot;6 local turns&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;WaterTonic&quot;,&quot;9 contact units&quot;,&quot;6 local turns&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1328398041" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12283" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;ScarletSundewDew&quot;,&quot;3 contact units&quot;,&quot;too little to collect&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;ScarletSundewDew&quot;,&quot;3 contact units&quot;,&quot;too little to collect&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="333954928" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.021875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12284" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;HealingTonic&quot;,&quot;Direct targets only&quot;,&quot;no ground residue&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;HealingTonic&quot;,&quot;Direct targets only&quot;,&quot;no ground residue&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="310041656" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12285" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;FireTonic&quot;,&quot;1 heat&quot;,&quot;existing ground reactions&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;FireTonic&quot;,&quot;1 heat&quot;,&quot;existing ground reactions&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="963477641" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12286" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;FrostTonic&quot;,&quot;1 cold&quot;,&quot;existing ground reactions&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;FrostTonic&quot;,&quot;1 cold&quot;,&quot;existing ground reactions&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1254634989" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022012" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12287" name="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;LightningTonic&quot;,&quot;1 charge&quot;,&quot;existing ground reactions&quot;)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps(&quot;LightningTonic&quot;,&quot;1 charge&quot;,&quot;existing ground reactions&quot;)" methodname="ExamineDisclosesActualGroundDeliveryWithoutInventingPersistentTraps" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2103326974" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.021936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12274" name="ExplicitGroundClearConsumesFilmAndOverlappingFilmsDoNotMultiplyLayerRefund" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ExplicitGroundClearConsumesFilmAndOverlappingFilmsDoNotMultiplyLayerRefund" methodname="ExplicitGroundClearConsumesFilmAndOverlappingFilmsDoNotMultiplyLayerRefund" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1423158874" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022443" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12267" name="FilmAgesOnlyAtPlayerWorldBoundaryAndNeverDeletesIndependentWater" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FilmAgesOnlyAtPlayerWorldBoundaryAndNeverDeletesIndependentWater" methodname="FilmAgesOnlyAtPlayerWorldBoundaryAndNeverDeletesIndependentWater" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1323854508" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12278" name="FilmContactRequiresItsActualCurrentOccupant" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FilmContactRequiresItsActualCurrentOccupant" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.048934" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12276" name="FilmContactRequiresItsActualCurrentOccupant(False)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FilmContactRequiresItsActualCurrentOccupant(False)" methodname="FilmContactRequiresItsActualCurrentOccupant" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2028160296" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12277" name="FilmContactRequiresItsActualCurrentOccupant(True)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FilmContactRequiresItsActualCurrentOccupant(True)" methodname="FilmContactRequiresItsActualCurrentOccupant" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="219948306" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12280" name="FilmProjectionDoesNotHideMalformedCloudStateFromSessionValidation" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FilmProjectionDoesNotHideMalformedCloudStateFromSessionValidation" methodname="FilmProjectionDoesNotHideMalformedCloudStateFromSessionValidation" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1330147618" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.096997" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12272" name="FiniteAcidNavigationPenaltyDisappearsWhenItsMatterExpires" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FiniteAcidNavigationPenaltyDisappearsWhenItsMatterExpires" methodname="FiniteAcidNavigationPenaltyDisappearsWhenItsMatterExpires" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="866864697" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.080364" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12262" name="FiniteWaterCannotFillEitherVesselAndOrdinaryWaterStillCan" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FiniteWaterCannotFillEitherVesselAndOrdinaryWaterStillCan" methodname="FiniteWaterCannotFillEitherVesselAndOrdinaryWaterStillCan" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="140839841" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.029142" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12234" name="FocusedSpareNeighbourAndBroadHealingRetainsFriendlyFire" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.FocusedSpareNeighbourAndBroadHealingRetainsFriendlyFire" methodname="FocusedSpareNeighbourAndBroadHealingRetainsFriendlyFire" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1730288444" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023135" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12275" name="KnownFootprintDoesNotUseHiddenWallAsAnOracle" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.KnownFootprintDoesNotUseHiddenWallAsAnOracle" methodname="KnownFootprintDoesNotUseHiddenWallAsAnOracle" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="796187254" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022826" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12266" name="MixedSourceCoatingClearsCreditAndSameSourcePreservesIt" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.MixedSourceCoatingClearsCreditAndSameSourcePreservesIt" methodname="MixedSourceCoatingClearsCreditAndSameSourcePreservesIt" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2010787368" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022865" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12261" name="MultiEffectBrewUsesOneAcidMatterBudgetAndDeduplicatedEnergyChannels" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.MultiEffectBrewUsesOneAcidMatterBudgetAndDeduplicatedEnergyChannels" methodname="MultiEffectBrewUsesOneAcidMatterBudgetAndDeduplicatedEnergyChannels" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1704725319" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023227" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12294" name="OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.047427" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12292" name="OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag(False)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag(False)" methodname="OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="207935206" result="Failed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 9
+  But was:  8
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowPayloadPersistenceTests.OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag (System.Boolean closed) [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ThrowPayloadPersistenceTests.cs:274
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12293" name="OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag(True)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag(True)" methodname="OpenDoorSplashUsesItsApertureEvenWithAnOldSolidFlag" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1342933126" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.023217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12263" name="PourCannotMergeRecoverableDramsIntoTheNoncollectibleFilm" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.PourCannotMergeRecoverableDramsIntoTheNoncollectibleFilm" methodname="PourCannotMergeRecoverableDramsIntoTheNoncollectibleFilm" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="811064545" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.032218" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12281" name="ReactionRechecksEachVictimsCurrentOccupiedCellAfterEarlierDamageCallback" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ReactionRechecksEachVictimsCurrentOccupiedCellAfterEarlierDamageCallback" methodname="ReactionRechecksEachVictimsCurrentOccupiedCellAfterEarlierDamageCallback" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="701250729" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12265" name="ResidualAcidUsesRealDelayedTypedDamageAndLiveThrowerCredit" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.ResidualAcidUsesRealDelayedTypedDamageAndLiveThrowerCredit" methodname="ResidualAcidUsesRealDelayedTypedDamageAndLiveThrowerCredit" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1323452928" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.022270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12273" name="SessionRoundTripPreservesFiniteMatterSourceAndIndependentCoating" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.SessionRoundTripPreservesFiniteMatterSourceAndIndependentCoating" methodname="SessionRoundTripPreservesFiniteMatterSourceAndIndependentCoating" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="191682327" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.059841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="12291" name="SplashSharesAuthoritativeLowCoverVersusSealedGeometry" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.SplashSharesAuthoritativeLowCoverVersusSealedGeometry" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:52Z" duration="0.152053" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12289" name="SplashSharesAuthoritativeLowCoverVersusSealedGeometry(False)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.SplashSharesAuthoritativeLowCoverVersusSealedGeometry(False)" methodname="SplashSharesAuthoritativeLowCoverVersusSealedGeometry" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1306381600" result="Failed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:51Z" duration="0.035263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 9
+  But was:  8
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowPayloadPersistenceTests.SplashSharesAuthoritativeLowCoverVersusSealedGeometry (System.Boolean sealedCover) [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ThrowPayloadPersistenceTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12290" name="SplashSharesAuthoritativeLowCoverVersusSealedGeometry(True)" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.SplashSharesAuthoritativeLowCoverVersusSealedGeometry(True)" methodname="SplashSharesAuthoritativeLowCoverVersusSealedGeometry" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1944951890" result="Passed" start-time="2026-10-16 03:54:51Z" end-time="2026-10-16 03:54:52Z" duration="0.116114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="12264" name="WideEntryDebitsOnePerLaunchAndTrueReentryCanSpendAnotherUnit" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.WideEntryDebitsOnePerLaunchAndTrueReentryCanSpendAnotherUnit" methodname="WideEntryDebitsOnePerLaunchAndTrueReentryCanSpendAnotherUnit" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="1567297009" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.083231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="12233" name="WideOwnerReceivesOneDirectDoseAndNoImmediateFilmCoating" fullname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests.WideOwnerReceivesOneDirectDoseAndNoImmediateFilmCoating" methodname="WideOwnerReceivesOneDirectDoseAndNoImmediateFilmCoating" classname="CavesOfOoo.Tests.ThrowPayloadPersistenceTests" runstate="Runnable" seed="2146243213" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.026217" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="6259" name="ThrowTrajectoryTests" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:53Z" duration="1.146890" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="6261" name="EntryEdgeIntersectionIsNotMissedByCenterHeight" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.EntryEdgeIntersectionIsNotMissedByCenterHeight" methodname="EntryEdgeIntersectionIsNotMissedByCenterHeight" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="718463668" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.305128" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6274" name="EqualPriorityDuplicateIdentityCannotPickAnInsertionOrderVictim" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.EqualPriorityDuplicateIdentityCannotPickAnInsertionOrderVictim" methodname="EqualPriorityDuplicateIdentityCannotPickAnInsertionOrderVictim" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1048980951" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.028614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6263" name="ExactCornerSealedSideCellBlocksBothDirections" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.ExactCornerSealedSideCellBlocksBothDirections" methodname="ExactCornerSealedSideCellBlocksBothDirections" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2010398023" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.163608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6267" name="GroundAndBodyIntentDifferAtDestination" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.GroundAndBodyIntentDifferAtDestination" methodname="GroundAndBodyIntentDifferAtDestination" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1281683348" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.023488" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6265" name="HiddenCellStopsPreviewWithoutInspectingItsOccupants" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.HiddenCellStopsPreviewWithoutInspectingItsOccupants" methodname="HiddenCellStopsPreviewWithoutInspectingItsOccupants" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1673806542" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.233998" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6266" name="InvisibleOwnerCannotChangeKnownPreview" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.InvisibleOwnerCannotChangeKnownPreview" methodname="InvisibleOwnerCannotChangeKnownPreview" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2112613919" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.023575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6270" name="LegacyMeleeTraceStillStopsAtFloorObjects" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LegacyMeleeTraceStillStopsAtFloorObjects" methodname="LegacyMeleeTraceStillStopsAtFloorObjects" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1603423759" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.025207" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6275" name="LooseItemMayRestWithCreatureButNotSolidFurnitureAcrossItsFootprint" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LooseItemMayRestWithCreatureButNotSolidFurnitureAcrossItsFootprint" methodname="LooseItemMayRestWithCreatureButNotSolidFurnitureAcrossItsFootprint" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="17563865" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:52Z" duration="0.029947" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6260" name="LowFloorItemClearsButDeliberateLowAimHits" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LowFloorItemClearsButDeliberateLowAimHits" methodname="LowFloorItemClearsButDeliberateLowAimHits" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1944734927" result="Passed" start-time="2026-10-16 03:54:52Z" end-time="2026-10-16 03:54:53Z" duration="0.031171" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6262" name="LowMovementBlockerClearsFlightButCannotReceiveRestingItem" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LowMovementBlockerClearsFlightButCannotReceiveRestingItem" methodname="LowMovementBlockerClearsFlightButCannotReceiveRestingItem" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1665468232" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.029821" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6268" name="MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" methodname="MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1428882060" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.029756" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6271" name="OpenDoorIsPermeableAndClosedDoorBlocksWithoutChangingLegacyTrace" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.OpenDoorIsPermeableAndClosedDoorBlocksWithoutChangingLegacyTrace" methodname="OpenDoorIsPermeableAndClosedDoorBlocksWithoutChangingLegacyTrace" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2145158747" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.030320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6273" name="PreviewRestUsesTheWholeThrownFootprint" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.PreviewRestUsesTheWholeThrownFootprint" methodname="PreviewRestUsesTheWholeThrownFootprint" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1830833673" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.099310" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6269" name="SameCellGroundHasNoFlightAndNoImplicitSelfHit" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.SameCellGroundHasNoFlightAndNoImplicitSelfHit" methodname="SameCellGroundHasNoFlightAndNoImplicitSelfHit" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="777015576" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.029583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6264" name="StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" methodname="StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1367282768" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.031835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6272" name="WideOwnerIsTargetedAtOccupiedContactNotEmptyAnchor" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.WideOwnerIsTargetedAtOccupiedContactNotEmptyAnchor" methodname="WideOwnerIsTargetedAtOccupiedContactNotEmptyAnchor" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1189700200" result="Passed" start-time="2026-10-16 03:54:53Z" end-time="2026-10-16 03:54:53Z" duration="0.028937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

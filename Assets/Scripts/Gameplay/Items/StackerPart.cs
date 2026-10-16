@@ -88,6 +88,8 @@ namespace CavesOfOoo.Core
 
             StackCount += toMerge;
             otherStacker.StackCount -= toMerge;
+            ThrowingRules.OnStackChanged(ParentEntity);
+            ThrowingRules.OnStackChanged(other);
             RefreshCarriedOwners(ParentEntity, other);
             return toMerge;
         }
@@ -103,6 +105,7 @@ namespace CavesOfOoo.Core
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
             StackCount -= count;
+            ThrowingRules.OnStackChanged(ParentEntity);
             RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = count;
@@ -122,6 +125,7 @@ namespace CavesOfOoo.Core
             if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
             StackCount--;
+            ThrowingRules.OnStackChanged(ParentEntity);
             RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = 1;

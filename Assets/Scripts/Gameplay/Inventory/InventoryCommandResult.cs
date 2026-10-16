@@ -10,9 +10,16 @@ namespace CavesOfOoo.Core.Inventory
         Exception
     }
 
+    public enum InventoryCommandState { Cancelled, ReversibleFailure, Deferred, Completed, CommittedPartial }
+
     public sealed class InventoryCommandResult
     {
         public bool Success { get; }
+        public InventoryCommandState State { get; }
+        /// <summary>A world action crossed its irreversible boundary. Independent
+        /// of ordinary inventory success; legacy callers still pay on partial throws.</summary>
+        public bool ActionCommitted { get; }
+        public string FailurePhase { get; }
 
         public InventoryCommandErrorCode ErrorCode { get; }
 
@@ -24,22 +31,39 @@ namespace CavesOfOoo.Core.Inventory
             bool success,
             InventoryCommandErrorCode errorCode,
             string errorMessage,
-            InventoryValidationResult validation)
+            InventoryValidationResult validation,
+            InventoryCommandState? state = null, bool actionCommitted = false, string failurePhase = "")
         {
             Success = success;
             ErrorCode = errorCode;
             ErrorMessage = errorMessage ?? string.Empty;
             Validation = validation;
+            State = state ?? (success ? InventoryCommandState.Completed : InventoryCommandState.ReversibleFailure);
+            ActionCommitted = actionCommitted;
+            FailurePhase = failurePhase ?? string.Empty;
         }
 
-        public static InventoryCommandResult Ok()
+        public static InventoryCommandResult Ok(bool actionCommitted = false)
         {
             return new InventoryCommandResult(
                 success: true,
                 errorCode: InventoryCommandErrorCode.None,
                 errorMessage: string.Empty,
-                validation: InventoryValidationResult.Valid());
+                validation: InventoryValidationResult.Valid(), actionCommitted: actionCommitted);
         }
+
+        public static InventoryCommandResult CommittedPartial(string message, string phase = "") =>
+            new InventoryCommandResult(true, InventoryCommandErrorCode.ExecutionFailed, message,
+                InventoryValidationResult.Valid(), InventoryCommandState.CommittedPartial, true, phase);
+
+        public static InventoryCommandResult Deferred() => new InventoryCommandResult(false,
+            InventoryCommandErrorCode.None, string.Empty, InventoryValidationResult.Valid(), InventoryCommandState.Deferred);
+
+        public static InventoryCommandResult Cancelled(string message = "") => new InventoryCommandResult(false,
+            InventoryCommandErrorCode.None, message, InventoryValidationResult.Valid(), InventoryCommandState.Cancelled);
+
+        public InventoryCommandResult WithActionCommitted() => new InventoryCommandResult(Success,
+            ErrorCode, ErrorMessage, Validation, State, true, FailurePhase);
 
         public static InventoryCommandResult Fail(
             InventoryCommandErrorCode errorCode,
@@ -80,7 +104,7 @@ namespace CavesOfOoo.Core.Inventory
 
         public InventoryCommandResult WithValidation(InventoryValidationResult validation)
         {
-            return new InventoryCommandResult(Success, ErrorCode, ErrorMessage, validation);
+            return new InventoryCommandResult(Success, ErrorCode, ErrorMessage, validation, State, ActionCommitted, FailurePhase);
         }
     }
 }

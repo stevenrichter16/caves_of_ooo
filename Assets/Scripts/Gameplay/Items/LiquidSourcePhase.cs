@@ -6,7 +6,7 @@ namespace CavesOfOoo.Core
     {
         public static bool CanDrawWater(Zone zone, Entity source)
         {
-            if (source == null || zone == null || source.SpatialZone != zone) return false;
+            if (source == null || zone == null || source.SpatialZone != zone || source.HasPart<FiniteLiquidFilmPart>()) return false;
             var cell = zone.GetEntityCell(source); var physics = source.GetPart<PhysicsPart>();
             // Existing literal pools/springs/wells may have no PhysicsPart. Phase
             // admission preserves that source contract, with actual world ownership.

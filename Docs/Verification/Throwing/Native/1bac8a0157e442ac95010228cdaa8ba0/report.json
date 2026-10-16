@@ -1,0 +1,27 @@
+{
+  "runId": "1bac8a0157e442ac95010228cdaa8ba0",
+  "complete": false,
+  "failures": 2,
+  "errors": 0,
+  "fatal": "System.InvalidOperationException: bounded native row navigation\n  at CavesOfOoo.Scenarios.Custom.ThrowingNativePlayer+<SelectRow>d__67.MoveNext () [0x000ba] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ThrowingNativePlayer.cs:321 \n  at CavesOfOoo.Scenarios.Custom.ThrowingNativePlayer+<RunSafely>d__74.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ThrowingNativePlayer.cs:368 ",
+  "seconds": 35.7556678,
+  "checks": [
+    "PASS isolated_fixture_no_invincibility",
+    "FAIL precondition"
+  ],
+  "observations": [],
+  "screenshots": [],
+  "frameTiming": {
+    "samples": 27429,
+    "elapsedSeconds": 34.07794,
+    "p50Milliseconds": 0.9924178,
+    "p95Milliseconds": 1.91507936,
+    "p99Milliseconds": 5.497038,
+    "maxMilliseconds": 976.7449,
+    "window": "First up to90 seconds of actual fixture-ready native route; ends with route if earlier. No padded idle.",
+    "scope": "Unity unscaled frame duration includes menu input pacing, capture work, save/load and editor overhead; not pure renderer, GC attribution or Steam Deck performance."
+  },
+  "fixture": "Isolated seed64 N/Classic bootstrap. Original zone cleared to a bounded stone floor, player at20,12 with Strength/Agility30 and capacity500. Actual MarlbackGleaner at25,12 has no Brain, HP500 and natural AV/DV0. Actual equipped ShortSword, carried Dagger stack3, Warhammer, WaterTonic; separate floor Dagger22,12. Five throwing skills granted and command RNG seeded123. All modifications occur before observations; gameplay, selectors, saves and loads then use native keyboard/synthetic gamepad input.",
+  "canVerify": "Equipped/carried real inventory and Look world-source routes, true skill source picker, cancellation/restoration and no payment, body/ground/focus previews, Y/LB/B/A and D-pad dispatch, one-action scheduler accounting, exact physical item identities, consumed finite tonic, Measured preparation and real cooldown, conditional Driving push, Recovery step and no auto-equip, stable F5/F6 roundtrips with preparation/residue/custody/debts.",
+  "cannotVerify": "Controlled fixture does not prove natural acquisition, AI behavior, balance, encounter quality, physical Steam Deck controls or performance. Synthetic controller states exercise production mapping but not Steam Input. Pixel legibility and animation quality require independent review of the native screenshots. Native launcher restores the preceding scene/save root/preferences; this is not the user's campaign."
+}

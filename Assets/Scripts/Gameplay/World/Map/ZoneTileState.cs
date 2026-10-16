@@ -51,6 +51,9 @@ namespace CavesOfOoo.Core
         {
             public string Id;
             public int Turns;
+            // Runtime/source-owned projection. Ordinary writes keep an empty owner.
+            // The session serializer rebuilds these from saved finite pool entities.
+            public string ProjectionOwnerId = "";
         }
 
         /// <summary>One tile's worth of writing. Public fields so the
@@ -91,6 +94,7 @@ namespace CavesOfOoo.Core
         /// just that cell. Never a full-zone dirty — that is for FOV and
         /// lightmap changes only (CLAUDE.md perf rule 4).</summary>
         public System.Action<int, int> OnCellChanged;
+        internal System.Action<int, int, string> OnCoatingConsumed;
 
         /// <summary>Runtime cache epoch for opaque cloud changes, not ordinary
         /// coating/energy writes. Save data remains only the authored tile state.</summary>
@@ -156,7 +160,7 @@ namespace CavesOfOoo.Core
         {
             for (int i = 0; i < layers.Count; i++)
             {
-                if (layers[i].Id != id) continue;
+                if (layers[i].Id != id || !string.IsNullOrEmpty(layers[i].ProjectionOwnerId)) continue;
                 // Refresh takes the LONGER duration: re-applying must
                 // never shorten what is already there.
                 if (turns > layers[i].Turns) layers[i].Turns = turns;
@@ -167,9 +171,10 @@ namespace CavesOfOoo.Core
 
         private static int LayerTurns(List<Layer> layers, string id)
         {
+            int turns = 0;
             for (int i = 0; i < layers.Count; i++)
-                if (layers[i].Id == id) return layers[i].Turns;
-            return 0;
+                if (layers[i].Id == id && layers[i].Turns > turns) turns = layers[i].Turns;
+            return turns;
         }
 
         /// <summary>Writes a liquid coating. Coatings COEXIST — water and
@@ -180,6 +185,37 @@ namespace CavesOfOoo.Core
             if (!InBounds(x, y) || string.IsNullOrEmpty(liquidId) || turns <= 0) return;
             WriteLayer(GetOrCreate(x, y).Coatings, liquidId, turns);
             Changed(x, y);
+        }
+
+        internal void WriteProjectedCoating(int x, int y, string liquidId, int turns, string ownerId)
+        {
+            if (!InBounds(x, y) || string.IsNullOrEmpty(liquidId) || string.IsNullOrEmpty(ownerId) || turns <= 0) return;
+            var layers = GetOrCreate(x, y).Coatings;
+            for (int i = 0; i < layers.Count; i++)
+            {
+                var layer = layers[i];
+                if (layer.Id != liquidId || layer.ProjectionOwnerId != ownerId) continue;
+                if (layer.Turns == turns) return;
+                layer.Turns = turns; Changed(x, y); return;
+            }
+            layers.Add(new Layer { Id = liquidId, Turns = turns, ProjectionOwnerId = ownerId });
+            Changed(x, y);
+        }
+        internal void RemoveProjectedCoating(int x, int y, string liquidId, string ownerId)
+        {
+            var layers = Get(x, y)?.Coatings; if (layers == null) return;
+            bool removed = false;
+            for (int i = layers.Count - 1; i >= 0; i--)
+                if (layers[i].Id == liquidId && layers[i].ProjectionOwnerId == ownerId) { layers.RemoveAt(i); removed = true; }
+            if (removed) { Changed(x, y); DropIfEmpty(x, y); }
+        }
+        internal void RemoveUnprojectedCoating(int x, int y, string liquidId)
+        {
+            var layers = Get(x, y)?.Coatings; if (layers == null) return;
+            bool removed = false;
+            for (int i = layers.Count - 1; i >= 0; i--)
+                if (layers[i].Id == liquidId && string.IsNullOrEmpty(layers[i].ProjectionOwnerId)) { layers.RemoveAt(i); removed = true; }
+            if (removed) { Changed(x, y); DropIfEmpty(x, y); }
         }
 
         public bool HasCoating(int x, int y, string liquidId)
@@ -210,7 +246,18 @@ namespace CavesOfOoo.Core
         /// <summary>Removes a specific coating. Used when a projected
         /// pool entity leaves its cell.</summary>
         public bool RemoveCoating(int x, int y, string liquidId)
-            => RemoveLayer(Get(x, y)?.Coatings, liquidId, x, y);
+        {
+            var layers = Get(x, y)?.Coatings;
+            if (layers == null || string.IsNullOrEmpty(liquidId)) return false;
+            bool removed = false;
+            for (int i = layers.Count - 1; i >= 0; i--)
+                if (layers[i].Id == liquidId) { layers.RemoveAt(i); removed = true; }
+            if (!removed) return false;
+            // Consuming a visible layer also consumes its finite physical sources.
+            // Pool-owner removal uses the narrower projection API and does not recurse.
+            OnCoatingConsumed?.Invoke(x, y, liquidId);
+            Changed(x, y); DropIfEmpty(x, y); return true;
+        }
 
         /// <summary>Removes a specific residue.</summary>
         public bool RemoveResidue(int x, int y, string residueId)
@@ -316,7 +363,13 @@ namespace CavesOfOoo.Core
             var s = Get(x, y);
             if (s == null) return 0;
 
-            int n = s.Coatings.Count + s.Residues.Count;
+            int n = s.Residues.Count;
+            for (int i = 0; i < s.Coatings.Count; i++)
+            {
+                bool duplicate = false;
+                for (int j = 0; j < i; j++) if (s.Coatings[j].Id == s.Coatings[i].Id) { duplicate = true; break; }
+                if (!duplicate) n++;
+            }
             if (s.Heat > 0) n++;
             if (s.Cold > 0) n++;
             if (s.Charge > 0) n++;
@@ -332,7 +385,10 @@ namespace CavesOfOoo.Core
             if (removed == 0) return 0;
 
             bool before = ObscuresSight(x, y);
+            var state = Get(x, y);
             _states.Remove(Key(x, y));
+            if (state != null && OnCoatingConsumed != null)
+                for (int i = 0; i < state.Coatings.Count; i++) OnCoatingConsumed(x, y, state.Coatings[i].Id);
             if (before) SightChanged();
             Changed(x, y);
             return removed;

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="13" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-16 03:20:53Z" end-time="2026-10-16 03:20:55Z" duration="1.920792">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29263" result="Failed" site="Child" start-time="2026-10-16 03:20:53Z" end-time="2026-10-16 03:20:55Z" duration="1.920792" total="25" passed="13" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36073" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29263" result="Failed" site="Child" start-time="2026-10-16 03:20:53Z" end-time="2026-10-16 03:20:55Z" duration="1.815407" total="25" passed="13" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70314" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36074" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29263" result="Failed" site="Child" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:55Z" duration="1.722904" total="25" passed="13" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36075" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29263" result="Failed" site="Child" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:55Z" duration="1.524003" total="25" passed="13" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="6213" name="ThrowLifecycleTests" fullname="CavesOfOoo.Tests.ThrowLifecycleTests" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:55Z" duration="0.921394" total="14" passed="3" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="6226" name="ActorMovedByUnequipCallbackCannotLaunchFromCapturedOldCell" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.ActorMovedByUnequipCallbackCannotLaunchFromCapturedOldCell" methodname="ActorMovedByUnequipCallbackCannotLaunchFromCapturedOldCell" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="426130329" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.059549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.ActorMovedByUnequipCallbackCannotLaunchFromCapturedOldCell () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:118
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6221" name="CloneInitializationFailureDoesNotLoseAStackUnit" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.CloneInitializationFailureDoesNotLoseAStackUnit" methodname="CloneInitializationFailureDoesNotLoseAStackUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="2134380657" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.025786" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.CloneInitializationFailureDoesNotLoseAStackUnit () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6214" name="DamageObserverFailureCannotRefundOrDuplicateTheLaunchedDagger" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.DamageObserverFailureCannotRefundOrDuplicateTheLaunchedDagger" methodname="DamageObserverFailureCannotRefundOrDuplicateTheLaunchedDagger" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="2026232891" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.027408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A committed partial throw must still tell legacy input to pay.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.DamageObserverFailureCannotRefundOrDuplicateTheLaunchedDagger () [0x0007a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:49
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6224" name="EmptyOrNegativeStackCannotLaunch" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.EmptyOrNegativeStackCannotLaunch" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.127474" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6222" name="EmptyOrNegativeStackCannotLaunch(0)" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.EmptyOrNegativeStackCannotLaunch(0)" methodname="EmptyOrNegativeStackCannotLaunch" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="526467548" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.021610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.EmptyOrNegativeStackCannotLaunch (System.Int32 count) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6223" name="EmptyOrNegativeStackCannotLaunch(-1)" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.EmptyOrNegativeStackCannotLaunch(-1)" methodname="EmptyOrNegativeStackCannotLaunch" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="840426029" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.021061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.EmptyOrNegativeStackCannotLaunch (System.Int32 count) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6215" name="LandingObserverFailureCannotRefundAndDoesNotSuppressLaterReceipts" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.LandingObserverFailureCannotRefundAndDoesNotSuppressLaterReceipts" methodname="LandingObserverFailureCannotRefundAndDoesNotSuppressLaterReceipts" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="486218219" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.020835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.LandingObserverFailureCannotRefundAndDoesNotSuppressLaterReceipts () [0x000a1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6227" name="NestedThrowDuringSplitCannotTakeAnotherUnitOfClaimedSource" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.NestedThrowDuringSplitCannotTakeAnotherUnitOfClaimedSource" methodname="NestedThrowDuringSplitCannotTakeAnotherUnitOfClaimedSource" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="1235732634" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.021998" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.NestedThrowDuringSplitCannotTakeAnotherUnitOfClaimedSource () [0x00078] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:132
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6216" name="OuterFailureAfterInnerLaunchStillReturnsPaidSuccessAndKeepsOneUnit" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.OuterFailureAfterInnerLaunchStillReturnsPaidSuccessAndKeepsOneUnit" methodname="OuterFailureAfterInnerLaunchStillReturnsPaidSuccessAndKeepsOneUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="283101166" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.020771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The outer executor must respect the shared launch boundary.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.OuterFailureAfterInnerLaunchStillReturnsPaidSuccessAndKeepsOneUnit () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:67
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6229" name="PlainThrowControlKeepsDeterministicDamageAndExactSingleUnit" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.PlainThrowControlKeepsDeterministicDamageAndExactSingleUnit" methodname="PlainThrowControlKeepsDeterministicDamageAndExactSingleUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="1911376469" result="Passed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.021936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6228" name="SaveRequestedDuringUnequipDoesNotCaptureTransientCustody" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.SaveRequestedDuringUnequipDoesNotCaptureTransientCustody" methodname="SaveRequestedDuringUnequipDoesNotCaptureTransientCustody" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="1730133773" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.038268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.SaveRequestedDuringUnequipDoesNotCaptureTransientCustody () [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:144
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6225" name="StaleInventoryBackReferenceCannotLaunchSomeoneElsesItem" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.StaleInventoryBackReferenceCannotLaunchSomeoneElsesItem" methodname="StaleInventoryBackReferenceCannotLaunchSomeoneElsesItem" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="285777567" result="Failed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:54Z" duration="0.076163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.StaleInventoryBackReferenceCannotLaunchSomeoneElsesItem () [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6220" name="ThrowCancelledDuringUnequipRetainsExactUnitAndDoesNotEmitFlight" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.ThrowCancelledDuringUnequipRetainsExactUnitAndDoesNotEmitFlight" methodname="ThrowCancelledDuringUnequipRetainsExactUnitAndDoesNotEmitFlight" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="784160087" result="Passed" start-time="2026-10-16 03:20:54Z" end-time="2026-10-16 03:20:55Z" duration="0.067789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6219" name="UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.211198" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6217" name="UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit(&quot;BeforeUnequip&quot;)" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit(&quot;BeforeUnequip&quot;)" methodname="UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="1755840869" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.063268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6218" name="UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit(&quot;AfterUnequip&quot;)" fullname="CavesOfOoo.Tests.ThrowLifecycleTests.UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit(&quot;AfterUnequip&quot;)" methodname="UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit" classname="CavesOfOoo.Tests.ThrowLifecycleTests" runstate="Runnable" seed="1435445717" result="Failed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.059450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(you)>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowLifecycleTests.UnequipCallbackFailureBeforeLaunchRestoresExactEquippedUnit (System.String eventName) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowLifecycleTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6248" name="ThrowTrajectoryTests" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.500326" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="6250" name="EntryEdgeIntersectionIsNotMissedByCenterHeight" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.EntryEdgeIntersectionIsNotMissedByCenterHeight" methodname="EntryEdgeIntersectionIsNotMissedByCenterHeight" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1469849953" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.077321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6252" name="ExactCornerSealedSideCellBlocksBothDirections" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.ExactCornerSealedSideCellBlocksBothDirections" methodname="ExactCornerSealedSideCellBlocksBothDirections" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2082312613" result="Failed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.082335" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 10
+  But was:  11
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ThrowTrajectoryTests.ExactCornerSealedSideCellBlocksBothDirections () [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/ThrowTrajectoryTests.cs:49
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6256" name="GroundAndBodyIntentDifferAtDestination" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.GroundAndBodyIntentDifferAtDestination" methodname="GroundAndBodyIntentDifferAtDestination" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2143278897" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.093034" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6254" name="HiddenCellStopsPreviewWithoutInspectingItsOccupants" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.HiddenCellStopsPreviewWithoutInspectingItsOccupants" methodname="HiddenCellStopsPreviewWithoutInspectingItsOccupants" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="836642263" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.021952" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6255" name="InvisibleOwnerCannotChangeKnownPreview" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.InvisibleOwnerCannotChangeKnownPreview" methodname="InvisibleOwnerCannotChangeKnownPreview" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="584352810" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.022104" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6259" name="LegacyMeleeTraceStillStopsAtFloorObjects" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LegacyMeleeTraceStillStopsAtFloorObjects" methodname="LegacyMeleeTraceStillStopsAtFloorObjects" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1642579006" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.021762" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6249" name="LowFloorItemClearsButDeliberateLowAimHits" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LowFloorItemClearsButDeliberateLowAimHits" methodname="LowFloorItemClearsButDeliberateLowAimHits" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1686173722" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.021345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6251" name="LowMovementBlockerClearsFlightButCannotReceiveRestingItem" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.LowMovementBlockerClearsFlightButCannotReceiveRestingItem" methodname="LowMovementBlockerClearsFlightButCannotReceiveRestingItem" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="2028522091" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.020938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6257" name="MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" methodname="MalformedProfilesFallbackConservativelyAndExplicitPermeableWins" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1939292442" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.020713" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6258" name="SameCellGroundHasNoFlightAndNoImplicitSelfHit" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.SameCellGroundHasNoFlightAndNoImplicitSelfHit" methodname="SameCellGroundHasNoFlightAndNoImplicitSelfHit" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1982262997" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.020957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6253" name="StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" fullname="CavesOfOoo.Tests.ThrowTrajectoryTests.StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" methodname="StableTiePrefersSealedCoverOverBodyRegardlessOfInsertion" classname="CavesOfOoo.Tests.ThrowTrajectoryTests" runstate="Runnable" seed="1277018422" result="Passed" start-time="2026-10-16 03:20:55Z" end-time="2026-10-16 03:20:55Z" duration="0.020679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

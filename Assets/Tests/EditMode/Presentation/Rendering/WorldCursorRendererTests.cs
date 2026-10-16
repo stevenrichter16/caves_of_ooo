@@ -34,6 +34,22 @@ namespace CavesOfOoo.Tests
                 Object.DestroyImmediate(grid.gameObject);
         }
 
+        [Test] public void ThrowContactAndRestOutlinesDoNotOverpaintEachOther()
+        {
+            CreateZoneTilemap(out ZoneRenderer renderer);var zone=new Zone("cursor-overlap");
+            var actor=CreateEntity("Player","@","&Y",10);actor.SetTag("Creature");zone.AddEntity(actor,10,10);
+            var target=CreateEntity("Target","s","&R",10);target.SetTag("Creature");zone.AddEntity(target,13,10);
+            var item=CreateEntity("Dagger","/","&w",5);item.AddPart(new PhysicsPart{Takeable=true});
+            for(int x=10;x<=13;x++){zone.GetCell(x,10).IsVisible=true;zone.GetCell(x,10).Explored=true;}
+            var state=new WorldCursorState();state.Activate(WorldCursorMode.ThrowTarget,zone,13,10,10,10,20);
+            state.SetThrowPreview(false,false,ThrowPreview.Build(zone,actor,item,ThrowIntent.AtEntity(target,13,10),20,false,false));
+            renderer.SetZone(zone);renderer.SetWorldCursorState(state,actor);InvokeNonPublic(renderer,"LateUpdate");
+            var contact=GameObject.Find("ThrowArea9").GetComponent<LineRenderer>();
+            var rest=GameObject.Find("VaultLanding").GetComponent<LineRenderer>();
+            Assert.True(contact.enabled);Assert.True(rest.enabled);
+            Assert.Greater(contact.GetPosition(0).x-rest.GetPosition(0).x,(contact.widthMultiplier+rest.widthMultiplier)*.5f);
+        }
+
         [Test]
         public void CursorColor_IsRedForHostileCreature()
         {
@@ -46,6 +62,7 @@ namespace CavesOfOoo.Tests
             hostile.SetTag("Faction", "OutlandRaiders");
             zone.AddEntity(player, 10, 10);
             zone.AddEntity(hostile, 11, 10);
+            zone.GetCell(11,10).IsVisible=true;zone.GetCell(11,10).Explored=true;
 
             Color color = WorldCursorRenderer.GetCursorColor(zone.GetCell(11, 10), player);
 
@@ -69,6 +86,8 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(player, 10, 10);
             zone.AddEntity(item, 12, 10);
             zone.AddEntity(chest, 13, 10);
+            zone.GetCell(12,10).IsVisible=true;zone.GetCell(12,10).Explored=true;
+            zone.GetCell(13,10).IsVisible=true;zone.GetCell(13,10).Explored=true;
 
             Assert.AreEqual(QudColorParser.BrightYellow, WorldCursorRenderer.GetCursorColor(zone.GetCell(12, 10), player));
             Assert.AreEqual(QudColorParser.BrightCyan, WorldCursorRenderer.GetCursorColor(zone.GetCell(13, 10), player));

@@ -175,13 +175,15 @@ namespace CavesOfOoo.Rendering
         private enum ThrowOriginKind
         {
             Inventory,
-            LookWorld
+            LookWorld,
+            Skill
         }
 
         private enum ThrowPopupKind
         {
             SourcePicker,
-            ActionPicker
+            ActionPicker,
+            SkillPicker
         }
 
         private sealed class ThrowTargetState
@@ -190,6 +192,9 @@ namespace CavesOfOoo.Rendering
             public ThrowOriginKind Origin;
             public int SourceTileX;
             public int SourceTileY;
+            public ThrowMode Mode;
+            public ThrowIntent Intent;
+            public bool GroundAim,Focused;
         }
 
         private sealed class ThrowPopupState
@@ -202,6 +207,7 @@ namespace CavesOfOoo.Rendering
             public int SourceTileX;
             public int SourceTileY;
             public Entity SelectedItem;
+            public ThrowSelectionRequest SkillSelection;
         }
 
         private sealed class ThrowPopupOption
@@ -408,8 +414,17 @@ namespace CavesOfOoo.Rendering
             if (ZoneRenderer != null) ZoneRenderer.ClearAffordanceInput(this);
         }
 
-        private void OnDestroy() => SaveGameService.FlushPendingSaves();
-        private void OnApplicationQuit() => SaveGameService.FlushPendingSaves();
+        private void OnDestroy()
+        {
+            // A committed flight still owes its turn if presentation is torn down.
+            if(_throwDebtActor!=null)EndTurnAndProcess();
+            SaveGameService.FlushPendingSaves();
+        }
+        private void OnApplicationQuit()
+        {
+            if(_throwDebtActor!=null)EndTurnAndProcess();
+            SaveGameService.FlushPendingSaves();
+        }
 
         private void Update()
         {
@@ -460,8 +475,18 @@ namespace CavesOfOoo.Rendering
                 // HP/committed-death polling rather than Died-event subscription
                 // so preserved stat modifiers cannot hide a mortal injury.
                 int playerHp = PlayerEntity.GetStatValue("Hitpoints", 1);
-                if ((playerHp <= 0 || CombatSystem.IsDeathHandled(PlayerEntity))
-                    && !_deathScreenController.IsActive)
+                bool playerDead = playerHp <= 0 || CombatSystem.IsDeathHandled(PlayerEntity);
+                if (playerDead && _throwDebtActor != null)
+                {
+                    // A self-splash can kill its owner before the deferred FX
+                    // branch runs. Close that committed action before the death
+                    // modal takes input, so its save/load gate cannot stay locked.
+                    ZoneRenderer?.CancelWorldFx();
+                    _inputState = InputState.Normal;
+                    _pendingAbility = null;
+                    EndTurnAndProcess();
+                }
+                if (playerDead && !_deathScreenController.IsActive)
                 {
                     _deathScreenController.Activate(MessageLog.Add);
                 }
@@ -1156,41 +1181,60 @@ namespace CavesOfOoo.Rendering
 
         private void EndTurnAndProcess()
         {
-            // BETA AUDIT 🔴 #1 — before this guard, ANY exception in
-            // the turn pipeline (an NPC goal, an effect tick, a combat
-            // handler) escaped to Unity's frame loop with
-            // WaitingForInput stuck false: every key dead, no message,
-            // no recovery — the single worst first-playtester bounce
-            // in the codebase. Now one buggy NPC turn costs a turn.
+            var paidActor=_throwDebtActor??PlayerEntity;
+            var paidZone=_throwDebtZone??CurrentZone;
+            var paidTurns=_throwDebtTurns??TurnManager;
             try
             {
-                TurnManager.EndTurn(PlayerEntity, CurrentZone);
-                TurnManager.ProcessUntilPlayerTurn();
+            // EndTurn owns exception-safe mandatory payment. Even if an
+            // observer failed, resume scheduling once before accepting input.
+            // A ProcessUntilPlayerTurn failure is not retried: an NPC may have
+            // already produced an irreversible world outcome.
+            try
+            {
+                paidTurns.EndTurn(paidActor, paidZone);
             }
             catch (System.Exception ex)
             {
                 Debug.LogError($"[Turn] Exception during turn processing (recovered): {ex}");
                 MessageLog.Add("Something went wrong this turn — it was skipped.");
-                TurnManager.ForceYieldToPlayer();
             }
-            CropTime.ReconcileZone(CurrentZone, TurnManager.TickCount);
-            KitchenBatchPart.ReconcileZone(CurrentZone);
-            MaterialSimSystem.TickMaterialEntities(CurrentZone);
+            try
+            {
+                paidTurns?.ProcessUntilPlayerTurn();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"[Turn] Exception during turn processing (recovered): {ex}");
+                MessageLog.Add("Something went wrong this turn — it was skipped.");
+                paidTurns?.ForceYieldToPlayer();
+            }
+            if(paidTurns==null || paidZone==null)return;
+            CropTime.ReconcileZone(paidZone, paidTurns.TickCount);
+            KitchenBatchPart.ReconcileZone(paidZone);
+            MaterialSimSystem.TickMaterialEntities(paidZone);
             // PALIMPSEST P2 — decay tile state once per PLAYER turn.
             // Deliberately here and not on TickEnd, which fires once per
             // ACTOR: that would make a coating's lifetime depend on how
             // many creatures happen to share the zone.
-            ZoneTileStateSystem.OnPlayerTurnEnd(CurrentZone);
+            ZoneTileStateSystem.OnPlayerTurnEnd(paidZone);
             // FELLING W0.1 — hour-band diff. AFTER the tile tick (band-
             // driven terrain in later phases must see the band the turn
             // ENDED in) and outside TurnManager.EndTurn (which fires per
             // actor and owns the message-log turn divider). A rest's +60
             // or a world-map crossing can jump several bands in this one
             // call; the clock reports one transition either way.
-            WorldClock.NotifyPlayerTurnEnd(TurnManager.TickCount);
+            WorldClock.NotifyPlayerTurnEnd(paidTurns.TickCount);
             // W2.3 — the Height-band glare reads the same tick the clock
             // just reported (WorldClock's first gameplay consumer).
-            BeatingGlareSystem.OnPlayerTurnEnd(PlayerEntity, CurrentZone, TurnManager.TickCount);
+            BeatingGlareSystem.OnPlayerTurnEnd(paidActor, paidZone, paidTurns.TickCount);
+            }
+            finally
+            {
+                ActionResolutionGuard.SettlePendingAction(_throwDebtActor);
+                _throwDebtActor=null;_throwDebtZone=null;_throwDebtTurns=null;
+                SaveGameService.FlushStableRequests();
+            }
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
             // that changed during the turn cycle. Player movement upgrades
@@ -2103,12 +2147,13 @@ namespace CavesOfOoo.Rendering
             // — the next arrow key goes through normal movement instead
             // of direction targeting. Only reset to Normal if we're still
             // in AbilityManagerOpen at this point (i.e., the user
-            // closed without activating). Camera restoration runs
-            // unconditionally because both AwaitingDirection and Normal
-            // use the gameplay camera (the popup-overlay camera was
-            // installed when the manager opened).
+            // closed without activating).
             if (_inputState == InputState.AbilityManagerOpen)
                 _inputState = InputState.Normal;
+            // Throwing activation has already opened a replacement modal.
+            // Keep its camera and defer notices until that selection closes.
+            if (_inputState == InputState.ThrowPopupOpen)
+                return;
             if (TryOpenAnnouncement()) return;
             ExitCenteredPopupOverlayViewToGameplay();
         }
@@ -2162,6 +2207,8 @@ namespace CavesOfOoo.Rendering
             }
             Cell playerCell = CurrentZone?.GetEntityCell(PlayerEntity);
             if (playerCell == null) return;
+
+            if(TryOpenThrowSkill(ability))return;
 
             if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
             {
@@ -2473,6 +2520,7 @@ namespace CavesOfOoo.Rendering
                 SourceTileX = sourceTileX,
                 SourceTileY = sourceTileY
             };
+            _throwSelectionActor=PlayerEntity;_throwSelectionZone=CurrentZone;
 
             int maxRange = HandlingService.GetThrowRange(PlayerEntity, item);
             _worldCursorState.Activate(
@@ -2488,6 +2536,7 @@ namespace CavesOfOoo.Rendering
             _inputState = InputState.ThrowTargeting;
             _lastLookMousePosition = Input.mousePosition;
             ZoneRenderer?.ClearLookSnapshot();
+            RefreshThrowPreview(true);
             ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
             MessageLog.Add($"Throw {item.GetDisplayName()} - choose a target (range {maxRange}).");
             return true;
@@ -2495,11 +2544,17 @@ namespace CavesOfOoo.Rendering
 
         private void HandleThrowTargetingInput()
         {
+            if(_throwSelectionActor!=PlayerEntity || _throwSelectionZone!=CurrentZone)
+            {ExitThrowTargetingToNormal();return;}
             if (_pendingThrowTarget == null)
             {
                 ExitThrowTargetingToNormal();
                 return;
             }
+
+            RefreshThrowPreview();
+            if(InputHelper.GetKeyDown(KeyCode.Tab)){ToggleThrowAim();return;}
+            if(InputHelper.GetKeyDown(KeyCode.F)){ToggleThrowFocus();return;}
 
             if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
@@ -2551,11 +2606,13 @@ namespace CavesOfOoo.Rendering
                 return;
 
             _worldCursorState.SetPosition(nextX, nextY);
+            if(_inputState==InputState.ThrowTargeting)RefreshThrowPreview(true);
             ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
         }
 
         private bool TryUpdateThrowCursorFromMouse(bool applyOnHover)
         {
+            if(_inputState==InputState.ThrowTargeting && ThrowControlsContainMouse())return false;
             if (!_worldCursorState.Active || ZoneRenderer == null)
                 return false;
 
@@ -2575,6 +2632,7 @@ namespace CavesOfOoo.Rendering
                 return true;
 
             _worldCursorState.SetPosition(x, y);
+            if(_inputState==InputState.ThrowTargeting)RefreshThrowPreview(true);
             ZoneRenderer?.SetWorldCursorState(_worldCursorState, PlayerEntity);
             return true;
         }
@@ -2593,8 +2651,18 @@ namespace CavesOfOoo.Rendering
             if (_pendingThrowTarget == null)
                 return;
 
+            if(_pendingThrowTarget.Mode==ThrowMode.Measured)
+            {
+                var intent=_pendingThrowTarget.Intent;
+                if(!ThrowingRules.Prepare(PlayerEntity,_pendingThrowTarget.Item,CurrentZone,intent?.Target,
+                    intent==null?null:CurrentZone.GetCell(intent.X,intent.Y),out string reason))
+                {MessageLog.Add(reason);return;}
+                HoldThrowAction();ExitThrowTargetingToNormal();EndTurnAndProcess();SyncHotbarState();return;
+            }
+
             var result = InventorySystem.ExecuteCommand(
-                new ThrowItemCommand(_pendingThrowTarget.Item, _worldCursorState.X, _worldCursorState.Y, _combatRng),
+                new ThrowItemCommand(_pendingThrowTarget.Item, _pendingThrowTarget.Intent, _combatRng,
+                    _pendingThrowTarget.Mode,_pendingThrowTarget.Focused),
                 PlayerEntity,
                 CurrentZone);
 
@@ -2604,6 +2672,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if(result.ActionCommitted)HoldThrowAction();
+            if(!string.IsNullOrEmpty(result.ErrorMessage))MessageLog.Add(result.ErrorMessage);
             ExitThrowTargetingToNormal();
             _inputState = InputState.WaitingForFxResolution;
             _fxWaitStartedAt = Time.realtimeSinceStartup;
@@ -2620,6 +2690,8 @@ namespace CavesOfOoo.Rendering
             var cancelled = _pendingThrowTarget;
             ExitThrowTargetingToNormal();
 
+            if(cancelled.Origin==ThrowOriginKind.Skill){SyncHotbarState();return;}
+
             if (cancelled.Origin == ThrowOriginKind.Inventory)
             {
                 OpenInventory();
@@ -2632,6 +2704,7 @@ namespace CavesOfOoo.Rendering
 
         private void ExitThrowTargetingToNormal()
         {
+            _throwSelectionActor=null;_throwSelectionZone=null;_throwPreviewVersion=-1;_throwControlsRect=default;
             _pendingThrowTarget = null;
             _worldCursorState.Deactivate();
             ZoneRenderer?.ClearWorldCursor();
@@ -3352,7 +3425,7 @@ namespace CavesOfOoo.Rendering
         {
             var result = new List<Entity>();
             Cell cell = CurrentZone?.GetCell(tileX, tileY);
-            if (cell == null || !cell.IsVisible)
+            if (cell == null || !cell.IsVisible || !cell.Explored)
                 return result;
 
             for (int i = cell.Objects.Count - 1; i >= 0; i--)
@@ -3361,8 +3434,7 @@ namespace CavesOfOoo.Rendering
                 if (item == null || item == PlayerEntity)
                     continue;
 
-                var render = item.GetPart<RenderPart>();
-                if (render != null && !render.Visible)
+                if (!ThrowTrajectory.IsKnownOwner(cell, item))
                     continue;
 
                 if (HandlingService.CanThrow(PlayerEntity, item, out _))
@@ -3493,6 +3565,8 @@ namespace CavesOfOoo.Rendering
             if (_throwPopup == null || _throwPopup.CursorIndex < 0 || _throwPopup.CursorIndex >= _throwPopup.Options.Count)
                 return;
 
+            if(_throwPopup.Kind==ThrowPopupKind.SkillPicker){ExecuteThrowSkillSelection();return;}
+
             if (_throwPopup.Kind == ThrowPopupKind.SourcePicker)
             {
                 Entity selectedItem = _throwPopup.Options[_throwPopup.CursorIndex].Item;
@@ -3516,7 +3590,9 @@ namespace CavesOfOoo.Rendering
             ClearThrowPopupTiles();
             ExitCenteredPopupOverlayViewToGameplay();
 
-            if (_throwPopup != null)
+            if(_throwPopup?.Kind==ThrowPopupKind.SkillPicker)
+                _inputState=InputState.Normal;
+            else if (_throwPopup != null)
                 RestoreLookModeAt(_throwPopup.SourceTileX, _throwPopup.SourceTileY);
             else
                 _inputState = InputState.LookMode;
@@ -3730,6 +3806,8 @@ namespace CavesOfOoo.Rendering
                 MessageLog.Add("You have no valid source cell.");
                 return;
             }
+
+            if(TryOpenThrowSkill(ability))return;
 
             if (ability.TargetingMode == AbilityTargetingMode.SelfCentered)
             {

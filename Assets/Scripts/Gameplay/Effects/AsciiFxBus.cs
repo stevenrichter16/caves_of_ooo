@@ -47,6 +47,7 @@ namespace CavesOfOoo.Core
         public Zone Zone;
         public Entity Anchor;
         public List<Point> Path;
+        public List<ThrowFlightPoint> ThrowFlight;
         public int X;
         public int Y;
         public int DX;
@@ -79,6 +80,7 @@ namespace CavesOfOoo.Core
             Zone = null;
             Anchor = null;
             Path = null;
+            ThrowFlight = null;
             X = 0;
             Y = 0;
             DX = 0;
@@ -170,13 +172,20 @@ namespace CavesOfOoo.Core
             Pool.Push(request);
         }
 
+        public static void EmitThrow(Zone zone, ThrowTraceResult trace)
+        {
+            if(trace==null)return;
+            EmitProjectile(zone,trace.Path,AsciiFxTheme.ThrownObject,true,true,0f,trace.FlightPath);
+        }
+
         public static void EmitProjectile(
             Zone zone,
             IReadOnlyList<Point> path,
             AsciiFxTheme theme,
             bool trail,
             bool blocksTurnAdvance,
-            float delay = 0f)
+            float delay = 0f,
+            IReadOnlyList<ThrowFlightPoint> throwFlight = null)
         {
             if (zone == null || path == null || path.Count == 0)
                 return;
@@ -190,6 +199,11 @@ namespace CavesOfOoo.Core
             req.Zone = zone;
             req.Theme = theme;
             req.Path = copy;
+            if(throwFlight!=null && throwFlight.Count==path.Count)
+            {
+                req.ThrowFlight=new List<ThrowFlightPoint>(throwFlight.Count);
+                for(int i=0;i<throwFlight.Count;i++)req.ThrowFlight.Add(throwFlight[i]);
+            }
             req.Trail = trail;
             req.BlocksTurnAdvance = blocksTurnAdvance;
             req.Delay = delay < 0f ? 0f : delay;

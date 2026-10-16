@@ -1,0 +1,51 @@
+{
+  "Skills": [
+    {
+      "Name": "Throwing",
+      "Class": "ThrowingSkill",
+      "Cost": 1,
+      "MaxRank": 1,
+      "Description": "Sure Grip: a physical throw gets one retry after its accuracy roll misses. No extra item or action. Tonics and gas do not use physical accuracy. Ordinary throwing, low-clutter clearance and ground throws remain available without this skill.",
+      "Foreground": "y",
+      "Detail": "Y",
+      "Powers": [
+        {
+          "Name": "Measured Throw",
+          "Class": "Throwing_MeasuredThrow",
+          "Cost": 1,
+          "MaxRank": 1,
+          "Description": "Spend an action preparing an exact physical item against a visible target. Your next action must throw that item at that target: gain +4 penetration and cap only if it strikes the intended owner. Moving, changing the source or another action interrupts. Preparation cooldown 6; throwing still costs its own action.",
+          "Foreground": "y",
+          "Detail": "Y"
+        },
+        {
+          "Name": "Driving Throw",
+          "Class": "Throwing_DrivingThrow",
+          "Cost": 1,
+          "MaxRank": 1,
+          "Description": "Throw a physical item weighing at least 8. After positive damage and item effects, push the same surviving creature one cell outward if it is still at impact. Braces and obstacles can stop the push. No extra damage or stun; the item lands at impact. Cooldown 12 even on a miss.",
+          "Foreground": "y",
+          "Detail": "Y"
+        },
+        {
+          "Name": "Recovering Step",
+          "Class": "Throwing_RecoveringStep",
+          "Cost": 1,
+          "MaxRank": 1,
+          "Description": "Step onto one adjacent physical item you threw, then secure that exact unit without equipping. Normal hazards, capacity and pickup permission apply. Once you step, the action and cooldown are paid even if collection fails. Ground rethrow remains free of a pickup requirement. Cooldown 6.",
+          "Foreground": "y",
+          "Detail": "Y"
+        },
+        {
+          "Name": "Focused Splash",
+          "Class": "Throwing_FocusedSplash",
+          "Cost": 1,
+          "MaxRank": 1,
+          "Description": "Choose Broad or Focused while throwing a tonic. Focused narrows the initial splash to one cell, preserving the authored dose and finite matter budget. Multiple occupants there can be affected; secondary reactions can spread. No gas-grenade change. New sessions default to Broad.",
+          "Foreground": "y",
+          "Detail": "Y"
+        }
+      ]
+    }
+  ]
+}

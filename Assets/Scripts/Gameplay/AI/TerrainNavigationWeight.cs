@@ -50,7 +50,7 @@ namespace CavesOfOoo.Core
             foreach (var owner in cell.Occupants)
             {
                 var pool = owner?.GetPart<LiquidPoolPart>();
-                if (pool == null || pool.Volume <= 0) continue;
+                if (pool == null || pool.Volume <= 0 || owner.GetPart<FiniteLiquidFilmPart>()?.IsActive == false) continue;
                 var def = LiquidRegistry.Get(pool.LiquidId);
                 if (def == null) continue;
                 int weight = def.BlockAction ? MaxPenalty : 0;

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -50,13 +52,20 @@ namespace CavesOfOoo.Core
                 if (entity == null) continue;
                 if (entity == item) continue;          // item doesn't receive its own landing
                 if (entity == thrower) continue;       // thrower doesn't react to their own throw
+                if (entity.SpatialZone != zone || zone.GetEntityCell(entity) == null) continue;
+                // A preceding listener may have retrieved the exact unit. A
+                // later listener must not receive a stale ground-location claim.
+                if (item.SpatialZone != zone || zone.GetEntityCell(item) != landingCell) break;
 
                 var e = GameEvent.New(ID);
                 e.SetParameter("Item", (object)item);
                 e.SetParameter("Thrower", (object)thrower);
                 e.SetParameter("LandingCell", (object)landingCell);
-                entity.FireEvent(e);
-                e.Release();
+                try { entity.FireEvent(e); }
+                catch (Exception error)
+                { Diag.Record("event", "ItemLandedObserverFailed", actor: thrower, target: entity,
+                    payload: new { error = error.GetType().Name, message = error.Message }); }
+                finally { e.Release(); }
             }
         }
     }

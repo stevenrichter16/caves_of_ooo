@@ -122,6 +122,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = ParentEntity;
                 physics.Equipped = null;
             }
+            ThrowingRules.OnItemCustodyChanged(item);
             RefreshHandlingCarryPenalty();
             return true;
         }
@@ -136,6 +137,7 @@ namespace CavesOfOoo.Core
             var physics = item.GetPart<PhysicsPart>();
             if (physics != null)
                 physics.InInventory = null;
+            ThrowingRules.OnItemCustodyChanged(item);
             RefreshHandlingCarryPenalty();
             return true;
         }
@@ -243,6 +245,7 @@ namespace CavesOfOoo.Core
             // Notify subscribers (LightMap, future systems) that the
             // wielder's equipment dictionary mutated. Closes the T2.2
             // cache-staleness 🟡 finding — see EquipmentChangeBus.cs docstring.
+            ThrowingRules.OnItemCustodyChanged(item);
             EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
@@ -273,6 +276,7 @@ namespace CavesOfOoo.Core
             // path. Bumps once for the whole equip op, not per-slot
             // (subscribers don't care about the slot, only that equipment
             // changed).
+            ThrowingRules.OnItemCustodyChanged(item);
             EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
@@ -314,6 +318,7 @@ namespace CavesOfOoo.Core
             }
             Objects.Add(item);
             RefreshHandlingCarryPenalty();
+            ThrowingRules.OnItemCustodyChanged(item);
             EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
@@ -334,6 +339,7 @@ namespace CavesOfOoo.Core
                 physics.InInventory = null;
                 physics.Equipped = ParentEntity;
             }
+            ThrowingRules.OnItemCustodyChanged(item);
             EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }
@@ -355,6 +361,7 @@ namespace CavesOfOoo.Core
             }
             Objects.Add(item);
             RefreshHandlingCarryPenalty();
+            ThrowingRules.OnItemCustodyChanged(item);
             EquipmentChangeBus.NotifyChanged(ParentEntity);
             return true;
         }

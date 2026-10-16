@@ -111,6 +111,13 @@ namespace CavesOfOoo.Core
                 sb.Append(delivery);
             }
 
+            string ground = ThrowPayloadResolver.DescribeGroundPolicy(item);
+            if (!string.IsNullOrEmpty(ground))
+            {
+                sb.Append("\n\nBroad shatters over the target and adjacent open cells. Focused Splash requires its skill and keeps the splash in one cell; the total liquid budget stays the same.\n");
+                sb.Append(ground);
+            }
+
             text = sb.ToString();
             return true;
         }
@@ -137,7 +144,7 @@ namespace CavesOfOoo.Core
                     case "Coating":
                         return "A quench medium - temper a weapon in it at the tinker's forge.";
                     case "Throwable":
-                        return "Made to be thrown - shatters over the target and adjacent tiles."
+                        return "Made to be thrown."
                             + " Can also quench a blade at the tinker's forge.";
                     case "Food":
                         return "A simple ration - edible anywhere, no still needed.";
@@ -157,7 +164,7 @@ namespace CavesOfOoo.Core
                 : "Applied when used.";
 
             if (tonic != null && tonic.HasThrowablePayload())
-                use += " Can be thrown - shatters over the target and adjacent tiles.";
+                use += " Can be thrown.";
 
             return use;
         }

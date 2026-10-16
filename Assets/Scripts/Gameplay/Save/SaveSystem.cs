@@ -515,6 +515,8 @@ namespace CavesOfOoo.Core
         public static SavePerformanceSample LastCompletedSavePerformance { get; private set; }
         /// <summary>True while an autosave is writing, queued, or awaiting completion delivery.</summary>
         public static bool HasPendingSave => PendingSaves.HasPending;
+        private static readonly HashSet<string> DeferredStableSlots = new HashSet<string>(StringComparer.Ordinal);
+        private static bool _deferredStableQuick;
 
         /// <summary>Overrides all implicit save paths and boot discovery for an
         /// isolated runtime. Null/empty uses the normal persistent Saves directory.
@@ -533,6 +535,7 @@ namespace CavesOfOoo.Core
         public static void RegisterRuntime(Func<GameSessionState> captureCurrent, Action<GameSessionState> applyLoaded, string newGameID = null)
         {
             FlushPendingSaves();
+            DeferredStableSlots.Clear(); _deferredStableQuick = false;
             _captureCurrent = captureCurrent;
             _applyLoaded = applyLoaded;
             _newGameID = newGameID;
@@ -544,6 +547,7 @@ namespace CavesOfOoo.Core
         /// mismatches. A missing registration gets one cached fallback identity.</summary>
         public static bool BeginNewGame()
         {
+            if (ActionResolutionGuard.IsUnstable || MeleeStrikeScope.IsResolving) return false;
             if (_startingNewGame) return false;
             FlushPendingSaves();
             _startingNewGame = true;
@@ -669,6 +673,8 @@ namespace CavesOfOoo.Core
         /// checkpoints may be superseded. Pump or flush reports durable completion.</summary>
         public static bool RequestQuickSave()
         {
+            if (ActionResolutionGuard.IsUnstable)
+            { _deferredStableQuick = true; return true; }
             if(MeleeStrikeScope.IsResolving)return false;
             try
             {
@@ -714,6 +720,8 @@ namespace CavesOfOoo.Core
 
         public static bool SaveSlot(string name)
         {
+            if (ActionResolutionGuard.IsUnstable)
+            { DeferredStableSlots.Add(name); return true; }
             if(MeleeStrikeScope.IsResolving)return false;
             FlushPendingSaves();
             try
@@ -729,6 +737,21 @@ namespace CavesOfOoo.Core
                 Debug.LogError($"[Save] Save of slot '{name}' failed: {ex}");
                 return false;
             }
+        }
+
+        /// <summary>Capture accepted transient requests only after gameplay and
+        /// native action debt settle. A pending request stores no transient graph.
+        /// Callers must settle their owner turn before calling this method.</summary>
+        public static bool FlushStableRequests()
+        {
+            if (ActionResolutionGuard.IsUnstable || MeleeStrikeScope.IsResolving) return false;
+            var slots = new List<string>(DeferredStableSlots);
+            bool quick = _deferredStableQuick;
+            DeferredStableSlots.Clear(); _deferredStableQuick = false;
+            bool succeeded = true;
+            foreach (var name in slots) succeeded &= SaveSlot(name);
+            if (quick && !slots.Contains(QuickName)) succeeded &= RequestQuickSave();
+            return succeeded;
         }
 
         private static CapturedSave CaptureSave(string name, GameSessionState state)
@@ -803,6 +826,7 @@ namespace CavesOfOoo.Core
 
         public static bool LoadSlot(string name)
         {
+            if (ActionResolutionGuard.IsUnstable || MeleeStrikeScope.IsResolving) return false;
             FlushPendingSaves();
             if (_applyLoaded == null)
                 return false;

@@ -51,11 +51,11 @@ namespace CavesOfOoo.Tests
             // adjacent marlback at (12,11). Throw an AcidTonic at (12,10).
             // BOTH marlbacks should end up with AcidicEffect (3×3 AOE).
             var ctx = _harness.CreateContext();
-            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
+            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out var tonic);
             var primary = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
             var adjacent = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 11);
 
-            ExecuteThrow(thrower, ctx, 12, 10);
+            ExecuteThrow(thrower, ctx, tonic, 12, 10);
 
             Assert.IsTrue(primary.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
                 "Primary hit creature should have AcidicEffect.");
@@ -73,11 +73,11 @@ namespace CavesOfOoo.Tests
             // MarlbackScrabbler at (15,10) is 3 cells from impact (12,10) — Chebyshev
             // distance 3, outside radius 1.
             var ctx = _harness.CreateContext();
-            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
+            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out var tonic);
             ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10); // primary
             var farAway = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 10);
 
-            ExecuteThrow(thrower, ctx, 12, 10);
+            ExecuteThrow(thrower, ctx, tonic, 12, 10);
 
             var farEffects = farAway.GetPart<StatusEffectsPart>();
             // Far creature may or may not have a StatusEffectsPart at all
@@ -100,7 +100,7 @@ namespace CavesOfOoo.Tests
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out var tonic);
 
-            ExecuteThrow(thrower, ctx, 15, 10);
+            ExecuteThrow(thrower, ctx, tonic, 15, 10);
 
             Assert.IsNull(ctx.Zone.GetEntityCell(tonic),
                 "Shattered tonic must not remain in the zone.");
@@ -123,11 +123,11 @@ namespace CavesOfOoo.Tests
             // throw at a cell adjacent to the marlback so it's in AOE
             // radius 1 of an empty landing cell.
             var ctx = _harness.CreateContext();
-            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
+            var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out var tonic);
             var nearby = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 11);
 
             // Throw at (15, 10) — empty cell adjacent to the marlback.
-            ExecuteThrow(thrower, ctx, 15, 10);
+            ExecuteThrow(thrower, ctx, tonic, 15, 10);
 
             Assert.IsTrue(nearby.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
                 "Creature in 3×3 around miss cell should receive AOE effect.");
@@ -143,7 +143,7 @@ namespace CavesOfOoo.Tests
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out var tonic);
 
-            ExecuteThrow(thrower, ctx, 15, 10);
+            ExecuteThrow(thrower, ctx, tonic, 15, 10);
 
             // Exact wording is implementation detail; assert the message
             // mentions shatter and the tonic name.
@@ -210,7 +210,7 @@ namespace CavesOfOoo.Tests
             // "AOE applies to all 5 within radius 1 of the impact cell"
             // — not "trace stops at first creature."
             var ctx = _harness.CreateContext();
-            var thrower = SetupThrowerWithTonic(ctx, "FrostTonic", out _);
+            var thrower = SetupThrowerWithTonic(ctx, "FrostTonic", out var tonic);
 
             // s1 is the aimed-at target; HitEntity will resolve to s1 and
             // ImpactCell to (15,10). All 5 marlbacks are within radius 1
@@ -221,7 +221,7 @@ namespace CavesOfOoo.Tests
             var s4 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(16, 11);
             var s5 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(14, 11);
 
-            ExecuteThrow(thrower, ctx, 15, 10);
+            ExecuteThrow(thrower, ctx, tonic, 15, 10);
 
             Assert.IsTrue(s1.GetPart<StatusEffectsPart>().HasEffect<FrozenEffect>(), "s1 (target) hit");
             Assert.IsTrue(s2.GetPart<StatusEffectsPart>().HasEffect<FrozenEffect>(), "s2 (right) hit");
@@ -242,11 +242,11 @@ namespace CavesOfOoo.Tests
             // them too. (The "elemental tonic = battlefield trade-off"
             // design intent.)
             var ctx = _harness.CreateContext();
-            var thrower = SetupThrowerWithTonic(ctx, "WaterTonic", out _);
+            var thrower = SetupThrowerWithTonic(ctx, "WaterTonic", out var tonic);
             var ally = ctx.Spawn("Villager").NotRegisteredForTurns().At(15, 10);
             var enemy = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 11);
 
-            ExecuteThrow(thrower, ctx, 15, 10);
+            ExecuteThrow(thrower, ctx, tonic, 15, 10);
 
             Assert.IsTrue(ally.GetPart<StatusEffectsPart>().HasEffect<WetEffect>(),
                 "Friendly creature in AOE receives effect (friendly-fire policy).");
@@ -313,7 +313,7 @@ namespace CavesOfOoo.Tests
             var wall = ctx.Spawn("Wall").NotRegisteredForTurns().At(12, 10);
 
             // Throw past the wall.
-            ExecuteThrow(thrower, ctx, 14, 10);
+            ExecuteThrow(thrower, ctx, tonic, 14, 10);
 
             Assert.IsNull(ctx.Zone.GetEntityCell(tonic),
                 "Tonic should be consumed even when a wall blocks the throw.");
@@ -361,7 +361,7 @@ namespace CavesOfOoo.Tests
             var thrower = SetupThrowerWithTonic(ctx, "LightningTonic", out var tonic);
             var victim = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
 
-            ExecuteThrow(thrower, ctx, 12, 10);
+            ExecuteThrow(thrower, ctx, tonic, 12, 10);
 
             Assert.IsTrue(victim.GetPart<StatusEffectsPart>().HasEffect<ElectrifiedEffect>(),
                 "Direct-hit victim should still get the tonic's effect after the AOE refactor.");
@@ -400,25 +400,26 @@ namespace CavesOfOoo.Tests
         private static InventoryCommandResult ExecuteThrow(
             Entity thrower,
             ScenarioContext ctx,
+            Entity tonic,
             int targetX,
             int targetY)
         {
             var inv = thrower.GetPart<InventoryPart>();
-            // Find any throwable in inventory (the tonic we just added).
-            Entity tonic = null;
-            for (int i = 0; i < inv.Objects.Count; i++)
-            {
-                if (inv.Objects[i].GetPart<TonicPart>() != null)
-                {
-                    tonic = inv.Objects[i];
-                    break;
-                }
-            }
-            if (tonic == null) throw new InvalidOperationException("No tonic in thrower inventory");
+            // Villagers can carry their own tonic. Exercise the exact unit
+            // this test supplied rather than whichever stock item sorts first.
+            Assert.IsNotNull(tonic, "The test must name its intended tonic.");
+            Assert.IsTrue(inv.Objects.Contains(tonic),
+                "The exact intended tonic must be carried before the throw.");
+            Assert.AreEqual(1, tonic.GetPart<StackerPart>()?.StackCount ?? 1,
+                "This helper exercises one unmerged tonic; stack coverage is separate.");
 
             var cmd = new ThrowItemCommand(tonic, targetX, targetY);
             var result = InventorySystem.ExecuteCommand(cmd, thrower, ctx.Zone);
             Assert.IsTrue(result.Success, "Throw should succeed: " + result.ErrorMessage);
+            Assert.IsFalse(inv.Objects.Contains(tonic),
+                "The exact selected tonic must be consumed, not a different carried tonic.");
+            Assert.IsNull(ctx.Zone.GetEntityCell(tonic),
+                "The selected tonic shatters rather than landing in the world.");
             return result;
         }
     }

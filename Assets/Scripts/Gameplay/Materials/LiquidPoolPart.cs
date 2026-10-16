@@ -78,6 +78,12 @@ namespace CavesOfOoo.Core
             if (e.ID != "EntityEnteredCell") return true;
 
             var mover = e.GetParameter<Entity>("Actor");
+            var film = ParentEntity?.GetPart<FiniteLiquidFilmPart>();
+            if (film != null)
+            {
+                film.Contact(mover, e.GetParameter<Zone>("Zone") ?? ParentEntity.SpatialZone, e);
+                return true;
+            }
             if (mover == null)
             {
                 Diag.Record("liquid", "CoatRejected", null, ParentEntity,

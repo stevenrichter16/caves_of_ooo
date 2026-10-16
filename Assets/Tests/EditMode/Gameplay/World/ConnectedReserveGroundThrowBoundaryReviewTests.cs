@@ -29,24 +29,41 @@ namespace CavesOfOoo.Tests
             return produce;
         }
 
-        // Exercise rollback after real extraction and landing, when the taking
-        // receipt has already been staged but may not publish knowledge.
+        // Launch is irreversible: an outer wrapper cannot erase a witnessed
+        // taking after its child already delivered the projectile.
         [TestCase(false)] [TestCase(true)]
-        public void OuterThrowFailureRestoresGroundUnitsAndExactClaimWithoutWitness(bool split)
+        public void OuterFailureAfterLaunchKeepsPaidTakingAndOnlyReleasesThrownClaim(bool split)
         {
             var produce = UncollectedProduce(split);
             var marker = produce.GetPart<ReserveYieldPart>();
             var result = InventorySystem.ExecuteCommand(new RefuseAfterThrow(produce), Player, Reserve);
-            Assert.False(result.Success);
-            Assert.AreEqual((4, 5), Reserve.GetEntityPosition(produce));
-            Assert.AreEqual(split ? 2 : 1, produce.GetPart<StackerPart>().StackCount);
-            Assert.AreEqual(2, Reserve.GetCell(4, 5).Objects.Where(e => e.BlueprintName == "MarlrootClod")
+            Assert.True(result.Success); Assert.True(result.ActionCommitted);
+            Assert.AreEqual(InventoryCommandState.CommittedPartial,result.State);
+            var landed = Reserve.GetCell(4,7).Objects.Single(e => e.BlueprintName == "MarlrootClod");
+            Assert.AreEqual(1,landed.GetPart<StackerPart>().StackCount); Assert.Null(landed.GetPart<ReserveYieldPart>());
+            Assert.AreEqual(1,Reserve.GetCell(4,5).Objects.Where(e => e.BlueprintName == "MarlrootClod")
                 .Sum(e => e.GetPart<StackerPart>().StackCount));
-            Assert.False(Reserve.GetCell(4, 7).Objects.Any(e => e.BlueprintName == "MarlrootClod"));
-            Assert.AreSame(marker, produce.GetPart<ReserveYieldPart>());
-            Assert.False(marker.Released);
-            Assert.Null(marker.AlreadyWitnessedPlayer);
-            Assert.AreEqual("Unknown", State());
+            Assert.AreEqual("Suspended",State());
+            Assert.AreEqual(1,((LocalGatheringClaimPart)Claim).Permissions.Single().BreachOrdinal);
+            if (split)
+            {
+                Assert.AreNotSame(produce,landed); Assert.AreEqual((4,5),Reserve.GetEntityPosition(produce));
+                Assert.AreSame(marker,produce.GetPart<ReserveYieldPart>()); Assert.False(marker.Released);
+            }
+            else { Assert.AreSame(produce,landed); Assert.True(marker.Released); }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void RefusalBeforeLaunchPreservesGroundUnitsAndExactClaimWithoutWitness(bool split)
+        {
+            var produce = UncollectedProduce(split); var marker = produce.GetPart<ReserveYieldPart>();
+            var result = InventorySystem.ExecuteCommand(new RefuseBeforeThrow(produce),Player,Reserve);
+            Assert.False(result.Success); Assert.False(result.ActionCommitted);
+            Assert.AreEqual((4,5),Reserve.GetEntityPosition(produce));
+            Assert.AreEqual(split ? 2 : 1,produce.GetPart<StackerPart>().StackCount);
+            Assert.AreSame(marker,produce.GetPart<ReserveYieldPart>()); Assert.False(marker.Released);
+            Assert.Null(marker.AlreadyWitnessedPlayer); Assert.AreEqual("Unknown",State());
+            Assert.False(Reserve.GetCell(4,7).Objects.Any(e => e.BlueprintName == "MarlrootClod"));
         }
 
         [TestCase(false)] [TestCase(true)]
@@ -73,6 +90,16 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(permitted ? "Granted" : "Unknown", State());
                 Assert.NotNull(produce.GetPart<ReserveYieldPart>());
             }
+        }
+
+        sealed class RefuseBeforeThrow : IInventoryCommand
+        {
+            readonly ThrowItemCommand inner;
+            public RefuseBeforeThrow(Entity item) => inner = new ThrowItemCommand(item,4,7,new Random(64));
+            public string Name => "ReserveThrowRefusalReview";
+            public InventoryValidationResult Validate(InventoryContext context) => inner.Validate(context);
+            public InventoryCommandResult Execute(InventoryContext context,InventoryTransaction transaction) =>
+                InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,"Refused before extraction or launch.");
         }
 
         sealed class RefuseAfterThrow : IInventoryCommand

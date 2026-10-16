@@ -15,6 +15,11 @@ namespace CavesOfOoo.Core
         public int AnchorY { get; private set; }
         public int? MaxRange { get; private set; }
         public bool FollowMouse { get; private set; }
+        public bool ThrowGroundAim { get; private set; }
+        public bool ThrowFocused { get; private set; }
+        public ThrowPreview ThrowPreview { get; private set; }
+        public void SetThrowPreview(bool ground,bool focused,ThrowPreview preview)
+        { ThrowGroundAim=ground;ThrowFocused=focused;ThrowPreview=preview; }
 
         public void Activate(
             WorldCursorMode mode,
@@ -27,6 +32,7 @@ namespace CavesOfOoo.Core
             bool followMouse = true)
         {
             Active = true;
+            ThrowGroundAim=false;ThrowFocused=false;ThrowPreview=null;
             Mode = mode;
             Zone = zone;
             X = x;
@@ -41,6 +47,7 @@ namespace CavesOfOoo.Core
         public void Deactivate()
         {
             Active = false;
+            ThrowGroundAim=false;ThrowFocused=false;ThrowPreview=null;
             Zone = null;
             X = 0;
             Y = 0;

@@ -13,6 +13,9 @@ namespace CavesOfOoo.Rendering
         private readonly LineRenderer _lineRenderer;
         private readonly Tilemap _tilemap;
         private readonly LineRenderer _landingRenderer;
+        private readonly LineRenderer _throwPath;
+        private readonly LineRenderer[] _throwAreas=new LineRenderer[11];
+        private ThrowPreview _drawnThrowPreview;
         public Vector2Int LandingCell { get; private set; } = new Vector2Int(-1,-1);
         int _vaultVersion=-1,_vaultTick=-1;Entity _vaultActor;bool _vaultVisible;
         private Zone _currentZone;
@@ -49,6 +52,16 @@ namespace CavesOfOoo.Rendering
             _landingRenderer.widthMultiplier=0.12f;_landingRenderer.sortingOrder=8;
             _landingRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;_landingRenderer.receiveShadows=false;
             _landingRenderer.sharedMaterial=_lineRenderer.sharedMaterial;_landingRenderer.enabled=false;
+            _throwPath=MakeThrowLine(parent,renderLayer,"ThrowRoute",false);
+            for(int i=0;i<_throwAreas.Length;i++)_throwAreas[i]=MakeThrowLine(parent,renderLayer,"ThrowArea"+i,true);
+        }
+
+        LineRenderer MakeThrowLine(Transform parent,int layer,string name,bool loop)
+        {
+            var go=new GameObject(name);go.transform.SetParent(parent,false);go.layer=layer;
+            var line=go.AddComponent<LineRenderer>();line.loop=loop;line.useWorldSpace=true;line.positionCount=loop?4:0;
+            line.widthMultiplier=loop?.045f:.035f;line.sortingOrder=6;line.sharedMaterial=_lineRenderer.sharedMaterial;
+            line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;line.enabled=false;return line;
         }
 
         public void SetZone(Zone zone)
@@ -71,6 +84,11 @@ namespace CavesOfOoo.Rendering
             }
 
             Cell cell = _currentZone.GetCell(state.X, state.Y);
+            if(state.Mode==WorldCursorMode.ThrowTarget && state.ThrowPreview!=null)
+            {
+                DrawThrowPreview(state,player);return;
+            }
+            HideThrowPreview();
             if(state.Mode==WorldCursorMode.AbilityTarget)
             {
                 _lineRenderer.widthMultiplier = 0.12f;
@@ -116,11 +134,12 @@ namespace CavesOfOoo.Rendering
             _lineRenderer.SetPosition(3, new Vector3(minX, maxY, -0.1f));
         }
 
-        private void DrawOutline(LineRenderer line,int x,int y,Color color)
+        private void DrawOutline(LineRenderer line,int x,int y,Color color,float inset=0)
         {
             var cell=new Vector3Int(x,Zone.Height-1-y,0);
             var min=_tilemap!=null?_tilemap.CellToWorld(cell):new Vector3(x,Zone.Height-1-y,0);
             var max=_tilemap!=null?_tilemap.CellToWorld(cell+new Vector3Int(1,1,0)):min+Vector3.one;
+            var boundsMin=min;min=Vector3.Lerp(boundsMin,max,inset);max=Vector3.Lerp(max,boundsMin,inset);
             line.startColor=color;line.endColor=color;line.enabled=true;
             line.SetPosition(0,new Vector3(min.x,min.y,-.15f));line.SetPosition(1,new Vector3(max.x,min.y,-.15f));
             line.SetPosition(2,new Vector3(max.x,max.y,-.15f));line.SetPosition(3,new Vector3(min.x,max.y,-.15f));
@@ -128,6 +147,7 @@ namespace CavesOfOoo.Rendering
 
         public void Clear()
         {
+            HideThrowPreview();
             _vaultActor=null;_vaultVersion=-1;LandingCell=new Vector2Int(-1,-1);
             if(_landingRenderer!=null)_landingRenderer.enabled=false;
             CurrentCell = new Vector2Int(-1, -1);
@@ -138,17 +158,18 @@ namespace CavesOfOoo.Rendering
 
         public static Color GetCursorColor(Cell cell, Entity player)
         {
-            if (cell == null)
+            if (cell == null || !cell.IsVisible || !cell.Explored)
                 return QudColorParser.Gray;
 
             bool hasInteractable = false;
             bool hasTakeable = false;
             bool hasVisible = false;
+            bool visibleSolid=false;
 
             for (int i = 0; i < cell.Objects.Count; i++)
             {
                 Entity entity = cell.Objects[i];
-                if (entity == null)
+                if (entity == null || entity.GetPart<RenderPart>()?.Visible!=true)
                     continue;
 
                 RenderPart render = entity.GetPart<RenderPart>();
@@ -166,6 +187,8 @@ namespace CavesOfOoo.Rendering
                 }
 
                 PhysicsPart physics = entity.GetPart<PhysicsPart>();
+                if(entity.HasTag("Solid") || physics?.Solid==true || entity.GetPart<DoorPart>()?.IsClosed==true
+                    || entity.GetPart<SealedLibraryBarrierPart>()?.IsClosed==true)visibleSolid=true;
                 if (physics != null && physics.Takeable)
                     hasTakeable = true;
             }
@@ -174,10 +197,43 @@ namespace CavesOfOoo.Rendering
                 return QudColorParser.BrightCyan;
             if (hasTakeable)
                 return QudColorParser.BrightYellow;
-            if (!hasVisible || cell.IsSolid())
+            if (!hasVisible || visibleSolid)
                 return QudColorParser.Gray;
 
             return QudColorParser.White;
+        }
+
+        void HideThrowPreview()
+        {
+            _drawnThrowPreview=null;if(_throwPath!=null)_throwPath.enabled=false;
+            foreach(var line in _throwAreas)if(line!=null)line.enabled=false;
+        }
+        Vector3 Center(int x,int y)
+        {
+            var point=new Vector3Int(x,Zone.Height-1-y,0);
+            var min=_tilemap!=null?_tilemap.CellToWorld(point):new Vector3(point.x,point.y,0);
+            var max=_tilemap!=null?_tilemap.CellToWorld(point+new Vector3Int(1,1,0)):min+Vector3.one;
+            return new Vector3((min.x+max.x)*.5f,(min.y+max.y)*.5f,-.11f);
+        }
+        void DrawThrowPreview(WorldCursorState state,Entity player)
+        {
+            var preview=state.ThrowPreview;if(_drawnThrowPreview==preview)return;
+            HideThrowPreview();_drawnThrowPreview=preview;_vaultActor=null;
+            var trace=preview.Trace;CurrentCell=new Vector2Int(state.X,state.Y);
+            CurrentColor=state.Zone.GetCell(state.X,state.Y).IsVisible?GetCursorColor(state.Zone.GetCell(state.X,state.Y),player):QudColorParser.Gray;
+            if(state.ThrowGroundAim && state.Zone.GetCell(state.X,state.Y).IsVisible)CurrentColor=QudColorParser.BrightYellow;
+            DrawOutline(_lineRenderer,state.X,state.Y,CurrentColor);
+            _throwPath.positionCount=trace.Path.Count+1;_throwPath.SetPosition(0,Center(state.AnchorX,state.AnchorY));
+            for(int i=0;i<trace.Path.Count;i++)_throwPath.SetPosition(i+1,Center(trace.Path[i].X,trace.Path[i].Y));
+            _throwPath.startColor=_throwPath.endColor=trace.Uncertain?QudColorParser.Gray:QudColorParser.BrightCyan;
+            _throwPath.enabled=trace.Path.Count>0;
+            _landingRenderer.enabled=trace.RestCell!=null && !trace.Uncertain;
+            LandingCell=_landingRenderer.enabled?new Vector2Int(trace.RestCell.X,trace.RestCell.Y):new Vector2Int(-1,-1);
+            if(_landingRenderer.enabled)DrawOutline(_landingRenderer,trace.RestCell.X,trace.RestCell.Y,QudColorParser.BrightYellow);
+            int index=0;
+            foreach(var cell in preview.Splash)DrawOutline(_throwAreas[index++],cell.X,cell.Y,cell.IsVisible && cell.Explored?QudColorParser.BrightCyan:QudColorParser.Gray,.22f);
+            if(!trace.Uncertain && trace.ImpactCell!=null && (trace.HitEntity!=null || trace.BlockedBySolid || trace.AmbiguousContact))DrawOutline(_throwAreas[9],trace.ImpactCell.X,trace.ImpactCell.Y,QudColorParser.BrightRed,.12f);
+            if(preview.ConditionalPush!=null)DrawOutline(_throwAreas[10],preview.ConditionalPush.X,preview.ConditionalPush.Y,QudColorParser.BrightMagenta);
         }
     }
 }
