@@ -1,0 +1,870 @@
+{
+  "schema": "capture-manual-review-fragment-v1",
+  "reviewedOriginals": 24,
+  "reviewFiles": [
+    "evidence/base-review.md",
+    "evidence/manual-first-review.md"
+  ],
+  "sharedConditionsReference": "operator-log.md",
+  "pendingCoverageAtThisStage": [
+    "Physical controller operation is not demonstrated by the manual keyboard/mouse frames.",
+    "Multi-page dialogue navigation remains untested; later UI-04/05 supply a long single-page branch."
+  ],
+  "entries": [
+    {
+      "id": "BASE-01-start",
+      "image": "screenshots/ordinary/BASE-01-start.png",
+      "rawMetadata": "evidence/BASE-01-start.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "baseline-menu; full-reveal background",
+      "question": "Is the real New Game/Continue choice obvious?",
+      "plainCaption": "The actual start presentation places New Game and Continue instructions in the log beside the rendered Spread and an empty pre-build hotbar.",
+      "contents": [
+        "Rendered starting settlement",
+        "Save-detected instructions",
+        "Ten empty skill boxes"
+      ],
+      "immediateSequence": [
+        "Start the isolated seeded session with its private marker save",
+        "Capture before choosing New Game"
+      ],
+      "limits": [
+        "Background inherits SampleScene full reveal; not ordinary visibility evidence.",
+        "Keyboard/mouse on macOS Editor; not physical Deck testing.",
+        "The detected save is the capture marker, not the user campaign."
+      ],
+      "relatedIds": [
+        "BASE-02-build-choice"
+      ],
+      "visibleFindings": [
+        "Both keyboard and controller instructions are shown with no controller connected.",
+        "The initial choice has no separate title panel."
+      ]
+    },
+    {
+      "id": "BASE-02-build-choice",
+      "image": "screenshots/ordinary/BASE-02-build-choice.png",
+      "rawMetadata": "evidence/BASE-02-build-choice.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "baseline-menu; full-reveal background",
+      "question": "Can a starting build be compared at handheld resolution?",
+      "plainCaption": "The Duelist preview lists attributes, initial gear, skills, a weakness and a first experiment beside seven build choices.",
+      "contents": [
+        "Seven build choices including Hurler and Classic",
+        "Duelist description",
+        "Persistent HUD"
+      ],
+      "immediateSequence": [
+        "Open New Game",
+        "Leave The Duelist highlighted without confirming"
+      ],
+      "limits": [
+        "Background inherits SampleScene full reveal; not ordinary visibility evidence.",
+        "Keyboard/mouse on macOS Editor; not physical Deck testing.",
+        "This is a preview; Classic is selected afterward."
+      ],
+      "relatedIds": [
+        "BASE-01-start",
+        "BASE-03-pause"
+      ],
+      "visibleFindings": [
+        "Description and choices fit.",
+        "Dark footer text lies outside the opaque panel and is difficult to read over terrain."
+      ]
+    },
+    {
+      "id": "BASE-03-pause",
+      "image": "screenshots/ordinary/BASE-03-pause.png",
+      "rawMetadata": "evidence/BASE-03-pause.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "baseline-menu; full-reveal background",
+      "question": "Do the compact popup and persistent HUD remain legible together?",
+      "plainCaption": "The pause menu overlays the selected Classic loadout, with six distinct starter spell icons along the bottom.",
+      "contents": [
+        "Save, Load, Controls, Graphics, Audio and Quit",
+        "Six starter spell icons",
+        "Dagger equip confirmation"
+      ],
+      "immediateSequence": [
+        "Choose Classic",
+        "Open Pause",
+        "Leave Save selected"
+      ],
+      "limits": [
+        "Background inherits SampleScene full reveal; not ordinary visibility evidence.",
+        "Keyboard/mouse on macOS Editor; not physical Deck testing."
+      ],
+      "relatedIds": [
+        "BASE-02-build-choice",
+        "BASE-04-graphics"
+      ],
+      "visibleFindings": [
+        "Menu rows and all ten hotbar boxes fit.",
+        "The dark footer is weak against vegetation."
+      ]
+    },
+    {
+      "id": "BASE-04-graphics",
+      "image": "screenshots/ordinary/BASE-04-graphics.png",
+      "rawMetadata": "evidence/BASE-04-graphics.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "baseline-menu; full-reveal background",
+      "question": "What quality settings produce the comparison images?",
+      "plainCaption": "Graphics shows 100% world resolution, shadows On, full world detail and full spell effects; Handheld preset is highlighted but has not been applied.",
+      "contents": [
+        "Graphics quality controls",
+        "Unapplied Handheld preset action",
+        "World and HUD context"
+      ],
+      "immediateSequence": [
+        "Navigate from Pause to Graphics",
+        "Capture without applying a preset"
+      ],
+      "limits": [
+        "Background inherits SampleScene full reveal; not ordinary visibility evidence.",
+        "Keyboard/mouse on macOS Editor; not physical Deck testing.",
+        "CRT off is established by metadata, not this menu.",
+        "Settings do not demonstrate frame rate."
+      ],
+      "relatedIds": [
+        "BASE-03-pause"
+      ],
+      "visibleFindings": [
+        "Labels fit; dark control footer blends with the world."
+      ]
+    },
+    {
+      "id": "SPR-01-spawn",
+      "image": "screenshots/ordinary/SPR-01-spawn.png",
+      "rawMetadata": "evidence/SPR-01-spawn.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Can the starting place and player be read at the normal camera?",
+      "plainCaption": "The Classic player stands among the Spread opening\u2019s well, notice board, pale reeds, crop rows and low walls.",
+      "contents": [
+        "Small green player",
+        "Well and notice board",
+        "Warden, villagers and local creatures",
+        "Dense ground and plant detail"
+      ],
+      "immediateSequence": [
+        "Close Graphics and Pause",
+        "Disable inherited full reveal in the disposable runtime only",
+        "Capture the actual starting view"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability."
+      ],
+      "relatedIds": [
+        "BASE-04-graphics",
+        "SPR-02-flower-meadow"
+      ],
+      "visibleFindings": [
+        "Player blends with green ground; pale reeds and glowing structures dominate attention."
+      ]
+    },
+    {
+      "id": "SPR-02-flower-meadow",
+      "image": "screenshots/ordinary/SPR-02-flower-meadow.png",
+      "rawMetadata": "evidence/SPR-02-flower-meadow.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does neighboring wilderness have a different readable layout?",
+      "plainCaption": "A more open flower meadow places dense flower bands, a grazer pen, ripe crop rows and a vent-and-pipe cluster around its routes.",
+      "contents": [
+        "Open center",
+        "Flower and hedge bands",
+        "Pen, gate and crops",
+        "Vents and pipes"
+      ],
+      "immediateSequence": [
+        "Use ordinary movement and world-map descent to the adjacent flower meadow",
+        "Capture at arrival tile (40,12)"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "A still does not establish vent timing or harm."
+      ],
+      "relatedIds": [
+        "SPR-01-spawn",
+        "ITEM-01-equipment"
+      ],
+      "visibleFindings": [
+        "Its open center contrasts with the starting hedgerow."
+      ]
+    },
+    {
+      "id": "ITEM-01-equipment",
+      "image": "screenshots/ordinary/ITEM-01-equipment.png",
+      "rawMetadata": "evidence/ITEM-01-equipment.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does equipped gear communicate its owner and slot?",
+      "plainCaption": "The equipment view shows the Classic player\u2019s dagger in the left hand beside a small starting inventory.",
+      "contents": [
+        "Body/limb slots",
+        "Dagger doll graphic and combat values",
+        "Six inventory rows/stacks",
+        "Weight and currency"
+      ],
+      "immediateSequence": [
+        "Open Inventory in the flower meadow",
+        "Show equipment with the Body row selected"
+      ],
+      "limits": [
+        "No turn passes while the menu is open.",
+        "The world renderer being hidden behind this full-screen menu is intentional, not proof of a 2D fallback.",
+        "This small inventory does not stress scrolling."
+      ],
+      "relatedIds": [
+        "ITEM-02-inventory",
+        "ITEM-03-dagger-examine",
+        "ITEM-06-dagger-owner"
+      ],
+      "visibleFindings": [
+        "The equipped marker ends in [E with its final bracket clipped.",
+        "A source-supported one-column overflow explains the marker."
+      ]
+    },
+    {
+      "id": "ITEM-02-inventory",
+      "image": "screenshots/ordinary/ITEM-02-inventory.png",
+      "rawMetadata": "evidence/ITEM-02-inventory.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Can the same equipped item be located in the inventory list?",
+      "plainCaption": "The dagger is selected in the inventory list, retaining its equipment relationship and the actual starting supplies.",
+      "contents": [
+        "Selected dagger row",
+        "Dried meat, healing tonics, watering grimoire and seeds",
+        "Equipment doll"
+      ],
+      "immediateSequence": [
+        "Move selection from equipment to the dagger inventory row"
+      ],
+      "limits": [
+        "Same item and tick as ITEM-01; not a second sample.",
+        "No long-list or heavy-load test."
+      ],
+      "relatedIds": [
+        "ITEM-01-equipment",
+        "ITEM-03-dagger-examine"
+      ],
+      "visibleFindings": [
+        "Equipped marker\u2019s closing bracket remains clipped at the right edge."
+      ]
+    },
+    {
+      "id": "ITEM-03-dagger-examine",
+      "image": "screenshots/ordinary/ITEM-03-dagger-examine.png",
+      "rawMetadata": "evidence/ITEM-03-dagger-examine.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the reader make an ordinary item understandable?",
+      "plainCaption": "The actual starting dagger receives a large blade portrait, condition, combat values, slot, material and physical description.",
+      "contents": [
+        "Dagger entity 2704",
+        "Sound condition",
+        "1d4 damage, penetration and Piercing details",
+        "Steel, Metal, Hand and weight"
+      ],
+      "immediateSequence": [
+        "Examine the selected dagger from Inventory",
+        "Wait for the reader to finish opening"
+      ],
+      "limits": [
+        "One short page; not a long-reader pagination test.",
+        "The portrait alone does not prove the world attachment\u2019s appearance."
+      ],
+      "relatedIds": [
+        "ITEM-04-dagger-examine-720",
+        "ITEM-05-dagger-ground",
+        "ITEM-06-dagger-owner"
+      ],
+      "visibleFindings": [
+        "Text fits; dense mechanical lines have tight spacing.",
+        "Portrait is much easier to identify than the object at normal world scale."
+      ]
+    },
+    {
+      "id": "ITEM-04-dagger-examine-720",
+      "image": "screenshots/ordinary/ITEM-04-dagger-examine-720.png",
+      "rawMetadata": "evidence/ITEM-04-dagger-examine-720.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the same reader remain legible at 720p?",
+      "plainCaption": "The identical dagger examination fits a 1280\u00d7720 viewport, preserving its portrait, attributes and next action.",
+      "contents": [
+        "Same dagger and reader page as ITEM-03",
+        "720p frame",
+        "Persistent sidebar/hotbar context"
+      ],
+      "immediateSequence": [
+        "Keep the reader open",
+        "Temporarily change Game view output height from 800 to 720",
+        "Capture without advancing time"
+      ],
+      "limits": [
+        "Desktop keyboard capture at a Deck-relevant resolution, not Deck hardware.",
+        "Same item and tick; resolution comparison only."
+      ],
+      "relatedIds": [
+        "ITEM-03-dagger-examine"
+      ],
+      "visibleFindings": [
+        "No reader text clipping is visible."
+      ]
+    },
+    {
+      "id": "ITEM-05-dagger-ground",
+      "image": "screenshots/ordinary/ITEM-05-dagger-ground.png",
+      "rawMetadata": "evidence/ITEM-05-dagger-ground.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Can an actual dropped weapon be found on ordinary terrain?",
+      "plainCaption": "The player has dropped the same dagger and moved two cells away; its low ground representation is difficult to distinguish from the meadow\u2019s small details.",
+      "contents": [
+        "Original dagger 2704 on tile (40,12)",
+        "Player at (42,12)",
+        "Unequip/drop messages"
+      ],
+      "immediateSequence": [
+        "Restore 1280\u00d7800",
+        "Close reader",
+        "Unequip/drop the actual dagger",
+        "Walk two cells away"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Low recognition is directly visible; no magnified substitute is used."
+      ],
+      "relatedIds": [
+        "ITEM-03-dagger-examine",
+        "ITEM-06-dagger-owner"
+      ],
+      "visibleFindings": [
+        "Tiny ground dagger competes with numerous green and pale floor specks."
+      ]
+    },
+    {
+      "id": "ITEM-06-dagger-owner",
+      "image": "screenshots/ordinary/ITEM-06-dagger-owner.png",
+      "rawMetadata": "evidence/ITEM-06-dagger-owner.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the same recovered weapon read on its real owner?",
+      "plainCaption": "The player has returned, recovered the dagger and re-equipped it; the ordinary world silhouette does not make the blade easy to recognize.",
+      "contents": [
+        "Player back at (40,12)",
+        "Original dagger 2704 equipped again",
+        "Pickup/equip log"
+      ],
+      "immediateSequence": [
+        "Walk back to the dropped dagger",
+        "Pick up and equip it through ordinary controls",
+        "Capture the real owner at normal camera scale"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "The still alone cannot distinguish a tiny or occluded attachment from absent equipment representation; consult presenter metadata."
+      ],
+      "relatedIds": [
+        "ITEM-01-equipment",
+        "ITEM-03-dagger-examine",
+        "ITEM-05-dagger-ground"
+      ],
+      "visibleFindings": [
+        "Separate blade identification is weak at this scale."
+      ]
+    },
+    {
+      "id": "MAP-01-drowned-ledger",
+      "image": "screenshots/ordinary/MAP-01-drowned-ledger.png",
+      "rawMetadata": "evidence/MAP-01-drowned-ledger.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the map distinguish travel position from a Look selection?",
+      "plainCaption": "The player occupies Drowned Ledger\u2019s map cell while the Look cursor sits one tile west, so the Focus panel says the Sodden.",
+      "contents": [
+        "Glyph world map",
+        "Player raw map tile (47,8), logical destination (17,5)",
+        "Look cursor (46,8)",
+        "Sodden Focus label"
+      ],
+      "immediateSequence": [
+        "Ascend to the ordinary world map",
+        "Walk to logical (17,5)",
+        "Enter Look and select the western neighbor"
+      ],
+      "limits": [
+        "Map glyph rendering is intentional, not a failed 3D world.",
+        "Descent uses the player\u2019s occupied map cell, not the Look cursor."
+      ],
+      "relatedIds": [
+        "SOD-01-drowned-ledger-arrival"
+      ],
+      "visibleFindings": [
+        "The map uses a small portion of the world region with large margins.",
+        "No legend is visible; destination name is not spelled out on the grid."
+      ]
+    },
+    {
+      "id": "SOD-01-drowned-ledger-arrival",
+      "image": "screenshots/ordinary/SOD-01-drowned-ledger-arrival.png",
+      "rawMetadata": "evidence/SOD-01-drowned-ledger-arrival.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the excavation camp announce its identity on arrival?",
+      "plainCaption": "At the Drowned Ledger, warm plank walkways cross dark wet ground among raised banks, tents, survey stakes and a square well.",
+      "contents": [
+        "Arrival near the well",
+        "Plank routes and tents",
+        "Peat/sandstone edges",
+        "Curation personnel and excavation objects in generated records"
+      ],
+      "immediateSequence": [
+        "Leave Look",
+        "Descend from the player\u2019s occupied Drowned Ledger map cell",
+        "Wait for actual ground arrival before capture"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "This is the corrected ground frame; the premature WorldMap frame is excluded in evidence/excluded-early-map-* files.",
+        "Visible-entity metadata can include objects outside the camera crop."
+      ],
+      "relatedIds": [
+        "MAP-01-drowned-ledger",
+        "SOD-02-drowned-ledger-work",
+        "SOD-03-reading-tent"
+      ],
+      "visibleFindings": [
+        "Plank routes are clear.",
+        "Fine tools and recording/excavation roles are not obvious from arrival scale."
+      ]
+    },
+    {
+      "id": "SOD-02-drowned-ledger-work",
+      "image": "screenshots/ordinary/SOD-02-drowned-ledger-work.png",
+      "rawMetadata": "evidence/SOD-02-drowned-ledger-work.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Are workers, remains and excavation visibly connected?",
+      "plainCaption": "Walking west exposes wet excavation spaces, plank crossings, thin survey stakes and a preserved body below the reading tent.",
+      "contents": [
+        "Tent entrance",
+        "Wet pits and banks",
+        "Preserved body",
+        "Curation sorter"
+      ],
+      "immediateSequence": [
+        "Walk west through the actual camp to (22,11)",
+        "Capture the working ground at a later tick"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "This is actual movement, not a fixed-camera before/after pair.",
+        "The tent interior is occluded from this position."
+      ],
+      "relatedIds": [
+        "SOD-01-drowned-ledger-arrival",
+        "SOD-03-reading-tent"
+      ],
+      "visibleFindings": [
+        "Large pit boundaries dominate; the pale body and stakes are much subtler."
+      ]
+    },
+    {
+      "id": "SOD-03-reading-tent",
+      "image": "screenshots/ordinary/SOD-03-reading-tent.png",
+      "rawMetadata": "evidence/SOD-03-reading-tent.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the interior show a working culture rather than generic furniture?",
+      "plainCaption": "Inside the reading tent, a table, preserved body, crates, chair and Recension scribe share the enclosed space.",
+      "contents": [
+        "Reading table 9672",
+        "Preserved body 9666",
+        "Three crates and a chair",
+        "Calven Vell, Recension scribe"
+      ],
+      "immediateSequence": [
+        "Walk through the tent entrance to (17,7)",
+        "Capture the now-visible interior"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Changed line of sight explains the newly visible interior and darkened exterior.",
+        "Character roles require names or context; silhouettes alone are insufficient."
+      ],
+      "relatedIds": [
+        "SOD-02-drowned-ledger-work",
+        "UI-01-recension-dialogue"
+      ],
+      "visibleFindings": [
+        "Crates and the enclosed room read clearly; the small body/table relationship benefits from a caption."
+      ]
+    },
+    {
+      "id": "UI-01-recension-dialogue",
+      "image": "screenshots/ordinary/UI-01-recension-dialogue.png",
+      "rawMetadata": "evidence/UI-01-recension-dialogue.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the conversation connect readable choices with the place?",
+      "plainCaption": "Calven Vell distinguishes an expedition\u2019s readings from a body\u2019s assertions; Noted, as claimed, Farewell and Attack fit beside the speaker panel.",
+      "contents": [
+        "Full speaker title",
+        "Recension conversation branch",
+        "Neutral attitude and cyan portrait glyph",
+        "Three choices"
+      ],
+      "immediateSequence": [
+        "Walk near the actual scribe",
+        "Open conversation",
+        "Select the branch about what a body says",
+        "Capture after text reveal"
+      ],
+      "limits": [
+        "Short dialogue only; does not satisfy a long/paged branch test.",
+        "Keyboard/mouse, no controller."
+      ],
+      "relatedIds": [
+        "UI-02-recension-dialogue-720",
+        "SOD-03-reading-tent"
+      ],
+      "visibleFindings": [
+        "Speech and choices fit.",
+        "Faction label is clipped to Recensio without an ellipsis.",
+        "Dark footer lies over terrain outside the readable panel."
+      ]
+    },
+    {
+      "id": "UI-02-recension-dialogue-720",
+      "image": "screenshots/ordinary/UI-02-recension-dialogue-720.png",
+      "rawMetadata": "evidence/UI-02-recension-dialogue-720.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the same conversation retain usable layout at 720p?",
+      "plainCaption": "The identical Recension branch still fits at 1280\u00d7720, with speaker title, three choices and world context intact.",
+      "contents": [
+        "Same scribe/branch/tick as UI-01",
+        "720p output",
+        "Shorter world/HUD region"
+      ],
+      "immediateSequence": [
+        "Keep conversation open",
+        "Temporarily resize Game view output to 1280\u00d7720",
+        "Capture without advancing time"
+      ],
+      "limits": [
+        "Desktop resolution comparison, not physical Deck input testing.",
+        "Short branch only."
+      ],
+      "relatedIds": [
+        "UI-01-recension-dialogue"
+      ],
+      "visibleFindings": [
+        "Speech and choices are not clipped.",
+        "Faction truncation and low-contrast footer remain."
+      ]
+    },
+    {
+      "id": "SOD-04-open-mire",
+      "image": "screenshots/ordinary/SOD-04-open-mire.png",
+      "rawMetadata": "evidence/SOD-04-open-mire.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Are dry crossing routes distinct from wet wilderness?",
+      "plainCaption": "Blue mire pools divide a dark green field, leaving readable crossing dry ground around reeds and low vents.",
+      "contents": [
+        "Broad blue pool patches",
+        "Dry central routes",
+        "Reeds and vent cluster"
+      ],
+      "immediateSequence": [
+        "Restore 1280\u00d7800",
+        "Close dialogue",
+        "Travel normally by world map to (16,6)",
+        "Descend into Open Mire"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Creature records may be outside the camera crop.",
+        "Water color does not establish mechanical danger or depth."
+      ],
+      "relatedIds": [
+        "SOD-01-drowned-ledger-arrival",
+        "GRO-01-fruiting-wall"
+      ],
+      "visibleFindings": [
+        "Water/land contrast is strong; the player remains small."
+      ]
+    },
+    {
+      "id": "GRO-01-fruiting-wall",
+      "image": "screenshots/ordinary/GRO-01-fruiting-wall.png",
+      "rawMetadata": "evidence/GRO-01-fruiting-wall.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the Grovelands have a distinct, equally complete visual language?",
+      "plainCaption": "Round-canopy trees, pale vertical growth and purple-red low plants border an open olive floor around the cyan player.",
+      "contents": [
+        "FruitingWall wilderness",
+        "Trees, vines, fruiting bodies and baskets",
+        "Shambler toward lower-left",
+        "Stepped player lighting"
+      ],
+      "immediateSequence": [
+        "Travel through the ordinary world map to (7,5)",
+        "Descend and capture at the normal camera"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "NativeRing/voxel flags do not prove that every entity has a native model."
+      ],
+      "relatedIds": [
+        "SOD-04-open-mire",
+        "SET-01-cinderhold"
+      ],
+      "visibleFindings": [
+        "Player contrasts clearly with olive ground.",
+        "Ground and props look substantially flatter and simpler than Spread/Sodden at the same full-quality settings."
+      ]
+    },
+    {
+      "id": "SET-01-cinderhold",
+      "image": "screenshots/ordinary/SET-01-cinderhold.png",
+      "rawMetadata": "evidence/SET-01-cinderhold.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does a second settlement reveal its local purpose?",
+      "plainCaption": "Broad stone roads meet among enclosed rooms, campfires and a well in Cinderhold\u2019s pruning post.",
+      "contents": [
+        "Stone road junction",
+        "Walls and rooms",
+        "Two orange campfires",
+        "Well and generated settlement objects"
+      ],
+      "immediateSequence": [
+        "Travel normally to Cinderhold at (6,6)",
+        "Descend and capture arrival"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Dark time band differs from the Drowned Ledger Height captures.",
+        "Some inhabitants and special props are outside the central crop."
+      ],
+      "relatedIds": [
+        "GRO-01-fruiting-wall",
+        "SOD-01-drowned-ledger-arrival"
+      ],
+      "visibleFindings": [
+        "Large route plan is clear; the pruning-post role is not clear from small props alone.",
+        "Stepped square lighting is conspicuous."
+      ]
+    },
+    {
+      "id": "STU-01-cascade-gorge",
+      "image": "screenshots/ordinary/STU-01-cascade-gorge.png",
+      "rawMetadata": "evidence/STU-01-cascade-gorge.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Do pools, ledges and creatures communicate the Stump\u2019s regional identity?",
+      "plainCaption": "Stone islands and crenellated walls surround teal spray pools, with a narrow ledge route and small creatures to the right.",
+      "contents": [
+        "Tepui stone/walls",
+        "Spray pools",
+        "Descent ledges",
+        "Cascade Father and Glasspane Frog in source records"
+      ],
+      "immediateSequence": [
+        "Travel normally to Stump (5,5)",
+        "Descend into the specialized Cascade Gorge formation",
+        "Capture at the ordinary arrival position"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Generic formation JSON is None; operator separately verified CascadeGorge in the specialized generator.",
+        "A still does not establish water costs or danger.",
+        "Match creature silhouettes before applying labeled crops."
+      ],
+      "relatedIds": [
+        "OVE-01-pilgrimage-rim",
+        "GRO-01-fruiting-wall"
+      ],
+      "visibleFindings": [
+        "Land/water contrast reads clearly; cyan player is weaker against teal water.",
+        "Terrain/props have a simpler flat treatment than Spread/Sodden."
+      ],
+      "specializedFormation": "CascadeGorge",
+      "formationSource": "Operator explicitly read specialized Stump/Overwrit formation; generic JSON formation field is None."
+    },
+    {
+      "id": "OVE-01-pilgrimage-rim",
+      "image": "screenshots/ordinary/OVE-01-pilgrimage-rim.png",
+      "rawMetadata": "evidence/OVE-01-pilgrimage-rim.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the Overwrit communicate a place through its ordinary view?",
+      "plainCaption": "The player stands on a nearly uninterrupted expanse of scraped olive ground, with tiny marks and stepped light as the main visible details.",
+      "contents": [
+        "Scraped ground",
+        "Player",
+        "Sparse new-growth records",
+        "Mostly empty central viewport"
+      ],
+      "immediateSequence": [
+        "Travel normally to Overwrit (3,10)",
+        "Descend into the specialized Pilgrimage Rim formation",
+        "Capture its actual ordinary view"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Generic formation JSON is None; operator separately verified PilgrimageRim.",
+        "Thirty-one new-growth records and stairs do not imply those objects are all inside this crop."
+      ],
+      "relatedIds": [
+        "STU-01-cascade-gorge",
+        "BEA-01-salt-pan"
+      ],
+      "visibleFindings": [
+        "Nonblack valid image, but almost no recognizable environmental landmark or material variation.",
+        "Retained as honest visual gap evidence rather than reframed to hide sparsity."
+      ],
+      "specializedFormation": "PilgrimageRim",
+      "formationSource": "Operator explicitly read specialized Stump/Overwrit formation; generic JSON formation field is None."
+    },
+    {
+      "id": "BEA-01-salt-pan",
+      "image": "screenshots/ordinary/BEA-01-salt-pan.png",
+      "rawMetadata": "evidence/BEA-01-salt-pan.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does sparse desert terrain retain readable objects and human activity?",
+      "plainCaption": "Pale salt forms interrupt yellow-olive sand around a small camp, grid-like tent structures, a well and a dark brine patch.",
+      "contents": [
+        "SaltPan terrain",
+        "Tent-right host and wayfaring merchant in records",
+        "Tent/well area",
+        "Brine patch"
+      ],
+      "immediateSequence": [
+        "Travel normally to Beating (1,14)",
+        "Descend into SaltPan at Dawn",
+        "Capture without rearranging actors or props"
+      ],
+      "limits": [
+        "Runtime full reveal is off; source-default FOV radius 999 is preserved, so this is broad line-of-sight rather than a small sight radius.",
+        "Review-guided ordinary travel; no teleportation, content grants, AI suppression or clock freeze.",
+        "A still does not establish animation quality, performance or physical Steam Deck usability.",
+        "Trap, bandit and scorpion records are not proof that all are readable in this crop.",
+        "The log contains authentic prior-route pickup/autosave messages, not a camp event."
+      ],
+      "relatedIds": [
+        "OVE-01-pilgrimage-rim",
+        "SET-01-cinderhold"
+      ],
+      "visibleFindings": [
+        "Sparse desert layout differs from green regions.",
+        "Flat floor, glyph-like props and stepped lighting contrast with detailed Spread/Sodden."
+      ]
+    }
+  ],
+  "laterCoverageReference": "evidence/journal-entries.json"
+}

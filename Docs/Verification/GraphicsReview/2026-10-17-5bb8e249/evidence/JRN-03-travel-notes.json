@@ -1,0 +1,4112 @@
+{
+  "id": "JRN-03-travel-notes",
+  "timestampUtc": "2026-10-17T13:39:35.6316750Z",
+  "session": "journal-64",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "width": 1280,
+  "height": 800,
+  "state": "QuestLogOpen",
+  "worldSeed": 64,
+  "zone": "Overworld.7.8.0",
+  "logical": {
+    "x": 7,
+    "y": 8,
+    "depth": 0
+  },
+  "biome": "Spread",
+  "formation": "FieldStrips",
+  "poi": {
+    "Type": 0,
+    "Name": "Gantry",
+    "Faction": "Villagers",
+    "Tier": 1,
+    "BossBlueprint": null,
+    "Profile": "CrossroadsExchange"
+  },
+  "player": {
+    "ID": "2699",
+    "BlueprintName": "Player",
+    "x": 17,
+    "y": 5,
+    "hp": 40,
+    "level": 1,
+    "properties": {
+      "FarmingKitGranted": "true",
+      "SpreadDiscoveryNote.v2:7d8a38e7f2bb4532a704fac91eaf5e3c:Overworld.10.2.0:ditch-cutters": "{\"Version\":2,\"Family\":\"ditch-cutters\",\"OriginZoneID\":\"Overworld.7.8.0\",\"DestinationZoneID\":\"Overworld.10.2.0\",\"InformantID\":\"6960\",\"InformantName\":\"Vellin Mosswick, scribe\",\"Formation\":\"OldRoad\",\"WorldKey\":\"7d8a38e7f2bb4532a704fac91eaf5e3c\",\"Subject\":\"place\"}"
+    },
+    "inventory": [
+      {
+        "ID": "2700",
+        "BlueprintName": "Dagger",
+        "name": "dagger"
+      },
+      {
+        "ID": "2701",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2704",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      }
+    ],
+    "equipped": []
+  },
+  "tick": 660,
+  "dayBand": "Dusk",
+  "ambient": 0.4,
+  "ambientTint": "RGBA(1.000, 1.000, 0.940, 1.000)",
+  "graphics": {
+    "Enabled": true,
+    "LowDetail": false,
+    "WorldResolutionScale": 1.0,
+    "ShadowsEnabled": true,
+    "fx": "Full",
+    "AnimationSpeed": 1.0,
+    "FlashIntensity": 0.15,
+    "ShakeIntensity": 0.0,
+    "crt": false
+  },
+  "camera": {
+    "GameplayZoomMultiplier": 1.2,
+    "TargetVisibleTileRows": 34,
+    "ZoomSize": 17.0,
+    "HasOverrideTarget": false,
+    "overrideCell": "(0, 0)"
+  },
+  "cameras": [
+    {
+      "name": "Main Camera",
+      "enabled": true,
+      "position": "(40.00, 22.50, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 25.65,
+      "pixelRect": "(x:0.00, y:0.00, width:1280.00, height:800.00)",
+      "target": null
+    }
+  ],
+  "renderer": {
+    "nativeRing": false,
+    "voxel": false,
+    "fullReveal": false,
+    "fovRadius": 999
+  },
+  "input": {
+    "method": "CUA keyboard/mouse",
+    "controllerConnected": false,
+    "devices": [
+      {
+        "name": "Keyboard",
+        "layout": "Keyboard",
+        "deviceId": 1
+      },
+      {
+        "name": "Mouse",
+        "layout": "Mouse",
+        "deviceId": 2
+      },
+      {
+        "name": "Pen",
+        "layout": "Pen",
+        "deviceId": 3
+      }
+    ]
+  },
+  "visibleEntities": [
+    {
+      "ID": "4898",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4899",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4900",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4901",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 10,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4902",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4903",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 11,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4904",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4905",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 12,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4906",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 13,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4907",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 13,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4908",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4909",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 14,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4910",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4911",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 15,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4912",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 16,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4913",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 16,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4914",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4915",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 17,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4916",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4917",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 18,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4918",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4919",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 19,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4920",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 20,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4921",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 20,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4922",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 21,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4923",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 21,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "4924",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "4925",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5011",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5012",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5013",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5014",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5015",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5016",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5017",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5018",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5019",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5020",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5021",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5022",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5023",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5024",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5025",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5026",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5098",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5099",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5100",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5101",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5102",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5103",
+      "BlueprintName": "GantryRegistryDesk",
+      "name": "registry desk",
+      "x": 12,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "5104",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5105",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5106",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5107",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5108",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5109",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5110",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5111",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5112",
+      "BlueprintName": "Crate",
+      "name": "wooden crate",
+      "x": 20,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ContainerPart",
+        "MaterialPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "5113",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5114",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5115",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5191",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5192",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5193",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5194",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5195",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5196",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5197",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5198",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5199",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5200",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5201",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5202",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5203",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5204",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5205",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5206",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5278",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5279",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5280",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5281",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5282",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5283",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5284",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5285",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5286",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5287",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5288",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5289",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5290",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5291",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5292",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5293",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5365",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5366",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5367",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5368",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5369",
+      "BlueprintName": "Chair",
+      "name": "wooden chair",
+      "x": 11,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ChairPart"
+      ]
+    },
+    {
+      "ID": "5370",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5371",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5372",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5373",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5374",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5375",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5376",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5377",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5378",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5379",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5380",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5381",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5451",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5452",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5453",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5454",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 10,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5455",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5456",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 11,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5457",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5458",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 12,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5459",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 13,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5460",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 13,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5461",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5462",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 14,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5463",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 15,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5464",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5465",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 17,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5466",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5467",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 18,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5468",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5469",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 19,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5470",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 20,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5471",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 20,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5472",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 21,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5473",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 21,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5474",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 22,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5475",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 22,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "5549",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 14,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5550",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 15,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5551",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5552",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5553",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5628",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 13,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5629",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5630",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5631",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5632",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5633",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5707",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5708",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 13,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5709",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5710",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5711",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5712",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5713",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5787",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 12,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5788",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5789",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 14,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5790",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 15,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5791",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5792",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 17,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5793",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 18,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5866",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 11,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5867",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 12,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5868",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5869",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 14,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5870",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 15,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5871",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 16,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5872",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 17,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5873",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 18,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5945",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5946",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5947",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5948",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5949",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5950",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5951",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 16,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5952",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "5953",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6024",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6025",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6026",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6027",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6028",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6029",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6030",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6031",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 16,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6032",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6033",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6034",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6104",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6105",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6106",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6107",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6108",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6109",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 14,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6110",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6111",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 16,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6112",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6113",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6114",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6183",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 8,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6184",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 8,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6185",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6186",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6187",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6188",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 10,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6189",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6190",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 11,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6191",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 12,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6192",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 13,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6193",
+      "BlueprintName": "RoadStone",
+      "name": "packed road",
+      "x": 14,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6194",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 15,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6195",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 15,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6196",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 16,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6197",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 16,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6198",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 17,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6199",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 17,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6200",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 18,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6201",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 18,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6202",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6291",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6292",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6293",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6294",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6300",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6376",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6377",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6378",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6379",
+      "BlueprintName": "Bed",
+      "name": "straw bed",
+      "x": 13,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "BedPart"
+      ]
+    },
+    {
+      "ID": "6380",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6386",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6464",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6465",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6466",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6467",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6468",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6474",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6551",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6552",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6553",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6554",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6555",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6562",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6637",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 9,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6638",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 9,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6639",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 10,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6640",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 10,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6641",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 11,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6642",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 11,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6643",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 12,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6644",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 12,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6645",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 13,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6646",
+      "BlueprintName": "GantryTimberWall",
+      "name": "Gantry timber partition",
+      "x": 13,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "6657",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6658",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 20,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6757",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6758",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 20,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6839",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 19,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6840",
+      "BlueprintName": "Grass",
+      "name": "grass",
+      "x": 20,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "6900",
+      "BlueprintName": "GantryRegistrar",
+      "name": "Orren Ress, Gantry registrar",
+      "x": 12,
+      "y": 5,
+      "hp": 20,
+      "properties": {
+        "SettlementId": "Overworld.7.8.0",
+        "LocalPersonalName": "Orren Ress",
+        "LocalCulture": "PaleCuration",
+        "LocalRole": "Gantry registrar"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "AISelfPreservationPart",
+        "LoadoutPart"
+      ]
+    },
+    {
+      "ID": "6943",
+      "BlueprintName": "Quartermaster",
+      "name": "Ostrel Wethand, quartermaster",
+      "x": 17,
+      "y": 16,
+      "hp": 30,
+      "properties": {
+        "ShopStockTable": "QuartermasterStock",
+        "SettlementId": "Overworld.7.8.0",
+        "LocalPersonalName": "Ostrel Wethand",
+        "LocalCulture": "Villagers",
+        "LocalRole": "quartermaster"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "TraderPart",
+        "LoadoutPart"
+      ]
+    },
+    {
+      "ID": "6954",
+      "BlueprintName": "Tinker",
+      "name": "Brinna Lowbank, tinker",
+      "x": 13,
+      "y": 19,
+      "hp": 15,
+      "properties": {
+        "ShopStockTable": "TinkerStock",
+        "SettlementId": "Overworld.7.8.0",
+        "LocalPersonalName": "Brinna Lowbank",
+        "LocalCulture": "Villagers",
+        "LocalRole": "tinker"
+      },
+      "parts": [
+        "StatusEffectsPart",
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "AISelfPreservationPart",
+        "TraderPart",
+        "LoadoutPart"
+      ]
+    },
+    {
+      "ID": "6960",
+      "BlueprintName": "Scribe",
+      "name": "Vellin Mosswick, scribe",
+      "x": 18,
+      "y": 5,
+      "hp": 20,
+      "properties": {
+        "ShopStockTable": "ScribeStock",
+        "SettlementId": "Overworld.7.8.0",
+        "LocalPersonalName": "Vellin Mosswick",
+        "LocalCulture": "Villagers",
+        "LocalRole": "scribe"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "AIFleeToShrinePart",
+        "AISelfPreservationPart",
+        "TraderPart",
+        "LoadoutPart"
+      ]
+    },
+    {
+      "ID": "6981",
+      "BlueprintName": "Villager",
+      "name": "Clerk Padok",
+      "x": 11,
+      "y": 7,
+      "hp": 20,
+      "properties": {
+        "ShopStockTable": "VillagerStock",
+        "SettlementId": "Overworld.7.8.0"
+      },
+      "parts": [
+        "StatusEffectsPart",
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "TraderPart",
+        "QuestBeaconPart"
+      ]
+    },
+    {
+      "ID": "2699",
+      "BlueprintName": "Player",
+      "name": "you",
+      "x": 17,
+      "y": 5,
+      "hp": 40,
+      "properties": {
+        "FarmingKitGranted": "true",
+        "SpreadDiscoveryNote.v2:7d8a38e7f2bb4532a704fac91eaf5e3c:Overworld.10.2.0:ditch-cutters": "{\"Version\":2,\"Family\":\"ditch-cutters\",\"OriginZoneID\":\"Overworld.7.8.0\",\"DestinationZoneID\":\"Overworld.10.2.0\",\"InformantID\":\"6960\",\"InformantName\":\"Vellin Mosswick, scribe\",\"Formation\":\"OldRoad\",\"WorldKey\":\"7d8a38e7f2bb4532a704fac91eaf5e3c\",\"Subject\":\"place\"}"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ActivatedAbilitiesPart",
+        "SkillsPart",
+        "LightSourcePart",
+        "Pyromancy_EmberSpit",
+        "Pyromancy_FlamingHands",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Cryomancy_RimeGrip",
+        "Spellcraft_Calm",
+        "WorldMapPart",
+        "WorldMapTravelCostPart"
+      ]
+    }
+  ]
+}

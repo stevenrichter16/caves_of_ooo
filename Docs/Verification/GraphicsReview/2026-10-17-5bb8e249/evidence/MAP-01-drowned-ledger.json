@@ -1,0 +1,7221 @@
+{
+  "id": "MAP-01-drowned-ledger",
+  "timestampUtc": "2026-10-17T13:09:33.4114650Z",
+  "session": "manual-64",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "width": 1280,
+  "height": 800,
+  "state": "LookMode",
+  "worldSeed": 64,
+  "zone": "WorldMap",
+  "logical": {
+    "x": 17,
+    "y": 5,
+    "depth": 0
+  },
+  "biome": "Sodden",
+  "formation": "ReedMaze",
+  "poi": {
+    "Type": 0,
+    "Name": "the Drowned Ledger",
+    "Faction": "Palimpsest",
+    "Tier": 2,
+    "BossBlueprint": null,
+    "Profile": "ExcavationCamp"
+  },
+  "player": {
+    "ID": "2700",
+    "BlueprintName": "Player",
+    "x": 47,
+    "y": 8,
+    "hp": 40,
+    "level": 1,
+    "properties": {
+      "FarmingKitGranted": "true",
+      "StartingBuild": "classic"
+    },
+    "inventory": [
+      {
+        "ID": "2701",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "331",
+        "id": "2704",
+        "blueprint": "Dagger",
+        "name": "dagger"
+      }
+    ]
+  },
+  "tick": 310,
+  "dayBand": "Height",
+  "ambient": 0.4,
+  "ambientTint": "RGBA(1.000, 1.000, 1.000, 1.000)",
+  "graphics": {
+    "Enabled": true,
+    "LowDetail": false,
+    "WorldResolutionScale": 1.0,
+    "ShadowsEnabled": true,
+    "fx": "Full",
+    "AnimationSpeed": 1.0,
+    "FlashIntensity": 0.15,
+    "ShakeIntensity": 0.0,
+    "crt": false
+  },
+  "camera": {
+    "GameplayZoomMultiplier": 1.2,
+    "TargetVisibleTileRows": 34,
+    "ZoomSize": 17.0,
+    "HasOverrideTarget": false,
+    "overrideCell": "(0, 0)"
+  },
+  "cameras": [
+    {
+      "name": "Main Camera",
+      "enabled": true,
+      "position": "(47.50, 12.50, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 20.4000015,
+      "pixelRect": "(x:0.00, y:120.00, width:940.00, height:680.00)",
+      "target": null
+    },
+    {
+      "name": "Sidebar Camera",
+      "enabled": true,
+      "position": "(8.67, 20.40, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 20.4000015,
+      "pixelRect": "(x:940.00, y:0.00, width:340.00, height:800.00)",
+      "target": null
+    },
+    {
+      "name": "Hotbar Camera",
+      "enabled": true,
+      "position": "(23.50, 3.00, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 3.0,
+      "pixelRect": "(x:0.00, y:0.00, width:940.00, height:120.00)",
+      "target": null
+    }
+  ],
+  "renderer": {
+    "nativeRing": false,
+    "voxel": false,
+    "fullReveal": false,
+    "fovRadius": 999
+  },
+  "input": {
+    "method": "CUA keyboard/mouse",
+    "controllerConnected": false,
+    "devices": [
+      {
+        "name": "Keyboard",
+        "layout": "Keyboard",
+        "deviceId": 1
+      },
+      {
+        "name": "Mouse",
+        "layout": "Mouse",
+        "deviceId": 2
+      },
+      {
+        "name": "Pen",
+        "layout": "Pen",
+        "deviceId": 3
+      }
+    ]
+  },
+  "visibleEntities": [
+    {
+      "ID": "3434",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3435",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3436",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3437",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3438",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3439",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3440",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3441",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3442",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3443",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3444",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3445",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3446",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3447",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3448",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3449",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3450",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3451",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3452",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3453",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3454",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3455",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 29,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3459",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 30,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 30,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 30,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 30,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 30,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 30,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 30,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 30,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3480",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 30,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3484",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 31,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 31,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 31,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 31,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 31,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 31,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 31,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 31,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 31,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 31,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 31,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3505",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 31,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3509",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 32,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 32,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 32,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 32,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 32,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 32,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 32,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 32,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 32,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 32,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 32,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 32,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 32,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 32,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 32,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 32,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3530",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 32,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3534",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 33,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 33,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 33,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 33,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Root",
+      "x": 33,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 33,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Felling-Site",
+      "x": 33,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Morrowfast village",
+      "x": 33,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 33,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 33,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 33,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 33,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 33,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 33,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 33,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 33,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 33,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 33,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 33,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 33,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 33,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3555",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 33,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3559",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 34,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 34,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 34,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 34,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 34,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 34,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 34,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 34,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 34,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 34,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 34,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 34,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 34,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Overwrit",
+      "x": 34,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 34,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 34,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 34,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 34,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 34,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 34,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 34,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3580",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 34,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3584",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 35,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 35,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 35,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 35,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 35,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 35,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Stump",
+      "x": 35,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 35,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 35,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Posy village",
+      "x": 35,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 35,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 35,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the First Tent village",
+      "x": 35,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 35,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 35,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3605",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 35,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3609",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 36,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 36,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Cinderhold village",
+      "x": 36,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 36,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 36,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 36,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 36,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 36,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3630",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 36,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3634",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 37,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 37,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 37,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 37,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Grovelands",
+      "x": 37,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Gantry village",
+      "x": 37,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 37,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 37,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 37,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 37,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3655",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 37,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3659",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 38,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Merchant Camp merchant camp",
+      "x": 38,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Spider Nest lair",
+      "x": 38,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 38,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Wellmeet village",
+      "x": 38,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 38,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 38,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 38,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3680",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 38,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3684",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 39,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 39,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 39,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 39,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 39,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 39,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3705",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 39,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3709",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 40,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Sill village",
+      "x": 40,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Tally village",
+      "x": 40,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 40,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 40,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Marlback Burrow lair",
+      "x": 40,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 40,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 40,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3730",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 40,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3734",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 41,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 41,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 41,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 41,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 41,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 41,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3755",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 41,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3759",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 42,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 42,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Marrowstye village",
+      "x": 42,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 42,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 42,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 42,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 42,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 42,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 42,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3780",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 42,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3784",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 43,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 43,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 43,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 43,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 43,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 43,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Tine village",
+      "x": 43,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 43,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 43,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3805",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 43,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3809",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 44,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 44,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Quillhold village",
+      "x": 44,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 44,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Merchant Camp merchant camp",
+      "x": 44,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 44,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3830",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 44,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3834",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 45,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Sumphold village",
+      "x": 45,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 45,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 45,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 45,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 45,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 45,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 45,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 45,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Salt-Vault village",
+      "x": 45,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 45,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 45,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Merchant Camp merchant camp",
+      "x": 45,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 45,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3855",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 45,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3859",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 46,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Quiet's Door village",
+      "x": 46,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 46,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 46,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Slip village",
+      "x": 46,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 46,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 46,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3880",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 46,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3884",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 47,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Drowned Ledger village",
+      "x": 47,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "Prowler Den lair",
+      "x": 47,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 47,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 47,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 47,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 47,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3905",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 47,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3909",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 48,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 48,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 48,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 48,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Last Counter village",
+      "x": 48,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 48,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3930",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 48,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3934",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 49,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Sodden",
+      "x": 49,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Spread",
+      "x": 49,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": null,
+      "BlueprintName": "WorldMapCell",
+      "name": "the Beating",
+      "x": 49,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "WorldMapCellPart"
+      ]
+    },
+    {
+      "ID": "3955",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 49,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3959",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3960",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3961",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3962",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3963",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3964",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3965",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3966",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3967",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3968",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3969",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3970",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3971",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3972",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3973",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3974",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3975",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3976",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3977",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3978",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3979",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "3980",
+      "BlueprintName": "Wall",
+      "name": "wall",
+      "x": 50,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "DestructiblePart",
+        "MaterialPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "2700",
+      "BlueprintName": "Player",
+      "name": "you",
+      "x": 47,
+      "y": 8,
+      "hp": 40,
+      "properties": {
+        "FarmingKitGranted": "true",
+        "StartingBuild": "classic"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ActivatedAbilitiesPart",
+        "SkillsPart",
+        "LightSourcePart",
+        "Pyromancy_EmberSpit",
+        "Pyromancy_FlamingHands",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Cryomancy_RimeGrip",
+        "Spellcraft_Calm",
+        "WorldMapPart",
+        "WorldMapTravelCostPart"
+      ]
+    }
+  ]
+}

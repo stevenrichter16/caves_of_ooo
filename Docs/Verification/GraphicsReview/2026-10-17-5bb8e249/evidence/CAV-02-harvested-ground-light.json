@@ -1,0 +1,72 @@
+{
+  "id": "CAV-02-harvested-ground-light",
+  "file": "screenshots/controlled/CAV-02-harvested-ground-light.png",
+  "classification": "controlled",
+  "caption": "Lampvein physically harvested, collected, unequipped and dropped; actual ground LampveinFan21666 casts local light.",
+  "visualReview": "Native actor, rock walls, floor and localized brighter area visible. LightMap increase is checked by source, exact brightness not recorded. Pair changes crop/item and overlay, not a matched lighting comparison.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/07b9269e886e43fe80e1849ca884d1e6/botany-10-harvested-light-in-cave.png",
+  "sha256": "f0f34a2e330ef645168a09ed3bede2c8c277b478d03280f1f70128a153096b02",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:19:26.027590+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.12.4.5",
+  "logical": {
+    "x": 12,
+    "y": 4,
+    "depth": 5
+  },
+  "biome": "Spread (underground)",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 66,
+    "y": 18,
+    "hp": 40,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "Normal",
+  "dayBand": "Bright",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": null,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 0.82,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": false,
+    "fullRevealBasis": "ReferenceGlade serialized0 and shared native route guard asserts RevealEntire3DZone=false and FullReveal=false before selected captures",
+    "ambient": null,
+    "lightSource": "harvested dropped LampveinFan actual enabled LightSourcePart",
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ReferenceGladeNativeBatch.LaunchBiomeCaveCrops",
+    "runId": "07b9269e886e43fe80e1849ca884d1e6",
+    "report": "evidence/routes/cave/07b9269e886e43fe80e1849ca884d1e6/report.json",
+    "complete": true,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "alterations": "one explicit actor transfer to unchanged generated connected cave and crop; local harvest, pickup, unequip and drop use queued ordinary keyboard input; no granted item, stage, light, HP or stat edits",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ]
+}

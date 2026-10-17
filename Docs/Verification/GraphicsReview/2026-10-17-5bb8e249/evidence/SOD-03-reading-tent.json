@@ -1,0 +1,5904 @@
+{
+  "id": "SOD-03-reading-tent",
+  "timestampUtc": "2026-10-17T13:12:02.5598800Z",
+  "session": "manual-64",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "width": 1280,
+  "height": 800,
+  "state": "Normal",
+  "worldSeed": 64,
+  "zone": "Overworld.17.5.0",
+  "logical": {
+    "x": 17,
+    "y": 5,
+    "depth": 0
+  },
+  "biome": "Sodden",
+  "formation": "ReedMaze",
+  "poi": {
+    "Type": 0,
+    "Name": "the Drowned Ledger",
+    "Faction": "Palimpsest",
+    "Tier": 2,
+    "BossBlueprint": null,
+    "Profile": "ExcavationCamp"
+  },
+  "player": {
+    "ID": "2700",
+    "BlueprintName": "Player",
+    "x": 17,
+    "y": 7,
+    "hp": 40,
+    "level": 1,
+    "properties": {
+      "FarmingKitGranted": "true",
+      "StartingBuild": "classic"
+    },
+    "inventory": [
+      {
+        "ID": "2701",
+        "BlueprintName": "WateringGrimoire",
+        "name": "watering grimoire"
+      },
+      {
+        "ID": "2702",
+        "BlueprintName": "CandyCarrotSeed",
+        "name": "gladroot seed (x4)"
+      },
+      {
+        "ID": "2703",
+        "BlueprintName": "EmberwheatSeed",
+        "name": "emberwheat seed (x2)"
+      },
+      {
+        "ID": "2705",
+        "BlueprintName": "HealingTonic",
+        "name": "healing tonic (x2)"
+      },
+      {
+        "ID": "2706",
+        "BlueprintName": "DriedMeat",
+        "name": "dried meat (x2)"
+      }
+    ],
+    "equipped": [
+      {
+        "slot": "331",
+        "id": "2704",
+        "blueprint": "Dagger",
+        "name": "dagger"
+      }
+    ]
+  },
+  "tick": 580,
+  "dayBand": "Height",
+  "ambient": 0.4,
+  "ambientTint": "RGBA(0.820, 0.860, 0.800, 1.000)",
+  "graphics": {
+    "Enabled": true,
+    "LowDetail": false,
+    "WorldResolutionScale": 1.0,
+    "ShadowsEnabled": true,
+    "fx": "Full",
+    "AnimationSpeed": 1.0,
+    "FlashIntensity": 0.15,
+    "ShakeIntensity": 0.0,
+    "crt": false
+  },
+  "camera": {
+    "GameplayZoomMultiplier": 1.2,
+    "TargetVisibleTileRows": 34,
+    "ZoomSize": 17.0,
+    "HasOverrideTarget": false,
+    "overrideCell": "(0, 0)"
+  },
+  "cameras": [
+    {
+      "name": "Main Camera",
+      "enabled": true,
+      "position": "(23.22, 12.50, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 16.8000011,
+      "pixelRect": "(x:0.00, y:120.00, width:940.00, height:680.00)",
+      "target": null
+    },
+    {
+      "name": "Sidebar Camera",
+      "enabled": true,
+      "position": "(7.14, 16.80, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 16.8000011,
+      "pixelRect": "(x:940.00, y:0.00, width:340.00, height:800.00)",
+      "target": null
+    },
+    {
+      "name": "Hotbar Camera",
+      "enabled": true,
+      "position": "(23.50, 3.00, -10.00)",
+      "rotation": "(0.00, 0.00, 0.00)",
+      "orthographicSize": 3.0,
+      "pixelRect": "(x:0.00, y:0.00, width:940.00, height:120.00)",
+      "target": null
+    },
+    {
+      "name": "Native 3D world camera",
+      "enabled": true,
+      "position": "(23.22, 18.00, 0.36)",
+      "rotation": "(56.00, 0.00, 0.00)",
+      "orthographicSize": 16.8000011,
+      "pixelRect": "(x:0.00, y:0.00, width:940.00, height:680.00)",
+      "target": "940x680"
+    }
+  ],
+  "renderer": {
+    "nativeRing": true,
+    "voxel": true,
+    "fullReveal": false,
+    "fovRadius": 999
+  },
+  "input": {
+    "method": "CUA keyboard/mouse",
+    "controllerConnected": false,
+    "devices": [
+      {
+        "name": "Keyboard",
+        "layout": "Keyboard",
+        "deviceId": 1
+      },
+      {
+        "name": "Mouse",
+        "layout": "Mouse",
+        "deviceId": 2
+      },
+      {
+        "name": "Pen",
+        "layout": "Pen",
+        "deviceId": 3
+      }
+    ]
+  },
+  "visibleEntities": [
+    {
+      "ID": "7315",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7316",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7317",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 9,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7318",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 9,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7319",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7320",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 10,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7321",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7322",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 11,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7323",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7324",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 12,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7325",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7326",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 13,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7327",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7328",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 14,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7329",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7330",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 15,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7331",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7332",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 16,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7333",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7334",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 17,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7335",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7336",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 18,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7337",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7338",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 19,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7339",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7340",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 20,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7341",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7342",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 21,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7343",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7344",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 22,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7345",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7346",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 23,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7347",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7348",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 24,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7349",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7350",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 2,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7426",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7427",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7428",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7429",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7430",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7431",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7432",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7433",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7434",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7435",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7436",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7437",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7438",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7439",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7440",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7441",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7442",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7443",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7444",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7445",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 3,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7522",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7523",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7524",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7525",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7526",
+      "BlueprintName": "Crate",
+      "name": "wooden crate",
+      "x": 10,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ContainerPart",
+        "MaterialPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7527",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7528",
+      "BlueprintName": "Crate",
+      "name": "wooden crate",
+      "x": 11,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ContainerPart",
+        "MaterialPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7529",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7530",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7531",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7532",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7533",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7534",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7535",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7536",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7537",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7538",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7539",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7540",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7541",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7542",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7543",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 4,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7611",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7612",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7613",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7614",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7615",
+      "BlueprintName": "Crate",
+      "name": "wooden crate",
+      "x": 10,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ContainerPart",
+        "MaterialPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7616",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7617",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7618",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7619",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7620",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7621",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7622",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7623",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7624",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7625",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7626",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7627",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7628",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7629",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7630",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7631",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 5,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7699",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7700",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7701",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7702",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7703",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7704",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7705",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7706",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7707",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7708",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7709",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7710",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7711",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7712",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7713",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7714",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7715",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7716",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7717",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7718",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 6,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7787",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7788",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7789",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7790",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7791",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7792",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7793",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7794",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7795",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7796",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7797",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7798",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7799",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7800",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7801",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7802",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7803",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7804",
+      "BlueprintName": "Chair",
+      "name": "wooden chair",
+      "x": 23,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "ChairPart"
+      ]
+    },
+    {
+      "ID": "7805",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7806",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7807",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 7,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7874",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7875",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7876",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 9,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7877",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 10,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7878",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 11,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7879",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 12,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7880",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 13,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7881",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 14,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7882",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 15,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7883",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 16,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7884",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 17,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7885",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 18,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7886",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 19,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7887",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 20,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7888",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 21,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7889",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 22,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7890",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 23,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7891",
+      "BlueprintName": "StoneFloor",
+      "name": "stone floor",
+      "x": 24,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7892",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7893",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 8,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7975",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 8,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7976",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 8,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7977",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 9,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7978",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 9,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7979",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7980",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 10,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7981",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7982",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 11,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7983",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7984",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 12,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7985",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7986",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 13,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7987",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7988",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 14,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7989",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7990",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 15,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7991",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7992",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7993",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7994",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7995",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 19,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7996",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7997",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 20,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "7998",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "7999",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 21,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8000",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8001",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 22,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8002",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8003",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 23,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8004",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8005",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 24,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8006",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8007",
+      "BlueprintName": "TentWall",
+      "name": "tent wall",
+      "x": 25,
+      "y": 9,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8077",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8078",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8079",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8080",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8081",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 10,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8156",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8157",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8158",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8159",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8160",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8161",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8162",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 11,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8246",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8247",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8248",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8249",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8250",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8251",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8252",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 12,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8326",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8327",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8328",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8329",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8330",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8331",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8332",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8333",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8334",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 13,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8414",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8415",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8416",
+      "BlueprintName": "Duckboard",
+      "name": "duckboard",
+      "x": 13,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8417",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8418",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8419",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8420",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8421",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8422",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8423",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8424",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8425",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 14,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8513",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8514",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8515",
+      "BlueprintName": "Duckboard",
+      "name": "duckboard",
+      "x": 13,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8516",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8517",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8518",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8519",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8520",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8521",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8522",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8523",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8524",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 15,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8618",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8619",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 11,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8620",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8621",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 12,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8622",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8623",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8624",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8625",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 16,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8626",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 16,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8627",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 17,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8628",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 17,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8629",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 18,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8630",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 18,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8631",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 19,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8632",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 19,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8633",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 20,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8634",
+      "BlueprintName": "PeatBank",
+      "name": "peat bank",
+      "x": 20,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "ThermalPart",
+        "DestructiblePart"
+      ]
+    },
+    {
+      "ID": "8635",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8636",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8637",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 16,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8731",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8732",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8733",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8734",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8735",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8736",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8737",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8738",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 15,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8749",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8750",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 21,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8751",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8752",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 17,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8861",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8862",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8863",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8864",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8865",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8866",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8867",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8868",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 15,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8879",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 21,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8880",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 21,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8881",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8882",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 22,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8883",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8884",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 18,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8988",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8989",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 11,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8990",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8991",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8992",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8993",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8994",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8995",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "8996",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "8997",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 15,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9010",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9011",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 22,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9012",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9013",
+      "BlueprintName": "Reeds",
+      "name": "reeds",
+      "x": 23,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9014",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9015",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 19,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9123",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9124",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 11,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9125",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9126",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9127",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9128",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9129",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9130",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9131",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9132",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 15,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9145",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 22,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9146",
+      "BlueprintName": "Reeds",
+      "name": "reeds",
+      "x": 22,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9147",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9148",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9149",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 20,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9253",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9254",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 10,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9255",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9256",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 11,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9257",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9258",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9259",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9260",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9261",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9262",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9263",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 15,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9264",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 15,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9279",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9280",
+      "BlueprintName": "Reeds",
+      "name": "reeds",
+      "x": 23,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9281",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9282",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9283",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 26,
+      "y": 21,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9370",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9371",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 10,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9372",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9373",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 11,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9374",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9375",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9376",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9377",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9378",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9379",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9396",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9397",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9398",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9399",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 26,
+      "y": 22,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9483",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 9,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9484",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 9,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9485",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9486",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 10,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9487",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9488",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 11,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9489",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9490",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 12,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9491",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9492",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 13,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9493",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9494",
+      "BlueprintName": "WaterPuddle",
+      "name": "puddle of water",
+      "x": 14,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "MaterialPart",
+        "LiquidPoolPart",
+        "ThermalPart"
+      ]
+    },
+    {
+      "ID": "9510",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 23,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9511",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9512",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9513",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 26,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9514",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 27,
+      "y": 23,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9592",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 9,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9593",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 10,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9594",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 11,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9595",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 12,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9596",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 13,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9597",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 14,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9607",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 24,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9608",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 25,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9609",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 26,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9610",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 27,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9611",
+      "BlueprintName": "Floor",
+      "name": "floor",
+      "x": 28,
+      "y": 24,
+      "hp": 0,
+      "properties": {},
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9666",
+      "BlueprintName": "PreFellingBody",
+      "name": "preserved body",
+      "x": 16,
+      "y": 6,
+      "hp": 0,
+      "properties": {
+        "SettlementId": "Overworld.17.5.0"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9667",
+      "BlueprintName": "PreFellingBody",
+      "name": "preserved body",
+      "x": 14,
+      "y": 15,
+      "hp": 0,
+      "properties": {
+        "SettlementId": "Overworld.17.5.0"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9672",
+      "BlueprintName": "ReadingTable",
+      "name": "reading table",
+      "x": 16,
+      "y": 5,
+      "hp": 0,
+      "properties": {
+        "SettlementId": "Overworld.17.5.0"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart"
+      ]
+    },
+    {
+      "ID": "9673",
+      "BlueprintName": "RecensionScribe",
+      "name": "Calven Vell, Recension scribe",
+      "x": 21,
+      "y": 4,
+      "hp": 16,
+      "properties": {
+        "SettlementId": "Overworld.17.5.0",
+        "LocalPersonalName": "Calven Vell",
+        "LocalCulture": "Palimpsest",
+        "LocalRole": "Recension scribe"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ConversationPart",
+        "AISelfPreservationPart",
+        "LoadoutPart"
+      ]
+    },
+    {
+      "ID": "2700",
+      "BlueprintName": "Player",
+      "name": "you",
+      "x": 17,
+      "y": 7,
+      "hp": 40,
+      "properties": {
+        "FarmingKitGranted": "true",
+        "StartingBuild": "classic"
+      },
+      "parts": [
+        "RenderPart",
+        "PhysicsPart",
+        "ExaminablePart",
+        "Body",
+        "ArmorPart",
+        "InventoryPart",
+        "BrainPart",
+        "GivesRepPart",
+        "DamageFlashPart",
+        "CorpsePart",
+        "MaterialPart",
+        "ThermalPart",
+        "ActivatedAbilitiesPart",
+        "SkillsPart",
+        "LightSourcePart",
+        "Pyromancy_EmberSpit",
+        "Pyromancy_FlamingHands",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Cryomancy_RimeGrip",
+        "Spellcraft_Calm",
+        "WorldMapPart",
+        "WorldMapTravelCostPart"
+      ]
+    }
+  ]
+}

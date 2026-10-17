@@ -1,0 +1,867 @@
+{
+    "runId": "3dc02a360ac6431d970eeb451c1bc7dc",
+    "zone": "Overworld.8.0.0",
+    "fatal": "System.InvalidOperationException: Density liquid precondition: visible native action examine_item\n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:509 \n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer+<ItemAction>d__90.MoveNext () [0x000b9] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:439 \n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer+<RunSafely>d__100.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:522 ",
+    "canVerify": "Native new game; real generated Sella stock purchased with starting coins; native inventory fill/pour/Examine; finite water/oil/acid quantities, waterskin compatibility, unavailable unlike-liquid menu choices, ordinary scheduler costs, real F5/F6 object graph and checkpoint evidence including the remote original water source; exact poured native owner/model and fully on-screen viewport bounds; screenshots.",
+    "cannotVerify": "Only actor travel is shortened. No source, item, currency, HP or terrain is granted or rewritten by the harness. There is no scheduler bypass or manual NPC scheduling. Generated-source scanning is bounded, not natural discovery/frequency evidence. Acid scans real Sodden surface/ordinary underground tables; each matching candidate records refusals. Poured model captures deliberately use supported ordinary zones; authored Morrowfast fallback is not a native-model acceptance claim. Unlike actions are intentionally absent from the menu; executed stale-selection refusals are covered by core tests. Screenshots need visual review; no whole-world balance, natural route, cold-start performance or feel claim.",
+    "audit": [
+        "PASS ordinary_start",
+        "PASS flask_bought_actual_instance",
+        "PASS waterskin_bought_actual_instance",
+        "PASS purchased_sources_empty",
+        "PASS water_fill_conserves",
+        "PASS water_pour_conserves",
+        "PASS waterskin_draw_conserves",
+        "PASS partial_refill_conserves",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeLiquids/3dc02a360ac6431d970eeb451c1bc7dc/flask-actual-stock.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeLiquids/3dc02a360ac6431d970eeb451c1bc7dc/waterskin-actual-stock.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeLiquids/3dc02a360ac6431d970eeb451c1bc7dc/water-natural-source-and-filled-flask.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeLiquids/3dc02a360ac6431d970eeb451c1bc7dc/water-poured-native-body-owner-7000.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "travel-shortcut",
+            "source": "Overworld.3.6.0",
+            "text": "MorrowfastSella:morrowfast-owner:southern-food-vendor @ 48,20",
+            "units": 0
+        },
+        {
+            "subject": "travel-shortcut",
+            "source": "Overworld.3.6.0",
+            "text": "MorrowfastSella:morrowfast-owner:southern-food-vendor @ 48,20",
+            "units": 0
+        },
+        {
+            "subject": "source-candidate",
+            "source": "Overworld.11.10.0:2125",
+            "text": "water SpreadDrawPoint @ 36,9; volume=3; nearestHostileToSource=11; finite volume below12",
+            "units": 3
+        },
+        {
+            "subject": "source-zone-summary",
+            "source": "Overworld.11.10.0",
+            "text": "water; matching pools=1",
+            "units": 1
+        },
+        {
+            "subject": "source-candidate",
+            "source": "Overworld.3.6.0:morrowfast-terrain:25:0",
+            "text": "water WaterPuddle @ 25,0; volume=120; nearestHostileToSource=999; selected",
+            "units": 120
+        },
+        {
+            "subject": "travel-shortcut",
+            "source": "Overworld.3.6.0",
+            "text": "WaterPuddle:morrowfast-terrain:25:0 @ 24,0",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "dry-site-rejected",
+            "source": "Overworld.3.6.0",
+            "text": "outside current ring presenter authority",
+            "units": 0
+        },
+        {
+            "subject": "dry-site-rejected",
+            "source": "Overworld.11.10.0",
+            "text": "no dry unobstructed patch with original32-cell hostile clearance",
+            "units": 0
+        },
+        {
+            "subject": "travel-shortcut",
+            "source": "Overworld.8.0.0",
+            "text": "supported generated dry transfer site; held contents unchanged @ 5,3",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "native-poured-visual-preflight",
+            "source": "7000",
+            "text": "water; model=poured-liquid-63; zone=Overworld.8.0.0; cell=6,3; viewport=0.1291793,0.7536589..0.1507092,0.7837018; pixels=20.23809x20.4292",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        }
+    ],
+    "cases": 9,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "startingCoins": 50,
+    "checkpointHash": "",
+    "observations": [
+        {
+            "phase": "travel",
+            "zone": "Overworld.3.6.0",
+            "flaskId": "",
+            "flaskLiquid": "",
+            "sourceId": "",
+            "sourceBlueprint": "",
+            "sourceLiquid": "",
+            "sourceDisplay": "",
+            "sourceRender": "",
+            "sourceColor": "",
+            "lastMessage": "Starting a new game. Initial checkpoint saved.",
+            "x": 48,
+            "y": 20,
+            "tick": 10,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 50,
+            "flaskVolume": -1,
+            "skinCharges": -1,
+            "sourceVolume": -1,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707"
+            ],
+            "sourcePresent": false
+        },
+        {
+            "phase": "travel",
+            "zone": "Overworld.3.6.0",
+            "flaskId": "4744",
+            "flaskLiquid": "",
+            "sourceId": "",
+            "sourceBlueprint": "",
+            "sourceLiquid": "",
+            "sourceDisplay": "",
+            "sourceRender": "",
+            "sourceColor": "",
+            "lastMessage": "You buy liquid flask for 23 drams.",
+            "x": 48,
+            "y": 20,
+            "tick": 10,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 27,
+            "flaskVolume": 0,
+            "skinCharges": -1,
+            "sourceVolume": -1,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744"
+            ],
+            "sourcePresent": false
+        },
+        {
+            "phase": "travel",
+            "zone": "Overworld.3.6.0",
+            "flaskId": "4744",
+            "flaskLiquid": "",
+            "sourceId": "",
+            "sourceBlueprint": "",
+            "sourceLiquid": "",
+            "sourceDisplay": "",
+            "sourceRender": "",
+            "sourceColor": "",
+            "lastMessage": "You buy waterskin for 23 drams.",
+            "x": 24,
+            "y": 0,
+            "tick": 10,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 4,
+            "flaskVolume": 0,
+            "skinCharges": 0,
+            "sourceVolume": -1,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744",
+                "Waterskin:4745"
+            ],
+            "sourcePresent": false
+        },
+        {
+            "phase": "water-filled",
+            "zone": "Overworld.3.6.0",
+            "flaskId": "4744",
+            "flaskLiquid": "water",
+            "sourceId": "morrowfast-terrain:25:0",
+            "sourceBlueprint": "WaterPuddle",
+            "sourceLiquid": "water",
+            "sourceDisplay": "puddle of water",
+            "sourceRender": "~",
+            "sourceColor": "&c",
+            "lastMessage": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "x": 24,
+            "y": 0,
+            "tick": 20,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 4,
+            "flaskVolume": 12,
+            "skinCharges": 0,
+            "sourceVolume": 108,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744",
+                "Waterskin:4745"
+            ],
+            "sourcePresent": true
+        },
+        {
+            "phase": "travel",
+            "zone": "Overworld.8.0.0",
+            "flaskId": "4744",
+            "flaskLiquid": "water",
+            "sourceId": "",
+            "sourceBlueprint": "",
+            "sourceLiquid": "",
+            "sourceDisplay": "",
+            "sourceRender": "",
+            "sourceColor": "",
+            "lastMessage": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "x": 5,
+            "y": 3,
+            "tick": 20,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 4,
+            "flaskVolume": 12,
+            "skinCharges": 0,
+            "sourceVolume": -1,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744",
+                "Waterskin:4745"
+            ],
+            "sourcePresent": false
+        },
+        {
+            "phase": "water-poured",
+            "zone": "Overworld.8.0.0",
+            "flaskId": "4744",
+            "flaskLiquid": "",
+            "sourceId": "7000",
+            "sourceBlueprint": "PouredLiquidPool",
+            "sourceLiquid": "water",
+            "sourceDisplay": "water puddle",
+            "sourceRender": "~",
+            "sourceColor": "&c",
+            "lastMessage": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "x": 5,
+            "y": 3,
+            "tick": 30,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 4,
+            "flaskVolume": 0,
+            "skinCharges": 0,
+            "sourceVolume": 12,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744",
+                "Waterskin:4745"
+            ],
+            "sourcePresent": true
+        },
+        {
+            "phase": "partial-water-refilled",
+            "zone": "Overworld.8.0.0",
+            "flaskId": "4744",
+            "flaskLiquid": "water",
+            "sourceId": "7000",
+            "sourceBlueprint": "PouredLiquidPool",
+            "sourceLiquid": "water",
+            "sourceDisplay": "water puddle",
+            "sourceRender": "~",
+            "sourceColor": "&c",
+            "lastMessage": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "x": 5,
+            "y": 3,
+            "tick": 50,
+            "energy": 1000,
+            "hp": 40,
+            "maxHp": 40,
+            "coins": 4,
+            "flaskVolume": 9,
+            "skinCharges": 3,
+            "sourceVolume": 0,
+            "inventory": [
+                "Dagger:2702",
+                "HealingTonic:2703",
+                "DriedMeat:2704",
+                "WateringGrimoire:2705",
+                "CandyCarrotSeed:2706",
+                "EmberwheatSeed:2707",
+                "LiquidFlask:4744",
+                "Waterskin:4745"
+            ],
+            "sourcePresent": false
+        }
+    ],
+    "nativeKeys": [
+        {
+            "sequence": 0,
+            "tick": 10,
+            "keys": "N",
+            "state": "Normal"
+        },
+        {
+            "sequence": 1,
+            "tick": 10,
+            "keys": "L",
+            "state": "Normal"
+        },
+        {
+            "sequence": 2,
+            "tick": 10,
+            "keys": "A",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 3,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 4,
+            "tick": 10,
+            "keys": "C",
+            "state": "WorldActionMenuOpen"
+        },
+        {
+            "sequence": 5,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "DialogueOpen"
+        },
+        {
+            "sequence": 6,
+            "tick": 10,
+            "keys": "E",
+            "state": "DialogueOpen"
+        },
+        {
+            "sequence": 7,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 8,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 9,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 10,
+            "tick": 10,
+            "keys": "Escape",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 11,
+            "tick": 10,
+            "keys": "L",
+            "state": "Normal"
+        },
+        {
+            "sequence": 12,
+            "tick": 10,
+            "keys": "A",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 13,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 14,
+            "tick": 10,
+            "keys": "C",
+            "state": "WorldActionMenuOpen"
+        },
+        {
+            "sequence": 15,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "DialogueOpen"
+        },
+        {
+            "sequence": 16,
+            "tick": 10,
+            "keys": "E",
+            "state": "DialogueOpen"
+        },
+        {
+            "sequence": 17,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 18,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 19,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 20,
+            "tick": 10,
+            "keys": "Escape",
+            "state": "TradeOpen"
+        },
+        {
+            "sequence": 21,
+            "tick": 10,
+            "keys": "I",
+            "state": "Normal"
+        },
+        {
+            "sequence": 22,
+            "tick": 10,
+            "keys": "Tab",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 23,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 24,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 25,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 26,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 27,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 28,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 29,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 30,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 31,
+            "tick": 10,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 32,
+            "tick": 10,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 33,
+            "tick": 20,
+            "keys": "I",
+            "state": "Normal"
+        },
+        {
+            "sequence": 34,
+            "tick": 20,
+            "keys": "Tab",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 35,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 36,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 37,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 38,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 39,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 40,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 41,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 42,
+            "tick": 20,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 43,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 44,
+            "tick": 20,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 45,
+            "tick": 20,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 46,
+            "tick": 30,
+            "keys": "L",
+            "state": "Normal"
+        },
+        {
+            "sequence": 47,
+            "tick": 30,
+            "keys": "D",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 48,
+            "tick": 30,
+            "keys": "Escape",
+            "state": "LookMode"
+        },
+        {
+            "sequence": 49,
+            "tick": 30,
+            "keys": "I",
+            "state": "Normal"
+        },
+        {
+            "sequence": 50,
+            "tick": 30,
+            "keys": "Tab",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 51,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 52,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 53,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 54,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 55,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 56,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 57,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 58,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 59,
+            "tick": 30,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 60,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 61,
+            "tick": 30,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 62,
+            "tick": 30,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 63,
+            "tick": 40,
+            "keys": "I",
+            "state": "Normal"
+        },
+        {
+            "sequence": 64,
+            "tick": 40,
+            "keys": "Tab",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 65,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 66,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 67,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 68,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 69,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 70,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 71,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 72,
+            "tick": 40,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 73,
+            "tick": 40,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 74,
+            "tick": 40,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 75,
+            "tick": 50,
+            "keys": "I",
+            "state": "Normal"
+        },
+        {
+            "sequence": 76,
+            "tick": 50,
+            "keys": "Tab",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 77,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 78,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 79,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 80,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 81,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 82,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 83,
+            "tick": 50,
+            "keys": "DownArrow",
+            "state": "InventoryOpen"
+        },
+        {
+            "sequence": 84,
+            "tick": 50,
+            "keys": "Enter",
+            "state": "InventoryOpen"
+        }
+    ],
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 14.5103432
+}

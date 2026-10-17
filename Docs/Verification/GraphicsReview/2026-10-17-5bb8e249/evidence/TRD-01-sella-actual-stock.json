@@ -1,0 +1,78 @@
+{
+  "id": "TRD-01-sella-actual-stock",
+  "file": "screenshots/staged/TRD-01-sella-actual-stock.png",
+  "classification": "staged",
+  "classificationNote": "Conservative capture classification because SampleScene inherits full reveal; the shop contents and purchases are genuine generated gameplay, reached through an actor travel shortcut.",
+  "caption": "Real Sella Kettle trade screen in Morrowfast before purchasing the selected liquid flask for23 drams from the original50-drams starter purse.",
+  "visualReview": "Full-screen buy/sell panels show selected flask, weights, prices, vendor200 and player50 drams, trade performance35%, and footer F1 details/Enter buy/Tab sell/Esc close. Selection chevron is visible. Much of the lower panel is empty because stock is short; no clipping observed. Keyboard hints only; this image does not establish controller mapping.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeLiquids/3dc02a360ac6431d970eeb451c1bc7dc/flask-actual-stock.png",
+  "sha256": "8594e0eefa5e6100a272e4714d515a8704b7e88f454457d5a06a40f413fa65ca",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:25:37.306010+00:00",
+  "timestampBasis": "Source PNG modification time preserved by raw copy; no per-image native UTC stamp.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR"
+  },
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.3.6.0",
+  "logical": {
+    "x": 3,
+    "y": 6,
+    "depth": 0
+  },
+  "biome": "Grovelands",
+  "formation": "authored Morrowfast settlement",
+  "player": {
+    "x": 48,
+    "y": 20,
+    "hp": 40,
+    "coins": 50,
+    "basis": "Travel observation immediately before shop; full-screen trade displays50 coins."
+  },
+  "state": "TradeOpen",
+  "tick": 10,
+  "dayBand": null,
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 1.2,
+    "fullReveal": null,
+    "fullRevealBasis": "SampleScene serialized RevealEntire3DZone=1, no native route guard or override recorded. Background world obscured by full-screen shop.",
+    "ambient": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "DensityLiquidNativeBatch.Launch",
+    "runId": "3dc02a360ac6431d970eeb451c1bc7dc",
+    "report": "evidence/routes/liquid-incomplete/3dc02a360ac6431d970eeb451c1bc7dc/report.json",
+    "complete": false,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "alterations": "Actor travel shortened to real Sella stock. No items, currency, HP, source or terrain grants/rewrites. Native keyboard dialogue/trade commands. Full route later transfers to natural water source and supported dry site; incomplete during inventory examine before oil/acid and checkpoint.",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "purchaseEvidence": {
+    "captureMoment": "Before purchase; selected stock still seller-owned.",
+    "subsequentCheck": "PASS flask_bought_actual_instance",
+    "actualItem": "LiquidFlask:4744",
+    "price": 23,
+    "coinsAfter": 27,
+    "source": "Report travel observation following purchase and DensityLiquidNativePlayer.Buy checks exact ownership and original coins minus price."
+  },
+  "unknownMetadata": [
+    "exact per-frame UTC",
+    "numeric camera transform and zoom measurement",
+    "day band at screenshot",
+    "numeric ambient/local light",
+    "per-frame graphics settings",
+    "controller shop hints"
+  ]
+}

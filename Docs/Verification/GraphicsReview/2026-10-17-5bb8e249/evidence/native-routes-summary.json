@@ -1,0 +1,100 @@
+{
+  "reviewedSelected": 15,
+  "routes": {
+    "combat": {
+      "runId": "32439dfbf1074f539606b48754ef5eff",
+      "complete": false,
+      "failures": 1,
+      "unexpectedErrors": 0,
+      "fatal": "",
+      "seconds": 10.9771398,
+      "failedChecks": [
+        "FAIL real_attack_pose_and_frame"
+      ],
+      "copiedOriginalPngCount": 3,
+      "selected": [
+        "CMB-01-keyboard-contact",
+        "CMB-02-real-combat-aftermath"
+      ]
+    },
+    "cave": {
+      "runId": "07b9269e886e43fe80e1849ca884d1e6",
+      "complete": true,
+      "failures": 0,
+      "unexpectedErrors": 0,
+      "fatal": "",
+      "seconds": 7.3765304,
+      "failedChecks": [],
+      "copiedOriginalPngCount": 3,
+      "selected": [
+        "CAV-01-lampvein-examine",
+        "CAV-02-harvested-ground-light"
+      ]
+    },
+    "work": {
+      "runId": "023c82b599ed4893b17390cc482c3cf2",
+      "complete": false,
+      "failures": 2,
+      "unexpectedErrors": 1,
+      "fatal": "System.InvalidOperationException: Density completion precondition: live safe field approach without healing grants\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:455 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RepairNativeApproach>d__523.MoveNext () [0x0007c] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeRepairCultivation.cs:55 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__388.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:475 ",
+      "seconds": 16.0650707,
+      "failedChecks": [
+        "FAIL native_precondition_failed"
+      ],
+      "copiedOriginalPngCount": 6,
+      "selected": [
+        "WRK-01-generated-field",
+        "WRK-02-cracked-well-examine",
+        "WRK-03-restored-gate-closed",
+        "WRK-04-restored-gate-open"
+      ]
+    },
+    "biome": {
+      "runId": "71cf42abd0f444f3b9fa99db3fe03d08",
+      "complete": false,
+      "failures": 2,
+      "unexpectedErrors": 1,
+      "fatal": "System.InvalidOperationException: Density completion precondition: profile's actual east step remains clear\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:455 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunBiomeAudit>d__11.MoveNext () [0x00d74] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeBiome.cs:110 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__388.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:475 ",
+      "seconds": 62.591766099999994,
+      "failedChecks": [
+        "FAIL native_precondition_failed"
+      ],
+      "copiedOriginalPngCount": 11,
+      "selected": [
+        "LAI-01-real-lair-surface",
+        "LAI-02-real-lair-floor"
+      ]
+    },
+    "throwing": {
+      "runId": "aa21cb6ddf2441589a5338987e8c0942",
+      "complete": true,
+      "failures": 0,
+      "unexpectedErrors": 0,
+      "fatal": null,
+      "seconds": 49.455749,
+      "failedChecks": [],
+      "copiedOriginalPngCount": 13,
+      "selected": [
+        "THR-01-equipped-body-aim",
+        "THR-02-ground-aim",
+        "THR-03-measured-keyboard-ready",
+        "THR-04-measured-controller-ready"
+      ]
+    },
+    "liquid-incomplete": {
+      "runId": "3dc02a360ac6431d970eeb451c1bc7dc",
+      "complete": false,
+      "failures": 2,
+      "unexpectedErrors": 1,
+      "fatal": "System.InvalidOperationException: Density liquid precondition: visible native action examine_item\n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:509 \n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer+<ItemAction>d__90.MoveNext () [0x000b9] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:439 \n  at CavesOfOoo.Scenarios.Custom.DensityLiquidNativePlayer+<RunSafely>d__100.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs:522 ",
+      "seconds": 14.5103432,
+      "failedChecks": [
+        "FAIL native_precondition_failed"
+      ],
+      "copiedOriginalPngCount": 4,
+      "selected": [
+        "TRD-01-sella-actual-stock"
+      ]
+    }
+  }
+}

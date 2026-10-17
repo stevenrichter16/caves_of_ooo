@@ -1,0 +1,83 @@
+{
+  "id": "THR-02-ground-aim",
+  "file": "screenshots/staged/THR-02-ground-aim.png",
+  "classification": "staged",
+  "caption": "Same controlled target cell toggled to Ground without spending a turn or item.",
+  "visualReview": "Ground mode label and changed sidebar description visible. Actual first contact still body because it occupies that cell; the preview says so.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/aa21cb6ddf2441589a5338987e8c0942/02-ground-aim.png",
+  "sha256": "bcf2a8b276377b578973fef9f92b2823e1ff218581ba545c41e15bf8afc57ff5",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:22:10.469684+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.11.10.0",
+  "logical": {
+    "x": 11,
+    "y": 10,
+    "depth": 0
+  },
+  "biome": "staged fixture",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 20,
+    "y": 12,
+    "hp": 40,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "ThrowTargeting",
+  "dayBand": "Dawn",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": 10,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 1.2,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": null,
+    "fullRevealBasis": "SampleScene serialized RevealEntire3DZone=1, inherited absent capture override; no per-frame assertion.",
+    "ambient": null,
+    "lightSource": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ThrowingNativeBatch.Launch",
+    "runId": "aa21cb6ddf2441589a5338987e8c0942",
+    "report": "evidence/routes/throwing/aa21cb6ddf2441589a5338987e8c0942/report.json",
+    "complete": true,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "alterations": "staged bounded stone floor; all original nonplayer world entities removed; player moved20,12, Strength/Agility30, capacity500; MarlbackGleaner spawned25,12, Brain removed, HP500, natural AV/DV0; equipped ShortSword, carried Dagger stack3, Warhammer, WaterTonic, floor Dagger22,12; five throwing skills granted; command RNG123; after setup queued keyboard and synthetic gamepad input",
+    "inputMethod": "queued keyboard and synthetic gamepad",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ],
+  "nativeObservation": {
+    "name": "02-ground-aim",
+    "width": 1280,
+    "height": 800,
+    "state": "ThrowTargeting",
+    "tick": 10,
+    "energy": 1000,
+    "guard": false,
+    "preview": "Ground / 1 item / 1 action. First contact: marlback gleaner; rests at [25,12].",
+    "signature": "{\"actor\":\"2702\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":10,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2703\",\"count\":1},{\"ID\":\"2704\",\"count\":4},{\"ID\":\"2705\",\"count\":2},{\"ID\":\"2707\",\"count\":2},{\"ID\":\"2708\",\"count\":2},{\"ID\":\"2899\",\"count\":3},{\"ID\":\"2900\",\"count\":1},{\"ID\":\"2901\",\"count\":1}],\"equipped\":[\"2706\",\"2898\"],\"world\":[{\"ID\":\"2896\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":500,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2902\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null}]}"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "LAI-02-real-lair-floor",
+  "file": "screenshots/controlled/LAI-02-real-lair-floor.png",
+  "classification": "controlled",
+  "caption": "Same lair first committed floor reached by ordinary Shift+Period stair input; paired up stair under player.",
+  "visualReview": "Boxy native wallkeeper threat two tiles away and chest visible. Surface/underground use similar green materials. This is a connected location pair, not a boss combat screenshot.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough/71cf42abd0f444f3b9fa99db3fe03d08/biome-08-committed-lair-floor.png",
+  "sha256": "580c1576f3eba2117aa1d8dc589fa2f062c81d3ec887cf4f4a8a34760bbeeedd",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:21:15.360105+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.8.12.1",
+  "logical": {
+    "x": 8,
+    "y": 12,
+    "depth": 1
+  },
+  "biome": "Spread",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 36,
+    "y": 12,
+    "hp": 40,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "Normal",
+  "dayBand": "Bright",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": 1290,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 0.82,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": false,
+    "fullRevealBasis": "ReferenceGlade serialized0 and shared native route guard asserts RevealEntire3DZone=false and FullReveal=false before selected captures",
+    "ambient": null,
+    "lightSource": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ReferenceGladeNativeBatch.LaunchBiome",
+    "runId": "71cf42abd0f444f3b9fa99db3fe03d08",
+    "report": "evidence/routes/biome/71cf42abd0f444f3b9fa99db3fe03d08/report.json",
+    "complete": false,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "alterations": "four explicit actor transfers across the full route; selected lair source floor generated for preflight, descent/ascent through ordinary stair keys; two original Calm casts used earlier through real controls; no grants, AI suppression or forced models",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ]
+}

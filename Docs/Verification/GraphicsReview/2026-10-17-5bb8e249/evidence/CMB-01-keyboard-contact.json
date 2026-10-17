@@ -1,0 +1,72 @@
+{
+  "id": "CMB-01-keyboard-contact",
+  "file": "screenshots/controlled/CMB-01-keyboard-contact.png",
+  "classification": "controlled",
+  "caption": "Native approach to authored northern marlback scrabbler; original player and kit.",
+  "visualReview": "Static contact frame; actors small near upper edge. HUD and live NPC combat log readable; no attack pose captured.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat/32439dfbf1074f539606b48754ef5eff/02-keyboard-contact.png",
+  "sha256": "67eab5590bd02f6fc8fe480b9232283e685cd11a1b96d7f62a9e94a27b15eea7",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:18:34.581168+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.11.10.0",
+  "logical": {
+    "x": 11,
+    "y": 10,
+    "depth": 0
+  },
+  "biome": "Spread",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 28,
+    "y": 3,
+    "hp": 40,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "Normal",
+  "dayBand": "Dawn",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": null,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 0.82,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": false,
+    "fullRevealBasis": "ReferenceGlade serialized0 and shared native route guard asserts RevealEntire3DZone=false and FullReveal=false before selected captures",
+    "ambient": null,
+    "lightSource": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ReferenceGladeNativeBatch.LaunchCombat",
+    "runId": "32439dfbf1074f539606b48754ef5eff",
+    "report": "evidence/routes/combat/32439dfbf1074f539606b48754ef5eff/report.json",
+    "complete": false,
+    "failures": 1,
+    "unexpectedErrors": 0,
+    "alterations": "ordinary queued keyboard input; no actor transfers, grants, stat changes, AI suppression or direct combat calls; actual original dagger and one original starting Rime Grip use, zero healing tonics",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ]
+}

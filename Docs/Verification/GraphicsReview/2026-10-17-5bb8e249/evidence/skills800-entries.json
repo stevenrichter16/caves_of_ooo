@@ -1,0 +1,145 @@
+{
+  "schema": "capture-route-review-fragment-v1",
+  "runId": "1520868bb67143b18257bd3574f2c661",
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "routeReport": "evidence/routes/skills800/report.json",
+  "review": "evidence/skills800-review.md",
+  "rawOutcome": {
+    "cases": 23,
+    "failures": 1,
+    "fatal": "",
+    "unexpectedErrors": 0,
+    "complete": false,
+    "failure": "all_disciplines_reachable"
+  },
+  "sourceAudit": {
+    "stagedState": "SP.BaseValue=10; otherwise ordinary player inventory/HP. Purchased Acrobatics, Vault, LongBlades root, Deflect 3, Riposte 3, EnGarde. Vault assigned slot ten.",
+    "input": "Virtual keyboard and Gamepad via Input System; pad remains connected through keyboard reopen.",
+    "failureInterpretation": "Scenario visits exactly 13 discipline roots; current authored registry contains 14 including Throwing. Stale coverage check does not prove inability to navigate."
+  },
+  "entries": [
+    {
+      "id": "SKL-01-ranked-overview",
+      "image": "evidence/routes/skills800/14-ranked-long-blades-overview.png",
+      "rawMetadata": "evidence/routes/skills800/report.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "staged-UI-budget; native input; synthetic controller",
+      "question": "Does the overview connect owned ranks, remaining options and actual effects?",
+      "plainCaption": "The Long Blades overview shows Deflect and Riposte at rank 3/3, owned En Garde, zero remaining SP, and the first page of Riposte detail.",
+      "contents": [
+        "Discipline rail",
+        "Prerequisite card board",
+        "Riposte selected, MAX 3/3",
+        "Current held-long-blade warning",
+        "DETAILS 1 / 2"
+      ],
+      "immediateSequence": [
+        "Buy Acrobatics and Vault with the staged points",
+        "Assign Vault to slot ten",
+        "Buy the Long Blades root, Deflect and Riposte ranks 1\u20133, and En Garde through controller review",
+        "Toggle overview"
+      ],
+      "limits": [
+        "Existing isolated ReferenceGlade route; 10 SP explicitly staged. Ranks purchased through actual UI.",
+        "Synthetic controller on macOS Editor, not physical Steam Deck.",
+        "Run has one failed all_disciplines_reachable audit; do not report complete pass.",
+        "Raw report has route-level evidence, not per-frame entity/camera snapshots.",
+        "Description continues on a labeled second page; not all text is captured.",
+        "Only the first rail page of 13 discipline names is shown."
+      ],
+      "relatedIds": [
+        "SKL-02-keyboard-reopen",
+        "SKL-03-pyromancy-final-page"
+      ],
+      "visibleFindings": [
+        "Columns and state colors are clear.",
+        "No visible overlapping text.",
+        "No obvious discipline-page counter shows that Throwing is on a later rail page."
+      ]
+    },
+    {
+      "id": "SKL-02-keyboard-reopen",
+      "image": "evidence/routes/skills800/09-reopened-keyboard.png",
+      "rawMetadata": "evidence/routes/skills800/report.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "staged-UI-budget; native input; synthetic controller",
+      "question": "Does reopening preserve the complete visible browser?",
+      "plainCaption": "Keyboard X reopens the same Long Blades/Riposte overview, but its entire discipline-name list has disappeared.",
+      "contents": [
+        "Preserved overview and selected Riposte",
+        "Empty discipline rail below its heading",
+        "Controller hints still present"
+      ],
+      "immediateSequence": [
+        "Close SKL-01 with synthetic controller B",
+        "Reopen using queued keyboard X",
+        "Capture before another navigation input"
+      ],
+      "limits": [
+        "Existing isolated ReferenceGlade route; 10 SP explicitly staged. Ranks purchased through actual UI.",
+        "Synthetic controller on macOS Editor, not physical Steam Deck.",
+        "Run has one failed all_disciplines_reachable audit; do not report complete pass.",
+        "Raw report has route-level evidence, not per-frame entity/camera snapshots.",
+        "Synthetic Gamepad remains connected, so this is not a no-controller hint comparison.",
+        "Exact missing-rail render/lifecycle cause is unproven.",
+        "No subsequent redraw is captured."
+      ],
+      "relatedIds": [
+        "SKL-01-ranked-overview"
+      ],
+      "visibleFindings": [
+        "All discipline names and selected highlight are absent although the frame/footer remain.",
+        "Passing remembered-selection audit does not verify visible list content.",
+        "Purchase notice clearing is expected on reopen; distinct from missing rail."
+      ]
+    },
+    {
+      "id": "SKL-03-pyromancy-final-page",
+      "image": "evidence/routes/skills800/07-pyromancy-last-page.png",
+      "rawMetadata": "evidence/routes/skills800/report.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "staged-UI-budget; native input; synthetic controller",
+      "question": "Can the final skill of a large discipline be found and understood?",
+      "plainCaption": "Hearthwarm on Pyromancy page 2/2 explains its warming aura, thaw/dry/campfire uses, targeting, cooldown and missing root requirement.",
+      "contents": [
+        "Pyromancy list final page",
+        "Hearthwarm LOCKED 1 SP",
+        "Eight remaining staged SP",
+        "Practical description and mechanics",
+        "Controller hints"
+      ],
+      "immediateSequence": [
+        "After buying Acrobatics and Vault, traverse disciplines using RB",
+        "At Pyromancy, switch to field manual and move to the final ability",
+        "Capture Hearthwarm selected"
+      ],
+      "limits": [
+        "Existing isolated ReferenceGlade route; 10 SP explicitly staged. Ranks purchased through actual UI.",
+        "Synthetic controller on macOS Editor, not physical Steam Deck.",
+        "Run has one failed all_disciplines_reachable audit; do not report complete pass.",
+        "Raw report has route-level evidence, not per-frame entity/camera snapshots.",
+        "Practical long description, not a many-prerequisite stress test.",
+        "Already-owned Flaming Hands is an actual starter ability, not an added skill grant."
+      ],
+      "relatedIds": [
+        "SKL-01-ranked-overview"
+      ],
+      "visibleFindings": [
+        "Text fits one detail page.",
+        "List pagination is explicit.",
+        "Minor copy issue: Range: 1 cells."
+      ]
+    }
+  ]
+}

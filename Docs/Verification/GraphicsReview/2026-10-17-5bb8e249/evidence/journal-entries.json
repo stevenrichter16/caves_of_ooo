@@ -1,0 +1,298 @@
+{
+  "schema": "capture-manual-review-fragment-v1",
+  "session": "journal-64",
+  "review": "evidence/journal-review.md",
+  "supersedesPending": [
+    "Current-stage quest and numeric progress now captured after real dialogue acceptance.",
+    "Long single-page dialogue now captured at 800p and 720p with completed text reveal.",
+    "Actual Remember action transfers the matching wilderness report to Field Notes."
+  ],
+  "entries": [
+    {
+      "id": "NPC-01-padok-examine",
+      "image": "screenshots/ordinary/NPC-01-padok-examine.png",
+      "rawMetadata": "evidence/NPC-01-padok-examine.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does a named quest giver receive a readable, specific examination?",
+      "plainCaption": "Clerk Padok has a pale 3D humanoid portrait, Sitting state, Creature type and Flesh material in the Examine reader.",
+      "contents": [
+        "Actual Clerk Padok, Villager entity 6981",
+        "Small pale character portrait",
+        "Current state Sitting",
+        "Creature/Flesh labels",
+        "Chair/HP relationship in Focus"
+      ],
+      "immediateSequence": [
+        "Travel normally to Gantry",
+        "Inspect the real clerk in his room",
+        "Open Examine and wait for the reader"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "Only one NPC sample.",
+        "Generic You see Clerk Padok description does not convey his specific work."
+      ],
+      "relatedIds": [
+        "UI-03-padok-quest-offer",
+        "ITEM-03-dagger-examine"
+      ],
+      "visibleFindings": [
+        "Title, state, material and controls fit.",
+        "Portrait is more recognizable than the small world figure.",
+        "Sitting is phrased as Afflicted in the sidebar/log."
+      ]
+    },
+    {
+      "id": "UI-03-padok-quest-offer",
+      "image": "screenshots/ordinary/UI-03-padok-quest-offer.png",
+      "rawMetadata": "evidence/UI-03-padok-quest-offer.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the quest text match its dialogue choices?",
+      "plainCaption": "Padok asks for three overdue levies and offers the matching acceptance choice, alongside Goodbye, Trade and Attack.",
+      "contents": [
+        "Levy speech",
+        "Accept: I will collect the tax",
+        "Allied faction panel",
+        "Four choices"
+      ],
+      "immediateSequence": [
+        "Close Examine",
+        "Walk adjacent to Padok at (12,7)",
+        "Open his actual quest conversation",
+        "Capture before acceptance"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "This short branch is not long-dialogue coverage."
+      ],
+      "relatedIds": [
+        "NPC-01-padok-examine",
+        "JRN-01-levy-current-stage"
+      ],
+      "visibleFindings": [
+        "Speech and acceptance choice align.",
+        "Dark footer is low contrast against terrain.",
+        "Source em dash after at your service renders as a replacement question mark."
+      ]
+    },
+    {
+      "id": "JRN-01-levy-current-stage",
+      "image": "screenshots/ordinary/JRN-01-levy-current-stage.png",
+      "rawMetadata": "evidence/JRN-01-levy-current-stage.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Are current stage and numeric progress legible in a real accepted quest?",
+      "plainCaption": "Three Outstanding Accounts shows collect as the current stage, zero of three accounts settled, and report pending.",
+      "contents": [
+        "One open quest",
+        "Yellow collect stage",
+        "Settle three accounts objective",
+        "Pending report",
+        "Full-screen quest UI"
+      ],
+      "immediateSequence": [
+        "Accept Padok\u2019s levy through normal dialogue",
+        "Close conversation",
+        "Open quest journal"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "A single short quest does not test dense-list pagination.",
+        "World renderers are intentionally hidden by this full-screen menu."
+      ],
+      "relatedIds": [
+        "UI-03-padok-quest-offer",
+        "JRN-02-levy-current-stage-720"
+      ],
+      "visibleFindings": [
+        "Current > marker is blank.",
+        "Progress is visibly (0 3), not (0/3).",
+        "Page and control-hint slashes are missing too.",
+        "Very narrow, widely spaced text uses little of the available screen."
+      ]
+    },
+    {
+      "id": "JRN-02-levy-current-stage-720",
+      "image": "screenshots/ordinary/JRN-02-levy-current-stage-720.png",
+      "rawMetadata": "evidence/JRN-02-levy-current-stage-720.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the same journal remain readable at 720p?",
+      "plainCaption": "The identical accepted levy quest is displayed at 720p with unchanged stage and progress.",
+      "contents": [
+        "Same quest and current stage",
+        "Same tick 590",
+        "720p full-screen journal"
+      ],
+      "immediateSequence": [
+        "Leave journal open",
+        "Change Game view output from 1280\u00d7800 to 1280\u00d7720",
+        "Capture without advancing time"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "Desktop resolution comparison only.",
+        "World-renderer flags being false in the full-screen menu are intentional."
+      ],
+      "relatedIds": [
+        "JRN-01-levy-current-stage"
+      ],
+      "visibleFindings": [
+        "Missing > and / glyphs persist.",
+        "No viewport clipping, but small narrow letterforms remain hard to read."
+      ]
+    },
+    {
+      "id": "UI-04-scribe-wilderness-reports",
+      "image": "screenshots/ordinary/UI-04-scribe-wilderness-reports.png",
+      "rawMetadata": "evidence/UI-04-scribe-wilderness-reports.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Do long location reports match their choices and remain legible?",
+      "plainCaption": "Vellin Mosswick gives three old wilderness reports, each with destination, direction, source and uncertainty; the three Remember choices match them.",
+      "contents": [
+        "Ditch-cutters at (10,2)",
+        "Chalk-ring vipers at (9,0)",
+        "Turnbank wayhouse at (11,7)",
+        "Six choices including Back, three Remember entries, Trade and Attack"
+      ],
+      "immediateSequence": [
+        "Walk to the real Gantry scribe",
+        "Open the wilderness-report topic",
+        "Wait for typewriter reveal to finish",
+        "Capture the settled 800p branch"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "Long single-page dialogue; no second-page navigation is demonstrated.",
+        "The early incomplete typewriter frame is archived under evidence/excluded-typewriter-UI-04.* and excluded.",
+        "Report does not verify current destination inhabitants."
+      ],
+      "relatedIds": [
+        "UI-05-scribe-wilderness-reports-720",
+        "JRN-03-travel-notes",
+        "UI-01-recension-dialogue"
+      ],
+      "visibleFindings": [
+        "All paragraphs and choices fit.",
+        "Choice labels match the report topics.",
+        "Dense repeated provenance/uncertainty text consumes space.",
+        "Dark terrain-backed footer remains weak."
+      ]
+    },
+    {
+      "id": "UI-05-scribe-wilderness-reports-720",
+      "image": "screenshots/ordinary/UI-05-scribe-wilderness-reports-720.png",
+      "rawMetadata": "evidence/UI-05-scribe-wilderness-reports-720.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "classification": "ordinary-input",
+      "question": "Does the same long dialogue fit at 720p?",
+      "plainCaption": "The identical settled wilderness reports and matching choices fit at 1280\u00d7720, with the world, sidebar and six-spell hotbar retained.",
+      "contents": [
+        "Same scribe branch and tick as UI-04",
+        "Finished text reveal",
+        "Readable active choice colors",
+        "720p HUD context"
+      ],
+      "immediateSequence": [
+        "Keep the real wilderness conversation open",
+        "Change output height to 720",
+        "Wait for complete reveal and capture"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "Desktop comparison only.",
+        "Final 800p UI-04 recapture occurred afterward; filenames are not timestamp order.",
+        "No multi-page or controller-paging evidence."
+      ],
+      "relatedIds": [
+        "UI-04-scribe-wilderness-reports",
+        "JRN-03-travel-notes"
+      ],
+      "visibleFindings": [
+        "No speech or choice clipping.",
+        "Text is visually smaller than 800p.",
+        "Low-contrast footer persists."
+      ]
+    },
+    {
+      "id": "JRN-03-travel-notes",
+      "image": "screenshots/ordinary/JRN-03-travel-notes.png",
+      "rawMetadata": "evidence/JRN-03-travel-notes.json",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "classification": "ordinary-input",
+      "question": "Does remembering a location preserve the correct report in the journal?",
+      "plainCaption": "Field Notes contains the selected ditch-cutter report with destination (10,2), three east and six north from Gantry, Vellin\u2019s attribution and its unconfirmed status.",
+      "contents": [
+        "Field Notes screen",
+        "Selected report copied from dialogue",
+        "Coordinates and directions",
+        "Source and uncertainty",
+        "Page count and controls"
+      ],
+      "immediateSequence": [
+        "Choose b: Remember ditch-cutters from settled UI-04",
+        "Press Escape to close conversation",
+        "Press Q to open journal",
+        "Press Tab to switch to notes"
+      ],
+      "limits": [
+        "macOS Editor keyboard/mouse capture; no physical Deck/controller claim.",
+        "Real Gantry actors and ordinary interactions in isolated session journal-64.",
+        "Full reveal off; source-default radius 999 retained.",
+        "Confirms report recording, not actual destination encounter or map marker.",
+        "One short note does not stress multi-page notes.",
+        "Full-screen journal intentionally hides world rendering."
+      ],
+      "relatedIds": [
+        "UI-04-scribe-wilderness-reports",
+        "UI-05-scribe-wilderness-reports-720",
+        "JRN-01-levy-current-stage"
+      ],
+      "visibleFindings": [
+        "Content and coordinates match the selected dialogue report.",
+        "Wide letter spacing and large unused area persist.",
+        "Page/control slash glyphs are again absent."
+      ]
+    }
+  ],
+  "remainingLimits": [
+    "Multi-page dialogue navigation not captured.",
+    "Physical Steam Deck input/performance not evaluated."
+  ]
+}

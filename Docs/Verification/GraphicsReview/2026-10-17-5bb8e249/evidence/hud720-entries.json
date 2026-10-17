@@ -1,0 +1,190 @@
+{
+  "schema": "capture-hud720-review-fragment-v1",
+  "reviewedOriginals": 3,
+  "reviewFiles": [
+    "evidence/hud720-review.md"
+  ],
+  "session": {
+    "id": "hud720-291c5327ceaf46aba2f5bb59eec37a3f",
+    "runId": "291c5327ceaf46aba2f5bb59eec37a3f",
+    "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+    "sourceEvidence": "evidence/assembly-identity.json",
+    "platform": "macOS Unity Editor Game view",
+    "unity": "6000.3.4f1",
+    "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+    "seed": 64,
+    "zone": "Overworld.11.10.0",
+    "biome": "Spread",
+    "formation": "authored reference glade at Hedgerow address",
+    "depth": 0,
+    "logicalWorld": [
+      11,
+      10
+    ],
+    "playerCell": [
+      40,
+      12
+    ],
+    "build": "original six-power starter; HP40; dagger starting kit; no grant",
+    "input": "existing route synthetic keyboard and virtual Gamepad; controller stays connected during retained captures",
+    "width": 1280,
+    "height": 720,
+    "reportedHotbarPixelRect": [
+      0,
+      0,
+      974,
+      108
+    ],
+    "reportedSidebarPixelRect": [
+      974,
+      0,
+      306,
+      720
+    ],
+    "graphicsSettings": "Route does not change persisted graphics/audio preferences; no independent per-image runtime settings snapshot. Do not assert equality with manual-session settings solely from that fact.",
+    "camera": "ReferenceGlade serialized GameplayZoomMultiplier0.82; runtime zoom not independently recorded. Manual SampleScene snapshots used1.2 and must not be copied here.",
+    "visibility": "ReferenceGlade serialized RevealEntire3DZone=false and FovRadius999; route contains no override; exact per-cell explored history not recorded.",
+    "timeAndLighting": "Dawn as visible in retained HUD; ambient intensity/local sources unknown",
+    "captureMethod": "Existing ReferenceGladeNativeBatch.LaunchHudPolish720; normal game input actions via synthetic devices in NativeSaveIsolation",
+    "alterations": [
+      "Temporary virtual gamepad, removed by route cleanup",
+      "34 empty-slot attempts before cast plus one afterward, intentionally generating history",
+      "One actual Ground Surge cast spends a turn and mutates ground; NPC scheduling remains live",
+      "Real isolated save/load later in route"
+    ],
+    "result": "19 checks,0 failures,0 unexpected errors; complete=true; publicRouteComplete=false",
+    "restoration": "Report verifies syntheticpad removed and priorpad restored. Launcher source restores isolation and scene/display setup; final global restoration belongs to root audit."
+  },
+  "entries": [
+    {
+      "id": "HUD-01-controller-aim-720",
+      "image": "screenshots/controlled/HUD-01-controller-aim-720.png",
+      "sourceOriginal": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/hud-02-actual-pending.png",
+      "rawMetadata": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/report.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "39873ecb8f12902a559e8ba242c5bdc7d44dc3a6075e4773f4809f1d7bb44241",
+      "timestampUtc": "2026-10-17T13:24:28.231350+00:00",
+      "timestampBasis": "Original PNG filesystem modification time; report has run identity but no per-image UTC field.",
+      "session": "hud720-291c5327ceaf46aba2f5bb59eec37a3f",
+      "classification": "controlled input route; authored reference scene; scripted history content",
+      "question": "Can the direction-selection state and controller instructions be read at720p?",
+      "plainCaption": "The original Ember Spit is awaiting a direction. Its first hotbar card turns cyan and says AIM; a controller hint above the bar says LS direction, A/RT confirm and B cancel. This is a virtual controller on the Mac, not a Steam Deck.",
+      "contents": [
+        "Six original powers and four empty cards",
+        "Player on the original reference-glade cell40,12",
+        "AwaitingDirection; no selected direction or attack committed"
+      ],
+      "immediateSequence": [
+        "Cycle the six existing powers with virtual D-pad",
+        "Press virtual X to prepare Ember Spit",
+        "Capture before stick direction selection; next B cancels without a turn"
+      ],
+      "limits": [
+        "Existing isolated seed64 route; no grants, teleports, invulnerability, enemy suppression or direct ability execution.",
+        "Thirty-five actual empty-slot attempts intentionally populate log history; log text was not injected.",
+        "Virtual gamepad plus synthetic keyboard on macOS Editor; not physical Steam Deck testing.",
+        "Six original powers only; does not test a more heavily populated hotbar.",
+        "No per-image runtime quality/zoom/light snapshot was saved by this existing route. Use recorded dimensions and source conditions, not manual-session camera metadata."
+      ],
+      "relatedIds": [
+        "HUD-02-cast-aftermath-720",
+        "HUD-03-ability-reader-720"
+      ],
+      "visibleFindings": [
+        "The cyan AIM card and readable A/RT/B hints identify the pending state.",
+        "The frame has no actual route or target-cell selection yet; it is not a throw preview."
+      ]
+    },
+    {
+      "id": "HUD-02-cast-aftermath-720",
+      "image": "screenshots/controlled/HUD-02-cast-aftermath-720.png",
+      "sourceOriginal": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/hud-03-real-cooldown-and-grouped-log.png",
+      "rawMetadata": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/report.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "cf6957d09df793938b0aaeb9106bc1c5d0249c4e29e5decd60cfd02aa89a7df7",
+      "timestampUtc": "2026-10-17T13:24:35.891414+00:00",
+      "timestampBasis": "Original PNG filesystem modification time; report has run identity but no per-image UTC field.",
+      "session": "hud720-291c5327ceaf46aba2f5bb59eec37a3f",
+      "classification": "controlled input route; authored reference scene; scripted history content",
+      "question": "Can the player recognize a paid cast, cooldown and grouped world activity?",
+      "plainCaption": "After one real Ground Surge along a visible empty-ground ray, the fourth hotbar card shows red CD2. The log says the surge crackles across bare ground, separates another actor's melee event, and groups repeated empty-slot attempts. The player remains40/40 on the original cell. The effects have finished by this capture.",
+      "contents": [
+        "Original Ground Surge cooldown2",
+        "Real cast result text",
+        "A villager melee message generated by live NPC scheduling",
+        "Script-produced repeated no-rite messages"
+      ],
+      "immediateSequence": [
+        "Make34 real empty-slot key attempts to populate history",
+        "Select Ground Surge by virtual D-pad, choose a legal empty ray with the stick and confirm with RT",
+        "Wait for effects to finish, make one free empty-slot attempt, then capture"
+      ],
+      "limits": [
+        "Existing isolated seed64 route; no grants, teleports, invulnerability, enemy suppression or direct ability execution.",
+        "Thirty-five actual empty-slot attempts intentionally populate log history; log text was not injected.",
+        "Virtual gamepad plus synthetic keyboard on macOS Editor; not physical Steam Deck testing.",
+        "Six original powers only; does not test a more heavily populated hotbar.",
+        "No per-image runtime quality/zoom/light snapshot was saved by this existing route. Use recorded dimensions and source conditions, not manual-session camera metadata."
+      ],
+      "relatedIds": [
+        "HUD-01-controller-aim-720",
+        "HUD-03-ability-reader-720"
+      ],
+      "visibleFindings": [
+        "Red CD2 is distinct from READY.",
+        "Grouped log separators distinguish the cast, NPC melee and later free message.",
+        "The state/result log is visible, but no distinct electrical footprint or impact is visually established by this still."
+      ]
+    },
+    {
+      "id": "HUD-03-ability-reader-720",
+      "image": "screenshots/controlled/HUD-03-ability-reader-720.png",
+      "sourceOriginal": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/hud-04-original-full-details-reader.png",
+      "rawMetadata": "evidence/routes/hud720/291c5327ceaf46aba2f5bb59eec37a3f/report.json",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "a10c60865b578b1ae88119204ddb70983143193c4fc32485501a6db47046f1ec",
+      "timestampUtc": "2026-10-17T13:24:36.335699+00:00",
+      "timestampBasis": "Original PNG filesystem modification time; report has run identity but no per-image UTC field.",
+      "session": "hud720-291c5327ceaf46aba2f5bb59eec37a3f",
+      "classification": "controlled input route; authored reference scene; scripted history content",
+      "question": "Does the ability reader preserve a longer description and controller guidance at720p?",
+      "plainCaption": "The Field notes reader describes the original Flaming Hands power: adjacent-cell flame, damage and ground fire, cooldown, Pyromancy requirement and learned/ready status. Controller A Close and B Back prompts fit below the text. This is a real ability-details reader, not the full skill-tree selector.",
+      "contents": [
+        "Flaming Hands description",
+        "Range1, chosen adjacent cell, cooldown10",
+        "Already learned; required tree Pyromancy",
+        "A/B reader footer and1/1 page count"
+      ],
+      "immediateSequence": [
+        "Open the ability manager with virtual LT+X",
+        "Press keyboard D to open the selected ability's real details",
+        "Capture reader without advancing a turn; Escape closes reader then ability manager"
+      ],
+      "limits": [
+        "Existing isolated seed64 route; no grants, teleports, invulnerability, enemy suppression or direct ability execution.",
+        "Thirty-five actual empty-slot attempts intentionally populate log history; log text was not injected.",
+        "Virtual gamepad plus synthetic keyboard on macOS Editor; not physical Steam Deck testing.",
+        "Six original powers only; does not test a more heavily populated hotbar.",
+        "No per-image runtime quality/zoom/light snapshot was saved by this existing route. Use recorded dimensions and source conditions, not manual-session camera metadata."
+      ],
+      "relatedIds": [
+        "HUD-01-controller-aim-720",
+        "HUD-02-cast-aftermath-720"
+      ],
+      "visibleFindings": [
+        "All content and footer fit inside the opaque panel.",
+        "Body lines are densely spaced; the mixed pale text and gold/green headings remain distinguishable.",
+        "A/B guidance remains displayed after the keyboard D input because a virtualpad stays connected."
+      ]
+    }
+  ]
+}

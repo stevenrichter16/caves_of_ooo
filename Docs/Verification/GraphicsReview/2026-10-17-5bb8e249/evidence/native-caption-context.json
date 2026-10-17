@@ -1,0 +1,221 @@
+{
+  "CMB-01-keyboard-contact": {
+    "question": "At the standard native route zoom, can the player, a nearby hostile, terrain boundaries and the combat HUD be distinguished during an actual approach?",
+    "contents": "The ordinary starting actor has walked from the authored glade arrival to cell28,3 in Overworld.11.10.0. The player and northern marlback scrabbler appear small near the upper edge amid pale vegetation on dark green ground. The right side shows40/40HP, Dawn and live combat log entries; those entries mainly concern a separate villager/warden fight elsewhere. The skill bar remains visible. Black shapes are ordinary occlusion in this ReferenceGlade route, whose full-reveal flags are checked false.",
+    "immediateSequence": "The existing Combat route starts a new isolated seed64 game with the original actor and kit, equips the original dagger through inventory controls, then sends ordinary movement keys toward the actual northern scrabbler. This frame is captured at contact before the later player-attributed defeat. No actor transfer, inventory grant, stat edit or AI suppression is used.",
+    "relatedIds": [
+      "CMB-02-real-combat-aftermath"
+    ],
+    "limits": [
+      "This is a script-selected route using queued production keyboard input, not a human discovery or physical Steam Deck test.",
+      "The unrelated NPC log text does not establish that the pictured player has already attacked.",
+      "The fresh run failed its attack-pose/frame check and emitted no03-real-player-attack PNG. Treat this as static approach/composition evidence, not an animation or hit-effect frame.",
+      "The scene baseline gameplay zoom is0.82; a numeric per-image camera transform and render settings receipt were not recorded."
+    ]
+  },
+  "CMB-02-real-combat-aftermath": {
+    "question": "After a real fight, do the HUD, log, cooldown and world state communicate the result clearly enough to connect the action to its consequences?",
+    "contents": "The same glade area is visible after the player kills the northern scrabbler. The HUD shows32/40HP and15XP; Rime Grip is selected with cooldown33. The log describes freezing, the player kill, XP, the hatchet and leather gloves falling, reputation changes and a dagger hit. The actor and small world remains are near the upper part of the image rather than filling the frame.",
+    "immediateSequence": "Following the contact frame, the original player takes actual retaliation and uses one original Rime Grip through its normal input path. Real dagger attacks finish the target. The route correlates the player kill, corpse at the death cell and the target’s original owned drops; no tonic was consumed. The aftermath image is captured after the resolved fight.",
+    "relatedIds": [
+      "CMB-01-keyboard-contact"
+    ],
+    "limits": [
+      "No damage, pose or death was injected. Other NPCs continued taking their normal turns.",
+      "The kill and drop checks pass, but the overall route is incomplete because the separate animation-pose/frame assertion fails.",
+      "The log is much stronger evidence of the outcome than the small corpse/drop shapes in this wide view; do not imply that every drop is visually identifiable.",
+      "This is not proof of combat balance, animation quality or Steam Deck performance. Full reveal is false."
+    ]
+  },
+  "CAV-01-lampvein-examine": {
+    "question": "Does examining a real ripe crop communicate its identity, current state, harvest action and practical use while preserving the game’s visual style?",
+    "contents": "The examine popup identifies lampvein, shows a native pale mint crop portrait, and says the crop is ripe. Its description explains hand harvesting, produce and saved seed,64moist rounds of growth, planting again on the prepared bed and using the fan as a light while held or on the ground. A dark olive cave remains visible around the popup. The actor is at67,18 beside the actual crop21661 at66,18 in Overworld.12.4.5.",
+    "immediateSequence": "The existing CaveCrops route creates an ordinary isolated seed64 player, locates an unchanged generated connected cave with a real stair/path, then explicitly transfers the actor to the crop’s adjacent approach. Normal interaction/examine keys open this popup. Neither the crop, its stage nor the cave lighting is manufactured by the route.",
+    "relatedIds": [
+      "CAV-02-harvested-ground-light"
+    ],
+    "limits": [
+      "There is one disclosed actor travel shortcut; the route does not prove natural discovery or the expedition needed to reach depth5.",
+      "The popup obscures most of the cave and is not an unobstructed before-light photograph.",
+      "The description is dense but fits; it must not be treated as evidence that64rounds of growth were actually observed in this capture.",
+      "The route checks false full reveal and actual native crop rendering. Numeric local illumination and camera values are not stored per frame."
+    ]
+  },
+  "CAV-02-harvested-ground-light": {
+    "question": "After harvesting a useful crop, is its resulting object visible in the world, and does its real light effect help establish cave depth and navigable space?",
+    "contents": "The player stands at66,18 in the cave, with lampvein fan listed underfoot in the focus panel. Native rock walls and floor surround a localized brighter area. The log records the crop harvest, seed and fan pickup, automatic fan equip, unequip and drop. The ground object is the real harvested LampveinFan21666, whose enabled LightSourcePart is checked by the route.",
+    "immediateSequence": "After closing the ripe-crop examine popup, normal interaction keys harvest the actual plant. The actor walks onto the prepared bed, picks up the real produce and seed, stows the fan through the equipment UI if it was automatically equipped, then drops it through inventory controls. A LightMap computation confirms that brightness at the actor’s cell increases compared with the immediately preceding stowed state; only the resulting ground-light state is photographed.",
+    "relatedIds": [
+      "CAV-01-lampvein-examine"
+    ],
+    "limits": [
+      "This is a real crop-to-harvested-produce sequence, but it is not a matched before/after lighting comparison: the earlier selected frame has an examine overlay and a different adjacent actor position.",
+      "The light comes from the dropped harvested item, not an independently captured environmental lamp or a forced lighting override.",
+      "The route records that brightness increased, not the numeric before/after values.",
+      "The cave route completes all five checks, but this does not prove crop regrowth, surface farming, every crop utility or natural acquisition. One actor transfer was used; full reveal remains false."
+    ]
+  },
+  "WRK-01-generated-field": {
+    "question": "Does a working environment visibly suggest several practical activities—cultivation, drawing water and repairing structures—without an oversized quest marker?",
+    "contents": "The generated west-of-Morrowfast field in Overworld.2.6.0 shows rows of crop beds, native plants, two wells, the damaged gate/frame, vegetation and nearby actors. The authored world-map biome is Grovelands. The local presentation uses olive ground and vegetation, with a teal player and comparatively large object silhouettes. Player cell60,9, HP40/40 and Dawn are visible.",
+    "immediateSequence": "The existing WorkAudio route starts an ordinary seed64 actor and explicitly transfers that actor to the unchanged generated field’s well approach. Before this image it verifies both unusable wells, the unoperable damaged gate and six crops on cultivated soil, including three ripe crops. The image is taken before gathering or repairing anything.",
+    "relatedIds": [
+      "WRK-02-cracked-well-examine",
+      "WRK-03-restored-gate-closed",
+      "WRK-04-restored-gate-open"
+    ],
+    "limits": [
+      "This is a labelled travel shortcut, not a normal walking arrival or proof that a player discovers the field.",
+      "The map biome is known, but the exact local presentation/formation selector is not emitted in the route report.",
+      "The picture cannot alone establish the internal damage state of every object; those claims come from route checks.",
+      "The subsequent route stops at real low-HP danger after repairs and gate operation, before its intended crop harvest and save/load checkpoint. Full reveal is false."
+    ]
+  },
+  "WRK-02-cracked-well-examine": {
+    "question": "Does the examine panel make an object’s damage, composition and repair requirements understandable, and does its portrait match the world object closely enough?",
+    "contents": "A polished examine panel names the clay-lined catch well, shows its native stone-and-frame portrait and explains that a split fired lining loses water. It explicitly lists Composition:Masonry and Repair:2fire clay. The cropped field remains visible behind the popup, and the right log repeats the same explanation. The actual examined owner is5232.",
+    "immediateSequence": "At the unchanged generated field, the route opens the well’s normal examine action before consuming any repair materials. Later queued interactions gather real fire clay, timber and cord from generated sources, then repair the corresponding objects. The selected image is the damaged well before that repair, not the restored well afterward.",
+    "relatedIds": [
+      "WRK-01-generated-field",
+      "WRK-03-restored-gate-closed",
+      "WRK-04-restored-gate-open"
+    ],
+    "limits": [
+      "The screenshot visually establishes the displayed cost and composition, not the later repair transaction; the report separately checks those actions.",
+      "There is no selected matching image of this well after repair, so the gate pair must not be presented as the same object before and after.",
+      "The player used an actor travel shortcut to the field, without material, HP or currency grants.",
+      "The later low-HP safety failure remains part of this run’s result. Full reveal is false, and numeric camera/light values were not recorded per image."
+    ]
+  },
+  "WRK-03-restored-gate-closed": {
+    "question": "When an interaction occurs during danger, can a player read both the structure’s available action and an important new status effect without losing the immediate scene?",
+    "contents": "The repaired wooden gate5234 has just been closed, with the player at63,13 andHP11/40. Focus offers the open-door action and the log records closing. A large red Bleeding label floats over the player and immediate vegetation. Real rotling retaliation and blood-loss messages occupy the right log. The gate is small and partly obscured by the actor and plants.",
+    "immediateSequence": "Normal keyboard actions gathered real materials, repaired the lined well, gate frame and rope well, and drew water. The player consumed two original starting tonics during the unfolding danger, then approached the gate and closed it through its world action. This frame occurs before the next open action; the scheduler and hostile attacks remain active throughout.",
+    "relatedIds": [
+      "WRK-04-restored-gate-open",
+      "WRK-01-generated-field",
+      "WRK-02-cracked-well-examine"
+    ],
+    "limits": [
+      "The scene is not a clean static gate-art comparison: the status label, threat, player pose and visibility can change while ordinary actions resolve.",
+      "A floating Bleeding label is visible, but the log also includes bleeding stopping; do not infer that the status is necessarily still active at the exact capture instant from a fading label alone.",
+      "The gate’s closed state is checked by the route and corroborated by the action hint/log; vegetation limits direct visual inspection of its geometry.",
+      "The run subsequently stops because health falls below its safety threshold, before crop harvest or checkpoint. One actor transfer, no healing injection, false full reveal."
+    ]
+  },
+  "WRK-04-restored-gate-open": {
+    "question": "Does the next gate action produce a readable visual and interface change while live combat damage remains understandable?",
+    "contents": "At the same player cell63,13, the restored gate is now open. Focus offers close door and the log records opening. A red2damage float appears above the player, whose HP has fallen to9/40. The vegetation, actor and local visibility differ slightly from the preceding closed-gate image because the real scheduler continues.",
+    "immediateSequence": "Immediately after the closed-gate capture, the route issues the ordinary open-door action. The gate changes state and a live rotling retaliates. The route verifies the gate is operable and open, then attempts to approach the original ripe knotflax; that next approach is stopped by the >10HP safety precondition.",
+    "relatedIds": [
+      "WRK-03-restored-gate-closed",
+      "WRK-01-generated-field"
+    ],
+    "limits": [
+      "This pair demonstrates a genuine paid closed-to-open change at a fixed player position, not a controlled identical-lighting or motionless art comparison.",
+      "The red2 is observed floating damage feedback; it should not be attributed to a specific attack channel beyond what the accompanying log/report supports.",
+      "There is no later completed knotflax harvest or save/load result in this run. The incomplete receipt retains2failures and1unexpected error.",
+      "Only real starting tonics were consumed; no enemies were removed or health injected. The initial travel shortcut and false full reveal are disclosed."
+    ]
+  },
+  "LAI-01-real-lair-surface": {
+    "question": "Are the surface entry and surrounding enclosure readable as a traversable lair location, and how clearly do its walls, creatures and stair affordance separate?",
+    "contents": "The player stands on a real down stair at44,12 in the generated Spread lair Overworld.8.12.0. Green native walls frame a room and adjoining corridor; small brown creatures are visible. The focus panel identifies stairs leading down. Much of the surrounding image is black through ordinary occlusion, while the HUD saysDawn and40/40HP.",
+    "immediateSequence": "The existing Biome route first performs ordinary glade movement, a finite berry harvest, a save/load round trip and village door operations. It then explicitly transfers the actor to a real generated lair stair after preflighting the first floor. This image is taken immediately before normal Shift+Period input descends the actual stairs.",
+    "relatedIds": [
+      "LAI-02-real-lair-floor"
+    ],
+    "limits": [
+      "The lair was script-selected and reached through an actor transfer; this is not natural discovery. Its first floor was generated as a labelled source preflight.",
+      "The whole route uses four transfers and two original Calm casts earlier in the sequence; no grants, forced models or removed threats.",
+      "The selected image shows an entry location, not a boss, completed lair or combat encounter.",
+      "All earlier lair checks pass, but the route later fails a safe east-cell precondition during its final movement profile. Do not infer successful profiling or performance from it. Full reveal is false."
+    ]
+  },
+  "LAI-02-real-lair-floor": {
+    "question": "After ordinary descent, does the underground space communicate a new connected place, its return path and nearby threat, while remaining consistent with the surface biome?",
+    "contents": "The player stands at36,12 on the paired up stair in Overworld.8.12.1. A native boxy MarlbackWallkeeper is two tiles away, with a chest nearby and green room/corridor walls. Focus identifies stairs leading up. The same green materials remain prominent underground; the HUD’s TIME label readsBright, although that is not evidence of outdoor sunlight.",
+    "immediateSequence": "One ordinary Shift+Period action advances the route from the real surface stair at tick1280 to the committed first floor at tick1290. The route checks the player is on the actual paired up-stair footprint, observes the nearby native threat and verifies the current-owner native presentation before capturing this image. The following normal Shift+Comma action returns to the surface.",
+    "relatedIds": [
+      "LAI-01-real-lair-surface"
+    ],
+    "limits": [
+      "This is a connected surface-to-underground location pair, not a before/after environmental state or a recorded bossfight.",
+      "The floor was generated for preflight and the surface approached through a transfer; descent and ascent themselves use ordinary controls.",
+      "A nearby threat is present, but this frame does not prove any particular attack, hostile behavior or balance outcome.",
+      "The route’s later movement-profile safety failure is retained. Full reveal is false; numeric underground ambient/local lighting and camera values were not recorded for this frame."
+    ]
+  },
+  "THR-01-equipped-body-aim": {
+    "question": "Does the throwing interface make Body aiming, the first contact, item destination and confirmation controls understandable?",
+    "contents": "A full-HUD throwing view shows an equipped short sword aimed at the staged marlback gleaner on cell25,12. The lower strip saysBody[Tab] and lists aim/confirm/cancel and preview colors. The right focus states one item, one action, first contact and the resting cell. Small overlapping endpoint outlines sit over the target on a bounded stone-floor patch.",
+    "immediateSequence": "The existing Throwing route creates its fixture before observations: it clears the original nonplayer zone, builds stone floor16..32×8..18, moves the player to20,12, sets Strength/Agility30 and capacity500, provides throwing gear/skills and uses command RNG123. The spawned gleaner has no Brain,500HP and natural AV/DV0. Normal queued inventory/throw controls then open this actual production targeting UI.",
+    "relatedIds": [
+      "THR-02-ground-aim",
+      "THR-03-measured-keyboard-ready",
+      "THR-04-measured-controller-ready"
+    ],
+    "limits": [
+      "This is an explicit synthetic gameplay fixture, not naturally acquired equipment or ordinary enemy behavior.",
+      "SampleScene inherits RevealEntire3DZone=true; no per-frame reveal assertion is recorded. The surrounding black region is predominantly removed/empty fixture space, not ordinary fog evidence.",
+      "Overlapping small red/yellow endpoint outlines against stone do not establish visibility over busy vegetation, particles or hazards.",
+      "The route passes all40checks, but synthetic inputs do not establish physical Steam Deck or Steam Input behavior."
+    ]
+  },
+  "THR-02-ground-aim": {
+    "question": "When aim mode changes from Body to Ground on an occupied cell, does the interface distinguish the intention from the actual first collision?",
+    "contents": "The same bounded stone fixture and target cell remain visible, while the lower mode changes toGround[Tab]. The sidebar now labels the intended throw asGround but still reports first contact with the occupying marlback gleaner and rest at25,12. This apparent combination is intentional: changing the aim category does not make the physical occupant disappear.",
+    "immediateSequence": "From the preceding Body preview at tick10, one normal Tab input toggles the mode without spending an item, a turn or energy. The route captures Ground mode before toggling back and cancelling. No target, actor or terrain is moved between these two selected frames.",
+    "relatedIds": [
+      "THR-01-equipped-body-aim"
+    ],
+    "limits": [
+      "The shared world is a synthetic fixture with a stationary boosted target, granted gear/skills and seeded command RNG.",
+      "SampleScene full reveal is inheritedtrue; no ordinary discovery or field-of-view claim follows from this image.",
+      "The endpoints coincide because the same occupied cell is selected, so this pair is chiefly a mode-text comparison rather than a distinct ground-impact-location example.",
+      "It demonstrates production keyboard mode switching in the editor, not physical Deck input or busy-terrain readability."
+    ]
+  },
+  "THR-03-measured-keyboard-ready": {
+    "question": "After preparing Measured Throw, is the retained item/target and the exact next action clear enough that a player will confirm rather than wait or reopen inventory?",
+    "contents": "The lower panel explicitly says2/2 READY TO THROW, confirm again/no wait needed, item and target locked, and Enter/click to throw or Esc to cancel. The right focus identifies dagger stack3 and the retained target; the skill bar shows Measured Throw cooldown5. The sidebar’s longer prepared-throw benefit text is visibly cut off at the log boundary, while the dedicated lower action strip remains readable.",
+    "immediateSequence": "After the earlier equipped-sword throw, the route opens Measured Throw through normal skill/source controls, selects the finite dagger stack and target, and holds Enter. The hold prepares exactly once, spends one action and leaves the same source and target selected at tick30. This image is captured before a second confirmation actually throws a dagger; the later check verifies that second Enter consumes one unit in one action.",
+    "relatedIds": [
+      "THR-04-measured-controller-ready",
+      "THR-01-equipped-body-aim"
+    ],
+    "limits": [
+      "This is a staged floor/actor/target/gear/skill fixture; the player stats and target durability are modified before observations.",
+      "Inherited SampleScene full reveal istrue and the image cannot validate ordinary world contrast.",
+      "The clear lower confirmation strip does not erase the visible sidebar clipping; both facts should be reported.",
+      "The image demonstrates the prepared state and next-step wording. The subsequent throw and action accounting are report evidence, not an effect visible in this single screenshot."
+    ]
+  },
+  "THR-04-measured-controller-ready": {
+    "question": "Does the prepared-throw guidance adapt correctly to controller input while preserving the retained source and target?",
+    "contents": "The dedicated lower panel still says2/2 READY TO THROW and no wait needed, but the actionable prompt now saysA/RT:throw andB:cancel. The right focus mirrors those controller prompts and identifies dagger stack2. The same small stone fixture remains behind it, and the sidebar benefit description is again clipped at the log boundary.",
+    "immediateSequence": "After the keyboard throw and four ordinary cooldown waits, the route holds synthetic controllerA. That input prepares exactly once and retains the exact remaining dagger source and target at tick90. This is a later preparation attempt than the keyboard frame, with two daggers instead of three. The route later checks cancellation, saved preparation and confirmation through mapped controller actions.",
+    "relatedIds": [
+      "THR-03-measured-keyboard-ready"
+    ],
+    "limits": [
+      "The device is a synthetic gamepad feeding production Unity input, not a physical Steam Deck, Steam Input mapping or handheld ergonomic test.",
+      "This is not an identical game state photographed with only the device changed: a dagger has been used and time advanced.",
+      "The entire throwing source is an explicit fixture with grants, target AI removal, altered stats and inherited SampleScene full revealtrue.",
+      "The correct A/RT/B action strip remains useful despite sidebar clipping; neither screenshot proves busy-terrain targeting visibility."
+    ]
+  },
+  "TRD-01-sella-actual-stock": {
+    "question": "Is the shop screen readable and actionable at1280×800, with clear stock, selection, prices, available money and buying/selling controls?",
+    "contents": "The full-screen shop saysBuy from Sella Kettle andSell your items. The selected liquid flask costs23drams and weighs1lb; the vendor has200drams, the player has the original50, and trade performance is35%. Other genuine vendor goods include a waterskin, food, tonics, salve and seeds. A visible chevron marks the row, and the footer suppliesF1details, Enterbuy, Tabsell panel andEscclose. The short stock list leaves substantial empty vertical space without clipping.",
+    "immediateSequence": "The existing Liquid route transfers the original seed64 actor to the real generated Sella at Morrowfast, Overworld.3.6.0, approach48,20. Ordinary look/interact/chat/trade inputs open her genuine shop and select the actual flask4744. This image is before purchase. The next two native Enter inputs buy that exact object; the report verifies its ownership moves from Sella to the player and coins decrease50→27 without currency or item grants.",
+    "relatedIds": [],
+    "limits": [
+      "Conservatively classified with staged/full-reveal context because the launcher inherits SampleScene RevealEntire3DZone=true; the opaque shop itself hides the background. Unlike the throwing shots, the shop contents and money are not manufactured fixtures.",
+      "Actor travel is shortened, so this does not establish normal discovery or the route to Morrowfast.",
+      "The displayed hints are keyboard hints; no controller shop-hint screen or physical Deck interaction was captured.",
+      "The overall liquid route is incomplete: after real flask/waterskin purchases and finite water operations, an examine_item menu lookup fails before oil, acid and save/load checkpoint coverage. Its2failures and1unexpected error remain in the evidence.",
+      "A pre-purchase shop screenshot must not be labelled as a photograph of the later completed transaction."
+    ]
+  }
+}

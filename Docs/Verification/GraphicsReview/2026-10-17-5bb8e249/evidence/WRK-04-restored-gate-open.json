@@ -1,0 +1,72 @@
+{
+  "id": "WRK-04-restored-gate-open",
+  "file": "screenshots/controlled/WRK-04-restored-gate-open.png",
+  "classification": "controlled",
+  "caption": "Same restored gate opened in next ordinary action, with ongoing rotling retaliation.",
+  "visualReview": "Red2 floating damage and HP9 visible. Focus changes to close door and log records open. Same player position; threat, floating text, and visibility change normally.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/023c82b599ed4893b17390cc482c3cf2/repair-05-restored-gate-open.png",
+  "sha256": "7d59e25732273874dd9c4243740a27970c151f7d437ef912617f6f07c6e4e671",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:20:18.044444+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.2.6.0",
+  "logical": {
+    "x": 2,
+    "y": 6,
+    "depth": 0
+  },
+  "biome": "Grovelands",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 63,
+    "y": 13,
+    "hp": 9,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "Normal",
+  "dayBand": "Height",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": null,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 0.82,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": false,
+    "fullRevealBasis": "ReferenceGlade serialized0 and shared native route guard asserts RevealEntire3DZone=false and FullReveal=false before selected captures",
+    "ambient": null,
+    "lightSource": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ReferenceGladeNativeBatch.LaunchRepairWorkAudio",
+    "runId": "023c82b599ed4893b17390cc482c3cf2",
+    "report": "evidence/routes/work/023c82b599ed4893b17390cc482c3cf2/report.json",
+    "complete": false,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "alterations": "one explicit actor transfer to unchanged generated repair field; local gathering, repairs and gate operation through queued ordinary keyboard input with live hostile scheduling; two original starting tonics consumed, no healing or material grants",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ]
+}

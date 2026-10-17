@@ -1,0 +1,72 @@
+{
+  "id": "WRK-02-cracked-well-examine",
+  "file": "screenshots/controlled/WRK-02-cracked-well-examine.png",
+  "classification": "controlled",
+  "caption": "Actual broken clay-lined catch well5232; examine states masonry and two fire-clay repair cost.",
+  "visualReview": "Well portrait, composition and repair requirement readable. Main description is also repeated in log; no cropping of popup observed.",
+  "visuallyReviewed": true,
+  "originalSource": "/Users/steven/caves-of-ooo/Docs/Verification/Atmosphere/WorkNative/023c82b599ed4893b17390cc482c3cf2/repair-02-cracked-lining-and-material.png",
+  "sha256": "4374523b4d043104f19d59335a722d1815ce1e99e9b0e0c3e4ebd3d7dbfbd4aa",
+  "timestampUtc": null,
+  "fileWrittenUtc": "2026-10-17T13:20:05.232284+00:00",
+  "timestampBasis": "Source PNG filesystem modification time; capture coroutine waits end of frame but no per-image UTC stamp is emitted.",
+  "sourceCommit": "5bb8e249d1fc69d9213f684bace7a8628e11b4ad",
+  "unity": "6000.3.4f1",
+  "platform": "OSXEditor",
+  "resolution": {
+    "width": 1280,
+    "height": 800,
+    "basis": "PNG IHDR; throwing also reports runtime dimensions"
+  },
+  "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+  "worldSeed": 64,
+  "zone": "Overworld.2.6.0",
+  "logical": {
+    "x": 2,
+    "y": 6,
+    "depth": 0
+  },
+  "biome": "Grovelands",
+  "formation": null,
+  "formationNote": "Actual authored/generated site described in caption; per-frame formation/profile metadata not emitted by native route.",
+  "player": {
+    "x": 60,
+    "y": 9,
+    "hp": 40,
+    "basis": "Visible focus/vitals; report confirms where present"
+  },
+  "state": "AnnouncementOpen",
+  "dayBand": "Dawn",
+  "dayBandBasis": "Visible TIME HUD label; not assumed equivalent to underground sunlight.",
+  "tick": null,
+  "tickBasis": "Per-capture native observation where available; lair surrounding key steps or final combat state otherwise; null=not recorded.",
+  "graphics": {
+    "perFrameValues": null,
+    "sceneGameplayZoomBaseline": 0.82,
+    "source": "scene serialized value; not a per-frame numeric camera measurement",
+    "fullReveal": false,
+    "fullRevealBasis": "ReferenceGlade serialized0 and shared native route guard asserts RevealEntire3DZone=false and FullReveal=false before selected captures",
+    "ambient": null,
+    "lightSource": null,
+    "cameraTransform": null,
+    "worldRenderTextureSize": null
+  },
+  "nativeRoute": {
+    "entryPoint": "ReferenceGladeNativeBatch.LaunchRepairWorkAudio",
+    "runId": "023c82b599ed4893b17390cc482c3cf2",
+    "report": "evidence/routes/work/023c82b599ed4893b17390cc482c3cf2/report.json",
+    "complete": false,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "alterations": "one explicit actor transfer to unchanged generated repair field; local gathering, repairs and gate operation through queued ordinary keyboard input with live hostile scheduling; two original starting tonics consumed, no healing or material grants",
+    "inputMethod": "queued ordinary keyboard input",
+    "physicalDeckTest": false
+  },
+  "unknownMetadata": [
+    "exact per-frame capture UTC",
+    "numeric camera transform and orthographic size",
+    "numeric ambient/local brightness",
+    "per-frame render scale and shadow setting",
+    "complete visible-owner set"
+  ]
+}
