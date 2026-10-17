@@ -1,0 +1,280 @@
+{
+  "runId": "680029136155466781a501791625ca63",
+  "screen": {
+    "width": 1280,
+    "height": 720
+  },
+  "externalMouse": {
+    "requested": true,
+    "stage": "complete",
+    "controls": {
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0
+    }
+  },
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 112.7797342,
+  "checks": [
+    "PASS isolated_fixture_no_invincibility",
+    "PASS equipped_inventory_body_preview_clears_floor_dagger",
+    "PASS keyboard_ground_toggle",
+    "PASS inventory_cancel_returns_popup_free",
+    "PASS equipped_throw_exact_unit_one_action",
+    "PASS equipped_throw_damage_and_unmoved_floor_control",
+    "PASS 03-measured-sources_source_overlay_camera_and_tiles_visible",
+    "PASS skill_source_picker_cancel_free",
+    "PASS preparation_preview_keeps_item_and_no_payment",
+    "PASS measured_preparation_one_action_retains_stack",
+    "PASS prepared_native_f5_f6_same_stable_graph",
+    "PASS prepared_stack_throw_consumes_once_and_clears_preparation",
+    "PASS controller_dpad_aims_without_payment",
+    "PASS tonic_defaults_broad",
+    "PASS external_mouse_Click_Body_to_select_Ground_free",
+    "PASS external_mouse_Click_Ground_to_select_Body_free",
+    "PASS external_mouse_Click_Broad_to_select_Focused_free",
+    "PASS external_mouse_Click_Focused_to_select_Broad_free",
+    "PASS controller_y_selects_ground",
+    "PASS controller_lb_focuses_one_cell",
+    "PASS controller_cancel_free_and_restores_inventory",
+    "PASS reopened_throw_defaults_broad",
+    "PASS controller_a_commits_one_finite_payload_action",
+    "PASS film_native_f5_f6_same_stable_graph",
+    "PASS driving_preview_labels_conditional_push",
+    "PASS driving_damage_push_rest_and_payment",
+    "PASS landed_unit_marked_for_exact_recovery",
+    "PASS ordinary_walk_to_recovery_is_four_actions",
+    "PASS 08-recovery-source_source_overlay_camera_and_tiles_visible",
+    "PASS recovering_step_exact_unit_one_action_no_equip",
+    "PASS recovered_native_f5_f6_same_stable_graph",
+    "PASS walk_to_ground_source_is_two_actions",
+    "PASS ground_source_cancel_restores_exact_look_cell_free",
+    "PASS world_source_throw_one_paid_exact_unit",
+    "PASS world_source_body_throw_damages_target",
+    "PASS world_source_native_f5_f6_same_stable_graph",
+    "PASS final_no_pending_action_or_fx"
+  ],
+  "observations": [
+    {
+      "name": "01-equipped-body-aim",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 10,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Body: marlback gleaner / 1 item / 1 action. First contact: marlback gleaner; rests at [25,12].",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":10,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":3},{\"ID\":\"2896\",\"count\":1},{\"ID\":\"2897\",\"count\":1}],\"equipped\":[\"2702\",\"2894\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":500,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null}]}"
+    },
+    {
+      "name": "02-ground-aim",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 10,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Ground / 1 item / 1 action. First contact: marlback gleaner; rests at [25,12].",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":10,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":3},{\"ID\":\"2896\",\"count\":1},{\"ID\":\"2897\",\"count\":1}],\"equipped\":[\"2702\",\"2894\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":500,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null}]}"
+    },
+    {
+      "name": "03-measured-sources-source-overlay",
+      "cameraActive": true,
+      "tilesActive": true,
+      "layerVisible": true,
+      "usedTiles": 26
+    },
+    {
+      "name": "03-measured-sources",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowPopupOpen",
+      "tick": 20,
+      "energy": 1000,
+      "guard": false,
+      "preview": null,
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":20,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":3},{\"ID\":\"2896\",\"count\":1},{\"ID\":\"2897\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":474,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null}]}"
+    },
+    {
+      "name": "04-measured-preparation",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 20,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Body: marlback gleaner / 1 action now / item kept; throw next action. First contact: marlback gleaner; rests at [25,12].",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":20,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":3},{\"ID\":\"2896\",\"count\":1},{\"ID\":\"2897\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":474,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null}]}"
+    },
+    {
+      "name": "external-mouse",
+      "instruction": "Click Body to select Ground",
+      "ground": true,
+      "focused": false,
+      "pointerX": 1845.0,
+      "pointerY": 199.0,
+      "controls": {
+        "x": 6.0,
+        "y": 530.0,
+        "width": 640.0,
+        "height": 76.0
+      }
+    },
+    {
+      "name": "external-mouse",
+      "instruction": "Click Ground to select Body",
+      "ground": false,
+      "focused": false,
+      "pointerX": 1845.0,
+      "pointerY": 199.0,
+      "controls": {
+        "x": 6.0,
+        "y": 530.0,
+        "width": 640.0,
+        "height": 76.0
+      }
+    },
+    {
+      "name": "external-mouse",
+      "instruction": "Click Broad to select Focused",
+      "ground": false,
+      "focused": true,
+      "pointerX": 1845.0,
+      "pointerY": 199.0,
+      "controls": {
+        "x": 6.0,
+        "y": 530.0,
+        "width": 640.0,
+        "height": 76.0
+      }
+    },
+    {
+      "name": "external-mouse",
+      "instruction": "Click Focused to select Broad",
+      "ground": false,
+      "focused": false,
+      "pointerX": 1845.0,
+      "pointerY": 199.0,
+      "controls": {
+        "x": 6.0,
+        "y": 530.0,
+        "width": 640.0,
+        "height": 76.0
+      }
+    },
+    {
+      "name": "05-controller-focused-splash",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 40,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Ground / 1 item / 1 action. First contact: ground; shatters at [23,15]. Focused initial splash; later reactions can spread. 9 contact units of water film total, lasting up to 6 local turns. Each entry spends one; too little to collect. Blocked portions are lost.",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":40,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":4,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1},{\"ID\":\"2897\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":458,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "06-focused-film-result",
+      "width": 1280,
+      "height": 720,
+      "state": "Normal",
+      "tick": 50,
+      "energy": 1000,
+      "guard": false,
+      "preview": null,
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":50,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":3,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":458,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"361f27b7a2e74866880ce462894df1da\",\"BlueprintName\":\"PouredLiquidPool\",\"x\":23,\"y\":15,\"count\":1,\"hp\":0,\"volume\":9,\"rounds\":5,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "07-driving-preview",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 50,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Body: marlback gleaner / 1 item / 1 action. First contact: marlback gleaner; rests at [25,12]. Push only after damage to a surviving, unbraced target; destination may be blocked.",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":20,\"y\":12,\"tick\":50,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":3,\"DrivingCooldown\":0,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":25,\"y\":12,\"count\":1,\"hp\":458,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"361f27b7a2e74866880ce462894df1da\",\"BlueprintName\":\"PouredLiquidPool\",\"x\":23,\"y\":15,\"count\":1,\"hp\":0,\"volume\":9,\"rounds\":5,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "08-recovery-source-source-overlay",
+      "cameraActive": true,
+      "tilesActive": true,
+      "layerVisible": true,
+      "usedTiles": 33
+    },
+    {
+      "name": "08-recovery-source",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowPopupOpen",
+      "tick": 100,
+      "energy": 1000,
+      "guard": false,
+      "preview": null,
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":24,\"y\":12,\"tick\":100,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":7,\"RecoveryCooldown\":0,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":26,\"y\":12,\"count\":1,\"hp\":416,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2896\",\"BlueprintName\":\"Warhammer\",\"x\":25,\"y\":12,\"count\":1,\"hp\":20,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":4},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "09-recovered-equipment",
+      "width": 1280,
+      "height": 720,
+      "state": "Normal",
+      "tick": 110,
+      "energy": 1000,
+      "guard": false,
+      "preview": null,
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":25,\"y\":12,\"tick\":110,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":6,\"RecoveryCooldown\":5,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":26,\"y\":12,\"count\":1,\"hp\":416,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "10-ground-source-preview",
+      "width": 1280,
+      "height": 720,
+      "state": "ThrowTargeting",
+      "tick": 130,
+      "energy": 1000,
+      "guard": false,
+      "preview": "Body: marlback gleaner / 1 item / 1 action. First contact: marlback gleaner; rests at [26,12].",
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":23,\"y\":12,\"tick\":130,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":4,\"RecoveryCooldown\":3,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":26,\"y\":12,\"count\":1,\"hp\":416,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":22,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    },
+    {
+      "name": "11-ground-source-landed",
+      "width": 1280,
+      "height": 720,
+      "state": "Normal",
+      "tick": 140,
+      "energy": 1000,
+      "guard": false,
+      "preview": null,
+      "signature": "{\"actor\":\"2698\",\"zone\":\"Overworld.11.10.0\",\"x\":23,\"y\":12,\"tick\":140,\"energy\":1000,\"hp\":40,\"MeasuredCooldown\":0,\"DrivingCooldown\":3,\"RecoveryCooldown\":2,\"HasPreparation\":false,\"source\":null,\"target\":null,\"inventory\":[{\"ID\":\"2699\",\"count\":1},{\"ID\":\"2700\",\"count\":4},{\"ID\":\"2701\",\"count\":2},{\"ID\":\"2703\",\"count\":2},{\"ID\":\"2704\",\"count\":2},{\"ID\":\"2895\",\"count\":2},{\"ID\":\"2896\",\"count\":1}],\"equipped\":[\"2702\"],\"world\":[{\"ID\":\"2892\",\"BlueprintName\":\"MarlbackGleaner\",\"x\":26,\"y\":12,\"count\":1,\"hp\":404,\"volume\":null,\"rounds\":null,\"thrower\":null,\"serial\":null},{\"ID\":\"2894\",\"BlueprintName\":\"ShortSword\",\"x\":25,\"y\":12,\"count\":1,\"hp\":8,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":1},{\"ID\":\"2898\",\"BlueprintName\":\"Dagger\",\"x\":26,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":5},{\"ID\":\"587303c8a4064ec0b5f3eae1702eeb29\",\"BlueprintName\":\"Dagger\",\"x\":25,\"y\":12,\"count\":1,\"hp\":5,\"volume\":null,\"rounds\":null,\"thrower\":\"2698\",\"serial\":2}]}"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/01-equipped-body-aim.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/02-ground-aim.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/03-measured-sources.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/04-measured-preparation.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/05-controller-focused-splash.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/06-focused-film-result.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/07-driving-preview.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/08-recovery-source.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/09-recovered-equipment.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/10-ground-source-preview.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Throwing/Native/680029136155466781a501791625ca63/11-ground-source-landed.png"
+  ],
+  "frameTiming": {
+    "samples": 33050,
+    "elapsedSeconds": 89.99972,
+    "p50Milliseconds": 2.52233553,
+    "p95Milliseconds": 4.666957,
+    "p99Milliseconds": 5.812748,
+    "maxMilliseconds": 220.082886,
+    "window": "First up to90 seconds of actual fixture-ready native route; ends with route if earlier. No padded idle.",
+    "scope": "Unity unscaled frame duration includes menu input pacing, capture work, save/load and editor overhead; not pure renderer, GC attribution or Steam Deck performance."
+  },
+  "fixture": "Isolated seed64 N/Classic bootstrap. Original zone cleared to a bounded stone floor, player at20,12 with Strength/Agility30 and capacity500. Actual MarlbackGleaner at25,12 has no Brain, HP500 and natural AV/DV0. Actual equipped ShortSword, carried Dagger stack3, Warhammer, WaterTonic; separate floor Dagger22,12. Five throwing skills granted and command RNG seeded123. All modifications occur before observations; gameplay, selectors, saves and loads then use native keyboard/synthetic gamepad input.",
+  "canVerify": "Equipped/carried real inventory and Look world-source routes, true skill source picker, cancellation/restoration and no payment, body/ground/focus previews, Y/LB/B/A and D-pad dispatch, rendered mouse mode-button dispatch only when the external mouse gate is requested and completed, one-action scheduler accounting, exact physical item identities, consumed finite tonic, Measured preparation and real cooldown, conditional Driving push, Recovery step and no auto-equip, stable F5/F6 roundtrips with preparation/residue/custody/debts.",
+  "cannotVerify": "Controlled fixture does not prove natural acquisition, AI behavior, balance, encounter quality, physical Steam Deck controls or performance. Synthetic controller states exercise production mapping but not Steam Input. External mouse mode-button acceptance requires actual GameView clicks while the driver waits for observed transitions; the driver never invokes toggles or changes gameplay state directly. The earlier rejected synthetic-mouse attempt is retained separately. Pixel legibility and animation quality require independent review of the native screenshots. Native launcher restores the preceding scene/save root/preferences; this is not the user's campaign."
+}

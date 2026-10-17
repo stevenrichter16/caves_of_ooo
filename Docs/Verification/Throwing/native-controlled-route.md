@@ -1,6 +1,6 @@
 # Controlled native throwing acceptance route
 
-Status: corrected unattended routes pass33/33 checks at1280×800 and1280×720. Independent inspection confirms the source and recovery menus are now visible and legible at both sizes. Earlier31-check reports retain the diagnosed invisible-menu defect and are superseded for visual acceptance. Synthetic mouse delivery was rejected; actual mouse acceptance remains pending.
+Status: final external-mouse routes pass **37/37 checks at both 1280×800 and 1280×720**, including four actual OS mouse button clicks per run. Independent inspection confirms visible source/recovery menus and the current Measured Throw **+4** description. Earlier31-check reports retain the diagnosed invisible-menu defect; the corrected33-check reports predate +4. Synthetic mouse delivery was rejected and is not counted. See the final mouse follow-up below for precise acceptance limits.
 
 Launcher: `Assets/Editor/Scenarios/ThrowingNativeBatch.cs`, menu **Caves Of Ooo → Scenarios → Combat → Throwing Native Audit**. Runtime: `Assets/Scripts/Scenarios/Custom/ThrowingNativePlayer.cs`. Root coordinates editor execution and reads the resulting `Native/<run-id>/report.json` plus eleven PNGs. A six-minute watchdog is finite; each action waits at most twelve seconds for normal state and resolved payment.
 
@@ -83,3 +83,20 @@ The1330-case broad sweep and72-case focused camera sweep contain **1385 distinct
 
 
 Final focused source review found no further concrete regression in the camera fix. AbilityManager closes its old tiles before the activation callback draws the replacement; the new guard preserves only `ThrowPopupOpen`. Ordinary close and directional activation still restore gameplay. Skill source cancellation clears its tiles/camera and returns Normal; skill targeting cancellation also returns Normal; inventory targeting returns to the same item popup and world targeting restores its exact Look cell. Pending announcements remain queued while source/target selection owns input, then the normal-input announcement check opens them after cancellation or paid resolution. No additional source edit followed this review.
+
+## Final actual mouse and +4 visual follow-up — 16 October 2026
+
+After the user unlocked macOS, both first attempts of the external-mouse route completed against published source `dd800cf0014ab676434936b4fb019cdc39a5ca10`, without production or test-code changes:
+
+| Resolution | Run | Checks | Failures/errors | Duration | Captures |
+| --- | --- | --- | --- | --- | --- |
+| 1280×800 | [2694edc26f1f46268f3f78c4bf2fa723](Native/2694edc26f1f46268f3f78c4bf2fa723/report.json) | 37/37 | 0/0 | 108.25s | 11 |
+| 1280×720 | [680029136155466781a501791625ca63](Native/680029136155466781a501791625ca63/report.json) | 37/37 | 0/0 | 112.78s | 11 |
+
+The root used CUA native OS clicks, not injected Input System mouse state. At 800p the displayed render began at desktop screenshot coordinate (740,340), at scale1; the two aim clicks were (840,954) and the two footprint clicks (1024,954). At 720p the render began at (740,380), with aim clicks (840,925) and footprint clicks (1024,925). Converted render coordinates are respectively (100,614)/(284,614) and (100,545)/(284,545), inside the actual rendered buttons. Each transition was checked before the next click: **Body→Ground→Body, Broad→Focused→Broad**, cursor unchanged at(23,15), zero paid action, footprints9/9/1/9. The driver then completed its normal controller, consumption, Driving, Recovery, world-source and save/load route with no pending action or FX.
+
+Independent report and pixel review confirmed visible, readable source/recovery menus in03/08, **“Prepared throw: +4 penetration and cap”** in04, and the one-cell Focused preview and finite-water explanation in05 at both sizes. There is no new visual blocker in this controlled fixture. The script's stored legacy `Input.mousePosition` is stale/outside the Game View in these runs; it is retained unmodified and **excluded from click geometry evidence**. Actual CUA coordinates, observed labels/footprints and the free-transition assertions provide mouse acceptance instead. See [mouse-acceptance-followup.json](mouse-acceptance-followup.json) for the coordinate and restoration receipt.
+
+**Can verify:** actual OS clicks on the rendered aim/footprint controls, their observed free mode changes, the full controlled keyboard/synthetic-controller route, current +4 copy, and independently inspected native pixels. **Cannot verify:** actual mouse world hovering/confirmation, physical Steam Deck/Steam Input/performance, natural child-skill acquisition or human enjoyment. Timing includes the operator's waits and editor work; it is not a representative performance benchmark. No natural campaign was rerun or reclassified.
+
+The final launcher exited0, removed the runtime driver, restored the private save-root override and prior last-game preference, restored the clean SampleScene and Free Aspect selection, and removed only the two audit-owned Game View sizes. Original2× editor zoom was restored. Unity remains open in Edit mode. Self-review: 🔵 no code changes needed; 🧪 legacy pointer telemetry is non-authoritative and explicitly excluded; 🧪 physical Deck and natural-progression limits remain. These two37-check receipts add live acceptance evidence, not new distinct EditMode test cases.
