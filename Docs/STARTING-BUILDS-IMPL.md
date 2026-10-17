@@ -1,8 +1,9 @@
 # Starting builds - implementation
 
-**Status:** implemented and unit-tested outside Unity; **not yet run in the
-Unity editor.** Design and evidence: `Docs/Design/STARTING-BUILDS.md` and
-`Docs/Design/StartingBuildsProbe/`.
+**Status:** original implementation and historical evidence below; later native
+bootstrap coverage is in `Docs/COMPOSABLE-BUILDS.md`. The dedicated Hurler
+addition is planned and verified separately in the dated section below.
+Original design: `Docs/Design/STARTING-BUILDS.md` and `Docs/Design/StartingBuildsProbe/`.
 **Qud reference:** none. Classified **CoO-original** (§4.2): Qud's character
 creation is a long genotype/caste flow; this is a one-screen pick of a
 pre-built kit and makes no parity claim.
@@ -208,3 +209,112 @@ scenario, a native audit and batch mode skip the picker entirely.
 `build/Applied {id, success, skills, items, errors}` and
 `build/Rejected {id, reason}` (default-on category `build`). Query:
 `diag_assert category=build kind=Applied`.
+
+
+## Dedicated throwing start — 16 October 2026
+
+Status: IMPLEMENTED and verified in native Unity 6000.3.4f1. User asks for a throwing starting
+build. Bombardier already supplies three disposable projectiles, but grants
+Drench Lob/Cold Snap/Calm and no Throwing skills. Add **The Hurler**, leaving
+all six existing starts and their historical comparison cohorts unchanged.
+This new starter supersedes the prior throwing audit's no-new-start scope by
+explicit user request; it is not a retroactive fix to that audit's results.
+
+### Design and verified references
+
+| Contract | Verified source / decision |
+| --- | --- |
+| Menu entry | `StartingBuilds.json`, after Warden and before Classic; seven choices. Existing five specialist indices stay stable, Classic becomes row7. |
+| Attributes | Strength20 / Agility20 / Toughness16 / Ego14, same70-point even-score budget. HP remains40; no claim that Toughness raises it. |
+| Supplies | Equipped dagger first, three carried daggers, equipped cloak, two healing tonics, two dried meat. The common farming kit still comes from bootstrap. No new blueprints or restocking rules. |
+| Skills | Sure Grip (`ThrowingSkill`), Measured Throw, Recovering Step, granted in that order through `StartingBuildService`; two initial hotbar buttons. Driving Throw and Focused Splash remain earned one-point options. |
+| Identity | Prepared physical throws and recovery; low protection and finite blades. Recovering Step needs an adjacent eligible thrown item and may lead into danger. No returning-weapon or infinite-ammo promise. |
+| Application | Existing service validates first, equips before adding ammunition, grants abilities in authored order and rejects duplicate application. Test exact equipped-versus-carried identities because identical blueprints may stack. |
+| Presentation | Existing menu supports1–9 and directional confirmation. New card must fit50columns and22content rows. No separate menu implementation. |
+| Native proof | Existing `SpreadDiscoveryNativeBatch.LaunchOpening("hurler",64,"bootstrap")` exercises actual New game/picker and authored starting stats, custody, skills/hotbar and free selection with private save isolation. This is startup evidence, not an expedition. |
+
+### Implementation steps
+
+1. Write and run failing roster, navigation and focused Hurler tests. Include
+   exact ammunition/equipment, skill ownership and hotbar order, paid skill
+   progression, prepare/throw/recovery mechanics and save roundtrip controls.
+2. Add the single authored build and concise honest card text. Use existing
+   services and skills; change production C# only if a real integration defect
+   is reproduced. Confirm parsed existing build objects are identical.
+3. Run native Unity focused and affected starting-build/throwing/save/controller
+   tests; independently review the diff and counter-checks.
+4. Run the ordinary bootstrap route, inspect the card and starting hotbar at
+   Deck resolution, restore editor/save settings, record exact evidence and
+   limits, then fetch/rebase/push main.
+
+Readiness: 🟢 skills, item blueprints, menu, carried/equipped dagger custody,
+save roundtrip and native startup verified. No new models or animation are
+needed because every kit item already has presentation assets.
+
+### Implementation and verification log
+
+This is CoO-original starter content using the implemented Throwing tree, not
+a claim of Qud build parity. The only production change is the `hurler` entry
+in `StartingBuilds.json`; the existing application, inventory, skill and menu
+services required no changes. The authored skills are:
+
+```json
+"Skills": ["ThrowingSkill", "Throwing_MeasuredThrow", "Throwing_RecoveringStep"]
+```
+
+| Sweep correction / scope | Resolution |
+| --- | --- |
+| Bombardier might already be a throwing start | Its three projectiles accompany three spells; none grants Throwing. Keep it intact and add a distinct physical-throwing start. |
+| Reusable ammunition might merge into the equipped backup | Equip the first dagger, then grant the three carried units. Integration tests prove separation, one-unit throwing and exact-unit recovery without auto-equipping or duplication. |
+| Roster has six entries | Seven now; Hurler is digit6, Classic digit7. Production navigation and native scenario launchers resolve the roster dynamically. Historical five-/six-build comparison results remain historical. |
+| Old throwing audit excluded new starts | Explicitly superseded by this request. No additional production mechanics, balance rewrite or new supply economy added. |
+
+Tests ran in the real Unity editor, not the headless stub runner:
+
+| Gate | Result / receipt |
+| --- | --- |
+| RED roster/navigation before content | 6 completed: 3 expected missing-entry/index failures, 3 controls passed. Job `2880b9fc24de4c6fb4932fa966a6eb8d`; `Verification/Throwing/hurler-roster-red.json`. |
+| RED focused behavior before content | 6 completed: 5 expected missing-Hurler failures, unchanged Bombardier control passed. Job `3d7aa6edb9d94941b892a614ea860e40`; `Verification/Throwing/hurler-focused-red.json`. |
+| First GREEN affected start suites | 144/144 passed, 0 failed/skipped. Job `e62643ce1a364412b8be4b3f2564e772`; `Verification/Throwing/hurler-start-green.json`. |
+| Review reinforcement and throwing regression | 177/177 passed, 0 failed/skipped: starting-build, menu, adversarial, controller, focused Hurler and ThrowingSkillTests. Added the card-height/content check and included existing 32 throwing cases. Job `9a5037657a89493ba87396d9fb454243`; `Verification/Throwing/hurler-reviewed-green.json`. |
+| Native 1280×800 startup | `Verification/SpreadDiscoveryExpeditions/Native/ecc9954e3301433db95f6fbc9b75b734/report.json`: 5/5 named checks, 0 failures/errors; two screenshots inspected. |
+| Native 1280×720 startup | `Verification/SpreadDiscoveryExpeditions/Native/287f5793293f47e495701f895bcd701c/report.json`: 5/5 named checks, 0 failures/errors; two screenshots inspected. |
+
+The native checks use ordinary New Game → digit6 → Enter with private save
+isolation. Both verify seed64, ordinary spawn, 40HP, 50drams, exact attributes,
+equipped/carried ownership, the common farming kit, three rank1 skills, two
+ready hotbar slots, and no turn/energy cost for build selection. The card fits
+14 rows (maximum49 columns, within22×50), all seven choices remain visible,
+and post-start HUD DV9 matches the card and combat formula. The starting
+hotbar displays Measured Throw and Recovering Step. The native session ended
+in EditMode; save-root override is null, isolation inactive and exit code0.
+The prior Game view size and audit-added custom sizes were restored. Console
+error check returned zero entries.
+
+### In-phase and independent review
+
+- 🔵 All six preceding build objects compare identical after JSON parsing.
+  Bombardier is also a behavioral counter-check. Existing starts and historical
+  strategy comparisons have not been silently redefined.
+- 🔵 The six new focused cases cover exact kit/skills, both one-point purchases
+  versus zero-point refusal, preserved Bombardier, prepare→throw→recover and
+  token-graph save/load with duplicate-start refusal. Distance, occupied landing,
+  unthrown lookalike and second-pickup refusal check the recovery exclusions.
+- 🔵 The independent reviewer checked roster callers, authored data, item
+  ownership, progression and card wrapping; no actionable production findings.
+  Review added a card-height/content regression alongside the existing width
+  test. An apparent DV mismatch during visual inspection was ruled out by
+  reading the original screenshot and verifying `CombatSystem.GetDV` directly.
+- 🧪 Can verify: the named native startup checks, inspected screenshots, and
+  the specific integration/counter-check assertions above. The focused prepare
+  fixture invokes the owner-turn hook explicitly; it does not itself prove
+  native action scheduling. Existing throwing tests cover that system separately.
+- 🧪 Cannot verify from this work: expedition balance, sustained ammunition
+  economy, physical Steam Deck input/performance, or a newly packaged Deck
+  build. Native startup reports stop before combat; no campaign was played to
+  completion. No such claims are made.
+
+Files changed: `StartingBuilds.json`, `StartingBuildTests.cs`,
+`StartingBuildMenuTests.cs`, new `ThrowingStartingBuildTests.cs` and handwritten
+`.meta`, this living doc, four Unity test receipts, and the two native report/
+screenshot sets. No production C# or blueprint changes were necessary.

@@ -1,0 +1,1636 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "9a5037657a89493ba87396d9fb454243",
+      "status": "succeeded",
+      "mode": "EditMode",
+      "started_unix_ms": 1792202431279,
+      "finished_unix_ms": 1792202440370,
+      "last_update_unix_ms": 1792202440370,
+      "progress": {
+        "completed": 177,
+        "total": 177,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1792202440272,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.StarterCanPrepareThrowOneCarriedUnitAndRecoverItWithoutEquipping",
+        "last_finished_unix_ms": 1792202440339,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "EditMode",
+        "summary": {
+          "total": 177,
+          "passed": 177,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 1.4592221,
+          "resultState": "Passed"
+        },
+        "results": [
+          {
+            "name": "ANullCallback_IsSafe",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ANullCallback_IsSafe",
+            "state": "Passed",
+            "durationSeconds": 0.0036525,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BootMenu_Continue_NeverOpensThePicker",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.BootMenu_Continue_NeverOpensThePicker",
+            "state": "Passed",
+            "durationSeconds": 0.0014315,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BootMenu_NewGame_WhenTheGateDeclines_CheckpointsAsBefore",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.BootMenu_NewGame_WhenTheGateDeclines_CheckpointsAsBefore",
+            "state": "Passed",
+            "durationSeconds": 0.0001033,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BootMenu_NewGame_WithAGate_HandsOverToThePicker_AndDoesNotCheckpoint",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.BootMenu_NewGame_WithAGate_HandsOverToThePicker_AndDoesNotCheckpoint",
+            "state": "Passed",
+            "durationSeconds": 0.0001349,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BootMenu_NewGame_WithNoGate_IsUnchanged",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.BootMenu_NewGame_WithNoGate_IsUnchanged",
+            "state": "Passed",
+            "durationSeconds": 0.0000716,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClickConfirm_OnAClosedMenu_DoesNothing",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ClickConfirm_OnAClosedMenu_DoesNothing",
+            "state": "Passed",
+            "durationSeconds": 0.0001491,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClickConfirm_SelectsAndChooses",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ClickConfirm_SelectsAndChooses",
+            "state": "Passed",
+            "durationSeconds": 0.0000971,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(Return)",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(Return)",
+            "state": "Passed",
+            "durationSeconds": 0.00035,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(KeypadEnter)",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(KeypadEnter)",
+            "state": "Passed",
+            "durationSeconds": 0.000029,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(Space)",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.ConfirmKeys_ChooseTheHighlightedBuild_ExactlyOnce_AndClose(Space)",
+            "state": "Passed",
+            "durationSeconds": 0.0000275,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DigitKeys_JumpToThatRow_AndIgnoreRowsThatDoNotExist",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.DigitKeys_JumpToThatRow_AndIgnoreRowsThatDoNotExist",
+            "state": "Passed",
+            "durationSeconds": 0.000083,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DownAndUp_MoveAndWrap",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.DownAndUp_MoveAndWrap",
+            "state": "Passed",
+            "durationSeconds": 0.0000559,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Escape_DoesNotCancel_ThereIsNothingToGoBackTo",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.Escape_DoesNotCancel_ThereIsNothingToGoBackTo",
+            "state": "Passed",
+            "durationSeconds": 0.0000354,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HoverSelect_MovesTheHighlight_ButNeverChooses",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.HoverSelect_MovesTheHighlight_ButNeverChooses",
+            "state": "Passed",
+            "durationSeconds": 0.0000554,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NewController_IsClosed_AndConsumesNothing",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.NewController_IsClosed_AndConsumesNothing",
+            "state": "Passed",
+            "durationSeconds": 0.0000329,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Open_StartsOnTheFirstOption",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.Open_StartsOnTheFirstOption",
+            "state": "Passed",
+            "durationSeconds": 0.0000389,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Open_WithNoOptions_StaysClosed",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.Open_WithNoOptions_StaysClosed",
+            "state": "Passed",
+            "durationSeconds": 0.0000517,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StationaryHoveredRowDoesNotUndoKeyboardChoice",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.StationaryHoveredRowDoesNotUndoKeyboardChoice",
+            "state": "Passed",
+            "durationSeconds": 0.0000548,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "TheModalIsClosed_BeforeTheCallbackRuns",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.TheModalIsClosed_BeforeTheCallbackRuns",
+            "state": "Passed",
+            "durationSeconds": 0.0000568,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WAndS_AreAlternateUpAndDown",
+            "fullName": "CavesOfOoo.Tests.EditMode.Presentation.UI.StartingBuildMenuControllerTests.WAndS_AreAlternateUpAndDown",
+            "state": "Passed",
+            "durationSeconds": 0.0000431,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ALoadedBuiltPlayer_CannotBeHandedASecondBuild",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ALoadedBuiltPlayer_CannotBeHandedASecondBuild",
+            "state": "Passed",
+            "durationSeconds": 0.0493116,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CounterCheck_AnUnbuiltPlayer_RoundTripsWithNoMarkerAndNoWeapon",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.CounterCheck_AnUnbuiltPlayer_RoundTripsWithNoMarkerAndNoWeapon",
+            "state": "Passed",
+            "durationSeconds": 0.0069176,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "GetIsCaseInsensitive_AndTrimsNothingElse",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.GetIsCaseInsensitive_AndTrimsNothingElse",
+            "state": "Passed",
+            "durationSeconds": 0.000199,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ItemCountZeroOrNegative_IsTreatedAsOne_NotZero(0)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ItemCountZeroOrNegative_IsTreatedAsOne_NotZero(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0007528,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ItemCountZeroOrNegative_IsTreatedAsOne_NotZero(-3)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ItemCountZeroOrNegative_IsTreatedAsOne_NotZero(-3)",
+            "state": "Passed",
+            "durationSeconds": 0.0003644,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(null)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(null)",
+            "state": "Passed",
+            "durationSeconds": 0.0001291,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(\"\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(\"\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000278,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(\"   \")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(\"   \")",
+            "state": "Passed",
+            "durationSeconds": 0.0000246,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(\"not json\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(\"not json\")",
+            "state": "Passed",
+            "durationSeconds": 0.000774,
+            "message": null,
+            "stackTrace": null,
+            "output": "[StartingBuilds] could not parse the builds file: JSON parse error: Invalid value.\n"
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(\"{}\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(\"{}\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000326,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedJson_LoadsNothing_AndDoesNotThrow(\"{\\\"Builds\\\":null}\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.MalformedJson_LoadsNothing_AndDoesNotThrow(\"{\\\"Builds\\\":null}\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000232,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NoShippedBuild_TakesTheUnbuyableTreesOrQuench",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.NoShippedBuild_TakesTheUnbuyableTreesOrQuench",
+            "state": "Passed",
+            "durationSeconds": 0.0005082,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ReloadReplaces_NotAppends",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ReloadReplaces_NotAppends",
+            "state": "Passed",
+            "durationSeconds": 0.0001345,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0115692,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"breaker\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"breaker\")",
+            "state": "Passed",
+            "durationSeconds": 0.0094156,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"stormcaller\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"stormcaller\")",
+            "state": "Passed",
+            "durationSeconds": 0.008835,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.SavedBuild_KeepsItsMarker_Stats_Skills_Weapon_AndHotbarOrder(\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.009443,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedBuild_CarriesLessThanTheOverburdenLimit(\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ShippedBuild_CarriesLessThanTheOverburdenLimit(\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0022499,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedBuild_CarriesLessThanTheOverburdenLimit(\"breaker\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ShippedBuild_CarriesLessThanTheOverburdenLimit(\"breaker\")",
+            "state": "Passed",
+            "durationSeconds": 0.001065,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedBuild_CarriesLessThanTheOverburdenLimit(\"stormcaller\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ShippedBuild_CarriesLessThanTheOverburdenLimit(\"stormcaller\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010544,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedBuild_CarriesLessThanTheOverburdenLimit(\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ShippedBuild_CarriesLessThanTheOverburdenLimit(\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.0008795,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedBuilds_AreDistinct_EachDifferentlyShaped",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.ShippedBuilds_AreDistinct_EachDifferentlyShaped",
+            "state": "Passed",
+            "durationSeconds": 0.0011811,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_AttributeSumOff70_IsReported_ButClassicIsExempt",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_AttributeSumOff70_IsReported_ButClassicIsExempt",
+            "state": "Passed",
+            "durationSeconds": 0.0002788,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_DuplicateIds_AreReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_DuplicateIds_AreReported",
+            "state": "Passed",
+            "durationSeconds": 0.0000722,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_DuplicateSkill_IsReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_DuplicateSkill_IsReported",
+            "state": "Passed",
+            "durationSeconds": 0.0001051,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_EquippingFood_IsReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_EquippingFood_IsReported",
+            "state": "Passed",
+            "durationSeconds": 0.0000752,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_MissingId_IsReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_MissingId_IsReported",
+            "state": "Passed",
+            "durationSeconds": 0.0002836,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_MoreActivesThanHotbarSlots_IsReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_MoreActivesThanHotbarSlots_IsReported",
+            "state": "Passed",
+            "durationSeconds": 0.000265,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_OddAttribute_IsReported",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_OddAttribute_IsReported",
+            "state": "Passed",
+            "durationSeconds": 0.0000785,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_UnknownSkillAndBlueprint_AreBothNamed",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_UnknownSkillAndBlueprint_AreBothNamed",
+            "state": "Passed",
+            "durationSeconds": 0.1079778,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Validate_WeaponMustBeEquippedBeforeAnyShield",
+            "fullName": "CavesOfOoo.Tests.StartingBuildAdversarialTests.Validate_WeaponMustBeEquippedBeforeAnyShield",
+            "state": "Passed",
+            "durationSeconds": 0.0003624,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ADisabledSwitch_SuppressesThePrompt_AndOffByDefaultIsNotAThing",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.ADisabledSwitch_SuppressesThePrompt_AndOffByDefaultIsNotAThing",
+            "state": "Passed",
+            "durationSeconds": 0.0004469,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Card_ListsWornGearSeparatelyFromThePack",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Card_ListsWornGearSeparatelyFromThePack",
+            "state": "Passed",
+            "durationSeconds": 0.0013182,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Card_NamesTheWeakness_AndEverySkillReadably",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Card_NamesTheWeakness_AndEverySkillReadably",
+            "state": "Passed",
+            "durationSeconds": 0.0003121,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Card_ShowsTheDerivedNumbersTheDesignPromised",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Card_ShowsTheDerivedNumbersTheDesignPromised",
+            "state": "Passed",
+            "durationSeconds": 0.0001512,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CardLines_FitThePopup",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.CardLines_FitThePopup",
+            "state": "Passed",
+            "durationSeconds": 0.0004446,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClassicCard_IsDerivedFromTheLegacyKit_NotCopied",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.ClassicCard_IsDerivedFromTheLegacyKit_NotCopied",
+            "state": "Passed",
+            "durationSeconds": 0.000189,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_AgreesWithTheRealPlayer_AfterApply",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_AgreesWithTheRealPlayer_AfterApply",
+            "state": "Passed",
+            "durationSeconds": 0.0041016,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"duelist\",11)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"duelist\",11)",
+            "state": "Passed",
+            "durationSeconds": 0.0002011,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"breaker\",7)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"breaker\",7)",
+            "state": "Passed",
+            "durationSeconds": 0.0000978,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"stormcaller\",9)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"stormcaller\",9)",
+            "state": "Passed",
+            "durationSeconds": 0.000095,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"bombardier\",8)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"bombardier\",8)",
+            "state": "Passed",
+            "durationSeconds": 0.0000911,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"warden\",8)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"warden\",8)",
+            "state": "Passed",
+            "durationSeconds": 0.0000951,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DerivedDv_MatchesTheEngineFormula(\"hurler\",9)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.DerivedDv_MatchesTheEngineFormula(\"hurler\",9)",
+            "state": "Passed",
+            "durationSeconds": 0.0000893,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "EmptyMenu_IsSafe",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.EmptyMenu_IsSafe",
+            "state": "Passed",
+            "durationSeconds": 0.0001822,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HurlerCard_FitsAndExplainsItsFiniteKitAndProgression",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.HurlerCard_FitsAndExplainsItsFiniteKitAndProgression",
+            "state": "Passed",
+            "durationSeconds": 0.0004249,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Move_WrapsInBothDirections",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Move_WrapsInBothDirections",
+            "state": "Passed",
+            "durationSeconds": 0.0001307,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(True,False,False,False)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(True,False,False,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0001493,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,True,False,False)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,True,False,False)",
+            "state": "Passed",
+            "durationSeconds": 0.00009,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,False,True,False)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,False,True,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0000855,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,False,False,True)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.NeverPrompts_ForDevModeScenariosAuditsOrBatchRuns(False,False,False,True)",
+            "state": "Passed",
+            "durationSeconds": 0.0000908,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NoBuildsLoaded_MeansNoPrompt",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.NoBuildsLoaded_MeansNoPrompt",
+            "state": "Passed",
+            "durationSeconds": 0.0001065,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Opens_OnTheFirstBuild_NotClassic",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Opens_OnTheFirstBuild_NotClassic",
+            "state": "Passed",
+            "durationSeconds": 0.0001208,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Prompts_InOrdinaryNewGames",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Prompts_InOrdinaryNewGames",
+            "state": "Passed",
+            "durationSeconds": 0.0000973,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_IgnoresAnOutOfRangeIndex(-1)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_IgnoresAnOutOfRangeIndex(-1)",
+            "state": "Passed",
+            "durationSeconds": 0.0001118,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_IgnoresAnOutOfRangeIndex(7)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_IgnoresAnOutOfRangeIndex(7)",
+            "state": "Passed",
+            "durationSeconds": 0.00009,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_IgnoresAnOutOfRangeIndex(99)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_IgnoresAnOutOfRangeIndex(99)",
+            "state": "Passed",
+            "durationSeconds": 0.000089,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_JumpsToAnIndex(0,\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_JumpsToAnIndex(0,\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001308,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_JumpsToAnIndex(3,\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_JumpsToAnIndex(3,\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000893,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_JumpsToAnIndex(4,\"warden\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_JumpsToAnIndex(4,\"warden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000852,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_JumpsToAnIndex(5,\"hurler\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_JumpsToAnIndex(5,\"hurler\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000819,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Select_JumpsToAnIndex(6,\"classic\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.Select_JumpsToAnIndex(6,\"classic\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000864,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_OfNothing_IsEmpty(null)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_OfNothing_IsEmpty(null)",
+            "state": "Passed",
+            "durationSeconds": 0.0001016,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_OfNothing_IsEmpty(\"\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_OfNothing_IsEmpty(\"\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000936,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"Pyromancy_Kindle\",\"Kindle\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"Pyromancy_Kindle\",\"Kindle\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001204,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"Cudgel_GroundPound\",\"Ground Pound\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"Cudgel_GroundPound\",\"Ground Pound\")",
+            "state": "Passed",
+            "durationSeconds": 0.000086,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"ShortBladesSkill\",\"Short Blades\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"ShortBladesSkill\",\"Short Blades\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000879,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"SpellcraftSkill\",\"Spellcraft\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"SpellcraftSkill\",\"Spellcraft\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000857,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"Axe_HookAndDrag\",\"Hook And Drag\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"Axe_HookAndDrag\",\"Hook And Drag\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000849,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillLabel_TurnsAClassNameIntoWords(\"Spellcraft_Calm\",\"Calm\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildMenuTests.SkillLabel_TurnsAClassNameIntoWords(\"Spellcraft_Calm\",\"Calm\")",
+            "state": "Passed",
+            "durationSeconds": 0.0000863,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_Bombardier_CarriesTheThreeThrowables_AndTheyAreThrowable",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_Bombardier_CarriesTheThreeThrowables_AndTheyAreThrowable",
+            "state": "Passed",
+            "durationSeconds": 0.0011916,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_Duelist_PackAndWornGear",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_Duelist_PackAndWornGear",
+            "state": "Passed",
+            "durationSeconds": 0.0011121,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_EmitsAnAppliedRecord_WithWhatWasGranted",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_EmitsAnAppliedRecord_WithWhatWasGranted",
+            "state": "Passed",
+            "durationSeconds": 0.0010981,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009531,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"breaker\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"breaker\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005632,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"stormcaller\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"stormcaller\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005597,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006041,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"warden\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"warden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005629,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"hurler\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(\"hurler\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005472,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"duelist\",\"Dagger\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"duelist\",\"Dagger\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006051,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"breaker\",\"Cudgel\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"breaker\",\"Cudgel\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005414,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"stormcaller\",\"Dagger\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"stormcaller\",\"Dagger\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005508,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"bombardier\",\"Dagger\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"bombardier\",\"Dagger\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005798,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"warden\",\"LongSword\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"warden\",\"LongSword\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005442,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_PutsTheWeaponInThePrimaryHand(\"hurler\",\"Dagger\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_PutsTheWeaponInThePrimaryHand(\"hurler\",\"Dagger\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005311,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_RecordsTheBuildOnThePlayer",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_RecordsTheBuildOnThePlayer",
+            "state": "Passed",
+            "durationSeconds": 0.0005804,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006781,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"breaker\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"breaker\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005518,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"stormcaller\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"stormcaller\")",
+            "state": "Passed",
+            "durationSeconds": 0.000563,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005927,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"warden\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"warden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005794,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"hurler\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(\"hurler\")",
+            "state": "Passed",
+            "durationSeconds": 0.0005806,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ApplyingASecondBuild_IsRefused_NoDoubleGrants",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.ApplyingASecondBuild_IsRefused_NoDoubleGrants",
+            "state": "Passed",
+            "durationSeconds": 0.0006711,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"duelist\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"duelist\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003691,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"breaker\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"breaker\")",
+            "state": "Passed",
+            "durationSeconds": 0.000138,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"stormcaller\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"stormcaller\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001278,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"bombardier\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"bombardier\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001311,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"warden\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"warden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001228,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Attributes_SumTo70_InEvenSteps(\"hurler\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Attributes_SumTo70_InEvenSteps(\"hurler\")",
+            "state": "Passed",
+            "durationSeconds": 0.0001218,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BuildWithABucklerFirst_PutsTheFistInTheHandThatSwings",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.BuildWithABucklerFirst_PutsTheFistInTheHandThatSwings",
+            "state": "Passed",
+            "durationSeconds": 0.0005778,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Classic_GrantsTodaysKit_AndSixSpells",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Classic_GrantsTodaysKit_AndSixSpells",
+            "state": "Passed",
+            "durationSeconds": 0.0018032,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Classic_NowEquipsItsDagger",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.Classic_NowEquipsItsDagger",
+            "state": "Passed",
+            "durationSeconds": 0.0005972,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClassicFallback_LeavesAnAlreadyBuiltPlayerAlone",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.ClassicFallback_LeavesAnAlreadyBuiltPlayerAlone",
+            "state": "Passed",
+            "durationSeconds": 0.0007356,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClassicFallback_WorksEvenWhenNoBuildsAreLoaded",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.ClassicFallback_WorksEvenWhenNoBuildsAreLoaded",
+            "state": "Passed",
+            "durationSeconds": 0.0006269,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NullArguments_AreRefusedNotThrown",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.NullArguments_AreRefusedNotThrown",
+            "state": "Passed",
+            "durationSeconds": 0.0007481,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ShippedContent_HasNoValidationProblems",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.ShippedContent_HasNoValidationProblems",
+            "state": "Passed",
+            "durationSeconds": 0.0002899,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"duelist\",6)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"duelist\",6)",
+            "state": "Passed",
+            "durationSeconds": 0.0001436,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"breaker\",6)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"breaker\",6)",
+            "state": "Passed",
+            "durationSeconds": 0.0001213,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"stormcaller\",6)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"stormcaller\",6)",
+            "state": "Passed",
+            "durationSeconds": 0.0001189,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"bombardier\",3)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"bombardier\",3)",
+            "state": "Passed",
+            "durationSeconds": 0.0001166,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"warden\",6)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"warden\",6)",
+            "state": "Passed",
+            "durationSeconds": 0.0001169,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SkillRows_FollowThePowerBudget(\"hurler\",3)",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.SkillRows_FollowThePowerBudget(\"hurler\",3)",
+            "state": "Passed",
+            "durationSeconds": 0.000116,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "TheLegacyLoadoutContract_IsStillThreeEntries",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.TheLegacyLoadoutContract_IsStillThreeEntries",
+            "state": "Passed",
+            "durationSeconds": 0.000144,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "TheSet_IsSixBuildsThenClassic",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.TheSet_IsSixBuildsThenClassic",
+            "state": "Passed",
+            "durationSeconds": 0.0002166,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "UnknownBlueprint_RefusesTheWholeBuild_AndTouchesNothing",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.UnknownBlueprint_RefusesTheWholeBuild_AndTouchesNothing",
+            "state": "Passed",
+            "durationSeconds": 0.0005903,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "UnknownSkill_RefusesTheWholeBuild_AndTouchesNothing",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.UnknownSkill_RefusesTheWholeBuild_AndTouchesNothing",
+            "state": "Passed",
+            "durationSeconds": 0.0626219,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WardenCanSpendOneActualPointOnEitherDefenseWithoutAnotherRoot(\"LongBlades_Deflect\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.WardenCanSpendOneActualPointOnEitherDefenseWithoutAnotherRoot(\"LongBlades_Deflect\")",
+            "state": "Passed",
+            "durationSeconds": 0.0025944,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WardenCanSpendOneActualPointOnEitherDefenseWithoutAnotherRoot(\"LongBlades_Riposte\")",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.WardenCanSpendOneActualPointOnEitherDefenseWithoutAnotherRoot(\"LongBlades_Riposte\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006673,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WardenStartsWithGuardAndLeavesRankedDefenseAsEarnedChoices",
+            "fullName": "CavesOfOoo.Tests.StartingBuildTests.WardenStartsWithGuardAndLeavesRankedDefenseAsEarnedChoices",
+            "state": "Passed",
+            "durationSeconds": 0.0014487,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActorMoveOutAndBackInterruptsPreparation",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ActorMoveOutAndBackInterruptsPreparation",
+            "state": "Passed",
+            "durationSeconds": 0.033149,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"carried\")",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"carried\")",
+            "state": "Passed",
+            "durationSeconds": 0.032812,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"equipped\")",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"equipped\")",
+            "state": "Passed",
+            "durationSeconds": 0.022899,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"stack\")",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ActualPreparedThrowSurvivesItsOwnExtractionAndLeavesOneMarkedUnit(\"stack\")",
+            "state": "Passed",
+            "durationSeconds": 0.0233677,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ArbitraryEndTurnBroadcastDoesNotPayDownPersistentDebt",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ArbitraryEndTurnBroadcastDoesNotPayDownPersistentDebt",
+            "state": "Passed",
+            "durationSeconds": 0.0232238,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CatalogContainsFiveOnePointOneRankNodesAndNoSkimmingTax",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.CatalogContainsFiveOnePointOneRankNodesAndNoSkimmingTax",
+            "state": "Passed",
+            "durationSeconds": 0.0247777,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ChildGrantOperatesWithoutRootButPurchaseRequiresRoot",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ChildGrantOperatesWithoutRootButPurchaseRequiresRoot",
+            "state": "Passed",
+            "durationSeconds": 0.0218737,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DeferredSelectionIsFreeAndDoesNotCreatePreparation",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.DeferredSelectionIsFreeAndDoesNotCreatePreparation",
+            "state": "Passed",
+            "durationSeconds": 0.0213953,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DrivingRequiresOwnedHeavyPhysicalSourceAndPositiveRetainedContact",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.DrivingRequiresOwnedHeavyPhysicalSourceAndPositiveRetainedContact",
+            "state": "Passed",
+            "durationSeconds": 0.0215275,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FocusedAuthorizationCannotBeForgedOrUsedWithGas",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.FocusedAuthorizationCannotBeForgedOrUsedWithGas",
+            "state": "Passed",
+            "durationSeconds": 0.0230285,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignMarkAndChangedQuantityDoNotPermitRecovery",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ForeignMarkAndChangedQuantityDoNotPermitRecovery",
+            "state": "Passed",
+            "durationSeconds": 0.0229174,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HiddenTargetAndPayloadCannotBePrepared",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.HiddenTargetAndPayloadCannotBePrepared",
+            "state": "Passed",
+            "durationSeconds": 0.0216213,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "IncompatibleCommittedThrowConsumesPreparationWithoutBonus",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.IncompatibleCommittedThrowConsumesPreparationWithoutBonus",
+            "state": "Passed",
+            "durationSeconds": 0.0214065,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(-1,False)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(-1,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0222015,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(-1,True)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(-1,True)",
+            "state": "Passed",
+            "durationSeconds": 0.0255142,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(0,False)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(0,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0377722,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(0,True)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(0,True)",
+            "state": "Passed",
+            "durationSeconds": 0.0671854,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(2,False)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(2,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0223781,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(2,True)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionAddsFourToActualThrowPenetrationAndEffectiveCap(2,True)",
+            "state": "Passed",
+            "durationSeconds": 0.0211618,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MeasuredRevisionRuntimeAndAuthoredDescriptionsMatchThePaidFourPointBonus",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.MeasuredRevisionRuntimeAndAuthoredDescriptionsMatchThePaidFourPointBonus",
+            "state": "Passed",
+            "durationSeconds": 0.0204466,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreparationPaysCooldownAndSurvivesOnlyItsOwnClosingTurn",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.PreparationPaysCooldownAndSurvivesOnlyItsOwnClosingTurn",
+            "state": "Passed",
+            "durationSeconds": 0.0210275,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PurePreviewDoesNotConsumePreparationAndLaunchConsumesItOnce",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.PurePreviewDoesNotConsumePreparationAndLaunchConsumesItOnce",
+            "state": "Passed",
+            "durationSeconds": 0.0214253,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RecoveryMovesOneCellAndSecuresExactUnitWithoutEquipping",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RecoveryMovesOneCellAndSecuresExactUnitWithoutEquipping",
+            "state": "Passed",
+            "durationSeconds": 0.0254712,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RemovedSkillCooldownDebtSurvivesSaveAndRelearning",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RemovedSkillCooldownDebtSurvivesSaveAndRelearning",
+            "state": "Passed",
+            "durationSeconds": 0.0235085,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RetryDoesNotMakeImpossibleAgilityHit(1)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RetryDoesNotMakeImpossibleAgilityHit(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0217513,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RetryDoesNotMakeImpossibleAgilityHit(2)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RetryDoesNotMakeImpossibleAgilityHit(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0216,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RetryIsOwnedAndConsumesOnlyOneAdditionalAccuracyDraw(False)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RetryIsOwnedAndConsumesOnlyOneAdditionalAccuracyDraw(False)",
+            "state": "Passed",
+            "durationSeconds": 0.0224996,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RetryIsOwnedAndConsumesOnlyOneAdditionalAccuracyDraw(True)",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.RetryIsOwnedAndConsumesOnlyOneAdditionalAccuracyDraw(True)",
+            "state": "Passed",
+            "durationSeconds": 0.0219107,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ReversibleUnequipFaultKeepsThePaidPreparationAndOriginalSource",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.ReversibleUnequipFaultKeepsThePaidPreparationAndOriginalSource",
+            "state": "Passed",
+            "durationSeconds": 0.0226276,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SourceOwnershipMutationAndRemovalCannotRevivePreparation",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.SourceOwnershipMutationAndRemovalCannotRevivePreparation",
+            "state": "Passed",
+            "durationSeconds": 0.0223236,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StepEntryExceptionIsPaidAndCannotRestoreTheOriginalPosition",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.StepEntryExceptionIsPaidAndCannotRestoreTheOriginalPosition",
+            "state": "Passed",
+            "durationSeconds": 0.0226767,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "VetoedRecoveryIsFreeButPostMovePickupVetoIsPaid",
+            "fullName": "CavesOfOoo.Tests.ThrowingSkillTests.VetoedRecoveryIsFreeButPostMovePickupVetoIsPaid",
+            "state": "Passed",
+            "durationSeconds": 0.0224619,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "BombardierRetainsItsDifferentConsumableAndSpellStart",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.BombardierRetainsItsDifferentConsumableAndSpellStart",
+            "state": "Passed",
+            "durationSeconds": 0.0209883,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_DrivingThrow\",\"Throwing_FocusedSplash\")",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_DrivingThrow\",\"Throwing_FocusedSplash\")",
+            "state": "Passed",
+            "durationSeconds": 0.0199243,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_FocusedSplash\",\"Throwing_DrivingThrow\")",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_FocusedSplash\",\"Throwing_DrivingThrow\")",
+            "state": "Passed",
+            "durationSeconds": 0.0201778,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HurlerHasTheAdvertisedKitWithoutSpendingPointsOrGrantingItsWholeTree",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.HurlerHasTheAdvertisedKitWithoutSpendingPointsOrGrantingItsWholeTree",
+            "state": "Passed",
+            "durationSeconds": 0.0275888,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HurlerSurvivesTokenGraphLoadAndCannotClaimASecondStartingKit",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.HurlerSurvivesTokenGraphLoadAndCannotClaimASecondStartingKit",
+            "state": "Passed",
+            "durationSeconds": 0.0417519,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StarterCanPrepareThrowOneCarriedUnitAndRecoverItWithoutEquipping",
+            "fullName": "CavesOfOoo.Tests.ThrowingStartingBuildTests.StarterCanPrepareThrowOneCarriedUnitAndRecoverItWithoutEquipping",
+            "state": "Passed",
+            "durationSeconds": 0.066855,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          }
+        ]
+      }
+    },
+    "hint": null
+  }
+}

@@ -12,7 +12,7 @@ namespace CavesOfOoo.Tests
 {
     /// <summary>
     /// Docs/STARTING-BUILDS-IMPL.md. User-visible invariant: "On a new game
-    /// I pick one of four builds (or Classic); the character I get is the
+    /// I pick one of six builds (or Classic); the character I get is the
     /// one the card described: its attributes, its weapon in hand and
     /// swinging, its skills on the hotbar in order, and its pack."
     ///
@@ -25,7 +25,7 @@ namespace CavesOfOoo.Tests
     public class StartingBuildTests
     {
         private static ScenarioTestHarness _h;
-        private static readonly string[] Ids = { "duelist", "breaker", "stormcaller", "bombardier", "warden" };
+        private static readonly string[] Ids = { "duelist", "breaker", "stormcaller", "bombardier", "warden", "hurler" };
 
         [OneTimeSetUp]
         public void OneTimeSetup()
@@ -58,9 +58,9 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════
 
         [Test]
-        public void TheSet_IsFiveBuildsThenClassic()
+        public void TheSet_IsSixBuildsThenClassic()
         {
-            CollectionAssert.AreEqual(new[] { "duelist", "breaker", "stormcaller", "bombardier", "warden", "classic" },
+            CollectionAssert.AreEqual(new[] { "duelist", "breaker", "stormcaller", "bombardier", "warden", "hurler", "classic" },
                 StartingBuildRegistry.All.Select(b => b.Id).ToArray());
             Assert.IsTrue(Build("classic").IsClassic);
             foreach (var id in Ids) Assert.IsFalse(Build(id).IsClassic, id);
@@ -73,7 +73,7 @@ namespace CavesOfOoo.Tests
             Assert.IsEmpty(problems, string.Join("\n", problems));
         }
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")] [TestCase("hurler")]
         public void Attributes_SumTo70_InEvenSteps(string id)
         {
             var a = Build(id).Attributes;
@@ -86,7 +86,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("duelist", 6)] [TestCase("breaker", 6)] [TestCase("stormcaller", 6)] [TestCase("bombardier", 3)] [TestCase("warden", 6)]
+        [TestCase("duelist", 6)] [TestCase("breaker", 6)] [TestCase("stormcaller", 6)] [TestCase("bombardier", 3)] [TestCase("warden", 6)] [TestCase("hurler", 3)]
         public void SkillRows_FollowThePowerBudget(string id, int rows)
         {
             Assert.AreEqual(rows, Build(id).Skills.Count);
@@ -113,7 +113,7 @@ namespace CavesOfOoo.Tests
         // Applying a build
         // ════════════════════════════════════════════════════════
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")] [TestCase("hurler")]
         public void Apply_SetsTheDeclaredAttributes_AndLeavesTheRestAlone(string id)
         {
             var p = FreshPlayer();
@@ -133,7 +133,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("duelist", "Dagger")] [TestCase("breaker", "Cudgel")]
-        [TestCase("stormcaller", "Dagger")] [TestCase("bombardier", "Dagger")] [TestCase("warden", "LongSword")]
+        [TestCase("stormcaller", "Dagger")] [TestCase("bombardier", "Dagger")] [TestCase("warden", "LongSword")] [TestCase("hurler", "Dagger")]
         public void Apply_PutsTheWeaponInThePrimaryHand(string id, string weapon)
         {
             var p = FreshPlayer();
@@ -163,7 +163,7 @@ namespace CavesOfOoo.Tests
                 "the weapon was demoted to the off-hand; the natural fist swings first");
         }
 
-        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")]
+        [TestCase("duelist")] [TestCase("breaker")] [TestCase("stormcaller")] [TestCase("bombardier")] [TestCase("warden")] [TestCase("hurler")]
         public void Apply_GrantsSkillsInOrder_AndTheActivesLandOnTheHotbarInThatOrder(string id)
         {
             var p = FreshPlayer();

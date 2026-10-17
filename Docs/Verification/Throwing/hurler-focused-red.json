@@ -1,0 +1,52 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "3d7aa6edb9d94941b892a614ea860e40",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1792202165556,
+      "finished_unix_ms": 1792202174891,
+      "last_update_unix_ms": 1792202174891,
+      "progress": {
+        "completed": 6,
+        "total": 6,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1792202174557,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.StarterCanPrepareThrowOneCarriedUnitAndRecoverItWithoutEquipping",
+        "last_finished_unix_ms": 1792202174579,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_DrivingThrow\",\"Throwing_FocusedSplash\")",
+            "message": "  A new player needs a selectable throwing-skill start.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.EitherUnownedSpecializationCostsOneEarnedPoint(\"Throwing_FocusedSplash\",\"Throwing_DrivingThrow\")",
+            "message": "  A new player needs a selectable throwing-skill start.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.HurlerHasTheAdvertisedKitWithoutSpendingPointsOrGrantingItsWholeTree",
+            "message": "  A new player needs a selectable throwing-skill start.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.HurlerSurvivesTokenGraphLoadAndCannotClaimASecondStartingKit",
+            "message": "  A new player needs a selectable throwing-skill start.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowingStartingBuildTests.StarterCanPrepareThrowOneCarriedUnitAndRecoverItWithoutEquipping",
+            "message": "  A new player needs a selectable throwing-skill start.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

@@ -118,6 +118,27 @@
       ]
     },
     {
+      "Id": "hurler",
+      "Name": "The Hurler",
+      "Kind": "build",
+      "Tagline": "Throw, reposition, recover.",
+      "Weakness": "Light protection; retrieving blades can mean stepping into danger.",
+      "FirstBuy": "Driving Throw and a heavy weapon, or Focused Splash and a tonic.",
+      "Attributes": { "Strength": 20, "Agility": 20, "Toughness": 16, "Ego": 14 },
+      "Items": [
+        { "Blueprint": "Dagger", "Count": 1, "Equip": true },
+        { "Blueprint": "Dagger", "Count": 3, "Equip": false },
+        { "Blueprint": "Cloak", "Count": 1, "Equip": true },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "ThrowingSkill",
+        "Throwing_MeasuredThrow",
+        "Throwing_RecoveringStep"
+      ]
+    },
+    {
       "Id": "classic",
       "Name": "Classic",
       "Kind": "classic",

@@ -53,7 +53,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("stormcaller", m.Selected.Id);
         }
 
-        [TestCase(0, "duelist")] [TestCase(3, "bombardier")] [TestCase(4, "warden")] [TestCase(5, "classic")]
+        [TestCase(0, "duelist")] [TestCase(3, "bombardier")] [TestCase(4, "warden")] [TestCase(5, "hurler")] [TestCase(6, "classic")]
         public void Select_JumpsToAnIndex(int index, string id)
         {
             var m = Menu();
@@ -61,7 +61,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(id, m.Selected.Id);
         }
 
-        [TestCase(-1)] [TestCase(6)] [TestCase(99)]
+        [TestCase(-1)] [TestCase(7)] [TestCase(99)]
         public void Select_IgnoresAnOutOfRangeIndex(int index)
         {
             var m = Menu();
@@ -94,7 +94,7 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains("Agi 22", text);
         }
 
-        [TestCase("duelist", 11)] [TestCase("breaker", 7)] [TestCase("stormcaller", 9)] [TestCase("bombardier", 8)] [TestCase("warden", 8)]
+        [TestCase("duelist", 11)] [TestCase("breaker", 7)] [TestCase("stormcaller", 9)] [TestCase("bombardier", 8)] [TestCase("warden", 8)] [TestCase("hurler", 9)]
         public void DerivedDv_MatchesTheEngineFormula(string id, int dv)
         {
             Assert.AreEqual(dv, StartingBuildCard.DerivedDv(StartingBuildRegistry.Get(id), _h.Factory));
@@ -104,7 +104,7 @@ namespace CavesOfOoo.Tests
         public void DerivedDv_AgreesWithTheRealPlayer_AfterApply()
         {
             // Counter-check: the card's number must be what combat will use.
-            foreach (var id in new[] { "duelist", "breaker", "stormcaller", "bombardier", "warden" })
+            foreach (var id in new[] { "duelist", "breaker", "stormcaller", "bombardier", "warden", "hurler" })
             {
                 var p = _h.CreateContext(playerBlueprint: "Player").PlayerEntity;
                 Assert.IsTrue(StartingBuildService.Apply(p, _h.Factory, StartingBuildRegistry.Get(id)).Success);
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ClassicCard_IsDerivedFromTheLegacyKit_NotCopied()
         {
-            var m = Menu(); m.Select(5);
+            var m = Menu(); m.Select(6);
             string text = string.Join("\n", m.CardLines(_h.Factory));
 
             foreach (var e in NewGameLoadout.Items)
@@ -167,6 +167,21 @@ namespace CavesOfOoo.Tests
         public void SkillLabel_OfNothing_IsEmpty(string cls)
         {
             Assert.AreEqual("", StartingBuildCard.SkillLabel(cls));
+        }
+
+        [Test]
+        public void HurlerCard_FitsAndExplainsItsFiniteKitAndProgression()
+        {
+            var m = Menu();
+            m.Select(StartingBuildRegistry.All.ToList().FindIndex(b => b.Id == "hurler"));
+            var lines = m.CardLines(_h.Factory);
+            Assert.LessOrEqual(lines.Count, 22, "the complete card must fit the visible content rows");
+            string text = System.Text.RegularExpressions.Regex.Replace(string.Join("\n", lines), "\\s+", " ");
+            foreach (var label in new[] { "Measured Throw", "Recovering Step", "Driving Throw", "Focused Splash", "retrieving blades" })
+                StringAssert.Contains(label, text);
+            StringAssert.Contains("Wearing", text);
+            StringAssert.Contains("Carrying", text);
+            StringAssert.DoesNotContain("Throwing_", text, "show readable skills, not class names");
         }
 
         [Test]
