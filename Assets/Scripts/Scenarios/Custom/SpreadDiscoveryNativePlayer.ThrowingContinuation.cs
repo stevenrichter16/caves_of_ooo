@@ -163,7 +163,8 @@ namespace CavesOfOoo.Scenarios.Custom
                             yield return NaturalSelectedThrow(weapon,enemy,true);
                         // Re-evaluate after the paid preparation's actual enemy
                         // response; a moved target is never silently teleported.
-                        if(NaturalThrowTarget(weapon)==enemy)yield return NaturalSelectedThrow(weapon,enemy,false);
+                        if(NaturalAlive&&NaturalThrowTarget(weapon)==enemy)yield return NaturalSelectedThrow(weapon,enemy,false);
+                        else yield return NaturalCancelThrowSelection();
                         continue;
                     }
                     var path=PathTo(c=>SpatialQuery.DistanceToCell(Zone,enemy,c.X,c.Y)==1);
@@ -182,7 +183,24 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         IEnumerator NaturalSelectedThrow(Entity item,Entity enemy,bool prepare)
         {
-            var target=Zone.GetEntityCell(enemy);if(target==null)yield break;
+            var target=Zone.GetEntityCell(enemy);
+            if(target==null){yield return NaturalCancelThrowSelection();yield break;}
+            if(!prepare&&State=="ThrowTargeting")
+            {
+                var pending=Field(_input,"_pendingThrowTarget");
+                var intent=pending==null?null:(ThrowIntent)Field(pending,"Intent");
+                if(pending!=null&&ReferenceEquals(Field(pending,"Item"),item)
+                    &&ReferenceEquals(Field(pending,"PreparedTarget"),enemy)
+                    &&(ThrowMode)Field(pending,"Mode")==ThrowMode.Ordinary&&intent?.Target==enemy
+                    &&Player.GetPart<ThrowingStatePart>()?.Prepared==true)
+                {
+                    // Production tracks the same visible owner after its real
+                    // turn. Confirm its retained aim; do not move the locked cursor.
+                    yield return Paid(Tap(Key.Enter),"local","throwing-natural-retained-measured-throw");
+                    yield break;
+                }
+                yield return NaturalCancelThrowSelection();
+            }
             int x=target.X,y=target.Y;
             if(prepare)
             {
@@ -205,7 +223,14 @@ namespace CavesOfOoo.Scenarios.Custom
             var cursor=(WorldCursorState)Field(_input,"_worldCursorState");
             for(int n=0;cursor.X!=x||cursor.Y!=y;n++)
             {Require(n<110,"finite target cursor");yield return Tap(cursor.X<x?Key.RightArrow:cursor.X>x?Key.LeftArrow:cursor.Y<y?Key.DownArrow:Key.UpArrow);}
-            yield return Paid(Tap(Key.Enter),"local",prepare?"throwing-natural-earned-measured-preparation":"throwing-natural-continuation-throw");
+            yield return Paid(Tap(Key.Enter),"local",prepare?"throwing-natural-earned-measured-preparation":"throwing-natural-continuation-throw",keepThrowTarget:prepare);
+        }
+        IEnumerator NaturalCancelThrowSelection()
+        {
+            if(State!="ThrowTargeting")yield break;
+            int tick=Tick,energy=Energy;
+            yield return Tap(Key.Escape);yield return ConnectedCloseAndStabilize();
+            Require(State=="Normal"&&Tick==tick&&Energy==energy,"abandoning a stale natural throw selection stays free");
         }
     }
 }

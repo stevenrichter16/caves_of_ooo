@@ -98,19 +98,53 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return OpenSkill(ThrowingRules.Measured); yield return ChooseSource(daggers); yield return Aim(25, 12);
             Check("preparation_preview_keeps_item_and_no_payment", Cursor.ThrowPreview.Description.Contains("item kept")
                 && Cost(before, 0) && Count(daggers) == 3);
-            yield return Capture("04-measured-preparation"); yield return Tap(Key.Enter); yield return Settled();
-            Check("measured_preparation_one_action_retains_stack", Cost(before, 1) && Count(daggers) == 3
-                && Player.GetPart<ThrowingStatePart>().Prepared && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 5);
-            yield return StableRoundTrip("prepared");
+            yield return Capture("04-measured-preparation"); yield return HoldKey(Key.Enter); yield return Settled("ThrowTargeting");
+            Check("held_enter_prepares_only_once_and_retains_exact_followup", Cost(before, 1) && Count(daggers) == 3
+                && PreparedFollowup(daggers) && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 5);
+            yield return Capture("04a-measured-keyboard-ready");
             before = new Payment(input); hp = target.GetStatValue("Hitpoints");
-            yield return InventoryThrow(daggers); yield return Aim(25, 12); yield return Tap(Key.Enter); yield return Settled();
-            Check("prepared_stack_throw_consumes_once_and_clears_preparation", Cost(before, 1) && Count(daggers) == 2
+            // A second confirm must launch directly: no inventory, source picker,
+            // cursor movement or direct handler invocation between the two actions.
+            yield return Tap(Key.Enter); yield return Settled();
+            Check("keyboard_second_enter_throws_retained_item_once", Cost(before, 1) && Count(daggers) == 2
                 && !Player.GetPart<ThrowingStatePart>().HasPreparation && target.GetStatValue("Hitpoints") < hp
                 && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 4);
 
             // Synthetic device events exercise the production controller mapping,
             // not a direct call to the input handler or command resolver.
             gamepad = InputSystem.AddDevice<Gamepad>(); yield return Pad(new GamepadState());
+            yield return WaitForMeasuredCooldown("before_controller_a");
+            before = new Payment(input);
+            yield return OpenSkill(ThrowingRules.Measured); yield return ChooseSource(daggers); yield return Aim(25, 12, true);
+            yield return HoldPad(new GamepadState().WithButton(GamepadButton.South)); yield return Settled("ThrowTargeting");
+            Check("held_controller_a_prepares_once_and_retains_exact_followup", Cost(before, 1) && Count(daggers) == 2
+                && PreparedFollowup(daggers) && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 5);
+            yield return Capture("04b-measured-controller-ready");
+            before = new Payment(input); unchanged = Signature();
+            yield return PadButton(GamepadButton.East);
+            Check("controller_b_cancels_prepared_followup_without_action", State == "Normal" && Cost(before, 0)
+                && Signature() == unchanged && !Cursor.Active && Field(input, "_pendingThrowTarget") == null);
+            // Cancel is navigation only. Keep the existing real-save acceptance
+            // for preparation at a stable Normal boundary, then use the saved aim.
+            yield return StableRoundTrip("prepared");
+            before = new Payment(input); hp = target.GetStatValue("Hitpoints");
+            yield return InventoryThrow(daggers); yield return Aim(25, 12, true);
+            yield return Pad(new GamepadState { rightTrigger = 1 }); yield return Settled();
+            Check("controller_rt_throws_saved_preparation_once", Cost(before, 1) && Count(daggers) == 1
+                && !Player.GetPart<ThrowingStatePart>().HasPreparation && target.GetStatValue("Hitpoints") < hp
+                && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 4);
+            yield return WaitForMeasuredCooldown("before_controller_rt");
+            before = new Payment(input);
+            yield return OpenSkill(ThrowingRules.Measured); yield return ChooseSource(daggers); yield return Aim(25, 12, true);
+            yield return HoldPad(new GamepadState { rightTrigger = 1 }); yield return Settled("ThrowTargeting");
+            Check("held_controller_rt_prepares_once_and_retains_exact_followup", Cost(before, 1) && Count(daggers) == 1
+                && PreparedFollowup(daggers) && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 5);
+            before = new Payment(input); hp = target.GetStatValue("Hitpoints");
+            yield return PadButton(GamepadButton.South); yield return Settled();
+            Check("controller_a_directly_throws_retained_last_unit_once", Cost(before, 1)
+                && !Player.GetPart<InventoryPart>().Objects.Contains(daggers) && Zone.GetEntityCell(daggers) == Zone.GetCell(25, 12)
+                && Count(daggers) == 1 && !Player.GetPart<ThrowingStatePart>().HasPreparation
+                && target.GetStatValue("Hitpoints") < hp && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 4);
             before = new Payment(input); unchanged = Signature();
             yield return InventoryThrow(water); yield return Aim(23, 15, true);
             Check("controller_dpad_aims_without_payment", Cursor.X == 23 && Cursor.Y == 15 && Cost(before, 0));
@@ -337,12 +371,43 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             Require(Cursor.X == x && Cursor.Y == y, "bounded native cursor reaches exact cell");
         }
-        IEnumerator Settled()
+        bool PreparedFollowup(Entity item)
+        {
+            var pending = Field(input, "_pendingThrowTarget");
+            var intent = pending == null ? null : (ThrowIntent)Field(pending, "Intent");
+            return State == "ThrowTargeting" && pending != null && ReferenceEquals(Field(pending, "Item"), item)
+                && (ThrowMode)Field(pending, "Mode") == ThrowMode.Ordinary && intent?.Target == target
+                && intent.Kind == ThrowAimKind.Entity && Cursor.Active && Cursor.X == 25 && Cursor.Y == 12
+                && !Cursor.ThrowGroundAim && Player.GetPart<ThrowingStatePart>().Prepared;
+        }
+        IEnumerator WaitForMeasuredCooldown(string label)
+        {
+            int waits = ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured);
+            Require(State == "Normal" && waits > 0 && waits <= 6, "bounded real measured cooldown");
+            var before = new Payment(input);
+            for (int i = 0; i < waits; i++) { yield return Tap(Key.Period); yield return Settled(); }
+            Check(label + "_cooldown_uses_" + waits + "_ordinary_wait_actions", Cost(before, waits)
+                && ThrowingRules.CooldownRemaining(Player, ThrowingRules.Measured) == 0);
+        }
+        IEnumerator Settled(string expectedState = "Normal")
         {
             float deadline = Time.realtimeSinceStartup + 12;
-            while ((State != "Normal" || ActionResolutionGuard.IsUnstable || input.ZoneRenderer?.HasBlockingFx == true) && Time.realtimeSinceStartup < deadline)
+            while ((State != expectedState || ActionResolutionGuard.IsUnstable || input.ZoneRenderer?.HasBlockingFx == true) && Time.realtimeSinceStartup < deadline)
                 yield return null;
-            Require(State == "Normal" && !ActionResolutionGuard.IsUnstable, "native action settled within twelve seconds");
+            Require(State == expectedState && !ActionResolutionGuard.IsUnstable && input.ZoneRenderer?.HasBlockingFx != true,
+                "native action settled in " + expectedState + " within twelve seconds; actual=" + State);
+        }
+        IEnumerator HoldKey(Key key)
+        {
+            yield return new WaitForSecondsRealtime(.13f); keyboard.MakeCurrent();
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(key)); yield return new WaitForSecondsRealtime(.5f);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState()); yield return null; yield return new WaitForSecondsRealtime(.08f);
+        }
+        IEnumerator HoldPad(GamepadState value)
+        {
+            yield return new WaitForSecondsRealtime(.13f); gamepad.MakeCurrent();
+            InputSystem.QueueStateEvent(gamepad, value); yield return new WaitForSecondsRealtime(.5f);
+            InputSystem.QueueStateEvent(gamepad, new GamepadState()); yield return null; yield return new WaitForSecondsRealtime(.08f);
         }
         IEnumerator Tap(Key key)
         {
@@ -455,7 +520,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 complete = Finished && errorsFinalized && routeComplete && Failures == 0,
                 failures = Failures, errors, fatal, seconds = clock?.Elapsed.TotalSeconds, checks, observations, screenshots, frameTiming = FrameTiming(),
                 fixture = "Isolated seed64 N/Classic bootstrap. Original zone cleared to a bounded stone floor, player at20,12 with Strength/Agility30 and capacity500. Actual MarlbackGleaner at25,12 has no Brain, HP500 and natural AV/DV0. Actual equipped ShortSword, carried Dagger stack3, Warhammer, WaterTonic; separate floor Dagger22,12. Five throwing skills granted and command RNG seeded123. All modifications occur before observations; gameplay, selectors, saves and loads then use native keyboard/synthetic gamepad input.",
-                canVerify = "Equipped/carried real inventory and Look world-source routes, true skill source picker, cancellation/restoration and no payment, body/ground/focus previews, Y/LB/B/A and D-pad dispatch, rendered mouse mode-button dispatch only when the external mouse gate is requested and completed, one-action scheduler accounting, exact physical item identities, consumed finite tonic, Measured preparation and real cooldown, conditional Driving push, Recovery step and no auto-equip, stable F5/F6 roundtrips with preparation/residue/custody/debts.",
+                canVerify = "Equipped/carried real inventory and Look world-source routes, true skill source picker, cancellation/restoration and no payment, body/ground/focus previews, Y/LB/B/A/RT and D-pad dispatch, held Enter/A/RT cannot auto-launch the retained Measured follow-up, direct second-confirm keyboard/controller throws, free B cancellation of the paid preparation UI, rendered mouse mode-button dispatch only when the external mouse gate is requested and completed, one-action scheduler accounting, exact physical item identities, consumed finite tonic, Measured preparation and real cooldown, conditional Driving push, Recovery step and no auto-equip, stable F5/F6 roundtrips with preparation/residue/custody/debts.",
                 cannotVerify = "Controlled fixture does not prove natural acquisition, AI behavior, balance, encounter quality, physical Steam Deck controls or performance. Synthetic controller states exercise production mapping but not Steam Input. External mouse mode-button acceptance requires actual GameView clicks while the driver waits for observed transitions; the driver never invokes toggles or changes gameplay state directly. The earlier rejected synthetic-mouse attempt is retained separately. Pixel legibility and animation quality require independent review of the native screenshots. Native launcher restores the preceding scene/save root/preferences; this is not the user's campaign."
             }, Formatting.Indented));
         }

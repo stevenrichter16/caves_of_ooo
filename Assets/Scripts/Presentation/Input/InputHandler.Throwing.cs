@@ -13,6 +13,55 @@ namespace CavesOfOoo.Rendering
         int _throwPreviewVersion=-1,_throwPreviewDoor=-1,_throwPreviewTick=-1,_throwPreviewVisibility;
         Rect _throwControlsRect;
         GUIStyle _throwControlStyle, _throwLegendStyle;
+        bool _throwConfirmNeedsRelease;
+        bool IsMeasuredFollowup => _pendingThrowTarget?.PreparedTarget != null;
+
+        bool ThrowConfirmHeld() => InputHelper.GetKey(KeyCode.Return)
+            || InputHelper.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+
+        // Preserve the exact owner, not whichever entity replaces it at its old
+        // cell. A moved owner is followed only through currently visible cells.
+        bool RefreshMeasuredFollowup()
+        {
+            var pending=_pendingThrowTarget;
+            if(pending?.PreparedTarget==null)return true;
+            var preparation=PlayerEntity?.GetPart<ThrowingStatePart>();
+            Cell contact=null;
+            if(_throwSelectionActor==PlayerEntity && _throwSelectionZone==CurrentZone
+                && preparation?.Prepared==true && preparation.PreparedSource==pending.Item
+                && preparation.PreparedTarget==pending.PreparedTarget
+                && preparation.PreparationSerial==pending.PreparationSerial
+                && pending.PreparedTarget.GetPart<RenderPart>()?.Visible==true
+                && HandlingService.CanThrow(PlayerEntity,pending.Item,out _))
+            {
+                int range=HandlingService.GetThrowRange(PlayerEntity,pending.Item);
+                var from=CurrentZone.GetEntityCell(PlayerEntity);
+                foreach(var cell in CurrentZone.GetOccupiedCells(pending.PreparedTarget))
+                {
+                    if(!cell.IsVisible || !cell.Explored || !cell.Occupants.Contains(pending.PreparedTarget)
+                        || AIHelpers.ChebyshevDistance(from.X,from.Y,cell.X,cell.Y)>range)continue;
+                    if(contact==null || cell.X==_worldCursorState.X && cell.Y==_worldCursorState.Y)contact=cell;
+                }
+            }
+            if(contact==null)
+            {
+                ExitThrowTargetingToNormal();
+                MessageLog.Add("Measured Throw interrupted: the prepared item or target is no longer available. No throw made.");
+                return false;
+            }
+            if(pending.Intent?.Target!=pending.PreparedTarget || pending.Intent.X!=contact.X || pending.Intent.Y!=contact.Y)
+                pending.Intent=ThrowIntent.AtEntity(pending.PreparedTarget,contact.X,contact.Y);
+            pending.GroundAim=false;
+            _worldCursorState.SetPosition(contact.X,contact.Y);
+            return true;
+        }
+
+        string ThrowPhaseText() => IsMeasuredFollowup ? "2/2 READY TO THROW - confirm again; no wait needed."
+            : _pendingThrowTarget?.Mode==ThrowMode.Measured ? "1/2 PREPARE - choose a target, then confirm (1 turn)." : "";
+
+        string ThrowActionHint(bool pad) => IsMeasuredFollowup
+            ? (pad ? "A / RT: throw (1 turn) | B: cancel" : "Enter / click target: throw (1 turn) | Esc: cancel")
+            : (pad ? "D-pad / sticks: aim | A / RT: confirm | B: cancel" : "Arrows / mouse: aim | Enter / click: confirm | Esc: cancel");
 
         void HoldThrowAction()
         { _throwDebtActor=PlayerEntity;_throwDebtZone=CurrentZone;_throwDebtTurns=TurnManager;ActionResolutionGuard.HoldPendingAction(_throwDebtActor); }
@@ -77,7 +126,7 @@ namespace CavesOfOoo.Rendering
 
         void ToggleThrowAim()
         {
-            if(_pendingThrowTarget==null)return;
+            if(_pendingThrowTarget==null || IsMeasuredFollowup)return;
             _pendingThrowTarget.GroundAim=!_pendingThrowTarget.GroundAim;RefreshThrowPreview(true);
         }
         void ToggleThrowFocus()
@@ -109,21 +158,25 @@ namespace CavesOfOoo.Rendering
         void RefreshThrowPreview(bool force=false)
         {
             if(_pendingThrowTarget==null || CurrentZone==null || !_worldCursorState.Active || _worldCursorState.Mode!=WorldCursorMode.ThrowTarget)return;
+            if(IsMeasuredFollowup && !RefreshMeasuredFollowup())return;
             int visibility=ThrowVisibilitySignature(),tick=TurnManager?.TickCount??0;
             if(!force && _throwPreviewVersion==CurrentZone.EntityVersion && _throwPreviewDoor==CurrentZone.DoorOcclusionVersion
                 && _throwPreviewTick==tick && _throwPreviewVisibility==visibility)return;
             var state=_pendingThrowTarget;
-            state.Intent=state.GroundAim?ThrowIntent.Ground(_worldCursorState.X,_worldCursorState.Y)
-                :ThrowTrajectory.ResolveIntent(CurrentZone,PlayerEntity,_worldCursorState.X,_worldCursorState.Y,true);
+            if(!IsMeasuredFollowup)
+                state.Intent=state.GroundAim?ThrowIntent.Ground(_worldCursorState.X,_worldCursorState.Y)
+                    :ThrowTrajectory.ResolveIntent(CurrentZone,PlayerEntity,_worldCursorState.X,_worldCursorState.Y,true);
             var preview=ThrowPreview.Build(CurrentZone,PlayerEntity,state.Item,state.Intent,_worldCursorState.MaxRange??0,state.Focused,state.Mode==ThrowMode.Driving,state.Mode==ThrowMode.Measured);
             _worldCursorState.SetThrowPreview(state.GroundAim,state.Focused,preview);
             _throwPreviewVersion=CurrentZone.EntityVersion;_throwPreviewDoor=CurrentZone.DoorOcclusionVersion;_throwPreviewTick=tick;
             _throwPreviewVisibility=ThrowVisibilitySignature();
-            string heading=state.Mode==ThrowMode.Measured?"Prepare: "+state.Item.GetDisplayName():state.Mode==ThrowMode.Driving?"Driving: "+state.Item.GetDisplayName():"Throw: "+state.Item.GetDisplayName();
-            string description=preview.Description+(state.Mode==ThrowMode.Measured?$" Prepared throw: +{ThrowingRules.MeasuredPenetrationBonus} penetration and cap.":"");
+            string heading=IsMeasuredFollowup?"Ready: "+state.Item.GetDisplayName():state.Mode==ThrowMode.Measured?"Prepare: "+state.Item.GetDisplayName():state.Mode==ThrowMode.Driving?"Driving: "+state.Item.GetDisplayName():"Throw: "+state.Item.GetDisplayName();
+            string description=preview.Description+(state.Mode==ThrowMode.Measured || IsMeasuredFollowup?$" Prepared throw: +{ThrowingRules.MeasuredPenetrationBonus} penetration and cap against the selected target.":"");
             var details=new List<string>{description,"Cyan: known route / initial splash.","Yellow: item rest / spill. Red: first contact.","Magenta: conditional push.","Tab / Y: body or ground. F / LB: splash.","Enter / A: confirm. Esc / B: cancel."};
+            if(IsMeasuredFollowup)
+                details=new List<string>{ThrowActionHint(NativeGamepadInput.IsConnected),"Item and target retained. Cancel to choose another target.",description};
             ZoneRenderer?.SetLookSnapshot(new LookSnapshot(state.Intent.X,state.Intent.Y,heading,
-                state.Mode==ThrowMode.Measured?"Prepare now; throw next turn.":state.Intent.Kind==ThrowAimKind.Entity?"Body aim":"Ground aim",details,
+                IsMeasuredFollowup || state.Mode==ThrowMode.Measured?ThrowPhaseText():state.Intent.Kind==ThrowAimKind.Entity?"Body aim":"Ground aim",details,
                 state.Intent.Target,CurrentZone.GetCell(state.Intent.X,state.Intent.Y)));
             ZoneRenderer?.SetWorldCursorState(_worldCursorState,PlayerEntity);
         }
@@ -146,8 +199,12 @@ namespace CavesOfOoo.Rendering
                 _throwLegendStyle.normal.textColor=new Color(.78f,.85f,.78f);
             }
             float width=Mathf.Min(viewport.width-12,640);
-            _throwControlsRect=new Rect(viewport.x+6,Screen.height-viewport.y-82,width,76);
+            bool measured=IsMeasuredFollowup || _pendingThrowTarget.Mode==ThrowMode.Measured;
+            float extra=measured?24:0;
+            _throwControlsRect=new Rect(viewport.x+6,Screen.height-viewport.y-82-extra,width,76+extra);
             ThrowPanel(_throwControlsRect,new Color(.025f,.055f,.05f,.97f),new Color(.22f,.38f,.3f));
+            float contentY=_throwControlsRect.y+extra;
+            if(measured)GUI.Label(new Rect(_throwControlsRect.x+8,_throwControlsRect.y+3,width-16,21),ThrowPhaseText(),_throwLegendStyle);
             bool pad=NativeGamepadInput.IsConnected;
             string aim=(_pendingThrowTarget.GroundAim?"Ground":"Body")+" ["+(pad?"Y":"Tab")+"]";
             float buttonWidth=Mathf.Min(180,(width-16)/3);
@@ -156,13 +213,14 @@ namespace CavesOfOoo.Rendering
                 ThrowPanel(box,new Color(.05f,.12f,.10f),new Color(.38f,.68f,.48f));
                 return GUI.Button(box,label,_throwControlStyle);
             }
-            if(ModeButton(new Rect(_throwControlsRect.x+4,_throwControlsRect.y+3,buttonWidth,25),aim))ToggleThrowAim();
+            if(IsMeasuredFollowup)
+                GUI.Label(new Rect(_throwControlsRect.x+8,contentY+3,width-16,25),"Item and target locked. Cancel to choose another target.",_throwLegendStyle);
+            else if(ModeButton(new Rect(_throwControlsRect.x+4,contentY+3,buttonWidth,25),aim))ToggleThrowAim();
             bool focusable=ThrowingRules.CanFocus(PlayerEntity,_pendingThrowTarget.Item);
-            if(focusable && ModeButton(new Rect(_throwControlsRect.x+8+buttonWidth,_throwControlsRect.y+3,buttonWidth,25),
+            if(focusable && ModeButton(new Rect(_throwControlsRect.x+8+buttonWidth,contentY+3,buttonWidth,25),
                 (_pendingThrowTarget.Focused?"Focused":"Broad")+" ["+(pad?"LB":"F")+"]"))ToggleThrowFocus();
-            GUI.Label(new Rect(_throwControlsRect.x+8,_throwControlsRect.y+30,width-16,21),
-                pad?"D-pad / sticks: aim | A / RT: confirm | B: cancel":"Arrows / mouse: aim | Enter / click: confirm | Esc: cancel",_throwLegendStyle);
-            GUI.Label(new Rect(_throwControlsRect.x+8,_throwControlsRect.y+51,width-16,21),
+            GUI.Label(new Rect(_throwControlsRect.x+8,contentY+30,width-16,21),ThrowActionHint(pad),_throwLegendStyle);
+            GUI.Label(new Rect(_throwControlsRect.x+8,contentY+51,width-16,21),
                 "Cyan: route / splash | Yellow: rest | Red: contact | Magenta: push",_throwLegendStyle);
             return true;
         }

@@ -1,0 +1,72 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "3779269a53884cf18c3e935039eebcf2",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1792209602819,
+      "finished_unix_ms": 1792209614287,
+      "last_update_unix_ms": 1792209614287,
+      "progress": {
+        "completed": 25,
+        "total": 25,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1792209613926,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.VisibleImpactDoesNotPromiseUnobservedSplashCoverage",
+        "last_finished_unix_ms": 1792209613948,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.CancellingPreparedAimDoesNotLaunchOrSpendAnotherAction(\"keyboard\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.CancellingPreparedAimDoesNotLaunchOrSpendAnotherAction(\"deck-a\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.LostPreparedSourceOrTargetCannotLaunchAtAReplacement(\"source\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.LostPreparedSourceOrTargetCannotLaunchAtAReplacement(\"target\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.LostPreparedSourceOrTargetCannotLaunchAtAReplacement(\"target-hidden\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredPreparationKeepsExactAimAndNeedsAReleasedThenFreshConfirm(\"keyboard\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredPreparationKeepsExactAimAndNeedsAReleasedThenFreshConfirm(\"deck-a\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredPreparationKeepsExactAimAndNeedsAReleasedThenFreshConfirm(\"deck-rt\")",
+            "message": "  Do not discard the aim after the paid preparation.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(False)",
+            "message": "  The paid preparation keeps its aim ready for the explicit throw.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ThrowCursorInputTests.MeasuredSkillOpensFreeSourcePickerThenPreparesWithoutThrowing(True)",
+            "message": "  The paid preparation keeps its aim ready for the explicit throw.\n  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

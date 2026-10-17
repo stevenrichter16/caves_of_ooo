@@ -21,7 +21,7 @@ namespace CavesOfOoo.Skills
         public override string Name => nameof(Throwing_MeasuredThrow);
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor) => new ActivatedAbilitySpec
         { DisplayName = "Measured Throw", Command = "CommandMeasuredThrow", Class = "Skills", TargetingMode = AbilityTargetingMode.SelfCentered, Cooldown = 6 };
-        public override string DescribeRank(int rank) => $"Spend one action preparing an exact physical item and target. Its next-action throw gains +{ThrowingRules.MeasuredPenetrationBonus} penetration and cap against that target. Moving or another action interrupts. Cooldown 6.";
+        public override string DescribeRank(int rank) => $"Choose a physical item and target, then confirm to prepare (one action). The item and target stay selected: confirm again to throw (one action), gaining +{ThrowingRules.MeasuredPenetrationBonus} penetration and cap against that target. No wait needed. Moving or another action interrupts. Cooldown 6.";
     }
     public sealed class Throwing_DrivingThrow : ThrowingSkillPart
     {

@@ -23,7 +23,7 @@ namespace CavesOfOoo.Tests
             turns=new TurnManager();turns.AddEntity(actor);turns.ProcessUntilPlayerTurn();
             go=new GameObject("throw input fixture");input=go.AddComponent<InputHandler>();input.PlayerEntity=actor;input.CurrentZone=zone;input.TurnManager=turns;
         }
-        [TearDown] public void CleanupCursor(){UnityEngine.Object.DestroyImmediate(go);}
+        [TearDown] public void CleanupCursor(){ActionResolutionGuard.SettlePendingAction(actor);AsciiFxBus.Clear();UnityEngine.Object.DestroyImmediate(go);}
         object Call(string name,params object[] args)=>typeof(InputHandler).GetMethod(name,Flags).Invoke(input,args);
         WorldCursorState Cursor=>(WorldCursorState)typeof(InputHandler).GetField("_worldCursorState",Flags).GetValue(input);
         void Begin()
@@ -89,9 +89,201 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("ThrowPopupOpen",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
             Assert.AreEqual(tick,turns.TickCount);Assert.Zero(ability.CooldownRemaining);
             Call("ExecuteThrowPopupSelection");Assert.True(Cursor.Active);Cursor.SetPosition(13,10);Call("RefreshThrowPreview",true);
-            Call("ConfirmThrowTarget");Assert.False(Cursor.Active);Assert.Greater(turns.TickCount,tick);
+            Call("ConfirmThrowTarget");Assert.True(Cursor.Active,"The paid preparation keeps its aim ready for the explicit throw.");Assert.Greater(turns.TickCount,tick);
             Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));Assert.True(actor.GetPart<ThrowingStatePart>().Prepared);
+            Assert.AreEqual("ThrowTargeting",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
+            Assert.AreEqual(13,Cursor.X);Assert.AreEqual(10,Cursor.Y);
             Assert.AreEqual(5,ability.CooldownRemaining);Assert.False(ActionResolutionGuard.IsUnstable);
+        }
+        [TestCase("keyboard")] [TestCase("deck-a")] [TestCase("deck-rt")]
+        public void MeasuredPreparationKeepsExactAimAndNeedsAReleasedThenFreshConfirm(string device)
+        {
+            WithThrowInputs(device,(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");
+                AssertPreparedAim(counter);
+                Call("HandleThrowTargetingInput");
+                Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item),"The same input update cannot prepare and launch.");
+                press();Call("HandleThrowTargetingInput");
+                Assert.AreEqual(1,counter.Turns,"A held confirm cannot pay a second action.");
+                Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));
+                release();Call("HandleThrowTargetingInput");
+                AssertPreparedAim(counter);
+                press();Call("HandleThrowTargetingInput");
+                Assert.False(actor.GetPart<InventoryPart>().Objects.Contains(item),"The fresh confirmation launches the selected unit.");
+                Assert.NotNull(zone.GetEntityCell(item));Assert.AreEqual(1,actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                Assert.False(actor.GetPart<ThrowingStatePart>().Prepared);
+                Assert.AreEqual("WaitingForFxResolution",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
+                Call("HandleWaitingForFxResolution");
+                Assert.AreEqual(2,counter.Turns,"Preparation and launch each cost exactly one action.");
+                Assert.AreEqual(4,ThrowingRules.CooldownRemaining(actor,ThrowingRules.Measured));
+                Assert.False(ActionResolutionGuard.IsUnstable);
+            });
+        }
+        [TestCase("keyboard")] [TestCase("deck-a")]
+        public void CancellingPreparedAimDoesNotLaunchOrSpendAnotherAction(string device)
+        {
+            WithThrowInputs(device,(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");Call("CancelThrowTargeting");
+                Assert.AreEqual("Normal",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
+                Assert.False(Cursor.Active);Assert.AreEqual(1,counter.Turns);
+                Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));Assert.IsNull(zone.GetEntityCell(item));
+                Assert.Zero(actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                Assert.True(actor.GetPart<ThrowingStatePart>().Prepared,"Leaving the free aiming UI preserves the existing paid preparation rules.");
+                Assert.AreEqual(5,ThrowingRules.CooldownRemaining(actor,ThrowingRules.Measured));
+                Assert.False(ActionResolutionGuard.IsUnstable);
+            });
+        }
+        [TestCase("source")] [TestCase("target")] [TestCase("target-hidden")]
+        public void LostPreparedSourceOrTargetCannotLaunchAtAReplacement(string invalid)
+        {
+            WithThrowInputs("keyboard",(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");
+                var replacement=Factory.CreateEntity(invalid=="source"?"Dagger":"MarlbackScrabbler");
+                if(invalid=="source")
+                {actor.GetPart<InventoryPart>().RemoveObject(item);actor.GetPart<InventoryPart>().AddObject(replacement);}
+                else if(invalid=="target")
+                {zone.RemoveEntity(target);zone.AddEntity(replacement,13,10);}
+                else target.GetPart<RenderPart>().Visible=false;
+                int hp=replacement.GetStatValue("Hitpoints",0);
+                press();Call("HandleThrowTargetingInput");
+                Assert.AreEqual(1,counter.Turns,"An invalid retained selection must not launch an ordinary replacement shot.");
+                Assert.Zero(actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                Assert.IsNull(zone.GetEntityCell(item));Assert.AreEqual(hp,replacement.GetStatValue("Hitpoints",0));
+                if(invalid=="source")Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(replacement));
+                else Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));
+                Assert.False(ActionResolutionGuard.IsUnstable);
+            });
+        }
+        [TestCase("keyboard")] [TestCase("deck-a")]
+        public void RetainedAimFollowsTheSameVisibleTargetAfterItMoves(string device)
+        {
+            WithThrowInputs(device,(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");
+                Assert.True(zone.MoveEntity(target,14,11));
+                var replacement=Factory.CreateEntity("MarlbackScrabbler");zone.AddEntity(replacement,13,10);
+                Call("HandleThrowTargetingInput");
+                Assert.True(Cursor.Active);Assert.AreEqual(14,Cursor.X);Assert.AreEqual(11,Cursor.Y);
+                Assert.AreSame(target,actor.GetPart<ThrowingStatePart>().PreparedTarget);
+                Assert.AreSame(item,actor.GetPart<ThrowingStatePart>().PreparedSource);
+                Assert.AreEqual(1,counter.Turns);Assert.Zero(actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                Assert.That((string)Call("ThrowPhaseText"),Does.Contain("READY TO THROW"));
+            });
+        }
+        [TestCase("out-of-range")] [TestCase("actor-moved")] [TestCase("target-cell-hidden")] [TestCase("target-dead")]
+        public void InterruptedPreparationExitsReadyAimWithoutLaunching(string interruption)
+        {
+            WithThrowInputs("keyboard",(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");
+                if(interruption=="out-of-range")
+                {
+                    int x=11+HandlingService.GetThrowRange(actor,item);Assert.True(zone.InBounds(x,10));
+                    Assert.True(zone.MoveEntity(target,x,10));zone.GetCell(x,10).IsVisible=true;zone.GetCell(x,10).Explored=true;
+                }
+                else if(interruption=="actor-moved")Assert.True(zone.MoveEntity(actor,11,10));
+                else if(interruption=="target-cell-hidden")zone.GetCell(13,10).IsVisible=false;
+                else target.GetStat("Hitpoints").BaseValue=0;
+                press();Call("HandleThrowTargetingInput");
+                Assert.False(Cursor.Active);Assert.AreEqual("Normal",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
+                Assert.AreEqual(1,counter.Turns);Assert.Zero(actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));Assert.IsNull(zone.GetEntityCell(item));
+                Assert.False(ActionResolutionGuard.IsUnstable);
+            });
+        }
+        [TestCase("keyboard")] [TestCase("deck-a")]
+        public void ReadyAimCannotRetargetOrSwitchToGround(string device)
+        {
+            WithThrowInputs(device,(press,release)=>
+            {
+                OpenMeasuredAim();Call("MoveThrowCursor",1,0);Assert.AreEqual(14,Cursor.X,"Unprepared aim remains freely selectable.");
+                Call("MoveThrowCursor",-1,0);Call("ToggleThrowAim");Assert.True(Cursor.ThrowGroundAim);
+                Call("ToggleThrowAim");Assert.False(Cursor.ThrowGroundAim);
+                var counter=new ThrowInputTurnProbe();actor.AddPart(counter);press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");
+                Call("MoveThrowCursor",1,0);Call("ToggleThrowAim");
+                AssertPreparedAim(counter);Assert.False(Cursor.ThrowGroundAim,"Ready confirmation is still the exact prepared owner, never ground aim.");
+            });
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void MeasuredPromptSeparatesPrepareFromReadyThrowWithDeviceSpecificConfirmation(bool pad)
+        {
+            OpenMeasuredAim();
+            string phase=(string)Call("ThrowPhaseText"),hint=(string)Call("ThrowActionHint",pad);
+            Assert.That(phase,Does.Contain("1/2").And.Contain("PREPARE").And.Contain("1 turn"));
+            Assert.That(hint,Does.Contain(pad?"A / RT":"Enter").And.Contain("confirm"));
+            Call("ConfirmThrowTarget");
+            phase=(string)Call("ThrowPhaseText");hint=(string)Call("ThrowActionHint",pad);
+            Assert.That(phase,Does.Contain("2/2").And.Contain("READY TO THROW").And.Contain("no wait"));
+            Assert.That(hint,Does.Contain(pad?"A / RT":"Enter").And.Contain("throw (1 turn)").And.Contain("cancel"));
+            Assert.That(hint,Does.Not.Contain("aim"));
+            Call("CancelThrowTargeting");Begin();Assert.IsEmpty((string)Call("ThrowPhaseText"),"Ordinary throws must not advertise a prepared bonus or second phase.");
+        }
+        [Test] public void PeriodWhilePreparedAimDoesNotWaitOrAutomaticallyThrow()
+        {
+            WithThrowInputs("keyboard",(press,release)=>
+            {
+                OpenMeasuredAim();var counter=new ThrowInputTurnProbe();actor.AddPart(counter);
+                press();Call("HandleThrowTargetingInput");AssertPreparedAim(counter);
+                release();Call("HandleThrowTargetingInput");
+                InputSystem.QueueStateEvent(Keyboard.current,new KeyboardState(Key.Period));InputSystem.Update();Call("HandleThrowTargetingInput");
+                AssertPreparedAim(counter);Assert.Zero(actor.GetPart<ThrowingStatePart>().ThrowSerial);
+                release();Call("HandleThrowTargetingInput");press();Call("HandleThrowTargetingInput");
+                Assert.False(actor.GetPart<InventoryPart>().Objects.Contains(item),"The explicit fresh confirmation, not waiting, launches the retained throw.");
+                Call("HandleWaitingForFxResolution");Assert.AreEqual(2,counter.Turns);
+            });
+        }
+        void OpenMeasuredAim()
+        {
+            actor.GetPart<SkillsPart>().AddSkill(new Throwing_MeasuredThrow());
+            var skill=actor.GetPart<SkillsPart>().GetSkill(ThrowingRules.Measured);
+            var ability=actor.GetPart<ActivatedAbilitiesPart>().GetAbility(skill.ActivatedAbilityID);
+            Call("ActivateAbilityByID",ability.ID);Call("ExecuteThrowPopupSelection");
+            Cursor.SetPosition(13,10);Call("RefreshThrowPreview",true);
+        }
+        void AssertPreparedAim(ThrowInputTurnProbe counter)
+        {
+            Assert.True(Cursor.Active,"Do not discard the aim after the paid preparation.");
+            Assert.AreEqual("ThrowTargeting",typeof(InputHandler).GetField("_inputState",Flags).GetValue(input).ToString());
+            Assert.AreEqual(13,Cursor.X);Assert.AreEqual(10,Cursor.Y);
+            var state=actor.GetPart<ThrowingStatePart>();Assert.True(state.Prepared);
+            Assert.AreSame(item,state.PreparedSource);Assert.AreSame(target,state.PreparedTarget);
+            Assert.True(actor.GetPart<InventoryPart>().Objects.Contains(item));Assert.AreEqual(1,counter.Turns);
+            Assert.False(ActionResolutionGuard.IsUnstable);
+        }
+        void WithThrowInputs(string device,Action<Action,Action> scenario)
+        {
+            var scope=new InputTestFixture();scope.Setup();
+            try
+            {
+                if(device=="keyboard")
+                {
+                    var keyboard=InputSystem.AddDevice<Keyboard>();keyboard.MakeCurrent();
+                    Action release=()=>{InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();};
+                    Action press=()=>{InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Enter));InputSystem.Update();};
+                    release();scenario(press,release);
+                }
+                else
+                {
+                    var pad=InputSystem.AddDevice<Gamepad>();pad.MakeCurrent();
+                    Action release=()=>{InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();InputHelper.GetKey(KeyCode.None);};
+                    Action press=()=>{InputSystem.QueueStateEvent(pad,device=="deck-a"?new GamepadState().WithButton(GamepadButton.South):new GamepadState{rightTrigger=1});InputSystem.Update();InputHelper.GetKey(KeyCode.None);};
+                    release();NativeGamepadInput.SetContext(GamepadInputContext.Targeting);release();scenario(press,release);
+                }
+            }
+            finally{NativeGamepadInput.SetContext(GamepadInputContext.Menu);scope.TearDown();}
         }
         [Test] public void VisibleImpactDoesNotPromiseUnobservedSplashCoverage()
         {

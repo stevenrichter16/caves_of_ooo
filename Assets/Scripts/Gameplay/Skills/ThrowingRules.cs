@@ -132,7 +132,7 @@ namespace CavesOfOoo.Core
         {
             var physics = item?.GetPart<PhysicsPart>(); var pack = actor?.GetPart<InventoryPart>();
             if (physics == null || pack == null || pack.ParentEntity != actor) return "";
-            if (physics.Equipped == actor && physics.InInventory == null && pack.GetAllEquipped().Contains(item)) return "equipped:" + pack.FindEquippedSlot(item);
+            if (physics.Equipped == actor && physics.InInventory == null && pack.EquippedItems.ContainsValue(item)) return "equipped:" + pack.FindEquippedSlot(item);
             if (physics.InInventory == actor && physics.Equipped == null && pack.Objects.Contains(item)) return "carried";
             var cell = zone?.GetEntityCell(item); var from = zone?.GetEntityCell(actor);
             if (cell != null && from != null && physics.InInventory == null && physics.Equipped == null && Math.Abs(cell.X - from.X) + Math.Abs(cell.Y - from.Y) <= 1)

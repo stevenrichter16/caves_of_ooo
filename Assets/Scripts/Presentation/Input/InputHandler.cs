@@ -195,6 +195,9 @@ namespace CavesOfOoo.Rendering
             public ThrowMode Mode;
             public ThrowIntent Intent;
             public bool GroundAim,Focused;
+            // UI continuation only; gameplay preparation remains authoritative.
+            public Entity PreparedTarget;
+            public int PreparationSerial;
         }
 
         private sealed class ThrowPopupState
@@ -2521,6 +2524,7 @@ namespace CavesOfOoo.Rendering
                 SourceTileY = sourceTileY
             };
             _throwSelectionActor=PlayerEntity;_throwSelectionZone=CurrentZone;
+            _throwConfirmNeedsRelease=false;
 
             int maxRange = HandlingService.GetThrowRange(PlayerEntity, item);
             _worldCursorState.Activate(
@@ -2553,6 +2557,7 @@ namespace CavesOfOoo.Rendering
             }
 
             RefreshThrowPreview();
+            if(_pendingThrowTarget==null)return;
             if(InputHelper.GetKeyDown(KeyCode.Tab)){ToggleThrowAim();return;}
             if(InputHelper.GetKeyDown(KeyCode.F)){ToggleThrowFocus();return;}
 
@@ -2561,6 +2566,12 @@ namespace CavesOfOoo.Rendering
                 CancelThrowTargeting();
                 _lastMoveTime = Time.time;
                 return;
+            }
+
+            if(_throwConfirmNeedsRelease)
+            {
+                if(ThrowConfirmHeld())return;
+                _throwConfirmNeedsRelease=false;
             }
 
             int dx = 0;
@@ -2594,6 +2605,7 @@ namespace CavesOfOoo.Rendering
 
         private void MoveThrowCursor(int dx, int dy)
         {
+            if(IsMeasuredFollowup)return;
             if (!_worldCursorState.Active)
                 return;
 
@@ -2628,6 +2640,9 @@ namespace CavesOfOoo.Rendering
             if (!IsWithinThrowRange(x, y))
                 return false;
 
+            if(IsMeasuredFollowup)
+                return !applyOnHover && x==_worldCursorState.X && y==_worldCursorState.Y;
+
             if (_worldCursorState.X == x && _worldCursorState.Y == y)
                 return true;
 
@@ -2650,6 +2665,8 @@ namespace CavesOfOoo.Rendering
         {
             if (_pendingThrowTarget == null)
                 return;
+            if(_throwConfirmNeedsRelease && ThrowConfirmHeld())return;
+            if(IsMeasuredFollowup && !RefreshMeasuredFollowup())return;
 
             if(_pendingThrowTarget.Mode==ThrowMode.Measured)
             {
@@ -2657,7 +2674,18 @@ namespace CavesOfOoo.Rendering
                 if(!ThrowingRules.Prepare(PlayerEntity,_pendingThrowTarget.Item,CurrentZone,intent?.Target,
                     intent==null?null:CurrentZone.GetCell(intent.X,intent.Y),out string reason))
                 {MessageLog.Add(reason);return;}
-                HoldThrowAction();ExitThrowTargetingToNormal();EndTurnAndProcess();SyncHotbarState();return;
+                // Preparation pays now; the retained cursor is the next action,
+                // not an automatic second command or another preparation.
+                _pendingThrowTarget.PreparedTarget=intent.Target;
+                _pendingThrowTarget.PreparationSerial=PlayerEntity.GetPart<ThrowingStatePart>().PreparationSerial;
+                _pendingThrowTarget.Mode=ThrowMode.Ordinary;
+                _throwConfirmNeedsRelease=true;
+                HoldThrowAction();EndTurnAndProcess();SyncHotbarState();
+                // FOV refreshes in LateUpdate. Resolve the retained owner on the
+                // next input frame, not against pre-NPC-turn visibility here.
+                _throwPreviewVersion=-1;
+                MessageLog.Add("Measured Throw prepared. Confirm again to throw; cancel to back out. No wait needed.");
+                return;
             }
 
             var result = InventorySystem.ExecuteCommand(
@@ -2704,6 +2732,7 @@ namespace CavesOfOoo.Rendering
 
         private void ExitThrowTargetingToNormal()
         {
+            _throwConfirmNeedsRelease=false;
             _throwSelectionActor=null;_throwSelectionZone=null;_throwPreviewVersion=-1;_throwControlsRect=default;
             _pendingThrowTarget = null;
             _worldCursorState.Deactivate();

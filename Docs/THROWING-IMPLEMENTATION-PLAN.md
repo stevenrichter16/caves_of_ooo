@@ -158,3 +158,15 @@ The Mac was unlocked and sufficient disk space was available after the user reop
 The raw legacy pointer field is stale/outside the Game View; exclude it from click-location proof. Screenshot-derived CUA coordinates and the observed transitions establish the mode-button check. The detailed coordinate receipt, captures and bounds are in [native-controlled-route.md](Verification/Throwing/native-controlled-route.md) and [mouse-acceptance-followup.json](Verification/Throwing/mouse-acceptance-followup.json). This resolves the locked-screen mouse-button and pre-tuning-pixel gaps only. Actual mouse world aiming/confirmation, physical Deck performance, naturally earned child skills and human feel remain unverified. Operator wait time is included, so these durations are not performance results.
 
 Restoration checks confirmed exit0, no active isolation/driver, save root and last-game preference restored, clean SampleScene, Free Aspect and original2× editor zoom restored, audit-owned sizes removed. Unity remains open in Edit mode; no additional cache deletion was needed (about10GiB free after tests). Self-review: 🔵 evidence-only change, existing runtime source and test receipts preserved; 🧪 stale pointer telemetry is explicitly non-authoritative. The1425-case union is unchanged because these are live checks rather than new EditMode cases.
+
+
+### Measured Throw retained confirmation — 16 October follow-up
+
+The user reported that selecting an item and waiting did not launch Measured
+Throw. The revised input flow retains the exact prepared item and target and
+asks for a second explicit confirmation, with keyboard/Deck prompts and held
+input protection. The two paid actions and +4 penetration/cap remain intact.
+See [MEASURED-THROW-FOLLOWUP.md](MEASURED-THROW-FOLLOWUP.md) for the verified plan,
+RED→GREEN evidence, native checks, independent review and limits. This updates
+the previous manual inventory follow-up workflow; historical comparison and
+mouse receipts keep their original source scope.

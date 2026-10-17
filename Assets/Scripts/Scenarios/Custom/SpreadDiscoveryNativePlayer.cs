@@ -358,14 +358,24 @@ namespace CavesOfOoo.Scenarios.Custom
         {Diag.Record("scenario",DensityCampaignNativeEvidence.MarkerKind,actor:Player,payload:new{runId=RunId,label});return Diag.Snapshot(1).Single().TraceId;}
         Diag.Entry[] Window(string marker)
         {var rows=Diag.Snapshot(Diag.BufferCapacity).SkipWhile(e=>e.TraceId!=marker).ToArray();Require(rows.Length>0,"retained current action marker");return rows;}
-        IEnumerator Paid(IEnumerator action,string kind,string label)
+        IEnumerator Paid(IEnumerator action,string kind,string label,bool keepThrowTarget=false)
         {
             // A selected spell direction is an intentional open prompt. Only
             // ordinary command boundaries drain late announcements here.
             if(Connected&&(State=="Normal"||State=="AnnouncementOpen"))yield return ConnectedCloseAndStabilize();
             Require(_throwingNatural?NaturalActions<_throwingNaturalActionBudget&&(_throwingNaturalExpeditionEnd==0||NaturalActions<_throwingNaturalExpeditionEnd):(kind=="map"?_mapSteps<(ConnectedVariant?16:Connected?30:20):kind=="rest"?_rests<2:_localInputs<(ConnectedVariant?420:Connected?1000:360)),"finite approved action budget");
             var actor=Player;int before=Energy,tick=Tick,speed=Player.GetStatValue("Speed",100);string marker=Mark(label),combat=null;if(_guard!=null&&_fighting){Diag.Record("scenario",ReferenceGladeCombatEvidence.MarkerKind,Player,_guard);combat=Diag.Snapshot(1).Single().TraceId;}
-            yield return action;yield return CloseNormal();var rows=Window(marker);
+            yield return action;
+            // Measured preparation deliberately leaves a paid, live follow-up
+            // cursor. Do not let generic modal cleanup cancel that selection.
+            if(keepThrowTarget)
+            {
+                double deadline=UnityEngine.Time.realtimeSinceStartupAsDouble+8;
+                while(State=="WaitingForFxResolution"||ActionResolutionGuard.IsUnstable||_input.ZoneRenderer?.HasBlockingFx==true)
+                {Require(UnityEngine.Time.realtimeSinceStartupAsDouble<deadline,"bounded retained throw action settlement");yield return null;}
+            }
+            if(!keepThrowTarget||State!="ThrowTargeting")yield return CloseNormal();
+            var rows=Window(marker);
             bool validClock=ReferenceEquals(actor,Player)&&Player.GetStatValue("Speed",100)==speed&&DensityCampaignNativeEvidence.TryClock(rows,marker,Player.ID,kind,before,Energy,Tick-tick,speed,out _lastClock);
             if(!validClock)_observations.Add(new{phase="rejected-native-action-clock",label,kind,marker,beforeEnergy=before,afterEnergy=Energy,beforeTick=tick,afterTick=Tick,speed,rows});
             Require(validClock,"exact native action clock/energy "+label);
