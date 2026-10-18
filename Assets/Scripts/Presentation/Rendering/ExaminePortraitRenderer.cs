@@ -107,6 +107,10 @@ namespace CavesOfOoo.Rendering
                     SpreadVisitorPaintLibrary.Load()?.Apply(PreviewRoot, recipe.ModelId);
                 }
                 PreviewRoot.transform.localRotation = Quaternion.Euler(0, recipe.QuarterTurns * 90, 0) * source.transform.localRotation;
+                // Flat art shares the actual world source but faces this capture's
+                // camera; disabled prefab behaviours cannot perform billboarding.
+                if (SeedKeeperFlatLibrary.IsModelId(recipe.ModelId) && PreviewRoot.GetComponent<MeshFilter>() != null)
+                    PreviewRoot.transform.rotation = Quaternion.Euler(32, -35, 0);
                 PrepareMaterials(); Frame();
                 stage.SetActive(true);
                 var previousTarget = RenderTexture.active;

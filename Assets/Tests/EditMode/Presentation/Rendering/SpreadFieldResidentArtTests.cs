@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
     {
         static string Model(string bp)=>bp=="SpreadSeedKeeper"?"spread-person-seed-keeper":"spread-person-wayside-cook";
         [TestCase("SpreadSeedKeeper","&y")][TestCase("SpreadWaysideCook","&w")]
-        public void ExactFriendlyResidentHasOwnCurrentRigWithoutChangingStock(string blueprint,string color)
+        public void ExactFriendlyResidentHasOwnCurrentBodyWithoutChangingStock(string blueprint,string color)
         {
             using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0"))
             {
@@ -21,8 +21,16 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(Model(blueprint),native.ModelId);Assert.Null(native.Failure);
                 f.Refresh();Assert.AreEqual(Model(blueprint),SpawnRing3DRecipes.Resolve(f.Zone,owner,f.Library.Definition).ModelId);
                 Assert.True(f.Find(owner,out var view,out var id));Assert.AreEqual(Model(blueprint),id);Assert.True(f.Rendered(owner));
-                var entry=SpreadBiomeHumanoidLibrary.Load().Find(id);Assert.NotNull(entry);var skin=view.GetComponentInChildren<SkinnedMeshRenderer>();Assert.AreSame(entry.Mesh,skin.sharedMesh);Assert.AreEqual(9,skin.bones.Length);Assert.GreaterOrEqual(skin.sharedMesh.uv.Distinct().Count(),3);
-                CollectionAssert.AreEquivalent(new[]{"Idle","Walk","Interact","Attack","Hit"},view.GetComponentInChildren<Animator>().runtimeAnimatorController.animationClips.Select(x=>x.name));
+                if(blueprint=="SpreadSeedKeeper")
+                {
+                    var flat=SeedKeeperFlatLibrary.Load();Assert.NotNull(flat);Assert.AreSame(flat.Mesh,view.GetComponent<MeshFilter>().sharedMesh);
+                    Assert.IsEmpty(view.GetComponentsInChildren<SkinnedMeshRenderer>());Assert.GreaterOrEqual(flat.Mesh.uv.Distinct().Count(),3);
+                }
+                else
+                {
+                    var entry=SpreadBiomeHumanoidLibrary.Load().Find(id);Assert.NotNull(entry);var skin=view.GetComponentInChildren<SkinnedMeshRenderer>();Assert.AreSame(entry.Mesh,skin.sharedMesh);Assert.AreEqual(9,skin.bones.Length);Assert.GreaterOrEqual(skin.sharedMesh.uv.Distinct().Count(),3);
+                    CollectionAssert.AreEquivalent(new[]{"Idle","Walk","Interact","Attack","Hit"},view.GetComponentInChildren<Animator>().runtimeAnimatorController.animationClips.Select(x=>x.name));
+                }
                 CollectionAssert.AreEqual(stock,inventory.Objects);CollectionAssert.AreEqual(counts,stock.Select(x=>x.GetPart<StackerPart>()?.StackCount??1));Assert.AreEqual(at,f.Zone.GetEntityPosition(owner));
                 render.Visible=false;f.Refresh();Assert.False(f.Rendered(owner));render.Visible=true;f.Refresh();Assert.True(f.Rendered(owner));f.Zone.RemoveEntity(owner);f.Refresh();Assert.False(f.Find(owner,out _,out _));
             }

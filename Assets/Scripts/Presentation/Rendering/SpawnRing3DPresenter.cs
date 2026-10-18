@@ -25,7 +25,7 @@ namespace CavesOfOoo.Rendering
             public NativeSpellCastPlayer Cast;
             public NativeQuestCueViews.Handle QuestCue;
             public SpreadCollectorCarryView CollectorCarry;
-            public bool Transient, Drawn, AuthoredIdleFacing;
+            public bool Transient, Drawn, AuthoredIdleFacing, FlatKeeper;
             public Vector3 Target, Start;
             public float MoveStart, MoveDuration, ActionUntil;
             // Last resolved ordinary action state, consumed directly by Play; ActionUntil owns its active lifetime.
@@ -214,6 +214,11 @@ namespace CavesOfOoo.Rendering
                     approvedStyle = new SpreadBiomeStyleCatalog(soddenArt, glade, humanoidLibrary,
                         visitorPaintLibrary, visitorCreatureLibrary, nativeStyleLibrary);
                 }
+                if (spreadStyle || soddenStyle)
+                {
+                    var flatKeeper = SeedKeeperFlatLibrary.Load();
+                    if (flatKeeper != null) { flatKeeper.Validate(); materials.Add(flatKeeper.Material); }
+                }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), 2.2f);
                 if (soddenStyle)
@@ -382,7 +387,7 @@ namespace CavesOfOoo.Rendering
             if (view.Transient != recipe.Transient)
             { PrepareModel(view.Root, recipe.Transient, recipe.ModelId); view.Transient = recipe.Transient; }
             if (view.AuthoredQuarterTurns != recipe.QuarterTurns)
-            { view.Root.transform.localRotation = Quaternion.Euler(0, recipe.QuarterTurns * 90, 0); view.AuthoredQuarterTurns = recipe.QuarterTurns; }
+            { view.Root.transform.localRotation = view.FlatKeeper ? SeedKeeperFlatLibrary.WorldRotation : Quaternion.Euler(0, recipe.QuarterTurns * 90, 0); view.AuthoredQuarterTurns = recipe.QuarterTurns; }
             if (view.Target != recipe.Position || !Application.isPlaying || !PresentationVisible || view.MoveDuration <= 0)
             { view.Target = recipe.Position; view.Root.transform.position = recipe.Position; view.MoveDuration = 0; }
         }
@@ -414,7 +419,9 @@ namespace CavesOfOoo.Rendering
             if (prefab == null) throw new InvalidOperationException("Missing ring model " + recipe.ModelId);
             var root = Instantiate(prefab, surface.ContentRoot, false); root.name = recipe.ComponentId ?? recipe.ModelId;
             root.transform.position = recipe.Position;
-            if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
+            bool flatKeeper = SeedKeeperFlatLibrary.IsModelId(recipe.ModelId) && root.GetComponent<MeshFilter>() != null;
+            if (flatKeeper) root.transform.rotation = SeedKeeperFlatLibrary.WorldRotation;
+            else if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
             PrepareModel(root, recipe.Transient, recipe.ModelId);
             if ((boundReferenceGlade || boundSpreadStyle || boundSoddenStyle || PatchbearerArtLibrary.IsModelId(recipe.ModelId)) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
             {
@@ -455,7 +462,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
             var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, SourcePrefab = prefab, Target = recipe.Position,
-                AuthoredQuarterTurns=recipe.QuarterTurns,
+                AuthoredQuarterTurns=recipe.QuarterTurns, FlatKeeper=flatKeeper,
                 AuthoredIdleFacing=recipe.ModelId.StartsWith("cathedral-elder-",StringComparison.Ordinal),
                 Transient = recipe.Transient, Renderers = root.GetComponentsInChildren<Renderer>(true),
                 Animator = root.GetComponentInChildren<Animator>(true) };
@@ -476,6 +483,14 @@ namespace CavesOfOoo.Rendering
                 collider.size = Abs(root.transform.InverseTransformVector(new Vector3(bounds.size.x, 0, 0)))
                     + Abs(root.transform.InverseTransformVector(new Vector3(0, bounds.size.y, 0)))
                     + Abs(root.transform.InverseTransformVector(new Vector3(0, 0, bounds.size.z)));
+                if (flatKeeper)
+                {
+                    // Inverse-transforming a tilted world AABB inflates depth.
+                    // The authored flat mesh is already in this collider's space.
+                    var localBounds = root.GetComponent<MeshFilter>().sharedMesh.bounds;
+                    collider.center = localBounds.center;
+                    collider.size = new Vector3(localBounds.size.x, localBounds.size.y, .04f);
+                }
             }
             view.Colliders = root.GetComponentsInChildren<Collider>(true);
             foreach (var collider in view.Colliders) byCollider.Add(collider, view);
@@ -800,6 +815,7 @@ namespace CavesOfOoo.Rendering
             // Encased elders have an architectural rest pose even without a rig.
             // All gesture/movement expiry paths settle through Idle; other actors
             // keep the facing selected by their own native actions.
+            if (view.FlatKeeper) view.Root.transform.rotation = SeedKeeperFlatLibrary.WorldRotation;
             if(clip=="Idle"&&view.AuthoredIdleFacing)
                 view.Root.transform.localRotation=Quaternion.Euler(0,view.AuthoredQuarterTurns*90,0);
             if (view.Animator == null || view.Clip == clip || !Application.isPlaying || !view.Root.activeInHierarchy) return;
@@ -813,7 +829,7 @@ namespace CavesOfOoo.Rendering
             if (forced || !view.Transient || !PresentationVisible || !view.Drawn || !Application.isPlaying || Math.Abs(newX-oldX)>1 || Math.Abs(newY-oldY)>1)
             { Interrupt(view); return; }
             view.Start = view.Root.transform.position; view.MoveStart = Time.unscaledTime; view.MoveDuration = .10f;
-            if (!entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(new Vector3(newX-oldX, 0, oldY-newY));
+            if (!view.FlatKeeper && !entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(new Vector3(newX-oldX, 0, oldY-newY));
             Play(view, "Walk");
         }
         private void Action(Entity entity, Zone zone, string clip, float duration = .22f)
@@ -821,7 +837,7 @@ namespace CavesOfOoo.Rendering
             if (!PresentationVisible || !ReferenceEquals(zone, CurrentZone) || entity == null || !views.TryGetValue(entity, out var view) || !view.Drawn) return;
             var facing = entity.GetPart<RenderPart>()?.VisualFacing ?? EntityVisualFacing.South;
             Vector3 direction = facing == EntityVisualFacing.North ? Vector3.forward : facing == EntityVisualFacing.East ? Vector3.right : facing == EntityVisualFacing.West ? Vector3.left : Vector3.back;
-            if (!entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(direction); view.ActionUntil = Time.unscaledTime + duration; view.ActionState = clip; Play(view, view.ActionState);
+            if (!view.FlatKeeper && !entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(direction); view.ActionUntil = Time.unscaledTime + duration; view.ActionState = clip; Play(view, view.ActionState);
         }
         private void OnInteraction(Entity actor, Entity target, Zone zone)
         {
@@ -846,7 +862,7 @@ namespace CavesOfOoo.Rendering
             if (clip == null || view.Cast?.TryPlay(clip, duration) != true) { Action(caster, zone, "Interact"); return; }
             view.MoveDuration = 0; view.ActionUntil = 0; view.Clip = null;
             view.Root.transform.position = view.Target;
-            if (!caster.HasPart<MultiCellPilotPropPart>() && (tx != sx || ty != sy))
+            if (!view.FlatKeeper && !caster.HasPart<MultiCellPilotPropPart>() && (tx != sx || ty != sy))
                 view.Root.transform.rotation = Quaternion.LookRotation(new Vector3(tx - sx, 0, sy - ty));
         }
         private void OnDeath(Entity target, Entity killer, Zone zone, int x, int y)

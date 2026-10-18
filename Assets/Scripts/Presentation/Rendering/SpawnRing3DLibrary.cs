@@ -67,7 +67,8 @@ namespace CavesOfOoo.Rendering
         // loads without caching results or bypassing current asset validation.
         internal GameObject FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
         {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
-            (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            (SeedKeeperFlatLibrary.IsModelId(modelId) ? LoadExtension<SeedKeeperFlatLibrary>(load, SeedKeeperFlatLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? ((modelId == "sodden-native-greatdew-0" || modelId == "sodden-native-greatdew-1") ? LoadExtension<SoddenNativeArtLibrary>(load, SoddenNativeArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (EquipmentDiscoveryArtLibrary.IsModelId(modelId) ? LoadExtension<EquipmentDiscoveryArtLibrary>(load, EquipmentDiscoveryArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SoddenDistrictArtLibrary.IsModelId(modelId) ? LoadExtension<SoddenDistrictArtLibrary>(load, SoddenDistrictArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

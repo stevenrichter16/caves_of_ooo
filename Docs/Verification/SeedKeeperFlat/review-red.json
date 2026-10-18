@@ -1,0 +1,40 @@
+{
+  "job_id": "4989ed78b1c44075bacce632caf06b1c",
+  "status": "failed",
+  "mode": "EditMode",
+  "started_unix_ms": 1792300553336,
+  "finished_unix_ms": 1792300579223,
+  "last_update_unix_ms": 1792300579223,
+  "progress": {
+    "completed": 36,
+    "total": 36,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1792300577790,
+    "last_finished_test_full_name": "CavesOfOoo.Tests.SeedKeeperFlatArtTests.OtherResidentsRetainTheirExistingRiggedBodies(\"Farmer\")",
+    "last_finished_unix_ms": 1792300579197,
+    "stuck_suspected": false,
+    "editor_is_focused": true,
+    "blocked_reason": null,
+    "failures_so_far": [
+      {
+        "full_name": "CavesOfOoo.Tests.SeedKeeperFlatAdversarialTests.LibraryRejectsGeometryThatNoLongerMatchesItsBlenderPixels(\"vertex\")",
+        "message": "  Planarity/counts alone do not prove the submitted Blender art.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SeedKeeperFlatAdversarialTests.LibraryRejectsGeometryThatNoLongerMatchesItsBlenderPixels(\"swatch\")",
+        "message": "  Planarity/counts alone do not prove the submitted Blender art.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SeedKeeperFlatAdversarialTests.LibraryRejectsGeometryThatNoLongerMatchesItsBlenderPixels(\"winding\")",
+        "message": "  Planarity/counts alone do not prove the submitted Blender art.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+      },
+      {
+        "full_name": "CavesOfOoo.Tests.SeedKeeperFlatArtTests.CurrentKeeperUsesFlatArtAndNativeVisibilityPickingStockAndProof",
+        "message": "  Flat selection must not inherit inverse-rotated AABB depth inflation.\n  Expected: 0.039999999105930328d +/- 9.9999997473787516E-06d\n  But was:  1.3292605876922607d\n"
+      }
+    ],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": null
+}

@@ -24,6 +24,11 @@ namespace CavesOfOoo.Rendering
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+            if (referenceGlade || soddenStyle)
+            {
+                var flatKeeper = SeedKeeperFlatLibrary.Load();
+                if (flatKeeper != null) { flatKeeper.Validate(); generated.Add(flatKeeper.Mesh); }
+            }
             var botany=BiomeCrop3DLibrary.Load();
             if(botany!=null){botany.Validate();foreach(var e in botany.Entries)generated.Add(e.Mesh);}
             var cultivation=RepairCultivation3DLibrary.Load();
