@@ -54,12 +54,28 @@ namespace CavesOfOoo.Editor
         }
 
         private const string GladeScenePath = "Assets/Scenes/Main/ReferenceGlade.unity";
+        private const string PixelStudyScenePath = "Assets/Scenes/Studies/SeedKeeper16x24.unity";
+
+        [MenuItem("Caves Of Ooo/Scenes/Open 16x24 Seed Keeper Study")]
+        private static void OpenPixelStudy() => OpenSavedScene(PixelStudyScenePath);
+
+        [MenuItem("Caves Of Ooo/Scenes/Return to 3D Spawn")]
+        private static void OpenOriginalWorld() => OpenSavedScene(SampleScenePath);
+
+        private static void OpenSavedScene(string path)
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode)
+                throw new System.InvalidOperationException("Exit Play before switching scenes.");
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+            EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+        }
 
         private static void EnsurePlayModeStartScene()
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;
-            string selected = SceneManager.GetActiveScene().path == GladeScenePath
-                ? GladeScenePath : SampleScenePath;
+            string active = SceneManager.GetActiveScene().path;
+            string selected = active == GladeScenePath || active == PixelStudyScenePath
+                ? active : SampleScenePath;
             if (!File.Exists(selected)) return;
 
             var asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(selected);

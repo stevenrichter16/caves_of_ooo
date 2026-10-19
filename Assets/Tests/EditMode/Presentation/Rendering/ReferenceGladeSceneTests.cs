@@ -25,6 +25,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase(Path, Path)]
+        [TestCase("Assets/Scenes/Studies/SeedKeeper16x24.unity", "Assets/Scenes/Studies/SeedKeeper16x24.unity")]
         [TestCase("Assets/Scenes/Main/SampleScene.unity", "Assets/Scenes/Main/SampleScene.unity")]
         public void PlayStartsTheSelectedSupportedScene(string activePath, string expected)
         {
