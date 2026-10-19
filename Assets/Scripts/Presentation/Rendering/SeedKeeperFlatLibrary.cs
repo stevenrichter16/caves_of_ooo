@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Bounded, reproducible export of the original planar Blender art.
+    /// <summary>Bounded, reproducible export of the keeper's planar pixel art.
     /// Pixel coordinates are top-left based; absent pixels contain no geometry.</summary>
     [Serializable] public sealed class SeedKeeperFlatSource
     {
@@ -17,9 +17,10 @@ namespace CavesOfOoo.Rendering
 
         public void Validate()
         {
-            if (schemaVersion != 1 || width != 64 || height != 80 || palette == null || palette.Length < 1 || palette.Length > 256
+            bool supportedCanvas = (width == 64 && height == 80) || (width == 16 && height == 24);
+            if (schemaVersion != 1 || !supportedCanvas || palette == null || palette.Length < 1 || palette.Length > 256
                 || pixels == null || pixels.Length < 100 || pixels.Length > width * height)
-                throw new ArgumentException("A bounded 64 by 80 planar Seed Keeper export is required.");
+                throw new ArgumentException("A bounded 16 by 24 or legacy 64 by 80 planar Seed Keeper export is required.");
             foreach (string color in palette)
                 if (color == null || color.Length != 7 || color[0] != '#' || !ColorUtility.TryParseHtmlString(color, out _))
                     throw new ArgumentException("Seed Keeper palette must use opaque RGB swatches.");
@@ -38,6 +39,9 @@ namespace CavesOfOoo.Rendering
         public const string ResourcePath = "SeedKeeperFlat/Library";
         public const string ModelId = "spread-person-seed-keeper";
         public const string PrefabPath = "Assets/Resources/SeedKeeperFlat/seed-keeper.prefab";
+        // Uniformly fit occupied pixels inside the existing keeper envelope.
+        // Leave headroom below its strict 1.65-unit validation boundary.
+        public const float ArtworkWidth = 1.05f, ArtworkHeight = 1.6f;
         public string SourceJson, SourceSha256;
         public GameObject Prefab;
         public Mesh Mesh;
@@ -79,7 +83,7 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < source.palette.Length; i++)
             {
                 ColorUtility.TryParseHtmlString(source.palette[i], out var color);
-                if (Vector4.Distance(color, texture.GetPixel(i, 0)) > .008f) throw new InvalidOperationException("Seed Keeper palette differs from the Blender export.");
+                if (Vector4.Distance(color, texture.GetPixel(i, 0)) > .008f) throw new InvalidOperationException("Seed Keeper palette differs from the pixel source.");
             }
             var vertices = Mesh.vertices; var normals = Mesh.normals; var uv = Mesh.uv;
             if (normals.Length != vertices.Length || uv.Length != vertices.Length) throw new InvalidOperationException("Incomplete planar pixel buffers.");
@@ -92,9 +96,9 @@ namespace CavesOfOoo.Rendering
                     throw new InvalidOperationException("Invalid front face or palette sampling in flat Seed Keeper.");
             // Counts and planarity alone cannot prove that the image still matches
             // its source. Validate each bounded exported quad, swatch and winding.
-            int minX = source.width, maxX = -1, maxY = -1;
-            foreach (var pixel in source.pixels) { minX = Math.Min(minX, pixel.x); maxX = Math.Max(maxX, pixel.x); maxY = Math.Max(maxY, pixel.y); }
-            float step = 1.05f / (maxX - minX + 1), pivotX = (minX + maxX + 1) * .5f;
+            int minX = source.width, minY = source.height, maxX = -1, maxY = -1;
+            foreach (var pixel in source.pixels) { minX = Math.Min(minX, pixel.x); minY = Math.Min(minY, pixel.y); maxX = Math.Max(maxX, pixel.x); maxY = Math.Max(maxY, pixel.y); }
+            float step = Mathf.Min(ArtworkWidth / (maxX - minX + 1), ArtworkHeight / (maxY - minY + 1)), pivotX = (minX + maxX + 1) * .5f;
             var triangles = Mesh.GetTriangles(0);
             for (int i = 0; i < source.pixels.Length; i++)
             {
@@ -104,11 +108,11 @@ namespace CavesOfOoo.Rendering
                 {
                     var expected = new Vector3(left + (k == 1 || k == 2 ? step : 0), bottom + (k >= 2 ? step : 0), 0);
                     if ((vertices[v + k] - expected).sqrMagnitude > 1e-10f || Mathf.Abs(uv[v + k].x - (pixel.color + .5f) / source.palette.Length) > .000001f)
-                        throw new InvalidOperationException("Flat Seed Keeper pixel geometry or swatch differs from the Blender source.");
+                        throw new InvalidOperationException("Flat Seed Keeper geometry or swatch differs from the pixel source.");
                 }
                 if (triangles[t] != v || triangles[t + 1] != v + 2 || triangles[t + 2] != v + 1
                     || triangles[t + 3] != v || triangles[t + 4] != v + 3 || triangles[t + 5] != v + 2)
-                    throw new InvalidOperationException("Flat Seed Keeper winding differs from the Blender source.");
+                    throw new InvalidOperationException("Flat Seed Keeper winding differs from the pixel source.");
             }
             if (Mesh.bounds.size.z > .00001f || Mesh.bounds.size.x < .9f || Mesh.bounds.size.x > 1.2f || Mesh.bounds.size.y < 1.35f || Mesh.bounds.size.y > 1.65f
                 || Spec.id != ModelId || Spec.path != PrefabPath || Spec.sourceBlueprint != "SpreadSeedKeeper" || Spec.kind != "actor"

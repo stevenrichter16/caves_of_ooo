@@ -1,6 +1,11 @@
 # Seed Keeper — Blender flat character
 
-Status: implemented and verified in Unity on 2026-10-18. The existing `SpreadSeedKeeper` trader uses a planar character based on the right-hand supplied reference. World art and Examine share the same source; gameplay identity, stock and population are unchanged.
+Status: historical detailed artwork, implemented and verified in Unity on 2026-10-18.
+The user subsequently selected the native 16×24 Seed Keeper 3; see
+[the current integration](SEED-KEEPER-16X24-ART.md). This Blender source and its
+rebuild command remain available as an alternative.
+
+Original implementation record: The existing `SpreadSeedKeeper` trader uses a planar character based on the right-hand supplied reference. World art and Examine share the same source; gameplay identity, stock and population are unchanged.
 
 ## Verification sweep
 

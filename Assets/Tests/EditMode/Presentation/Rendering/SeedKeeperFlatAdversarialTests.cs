@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
@@ -19,6 +20,42 @@ namespace CavesOfOoo.Tests
         {
             var source = Source(); string before = JsonUtility.ToJson(source); source.Validate();
             Assert.AreEqual(before, JsonUtility.ToJson(source));
+        }
+        [Test] public void Native16By24PixelsAreAcceptedWithoutExpandingTheirCanvas()
+        {
+            var source = Source(); source.width = 16; source.height = 24;
+            string before = JsonUtility.ToJson(source); source.Validate();
+            Assert.AreEqual(before, JsonUtility.ToJson(source));
+        }
+        [TestCase(16, 80)][TestCase(64, 24)][TestCase(0, 24)][TestCase(16, 25)]
+        public void CanvasDimensionsMustMatchOneCompleteSupportedFormat(int width, int height)
+        {
+            var source = Source(); source.width = width; source.height = height;
+            Assert.Throws<ArgumentException>(() => source.Validate());
+        }
+        [TestCase(5, 24, false)][TestCase(14, 24, true)][TestCase(16, 7, false)]
+        public void ImportPreflightRejectsAnInvalidFittedEnvelopeWithoutTouchingAssets(int columns, int rows, bool accepted)
+        {
+            var source = Source(); source.width = 16; source.height = 24;
+            source.pixels = Enumerable.Range(0, columns * rows)
+                .Select(i => new SeedKeeperFlatSource.Pixel { x = i % columns, y = i / columns, color = 0 }).ToArray();
+            source.Validate(); string before = JsonUtility.ToJson(source);
+            var builder = AppDomain.CurrentDomain.GetAssemblies()
+                .Select(a => a.GetType("CavesOfOoo.Editor.SeedKeeperFlatBuilder", false)).FirstOrDefault(t => t != null);
+            Assert.NotNull(builder);
+            var preflight = builder.GetMethod("ValidatePixelStep", BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.NotNull(preflight, "Fit both dimensions before replacing any live keeper assets.");
+            if (accepted)
+            {
+                float step = (float)preflight.Invoke(null, new object[] { source });
+                Assert.AreEqual(1.6f / 24, step, .000001f);
+            }
+            else
+            {
+                var error = Assert.Throws<TargetInvocationException>(() => preflight.Invoke(null, new object[] { source }));
+                Assert.IsInstanceOf<InvalidOperationException>(error.InnerException);
+            }
+            Assert.AreEqual(before, JsonUtility.ToJson(source), "Preflight must not rewrite source pixels.");
         }
         [TestCase("schema")][TestCase("width")][TestCase("height")][TestCase("null-palette")]
         [TestCase("empty-palette")][TestCase("large-palette")][TestCase("null-color")][TestCase("named-color")]

@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Editor
 {
-    /// <summary>Explicit, keeper-only import of the planar Blender pixel export.
+    /// <summary>Explicit, keeper-only import of a native planar pixel export.
     /// Never runs on load and never regenerates an unrelated art library.</summary>
     public static class SeedKeeperFlatBuilder
     {
@@ -34,11 +34,10 @@ namespace CavesOfOoo.Editor
                 string json = File.ReadAllText(report.source);
                 var data = JsonUtility.FromJson<SeedKeeperFlatSource>(json);
                 if (data == null) throw new InvalidOperationException("Missing planar pixel source.");
-                data.Validate(); report.sourceSha256 = SeedKeeperFlatLibrary.Hash(json);
+                float step = ValidatePixelStep(data);
+                report.sourceSha256 = SeedKeeperFlatLibrary.Hash(json);
                 int minX = data.pixels.Min(p => p.x), maxX = data.pixels.Max(p => p.x), maxY = data.pixels.Max(p => p.y);
-                float step = 1.05f / (maxX - minX + 1), pivotX = (minX + maxX + 1) * .5f;
-                float height = (maxY - data.pixels.Min(p => p.y) + 1) * step;
-                if (height < 1.35f || height > 1.65f) throw new InvalidOperationException("Source silhouette is outside the approved keeper proportions.");
+                float pivotX = (minX + maxX + 1) * .5f;
                 var paletteSource = ReferenceGladeVoxelLibrary.Load()?.Material;
                 if (paletteSource == null) throw new InvalidOperationException("Native fog-aware palette shader is unavailable.");
                 Preflight<Mesh>(Folder + "/seed-keeper.asset"); Preflight<Texture2D>(Folder + "/Palette.asset");
@@ -57,7 +56,7 @@ namespace CavesOfOoo.Editor
                 material.SetFloat("_GroundMottleStrength", 0); material.SetFloat("_GroundContactStrength", 0);
                 material = Save(material, Folder + "/Palette.mat", paths);
 
-                var mesh = new Mesh { name = "Seed Keeper flat Blender pixels" };
+                var mesh = new Mesh { name = "Seed Keeper flat native pixels" };
                 var vertices = new Vector3[data.pixels.Length * 4]; var normals = new Vector3[vertices.Length];
                 var uv = new Vector2[vertices.Length]; var indices = new int[data.pixels.Length * 6];
                 for (int i = 0; i < data.pixels.Length; i++)
@@ -105,6 +104,19 @@ namespace CavesOfOoo.Editor
                 Directory.CreateDirectory(Path.GetDirectoryName(output)); File.WriteAllText(output, JsonUtility.ToJson(report, true));
             }
             return report;
+        }
+        // Pure preflight: height fitting can make a narrow source too thin. Check
+        // the same complete envelope as Library.Validate before any live asset is saved.
+        static float ValidatePixelStep(SeedKeeperFlatSource data)
+        {
+            data.Validate();
+            int columns = data.pixels.Max(p => p.x) - data.pixels.Min(p => p.x) + 1;
+            int rows = data.pixels.Max(p => p.y) - data.pixels.Min(p => p.y) + 1;
+            float step = Mathf.Min(SeedKeeperFlatLibrary.ArtworkWidth / columns, SeedKeeperFlatLibrary.ArtworkHeight / rows);
+            float width = columns * step, height = rows * step;
+            if (width < .9f || width > 1.2f || height < 1.35f || height > 1.65f)
+                throw new InvalidOperationException("Source silhouette is outside the approved keeper proportions.");
+            return step;
         }
         static void Preflight<T>(string path) where T : Object
         {

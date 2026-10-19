@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
@@ -21,6 +22,50 @@ namespace CavesOfOoo.Tests
         {
             var args = new object[] { owner, null };
             bool result = (bool)f.Call("TryGetApprovedStyle", args); evidence = (SpreadBiomeStyleEvidence)args[1]; return result;
+        }
+
+        [Test] public void ShippedKeeperUsesEveryVersion3NativePixelWithoutUpscalingTheSource()
+        {
+            var library = SeedKeeperFlatLibrary.Load(); Assert.NotNull(library);
+            var source = JsonUtility.FromJson<SeedKeeperFlatSource>(library.SourceJson);
+            Assert.AreEqual(16, source.width, "Gameplay must use the requested native canvas, not the old 64x80 art.");
+            Assert.AreEqual(24, source.height); Assert.AreEqual(144, source.pixels.Length);
+            source.Validate(); library.Validate();
+            var native = new Texture2D(2, 2);
+            try
+            {
+                Assert.True(native.LoadImage(File.ReadAllBytes(System.IO.Path.Combine(Application.dataPath, "Art/SeedKeeper3/seed-keeper-3.png"))));
+                Assert.AreEqual(source.width, native.width); Assert.AreEqual(source.height, native.height);
+                var expected = native.GetPixels32(); var actual = new Color32[expected.Length];
+                foreach (var pixel in source.pixels)
+                {
+                    Assert.True(ColorUtility.TryParseHtmlString(source.palette[pixel.color], out var color));
+                    actual[(source.height - 1 - pixel.y) * source.width + pixel.x] = color;
+                }
+                // Compare transparent cells too: no background plane, added outlines,
+                // removed gaps or recreated high-resolution artwork can satisfy this.
+                for (int i = 0; i < expected.Length; i++)
+                    if (expected[i].a == 0) Assert.AreEqual(0, actual[i].a, "Transparent native pixel " + i);
+                    else Assert.AreEqual(expected[i], actual[i], "Opaque native pixel " + i);
+            }
+            finally { Object.DestroyImmediate(native); }
+        }
+
+        [Test] public void NativePixelsStaySquareAndFitTheExistingKeeperEnvelope()
+        {
+            var library = SeedKeeperFlatLibrary.Load(); Assert.NotNull(library);
+            var source = JsonUtility.FromJson<SeedKeeperFlatSource>(library.SourceJson);
+            Assert.AreEqual(16, source.width); Assert.AreEqual(24, source.height);
+            int columns = source.pixels.Max(p => p.x) - source.pixels.Min(p => p.x) + 1;
+            int rows = source.pixels.Max(p => p.y) - source.pixels.Min(p => p.y) + 1;
+            var bounds = library.Mesh.bounds;
+            Assert.AreEqual(14, columns); Assert.AreEqual(24, rows);
+            Assert.AreEqual(1.6f, bounds.size.y, .00001f);
+            Assert.AreEqual(14f * 1.6f / 24f, bounds.size.x, .00001f);
+            Assert.AreEqual((float)columns / rows, bounds.size.x / bounds.size.y, .00001f);
+            var vertices = library.Mesh.vertices;
+            for (int i = 0; i < vertices.Length; i += 4)
+                Assert.AreEqual(Vector3.Distance(vertices[i], vertices[i + 1]), Vector3.Distance(vertices[i + 1], vertices[i + 2]), .000001f);
         }
 
         [Test] public void BlenderAuthoredKeeperIsOneFlatPersistentMeshWithItsOwnPalette()

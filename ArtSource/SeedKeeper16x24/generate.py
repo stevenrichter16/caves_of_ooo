@@ -82,5 +82,17 @@ if __name__ == '__main__':
     }
     (OUT/'sprite-grid.txt').write_text('\n'.join(GRID)+'\n')
     (OUT/'sprite-info.json').write_text(json.dumps(info, indent=2)+'\n')
+    # The game's fog-aware flat mesh uses one quad per opaque native pixel.
+    # Preserve the 16x24 source instead of expanding it to the old Blender grid.
+    symbols = [c for c in counts if c != '.']
+    flat_source = {
+        'schemaVersion': 1, 'width': 16, 'height': 24,
+        'palette': [info['palette'][c] for c in symbols],
+        'pixels': [
+            {'x': x, 'y': y, 'color': symbols.index(c)}
+            for y, row in enumerate(GRID) for x, c in enumerate(row) if c != '.'
+        ],
+    }
+    (OUT/'seed-keeper-flat.json').write_text(json.dumps(flat_source, indent=2)+'\n')
     (OUT/'README.txt').write_text(f'''SEED KEEPER — reference-corrected native pixel sprite\n\nNative canvas: 16 × 24 pixels, transparent RGBA PNG\nOpaque palette: {info['opaque_color_count']} colors\nVisible pixels: {info['visible_pixel_count']}\nTransparent pixels: {info['transparent_pixel_count']}\nAlpha values: 0 and 255 only\n\nseed-keeper-16x24.png — native production asset\nseed-keeper-16x24-preview-8x.png — exact 8× nearest-neighbor enlargement on flat dark teal, 128 × 192\nseed-keeper-16x24-preview.png — exact 32× nearest-neighbor enlargement on flat dark teal, 512 × 768\nseed-keeper-16x24.svg — editable 16 × 24 SVG, each rect exactly one native pixel\nsprite-grid.txt — editable literal character grid\ngenerate.py — Python/Pillow source, authoritative palette and grid\nsprite-info.json — palette and pixel counts\nreference-higher-resolution.jpg — user-supplied reference for the corrected proportions\n\nEdited directly on a 16 × 24 grid to match the higher-resolution reference. No downsampling, anti-aliasing or smoothing. Original supplied version is preserved in Git commit 121c780f2.\nTo edit, change GRID or PALETTE in generate.py and run: python generate.py\nUse nearest-neighbor / point filtering when displaying the native PNG at larger sizes.\n''')
     print(json.dumps(info, indent=2))
