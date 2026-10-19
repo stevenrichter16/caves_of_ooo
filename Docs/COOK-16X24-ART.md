@@ -47,3 +47,12 @@ white tint and no shadows. The original study scene remains clean.
 
 Files: native PNG and import metadata, reusable prefab, editable Piskel/SVG/grid,
 palette/pixel exports, generated concept and prompt, verification records and docs.
+
+
+## Flat study placement
+
+Subsequently placed the reusable cook prefab in the cell immediately right of
+the keeper in `Assets/Scenes/Studies/SeedKeeper16x24.unity`, at the user's request.
+Both share the same baseline and native pixel scale. Actual Unity Play rendering
+and the exact source composite were verified; see the [study record](PIXEL-16X24-STUDY.md#cook-placed-alongside-the-keeper).
+This scene is still a static art study, without gameplay NPC simulation.

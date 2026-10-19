@@ -32,5 +32,5 @@ no NPOT resizing, full rectangle, 16 PPU, bottom-center pivot. The prefab
 `Assets/Art/Cook16x24/Cook16x24.prefab` shares the existing flat study's unlit
 material, with white tint and no shadows. The source is one static frame.
 
-This delivers art and a reusable prefab. It does not replace live cook NPC models
-or change the existing Seed Keeper-only study scene.
+This delivers art and a reusable prefab. The prefab is now placed beside the
+keeper in the flat study scene. Live cook NPC model routing remains separate.

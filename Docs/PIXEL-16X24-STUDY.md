@@ -4,7 +4,8 @@ Status: completed and verified in Unity Play mode, 2026-10-18.
 
 ## User scope
 
-Start with a blank dark-green field and Seed Keeper 3 as the only visible object.
+Initial scope: a blank dark-green field and Seed Keeper 3 alone. The user then
+requested the cook beside him; the current saved study contains both sprites.
 Use a flat top-down pixel grid in the spirit of Qud. This first visual study is
 a separate scene; expanding the actual spawn chunk is a later step. The source
 art is the user's own 16×24 PNG and editable Piskel, not a Qud asset.
@@ -52,9 +53,9 @@ In Unity, use **Caves Of Ooo → Scenes → Open 16x24 Seed Keeper Study** and p
 Play. Exit Play and choose **Return to 3D Spawn** to reopen the existing game.
 Both menu routes were exercised; the original scene remains clean. The study
 is left open in the editor after verification. It is intentionally a static
-visual study with one sprite, with no movement, dialogue or HUD.
+visual study with two sprites, with no movement, dialogue or HUD.
 
-## Results and self-review
+## Initial single-character results and self-review
 
 - Scene: `Assets/Scenes/Studies/SeedKeeper16x24.unity`. Empty field is camera
   clear color `#032F23`. One SpriteRenderer uses the original transparent PNG,
@@ -97,3 +98,30 @@ Files: minimal study scene and metadata; reusable flat prefab/material under
 `Assets/Art/SeedKeeper3`; DefaultSceneLoader allowlist and two menus; one additional
 scene-selection test case; this living document and verification receipts.
 No new runtime component or per-frame script was introduced.
+
+
+## Cook placed alongside the keeper
+
+The user requested the cook next to the keeper and an actual scene screenshot.
+The saved study now instantiates `Assets/Art/Cook16x24/Cook16x24.prefab` in the
+adjacent rectangular cell. The pair is centered: keeper at (-0.5, -0.75), cook at
+(0.5, -0.75), both at scale 1 with the same baseline and unlit material. The Grid
+origin shifts from (-0.5, -0.75) to (-1, -0.75) to center the two adjacent cells.
+No sprite or camera sizing changes.
+
+Verified in actual Unity Play mode: two sprites, zero gameplay bootstraps, flat
+camera and 1×1.5 cell geometry. The unedited 1280×800 Game capture matches the
+complete expected source composite at 8× scale with **zero differing pixels**.
+The proof covers every background and transparent cell as well as both figures.
+Play stopped; Game view index restored to 0; saved study is clean with two actors.
+This is a scene-placement change; no runtime code or new gameplay tests.
+
+[Live observer](Verification/SeedKeeper16x24/keeper-and-cook-live.json) ·
+[Exact pixel verification](Verification/SeedKeeper16x24/keeper-and-cook-capture.json).
+
+![Keeper and cook, actual Unity Game frame](Verification/SeedKeeper16x24/keeper-and-cook-game.png)
+
+Self-review: no notable outstanding issues. Can verify saved prefab placement,
+scale, native colors/pixels, actual Game rendering and editor restoration. Cannot
+claim movement, conversation or live NPC simulation in this static art study.
+The preserved 3D world and assets remain available through the existing menu.
