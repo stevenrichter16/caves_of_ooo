@@ -1,4 +1,7 @@
-# Wayside cook — native 16×24 sprite
+# Wayside cook — earlier authored 16×24 sprite
+
+Historical source retained as an alternative. The current Unity cook uses the
+user-selected PNG in `../CookDownloads`; see that folder for current editing.
 
 Created 2026-10-18 using Seed Keeper 3 as the style and scale reference.
 

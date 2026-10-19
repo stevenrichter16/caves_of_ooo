@@ -125,3 +125,17 @@ Self-review: no notable outstanding issues. Can verify saved prefab placement,
 scale, native colors/pixels, actual Game rendering and editor restoration. Cannot
 claim movement, conversation or live NPC simulation in this static art study.
 The preserved 3D world and assets remain available through the existing menu.
+
+
+## Current cook artwork — Downloads selection
+
+The user then selected the Downloads cook PNG. The existing cook sprite asset
+was replaced byte-for-byte while preserving its GUID, prefab and scene placement.
+The selected PNG/Piskel are preserved in `ArtSource/CookDownloads`; the earlier
+cook source remains as an alternative. See the [current cook record](COOK-16X24-ART.md#user-selected-downloads-replacement).
+
+Actual Unity Play capture matches both selected PNGs at exact 8× scale with zero
+differing pixels. This is an art-only replacement; scene/prefab files and runtime
+code did not change. Play stopped and original Game view index restored; study clean.
+
+![Latest keeper and cook Game frame](Verification/SeedKeeper16x24/keeper-and-download-cook-game.png)

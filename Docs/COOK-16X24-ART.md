@@ -1,6 +1,8 @@
 # Cook sprite — flat 16×24 style
 
-Status: created, imported and reviewed, 2026-10-18.
+Status: active art replaced with the user-selected Downloads PNG, 2026-10-18.
+See [current source](../ArtSource/CookDownloads/README.md). The original design
+and its verification below are a historical record; that source is retained.
 
 User request: create a cook sprite using the new native Seed Keeper design.
 Reference: `ArtSource/SeedKeeper3/seed-keeper-3.png`; no Qud assets or code copied.
@@ -56,3 +58,29 @@ the keeper in `Assets/Scenes/Studies/SeedKeeper16x24.unity`, at the user's reque
 Both share the same baseline and native pixel scale. Actual Unity Play rendering
 and the exact source composite were verified; see the [study record](PIXEL-16X24-STUDY.md#cook-placed-alongside-the-keeper).
 This scene is still a static art study, without gameplay NPC simulation.
+
+
+## User-selected Downloads replacement
+
+At the user's direction, replaced the cook sprite with the latest supplied PNG.
+The two exports `cook-.png` and `cook--1.png.png` are identical and match the latest
+Piskel file. Both originals are preserved in `ArtSource/CookDownloads` under clear
+`cook.png` / `cook.piskel` names. The existing Unity PNG is a byte-identical copy;
+its GUID `475f3a957daee4ed9bb98fdeb1724a74` and `.meta` are preserved.
+
+The new art is native 16×24, 165 opaque pixels, eight opaque colors and binary
+transparency. It appears in the existing cook prefab and adjacent study placement
+without changing either. Native Play confirmed both figures; the actual 1280×800
+Game frame matches every pixel of the source composite at 8× scale, with zero
+differing pixels. Source/Piskel identity and pixel-art import settings verified.
+Play stopped, Game view index restored to 0, study clean. No gameplay code changed
+and no new gameplay tests were needed for the asset replacement.
+
+Can verify source identity, exact Game rendering, preserved references and editor
+restoration. Cannot claim live NPC animation/gameplay from this static study.
+No outstanding notable self-review findings; prior cook art remains available.
+
+[Source verification](../ArtSource/CookDownloads/verification.json) ·
+[Game-frame verification](Verification/SeedKeeper16x24/download-cook-capture.json).
+
+![Current cook beside keeper](Verification/SeedKeeper16x24/keeper-and-download-cook-game.png)
