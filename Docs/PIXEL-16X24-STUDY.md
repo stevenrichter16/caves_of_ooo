@@ -5,7 +5,8 @@ Status: completed and verified in Unity Play mode, 2026-10-18.
 ## User scope
 
 Initial scope: a blank dark-green field and Seed Keeper 3 alone. The user then
-requested the cook beside him; the current saved study contains both sprites.
+requested the cook and Tatterjay beside him; the current saved study contains
+all three sprites.
 Use a flat top-down pixel grid in the spirit of Qud. This first visual study is
 a separate scene; expanding the actual spawn chunk is a later step. The source
 art is the user's own 16×24 PNG and editable Piskel, not a Qud asset.
@@ -53,7 +54,7 @@ In Unity, use **Caves Of Ooo → Scenes → Open 16x24 Seed Keeper Study** and p
 Play. Exit Play and choose **Return to 3D Spawn** to reopen the existing game.
 Both menu routes were exercised; the original scene remains clean. The study
 is left open in the editor after verification. It is intentionally a static
-visual study with two sprites, with no movement, dialogue or HUD.
+visual study with three sprites, with no movement, dialogue or HUD.
 
 ## Initial single-character results and self-review
 
@@ -139,3 +140,34 @@ differing pixels. This is an art-only replacement; scene/prefab files and runtim
 code did not change. Play stopped and original Game view index restored; study clean.
 
 ![Latest keeper and cook Game frame](Verification/SeedKeeper16x24/keeper-and-download-cook-game.png)
+
+
+## Tatterjay added
+
+Added the user's Downloads `tatterjay.png` with its matching latest Piskel,
+retaining their bytes under `ArtSource/Tatterjay16x24`. The PNG is native 16×24,
+103 opaque pixels and six opaque colors, with binary alpha. Its Piskel frame
+matches exactly. The older `tatterjay-matched` export differs; the latest explicitly
+named PNG is authoritative. No art generation, resampling or recoloring.
+
+Imported with the same Point, uncompressed, 16-PPU, bottom-center settings and
+unlit material as the other figures. Added a reusable Tatterjay prefab in the
+next adjacent cell. Grid origin moves to (-1.5, -0.75) to center three cells;
+keeper/cook/bird world X positions are -1/0/1, all sharing Y -0.75 and scale 1.
+
+Actual Unity Play: three sprites, zero game bootstraps. The unedited 1280×800 Game
+frame matches every pixel of the three source images composited over `#032F23`
+at exact 8× scale, with zero differing pixels. Source/Unity PNG byte identity
+and native import settings verified. Play stopped, Game view index restored to
+0, saved study clean. No runtime code changed; asset/scene verification is the
+appropriate check for this static addition.
+
+[Source and edit instructions](../ArtSource/Tatterjay16x24/README.md) ·
+[Live observer](Verification/SeedKeeper16x24/tatterjay-live.json) ·
+[Exact pixel proof](Verification/SeedKeeper16x24/tatterjay-capture.json).
+
+![Keeper, cook and Tatterjay in Unity](Verification/SeedKeeper16x24/keeper-cook-tatterjay-game.png)
+
+Self-review: no notable outstanding findings. Can verify source fidelity, prefab
+placement, exact actual Game rendering and editor restoration. Cannot claim
+animation or gameplay Tatterjay behavior in this static art study.
