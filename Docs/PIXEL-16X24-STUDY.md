@@ -5,8 +5,8 @@ Status: completed and verified in Unity Play mode, 2026-10-18.
 ## User scope
 
 Initial scope: a blank dark-green field and Seed Keeper 3 alone. The user then
-requested the cook and Tatterjay beside him; the current saved study contains
-all three sprites.
+requested the cook, Tatterjay and Reedback Grazer beside him; the current saved
+study contains all four sprites.
 Use a flat top-down pixel grid in the spirit of Qud. This first visual study is
 a separate scene; expanding the actual spawn chunk is a later step. The source
 art is the user's own 16×24 PNG and editable Piskel, not a Qud asset.
@@ -54,7 +54,7 @@ In Unity, use **Caves Of Ooo → Scenes → Open 16x24 Seed Keeper Study** and p
 Play. Exit Play and choose **Return to 3D Spawn** to reopen the existing game.
 Both menu routes were exercised; the original scene remains clean. The study
 is left open in the editor after verification. It is intentionally a static
-visual study with three sprites, with no movement, dialogue or HUD.
+visual study with four sprites, with no movement, dialogue or HUD.
 
 ## Initial single-character results and self-review
 
@@ -171,3 +171,33 @@ appropriate check for this static addition.
 Self-review: no notable outstanding findings. Can verify source fidelity, prefab
 placement, exact actual Game rendering and editor restoration. Cannot claim
 animation or gameplay Tatterjay behavior in this static art study.
+
+
+## Reedback Grazer — 03-ridge added
+
+Added the user-selected `Downloads/grazer-editable-source/03-ridge.png`, with its
+unchanged editable grid, SVG and palette in `ArtSource/ReedbackGrazer16x24`.
+All 384 PNG cells match the grid/SVG. Native canvas is 16×24 with 111 opaque
+pixels and six colors. The low 16×12 occupied silhouette keeps its original
+transparent margins, without stretching or trimming.
+
+Same native sprite import settings and unlit material as the existing figures.
+The reusable grazer prefab occupies the fourth adjacent cell. Grid origin moves
+to (-2, -0.75), centering actors at world X -1.5/-0.5/0.5/1.5, shared Y -0.75,
+all at scale 1. No camera or earlier sprite changes.
+
+Actual Unity Play capture contains four sprites and no gameplay bootstrap. Every
+pixel of the unedited 1280×800 frame matches the four PNGs composited at exact 8×
+scale, with zero differing pixels. Source/Unity PNG byte identity and import
+settings verified. Play stopped, Game view index restored to 0, saved study clean.
+This is an asset/scene-only addition; no runtime code or new gameplay tests.
+
+[Source and edit instructions](../ArtSource/ReedbackGrazer16x24/README.md) ·
+[Live observer](Verification/SeedKeeper16x24/grazer-live.json) ·
+[Exact pixel proof](Verification/SeedKeeper16x24/grazer-capture.json).
+
+![Four sprites in Unity](Verification/SeedKeeper16x24/keeper-cook-tatterjay-grazer-game.png)
+
+Self-review: no notable outstanding findings. Can verify source fidelity,
+placement and exact Game rendering. Cannot claim animation or grazer gameplay
+behavior from this static art study.
