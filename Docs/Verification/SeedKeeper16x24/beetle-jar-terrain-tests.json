@@ -1,0 +1,28 @@
+{
+  "job_id": "7f01c3b1e1f54aaaa38fd2b414d9ec57",
+  "status": "failed",
+  "mode": "EditMode",
+  "started_unix_ms": 1792633620364,
+  "finished_unix_ms": 1792633637321,
+  "last_update_unix_ms": 1792633637321,
+  "progress": {
+    "completed": 14,
+    "total": 14,
+    "current_test_full_name": null,
+    "current_test_started_unix_ms": 1792633636401,
+    "last_finished_test_full_name": "CavesOfOoo.Tests.TerrainRenderCoverageTests.TheVerticalWorldHasArt_NotJustLetters",
+    "last_finished_unix_ms": 1792633636405,
+    "stuck_suspected": false,
+    "editor_is_focused": false,
+    "blocked_reason": null,
+    "failures_so_far": [
+      {
+        "full_name": "CavesOfOoo.Tests.TerrainRenderCoverageTests.EveryTerrainBlueprintIsEitherGroundOrDeliberatelyAGlyph",
+        "message": "  These terrain blueprints resolve no ground material and are not listed as glyph-only, so they will render as bare ASCII over the flowing ground field. Either map them in EnvironmentSpriteRenderer.ResolveGroundMaterial or add them to GlyphOnlyByDesign with a reason: FrontierClothScreen, CausticFilm\n  Expected: <empty>\n  But was:  < \"FrontierClothScreen\", \"CausticFilm\" >\n"
+      }
+    ],
+    "failures_capped": false
+  },
+  "error": null,
+  "result": null
+}

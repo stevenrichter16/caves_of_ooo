@@ -1,12 +1,12 @@
 # Flat 16×24 presentation study
 
-Status: completed and verified in Unity Play mode, 2026-10-18.
+Status: completed and verified in Unity Play mode; latest addition 2026-10-21.
 
 ## User scope
 
 Initial scope: a blank dark-green field and Seed Keeper 3 alone. The user then
-requested the cook, Tatterjay and Reedback Grazer beside him; the current saved
-study contains all four sprites.
+requested the cook, Tatterjay, Reedback Grazer and beetle jar; the current saved
+study contains all five sprites.
 Use a flat top-down pixel grid in the spirit of Qud. This first visual study is
 a separate scene; expanding the actual spawn chunk is a later step. The source
 art is the user's own 16×24 PNG and editable Piskel, not a Qud asset.
@@ -54,7 +54,7 @@ In Unity, use **Caves Of Ooo → Scenes → Open 16x24 Seed Keeper Study** and p
 Play. Exit Play and choose **Return to 3D Spawn** to reopen the existing game.
 Both menu routes were exercised; the original scene remains clean. The study
 is left open in the editor after verification. It is intentionally a static
-visual study with four sprites, with no movement, dialogue or HUD.
+visual study with five sprites, with no movement, dialogue or HUD.
 
 ## Initial single-character results and self-review
 
@@ -201,3 +201,28 @@ This is an asset/scene-only addition; no runtime code or new gameplay tests.
 Self-review: no notable outstanding findings. Can verify source fidelity,
 placement and exact Game rendering. Cannot claim animation or grazer gameplay
 behavior from this static art study.
+
+
+## Beetle jar added — 2026-10-21
+
+Imported the supplied 16×24 `beetle-jar.png` and matching Piskel unchanged. The
+new study sprite/prefab uses the existing native scale and unlit material. Grid
+origin moves to (-2.5, -0.75), centering five adjacent cells. Earlier artwork and
+camera remain unchanged. The existing game's `BeetleJar` 2D resource also receives
+the exact source PNG, retaining its metadata/GUID; the original 3D model is preserved.
+
+Actual Unity Play: five sprites, no gameplay bootstrap. The complete 1280×800
+frame matches the source PNG composite at exact 8× scale with zero differing
+pixels. Play stopped, original Game view index 0 restored and saved scene clean.
+Existing targeted jar-resource/3D checks pass 21/21. A broader terrain census
+failure for two unrelated fixtures also occurs with the original jar PNG; it is
+recorded in the [jar living document](BEETLE-JAR-16X24-ART.md), not claimed green.
+
+[Source/edit instructions](../ArtSource/BeetleJar16x24/README.md) ·
+[Exact Game-frame proof](Verification/SeedKeeper16x24/beetle-jar-capture.json).
+
+![Five-sprite study in Unity](Verification/SeedKeeper16x24/five-sprites-beetle-jar-game.png)
+
+Can verify exact source/native rendering, placement, resource connection and
+restoration. Cannot claim new jar gameplay or a replacement 3D portrait from this
+static study. No runtime script or gameplay blueprint changed.
