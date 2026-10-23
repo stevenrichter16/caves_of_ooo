@@ -10,6 +10,10 @@ The clearing should read as a lived-in seed exchange and cooking stop: seed sort
 
 ## Working prompts
 
+### External references added at the user's request
+
+Read [ART-REFERENCE-LIBRARY.md](ART-REFERENCE-LIBRARY.md) before the next art iteration. Eight visually inspected sources cover Qud's spatial readability, practical seed storage and earthen cooking, dry seedheads, sundews, salt crust, wetland roots and reclaimed machinery. The approved sprites remain the style anchor. Choose one or two source IDs for each relevant imagegen concept, record the specific feature being translated, and keep the output original and readable at native size. The regional references are future art direction; prioritize the already planned functional crop slice tonight. Source URLs, credits and usage notes are preserved in `ArtSource/Clearing16x24/references.json`; no external image files were added to the game's assets.
+
 ### Plan prompt
 
 Inspect the approved 16×24 assets and current scene routing. Design one coherent clearing with modular environment assets, clear traversable routes and contrasting silhouettes. Verify integration assumptions against code before implementing. Make the result reusable without replacing approved sources. Choose a bounded set of high-impact assets and testable completion gates. Budget disk and runtime cost. Record decisions and evidence here.
