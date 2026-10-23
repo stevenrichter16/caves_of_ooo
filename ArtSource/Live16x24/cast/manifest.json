@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "artifact": "opening-cast.png",
+  "width": 64,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 4,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary; native PNG validated separately.",
+  "animation": "None. Four distinct living base subjects, not animation frames.",
+  "source": "opening-cast.blend",
+  "generator": "Tools/Live16x24/build_opening_cast.py",
+  "renderHelper": "Tools/Live16x24/build_opening_base.py (read-only import, no earlier assets changed)",
+  "concept": "ArtSource/Live16x24/concepts/cast-parts-v1.png (visual reference only)",
+  "sha256": "35a2de34d9bf6d6dfe66c7dd47439f7ac03ec6b7de9e09f026d6cb623e24d73a",
+  "frames": [
+    {
+      "index": 0,
+      "id": "villager",
+      "blueprint": "Villager",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Unhelmeted civilian in a sloped olive work tunic; cream cloth, uncovered profile, lowered hands and separated feet.",
+      "occupiedPixels": 136,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        3,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "pet-dog",
+      "blueprint": "PetDog",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Low horizontal tawny dog with a blunt muzzle, single floppy ear, raised bent tail and open belly/leg gaps; no collar prop.",
+      "occupiedPixels": 76,
+      "palette": [
+        "342E25",
+        "7C522F",
+        "A97542",
+        "C59156",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "marlback-scrabbler",
+      "blueprint": "MarlbackScrabbler",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Compact hunched shale-backed burrower, short blunt face below plates, broad hind foot and two asymmetrical grasping foreclaws.",
+      "occupiedPixels": 134,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        8,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "marlback-gleaner",
+      "blueprint": "MarlbackGleaner",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Taller forward-leaning member of the shale-backed species; stepped plate ridge, rust seams and one reaching foreclaw. No permanent equipment.",
+      "occupiedPixels": 159,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        3,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}

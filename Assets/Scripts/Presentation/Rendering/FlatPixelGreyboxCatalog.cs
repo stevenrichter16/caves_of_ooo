@@ -52,13 +52,18 @@ namespace CavesOfOoo.Rendering
         private Texture2D _atlas;
         private bool _disposed;
 
-        public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath)) { }
+        public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
-        public FlatPixelGreyboxCatalog(Texture2D openingAtlas)
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas) : this(openingAtlas, null) { }
+
+        /// <summary>Injects independent borrowed base/cast atlases. Neither
+        /// missing group causes an implicit resource load or disables the other.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];

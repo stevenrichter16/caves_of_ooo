@@ -1,0 +1,110 @@
+{
+  "tool": "Read-only Pillow pixel/dimension checks; Blender5.2.1 direct native geometry renders",
+  "atlasSize": [
+    64,
+    24
+  ],
+  "atlasSHA256": "35a2de34d9bf6d6dfe66c7dd47439f7ac03ec6b7de9e09f026d6cb623e24d73a",
+  "exactAuthoredPixelMismatches": 0,
+  "contactSize": [
+    1024,
+    352
+  ],
+  "contactIntegerScale": 8,
+  "contactSpritePixelMismatches": 0,
+  "frames": [
+    {
+      "index": 0,
+      "id": "villager",
+      "colorCount": 5,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 136,
+      "alphaBoundsTopLeft": [
+        3,
+        3,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 1,
+      "id": "pet-dog",
+      "colorCount": 5,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 76,
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 2,
+      "id": "marlback-scrabbler",
+      "colorCount": 6,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 134,
+      "alphaBoundsTopLeft": [
+        1,
+        8,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 3,
+      "id": "marlback-gleaner",
+      "colorCount": 7,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 159,
+      "alphaBoundsTopLeft": [
+        2,
+        3,
+        15,
+        23
+      ]
+    }
+  ],
+  "approvedInputs": [
+    {
+      "path": "Assets/Art/SeedKeeper3/seed-keeper-3.png",
+      "sha256": "ec3e10a85de884ec9611fa6f4d1cb9856e02d66c8ed8b540e9bd8ca20c8e2601",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/Cook16x24/cook-16x24.png",
+      "sha256": "d534b0e3cab143d8a1523829fc4bd101b76d776d307a152fd18cfe9c5681dbdd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/Tatterjay16x24/tatterjay.png",
+      "sha256": "838e2fbf5db9dadb5efddae3cef40ea06feba9a600e6413f75163dc15cfd3401",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/ReedbackGrazer16x24/03-ridge.png",
+      "sha256": "29db64b90637fdd305a355907c06547c5f46d82f912ec95a88307d92f28b4dad",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/BeetleJar16x24/beetle-jar.png",
+      "sha256": "eabd360b2c0305f7b061d73ac991fcea56ecc2efb2ac370ce387e0526f6f3f7a",
+      "unchangedFromHEAD": true
+    }
+  ],
+  "previousBaseAtlasUnchangedSHA256": "71ce34419f0e5b1a9a494dd4abd2b29efa8c5866dab97e2aaa57b1e2fb42df2e",
+  "visualReview": "Two direct render/review passes: final lowers/widens scrabbler plates and face for a squat15-pixel silhouette, versus20-pixel leaning gleaner. Dog remains14x11 with low body and leg gaps. No giant eyes or equipment. Real Unity integration/acceptance pending root."
+}
