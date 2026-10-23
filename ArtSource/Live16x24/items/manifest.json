@@ -1,0 +1,418 @@
+{
+  "schema": 1,
+  "artifact": "opening-items.png",
+  "width": 192,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 12,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary; verified independently.",
+  "source": "opening-items.blend",
+  "generator": "Tools/Live16x24/build_opening_items.py",
+  "concept": "ArtSource/Live16x24/concepts/loose-items-v1.png (reference only; native flat reconstruction)",
+  "capture": "Docs/Verification/Live16x24/native-states-gourd-harvest.png",
+  "scope": "Static identity frames for twelve real loose items. Actual visible top owner only. No new spawns, animation, stack-count artwork or runtime integration claim.",
+  "sha256": "1ead2618c2d82d2ca7cae8765ab09f690255998ad0bb5b36027d7835fc292394",
+  "frames": [
+    {
+      "index": 0,
+      "id": "emberwheat",
+      "blueprint": "Emberwheat",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "A short cut sheaf with notched grain heads and stems gathered into one tie; no standing soil or growing leaves.",
+      "realSource": "Three opening ripe field rows yield one unit each; packed first, overflow left on the cut row.",
+      "actualUse": "Eat for 2d4 healing or cook into toasted emberwheat.",
+      "limits": "No LightSourcePart. No planted-row identity, light halo, or promise of more than the real stack count.",
+      "occupiedPixels": 50,
+      "palette": [
+        "806033",
+        "B5A47E",
+        "D8A446",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        8,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 1,
+      "id": "toasted-grain",
+      "blueprint": "ToastedEmberwheat",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "Dry cut grain with bent browned tips and a shorter gathered stem; distinct outline as well as color from raw grain.",
+      "realSource": "Cooking carried Emberwheat at a valid hot station replaces it with the same quantity of carried cooked food.",
+      "actualUse": "Eat for 3d4 healing and +20 heat resistance for 100 actor turns, replacing the previous prepared meal.",
+      "limits": "No flame, smoke, glowing coals, bread loaf or decorative duplicate beside the station.",
+      "occupiedPixels": 50,
+      "palette": [
+        "5F4830",
+        "9C6B32",
+        "B5A47E",
+        "D8A446"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        9,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 2,
+      "id": "drawgourd-shell",
+      "blueprint": "DrawgourdShell",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "A detached golden hard-shell vessel, open dark neck above a rounded base; no vine, water surface or painted fill level.",
+      "realSource": "The opening ripe DrawgourdCrop releases one shell and one seed; Harvest leaves both on the bed, Gather tries to pack them.",
+      "actualUse": "Reusable water-only vessel: capacity three; fresh shells are empty. Fill, drink, water crops, transfer or douse through real actions.",
+      "limits": "Not stackable. One neutral silhouette for any valid charge count; no spring, automatic refill or implied water supply.",
+      "occupiedPixels": 56,
+      "palette": [
+        "342E25",
+        "9C6B32",
+        "C99538",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        11,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "id": "drawgourd-seed",
+      "blueprint": "DrawgourdSeed",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "One small pointed cream seed with a flat dry crease; deliberately much smaller than the vessel and no tilled soil behind it.",
+      "realSource": "One seed accompanies the ripe opening gourd's harvested shell.",
+      "actualUse": "Consume a carried seed to plant an empty prepared bed, underfoot or adjacent.",
+      "limits": "A loose seed is not an already planted crop or a packet promising several seeds.",
+      "occupiedPixels": 17,
+      "palette": [
+        "5F4830",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        19,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "id": "mushroom",
+      "blueprint": "Mushroom",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "One broad pale cap above its short attached stem, separate from the three-cap living mushroom ring.",
+      "realSource": "Opening rings at (34,19) and (50,21) each yield two to four; source ring is removed, produce packs first or overflows.",
+      "actualUse": "Eat for 1d4 healing or cook into RoastedMushroom.",
+      "limits": "No poison, light, colony regrowth or multiple-unit promise is painted into this loose cap.",
+      "occupiedPixels": 41,
+      "palette": [
+        "75834B",
+        "ABA986",
+        "C9C39A",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        15,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 5,
+      "id": "roasted-mushroom",
+      "blueprint": "RoastedMushroom",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "Browned cap with up-curled ends and shortened cream stem; preserves the mushroom identity but changes its rim silhouette.",
+      "realSource": "Cooking carried Mushroom creates carried cooked food atomically, never an extra food owner beside the fire.",
+      "actualUse": "Eat for 3d4 healing and +20 acid resistance for 100 actor turns, replacing the previous prepared meal.",
+      "limits": "No poison, live fire, steam or stacked-meal promise.",
+      "occupiedPixels": 43,
+      "palette": [
+        "5F4830",
+        "9C6B32",
+        "B5A47E",
+        "C9C39A"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        15,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "id": "glow-quartz",
+      "blueprint": "GlowQuartz",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "One oblique detached mineral shard with a short broken base; no three-pronged rock source or surrounding glow.",
+      "realSource": "The two opening quartz veins yield one or two units each and disappear when harvested; items pack first or overflow.",
+      "actualUse": "Forge infusion or consume one via CrackQuartz to create a separate temporary ground light.",
+      "limits": "Raw GlowQuartz has no LightSourcePart. CrackedGlowQuartz is a different non-takeable thirty-turn owner and is outside this atlas.",
+      "occupiedPixels": 22,
+      "palette": [
+        "397568",
+        "70A68A",
+        "B4CCAB"
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        14,
+        10,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 7,
+      "id": "healing-tonic",
+      "blueprint": "HealingTonic",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "Small cream medicine vessel with a brown stopper and worn rust paper band; opaque contents and no animated magic glow.",
+      "realSource": "One in the opening chest at (51,8); two in authored starting builds. Loose only after a real drop or transfer.",
+      "actualUse": "Consume by applying the 4d6+4 healing dose, or throw its real tonic payload.",
+      "limits": "No reusable empty-bottle owner, cure-all icon or transparent fill-level promise.",
+      "occupiedPixels": 40,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        13,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 8,
+      "id": "dried-meat",
+      "blueprint": "DriedMeat",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "description": "Two irregular dry red-brown strips tied at one end; separated lower ends, no bones or fresh blood pool.",
+      "realSource": "One in the opening chest; two in starting builds; later visible through an actual drop or throw.",
+      "actualUse": "Eat for 3d4 healing; eligible hunting furrowstalkers can consume a ground unit as a finite diversion.",
+      "limits": "No promise that opening PetDog or Marlbacks obey bait. Throwing at a creature remains an attack.",
+      "occupiedPixels": 44,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B5A47E",
+        "B85834"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        11,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 9,
+      "id": "fire-clay",
+      "blueprint": "FireClay",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "description": "Compact uneven pressed red-clay lump with one matte clay-color ridge and flat dark underside; no flame or light.",
+      "realSource": "Two finite measures in the connected cellar supply crate; visible in the opening only after bringing and dropping them.",
+      "actualUse": "Two seal the opening well; one can smother existing flames without adding wetness. Other authored repairs use their own quantities.",
+      "limits": "Not a burning coal, ore vein, explosive or lasting fire-protection effect. Clay provenance remains gameplay data.",
+      "occupiedPixels": 41,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B85834"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        17,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 10,
+      "id": "salvaged-timber",
+      "blueprint": "SalvagedTimber",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "description": "Two short offset split wooden pieces with blunt cut ends and a clear horizontal gap; flat planks, not cylindrical logs or a full pallet.",
+      "realSource": "Dismantling the finite cellar timber pallet yields two units, packed first with genuine overflow if needed.",
+      "actualUse": "Repair supported wooden structures/gear, jam eligible traps, shape a haft, or add ten fuel to a finite cooking fire.",
+      "limits": "Art is an identity marker, not a count display. Feeding fuel does not ignite the fire. No new wood resource is created by drawing it.",
+      "occupiedPixels": 45,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        16,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 11,
+      "id": "marlback-corpse",
+      "blueprint": "MarlbackCorpse",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "description": "Low collapsed shale plates, folded tawny limbs and short pale claws, with an off-center blunt head; no upright living pose or embedded equipment.",
+      "realSource": "Actual opening Scrabbler/Gleaner deaths have a seventy-percent corpse chance, subject to corpse suppression; corpse records SourceBlueprint and SourceID.",
+      "actualUse": "Carryable remains, weight ten. The unchanged native entity owns its persistence and interactions.",
+      "limits": "No default HarvestablePart, FoodPart, decay timer or stack. No promised meat, minerals, resurrection or fresh gore decal.",
+      "occupiedPixels": 71,
+      "palette": [
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        15,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    }
+  ]
+}

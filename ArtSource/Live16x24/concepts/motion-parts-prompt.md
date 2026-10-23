@@ -13,4 +13,3 @@ Walk A/B should visibly alternate limbs and weight, not translate/bounce a rigid
 ## Critique
 
 Keep committed reach and asymmetric recoil motifs. Reject generated gradients, shaded plates, invented dog facial detail, oversized reach beyond one cell and nearly duplicated walking poses. Native production must genuinely alternate limb clusters and retain the existing palette/idle silhouettes. This board is not gameplay evidence or a production sprite sheet.
-

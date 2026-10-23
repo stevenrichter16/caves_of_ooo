@@ -1,0 +1,620 @@
+{
+  "schema": 1,
+  "artifact": "opening-motion.png",
+  "width": 256,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 16,
+  "pixelsPerUnit": 16,
+  "actorPivotNormalized": [
+    0.5,
+    0
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary, verified independently.",
+  "frameOrder": "Four poses per actor: walk-a, walk-b, melee, hurt; Player, PetDog, MarlbackScrabbler, MarlbackGleaner.",
+  "scope": "Canonical one-facing pose artwork only, not direction sheets or evidence of runtime integration. Idle reused from accepted base/cast atlases. No shadows, weapons, collision changes or baked hit markers.",
+  "source": "opening-motion.blend",
+  "generator": "Tools/Live16x24/build_opening_motion.py",
+  "concept": "ArtSource/Live16x24/concepts/motion-parts-v1.png (pose reference, duplicate walks and added shading rejected)",
+  "originalGeometry": [
+    "Tools/Live16x24/build_opening_base.py",
+    "Tools/Live16x24/build_opening_cast.py"
+  ],
+  "sha256": "08bf046d5e70ae2f9466d0e3570c39933d46de4f991cf941607725ae0c64c176",
+  "frames": [
+    {
+      "index": 0,
+      "id": "Player-walk-a",
+      "blueprint": "Player",
+      "pose": "walk-a",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Left arm bends forward as the left boot reaches out; opposite arm trails. Hood and coat identity stay fixed.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/base/opening-base.png",
+        "frame": 0
+      },
+      "occupiedPixels": 162,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "9C6B32",
+        "C99538",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        1,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "Player-walk-b",
+      "blueprint": "Player",
+      "pose": "walk-b",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Right arm curls forward while the left arm extends behind; narrower left step and wide right step reverse the stride.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/base/opening-base.png",
+        "frame": 0
+      },
+      "occupiedPixels": 159,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "9C6B32",
+        "C99538",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        1,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "Player-melee",
+      "blueprint": "Player",
+      "pose": "melee",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Committed short rightward reach, forward hood and braced split legs; no permanent weapon or trail.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/base/opening-base.png",
+        "frame": 0
+      },
+      "occupiedPixels": 162,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "9C6B32",
+        "C99538",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        2,
+        16,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "Player-hurt",
+      "blueprint": "Player",
+      "pose": "hurt",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Hood pulls back and down, shoulders compress, one hand rises and the other folds inward; boots still meet the same baseline.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/base/opening-base.png",
+        "frame": 0
+      },
+      "occupiedPixels": 158,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "9C6B32",
+        "C99538",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        2,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "PetDog-walk-a",
+      "blueprint": "PetDog",
+      "pose": "walk-a",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Diagonal trot: near hind leg reaches backward, near front leg reaches forward; far pair bends underneath the belly.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 1
+      },
+      "occupiedPixels": 75,
+      "palette": [
+        "342E25",
+        "7C522F",
+        "A97542",
+        "C59156",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "PetDog-walk-b",
+      "blueprint": "PetDog",
+      "pose": "walk-b",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Opposite trot phase: near hind leg folds forward, near foreleg folds back, and the far foreleg plants out ahead.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 1
+      },
+      "occupiedPixels": 76,
+      "palette": [
+        "342E25",
+        "7C522F",
+        "A97542",
+        "C59156",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "PetDog-melee",
+      "blueprint": "PetDog",
+      "pose": "melee",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Head and neck stretch forward into a small open-jaw bite; rear leg pushes, foreleg braces, low body and floppy ear remain recognizably canine.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 1
+      },
+      "occupiedPixels": 68,
+      "palette": [
+        "342E25",
+        "7C522F",
+        "A97542",
+        "C59156",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        0,
+        15,
+        16,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 7,
+      "id": "PetDog-hurt",
+      "blueprint": "PetDog",
+      "pose": "hurt",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Head recoils up and back, tail drops, one forepaw curls under the chest; no hit icon, blood or palette flash.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 1
+      },
+      "occupiedPixels": 70,
+      "palette": [
+        "342E25",
+        "7C522F",
+        "A97542",
+        "C59156",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        13,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 8,
+      "id": "MarlbackScrabbler-walk-a",
+      "blueprint": "MarlbackScrabbler",
+      "pose": "walk-a",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Wide rear plant and near claw stepping backward, while the farther claw reaches ahead; shale dome stays in place.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 2
+      },
+      "occupiedPixels": 130,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        8,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 9,
+      "id": "MarlbackScrabbler-walk-b",
+      "blueprint": "MarlbackScrabbler",
+      "pose": "walk-b",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Rear foot comes beneath the dome; near claw plants forward while the farther wrist folds back into a visible gap.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 2
+      },
+      "occupiedPixels": 125,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        8,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 10,
+      "id": "MarlbackScrabbler-melee",
+      "blueprint": "MarlbackScrabbler",
+      "pose": "melee",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Low lateral grasp with one long leading foreclaw and rear foot spread for purchase; short blunt head stays below the same shale dome.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 2
+      },
+      "occupiedPixels": 135,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        0,
+        8,
+        16,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 11,
+      "id": "MarlbackScrabbler-hurt",
+      "blueprint": "MarlbackScrabbler",
+      "pose": "hurt",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Both wrists retract beneath the face and the dome lowers one pixel over a close braced stance; plate shape and sparse face stay unchanged.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 2
+      },
+      "occupiedPixels": 118,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        9,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 12,
+      "id": "MarlbackGleaner-walk-a",
+      "blueprint": "MarlbackGleaner",
+      "pose": "walk-a",
+      "rect": [
+        192,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Long rearward hind stride, near claw drawn under the body and far arm stretched ahead; stepped ridge remains tall.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 3
+      },
+      "occupiedPixels": 156,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        3,
+        16,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 13,
+      "id": "MarlbackGleaner-walk-b",
+      "blueprint": "MarlbackGleaner",
+      "pose": "walk-b",
+      "rect": [
+        208,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Rear foot steps inward and the near foreclaw plants outward; elevated far wrist swings back, reversing the stride without shifting the shell.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 3
+      },
+      "occupiedPixels": 149,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        3,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 14,
+      "id": "MarlbackGleaner-melee",
+      "blueprint": "MarlbackGleaner",
+      "pose": "melee",
+      "rect": [
+        224,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Tall leading claw rises beside the blunt face, open pincer reaches forward, and the other foreleg braces; no weapon or extra limb.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 3
+      },
+      "occupiedPixels": 158,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        3,
+        16,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 15,
+      "id": "MarlbackGleaner-hurt",
+      "blueprint": "MarlbackGleaner",
+      "pose": "hurt",
+      "rect": [
+        240,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Tall ridge leans back a pixel, one claw curls high near the body, and the supporting leg bends outward into a defensive recoil.",
+      "idleSource": {
+        "path": "ArtSource/Live16x24/cast/opening-cast.png",
+        "frame": 3
+      },
+      "occupiedPixels": 145,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9B442B",
+        "A97542",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        4,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}
