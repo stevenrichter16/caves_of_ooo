@@ -23,6 +23,7 @@ namespace CavesOfOoo.Rendering
         public const string PlotResourcePath = "Sprites/Live16x24/north-plot";
         public const string KeeperResourcePath = "Sprites/Live16x24/seed-keeper-3";
         public const string PlotProductsResourcePath = "Sprites/Live16x24/plot-products";
+        public const string WorksProductsResourcePath = "Sprites/Live16x24/north-works-products";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -46,6 +47,8 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _keeperSprites;
         private readonly Tile[] _plotProductTiles;
         private readonly Sprite[] _plotProductSprites;
+        private readonly Tile[] _worksProductTiles;
+        private readonly Sprite[] _worksProductSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
@@ -53,7 +56,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
             Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath),
             Resources.Load<Texture2D>(WorksResourcePath), Resources.Load<Texture2D>(PlotResourcePath),
-            Resources.Load<Texture2D>(KeeperResourcePath), Resources.Load<Texture2D>(PlotProductsResourcePath)) { }
+            Resources.Load<Texture2D>(KeeperResourcePath), Resources.Load<Texture2D>(PlotProductsResourcePath),
+            Resources.Load<Texture2D>(WorksProductsResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -106,6 +110,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>The independently optional eleventh atlas represents loose
         /// plot goods, not their plants. It borrows its texture and creates no owners.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, null) { }
+
+        /// <summary>The twelfth optional borrowed group adds exact forage and
+        /// works outputs. Existing injections never load omitted resource groups.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -118,6 +127,7 @@ namespace CavesOfOoo.Rendering
             _plotTiles = BuildFrames(plotAtlas, 8, "plot", out _plotSprites);
             _keeperTiles = BuildFrames(keeperAtlas, 1, "keeper", out _keeperSprites);
             _plotProductTiles = BuildFrames(plotProductsAtlas, 8, "plot-products", out _plotProductSprites);
+            _worksProductTiles = BuildFrames(worksProductsAtlas, 7, "works-products", out _worksProductSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -206,20 +216,31 @@ namespace CavesOfOoo.Rendering
                 tile = _plotProductTiles == null ? null : _plotProductTiles[frame];
                 return tile != null;
             }
+            frame = WorksProductFrameOf(owner, render);
+            if (frame >= 0)
+            {
+                tile = _worksProductTiles == null ? null : _worksProductTiles[frame];
+                return tile != null;
+            }
             return TryResolvePlot(owner, render, out tile);
         }
 
-        private static int PlotProductFrameOf(Entity owner, RenderPart render)
+        private static bool PortableNativeProduct(Entity owner, RenderPart render)
         {
             if (!string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
                 || !string.IsNullOrEmpty(render.GlyphVariants) || !owner.HasTag("Item")
                 || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Terrain")
-                || owner.HasTag("Crop") || owner.HasPart<CropPart>()) return -1;
+                || owner.HasTag("Crop") || owner.HasPart<CropPart>()) return false;
             var physics = Owned<PhysicsPart>(owner);
-            if (physics == null || !physics.Takeable || physics.Solid) return -1;
+            if (physics == null || !physics.Takeable || physics.Solid) return false;
             var stack = owner.GetPart<StackerPart>();
-            if (stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0
-                || stack.StackCount > stack.MaxStack)) return -1;
+            return stack == null || (stack.ParentEntity == owner && stack.StackCount > 0
+                && stack.StackCount <= stack.MaxStack);
+        }
+
+        private static int PlotProductFrameOf(Entity owner, RenderPart render)
+        {
+            if (!PortableNativeProduct(owner, render)) return -1;
             switch (owner.BlueprintName)
             {
                 case "CandyCarrot": return Owned<FoodPart>(owner) != null ? 0 : -1;
@@ -249,6 +270,42 @@ namespace CavesOfOoo.Rendering
                 case "InertSludge": return 7;
                 default: return -1;
             }
+        }
+
+        private static int WorksProductFrameOf(Entity owner, RenderPart render)
+        {
+            if (!PortableNativeProduct(owner, render)) return -1;
+            switch (owner.BlueprintName)
+            {
+                case "StoneburrSeed": return HasReagentProperty(owner, BrewProperties.Binding) ? 0 : -1;
+                case "FrostLichen": return HasReagentProperty(owner, BrewProperties.Cold) ? 1 : -1;
+                case "MendleafSprig": return HasReagentProperty(owner, BrewProperties.Vital) ? 2 : -1;
+                case "WildBerries": return Owned<FoodPart>(owner) != null ? 3 : -1;
+                case "GoldCoin": return Owned<CommercePart>(owner) != null ? 4 : -1;
+                case "BrewedTonic":
+                    if (Owned<TonicPart>(owner) == null) return -1;
+                    var brew = owner.GetPart<BrewItemPart>();
+                    // Healing-only brews legitimately have no BrewItem. This
+                    // opaque vessel promises neither contents nor safe drinking.
+                    // Explicit Food and unknown forms retain their fallback.
+                    return brew == null || (brew.ParentEntity == owner
+                        && (brew.Form == "Tonic" || brew.Form == "Coating" || brew.Form == "Throwable")) ? 5 : -1;
+                case "ConcentratedMendleaf": return HasReagentProperty(owner, BrewProperties.Vital) ? 6 : -1;
+                default: return -1;
+            }
+        }
+
+        private static bool HasReagentProperty(Entity owner, string expected)
+        {
+            var reagent = Owned<ReagentPart>(owner);
+            if (reagent == null) return false;
+            var properties = reagent.GetProperties(); // Owner caches parsed entries by raw snapshot.
+            for (int i = 0; i < properties.Count; i++)
+            {
+                var property = properties[i];
+                if (property != null && property.Potency > 0 && property.Property == expected) return true;
+            }
+            return false;
         }
 
         private static bool PlotSeed(Entity owner, string crop, bool cultivated)
@@ -590,6 +647,8 @@ namespace CavesOfOoo.Rendering
             if (_keeperSprites != null) foreach (var sprite in _keeperSprites) DestroyOwned(sprite);
             if (_plotProductTiles != null) foreach (var tile in _plotProductTiles) DestroyOwned(tile);
             if (_plotProductSprites != null) foreach (var sprite in _plotProductSprites) DestroyOwned(sprite);
+            if (_worksProductTiles != null) foreach (var tile in _worksProductTiles) DestroyOwned(tile);
+            if (_worksProductSprites != null) foreach (var sprite in _worksProductSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

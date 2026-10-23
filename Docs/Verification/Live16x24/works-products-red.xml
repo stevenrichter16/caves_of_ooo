@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="58" result="Failed(Child)" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.705443">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30496" result="Failed" site="Child" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.705443" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37547" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30496" result="Failed" site="Child" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.508627" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37548" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30496" result="Failed" site="Child" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.410010" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37549" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30496" result="Failed" site="Child" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.309918" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28790" name="FlatPixelWorksProductTests" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-10-23 22:13:10Z" end-time="2026-10-23 22:13:12Z" duration="2.009456" total="58" passed="4" failed="54" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28856" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.177381" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28850" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;StoneburrSeed&quot;,null,&quot;Tonic&quot;,&quot;Stoneskin&quot;,null)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;StoneburrSeed&quot;,null,&quot;Tonic&quot;,&quot;Stoneskin&quot;,null)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1409031289" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.015394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28851" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;FrostLichen&quot;,null,&quot;Coating&quot;,&quot;Frozen&quot;,null)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;FrostLichen&quot;,null,&quot;Coating&quot;,&quot;Frozen&quot;,null)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1236661321" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28852" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;MendleafSprig&quot;,null,&quot;Tonic&quot;,null,&quot;1d4&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;MendleafSprig&quot;,null,&quot;Tonic&quot;,null,&quot;1d4&quot;)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="505871476" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28853" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;ConcentratedMendleaf&quot;,null,&quot;Tonic&quot;,null,&quot;2d4&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;ConcentratedMendleaf&quot;,null,&quot;Tonic&quot;,null,&quot;2d4&quot;)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1975552085" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28854" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;StoneburrSeed&quot;,&quot;BlastcapSpore&quot;,&quot;Throwable&quot;,&quot;Stoneskin&quot;,null)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;StoneburrSeed&quot;,&quot;BlastcapSpore&quot;,&quot;Throwable&quot;,&quot;Stoneskin&quot;,null)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="2004326636" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28855" name="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;EmberFruit&quot;,null,&quot;Food&quot;,null,&quot;1d4&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety(&quot;EmberFruit&quot;,null,&quot;Food&quot;,null,&quot;1d4&quot;)" methodname="ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="863802873" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualBrewingConsumesReagentsAndKeepsNeutralPresentationWithoutInferringSafety (System.String input, System.String second, System.String form, System.String status, System.String healing) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:259
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28849" name="ActualCoinPickupConvertsToCurrencyAndCannotRemainAnInventoryOrWorldPortrait" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualCoinPickupConvertsToCurrencyAndCannotRemainAnInventoryOrWorldPortrait" methodname="ActualCoinPickupConvertsToCurrencyAndCannotRemainAnInventoryOrWorldPortrait" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1876489891" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000559" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualCoinPickupConvertsToCurrencyAndCannotRemainAnInventoryOrWorldPortrait () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:236
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28848" name="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.086234" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28844" name="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(0,&quot;StoneburrPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(0,&quot;StoneburrPatch&quot;)" methodname="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="428831103" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.003373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods (System.Int32 index, System.String sourceName) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28845" name="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(1,&quot;FrostLichenPatch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(1,&quot;FrostLichenPatch&quot;)" methodname="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1535251543" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods (System.Int32 index, System.String sourceName) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28846" name="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(2,&quot;MendleafPlant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(2,&quot;MendleafPlant&quot;)" methodname="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1419974629" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001007" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods (System.Int32 index, System.String sourceName) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28847" name="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(3,&quot;BerryBush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods(3,&quot;BerryBush&quot;)" methodname="ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="997694273" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ActualFiniteHarvestOverflowPickupAndCarriedPortraitFollowTheSameGoods (System.Int32 index, System.String sourceName) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28811" name="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.199554" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28807" name="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(0,&quot;binding&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(0,&quot;binding&quot;)" methodname="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1813648171" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.003177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting (System.Int32 index, System.String property) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28808" name="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(1,&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(1,&quot;cold&quot;)" methodname="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1122427701" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting (System.Int32 index, System.String property) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28809" name="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(2,&quot;vital&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(2,&quot;vital&quot;)" methodname="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="881781735" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting (System.Int32 index, System.String property) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28810" name="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(6,&quot;vital&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting(6,&quot;vital&quot;)" methodname="CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="990022570" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.CachedReagentPropertiesFollowPositiveMeaningRatherThanRawFormatting (System.Int32 index, System.String property) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:86
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28858" name="DefaultResourceActuallyBindsAllSevenWorldAndSubjectFrames" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.DefaultResourceActuallyBindsAllSevenWorldAndSubjectFrames" methodname="DefaultResourceActuallyBindsAllSevenWorldAndSubjectFrames" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="864142488" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001349" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Imported-resource RED is separate from injected runtime RED.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.DefaultResourceActuallyBindsAllSevenWorldAndSubjectFrames () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:315
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28820" name="DescriptiveTextFoodPotencyAndCoinPriceAreNotNewSpriteStates" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.DescriptiveTextFoodPotencyAndCoinPriceAreNotNewSpriteStates" methodname="DescriptiveTextFoodPotencyAndCoinPriceAreNotNewSpriteStates" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="301465343" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001143" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.DescriptiveTextFoodPotencyAndCoinPriceAreNotNewSpriteStates () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28843" name="DisposalDestroysGeneratedFramesOnlyAndLeavesIndependentPeersAlive" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.DisposalDestroysGeneratedFramesOnlyAndLeavesIndependentPeersAlive" methodname="DisposalDestroysGeneratedFramesOnlyAndLeavesIndependentPeersAlive" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1230783972" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.DisposalDestroysGeneratedFramesOnlyAndLeavesIndependentPeersAlive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:193
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28798" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.198807" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28791" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(0)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(0)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1854279622" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.002716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28792" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(1)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(1)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="558109489" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28793" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(2)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(2)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="10875501" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.001075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28794" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(3)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(3)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="945859869" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28795" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(4)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(4)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="502603131" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28796" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(5)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(5)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1564924421" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28797" name="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(6)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject(6)" methodname="ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="345518920" result="Failed" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:11Z" duration="0.000912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExactCurrentLooseOwnerUsesACachedNativeFrameAndExactSubject (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28831" name="ExplicitNonVesselOrUnknownFormRetainsFallback" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 22:13:11Z" end-time="2026-10-23 22:13:12Z" duration="0.200159" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28825" name="ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;Food&quot;)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="206568431" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.003236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28826" name="ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;food&quot;)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="571191633" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001478" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28827" name="ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;tonic&quot;)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="356793278" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28828" name="ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;unknown&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;unknown&quot;)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1140586827" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28829" name="ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(&quot;&quot;)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1946380464" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28830" name="ExplicitNonVesselOrUnknownFormRetainsFallback(null)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback(null)" methodname="ExplicitNonVesselOrUnknownFormRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1519292622" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ExplicitNonVesselOrUnknownFormRetainsFallback (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28837" name="FogSuppressesProductsAndSameLayerRemovalExposesActualLowerItem" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FogSuppressesProductsAndSameLayerRemovalExposesActualLowerItem" methodname="FogSuppressesProductsAndSameLayerRemovalExposesActualLowerItem" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="511786277" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001045" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FogSuppressesProductsAndSameLayerRemovalExposesActualLowerItem () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:165
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28806" name="FunctionalIdentityNeedsItsActualOwnedPart" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.199195" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28799" name="FunctionalIdentityNeedsItsActualOwnedPart(0,&quot;Reagent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(0,&quot;Reagent&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="708918590" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.002666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28800" name="FunctionalIdentityNeedsItsActualOwnedPart(1,&quot;Reagent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(1,&quot;Reagent&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1662069" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28801" name="FunctionalIdentityNeedsItsActualOwnedPart(2,&quot;Reagent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(2,&quot;Reagent&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1968372238" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28802" name="FunctionalIdentityNeedsItsActualOwnedPart(3,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(3,&quot;Food&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="431221223" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000955" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28803" name="FunctionalIdentityNeedsItsActualOwnedPart(4,&quot;Commerce&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(4,&quot;Commerce&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1611989440" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000959" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28804" name="FunctionalIdentityNeedsItsActualOwnedPart(5,&quot;Tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(5,&quot;Tonic&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="2073741357" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28805" name="FunctionalIdentityNeedsItsActualOwnedPart(6,&quot;Reagent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart(6,&quot;Reagent&quot;)" methodname="FunctionalIdentityNeedsItsActualOwnedPart" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="614037422" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.FunctionalIdentityNeedsItsActualOwnedPart (System.Int32 index, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28836" name="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.212167" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28832" name="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;carried&quot;)" methodname="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="73123119" result="Passed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.019295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28833" name="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;equipped&quot;)" methodname="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1708947177" result="Passed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28834" name="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;stale-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;stale-cell&quot;)" methodname="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="566286023" result="Passed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28835" name="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner(&quot;foreign-render&quot;)" methodname="GroundDrawingRejectsLostCustodyWithoutLosingLowerVisibleOwner" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1480603956" result="Passed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28841" name="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.183035" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28838" name="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(111,24)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(111,24)" methodname="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="385634649" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.002903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings (System.Int32 width, System.Int32 height) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:175
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28839" name="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(112,23)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(112,23)" methodname="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1755022151" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings (System.Int32 width, System.Int32 height) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:175
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28840" name="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(113,24)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings(113,24)" methodname="MalformedAtlasKeepsOtherGroupsAndBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="800822969" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.MalformedAtlasKeepsOtherGroupsAndBorrowedSettings (System.Int32 width, System.Int32 height) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:175
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28842" name="MissingTwelfthGroupAndOldInjectionNeverImplicitlyLoadTheNewResource" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.MissingTwelfthGroupAndOldInjectionNeverImplicitlyLoadTheNewResource" methodname="MissingTwelfthGroupAndOldInjectionNeverImplicitlyLoadTheNewResource" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1052616838" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.002659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.MissingTwelfthGroupAndOldInjectionNeverImplicitlyLoadTheNewResource () [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:184
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28857" name="RealNearStillPreparationConsumesTwoSprigsAndProducesASeparateConcentrateFrame" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.RealNearStillPreparationConsumesTwoSprigsAndProducesASeparateConcentrateFrame" methodname="RealNearStillPreparationConsumesTwoSprigsAndProducesASeparateConcentrateFrame" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="769303674" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.RealNearStillPreparationConsumesTwoSprigsAndProducesASeparateConcentrateFrame () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:292
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28824" name="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.095841" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28821" name="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Tonic&quot;)" methodname="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1751610357" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.002638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28822" name="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Coating&quot;)" methodname="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="488158983" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28823" name="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Throwable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects(&quot;Throwable&quot;)" methodname="RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1918386423" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.RecognizedOwnedVesselFormsShareNeutralArtWithoutChangingEffects (System.String form) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28819" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.203854" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28812" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(0)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(0)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="465568552" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.002795" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28813" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(1)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(1)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1659939178" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28814" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(2)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(2)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="517854209" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28815" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(3)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(3)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1013154504" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28816" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(4)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(4)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="1884762962" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28817" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(5)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(5)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="690312084" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.001049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28818" name="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(6)" fullname="CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods(6)" methodname="ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods" classname="CavesOfOoo.Tests.FlatPixelWorksProductTests" runstate="Runnable" seed="674330494" result="Failed" start-time="2026-10-23 22:13:12Z" end-time="2026-10-23 22:13:12Z" duration="0.000942" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The independently optional twelfth works-product atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorksProductTests.Construct (System.Type type, UnityEngine.Texture2D last) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:334
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.NewArt (UnityEngine.Texture2D last) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:337
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:330
+at CavesOfOoo.Tests.FlatPixelWorksProductTests.ReskinsForeignRolesAndInvalidPhysicalOwnersCannotAliasNativeGoods (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs:99
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -479,3 +479,38 @@ input is available, then remaining works products. Do not repeat source
 authoring or count a source contact as gameplay. Purchased crops, incidental
 owners, motion, east/kitchen and release/Deck gates remain open. Keep the
 heartbeat active; the finite seven-milestone brief is unfinished.
+
+
+### Seven works products — native integration, both live gates pending
+
+[The works-product record](LIVE-16X24-WORKS-PRODUCTS.md) is the current
+handoff. Seven original16×24 cells cover StoneburrSeed, FrostLichen,
+MendleafSprig, WildBerries, GoldCoin, neutral BrewedTonic and the previously
+omitted ConcentratedMendleaf. The already verified works harvest/brewing
+captures fed imagegen, then editable native source, independent review,
+exact-byte Unity import and semantic integration. No scene supplies or
+gameplay were changed. Explicit Food/unknown brew forms retain fallback;
+existing healing-only Food metadata loss is recorded, not silently fixed.
+
+Native RED58 (4pass/54expected failures) → GREEN58/58 plus338 disjoint
+regression cases = **396 distinct passes**,zero skipped. Default resource,
+real harvest→pickup, finite coin conversion, preparation, actual brewing,
+authorized portraits, fallback and disposal are covered. Native source
+verification and independent cold review found no remaining P1/P2.
+
+The Mac remained locked. Advancing this independent source/integration
+packet before the plot-product live gate closed is an explicit scheduling
+divergence; **neither new-product packet has ordinary Play acceptance**.
+After the tests passed, Unity's tool connection dropped: selector timing
+and final editor-state readback failed. Preserve those failure receipts;
+there is no new performance or successful cleanup readback claim. No Play
+session was launched this packet. Twelve import-meta whitespace changes
+were restored only after exact linewise equivalence checks.
+
+**Next:** recheck the editor connection/state and ordinary input. Complete
+the plot-product harvest/pickup/prepare/plant/examine route, then the works
+forage/brew/coin route, with actual Game screenshots and a bounded active
+profile. Do not add more unverified areas first. Merchant crop families,
+incidental owners, new north actor motion, east/kitchen, normal activation
+and physical Deck acceptance remain open. Keep the heartbeat active: the
+finite seven-milestone brief is not complete.

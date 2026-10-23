@@ -1,0 +1,258 @@
+{
+  "schema": 1,
+  "artifact": "north-works-products.png",
+  "width": 112,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 7,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; independently verified.",
+  "source": "north-works-products.blend",
+  "generator": "Tools/Live16x24/build_north_works_products.py",
+  "resource": "Sprites/Live16x24/north-works-products",
+  "reference": "ArtSource/Live16x24/concepts/works-products-v1.png",
+  "prompt": "ArtSource/Live16x24/concepts/works-products-prompt.txt",
+  "captures": [
+    "Docs/Verification/Live16x24/north-works-stoneburr-harvest.png",
+    "Docs/Verification/Live16x24/north-works-batch-brew.png"
+  ],
+  "scope": "Seven static portable identities. No new gameplay, spawns, animation, import or live acceptance claim.",
+  "sha256": "9a4e06fdbb55242a66101df145e83e034125f5fd9ce8b2f02f4907fe055250a9",
+  "frames": [
+    {
+      "index": 0,
+      "id": "stoneburr-seed",
+      "blueprint": "StoneburrSeed",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "One dry knuckled ochre shell with a few short bent hooks and an irregular dry edge.",
+      "realSource": "Actual StoneburrPatch harvest produces this portable reagent; source disappears when spent.",
+      "actualUse": "Reagent binding:2 participates in existing brewing, including stoneskin tonic.",
+      "limits": "No SeedPart: the name does not make this plantable. No seed packet, plant stem, face or quantity promise.",
+      "occupiedPixels": 28,
+      "palette": [
+        "9C6B32",
+        "B5A47E",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        16,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "frost-lichen",
+      "blueprint": "FrostLichen",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "A small low detached crust with blunt sage frond edges and muted cold flecks.",
+      "realSource": "Harvested from a real FrostLichenPatch; detached portion is smaller than the living broad crust.",
+      "actualUse": "Reagent cold:2 participates in the existing brewing rules.",
+      "limits": "No crystal points, snowflake, stars, light, snow aura, rooted plant or wider source-patch silhouette.",
+      "occupiedPixels": 25,
+      "palette": [
+        "526657",
+        "70A68A",
+        "7D8E71"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        18,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "mendleaf-sprig",
+      "blueprint": "MendleafSprig",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "A detached short forked stem with two broad olive leaves and one quiet vein on each.",
+      "realSource": "Real MendleafPlant harvest yields the raw sprig.",
+      "actualUse": "Reagent vital:1; two carried sprigs can be prepared near a still into one ConcentratedMendleaf.",
+      "limits": "Not a rooted three-leaf plant, ready healing potion, bandage, full branch or extra medicinal effect.",
+      "occupiedPixels": 30,
+      "palette": [
+        "3C5148",
+        "5F4830",
+        "75834B",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        12,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "wild-berries",
+      "blueprint": "WildBerries",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "A compact rusty-red double-lobed fruit cluster with a tiny attached dry stem.",
+      "realSource": "Finite BerryBush harvest yields one to three units; the art does not encode the stack quantity.",
+      "actualUse": "Raw FoodPart heals1d3 when a real carried unit is eaten.",
+      "limits": "Cooking=Meal is flavor, not a Cookable part. No basket, planted bush, growing leaf canopy or cooked food.",
+      "occupiedPixels": 30,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B85834"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        16,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "gold-coin",
+      "blueprint": "GoldCoin",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "One small rounded muted-gold disk with a single square dark inset and a worn pale edge.",
+      "realSource": "Existing loose currency, including actual hollow-stump output; no new money spawn.",
+      "actualUse": "Existing Commerce currency; value and quantity remain owned game state.",
+      "limits": "No coin stack, sack, amount text, cross emblem, glow, gem facet or repeated sparkles.",
+      "occupiedPixels": 32,
+      "palette": [
+        "9C6B32",
+        "B5A47E",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        17,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "brewed-tonic",
+      "blueprint": "BrewedTonic",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "An opaque broad-based grey-green flask with a short neck and a plain brown stopper.",
+      "realSource": "The one existing brew blueprint carries varied resolved payloads; actual north-worksite stoneskin batch was observed.",
+      "actualUse": "Consumed through TonicPart; healing-only uses Healing dice, status/coating/throwable outcomes may own BrewItemPart.",
+      "limits": "One neutral container for supported forms, never a promise of healing or safe drinking. Explicit Food, foreign or unknown form stays runtime fallback; no liquid line, label, reusable empty vessel or payload symbol.",
+      "occupiedPixels": 65,
+      "palette": [
+        "3C5148",
+        "526657",
+        "5F4830",
+        "7D8E71"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        10,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "concentrated-mendleaf",
+      "blueprint": "ConcentratedMendleaf",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "A compact dry pressed olive leaf wad, with one folded seam and a pale cut edge.",
+      "realSource": "Prepare consumes two actual MendleafSprig units near a still to produce one portable measure.",
+      "actualUse": "Reagent vital:2; brewing can make one2d4 mending tonic instead of separate1d4 sprig brews.",
+      "limits": "Still raw reagent, not a ready potion, bandage, medicine bottle, tied package or loose full-size sprig.",
+      "occupiedPixels": 32,
+      "palette": [
+        "3C5148",
+        "75834B",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        17,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}

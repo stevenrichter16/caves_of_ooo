@@ -79,7 +79,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.KeeperResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotProductsResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotProductsResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksProductsResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -131,8 +132,13 @@ namespace CavesOfOoo.Rendering
         /// <summary>Eleven optional borrowed groups. Loose plot products retain
         /// the same world/custody authorization as every other native subject.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, null) { }
+
+        /// <summary>Twelve independent borrowed groups. Works goods share the
+        /// existing world/custody authorization and exact-subject portrait path.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, worksProductsAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];

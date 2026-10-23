@@ -183,3 +183,22 @@ The reference supports the priority order above. The first native packet should 
 ### Current plot state,2026-10-23
 
 The approved keeper is reused byte-for-byte; six new growth cells, neutral tray and asymmetric ground cord are integrated. Stage0 reuses the accepted planted mark. Source/native/contact verification and860 distinct native tests pass; actual arrival confirms the plot composition. The later ordinary seed64 visit now verifies rights, rain-fed growth, both reserve harvests/pickup, post-harvest cords, fullscreen trade return, save/load and border revisit. The direct-product packet is next; its current fallback pixels are visible in the new harvest captures. [The plot record](../../../Docs/LIVE-16X24-NORTH-PLOT.md) also corrects StoneburrSeed (reagent, not plantable), neutral BrewedTonic admission, and the omitted ConcentratedMendleaf outcome. Merchant-added crop families, grimoire, incidental owners and motion remain explicit gaps.
+
+
+### Current loose-product integration —2026-10-23
+
+The original14-item direct-product list is now represented by two native
+atlases: eight plot goods and six works goods. A seventh works frame covers
+the source-audit omission, ConcentratedMendleaf. This is15 exact item
+identities, **not all outcomes or all world coverage**: explicit Food-form
+BrewedTonic uses fallback, and the existing healing-only Food outcome loses
+its form upstream. Purchased crop families, incidental owners, arbitrary
+equipment/drops and motion remain open.
+
+Read [plot products](../../../Docs/LIVE-16X24-PLOT-PRODUCTS.md) and
+[works products](../../../Docs/LIVE-16X24-WORKS-PRODUCTS.md) for source
+contracts, native results and known limits. Native source and semantic
+binding are integrated, but both new-art ordinary-play gates remain
+pending because the Mac was locked. Reuse prior valid geometry/captures;
+do not produce another concept or static sheet instead of the needed
+actual harvest/pickup/prepare/plant and forage/brew/coin acceptance.

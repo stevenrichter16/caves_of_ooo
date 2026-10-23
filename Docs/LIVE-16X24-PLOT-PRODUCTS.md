@@ -160,8 +160,12 @@ captures and use new `plot-products-*` PNG/JSON names. Measure a bounded
 active rendering window, then stop/restore. Share actual Game screenshots.
 No ordinary-gameplay acceptance is implied by current native tests.
 
-Once that gate closes, take the remaining direct works products in a bounded
-packet (works reagents, neutral BrewedTonic, coin, ConcentratedMendleaf).
+While the Mac remained locked, the independent seven-frame works-product
+packet advanced using the previously accepted works captures. Its source,
+integration and native evidence are in [LIVE-16X24-WORKS-PRODUCTS.md](LIVE-16X24-WORKS-PRODUCTS.md).
+Both packets still require ordinary new-art acceptance: close this plot
+gate first, then the works forage/brew/coin route. Do not redo their source
+art or add more unverified areas before those checks.
 Purchased crop families, incidental surroundings, north creature motion,
 east/kitchen admission/art and full release journey remain unfinished.
 Keep the finite seven-milestone heartbeat active.
