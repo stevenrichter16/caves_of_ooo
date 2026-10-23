@@ -8,11 +8,13 @@ Build an original, spare, flat 16×24 environment around the five user-approved 
 
 The clearing should read as a lived-in seed exchange and cooking stop: seed sorting shelter, clay oven, water well, harvested and growing beds, drying rack, baskets and sacks, a short broken wall, quiet grass and a grazer enclosure. Keep paths and interaction spaces legible. Sparse dark green ground, small restrained palette, square pixels, discrete silhouette groups and warm accents. No text labels floating over every object, bloom or noisy ground texture. Existing NPC gameplay and lore should guide integration; do not add unsupported lore claims.
 
-## Working prompts
+## Historical study prompts — superseded for active production
+
+The prompts and milestone list below record the completed static art study. Active agents must follow [the live brief's required production pipeline](LIVE-16X24-ART-DIRECTION.md#required-production-pipeline-and-agent-handoff): actual playable greybox, capture, imagegen reinterpretation, sub-part extraction, native 16×24 sprite/animation production, real integration and gameplay/performance review. The user authorizes any available tools needed. The older permission to finish only a kit does not satisfy the current task.
 
 ### External references added at the user's request
 
-Read [ART-REFERENCE-LIBRARY.md](ART-REFERENCE-LIBRARY.md) before the next art iteration. Eight visually inspected sources cover Qud's spatial readability, practical seed storage and earthen cooking, dry seedheads, sundews, salt crust, wetland roots and reclaimed machinery. The approved sprites remain the style anchor. Choose one or two source IDs for each relevant imagegen concept, record the specific feature being translated, and keep the output original and readable at native size. The regional references are future art direction; prioritize the already planned functional crop slice tonight. Source URLs, credits and usage notes are preserved in `ArtSource/Clearing16x24/references.json`; no external image files were added to the game's assets.
+Read [ART-REFERENCE-LIBRARY.md](ART-REFERENCE-LIBRARY.md) before the next art iteration. Eight visually inspected sources cover Qud's spatial readability, practical seed storage and earthen cooking, dry seedheads, sundews, salt crust, wetland roots and reclaimed machinery. The approved sprites remain the style anchor. Choose one or two source IDs for each relevant imagegen concept, record the specific feature being translated, and keep the output original and readable at native size. Prioritize the real opening's playable greybox and complete visual coverage from the live brief. Source URLs, credits and usage notes are preserved in `ArtSource/Clearing16x24/references.json`; no external image files were added to the game's assets.
 
 ### Plan prompt
 
@@ -26,7 +28,7 @@ Greybox the clearing at the real cell proportions, capture it, then use built-in
 
 Continue the next unfinished milestone below. Inspect current files before editing. Preserve unrelated work and the blank study. For behavior changes, write and run meaningful failing tests first, then implement and counter-check. Reuse existing gameplay and rendering surfaces. Finish each useful slice with native Unity import/compile checks, actual screenshots, review, living-doc update, and exact-path staging. Fetch/rebase before pushing HEAD to main. Do not claim completion from imagegen concepts or batch renders alone.
 
-## Milestones
+## Historical static-study milestones
 
 1. Preflight and greybox: inspect assets, lore, scene routing, tools and disk. Create editable greybox and capture. Establish overnight continuation.
 2. Imagegen direction: produce and critique screenshot-based art concept plus modular prop reference. Save prompts and sources.

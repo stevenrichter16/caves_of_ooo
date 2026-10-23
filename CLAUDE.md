@@ -11,6 +11,17 @@ specifics, open that section.
 
 ## Always-on rules
 
+### Active graphics work — read before continuing
+
+For this session's visual overhaul, read `Docs/LIVE-16X24-ART-DIRECTION.md`
+first, especially **Required production pipeline and agent handoff**. The
+actual game target is flat 16×24 pixel art. Use a playable real-world greybox,
+capture it, reinterpret it with imagegen, extract parts, produce sprites and
+animations, then reintegrate and verify in-game. The user authorizes agents to
+choose and use any available tools needed and to continue autonomously. This
+instruction applies to the graphics effort; preserve the existing project
+verification rules below.
+
 1. **TDD is the default cadence.** Write the failing test (assertion OR
    compile error) BEFORE the production code. Run it. Confirm RED.
    Then implement the minimum to pass. See §2.1.

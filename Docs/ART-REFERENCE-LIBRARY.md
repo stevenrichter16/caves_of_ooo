@@ -69,7 +69,7 @@ Keep the flat top-down presentation and dark green ground. The existing 3D prese
 
 ## References for regional expansion
 
-These support later biome work; they do not expand tonight's crop integration into four additional asset packs.
+These support later biome work. Prioritize the real opening's playable greybox and complete visual integration before additional regional asset packs.
 
 ### R05 — Sundew: biological strangeness
 
@@ -131,13 +131,13 @@ These support later biome work; they do not expand tonight's crop integration in
 ## Use during each art iteration
 
 1. Choose at most two relevant reference IDs. State the visible feature to carry forward and the actual game owner/state it serves.
-2. Inspect the current native sprite and Unity screenshot. Keep approved actors unchanged.
-3. Use built-in imagegen to explore the observed shapes with the project's palette and cell proportions. Record the reference IDs and exact prompt alongside the concept. Use original project art/screenshots as image inputs; the external photos above are linked observational references.
-4. Rebuild the selected original design in editable sources. Judge the silhouette first at native resolution, then in a real scene at 1280×800.
+2. Follow the [live brief's playable-greybox gate](LIVE-16X24-ART-DIRECTION.md#required-production-pipeline-and-agent-handoff). Inspect the current native sprites and actual Unity greybox capture. Keep approved actors unchanged.
+3. Use built-in imagegen on that capture to explore the observed shapes with the project's palette and cell proportions. Record the reference IDs and exact prompt alongside the concept. Use original project art/screenshots as image inputs; the external photos above are linked observational references.
+4. Extract the selected concept's sub-parts and map them to real owners/states. Produce editable native sprites and animation frames. Judge silhouettes first at native resolution, then reintegrate into actual gameplay at 1280×800.
 5. Check palette restraint, open paths, state legibility and actual owner semantics. Reject decorative detail that confuses collision, harvest readiness or danger.
 6. Keep the concept, final asset and actual Game capture clearly distinguished. Record what changed and why.
 
-For the immediate crop slice, use R04 for silhouette separation and R03 for surrounding work props. Follow the crop audit in [the overnight plan](CLEARING-16X24-OVERNIGHT.md): EmberwheatCrop has seed/sprout then drops produce; MarlrootCrop has a persistent ripe stage. A visually attractive reference never overrides these mechanics.
+When the opening's crop assets are reached, use R04 for silhouette separation and R03 for surrounding work props. Follow the crop audit in [the overnight plan](CLEARING-16X24-OVERNIGHT.md): EmberwheatCrop has seed/sprout then drops produce; MarlrootCrop has a persistent ripe stage. A visually attractive reference never overrides these mechanics.
 
 ## Provenance and review
 
