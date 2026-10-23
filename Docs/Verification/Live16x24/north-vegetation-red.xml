@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="49" result="Failed(Child)" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.555282">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.555282" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37198" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.496326" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37199" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.443705" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37200" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.382581" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28145" name="FlatPixelNorthVegetationTests" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.114506" total="49" passed="0" failed="49" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28194" name="ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" methodname="ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1616237928" result="Failed" start-time="2026-10-23 09:58:52Z" end-time="2026-10-23 09:58:53Z" duration="0.058163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:159
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28184" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.003898" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28175" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;spent&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="308931487" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000438" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28176" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;wrong-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;wrong-yield&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="322007469" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28177" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-min&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-min&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="387789890" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28178" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;reversed-range&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;reversed-range&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1068612343" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28179" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-count&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1760271150" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28180" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-chance&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1530284360" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28181" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-chance&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1932923839" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28182" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;foreign&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1274658228" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28183" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;missing&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1558757139" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:94
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28193" name="BerryHarvestFlagCannotLeakThroughLowLayerMemory" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryHarvestFlagCannotLeakThroughLowLayerMemory" methodname="BerryHarvestFlagCannotLeakThroughLowLayerMemory" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="611979262" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryHarvestFlagCannotLeakThroughLowLayerMemory () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28203" name="DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" methodname="DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="600363815" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual vegetation atlas must be imported; synthetic routing is not visible integration.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:228
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28202" name="DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" methodname="DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="348866838" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:215
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28150" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.001918" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28146" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(0)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1721122033" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28147" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(1)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="582006279" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28148" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(2)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="800428804" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28149" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(3)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1164891090" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28201" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000963" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28199" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(63,24)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(63,24)" methodname="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1505340496" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings (System.Int32 width, System.Int32 height) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28200" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(64,23)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(64,23)" methodname="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1588952915" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings (System.Int32 width, System.Int32 height) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28153" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.006119" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28151" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(4,5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(4,5)" methodname="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="783005652" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.005212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds (System.Int32 index, System.Int32 frame) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28152" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(5,3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(5,3)" methodname="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="809491682" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds (System.Int32 index, System.Int32 frame) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28167" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.001722" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28161" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(0)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="950860460" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28162" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(1)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1949198896" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28163" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(2)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="773864514" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28164" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(3)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="638809053" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28165" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(4)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2133007907" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28166" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(5)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1218871933" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28185" name="RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" methodname="RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="760868492" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000246" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:109
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28160" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.001403" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28154" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(0)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1481460779" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28155" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(1)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1779738037" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28156" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(2)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="333534840" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28157" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(3)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1097969712" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28158" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(4)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1720944685" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28159" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(5)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="319555652" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28198" name="SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" methodname="SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="294109567" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000556" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation () [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:195
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28197" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000722" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28195" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(0,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(0,True)" methodname="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="276097587" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls (System.Int32 index, System.Boolean solidTag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:182
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28196" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(1,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(1,False)" methodname="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1625627530" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls (System.Int32 index, System.Boolean solidTag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:182
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28174" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.001248" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28168" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(0)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1182538598" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28169" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(1)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1631455687" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28170" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(2)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="300905402" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28171" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(3)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1637730320" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28172" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(4)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2074817071" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28173" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(5)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2074977661" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Seventh independent vegetation atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewArt (UnityEngine.Texture2D baseAtlas, UnityEngine.Texture2D cellarAtlas, UnityEngine.Texture2D vegetationAtlas) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:248
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:242
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28192" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.001481" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28186" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(0,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(0,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1346720223" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28187" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(1,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(1,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1134488815" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28188" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(2,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(2,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1540634475" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28189" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(3,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(3,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="110459626" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28190" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(4,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(4,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1414999789" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28191" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(5,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(5,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1337236300" result="Failed" start-time="2026-10-23 09:58:53Z" end-time="2026-10-23 09:58:53Z" duration="0.000158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward the seventh independent vegetation atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:253
+at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules (System.Int32 index, System.Boolean remembers) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:124
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

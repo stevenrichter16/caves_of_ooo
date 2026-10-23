@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="49" result="Failed(Child)" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.6682866">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.668287" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37198" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.612443" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37199" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.463220" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37200" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30200" result="Failed" site="Child" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.408270" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28145" name="FlatPixelNorthVegetationTests" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.129585" total="49" passed="48" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28194" name="ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" methodname="ActualBerryHarvestRemovesWorldSpriteAndCannotBeRepeatedThroughRetainedReference" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="128672885" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.072442" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28184" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.005817" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28175" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;spent&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2048913138" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28176" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;wrong-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;wrong-yield&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1468530530" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000334" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28177" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-min&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-min&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1711272278" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28178" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;reversed-range&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;reversed-range&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="294702168" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28179" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-count&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1137534095" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28180" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;zero-chance&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="150941092" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28181" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;excess-chance&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1213037880" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28182" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;foreign&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1758092042" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28183" name="BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryArtworkOnlyPromisesItsActualUnspentHarvest(&quot;missing&quot;)" methodname="BerryArtworkOnlyPromisesItsActualUnspentHarvest" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="873822451" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28193" name="BerryHarvestFlagCannotLeakThroughLowLayerMemory" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.BerryHarvestFlagCannotLeakThroughLowLayerMemory" methodname="BerryHarvestFlagCannotLeakThroughLowLayerMemory" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1633497900" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001087" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28203" name="DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" methodname="DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="251415328" result="Failed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001401" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual vegetation atlas must be imported; synthetic routing is not visible integration.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DefaultCatalogAndWorldSelectorBindTheActualImportedVegetationResource () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthVegetationTests.cs:228
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28202" name="DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" methodname="DisposalOwnsOnlyGeneratedSpritesAndTilesAndEachCatalogIsIndependent" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="950521753" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28150" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.002162" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28146" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(0)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1746495732" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28147" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(1)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1642127308" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28148" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(2)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="812366117" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28149" name="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics(3)" methodname="ExactVegetationUsesItsCachedNativeCellWithoutChangingPhysics" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="104464174" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28201" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001182" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28199" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(63,24)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(63,24)" methodname="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="717592472" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28200" name="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(64,23)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings(64,23)" methodname="MalformedVegetationDoesNotDisableExistingGroupsOrMutateBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="513127843" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28153" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001586" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28151" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(4,5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(4,5)" methodname="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1539703861" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28152" name="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(5,3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds(5,3)" methodname="OrdinaryBushAndReedsReuseAcceptedBasePixelsWithoutInventingVisualIds" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1661925997" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28167" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.002168" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28161" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(0)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1774960499" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28162" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(1)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="496208246" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28163" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(2)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="956459855" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28164" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(3)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="985197331" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28165" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(4)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1852027389" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28166" name="OwnedNonportablePhysicsAndActualBlockingContractAreRequired(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.OwnedNonportablePhysicsAndActualBlockingContractAreRequired(5)" methodname="OwnedNonportablePhysicsAndActualBlockingContractAreRequired" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1882914876" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28185" name="RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" methodname="RealisticYieldAndDamageTuningDoNotCreateInventedPlantStates" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="377856893" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000441" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28160" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.002225" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28154" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(0)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1224998646" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28155" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(1)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1893368621" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28156" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(2)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="869269204" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28157" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(3)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1395718112" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28158" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(4)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2054086363" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28159" name="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback(5)" methodname="ReskinsForeignRendersAndUnknownIdentitiesKeepExplicitFallback" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1689350946" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000277" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28198" name="SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" methodname="SevenArgumentInjectionIsIndependentAndEarlierConstructorsNeverLoadVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="2045862471" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000430" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28197" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.002315" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28195" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(0,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(0,True)" methodname="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="757265918" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28196" name="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(1,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls(1,False)" methodname="TreeAndHedgeArtDoesNotTurnMovementBarriersIntoPlayerSightWalls" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1105620381" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28174" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.002207" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28168" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(0)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="602049342" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28169" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(1)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="345828792" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28170" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(2)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="906793802" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28171" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(3)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1086434931" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28172" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(4)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="797886159" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28173" name="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt(5)" methodname="VegetationTagIsRequiredAndCreatureIdentityCannotBorrowPlantArt" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="1175659072" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28192" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.005448" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28186" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(0,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(0,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="950129229" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.001207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28187" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(1,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(1,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="123282578" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28188" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(2,False)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(2,False)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="107535923" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000735" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28189" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(3,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(3,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="390166199" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28190" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(4,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(4,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="106606461" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28191" name="WorldFogAndRemovalKeepExistingTerrainMemoryRules(5,True)" fullname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests.WorldFogAndRemovalKeepExistingTerrainMemoryRules(5,True)" methodname="WorldFogAndRemovalKeepExistingTerrainMemoryRules" classname="CavesOfOoo.Tests.FlatPixelNorthVegetationTests" runstate="Runnable" seed="687220354" result="Passed" start-time="2026-10-23 10:05:26Z" end-time="2026-10-23 10:05:26Z" duration="0.000814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

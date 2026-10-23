@@ -18,6 +18,7 @@ namespace CavesOfOoo.Rendering
         public const string StatesResourcePath = "Sprites/Live16x24/opening-states";
         public const string ItemsResourcePath = "Sprites/Live16x24/opening-items";
         public const string CellarResourcePath = "Sprites/Live16x24/opening-cellar";
+        public const string VegetationResourcePath = "Sprites/Live16x24/north-vegetation";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -31,12 +32,14 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _itemSprites;
         private readonly Tile[] _cellarTiles;
         private readonly Sprite[] _cellarSprites;
+        private readonly Tile[] _vegetationTiles;
+        private readonly Sprite[] _vegetationSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
             Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
             Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
-            Resources.Load<Texture2D>(CellarResourcePath)) { }
+            Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -64,6 +67,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>The independently optional cellar atlas follows exact owned
         /// functional parts. It neither authorizes placement nor creates supplies.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, null) { }
+
+        /// <summary>Independent borrowed vegetation art adds four static source
+        /// silhouettes. Earlier injections never load omitted vegetation resources.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -71,6 +79,7 @@ namespace CavesOfOoo.Rendering
             _stateTiles = BuildFrames(statesAtlas, 12, "states", out _stateSprites);
             _itemTiles = BuildFrames(itemsAtlas, 12, "items", out _itemSprites);
             _cellarTiles = BuildFrames(cellarAtlas, 9, "cellar", out _cellarSprites);
+            _vegetationTiles = BuildFrames(vegetationAtlas, 4, "vegetation", out _vegetationSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -136,9 +145,41 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = CellarFrameOf(owner, render.VisualID);
-            if (frame < 0 || _cellarTiles == null) return false;
-            tile = _cellarTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _cellarTiles == null ? null : _cellarTiles[frame];
+                return tile != null;
+            }
+            frame = VegetationFrameOf(owner, render.VisualID);
+            if (frame < 0 || _vegetationTiles == null) return false;
+            tile = _vegetationTiles[frame];
             return tile != null;
+        }
+
+        private static bool OrdinaryVegetation(Entity owner, string visual, bool solid)
+        {
+            if (!string.IsNullOrEmpty(visual) || !owner.HasTag("Vegetation")
+                || owner.HasTag("Creature") || owner.HasTag("Player")) return false;
+            var physics = Owned<PhysicsPart>(owner);
+            return physics != null && !physics.Takeable && physics.Solid == solid;
+        }
+
+        private static int VegetationFrameOf(Entity owner, string visual)
+        {
+            switch (owner.BlueprintName)
+            {
+                case "Tree": return OrdinaryVegetation(owner, visual, true) ? 0 : -1;
+                case "Hedge": return OrdinaryVegetation(owner, visual, true) ? 1 : -1;
+                case "BerryBush":
+                    if (!OrdinaryVegetation(owner, visual, false)) return -1;
+                    var harvest = Owned<HarvestablePart>(owner);
+                    return harvest != null && !harvest.Harvested && harvest.YieldBlueprint == "WildBerries"
+                        && harvest.YieldMin > 0 && harvest.YieldMax >= harvest.YieldMin
+                        && harvest.YieldMax <= HarvestablePart.MaximumYieldCount
+                        && harvest.YieldChance > 0 && harvest.YieldChance <= 100 ? 2 : -1;
+                case "DryBrush": return OrdinaryVegetation(owner, visual, false) ? 3 : -1;
+                default: return -1;
+            }
         }
 
         private static int CellarFrameOf(Entity owner, string visual)
@@ -310,8 +351,10 @@ namespace CavesOfOoo.Rendering
                     if (visual == "reference-glade-dark-ruin") return 1;
                     // A worn crossing keeps this identity after its Wall tag is removed.
                     return visual == "reference-glade-low-wall" ? 2 : -1;
-                case "Reeds": return visual == "reference-glade-pale-reeds" ? 3 + ((x + y) & 1) : -1;
-                case "Bush": return visual == "reference-glade-green-grass" ? 5 : -1;
+                case "Reeds": return visual == "reference-glade-pale-reeds"
+                    || OrdinaryVegetation(owner, visual, false) ? 3 + ((x + y) & 1) : -1;
+                case "Bush": return visual == "reference-glade-green-grass"
+                    || OrdinaryVegetation(owner, visual, false) ? 5 : -1;
                 case "Rubble": return visual == "reference-glade-gravel" ? 6 : -1;
                 case "BrokenColumn": return visual == "reference-glade-dark-ruin" ? 6 : -1;
                 case "CropRow": return 8;
@@ -338,6 +381,8 @@ namespace CavesOfOoo.Rendering
             if (_itemSprites != null) foreach (var sprite in _itemSprites) DestroyOwned(sprite);
             if (_cellarTiles != null) foreach (var tile in _cellarTiles) DestroyOwned(tile);
             if (_cellarSprites != null) foreach (var sprite in _cellarSprites) DestroyOwned(sprite);
+            if (_vegetationTiles != null) foreach (var tile in _vegetationTiles) DestroyOwned(tile);
+            if (_vegetationSprites != null) foreach (var sprite in _vegetationSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

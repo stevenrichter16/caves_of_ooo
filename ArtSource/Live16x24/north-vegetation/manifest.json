@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "artifact": "north-vegetation.png",
+  "width": 64,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 4,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; verified independently.",
+  "source": "north-vegetation.blend",
+  "generator": "Tools/Live16x24/build_north_vegetation.py",
+  "concept": "ArtSource/Live16x24/concepts/north-parts-reference.png (reference only; original native reconstruction)",
+  "sceneConcept": "ArtSource/Live16x24/concepts/north-works-concept.png",
+  "capture": "Docs/Verification/Live16x24/north-greybox-works.png",
+  "scope": "Four static ordinary vegetation identities. No new spawns, animation, collision or runtime integration claim.",
+  "hedgePreviewOrigins": [
+    [
+      12,
+      76
+    ],
+    [
+      28,
+      76
+    ],
+    [
+      44,
+      76
+    ],
+    [
+      60,
+      76
+    ],
+    [
+      92,
+      12
+    ],
+    [
+      92,
+      36
+    ],
+    [
+      92,
+      60
+    ],
+    [
+      128,
+      60
+    ],
+    [
+      128,
+      36
+    ],
+    [
+      112,
+      36
+    ]
+  ],
+  "sha256": "f6d1ede626402f9b7963b4aba7434044f10a925376e4da74c73e4dfb94e68777",
+  "frames": [
+    {
+      "index": 0,
+      "id": "tree",
+      "blueprint": "Tree",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "Tall branching trunk beneath three broad angular leaf masses; visible roots and open space beside the trunk distinguish solid tree from low passable vegetation.",
+      "actualUse": "Existing ordinary Tree owns solid physics, destructibility and plant/wood thermal material.",
+      "limits": "No tree harvest, hidden fruit, new shadow, oversized canopy or cross-cell body. Damage, fire and removal remain simulation state.",
+      "occupiedPixels": 179,
+      "palette": [
+        "435A35",
+        "53683E",
+        "5F4830",
+        "75834B",
+        "94713D"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        1,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "continuousBoundary": false
+    },
+    {
+      "index": 1,
+      "id": "hedge",
+      "blueprint": "Hedge",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "Dense woven bramble with broad matte leaf clusters and short visible brown stems. Both axes meet at leafy boundaries so a repeated row, column or elbow reads solid.",
+      "actualUse": "Existing ordinary solid Hedge; one cached frame does not depend on neighbor discovery or allocate adjacency variants.",
+      "limits": "Boundary exception: leaf contacts touch all four cell edges including row23. Corner notches are one-pixel-scale leaf breaks, never walkable-looking lanes. No berries or invented fence posts.",
+      "occupiedPixels": 364,
+      "palette": [
+        "435A35",
+        "53683E",
+        "5F4830",
+        "75834B"
+      ],
+      "alphaBoundsTopLeft": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "baselineTopLeft": 24,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "continuousBoundary": true
+    },
+    {
+      "index": 2,
+      "id": "berry-bush",
+      "blueprint": "BerryBush",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "Low broad leafy bush with three small rust-red fruit clusters and a short woody footing; no upright trunk or solid wall silhouette.",
+      "actualUse": "Actual unspent HarvestablePart yields one to three WildBerries and removes the source on successful gathering.",
+      "limits": "Fruit marks identify the plant, not an item count. No perpetual spent bush, light halo, extra produce or new obstruction.",
+      "occupiedPixels": 90,
+      "palette": [
+        "435A35",
+        "53683E",
+        "5F4830",
+        "75834B",
+        "9B442B",
+        "B85834"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        13,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "continuousBoundary": false
+    },
+    {
+      "index": 3,
+      "id": "dry-brush",
+      "blueprint": "DryBrush",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "Sparse dry forked stems and pale snapped tips, with ample open space between branches; warm brown rather than live green leaves.",
+      "actualUse": "Existing non-solid DryBrush terrain, readily combustible and destructible. Actual thermal/effect state owns ignition and removal.",
+      "limits": "No permanent flame, green foliage, harvest fruit, new solid collision or out-of-cell twigs.",
+      "occupiedPixels": 49,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        9,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "continuousBoundary": false
+    }
+  ]
+}

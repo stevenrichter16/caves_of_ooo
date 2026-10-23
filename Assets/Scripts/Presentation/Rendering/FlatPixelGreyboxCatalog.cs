@@ -57,7 +57,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -85,8 +86,13 @@ namespace CavesOfOoo.Rendering
         /// <summary>The sixth optional borrowed group adds current cellar owners.
         /// Earlier overloads retain deterministic null-cellar injection.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, null) { }
+
+        /// <summary>The seventh optional borrowed atlas adds native vegetation;
+        /// earlier injections preserve explicit fallback for omitted groups.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];

@@ -1,6 +1,6 @@
 # North connector and Nella: native parts proposal
 
-Status: **planning only; no native art or runtime integration implemented by this packet**. Read-only census/source audit, 2026-10-23. The current bounded stage is exact scope, ordinary playable greybox, actual capture and imagegen concept review. Native asset packets follow that evidence. The list below is not a claim that two admitted addresses or a resident portrait complete a region.
+Status: **the first vegetation packet is integrated and reviewed in ordinary Play; the remaining parts below are planned**. Updated2026-10-23 after exact scope, real greybox capture, imagegen critique and native vegetation production. Four new Tree/Hedge/BerryBush/DryBrush frames and ordinary Bush/Reeds reuse are complete; north actors/works are next, then Nella's crop/reserve/product group. See [vegetation implementation and evidence](../../../Docs/LIVE-16X24-NORTH-VEGETATION.md). This ledger does not claim whole-route or release completion.
 
 ## Evidence and limits
 
@@ -8,7 +8,7 @@ Status: **planning only; no native art or runtime integration implemented by thi
 - Actual source: `Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationResidents.cs`, `SpreadExplorationWorksites.cs`, `Assets/Resources/Content/Blueprints/Objects.json`; current native selectors in `FlatPixelOpeningArtCatalog.cs` and `FlatPixelGreyboxCatalog.cs`.
 - State authorities: `CropPart`, `CropSystem`, `HarvestablePart`, `LocalGatheringClaimPart`, `LiquidPoolPart`, `FieldMedicinePart`, `BrewingService`. Existing `ConnectedSpread3DLibrary.ResolveReserveBed` and `PatchbearerArtLibrary.ResolveModel` provide semantic counterexamples, not permission to copy their per-query scans or 3D models.
 - Scope/previous work: `Docs/LIVE-16X24-CONNECTED-SITES.md`, `Docs/LIVE-16X24-CELLAR.md`, `Docs/LIVE-16X24-ART-DIRECTION.md`.
-- No new Unity call, gameplay action, spawn, capture, source-art change or Assets edit was made for this audit. Greybox captures and selected imagegen references for this packet are still the next gate.
+- The initial source audit itself made no Unity call or gameplay/asset mutation. Its then-pending greybox/imagegen gates were subsequently completed, followed by the vegetation packet recorded below. Historical capture and critique records remain intact.
 
 ## What is actually on the route
 
@@ -26,8 +26,8 @@ Fifteen named identities have required reusable art or ground treatment:
 | Owner | Reuse and necessary routing work |
 | --- | --- |
 | `Grass` | Existing quiet dark-green ground. Never turn2000 grass owners into2000 foreground decorations. |
-| `Bush` | Baseframe5 low growth, with a new exact ordinary-owner route; current art mapping requires the glade VisualID. No invented glade ID. |
-| `Reeds` | Baseframes3/4, with a new exact ordinary non-solid vegetation route. Current mapping is glade-role-specific. |
+| `Bush` | **Integrated:** baseframe5 low growth now has an exact ordinary-owner route alongside the preserved glade VisualID route. No invented glade ID. |
+| `Reeds` | **Integrated:** baseframes3/4 now have an exact ordinary non-solid vegetation route with stable parity, preserving the glade route. |
 | `CropRow`, `RipeCropRow` | Existing base stubble/grain, preserving owned `FieldHarvestPart.Harvested` for the latter. These field rows are not `CropPart` plants. |
 | `StoneWall` | Accepted cellarframe8 continuous masonry, preserving current owned solid/non-takeable Wall semantics. |
 | `Crate` | Accepted cellarframe1, one neutral container silhouette regardless of contents. |
@@ -43,16 +43,16 @@ The four newly covered crops may reuse the accepted cellar planted-seed mark for
 
 ## Proposed new art, split into reviewable groups
 
-The minimum observed-route proposal is **45 new cells**:39 named blueprint identities plus one reserve-ground overlay role, with state variants accounting for the additional cells. Reused art above is excluded. This count deliberately includes seed65 surroundings and finite liquid states, rather than pretending the seed64 hero destination is the whole route. It can be delivered as small independent atlases after actual capture; it is not authorization to bypass the production pipeline.
+The original minimum observed-route proposal is **45 new cells**:39 named blueprint identities plus one reserve-ground overlay role, with state variants accounting for the additional cells. Reused art above is excluded. **Four of these cells are now integrated vegetation;41 proposed cells remain**, before later revisions or additional merchant-crop coverage. This ledger includes seed65 surroundings and finite liquid states rather than treating the seed64 destination as the whole route. Remaining groups still require their own production and acceptance gates.
 
 ### Ordinary surroundings —12 identities,14 cells
 
 | Owner | Cells and silhouette contract |
 | --- | --- |
-| `Tree` | 1: visible rooted trunk beneath a compact broad crown. Solid obstacle; should not resemble passable low grass. |
-| `Hedge` | 1: dense woven hawthorn/bramble mass, nearly cell-wide to read as a boundary. Preserve a quiet silhouette when repeated. Solid but not ordinary masonry. |
-| `BerryBush` | 1: low leaves carrying a few distinct red berries. Owned unspent harvest yields `WildBerries`1–3; gathering removes the source, so no invented permanent spent bush. |
-| `DryBrush` | 1: sparse dry forked stems, clearly unlike leafy hedge. No baked flame; actual thermal/state rendering owns fire. |
+| `Tree` | **Integrated,1 cell:** rooted trunk and compact crown distinguish a solid obstacle from low growth. |
+| `Hedge` | **Integrated,1 cell:** dense woven mass meets both cell axes for rows/columns/corners. Movement stays blocked; no new sight-opacity tags. |
+| `BerryBush` | **Integrated,1 cell:** low leaves with small red fruit marks; owned unspent WildBerries harvest removes the source. Ordinary Play verified one berry gained and owner removed. |
+| `DryBrush` | **Integrated,1 cell:** sparse dry forks, no baked flame. Native resource tests pass; seed64's captured route has no initial DryBrush, so live brush/fire acceptance is not claimed. |
 | `FlowerField` | 1: sparse petals/short flowers, not solid shrub. This real owner has `FlowerCharmPart`, `LifespanPart` and petal residue; no eternal decorative patch or readiness glow. |
 | `HollowStump` | 1: squat solid broken trunk with a dark opening. Finite `GoldCoin` harvest removes it; do not draw exposed coins before the action. |
 | `CopperPipe` | 1: short blunt copper segment, not a fence or wall. Real conductor material; electrical state remains an overlay. |
@@ -69,7 +69,7 @@ Pools need source identity and existing ground/overlay priority reviewed togethe
 `AlchemyStill`1, `AlchemyShelf`1, `StoneburrPatch`1, `FrostLichenPatch`1, `MendleafPlant`1, `ConnectedReserveTray`1, reserve-soil cord overlay1.
 
 - Still: compact receiving vessel and condenser coil. Owned `AlchemyStillPart`; no permanent brewing flame, output bottle or fake working/ready states. Brewing acts immediately and its results become real carried items.
-- Shelf: solid broad wooden frame with visible compartments and circular wear marks. It blocks passage/sight in the authored yard. `ContainerPart` does not imply unlimited or visible stock; the observed shelves contain no held goods.
+- Shelf: solid broad wooden frame with visible compartments and circular wear marks. It blocks passage through its existing PhysicsPart; do not add sight-opacity tags from its appearance. `ContainerPart` does not imply unlimited or visible stock; the observed shelves contain no held goods.
 - Stoneburr: ochre hooked seedheads over leathery leaves; unspent `HarvestablePart`→`StoneburrSeed`.
 - Frost lichen: pale cool crust close to the ground; unspent harvest→`FrostLichen`. Avoid making it a water source or quartz vein.
 - Mendleaf: low silver-veined leaves; unspent harvest→`MendleafSprig`. No new weather-close animation without an actual state contract.
@@ -117,12 +117,28 @@ New scenery should use accepted palette families from `ArtSource/Live16x24/{base
 
 - Nella stocks `KnotflaxSeed`, `HearthbulbSeed`, `SeamleafSeed` in both seeds. They can be bought and planted, but their plants are **not initial census owners**. A complete merchant-to-harvest loop needs a further minimum12 cells: three distinct loose seeds, six sprout/ripe frames (shared stage0), and three harvested products (`KnotflaxCord`, `Hearthbulb`, `SeamleafSprig`). Cooking/processing secondary outputs then need their own source audit. Do not claim all of Nella's offerings are native from the45-cell route proposal.
 - `WateringGrimoire` and arbitrary magpie/loot/equipment drops remain explicit fallback unless separately covered. The census contains real random held weapons, armor, tonics, reagents and manuals; they must remain usable/visible rather than silently suppressed. Viper corpse/gland and other death outcomes also need separate measured coverage before an “all drops” claim.
-- No arbitrary Spread admission: validate the exact current managed north connector and plot, their world generation/version/POI expectations, with glade/cellar preserved and east/kitchen refused. Missing actors/services must not be recreated merely to meet this list.
-- Before asset production: ordinary glade→north connector→plot capture at actual viewport; inspect the real vegetation density, actor scale, worksite and claim bed positions. Reinterpret those screenshots with imagegen, extract functional parts, reject unsupported detail, then author editable native geometry.
+- No arbitrary Spread admission: the implemented exact north scope validates the current managed graph, Spread biome and no-POI authority, with glade/cellar preserved and east/kitchen refused. Exploration version explains generated contents; it is not a render gate. Missing actors/services must not be recreated to meet this list.
+- Capture→imagegen→native production has been completed for the vegetation packet. For remaining parts, reuse the actual unchanged geometry/captures and reviewed concepts; inspect new state requirements before authoring editable native geometry. Do not redo the census or treat the entire route as native because foliage is integrated.
 - For integration: tests first; independent optional atlases, no resource ownership leaks, exact sprite/frame resource binding, state/foreign-owner/visibility/carry counters. Check stationary crop growth, pool drain, finite medicine use, claim after harvest, expiry/removal and fullscreen return without a new frame-time scan.
 - Actual revisit must demonstrate public versus cord-marked beds, watering/growth, product pickup, tray persistence and unchanged rights semantics. Native tests and two-seed census do not prove all-seed composition, controller feel, Steam Deck performance or release activation.
 
-## Actual greybox and concept review —2026-10-23
+## Vegetation acceptance and current next work —2026-10-23
+
+The first native group followed the saved actual captures and reference critique. Editable Blender geometry produced `../north-vegetation/north-vegetation.png` (64×24), with native/contact/source verification and independent static review. Four new exact identities are Tree/Hedge/BerryBush/DryBrush; existing base Bush5 and Reeds3/4 now have deliberate ordinary-owner routes. The seventh atlas is optional and borrowed, prior groups stay independent, and explicit glade/reskin behavior is preserved. The [implementation record](../../../Docs/LIVE-16X24-NORTH-VEGETATION.md) owns complete evidence and performance limits.
+
+Native Unity progressed through49/49 intended RED,48 passes plus one missing-resource RED, then204/204 and108/108 GREEN: **312 distinct final cases, zero failures/skips**. The earlier212-case scope checkpoint below is historical and must not be added to312 as unique new coverage. Code review found no actionable P1/P2; no gameplay, collision, opacity, permission or normal-launch settings changed.
+
+The parent repeated ordinary seed64 travel: [native connector entry](../../../Docs/Verification/Live16x24/north-vegetation-native-entry.png), [hedge collision with the player at `(56,10)`](../../../Docs/Verification/Live16x24/north-vegetation-hedge-collision.png), [BerryBush examine](../../../Docs/Verification/Live16x24/north-vegetation-berry-examine.png), and [harvest](../../../Docs/Verification/Live16x24/north-vegetation-berry-harvest.png). The real bush at `(60,1)` was harvested from `(60,2)`, yielded one WildBerries and disappeared. Ordinary north travel then entered the plot at `(60,24)`;40 Left and14 Up ended at `(20,10)` beside Nella. The [native plot capture](../../../Docs/Verification/Live16x24/north-vegetation-native-plot.png) shows tree/reed coverage and the remaining rough keeper/crop/actor forms. These later receipts record20HP; no safe-route claim is made. [Cleanup](../../../Docs/Verification/Live16x24/north-vegetation-native-cleanup.json) restores stopped SampleScene with isolation/pending flags false.
+
+Current priorities, replacing the historical ordering below:
+
+1. **North actors and works:** distinct Magpie/Viper, Patchbearer with only its actual healing-slot state, still/shelves and three forage sources. Retain real danger and the already accepted vegetation/masonry.
+2. **Nella's plot:** bind the approved keeper unchanged; implement exact public/reserve crop stages, neutral tray and indexed persistent soil cords without permission-changing art. Follow through watering, harvest, product pickup and stationary/off-cell invalidation.
+3. **Direct products and remaining measured surroundings:** source-audited loose outputs and the remaining incidental hazards/containers. Keep merchant-added crops, arbitrary equipment and new motion explicit gaps until covered.
+
+Vegetation integration is not whole-route completion. North actors/works, Nella/crops/cords/products remain rough or pending. Neither tests nor these screenshots establish physical Steam Deck behavior/performance or normal release activation.
+
+## Historical actual greybox and concept review —2026-10-23
 
 This continuation supersedes the earlier pending-capture note. Independently viewed all six actual captures under `Docs/Verification/Live16x24/north-greybox-{entry,works,plot,reserve-terms,trade,trade-return}.png`, their saved metadata, and both `north-{plot,works}-concept.png` images plus exact prompt text in this folder. The actual seed64 walk reached the north connector and Nella, read reserve terms, bought two gladroot seeds, and returned from the square trade screen to the flat world. Entry/works show40HP; plot/terms/trade-return show25HP. The log records three stone-wall strikes, two successful patchbearer hits and a Calm escape. This is useful traversal evidence, not a clean or harmless hero scene. The parent reports212 native scope/consumer cases green; this art review did not rerun tests or operate Unity.
 
@@ -140,7 +156,7 @@ This continuation supersedes the earlier pending-capture note. Independently vie
 | Concept magpie and viper have useful long-tail/low-S silhouettes; patchbearer has pale straps and a large held bottle. | Separate bird, snake and Marlback body classes. | Patchbearer is too humanoid and its hand-held oversized flask suggests permanent equipment. Derive from accepted Gleaner shale anatomy, retain equipment-neutral hands, and put a small actual healing bottle in its cradle only while `FindCarriedMedicine()` finds one. A missing healing bottle does not erase the separate Antidote. Concept animal positions are not live entity positions. |
 | Both concepts have soft ground variation, many color values and irregularly sized illustrative “pixels.” | Quiet negative space and restrained material families. | No sampling/downscaling, baked shadow, gradient, grain, haze or noise. Native sprites must come from original exact integer-cell source geometry and be judged at actual1× and direct8× scale. |
 
-### Production priorities after extraction approval
+### Historical production priorities after extraction approval
 
 1. **Route and actor readability:** ordinary Tree/Hedge/Bush admission, current solid-wall reuse, Magpie/Viper/Patchbearer identity and real medicine-slot state. Match native occupied cells to actual obstruction; rewalk the same escape route without making the enemy weaker or removing walls for the picture.
 2. **Nella's existing service:** bind the unchanged keeper; add the persistent validated reserve-soil cord, neutral tray and the exact four-crop lifecycle frames. Check public versus tied rows before and after harvest and a full trade roundtrip. The concept does not substitute for these state tests.
@@ -149,7 +165,7 @@ This continuation supersedes the earlier pending-capture note. Independently vie
 
 This review changed only this source planning document. No native image, Blender source, runtime file, blueprint, owner state or Unity scene was modified.
 
-### Extracted reference sheet review
+### Historical extracted reference sheet review
 
 Independently viewed `north-parts-reference.png` and `north-parts-prompt.txt` after the scene critique. The4×4 sheet is accepted **only as an isolated silhouette reference**, not a directly usable atlas. It contains the requested16 slots and removes the generated keeper/player derivatives. The present/absent healing-bottle pair, low tray, tree trunk, broad hedge, long-tailed bird and coiled snake are useful comparisons.
 

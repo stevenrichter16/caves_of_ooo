@@ -1,0 +1,71 @@
+{
+  "label": "north-vegetation-after-profile",
+  "start": "2026-10-23T10:09:31.438158Z",
+  "end": "2026-10-23T10:11:08.449433Z",
+  "elapsedSeconds": 97.011275,
+  "frames": 73153,
+  "zone": "Overworld.11.9.0",
+  "player": [
+    56,
+    11
+  ],
+  "hp": 20,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 73154,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 77378.711663066948,
+      "max": 28004833,
+      "p99": 133459
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 73154,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 1321655.0392459743,
+      "max": 813366500,
+      "p99": 4908375
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 73154,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 35.042294337971953,
+      "max": 45,
+      "p99": 37
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 73154,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 34.771577767449493,
+      "max": 45,
+      "p99": 36
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 73154,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 9274.7092981928527,
+      "max": 9304,
+      "p99": 9302
+    }
+  ],
+  "bounds": "Editor ordinary walking plus idle/tool time; all-world/UI costs and live combat differ; not Deck or a controlled speedup benchmark."
+}
