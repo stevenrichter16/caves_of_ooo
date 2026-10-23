@@ -22,7 +22,7 @@ namespace CavesOfOoo.Tests
         [SetUp]
         public void SetUp()
         {
-            _catalog = new FlatPixelGreyboxCatalog();
+            _catalog = new FlatPixelGreyboxCatalog(null);
             _zone = new Zone(ReferenceGladePlan.ZoneID);
             _ground = Add("Grass");
             _zone.GetCell(X, Y).Explored = true;
@@ -307,7 +307,7 @@ namespace CavesOfOoo.Tests
             var texture = actor.ForegroundTile.sprite.texture;
             var spriteToDispose = actor.ForegroundTile.sprite;
             var tileToDispose = actor.ForegroundTile;
-            using (var other = new FlatPixelGreyboxCatalog())
+            using (var other = new FlatPixelGreyboxCatalog(null))
             {
                 Assert.IsTrue(other.TryResolve(_zone, X, Y, out var otherCell));
                 Assert.AreNotSame(texture, otherCell.ForegroundTile.sprite.texture);

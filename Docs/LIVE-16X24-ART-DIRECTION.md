@@ -34,7 +34,7 @@ Animations should explain action and character: directional movement, readable a
 
 **Continuation record required for each asset group:** current pass; greybox capture and tested actions; concept inputs/prompt/output; extracted parts and owner mappings; editable sources; production assets; actual integration capture; tests/performance observations; unresolved issues and next action. Future agents must read this record before continuing. Static studies and concept renders must remain labeled as such.
 
-**Current handoff:** milestones1–2 now have an opt-in playable opening, corrected native capture,306 passing selected Unity tests and an initial imagegen paintover. See the continuation record at the end. Base sprites, animation and the full release journey remain pending; the imagegen paintover is reference only.
+**Current handoff:** milestones1–2 have an opt-in playable opening, corrected native captures and an imagegen paintover. The first ten native base sprites are now integrated and checked in actual Play, including ripe grain changing to stubble. See the continuation record at the end. Remaining cast, anchors, animation and the full release journey remain pending; generated concepts remain reference only.
 
 ## Verification sweep before runtime work
 
@@ -175,3 +175,42 @@ Captures (all native1280×800):
 **Next bounded art group:** equipment-neutral player and warden base frames; dark/low walls, two pale reed clusters, low olive bush, sparse rubble, ripe grain and cut stubble. Keep the plain ground. Native sprites must be integrated with actual owner/state selection and recaptured before adding more variation. Preserve approved character PNGs unchanged. The production art release remains incomplete.
 
 Final bounded cold review found no new P1/P2 defect in activation, fullscreen ordering, claims, projection restoration or launcher recovery. The concept comparison additionally rejects road bands turned into barriers, a chest painted as an oven, gravel painted as flowers and spent rows painted as ready grain. A second built-in imagegen call produced the ten-part isolated reference `ArtSource/Live16x24/concepts/base-parts-v1.png` using `base-parts-prompt.md`. These are concept-guided design references; native reconstruction and integration are the next pass.
+
+### Native opening base group — implementation plan
+
+This slice reconstructs ten selected base frames from the generated parts reference and integrates them into the opt-in real opening. It is deliberately a first visible group: player, warden, dark/low masonry, two reeds, low bush, rubble, ripe grain and stubble. Other owners remain explicit greybox silhouettes until their next group.
+
+Verification sweep: the existing catalog already selects actual top owners and excludes live occupants from remembered cells, so production lookup belongs after that owner resolution, preserving ground and memory policy. `RipeCropRow` harvest is `FieldHarvestPart.Harvested`; `CropRow` has no growth clock. Drawgourd cannot reuse grain. The low crossing has its Wall tag removed but retains its low-wall VisualID/role. Keep approved NPC sources and previous study untouched. Equipment-neutral base figures avoid a permanent weapon after disarm. A single160×24 resource atlas is sufficient for ten16×24 frames, sharing texture/material and existing tile claims. No additional world scan or actorGameObject is required.
+
+Art: author editable flat-front geometry in Blender from deliberate pixel clusters; render exact native canvases rather than shrink generated images. Use binary transparency and Point imports. Produce a legible enlarged reference through Blender. Tests first for owner/state selection and unknown/missing-art fallback, then actual resource/import dimensions and existing greybox/memory/UI controls. Capture the same ordinary start/route before accepting the group. Base frames are static; animation, the rest of the cast and full release acceptance remain outstanding.
+
+### Native opening base group — integrated, 2026-10-23 UTC
+
+Pipeline receipt: corrected greybox capture `greybox-game-20261023-043026.png` → `concepts/opening-paintover-v1.png` (whole composition rejected, useful motifs retained) → `concepts/base-parts-v1.png` → authored Blender pixel geometry in `Tools/Live16x24/build_opening_base.py` → editable `ArtSource/Live16x24/base/opening-base.blend` and160×24 atlas → Resources import → actual Play captures below. All paths to concepts/base are under `ArtSource/Live16x24`; receipts/captures are under `Docs/Verification/Live16x24`.
+
+Ten static frames now replace exact supported owners: player, warden, dark ruin Wall, low Wall/crossing, tall/short pale Reeds, low green-grass Bush, low Rubble/BrokenColumn, ripe field row and spent field row. They are not ten animations. The existing catalog still supplies ground and an explicit rough fallback for everything else. A borrowed Resources texture supplies cached sprites/tiles; disposal destroys those generated objects, never the shared resource. There is no extra per-frame world scan or actor GameObject layer.
+
+Verification and corrections:
+
+| Check | Evidence / result |
+| --- | --- |
+| New resolver RED | `opening-art-red.xml`:57 cases,24 expected new API/injection failures,33 existing controls passed. |
+| Synthetic art GREEN | `opening-art-synthetic-green.xml`:58/58; extra quartz-vein counter-check included. |
+| Actual resource RED | `opening-art-resource-red.xml`:58 passed,1 expected missing imported atlas failure. Prevents synthetic-only false acceptance. |
+| Native integration GREEN | `opening-art-integration-green.xml`:125/125, zero skipped;26 opening-art cases plus greybox/ground/fullscreen/projection controls. |
+| Pixel contract | Exact160×24, ten nonempty16×24 frames, binary alpha;0 source-cell/render mismatches.8× geometry contact has0 mismatches. Point/Clamp/no mip/Uncompressed import,16PPU cached sprites. Approved five PNGs remain byte-identical. |
+| Actual ordinary input | N fresh start; inventory open/close; L + arrows selects44,10; distant harvest rejected; walk to44,11 then harvest succeeds.44,10 becomes stubble while46,12 and50,14 remain unharvested. |
+| Collision and movement | Walk back through40,12 to31,16. Up strikes existing wall and stays31,16; Left enters30,16 open passage. Player/camera remain aligned. Ordinary NPC combat/death/drop turns continued. |
+| Cleanup | `native-base-cleanup.json`: Play false, original study scene restored, pending/isolation false. |
+
+Actual screenshots: `native-base-start.png`, `native-base-harvest.png`, `native-base-passage.png` are1280×800 Game captures, not Blender scenes or paintovers. Read-only runtime receipts pin start/passage geometry and the three harvest booleans. The foreground uses native colors and existing remembered-terrain dimming; unrevealed actors remain excluded. Separate cold code review and native visual review found no P1/P2 within this bounded group.
+
+- 🟡 Fixed documentation drift: initial art manifest claimed a lit-wall alias and broad rubble aliases absent from the exact resolver. Source generator/manifest now match the actual routes.
+- 🧪 Actual Play confirmed ordinary `Wall` owners also use `reference-glade-lit-wall` (e.g.31,12 and31,15), in addition to quartz owners sharing that ID. These remain explicit rough wall fallbacks; the next boundary group must supply a distinct lit-wall frame without turning quartz into masonry. Do not claim complete wall coverage.
+- 🧪 Repeated short wall pieces are readable as low obstacles but still need connected edge/end variants in the full boundary pass. Native base acceptance does not close final architecture quality.
+- 🧪 Renderer snapshot:31 draw calls/batches,8,752 triangles,17,524 vertices in this editor view. This is a single editor snapshot including UI, not a before/after benchmark or Steam Deck performance evidence.
+- 🧪 Mouse pointer routing remains the previously recorded open validation issue; keyboard targeting passed. No physical controller run claimed.
+
+**Can verify:** genuine resource loading, owner/state/fog fallback behavior via native tests; square native pixels/import preservation; actual harvest visual change, keyboard target alignment, movement/collision, UI return and isolated cleanup. **Cannot yet verify:** final whole-opening appearance, complete state/animation coverage, connected-site journey, mouse/controller acceptance or Deck frame time. This is an opt-in development presentation, not the final default release.
+
+Next bounded group: replace the four remaining living-actor placeholders (Villager, PetDog, MarlbackScrabbler, MarlbackGleaner). The native game start capture and accepted base contact now drive `concepts/cast-parts-prompt.md`/`cast-parts-v1.png`. Factual identities are grounded in Objects.json and ReferenceGladePlan; no weapon/armor is baked into these changeable owners. Generated proportions/detail still require exact native reconstruction. Functional anchors and lit-wall/connected boundaries follow; no new fictional backdrop or duplicated keeper/cook is introduced.

@@ -1,0 +1,245 @@
+{
+  "tool": "Read-only Pillow pixel/dimension checks; geometry rendered with Blender5.2.1",
+  "atlasSize": [
+    160,
+    24
+  ],
+  "atlasSHA256": "71ce34419f0e5b1a9a494dd4abd2b29efa8c5866dab97e2aaa57b1e2fb42df2e",
+  "exactAuthoredPixelMismatches": 0,
+  "contactSize": [
+    1280,
+    704
+  ],
+  "contactIntegerScale": 8,
+  "contactSpritePixelMismatches": 0,
+  "frames": [
+    {
+      "index": 0,
+      "id": "player",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 6,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 166,
+      "alphaBoundsTopLeft": [
+        3,
+        1,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 1,
+      "id": "dark-wall",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 5,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 192,
+      "alphaBoundsTopLeft": [
+        1,
+        2,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 2,
+      "id": "low-wall",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 5,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 127,
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 3,
+      "id": "tall-reeds",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 4,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 78,
+      "alphaBoundsTopLeft": [
+        1,
+        2,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 4,
+      "id": "short-reeds",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 4,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 52,
+      "alphaBoundsTopLeft": [
+        2,
+        8,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 5,
+      "id": "low-bush",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 3,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 49,
+      "alphaBoundsTopLeft": [
+        2,
+        13,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 6,
+      "id": "rubble",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 3,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 47,
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 7,
+      "id": "ripe-grain",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 5,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 68,
+      "alphaBoundsTopLeft": [
+        3,
+        4,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 8,
+      "id": "stubble",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 3,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 22,
+      "alphaBoundsTopLeft": [
+        4,
+        15,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 9,
+      "id": "warden",
+      "size": [
+        16,
+        24
+      ],
+      "colorCount": 9,
+      "alphas": [
+        0,
+        255
+      ],
+      "occupiedPixels": 166,
+      "alphaBoundsTopLeft": [
+        3,
+        2,
+        14,
+        23
+      ]
+    }
+  ],
+  "approvedInputs": [
+    {
+      "path": "Assets/Art/SeedKeeper3/seed-keeper-3.png",
+      "sha256": "ec3e10a85de884ec9611fa6f4d1cb9856e02d66c8ed8b540e9bd8ca20c8e2601",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/Cook16x24/cook-16x24.png",
+      "sha256": "d534b0e3cab143d8a1523829fc4bd101b76d776d307a152fd18cfe9c5681dbdd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/Tatterjay16x24/tatterjay.png",
+      "sha256": "838e2fbf5db9dadb5efddae3cef40ea06feba9a600e6413f75163dc15cfd3401",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/ReedbackGrazer16x24/03-ridge.png",
+      "sha256": "29db64b90637fdd305a355907c06547c5f46d82f912ec95a88307d92f28b4dad",
+      "unchangedFromHEAD": true
+    },
+    {
+      "path": "Assets/Art/BeetleJar16x24/beetle-jar.png",
+      "sha256": "eabd360b2c0305f7b061d73ac991fcea56ecc2efb2ac370ce387e0526f6f3f7a",
+      "unchangedFromHEAD": true
+    }
+  ],
+  "visualReview": "Two Blender render passes. Pass2 gives grain alternating kernel notches and larger contact labels. Native atlas and8x geometry contact viewed directly. Real Unity integration and in-game acceptance pending root."
+}

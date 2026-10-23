@@ -1,0 +1,342 @@
+{
+  "schema": 1,
+  "artifact": "opening-base.png",
+  "width": 160,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 10,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary; validated from the Blender PNG separately.",
+  "animation": "None. Ten distinct static base subjects, not animation frames.",
+  "source": "opening-base.blend",
+  "generator": "Tools/Live16x24/build_opening_base.py",
+  "concept": "ArtSource/Live16x24/concepts/base-parts-v1.png (visual reference only)",
+  "sha256": "71ce34419f0e5b1a9a494dd4abd2b29efa8c5866dab97e2aaa57b1e2fb42df2e",
+  "frames": [
+    {
+      "index": 0,
+      "id": "player",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Player"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Equipment-neutral ochre-hooded traveler; separated boots, cream front and open face.",
+      "occupiedPixels": 166,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "9C6B32",
+        "C99538",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        1,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 1,
+      "id": "dark-wall",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Wall:reference-glade-dark-ruin"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three tall flat masonry masses; dark broken ruin, no bevelled cubes or baked light.",
+      "occupiedPixels": 192,
+      "palette": [
+        "233C32",
+        "3C5148",
+        "526657",
+        "586638",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        2,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 2,
+      "id": "low-wall",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Wall:reference-glade-low-wall"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Half-height stone course with a visible top break; one cell, solid only when its owner is solid.",
+      "occupiedPixels": 127,
+      "palette": [
+        "3C5148",
+        "526657",
+        "586638",
+        "788D73",
+        "A3AE8C"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        12,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 3,
+      "id": "tall-reeds",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Reeds:reference-glade-pale-reeds:variant0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three narrow straw-grey reed blades, irregular heights and open stem gaps; not ripe grain.",
+      "occupiedPixels": 78,
+      "palette": [
+        "647244",
+        "757D49",
+        "ABA986",
+        "C9C39A"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        2,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 4,
+      "id": "short-reeds",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Reeds:reference-glade-pale-reeds:variant1"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Two bent straw blades with a cut remnant; lower sparse companion to tall reeds.",
+      "occupiedPixels": 52,
+      "palette": [
+        "647244",
+        "757D49",
+        "ABA986",
+        "C9C39A"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        8,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 5,
+      "id": "low-bush",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Bush:reference-glade-green-grass"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Low forked olive sprig with a dark center and open edges; no flowers or opaque shrub mass.",
+      "occupiedPixels": 49,
+      "palette": [
+        "435A35",
+        "75834B",
+        "96A462"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        13,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 6,
+      "id": "rubble",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Rubble:reference-glade-gravel",
+        "BrokenColumn:reference-glade-dark-ruin"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three low flat stone fragments with generous gaps; no flower-colored dots and no standing column.",
+      "occupiedPixels": 47,
+      "palette": [
+        "3C5148",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 7,
+      "id": "ripe-grain",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "RipeCropRow:FieldHarvest.Harvested=false"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three distinct golden emberwheat heads on narrow stems; only unharvested native field rows.",
+      "occupiedPixels": 68,
+      "palette": [
+        "75834B",
+        "806033",
+        "A58242",
+        "D8A446",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        4,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 8,
+      "id": "stubble",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "CropRow",
+        "RipeCropRow:FieldHarvest.Harvested=true"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three blunt cut stalks, substantially shorter and duller than ripe heads; never a growth stage promise.",
+      "occupiedPixels": 22,
+      "palette": [
+        "806033",
+        "A58242",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        15,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 9,
+      "id": "warden",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Warden"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Equipment-neutral forest-coated warden with flat cap, cream front and rust shoulder cloth; no baked weapon.",
+      "occupiedPixels": 166,
+      "palette": [
+        "342E25",
+        "3E5035",
+        "53683E",
+        "5F4830",
+        "75834B",
+        "9B442B",
+        "B5A47E",
+        "B85834",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        2,
+        14,
+        23
+      ]
+    }
+  ]
+}

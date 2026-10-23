@@ -38,7 +38,7 @@ namespace CavesOfOoo.Rendering
     }
 
     /// <summary>
-    /// Disposable, procedural greybox atlas for the real opening. Cell owners and
+    /// Native opening art with a disposable procedural fallback. Cell owners and
     /// states are resolved afresh; the catalog never changes gameplay or approved
     /// source art. One instance owns its shared atlas, sprites and cached tiles.
     /// Admission does not enable the mode: the caller owns the user's opt-in.
@@ -48,11 +48,17 @@ namespace CavesOfOoo.Rendering
         private const int FrameWidth = 16, FrameHeight = 24, AtlasColumns = 8;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
+        private readonly FlatPixelOpeningArtCatalog _openingArt;
         private Texture2D _atlas;
         private bool _disposed;
 
-        public FlatPixelGreyboxCatalog()
+        public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath)) { }
+
+        /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
+        /// the procedural fallback without consulting Resources.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas)
         {
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -78,6 +84,13 @@ namespace CavesOfOoo.Rendering
             FlatPixelGreyboxGround ground = GroundOf(zone, cell, owner, remembered);
             Color groundColor = GroundColor(ground);
             Color foregroundColor = ForegroundColor(kind);
+            Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
+                ? null : _tiles[(int)kind];
+            if (_openingArt.TryResolve(owner, x, y, out var openingTile))
+            {
+                foreground = openingTile;
+                foregroundColor = Color.white;
+            }
             if (remembered)
             {
                 // No independent light source or live-state read through memory.
@@ -85,8 +98,6 @@ namespace CavesOfOoo.Rendering
                 foregroundColor *= 0.35f;
                 groundColor.a = foregroundColor.a = 1f;
             }
-            Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
-                ? null : _tiles[(int)kind];
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
                 !remembered && cell.BlocksMovement());
@@ -291,6 +302,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed) return;
             _disposed = true;
+            _openingArt.Dispose();
             foreach (Tile tile in _tiles) DestroyOwned(tile);
             foreach (Sprite sprite in _sprites) DestroyOwned(sprite);
             DestroyOwned(_atlas);
