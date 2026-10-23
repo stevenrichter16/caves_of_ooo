@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "artifact": "opening-anchors.png",
+  "width": 192,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 12,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary; validated from the Blender PNG separately.",
+  "animation": "None. Twelve static owner/state frames. Repair and supply pairs are state variants, not animation.",
+  "source": "opening-anchors.blend",
+  "generator": "Tools/Live16x24/build_opening_anchors.py",
+  "concept": "ArtSource/Live16x24/concepts/anchor-parts-v1.png (visual reference only)",
+  "sha256": "aacb70020e54fe9322d507c1f1fadbcf9004bb4f7f8715ad4cb7105cea8ff98f",
+  "frames": [
+    {
+      "index": 0,
+      "id": "cracked-well",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "RepairLinedWell:Repairable.Repaired=false"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Broad masonry catch well with fired-clay lining; one open dark lining split.",
+      "occupiedPixels": 140,
+      "palette": [
+        "162E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9C6B32"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        11,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 1,
+      "id": "sealed-well",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "RepairLinedWell:Repairable.Repaired=true"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Broad masonry catch well with fired-clay lining; warm sealed seam, no service-ready glow.",
+      "occupiedPixels": 140,
+      "palette": [
+        "162E25",
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "9C6B32",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        11,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 2,
+      "id": "filled-basin",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "SpreadDrawPoint:LiquidPool.LiquidId=water:Volume>0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Shallow stone bank pocket; visible finite water, not a new spring.",
+      "occupiedPixels": 82,
+      "palette": [
+        "196463",
+        "3C5148",
+        "458C7A",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        16,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 3,
+      "id": "empty-basin",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "SpreadDrawPoint:LiquidPool.LiquidId=water:Volume<=0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Shallow stone bank pocket; dark depleted bowl; surrounding wet ground is independent.",
+      "occupiedPixels": 82,
+      "palette": [
+        "162E25",
+        "3C5148",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        16,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 4,
+      "id": "stairs",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "StairsDown"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Ground opening with descending tread cuts; passable, not a standing cabinet or hatch.",
+      "occupiedPixels": 124,
+      "palette": [
+        "162E25",
+        "233C32",
+        "3C5148",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        14,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 5,
+      "id": "fallen-beam",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "FallenBeam"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "One-cell low roof timber with charred left end; moves with the actual haulable owner.",
+      "occupiedPixels": 80,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "94713D",
+        "B5A47E",
+        "C99538"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        17,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 6,
+      "id": "chest",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Chest"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Closed reinforced wood box; no invented open state or visible contents.",
+      "occupiedPixels": 128,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "5F4830",
+        "7D8E71",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        12,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 7,
+      "id": "barrel",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "WoodenBarrel"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Rounded staved wood container with two plain hoops; no assumed liquid or open state.",
+      "occupiedPixels": 122,
+      "palette": [
+        "526657",
+        "5F4830",
+        "7D8E71",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        9,
+        13,
+        23
+      ]
+    },
+    {
+      "index": 8,
+      "id": "sign",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Signpost"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Plain weathered board on a narrow post; no fixed arrow or fabricated writing.",
+      "occupiedPixels": 102,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        7,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 9,
+      "id": "mushrooms",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "MushroomRing:Harvestable.Harvested=false"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three low flat caps with separated stems and open ground; finite passable harvest source.",
+      "occupiedPixels": 48,
+      "palette": [
+        "75834B",
+        "ABA986",
+        "C9C39A",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        15,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 10,
+      "id": "quartz-vein",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "GlowQuartzVein:reference-glade-lit-wall:Harvestable.Harvested=false"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Solid low irregular rock with three angular mineral points; source disappears when harvested.",
+      "occupiedPixels": 102,
+      "palette": [
+        "397568",
+        "3C5148",
+        "526657",
+        "70A68A",
+        "B4CCAB"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        9,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 11,
+      "id": "lit-wall",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Wall:reference-glade-lit-wall"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Full-height continuous masonry course with a narrow muted mineral seam; no crystal source or halo.",
+      "occupiedPixels": 240,
+      "palette": [
+        "397568",
+        "3C5148",
+        "526657",
+        "70A68A",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        0,
+        13,
+        24
+      ]
+    }
+  ]
+}

@@ -14,15 +14,18 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "Sprites/Live16x24/opening-base";
         public const string CastResourcePath = "Sprites/Live16x24/opening-cast";
+        public const string AnchorsResourcePath = "Sprites/Live16x24/opening-anchors";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
         private readonly Tile[] _castTiles;
         private readonly Sprite[] _castSprites;
+        private readonly Tile[] _anchorTiles;
+        private readonly Sprite[] _anchorSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
-            Resources.Load<Texture2D>(CastResourcePath)) { }
+            Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -30,10 +33,15 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>Base and cast resources are independently optional and
         /// borrowed. A missing/malformed atlas cannot disable the other group.</summary>
-        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas)
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas) : this(atlas, castAtlas, null) { }
+
+        /// <summary>Each optional group owns only its generated frames. Earlier
+        /// injection overloads deliberately omit anchors without loading Resources.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
+            _anchorTiles = BuildFrames(anchorsAtlas, 12, "anchors", out _anchorSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -75,9 +83,54 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = CastFrameOf(owner);
-            if (frame < 0 || _castTiles == null) return false;
-            tile = _castTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _castTiles == null ? null : _castTiles[frame];
+                return tile != null;
+            }
+            frame = AnchorFrameOf(owner, render.VisualID);
+            if (frame < 0 || _anchorTiles == null) return false;
+            tile = _anchorTiles[frame];
             return tile != null;
+        }
+
+        private static int AnchorFrameOf(Entity owner, string visual)
+        {
+            // Blueprint identity precedes a VisualID: the quartz source and an
+            // ordinary masonry wall deliberately share the same lit-wall role.
+            switch (owner.BlueprintName)
+            {
+                case "RepairLinedWell":
+                    var repair = Owned<RepairablePart>(owner);
+                    return Owned<WellPart>(owner) != null && repair != null
+                        && !repair.PortableEquipment && repair.RecipeId == "clay-well-lining"
+                        ? repair.Repaired ? 1 : 0 : -1;
+                case "SpreadDrawPoint":
+                    var pool = Owned<LiquidPoolPart>(owner);
+                    return pool != null && pool.LiquidId == "water" ? pool.Volume > 0 ? 2 : 3 : -1;
+                case "StairsDown": return Owned<StairsDownPart>(owner) != null ? 4 : -1;
+                case "FallenBeam": return Owned<PhysicsPart>(owner) != null && Owned<HandlingPart>(owner) != null ? 5 : -1;
+                case "Chest": return Owned<ContainerPart>(owner) != null ? 6 : -1;
+                case "WoodenBarrel": return Owned<ContainerPart>(owner) != null ? 7 : -1;
+                case "Signpost": return 8;
+                case "MushroomRing": return UnspentHarvest(owner, "Mushroom") ? 9 : -1;
+                case "GlowQuartzVein": return visual == "reference-glade-lit-wall"
+                    && UnspentHarvest(owner, "GlowQuartz") ? 10 : -1;
+                case "Wall": return visual == "reference-glade-lit-wall" ? 11 : -1;
+                default: return -1;
+            }
+        }
+
+        private static T Owned<T>(Entity owner) where T : Part
+        {
+            var part = owner.GetPart<T>();
+            return part != null && part.ParentEntity == owner ? part : null;
+        }
+
+        private static bool UnspentHarvest(Entity owner, string yield)
+        {
+            var harvest = Owned<HarvestablePart>(owner);
+            return harvest != null && !harvest.Harvested && harvest.YieldBlueprint == yield;
         }
 
         private static int CastFrameOf(Entity owner)
@@ -123,6 +176,8 @@ namespace CavesOfOoo.Rendering
             if (_sprites != null) foreach (var sprite in _sprites) DestroyOwned(sprite);
             if (_castTiles != null) foreach (var tile in _castTiles) DestroyOwned(tile);
             if (_castSprites != null) foreach (var sprite in _castSprites) DestroyOwned(sprite);
+            if (_anchorTiles != null) foreach (var tile in _anchorTiles) DestroyOwned(tile);
+            if (_anchorSprites != null) foreach (var sprite in _anchorSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)
