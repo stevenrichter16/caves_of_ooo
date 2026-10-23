@@ -1,0 +1,334 @@
+{
+  "schema": 1,
+  "artifact": "opening-cellar.png",
+  "width": 144,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 9,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; verified independently.",
+  "source": "opening-cellar.blend",
+  "generator": "Tools/Live16x24/build_cellar.py",
+  "concept": "ArtSource/Live16x24/concepts/cellar-parts-v2.png (reference only; native flat reconstruction)",
+  "sceneConcept": "ArtSource/Live16x24/concepts/cellar-paintover-v1.png",
+  "captures": [
+    "Docs/Verification/Live16x24/cellar-greybox-entry.png",
+    "Docs/Verification/Live16x24/cellar-greybox-service.png",
+    "Docs/Verification/Live16x24/cellar-greybox-store.png"
+  ],
+  "scope": "Eight static frames for real cellar owners and existing crop stages/products, plus one continuous ordinary masonry terrain frame. No new spawns, animation or runtime integration claim.",
+  "sha256": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+  "frames": [
+    {
+      "index": 0,
+      "id": "stairs-up",
+      "blueprint": "StairsUp",
+      "stage": null,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "Three broad pale treads rise between short stone cheeks toward a clear upper opening; no vertical doorway or descent pit.",
+      "actualUse": "The real upward stair uses the existing registered connection back to the glade.",
+      "limits": "Owned upward-stair and physics identity. No invented ladder, door, glow or additional destination.",
+      "occupiedPixels": 146,
+      "palette": [
+        "3C5148",
+        "526657",
+        "7D8E71",
+        "A3AE8C"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        6,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 1,
+      "id": "crate",
+      "blueprint": "Crate",
+      "stage": null,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "Squat closed plank crate with broad corner braces, recessed central boards and a flat upper rail; no chest latch or arched lid.",
+      "actualUse": "Finite existing container; the actual crate carries clay, a seed-dependent equipment reward and a manual.",
+      "limits": "Contents and empty state do not change this frame. No persistent open-lid state exists; no supplies are painted onto the crate.",
+      "occupiedPixels": 154,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        10,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 2,
+      "id": "timber-pallet",
+      "blueprint": "GleanersTimberPallet",
+      "stage": null,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "Broad low wooden slats across two visible runners, with open spaces between the three boards; larger and heavier than loose split timber.",
+      "actualUse": "Existing solid haulable owner. Dismantling its unspent harvest removes it and yields two real SalvagedTimber units.",
+      "limits": "No inventory, carried supply pile or depleted-pallet variant. Player strength and action readiness remain gameplay decisions.",
+      "occupiedPixels": 96,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        14,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 3,
+      "id": "sootroot-seed-stage",
+      "blueprint": "SootrootCrop",
+      "stage": 0,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "A tiny planted seed notch set in a low uneven soil mark; distinct from the pale loose seed and no premature green shoot.",
+      "actualUse": "Current owned sootroot GrowthStage0; moisture and elapsed-world growth belong to CropPart and cultivated ground.",
+      "limits": "No wooden planter, readiness icon or fixed-duration promise. The underlying prepared bed is a separate real floor owner.",
+      "occupiedPixels": 19,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        19,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 4,
+      "id": "sootroot-sprout",
+      "blueprint": "SootrootCrop",
+      "stage": 1,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "Paired angular olive leaves on one short stem above a low soil footing; no harvest bulb or ripe crown.",
+      "actualUse": "Current owned sootroot GrowthStage1. Watering modifies actual prepared-ground state rather than a separate decorative plant.",
+      "limits": "No invented wilted or harvested state. The actual crop must retain its mature-harvest pulp and cultivated-seed contract.",
+      "occupiedPixels": 54,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        12,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 5,
+      "id": "sootroot-ripe",
+      "blueprint": "SootrootCrop",
+      "stage": 2,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "Three angular olive leaves rise from dark root shoulders with one restrained pale vertical seam; the root remains planted and uncut.",
+      "actualUse": "Current owned sootroot GrowthStage2. Mature harvest removes this owner and produces actual pulp and seed.",
+      "limits": "Do not render a spent crop after harvest. Positive yield counts and actual owned part state are authoritative; growth timing is not painted.",
+      "occupiedPixels": 125,
+      "palette": [
+        "342E25",
+        "53683E",
+        "5F4830",
+        "75834B",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        5,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 6,
+      "id": "sootroot-pulp",
+      "blueprint": "SootrootPulp",
+      "stage": null,
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "One compact torn root portion with charcoal skin and a pale irregular interior; no bottle or whole live plant.",
+      "actualUse": "Actual harvested, takeable, applicable burning cure. It is not a drinkable healing tonic.",
+      "limits": "No flames, water pool, shine, stack-count imagery or invented processing output.",
+      "occupiedPixels": 33,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        17,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 7,
+      "id": "sootroot-seed",
+      "blueprint": "SootrootSeed",
+      "stage": null,
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "One small diagonal dark kernel with a pale crease; free of soil, packet and roots.",
+      "actualUse": "Actual harvested takeable seed that plants SootrootCrop on cultivated soil.",
+      "limits": "The ground mark and carried seed are different owners. Art does not promise multiple seeds or change valid stack quantities.",
+      "occupiedPixels": 15,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        18,
+        10,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": false
+    },
+    {
+      "index": 8,
+      "id": "solid-stone-wall",
+      "blueprint": "StoneWall",
+      "stage": null,
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "description": "Full-cell quiet stone courses with staggered dark joints; continuous solid mass at all cell boundaries, no surface-ruin pillar cutouts.",
+      "actualUse": "Existing ordinary StoneWall with current owned solid, non-takeable physics and its Wall tag.",
+      "limits": "Terrain exception: all 16x24 pixels are opaque, including row23, so repeated walls do not imply passable gaps. No 3D cap, invented opening, glade VisualID or added collision.",
+      "occupiedPixels": 384,
+      "palette": [
+        "233C32",
+        "3C5148",
+        "526657"
+      ],
+      "alphaBoundsTopLeft": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "baselineTopLeft": 24,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "fullCellTerrain": true
+    }
+  ]
+}

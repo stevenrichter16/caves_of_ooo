@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         LooseItem, WaterSource, EmptyWaterSource, Unknown
     }
 
-    public enum FlatPixelGreyboxGround { Ground, Road, DrySoil, WetSoil, Water }
+    public enum FlatPixelGreyboxGround { Ground, Road, DrySoil, WetSoil, Water, StoneFloor }
 
     /// <summary>Read-only presentation of one currently observed cell. Shapes are
     /// rough layout placeholders, not finished art or promises of new interactions.</summary>
@@ -56,7 +56,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -79,17 +80,31 @@ namespace CavesOfOoo.Rendering
         /// <summary>Five optional borrowed groups; earlier overloads never load
         /// omitted art. This catalog owns generated frames, not their textures.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, null) { }
+
+        /// <summary>The sixth optional borrowed group adds current cellar owners.
+        /// Earlier overloads retain deterministic null-cellar injection.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
             BuildAtlas();
         }
 
-        /// <summary>Exact native opening plus its current content/biome authority.
-        /// An unrelated zone at a similar address never acquires this treatment.</summary>
-        public static bool IsAdmitted(Zone zone) => ReferenceGladePlan.IsActive(zone);
+        /// <summary>Only the reference glade and its current managed cellar are
+        /// admitted at this stage. Other connected sites retain their earlier art.
+        /// Eligibility reads the current graph; it never generates or repairs it.</summary>
+        public static bool IsAdmitted(Zone zone)
+        {
+            if (ReferenceGladePlan.IsActive(zone)) return true;
+            if (zone?.ZoneID != GleanersCellarBuilder.ZoneID
+                || !SpreadPresentationScope.IsActive(zone)) return false;
+            // The broader Spread scope also admits committed lair floors. The
+            // opening cellar must retain its own no-surface-POI authority.
+            return WorldLocationContext.For(zone).WorldMap.GetPOI(11, 10) == null;
+        }
 
         /// <summary>Rejects unexplored, foreign and disposed contexts. Remembered
         /// cells expose only low-layer terrain, never current occupants, crop state,
@@ -147,7 +162,8 @@ namespace CavesOfOoo.Rendering
             {
                 tile = _tiles[(int)FlatPixelGreyboxKind.Ground];
                 tint = GroundColor(kind == FlatPixelGreyboxKind.Road
-                    ? FlatPixelGreyboxGround.Road : FlatPixelGreyboxGround.Ground);
+                    ? FlatPixelGreyboxGround.Road : IsPlainFloor(owner)
+                        ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground);
             }
             else
             {
@@ -243,6 +259,7 @@ namespace CavesOfOoo.Rendering
             switch (owner.BlueprintName)
             {
                 case "Grass": return FlatPixelGreyboxKind.Ground;
+                case "Floor": if (IsPlainFloor(owner)) return FlatPixelGreyboxKind.Ground; break;
                 case "RoadStone": return FlatPixelGreyboxKind.Road;
                 case "CropRow": return FlatPixelGreyboxKind.CropSpent;
                 case "Reeds": case "Bush": case "MushroomRing": return FlatPixelGreyboxKind.Vegetation;
@@ -251,6 +268,16 @@ namespace CavesOfOoo.Rendering
             if (owner.HasTag("Vegetation")) return FlatPixelGreyboxKind.Vegetation;
             if (owner.GetPart<PhysicsPart>()?.ParentEntity == owner) return FlatPixelGreyboxKind.Prop;
             return FlatPixelGreyboxKind.Unknown;
+        }
+
+        private static bool IsPlainFloor(Entity owner)
+        {
+            if (owner?.BlueprintName != "Floor" || !owner.HasTag("Terrain")) return false;
+            var render = owner.GetPart<RenderPart>();
+            var physics = owner.GetPart<PhysicsPart>();
+            return render != null && render.ParentEntity == owner && render.Visible
+                && string.IsNullOrEmpty(render.VisualID)
+                && physics != null && physics.ParentEntity == owner && !physics.Solid && !physics.Takeable;
         }
 
         private static FlatPixelGreyboxGround GroundOf(Zone zone, Cell cell, Entity owner, bool remembered)
@@ -269,12 +296,17 @@ namespace CavesOfOoo.Rendering
                     || CultivatedSoilPart.IsCultivated(zone, cell))
                     return FlatPixelGreyboxGround.DrySoil;
             }
-            // Road is ground geometry. No hidden crop/soil or liquid states are read.
+            // Roads and ordinary floor are ground geometry. No hidden crop/soil
+            // or liquid states are read; roads retain priority over their substrate.
+            bool stoneFloor = false;
             foreach (Entity entity in cell.Objects)
-                if (entity.BlueprintName == "RoadStone" && entity.SpatialZone == zone
-                    && zone.GetEntityCell(entity) == cell && entity.GetPart<RenderPart>()?.Visible == true)
+            {
+                if (entity.SpatialZone != zone || zone.GetEntityCell(entity) != cell) continue;
+                if (entity.BlueprintName == "RoadStone" && entity.GetPart<RenderPart>()?.Visible == true)
                     return FlatPixelGreyboxGround.Road;
-            return FlatPixelGreyboxGround.Ground;
+                if (IsPlainFloor(entity)) stoneFloor = true;
+            }
+            return stoneFloor ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
         }
 
         private static Color GroundColor(FlatPixelGreyboxGround kind)
@@ -285,6 +317,7 @@ namespace CavesOfOoo.Rendering
                 case FlatPixelGreyboxGround.DrySoil: return new Color32(69, 52, 31, 255);
                 case FlatPixelGreyboxGround.WetSoil: return new Color32(37, 35, 25, 255);
                 case FlatPixelGreyboxGround.Water: return new Color32(12, 67, 68, 255);
+                case FlatPixelGreyboxGround.StoneFloor: return new Color32(24, 44, 41, 255);
                 default: return new Color32(3, 47, 35, 255);
             }
         }

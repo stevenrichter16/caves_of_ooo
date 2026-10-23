@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "reviewedUtc": "2026-10-23T08:35:47.152611+00:00",
+  "purpose": "Read-only comparison of actual OnGUI crate portrait before/after against native source atlas; no image or gameplay mutation.",
+  "inputs": [
+    {
+      "path": "ArtSource/Live16x24/cellar/opening-cellar.png",
+      "sha256": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+      "pixelSize": [
+        144,
+        24
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/cellar-native-crate-examine.png",
+      "sha256": "4f9576a3ed327b62c5cd6fab013a9a32504d683fae42d5df42eb9ab92608b546",
+      "pixelSize": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/cellar-native-crate-examine-corrected.png",
+      "sha256": "5f76f179262654a4b27ff8e2fc9400f6fbf2995ad0a7231eb47ea3d204e41e72",
+      "pixelSize": [
+        1280,
+        800
+      ]
+    }
+  ],
+  "sourceFrame": {
+    "index": 1,
+    "pngTopLeftRect": [
+      16,
+      0,
+      16,
+      24
+    ]
+  },
+  "displayedFrame": {
+    "screenshotTopLeftRect": [
+      687,
+      206,
+      48,
+      72
+    ],
+    "integerScale": 3,
+    "opaqueBounds": [
+      693,
+      236,
+      729,
+      275
+    ],
+    "backgroundRgba": [
+      13,
+      13,
+      13,
+      255
+    ]
+  },
+  "comparison": {
+    "transparentDisplayPixels": 2070,
+    "correctedTransparentBackgroundMismatchPixels": 0,
+    "opaqueDisplayPixels": 1386,
+    "correctedOpaqueMismatchPixels": 0,
+    "oldOpaqueMismatchPixels": 1386,
+    "oldExtraSrgbEncodingMismatchPixels": 0,
+    "correctedMaximumChannelError": 0
+  },
+  "palette": [
+    {
+      "sourceRgba": [
+        52,
+        46,
+        37,
+        255
+      ],
+      "sourcePixels": 4,
+      "oldDisplayRgba": [
+        125,
+        118,
+        106,
+        255
+      ],
+      "correctedDisplayRgba": [
+        52,
+        46,
+        37,
+        255
+      ],
+      "extraSrgbEncodedSourceRgba": [
+        125,
+        118,
+        106,
+        255
+      ]
+    },
+    {
+      "sourceRgba": [
+        95,
+        72,
+        48,
+        255
+      ],
+      "sourcePixels": 62,
+      "oldDisplayRgba": [
+        164,
+        145,
+        120,
+        255
+      ],
+      "correctedDisplayRgba": [
+        95,
+        72,
+        48,
+        255
+      ],
+      "extraSrgbEncodedSourceRgba": [
+        164,
+        145,
+        120,
+        255
+      ]
+    },
+    {
+      "sourceRgba": [
+        148,
+        113,
+        61,
+        255
+      ],
+      "sourcePixels": 62,
+      "oldDisplayRgba": [
+        200,
+        178,
+        134,
+        255
+      ],
+      "correctedDisplayRgba": [
+        148,
+        113,
+        61,
+        255
+      ],
+      "extraSrgbEncodedSourceRgba": [
+        200,
+        178,
+        134,
+        255
+      ]
+    },
+    {
+      "sourceRgba": [
+        181,
+        164,
+        126,
+        255
+      ],
+      "sourcePixels": 26,
+      "oldDisplayRgba": [
+        219,
+        210,
+        187,
+        255
+      ],
+      "correctedDisplayRgba": [
+        181,
+        164,
+        126,
+        255
+      ],
+      "extraSrgbEncodedSourceRgba": [
+        219,
+        210,
+        187,
+        255
+      ]
+    }
+  ],
+  "passed": true,
+  "visualReview": "Correct crate identity, exact 3x nearest-neighbor geometry, unchanged header placement, transparent frame reveals panel background; no overlap/clipping seen.",
+  "bounds": [
+    "Verifies this actual1280x800 screenshot of native crate OnGUI routing, palette and geometry.",
+    "Does not establish other hardware, every portrait, runtime performance or controller behavior.",
+    "Existing native GPU tests separately verify sRGB/linear targets, tint/alpha, route, caching and disposal."
+  ]
+}

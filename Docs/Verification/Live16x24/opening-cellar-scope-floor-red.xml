@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="31" result="Failed(Child)" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.8672288">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30057" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.867229" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37024" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30057" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.709613" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37025" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30057" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.650022" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37026" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30057" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.596444" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27939" name="FlatPixelCellarScopeTests" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:18Z" duration="3.309675" total="31" passed="9" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27963" name="ActualFloorIsGroundOnlyAndPersistsBeneathAnotherOwner" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.ActualFloorIsGroundOnlyAndPersistsBeneathAnotherOwner" methodname="ActualFloorIsGroundOnlyAndPersistsBeneathAnotherOwner" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1730100860" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.081188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.ActualFloorIsGroundOnlyAndPersistsBeneathAnotherOwner () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27972" name="ActualWaterAndCultivatedMoistureOverrideStoneOnlyWhileVisible" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.ActualWaterAndCultivatedMoistureOverrideStoneOnlyWhileVisible" methodname="ActualWaterAndCultivatedMoistureOverrideStoneOnlyWhileVisible" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1865051609" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.036000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.ActualWaterAndCultivatedMoistureOverrideStoneOnlyWhileVisible () [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:135
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27956" name="CellarCannotBorrowChangedSurfacePoiAuthority" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.104161" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27953" name="CellarCannotBorrowChangedSurfacePoiAuthority(Village)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority(Village)" methodname="CellarCannotBorrowChangedSurfacePoiAuthority" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="173672052" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.034052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority (CavesOfOoo.Core.POIType type) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27954" name="CellarCannotBorrowChangedSurfacePoiAuthority(Lair)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority(Lair)" methodname="CellarCannotBorrowChangedSurfacePoiAuthority" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1295887810" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.034188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority (CavesOfOoo.Core.POIType type) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27955" name="CellarCannotBorrowChangedSurfacePoiAuthority(RiverChunk)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority(RiverChunk)" methodname="CellarCannotBorrowChangedSurfacePoiAuthority" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="944206385" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.033713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.CellarCannotBorrowChangedSurfacePoiAuthority (CavesOfOoo.Core.POIType type) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27957" name="ChangedBiomeCannotBorrowAnEarlierCellarAdmission" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.ChangedBiomeCannotBorrowAnEarlierCellarAdmission" methodname="ChangedBiomeCannotBorrowAnEarlierCellarAdmission" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1564733282" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.034129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.ChangedBiomeCannotBorrowAnEarlierCellarAdmission () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:84
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27940" name="CurrentCellarAdmitsWithoutGeneratingOrRequiringSurvivingServices" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CurrentCellarAdmitsWithoutGeneratingOrRequiringSurvivingServices" methodname="CurrentCellarAdmitsWithoutGeneratingOrRequiringSurvivingServices" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1923933859" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.035231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.CurrentCellarAdmitsWithoutGeneratingOrRequiringSurvivingServices () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27952" name="CurrentGraphIdentityIsRecheckedRatherThanCachedByAddress" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.CurrentGraphIdentityIsRecheckedRatherThanCachedByAddress" methodname="CurrentGraphIdentityIsRecheckedRatherThanCachedByAddress" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="661116015" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:15Z" duration="0.034209" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.CurrentGraphIdentityIsRecheckedRatherThanCachedByAddress () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27942" name="DetachedAndUnattachedCacheCellarsCannotBorrowAuthority" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.DetachedAndUnattachedCacheCellarsCannotBorrowAuthority" methodname="DetachedAndUnattachedCacheCellarsCannotBorrowAuthority" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1452404807" result="Failed" start-time="2026-10-23 07:38:15Z" end-time="2026-10-23 07:38:16Z" duration="0.033060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.DetachedAndUnattachedCacheCellarsCannotBorrowAuthority () [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:58
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27962" name="MalformedMapRefusesWithoutRepairOrException" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.228157" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27958" name="MalformedMapRefusesWithoutRepairOrException(&quot;null-tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException(&quot;null-tiles&quot;)" methodname="MalformedMapRefusesWithoutRepairOrException" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1216469507" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.034854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27959" name="MalformedMapRefusesWithoutRepairOrException(&quot;small-tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException(&quot;small-tiles&quot;)" methodname="MalformedMapRefusesWithoutRepairOrException" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="830428104" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.041653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27960" name="MalformedMapRefusesWithoutRepairOrException(&quot;null-pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException(&quot;null-pois&quot;)" methodname="MalformedMapRefusesWithoutRepairOrException" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1815341352" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.077198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27961" name="MalformedMapRefusesWithoutRepairOrException(&quot;small-pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException(&quot;small-pois&quot;)" methodname="MalformedMapRefusesWithoutRepairOrException" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1149702178" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.071239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedMapRefusesWithoutRepairOrException (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27971" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.207183" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27965" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;foreign-physics&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="248022797" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.035414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27966" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;foreign-render&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="2095019921" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.034049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27967" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;solid&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="2073987232" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.034151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27968" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;portable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;portable&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="441896171" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27969" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;no-terrain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;no-terrain&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="129525944" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27970" name="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;reskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround(&quot;reskin&quot;)" methodname="MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1561586856" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.MalformedOrExplicitlyReskinnedFloorDoesNotClaimStoneGround (System.String fault) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:131
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27951" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.279395" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27943" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.9.0&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1430122035" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.034555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27944" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.8.0&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="776568801" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27945" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.10.0&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1896949138" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033855" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27946" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.11.0&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="734003946" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27947" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.11.0&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="821445812" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.033080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27948" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.10.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.11.10.2&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="971192666" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.035296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27949" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.12.10.1&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="187400143" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.034741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27950" name="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.011.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(&quot;Overworld.011.10.1&quot;)" methodname="PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1364213395" result="Passed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:16Z" duration="0.038464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27974" name="RealZoneBindingKeepsCellarPixelsAndRestoresUnselectedWorldAndFullscreen" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.RealZoneBindingKeepsCellarPixelsAndRestoresUnselectedWorldAndFullscreen" methodname="RealZoneBindingKeepsCellarPixelsAndRestoresUnselectedWorldAndFullscreen" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1589145215" result="Failed" start-time="2026-10-23 07:38:16Z" end-time="2026-10-23 07:38:18Z" duration="2.113907" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1.5f
+  But was:  1.0f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests+PresentationGraph.Pixel (System.Boolean active) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:200
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.RealZoneBindingKeepsCellarPixelsAndRestoresUnselectedWorldAndFullscreen () [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:169
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27973" name="RememberedWallsStayDistinctFromEmptyFloorWithoutDisclosingHiddenActors" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.RememberedWallsStayDistinctFromEmptyFloorWithoutDisclosingHiddenActors" methodname="RememberedWallsStayDistinctFromEmptyFloorWithoutDisclosingHiddenActors" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="2065507295" result="Failed" start-time="2026-10-23 07:38:18Z" end-time="2026-10-23 07:38:18Z" duration="0.047462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.RememberedWallsStayDistinctFromEmptyFloorWithoutDisclosingHiddenActors () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:155
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27941" name="StandaloneOpeningKeepsItsExistingSeparateContract" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.StandaloneOpeningKeepsItsExistingSeparateContract" methodname="StandaloneOpeningKeepsItsExistingSeparateContract" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1749269884" result="Passed" start-time="2026-10-23 07:38:18Z" end-time="2026-10-23 07:38:18Z" duration="0.034020" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27964" name="SurfaceGrassDoesNotAcquireUndergroundGroundTone" fullname="CavesOfOoo.Tests.FlatPixelCellarScopeTests.SurfaceGrassDoesNotAcquireUndergroundGroundTone" methodname="SurfaceGrassDoesNotAcquireUndergroundGroundTone" classname="CavesOfOoo.Tests.FlatPixelCellarScopeTests" runstate="Runnable" seed="1365638349" result="Failed" start-time="2026-10-23 07:38:18Z" end-time="2026-10-23 07:38:18Z" duration="0.035034" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current cellar must participate in the same flat cell pipeline.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCellarScopeTests.Resolve (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCellarScopeTests.SurfaceGrassDoesNotAcquireUndergroundGroundTone () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCellarScopeTests.cs:114
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

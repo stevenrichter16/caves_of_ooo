@@ -1,6 +1,10 @@
 # Live 16×24 — connected sites
 
-**Status: NOT IMPLEMENTED.** Source/design audit prepared 2026-10-23. This document proposes the next bounded presentation extension; it is not evidence that the sites use the new art, that travel was tested, or that a release build enables flat mode. [Live art direction](LIVE-16X24-ART-DIRECTION.md) owns overall implementation status and the required production pipeline.
+**Status: PARTIALLY IMPLEMENTED, 2026-10-23.** The actual two-seed census is complete and the glade’s connected cellar is integrated in the opt-in presentation; its precise evidence and remaining acceptance gates are in [the cellar record](LIVE-16X24-CELLAR.md). The four other proposed surface sites remain unadmitted and unimplemented. A release build still does not enable flat mode. [Live art direction](LIVE-16X24-ART-DIRECTION.md) owns overall implementation status and the required production pipeline.
+
+**Current cellar acceptance:** nine native frames are imported, including dedicated solid masonry; native [714/714 cellar/opening tests](Verification/Live16x24/opening-cellar-green.xml) passed. The portrait color correction passed [9/9 GPU tests](Verification/Live16x24/opening-portrait-color-green.xml), the overlapping [348/348 regression](Verification/Live16x24/opening-portrait-color-regression.xml), and an [exact actual-popup palette comparison](Verification/Live16x24/cellar-native-portrait-palette-review.json). These are overlapping receipts, not a sum of unique tests.
+
+The second ordinary keyboard journey completed finite looting, dismantling and harvesting, return upstairs, cellar revisit and F5/F6 save/load. Crate contents stayed zero; the pallet and ripe crop stayed removed; inventory retained two clay, two timber, two pulp, one seed, Ditchkeepers' Footwork and Shattered Rime. After the guard reduced health from 40 to 28, the player used Calm through the actual hotbar/target controls and returned to glade `(28,19)`, then descended to cellar `(40,12)`. Saving there, moving to `(40,11)` and loading restored `(40,12)`, 28 HP, flat presentation, inventory and depletion. Receipts: [supplies](Verification/Live16x24/cellar-native-supplies-final.json), [return](Verification/Live16x24/cellar-native-return-up.json), [revisit](Verification/Live16x24/cellar-native-revisit.json), [moved after save](Verification/Live16x24/cellar-native-saved-away.json), [reload](Verification/Live16x24/cellar-native-reloaded.json). The [cellar record](LIVE-16X24-CELLAR.md) preserves the failed first return and full acceptance details. Watered growth, the four surface art packets, full six-site journey, mouse/controller, physical Deck performance and normal release activation remain separate work.
 
 ## Goal and boundary
 
@@ -64,11 +68,11 @@ The existing [ConnectedSpread3DLibrary](../Assets/Scripts/Presentation/Rendering
 
 [GleanersCellarBuilder](../Assets/Scripts/Gameplay/World/Generation/Builders/GleanersCellarBuilder.cs) builds actual `Floor`/`StoneWall`, `StairsUp`, `Signpost`, `FallenBeam`, `MarlbackScrabbler`, `Crate`; connected/fieldwork versions add two `SootrootCrop` beds and `GleanersTimberPallet`.
 
-For **seed 64 only**, source-derived coordinates are: landing `(40,12)`, notice `(39,11)`, north service passage Y5, beam `(48,5)`, guard `(55,12)`, supply crate `(64,7)`, timber pallet `(65,8)`, ripe/dry sootroot `(65,9)`/`(65,10)`. This is a source calculation, not a recorded Play journey. Other seeds can mirror the passage and move the store.
+For **seed 64 only**, initial source-derived coordinates are: landing `(40,12)`, notice `(39,11)`, north service passage Y5, beam `(48,5)`, guard `(55,12)`, supply crate `(64,7)`, timber pallet `(65,8)`, ripe/dry sootroot `(65,9)`/`(65,10)`. The later detached census and ordinary journey checked these static placements; the guard can move during play. Other seeds can mirror the passage and move the store.
 
-Reuse accepted beam/sign/Scrabbler art where its exact contract fits. Add distinct upward stairs, crate, pallet and sootroot stages; give underground floor and solid stone readable boundaries. Do not reuse the down-stair direction or imply a chest-open state absent from gameplay.
+Accepted beam/sign/Scrabbler art is reused where its exact contract fits. The completed cellar packet adds distinct upward stairs, crate, pallet, sootroot stages and harvested products, plus solid masonry and ground-only floor treatment. It does not reuse the down-stair direction or imply a chest-open state absent from gameplay.
 
-The crate contains two `FireClay`, `DitchkeepersFootwork`, and the seed-dependent `ShatteredRimeGrimoire`/`Buckler`. Dismantling the pallet yields two `SalvagedTimber` and removes that owner. Harvest removes the ripe crop and leaves its actual bed. Dropped supplies, harvested produce, corpse and equipment drops require explicit fallback or later item art; no claim of universal item coverage follows from room art.
+The crate contains two `FireClay`, `DitchkeepersFootwork`, and the seed-dependent `ShatteredRimeGrimoire`/`Buckler`. Dismantling the pallet yields two `SalvagedTimber` and removes that owner. Harvest removes the ripe crop and leaves its actual bed. Native art now covers the clay, timber, sootroot pulp/seed and supported Marlback corpse; unfamiliar manuals/equipment retain explicit fallback. Room art does not imply universal item coverage.
 
 ### Two connector chunks
 
@@ -78,7 +82,9 @@ The crate contains two `FireClay`, `DitchkeepersFootwork`, and the seed-dependen
 
 Do not manufacture glade VisualIDs on ordinary terrain to force matching. Route deliberate new art by verified ordinary blueprint/parts within the admitted scope; leave unknown owners visible through fallback.
 
-## Staged implementation and acceptance
+## Original staged plan — historical, 2026-10-23 before cellar implementation
+
+This table records the initial six-site plan. Implementation deliberately admitted only glade+cellar first; Stage0's two-seed census and the bounded cellar packet are complete as summarized above. The four surface sites and continuous six-site journey remain planned, not enabled by their addresses appearing here.
 
 Before each production change: read its actual APIs, write meaningful failing tests and confirm native RED. Follow the living art direction’s playable greybox → actual capture → imagegen reinterpretation → parts → native source → reintegration loop. Preserve all accepted source art and the previous presentation.
 
@@ -103,19 +109,21 @@ Capture owner/state evidence during generation/tests or explicit diagnostics, ne
 
 Normal border movement already calls `ZoneTransitionSystem.TransitionPlayer` from [InputHandler](../Assets/Scripts/Presentation/Input/InputHandler.cs); controller stair commands already route to `TryUseStairs`. Do not add a special art-tour teleport or a parallel input path.
 
-## Review, evidence and handoff
+## Original source-audit review — historical, 2026-10-23 before native census
+
+The following statements describe the initial source-only checkpoint. They are preserved as audit history; current generation, cellar integration, journey and save/load evidence is summarized at the top and in [the cellar record](LIVE-16X24-CELLAR.md).
 
 - **Verified by this audit:** source addresses, placement algorithms, owner blueprints/roles, crop/repair/job contracts, approved actor file paths and existing input routes. No source or asset was changed during the audit.
-- **Not verified:** actual owner census for all six seed-64 chunks, site placement success across seeds, integrated art, visual readability, the complete normal journey, controller acceptance, save/revisit presentation or Deck performance. Those are gates above, not completed work.
+- **Not yet verified at that checkpoint:** actual owner census for all six seed-64 chunks, site placement success across seeds, integrated art, visual readability, the complete normal journey, controller acceptance, save/revisit presentation or Deck performance. Later evidence closes the bounded census/cellar portions, not every original gate.
 - **Scope choice:** cellar first reduces the first art increment and directly extends the existing opening. North and east routes follow independently. Trapper yard, other regions and generic inventory art remain outside this document.
-- **Self-review:** 🟡 treating connector chunks as empty was corrected; 🟡 fixed resident cell assumptions were removed; 🟡 old versus mature-harvest crop contracts were separated; 🧪 live census/travel/performance remain unperformed. No new gameplay mechanics or spawns are proposed.
+- **Self-review at that checkpoint:** 🟡 treating connector chunks as empty was corrected; 🟡 fixed resident cell assumptions were removed; 🟡 old versus mature-harvest crop contracts were separated; 🧪 census/travel/performance were still unperformed. No new gameplay mechanics or spawns were proposed.
 - **Implementation log:** 2026-10-23 — source audit persisted only. Files changed: this new document. Tests: none run for this documentation-only addition; no Unity calls.
 
 Future agents should update stage status, concrete changes, RED/GREEN evidence and actual capture links in the same commit as implementation, and summarize the accepted result in the root-owned live art direction. Tool choice is autonomous within the user’s authorization; coordinate shared Unity/editor ownership before any refresh, test or Play session.
 
-## Next implementation packet — source-only census, 2026-10-23
+## Original implementation packet — historical source-only census, 2026-10-23
 
-This is a blueprint/state inventory from the actual builders and current flat selectors, **not a generated six-zone census**. It was prepared without Unity, gameplay mutations or production edits while root completed opening acceptance. Current opening resources now include motion and twelve loose items; the reuse column below reflects those additions.
+This was a blueprint/state inventory from the builders and flat selectors at the source-only checkpoint, **not a generated six-zone census**. It was prepared without Unity, gameplay mutations or production edits while root completed opening acceptance. The reuse column reflects the then-current motion and twelve loose-item resources. Subsequent census results appear below; the implemented cellar now has nine dedicated frames and ordinary-floor ground treatment.
 
 | Exact zone | Already reusable through current identity/state routes | New native art or deliberate new mapping required |
 | --- | --- | --- |
@@ -130,11 +138,13 @@ The four surface extensions retain [CreateSurfacePipeline](../Assets/Scripts/Gam
 
 ### Corrections to resolve before widening admission
 
-- **Floor is currently a prop fallback.** [FlatPixelGreyboxCatalog.Classify](../Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs) recognizes `Grass`/`RoadStone`, but `Floor` falls through to `Prop`; `GroundOf` defaults to surface green. Simply accepting the cellar would fill open corridors with generic object markers. Add a tested exact floor-as-ground rule and reviewed underground tone before the first playable flat cellar capture. Preserve cultivated dry/wet bed priority and hidden-state restrictions.
+- **Resolved original finding — Floor was a prop fallback.** At the source checkpoint, [FlatPixelGreyboxCatalog.Classify](../Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs) recognized `Grass`/`RoadStone`, but `Floor` fell through to `Prop` and `GroundOf` defaulted to surface green. The foundation packet below corrected this before the first cellar capture, retaining cultivated dry/wet priority and hidden-state restrictions.
 - **Do not apply glade state art by analogy.** A supplied `Oven` is non-finite cooking scenery/service, not the finite `Campfire`; ordinary `StoneWall` has no glade VisualID. Reuse pixels only through an explicit correct owner contract. `StairsUp` must visibly differ from the accepted descending steps.
 - **The reserve cord is a lower soil owner.** A crop occupies the same cell and normally wins the foreground. A new crop frame alone cannot communicate the persistent claim. Design the small validated soil cue in the existing cell pass, retaining it after harvest and suppressing live claim lookup in fog. The old 3D `ResolveReserveBed` performs a zone-wide keeper search; do not copy that into flat frame-time rendering.
 
-### Smallest useful next greybox/capture batch
+### Original proposed greybox/capture batch — historical
+
+This sequence is retained to explain the work's progression. Actual admission was narrowed to glade+cellar, and the six/eight-frame proposal became nine frames after visual review rejected the narrow surface ruin pillar as solid cellar masonry. Current implementation and evidence are in [the cellar record](LIVE-16X24-CELLAR.md).
 
 1. Add exact-six-address read-only admission tests, including graph/map/POI/depth rejection and destroyed-site retention. Generate through `OverworldZoneManager.CreateDetached(factory, seed, true)` for seed64 and one odd seed (65 exercises the cellar's mirrored passage and Buckler reward). Request the surface glade before the cellar: `GleanersDistrict.CanBuildCellar` requires its actual stair and registered connection. Record realized/refused destination roles rather than force placement.
 2. Record each generated zone's foreground owner counts, exact blueprint/VisualID/role, relevant owned state, catalog-selected group or explicit fallback, and contained/carried goods separately. This is a one-shot test/diagnostic export, never a renderer scan. The source table above is the checklist, not the result.
@@ -142,4 +152,46 @@ The four surface extensions retain [CreateSurfacePipeline](../Assets/Scripts/Gam
 4. Reinterpret those actual captures with imagegen, extract parts, then author the first cellar atlas: **six frames** (`StairsUp`, `Crate`, pallet, sootroot seed/sprout/ripe), optionally extending the same reviewed batch to **eight** with pulp/seed so harvesting has native results. Keep floor a ground treatment; review reuse of the accepted dark masonry for ordinary `StoneWall` rather than automatically making a duplicate wall asset. Crate has no saved lid-open state; pallet/ripe crop disappear through their real actions.
 5. Confirm synthetic RED/GREEN, actual-resource missing RED/import/binding, stationary crop transitions, fog, removal, unknown-drop visibility and down/up return. Then capture the normal cellar journey and only afterward start the north connector/plot packet. New art counts do not close cross-seed layout, travel/save, performance or release gates.
 
-**Source-only handoff:** no native census or new screenshot was produced for this supplement; no new art is claimed integrated. The concrete next task is Stage0 plus the cellar greybox, not all six production atlases at once.
+**Source-only handoff at that time:** this supplement produced no native census, screenshot or integrated art. Stage0 plus the cellar greybox was the next task then; its completed bounded results now follow below and in the current cellar record.
+
+## Cellar foundation packet — scope and floor, 2026-10-23
+
+**Foundation checkpoint at 07:40 UTC:** native scope/floor GREEN, 31/31 passed with zero skips, before the first ordinary-input cellar capture. This packet admitted **only the opening glade and its current managed cellar**, as production still does. The four surface extensions keep their previous presentation until their own packets. This foundation itself added no atlas; the subsequent nine-frame integration and completed cellar journey are recorded above and in [the cellar record](LIVE-16X24-CELLAR.md).
+
+### Verified contracts and corrections
+
+| Source check | Result used here |
+| --- | --- |
+| `ReferenceGladePlan.IsActive` | Preserve its existing managed and standalone opening contracts. Do not broaden or rewrite opening authority. |
+| `SpreadPresentationScope.IsActive` | Rechecks current graph identity, canonical address, valid map arrays and current Spread biome. Its broader committed-lair admission requires an additional no-surface-POI check for this exact cellar. |
+| `GleanersDistrict.CanBuildCellar` | Generation eligibility depends on the surface stair/connection. Rendering must not rerun it: destroyed stairs, removed stores and harvested owners must not revoke an existing cellar's style or regenerate supplies. |
+| `Floor` and existing selector | Ordinary owned non-solid, nonportable `Floor` was classified as a generic prop. It now contributes only cached ground, with a subdued cool green-gray `#182C29`; explicit reskins or malformed/foreign parts keep fallback semantics. |
+| `GroundOf` and remembered terrain | Actual visible water and crop/cultivated-soil state retain priority. Memory reads static floor/wall geometry and dims it, excluding hidden live crop, liquid, actor and collision state. |
+| Existing projection/fullscreen lifecycle | The shared catalog admission is already used by `ZoneRenderer.FlatPixelModeActive`. No second mode gate or camera algorithm is needed; the real renderer fixture checks rectangular cellar metrics and square fullscreen/out-of-scope restoration. |
+
+The exact-subject floor portrait borrows the same cached solid sprite and stone tint as the world floor. Neither path adds a raster resource, terrain scan, frame allocation or gameplay mutation. The existing bounded cell-object traversal finds the floor beneath a higher foreground owner; roads retain priority over their substrate.
+
+**Evidence:** `FlatPixelCellarScopeTests` native RED discovered 31 cases: 9 passed, 22 failed, 0 skipped in [opening-cellar-scope-floor-red.xml](Verification/Live16x24/opening-cellar-scope-floor-red.xml). An earlier stale assembly run discovered zero cases and was explicitly rejected as evidence. The observed failures cover missing cellar admission and its floor/grid consequences. Native [opening-cellar-scope-floor-green.xml](Verification/Live16x24/opening-cellar-scope-floor-green.xml) then passed all 31 cases with zero skips at 07:40:37–07:40:46 UTC. These tests stage authoritative cells and do not substitute for the real-generated census recorded below, ordinary down/up journey or visual art review.
+
+**Foundation self-review at 07:40 UTC:** 🟡 six-zone admission was narrowed to this two-zone packet so unfinished neighboring art was not silently enabled; 🟡 generic Floor markers corrected before the first cellar capture; ⚪ old cellars retain their actual saved owners rather than receiving authored replacements; 🧪 ordinary Play, cross-seed census, visual readability and atlas integration were separate upcoming gates. Their later results do not change this checkpoint's limited scope. This is CoO-original presentation work, not a claim of Qud implementation parity.
+
+**Files:** modified `FlatPixelGreyboxCatalog.cs` and scope comments in `ZoneRenderer.FlatPixel.cs`; added `FlatPixelCellarScopeTests.cs` and its Unity meta. Root owns native test execution, the main art-direction summary and the final commit.
+
+## Actual two-seed census — 2026-10-23 07:41 UTC
+
+The editor executed [census_connected_sites.cs](../Tools/Live16x24/census_connected_sites.cs) against detached managers for seeds **64 and 65**, generating the glade before its cellar and then the four surface destinations. All **12 zones generated** in **9,373 ms** with no failure or restoration errors. Both detached managers retained a null active zone; reported world, settlement, save-root and equipment-version cleanup checks were all true. Evidence: [execution receipt](Verification/Live16x24/connected-two-seed-census-execute.json), [structured summary](Verification/Live16x24/connected-two-seed-census-summary.json), [compressed raw census](Verification/Live16x24/connected-two-seed-census.json.gz). The decompressed raw SHA-256 matches the summary's `9fd153f5817892537ed16eae02a9f4c4729ff7a70b0c8b9c44d75209ce8c4279`.
+
+| Generated zone | Placed entities, seed64 / seed65 | Actual flat admission |
+| --- | --- | --- |
+| Glade `11.10.0` | 2,681 / 2,679 | Yes |
+| Cellar `11.10.1` | 2,008 / 2,008 | Yes |
+| North connector `11.9.0` | 2,244 / 2,256 | No |
+| Seed plot `11.8.0` | 2,196 / 2,309 | No |
+| East connector `12.10.0` | 2,392 / 2,379 | No |
+| Kitchen `12.11.0` | 2,289 / 2,239 | No |
+
+Both cellars contain the actual upward stair, notice, beam, guard, crate, two cultivated sootroot beds and timber pallet. Seed65 mirrors the service passage: beam `(48,19)` and crate `(66,17)`, versus seed64 `(48,5)` and `(64,7)`. The stored goods are **two FireClay units**, one Ditchkeepers' Footwork, and Shattered Rime for seed64 or Buckler for seed65; the guard's equipped Cudgel/Hatchet is recorded separately, not as a loose floor item. No harvesting, dismantling, looting or replenishment occurred during this census.
+
+Placement varies materially: seed64's north yard includes the Patchbearer, two shelves and Mendleaf; seed65 has the basic still/forage/walls without that enrichment. Conversely, the east forge's authored Cindercaller/Scrabbler pair appears in seed65 but not seed64. Both eastern chunks also contain a real pen gate and Reedback Grazer, which the earlier destination-only source list did not enumerate. Nella's reserve plot and Orven's pan/escrow/pickup packet were present in both seeds at different resident coordinates. These are observed placements, not guarantees for other seeds; nothing was inserted to fill an absent group.
+
+**Bounds:** placed and potential-top counts include hidden entities and deliberately ignore player fog; held goods are separate custody records. This one-shot diagnostic constructs no renderer/catalog textures, player or live graph and performs no gameplay actions or saves. It verifies generation/ownership for two explicit seeded runs, **not** current player visibility, native art coverage, live-session RNG replay, visual quality, the ordinary journey or Deck performance. The four generated surface extensions remain unadmitted. The earlier source-only census limitation is closed for these two runs; capture and art acceptance remain separate gates.

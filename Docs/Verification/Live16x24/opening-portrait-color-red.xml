@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.5975473">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30120" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.597547" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37097" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30120" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.541917" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37098" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30120" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.372903" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37099" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30120" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.318314" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28377" name="FlatPixelPortraitColorTests" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.018244" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28380" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.009927" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28378" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(True)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(True)" methodname="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="235534507" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.006722" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing native palette-preserving popup draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:111
+at CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding (System.Boolean srgbTarget) [0x000c5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28379" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(False)" methodname="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1264690927" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing native palette-preserving popup draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:111
+at CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding (System.Boolean srgbTarget) [0x000c5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28388" name="NullAndInvalidRectsCannotAllocateOrDraw" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.NullAndInvalidRectsCannotAllocateOrDraw" methodname="NullAndInvalidRectsCannotAllocateOrDraw" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1183111916" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing native palette-preserving popup draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:111
+at CavesOfOoo.Tests.FlatPixelPortraitColorTests.NullAndInvalidRectsCannotAllocateOrDraw () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:85
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28386" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.002047" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28382" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,False,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,False,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1184503291" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual popup routing must keep models and legacy sprite fallback on their existing draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath (System.Boolean flat, System.Boolean model, System.Boolean expected) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28383" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,True,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,True,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="77479458" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual popup routing must keep models and legacy sprite fallback on their existing draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath (System.Boolean flat, System.Boolean model, System.Boolean expected) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28384" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,True,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,True,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="2113442255" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual popup routing must keep models and legacy sprite fallback on their existing draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath (System.Boolean flat, System.Boolean model, System.Boolean expected) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28385" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,False,True)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,False,True)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="958256640" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual popup routing must keep models and legacy sprite fallback on their existing draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath (System.Boolean flat, System.Boolean model, System.Boolean expected) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28387" name="RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" methodname="RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="392629841" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing native palette-preserving popup draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:111
+at CavesOfOoo.Tests.FlatPixelPortraitColorTests.RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28381" name="TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" methodname="TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="2071356012" result="Failed" start-time="2026-10-23 08:20:41Z" end-time="2026-10-23 08:20:41Z" duration="0.000588" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing native palette-preserving popup draw path.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPortraitColorTests.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:111
+at CavesOfOoo.Tests.FlatPixelPortraitColorTests.TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource () [0x00072] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortraitColorTests.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

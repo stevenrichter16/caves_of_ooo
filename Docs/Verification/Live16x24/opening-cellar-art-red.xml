@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="44" result="Failed(Child)" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.6012875">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30101" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.601288" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37074" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30101" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.532276" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37075" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30101" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.461535" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37076" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30101" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.405204" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28205" name="FlatPixelOpeningCellarArtTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="44" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.072603" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28237" name="CrateContentsDoNotInventAnOpenLidState" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CrateContentsDoNotInventAnOpenLidState" methodname="CrateContentsDoNotInventAnOpenLidState" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="2013575879" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.007818" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CrateContentsDoNotInventAnOpenLidState () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28239" name="CropFollowsStageWithoutPinningMoistureOrTiming" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropFollowsStageWithoutPinningMoistureOrTiming" methodname="CropFollowsStageWithoutPinningMoistureOrTiming" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1702869461" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000739" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropFollowsStageWithoutPinningMoistureOrTiming () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:79
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28245" name="CropRequiresItsRealHarvestContract" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.002528" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28240" name="CropRequiresItsRealHarvestContract(&quot;yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract(&quot;yield&quot;)" methodname="CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1773433028" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28241" name="CropRequiresItsRealHarvestContract(&quot;yield-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract(&quot;yield-count&quot;)" methodname="CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="884880625" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28242" name="CropRequiresItsRealHarvestContract(&quot;seed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract(&quot;seed&quot;)" methodname="CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1102825612" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28243" name="CropRequiresItsRealHarvestContract(&quot;seed-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract(&quot;seed-count&quot;)" methodname="CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1992325711" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28244" name="CropRequiresItsRealHarvestContract(&quot;maturity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract(&quot;maturity&quot;)" methodname="CropRequiresItsRealHarvestContract" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="541510136" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CropRequiresItsRealHarvestContract (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28250" name="CurrentCellAndFogAuthorityRemainWithWorldSelector" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentCellAndFogAuthorityRemainWithWorldSelector" methodname="CurrentCellAndFogAuthorityRemainWithWorldSelector" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="912790866" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward the sixth optional cellar atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewWorld () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:176
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentCellAndFogAuthorityRemainWithWorldSelector () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28214" name="CurrentOwnedSemanticsUseOneCachedNativeCell" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.003791" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28206" name="CurrentOwnedSemanticsUseOneCachedNativeCell(0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(0)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1919208469" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28207" name="CurrentOwnedSemanticsUseOneCachedNativeCell(1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(1)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="2009389658" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28208" name="CurrentOwnedSemanticsUseOneCachedNativeCell(2)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(2)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="606885659" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28209" name="CurrentOwnedSemanticsUseOneCachedNativeCell(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(3)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1244950931" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28210" name="CurrentOwnedSemanticsUseOneCachedNativeCell(4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(4)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1457365575" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28211" name="CurrentOwnedSemanticsUseOneCachedNativeCell(5)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(5)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="55532147" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28212" name="CurrentOwnedSemanticsUseOneCachedNativeCell(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(6)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1440826439" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28213" name="CurrentOwnedSemanticsUseOneCachedNativeCell(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell(7)" methodname="CurrentOwnedSemanticsUseOneCachedNativeCell" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1250929468" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.CurrentOwnedSemanticsUseOneCachedNativeCell (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28254" name="DefaultCatalogUsesActualImportedCellarAtlasForAllEightFrames" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.DefaultCatalogUsesActualImportedCellarAtlasForAllEightFrames" methodname="DefaultCatalogUsesActualImportedCellarAtlasForAllEightFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1699070804" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000374" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing actual cellar resource; synthetic tests are not art integration.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.DefaultCatalogUsesActualImportedCellarAtlasForAllEightFrames () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:152
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28253" name="DisposalReleasesOnlyGeneratedTilesAndSpritesAndRejectsReuse" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.DisposalReleasesOnlyGeneratedTilesAndSpritesAndRejectsReuse" methodname="DisposalReleasesOnlyGeneratedTilesAndSpritesAndRejectsReuse" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="841191983" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000226" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.DisposalReleasesOnlyGeneratedTilesAndSpritesAndRejectsReuse () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:145
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28236" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.002384" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28228" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(0)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="508710691" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28229" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(1)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="98916695" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000208" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28230" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(2)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(2)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="6423941" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28231" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(3)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1854734478" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28232" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(4)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1831128019" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28233" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(5)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(5)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1372257413" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28234" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(6)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1814907085" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28235" name="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork(7)" methodname="ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1179523017" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ExplicitReskinAndForeignRenderDoNotBorrowCellarArtwork (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28227" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.003853" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28215" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(0,&quot;StairsUp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(0,&quot;StairsUp&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="506851294" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28216" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(0,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(0,&quot;Physics&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="2090307819" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28217" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(1,&quot;Container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(1,&quot;Container&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1021533918" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000223" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28218" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Physics&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1661953798" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28219" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Handling&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Handling&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1352610992" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28220" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Harvestable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(2,&quot;Harvestable&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1223929132" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28221" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(3,&quot;Crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(3,&quot;Crop&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="834501444" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000197" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28222" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;Physics&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1667113706" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28223" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;Tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;Tonic&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="379535706" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28224" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;CureTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(6,&quot;CureTonic&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1969041862" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28225" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(7,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(7,&quot;Physics&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="990008068" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28226" name="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(7,&quot;Seed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity(7,&quot;Seed&quot;)" methodname="ForeignOrMissingFunctionalPartCannotClaimNativeIdentity" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1665985363" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.ForeignOrMissingFunctionalPartCannotClaimNativeIdentity (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28248" name="LooseProductsRequirePortableValidStacksButNotGroundPlacement" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.LooseProductsRequirePortableValidStacksButNotGroundPlacement" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.001028" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28246" name="LooseProductsRequirePortableValidStacksButNotGroundPlacement(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.LooseProductsRequirePortableValidStacksButNotGroundPlacement(6)" methodname="LooseProductsRequirePortableValidStacksButNotGroundPlacement" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1525592639" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.LooseProductsRequirePortableValidStacksButNotGroundPlacement (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28247" name="LooseProductsRequirePortableValidStacksButNotGroundPlacement(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.LooseProductsRequirePortableValidStacksButNotGroundPlacement(7)" methodname="LooseProductsRequirePortableValidStacksButNotGroundPlacement" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="852685883" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.LooseProductsRequirePortableValidStacksButNotGroundPlacement (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28252" name="MalformedAtlasDoesNotDisableExistingArtOrChangeBorrowedSettings" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.MalformedAtlasDoesNotDisableExistingArtOrChangeBorrowedSettings" methodname="MalformedAtlasDoesNotDisableExistingArtOrChangeBorrowedSettings" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="468963823" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.MalformedAtlasDoesNotDisableExistingArtOrChangeBorrowedSettings () [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:139
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28251" name="MissingCellarAndLegacyConstructorPreserveEarlierGroups" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.MissingCellarAndLegacyConstructorPreserveEarlierGroups" methodname="MissingCellarAndLegacyConstructorPreserveEarlierGroups" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="1931483321" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.005376" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.MissingCellarAndLegacyConstructorPreserveEarlierGroups () [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:133
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28238" name="PalletOnlyPromisesAnUnspentSolidHaulableTimberSource" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.PalletOnlyPromisesAnUnspentSolidHaulableTimberSource" methodname="PalletOnlyPromisesAnUnspentSolidHaulableTimberSource" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="254113415" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000315" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.PalletOnlyPromisesAnUnspentSolidHaulableTimberSource () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28249" name="PulpIsTopicalBurnCureAndSeedRequiresPreparedSootrootBed" fullname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.PulpIsTopicalBurnCureAndSeedRequiresPreparedSootrootBed" methodname="PulpIsTopicalBurnCureAndSeedRequiresPreparedSootrootBed" classname="CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests" runstate="Runnable" seed="468077773" result="Failed" start-time="2026-10-23 07:47:58Z" end-time="2026-10-23 07:47:58Z" duration="0.000359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sixth optional cellar atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.NewArt (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e, UnityEngine.Texture2D f) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:171
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:164
+at CavesOfOoo.Tests.FlatPixelOpeningCellarArtTests.PulpIsTopicalBurnCureAndSeedRequiresPreparedSootrootBed () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningCellarArtTests.cs:109
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

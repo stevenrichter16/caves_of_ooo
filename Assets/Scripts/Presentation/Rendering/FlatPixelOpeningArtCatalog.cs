@@ -17,6 +17,7 @@ namespace CavesOfOoo.Rendering
         public const string AnchorsResourcePath = "Sprites/Live16x24/opening-anchors";
         public const string StatesResourcePath = "Sprites/Live16x24/opening-states";
         public const string ItemsResourcePath = "Sprites/Live16x24/opening-items";
+        public const string CellarResourcePath = "Sprites/Live16x24/opening-cellar";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -28,11 +29,14 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _stateSprites;
         private readonly Tile[] _itemTiles;
         private readonly Sprite[] _itemSprites;
+        private readonly Tile[] _cellarTiles;
+        private readonly Sprite[] _cellarSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
             Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
-            Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath)) { }
+            Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
+            Resources.Load<Texture2D>(CellarResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -55,12 +59,18 @@ namespace CavesOfOoo.Rendering
         /// <summary>Item identity is semantic, independent of ground placement.
         /// World and authorized examine callers enforce their own ownership context.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, null) { }
+
+        /// <summary>The independently optional cellar atlas follows exact owned
+        /// functional parts. It neither authorizes placement nor creates supplies.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
             _anchorTiles = BuildFrames(anchorsAtlas, 12, "anchors", out _anchorSprites);
             _stateTiles = BuildFrames(statesAtlas, 12, "states", out _stateSprites);
             _itemTiles = BuildFrames(itemsAtlas, 12, "items", out _itemSprites);
+            _cellarTiles = BuildFrames(cellarAtlas, 9, "cellar", out _cellarSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -120,9 +130,56 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = ItemFrameOf(owner, render.VisualID);
-            if (frame < 0 || _itemTiles == null) return false;
-            tile = _itemTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _itemTiles == null ? null : _itemTiles[frame];
+                return tile != null;
+            }
+            frame = CellarFrameOf(owner, render.VisualID);
+            if (frame < 0 || _cellarTiles == null) return false;
+            tile = _cellarTiles[frame];
             return tile != null;
+        }
+
+        private static int CellarFrameOf(Entity owner, string visual)
+        {
+            if (!string.IsNullOrEmpty(visual) || owner.HasTag("Creature") || owner.HasTag("Player")) return -1;
+            switch (owner.BlueprintName)
+            {
+                case "StairsUp": return Owned<StairsUpPart>(owner) != null && Owned<PhysicsPart>(owner) != null ? 0 : -1;
+                case "Crate": return Owned<ContainerPart>(owner) != null ? 1 : -1;
+                case "GleanersTimberPallet":
+                    var harvest = Owned<HarvestablePart>(owner);
+                    return Owned<PhysicsPart>(owner)?.Solid == true && Owned<HandlingPart>(owner) != null
+                        && harvest != null && !harvest.Harvested && harvest.YieldBlueprint == "SalvagedTimber"
+                        && harvest.YieldMin > 0 && harvest.YieldMax >= harvest.YieldMin
+                        && harvest.YieldMax <= HarvestablePart.MaximumYieldCount
+                        && harvest.YieldChance > 0 && harvest.YieldChance <= 100 ? 2 : -1;
+                case "SootrootCrop":
+                    var crop = Owned<CropPart>(owner);
+                    return crop != null && crop.GrowthStage >= 0 && crop.GrowthStage <= 2
+                        && crop.HarvestAtMaturity && crop.YieldBlueprint == "SootrootPulp" && crop.YieldCount > 0
+                        && crop.SeedYieldBlueprint == "SootrootSeed" && crop.SeedYieldCount > 0 ? 3 + crop.GrowthStage : -1;
+                case "SootrootPulp":
+                    return PortableCellarProduct(owner) && Owned<TonicPart>(owner)?.Drink == false
+                        && Owned<CureTonicPart>(owner)?.CureEffect == nameof(BurningEffect) ? 6 : -1;
+                case "SootrootSeed":
+                    var seed = Owned<SeedPart>(owner);
+                    return PortableCellarProduct(owner) && seed != null && seed.CropBlueprint == "SootrootCrop"
+                        && seed.RequireCultivatedSoil ? 7 : -1;
+                case "StoneWall":
+                    var stonePhysics = Owned<PhysicsPart>(owner);
+                    return owner.HasTag("Wall") && stonePhysics != null
+                        && stonePhysics.Solid && !stonePhysics.Takeable ? 8 : -1;
+                default: return -1;
+            }
+        }
+
+        private static bool PortableCellarProduct(Entity owner)
+        {
+            if (Owned<PhysicsPart>(owner)?.Takeable != true || owner.HasPart<CropPart>()) return false;
+            var stack = owner.GetPart<StackerPart>();
+            return stack == null || stack.ParentEntity == owner && stack.StackCount > 0;
         }
 
         private static int ItemFrameOf(Entity owner, string visual)
@@ -279,6 +336,8 @@ namespace CavesOfOoo.Rendering
             if (_stateSprites != null) foreach (var sprite in _stateSprites) DestroyOwned(sprite);
             if (_itemTiles != null) foreach (var tile in _itemTiles) DestroyOwned(tile);
             if (_itemSprites != null) foreach (var sprite in _itemSprites) DestroyOwned(sprite);
+            if (_cellarTiles != null) foreach (var tile in _cellarTiles) DestroyOwned(tile);
+            if (_cellarSprites != null) foreach (var sprite in _cellarSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

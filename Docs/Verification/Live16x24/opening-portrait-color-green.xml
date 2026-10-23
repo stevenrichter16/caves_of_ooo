@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 08:23:40Z" end-time="2026-10-23 08:23:41Z" duration="0.6105292">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30120" result="Passed" start-time="2026-10-23 08:23:40Z" end-time="2026-10-23 08:23:41Z" duration="0.610529" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="37097" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30120" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.536655" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="37098" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30120" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.394576" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="37099" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30120" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.339971" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="28377" name="FlatPixelPortraitColorTests" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.050007" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="28380" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.042662" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28378" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(True)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(True)" methodname="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="885513872" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.034110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28379" name="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding(False)" methodname="ActualCrateAtlasUvDrawPreservesNativePaletteWithExactlyOneOutputEncoding" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="910365026" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.005871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28388" name="NullAndInvalidRectsCannotAllocateOrDraw" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.NullAndInvalidRectsCannotAllocateOrDraw" methodname="NullAndInvalidRectsCannotAllocateOrDraw" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1904992196" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.000422" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28386" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.001258" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28382" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,False,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,False,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1484237821" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.000494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28383" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,True,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(False,True,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="70728178" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.000048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28384" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,True,False)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,True,False)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="366722406" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.000042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28385" name="OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,False,True)" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.OnlyFlatNonModelPortraitsChooseTheNewDrawPath(True,False,True)" methodname="OnlyFlatNonModelPortraitsChooseTheNewDrawPath" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1955512234" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.000036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28387" name="RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" methodname="RepeatedDrawCachesOneOwnedMaterialAndDisposeDoesNotOwnTheAtlas" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="1300589048" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.001046" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28381" name="TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" fullname="CavesOfOoo.Tests.FlatPixelPortraitColorTests.TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" methodname="TintAndTransparentCounterUseTheSameGpuRouteWithoutChangingBorrowedSource" classname="CavesOfOoo.Tests.FlatPixelPortraitColorTests" runstate="Runnable" seed="605725114" result="Passed" start-time="2026-10-23 08:23:41Z" end-time="2026-10-23 08:23:41Z" duration="0.001029" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

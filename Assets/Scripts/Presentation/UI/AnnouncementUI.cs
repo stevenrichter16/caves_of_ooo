@@ -46,6 +46,7 @@ namespace CavesOfOoo.Rendering
         private bool _isOpen;
         private DocumentReadAudio _documentAudio;
         private ExaminePortraitRenderer _portraitRenderer;
+        private FlatPixelPortraitDrawer _flatPortraitDrawer;
         private ExaminePortrait _portrait;
         private ZoneRenderer _portraitPresentation;
         private bool _portraitWasFlat;
@@ -242,7 +243,11 @@ namespace CavesOfOoo.Rendering
         {
             if(_isOpen && _controllerHints!=NativeGamepadInput.IsConnected)Render();
         }
-        private void OnDestroy(){_portraitRenderer?.Dispose();_portraitRenderer=null;}
+        private void OnDestroy()
+        {
+            _portraitRenderer?.Dispose();_portraitRenderer=null;
+            _flatPortraitDrawer?.Dispose();_flatPortraitDrawer=null;
+        }
         private void OnDisable(){Close();}
         private void OnGUI()
         {
@@ -257,9 +262,25 @@ namespace CavesOfOoo.Rendering
             var rect=MeasurePortraitRect(slot,_portrait);
             if(rect.width<=0 || rect.height<=0)return;
             var color=GUI.color;int depth=GUI.depth;
-            try{GUI.color=_portrait.Tint;GUI.depth=-20;GUI.DrawTextureWithTexCoords(rect,_portrait.Texture,_portrait.Uv,true);}
+            try
+            {
+                GUI.depth=-20;
+                if(UsesFlatPixelPortraitDraw(_portrait,_portraitWasFlat))
+                {
+                    if(_flatPortraitDrawer==null)_flatPortraitDrawer=new FlatPixelPortraitDrawer();
+                    _flatPortraitDrawer.Draw(rect,_portrait);
+                }
+                else
+                {
+                    GUI.color=_portrait.Tint;
+                    GUI.DrawTextureWithTexCoords(rect,_portrait.Texture,_portrait.Uv,true);
+                }
+            }
             finally{GUI.color=color;GUI.depth=depth;}
         }
+
+        internal static bool UsesFlatPixelPortraitDraw(ExaminePortrait portrait,bool flatPresentation)
+            => flatPresentation && !portrait.IsModel && portrait.Texture!=null;
 
         /// <summary>
         /// Fits the selected atlas rectangle without stretching. Native sprites
