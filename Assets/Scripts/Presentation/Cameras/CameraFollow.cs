@@ -1,6 +1,7 @@
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
@@ -13,6 +14,13 @@ namespace CavesOfOoo.Rendering
     {
         public Entity Player { get; set; }
         public Zone CurrentZone { get; set; }
+        /// <summary>
+        /// Optional projection source for ordinary flat gameplay. When supplied,
+        /// follows actual cell centers and fits projected cell edges and row heights.
+        /// Null retains legacy unit-cell framing. Authored/3D framing and square
+        /// fullscreen UI remain independent; activation belongs to the presentation mode.
+        /// </summary>
+        public Tilemap WorldTilemap { get; set; }
         public Camera SidebarCamera { get; set; }
         public Camera HotbarCamera { get; set; }
         public Camera PopupOverlayCamera { get; set; }
@@ -329,6 +337,13 @@ namespace CavesOfOoo.Rendering
             float halfW = halfH * _camera.aspect;
             float targetX = zoneX + 0.5f;
             float targetY = Zone.Height - zoneY - 0.5f;
+            bool projectedWorld = !ring && WorldTilemap != null;
+            if (projectedWorld)
+            {
+                Vector3 center = WorldTilemap.GetCellCenterWorld(new Vector3Int(zoneX, Zone.Height - zoneY - 1, 0));
+                targetX = center.x;
+                targetY = center.y;
+            }
             float desiredX = targetX;
             float desiredY = targetY;
 
@@ -365,10 +380,22 @@ namespace CavesOfOoo.Rendering
             float maxX = ring ? Zone.Width - halfW : (Zone.Width - 1) + 0.5f - halfW;
             float minY = ring ? halfH - RingVerticalHeadroom : halfH - 0.5f;
             float maxY = ring ? Zone.Height + RingVerticalHeadroom - halfH : (Zone.Height - 1) + 0.5f - halfH;
+            float centerX = Zone.Width * 0.5f;
+            float centerY = Zone.Height * 0.5f;
+            if (projectedWorld)
+            {
+                Bounds bounds = GetProjectedZoneBounds();
+                minX = bounds.min.x + halfW;
+                maxX = bounds.max.x - halfW;
+                minY = bounds.min.y + halfH;
+                maxY = bounds.max.y - halfH;
+                centerX = bounds.center.x;
+                centerY = bounds.center.y;
+            }
 
             // If zone fits entirely within camera view on an axis, center it
-            float clampedX = minX <= maxX ? Mathf.Clamp(desiredX, minX, maxX) : Zone.Width * 0.5f;
-            float clampedY = minY <= maxY ? Mathf.Clamp(desiredY, minY, maxY) : Zone.Height * 0.5f;
+            float clampedX = minX <= maxX ? Mathf.Clamp(desiredX, minX, maxX) : centerX;
+            float clampedY = minY <= maxY ? Mathf.Clamp(desiredY, minY, maxY) : centerY;
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
         }
@@ -376,9 +403,31 @@ namespace CavesOfOoo.Rendering
         private float GetGameplayZoomSize()
         {
             if (TargetVisibleTileRows > 0)
-                return TargetVisibleTileRows * 0.5f;
+            {
+                float rowHeight = 1f;
+                bool authored = _scenePresenter != null && _scenePresenter.PresentationVisible
+                    && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+                if (WorldTilemap != null && !authored && !HasMorrowfastPresentation && !HasSpawnRingPresentation)
+                {
+                    Vector3 origin = WorldTilemap.CellToWorld(Vector3Int.zero);
+                    Vector3 nextRow = WorldTilemap.CellToWorld(Vector3Int.up);
+                    rowHeight = Mathf.Max(0.0001f, Mathf.Abs(nextRow.y - origin.y));
+                }
+                return TargetVisibleTileRows * rowHeight * 0.5f;
+            }
 
             return ZoomSize;
+        }
+
+        private Bounds GetProjectedZoneBounds()
+        {
+            // Logical zone corners, not Tilemap.cellBounds: discovered/painted
+            // cells are only a subset of the zone and must not alter camera limits.
+            var bounds = new Bounds(WorldTilemap.CellToWorld(Vector3Int.zero), Vector3.zero);
+            bounds.Encapsulate(WorldTilemap.CellToWorld(new Vector3Int(Zone.Width, 0, 0)));
+            bounds.Encapsulate(WorldTilemap.CellToWorld(new Vector3Int(0, Zone.Height, 0)));
+            bounds.Encapsulate(WorldTilemap.CellToWorld(new Vector3Int(Zone.Width, Zone.Height, 0)));
+            return bounds;
         }
 
         private void ApplyGameplayLayout()

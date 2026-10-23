@@ -80,6 +80,23 @@ Read this brief, CLAUDE.md, the overnight progress record and current git status
 
 ## Review record
 
+### Projection foundation — complete, native integration pending
+
+First runtime slice: give actors an explicit Tilemap coordinate source, add opt-in camera projection, and align fixture/player lights to their overlay. Ordinary unit-cell/null paths remain counter-checks. This slice does not enable the new presentation mode or claim the playable greybox exists; fullscreen UI grid lifecycle, fine water, mode admission and actual greybox art remain next.
+
+Native Unity RED evidence: camera/light suites ran25 cases with10 expected failures (7 missing camera projection,3 misplaced lights); actor suite ran11 cases with8 projected-position failures and3 legacy/foreign-zone counter-cases passing. The actor job-status tool reported an initialization timeout despite a completed native XML result; retain both receipts and use the XML as the test result. Source edits follow these failures.
+
+The component-plus-wiring run completed38 cases:37 passed and the rectangular `ZoneRenderer` wiring case failed. Passing the real tilemap into `AnimatedEntityRenderer.Init` fixed that final disconnect. The final native Unity sweep completed **73/73 passing, zero skipped**: camera, light, actor projection, actual renderer wiring, actor state, authored actor/presentation, spawn-ring camera, Morrowfast/Felling framing and world cursor suites. The selected suite grew from48 existing cases to73, adding25 projection cases. Receipts are in `Docs/Verification/Live16x24`; `projection-regression-green.xml` is authoritative.
+
+Implementation: optional `CameraFollow.WorldTilemap` projects normal gameplay camera centers, bounds and zoom; it is deliberately not globally enabled yet. `AnimatedEntityRenderer.Init(tint, tilemap)` uses cell-derived foot positions and is wired by the real ZoneRenderer. Fixture and torch lights use overlay cell centers and existing fixtures reproject on refresh. Null/unit defaults and authored/3D camera paths remain passing counter-checks.
+
+- 🟡 Fixed: the actual renderer omitted the new projection source, caught by a separate native wiring RED test.
+- 🔵 Independent cold review found no actionable P1/P2 defects within the axis-aligned, zero-gap grid contract. `git diff --check` is clean.
+- 🧪 The activation slice must clear/reacquire actor views on grid changes: active movement/death caches world anchors. Pixel snapping stays at16 pixels/world-unit, and light radii remain world-unit values. Rotation, gaps, reflected transforms and actor scaling are outside this contract.
+- 🧪 Camera fullscreen tests prove camera framing only. They do not prove main-grid UI restoration, water, targeting or other effects in an activated rectangular world.
+
+**Can verify:** native Unity EditMode tests exercise real movement and lethal combat hooks, visibility, pooling, tilemap projection, renderer wiring and camera/light counter-cases. **Cannot yet verify:** actual Play appearance/motion, whole opening coverage or Deck performance. The new mode and playable greybox are not active; those are the next slice, with real Play capture required.
+
 - 🔵 Current clarification adds a production brief and changes the scheduled continuation criteria; it does not itself implement the new mode.
 - 🟡 Resolved plan issue: crop-only integration was too narrow for the requested visible transformation. The real opening's complete visual coverage now leads.
 - 🟡 Resolved plan issue: an arbitrary morning cutoff could reward unfinished art. The user explicitly allows the time needed; continuation should finish the defined live opening release, then report remaining regional work.

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 03:20:47Z" end-time="2026-10-23 03:20:48Z" duration="1.212948">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29580" result="Failed" site="Child" start-time="2026-10-23 03:20:47Z" end-time="2026-10-23 03:20:48Z" duration="1.212948" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36459" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29580" result="Failed" site="Child" start-time="2026-10-23 03:20:47Z" end-time="2026-10-23 03:20:48Z" duration="1.017637" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36460" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29580" result="Failed" site="Child" start-time="2026-10-23 03:20:47Z" end-time="2026-10-23 03:20:48Z" duration="0.819081" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36461" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29580" result="Failed" site="Child" start-time="2026-10-23 03:20:47Z" end-time="2026-10-23 03:20:48Z" duration="0.618963" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29595" name="RectangularActorProjectionTests" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.318567" total="11" passed="3" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29605" name="ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" methodname="ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="443969188" result="Passed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.019546" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29606" name="HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" methodname="HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="409342313" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.001909" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  world x
+  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.AssertPosition (UnityEngine.Vector3 expected, UnityEngine.Vector3 actual) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:270
+at CavesOfOoo.Tests.RectangularActorProjectionTests.HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden () [0x0008c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:201
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29604" name="LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" methodname="LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="657686035" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.010458" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  world x
+  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.AssertPosition (UnityEngine.Vector3 expected, UnityEngine.Vector3 actual) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:270
+at CavesOfOoo.Tests.RectangularActorProjectionTests.LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell () [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:167
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29603" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.174388" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29600" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(1,0)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(1,0)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1634046117" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.003288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination (System.Int32 dx, System.Int32 dy) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29601" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(0,1)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(0,1)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1206907657" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.002267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination (System.Int32 dx, System.Int32 dy) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29602" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(-1,-1)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(-1,-1)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1514896135" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.002014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination (System.Int32 dx, System.Int32 dy) [0x000c0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29598" name="NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" methodname="NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1321933095" result="Passed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.001838" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29607" name="PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" methodname="PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="851087380" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.002394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  world x
+  Expected: 14.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.AssertPosition (UnityEngine.Vector3 expected, UnityEngine.Vector3 actual) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:270
+at CavesOfOoo.Tests.RectangularActorProjectionTests.PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry () [0x000d4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:225
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29596" name="Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" methodname="Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1134519641" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.002117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  world x
+  Expected: 10.75f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.AssertPosition (UnityEngine.Vector3 expected, UnityEngine.Vector3 actual) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:270
+at CavesOfOoo.Tests.RectangularActorProjectionTests.Spawn_UsesRectangularTileBottomCenterAndWorldTranslation () [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29597" name="SquareIdentityTilemap_PreservesExistingUnitAnchor" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.SquareIdentityTilemap_PreservesExistingUnitAnchor" methodname="SquareIdentityTilemap_PreservesExistingUnitAnchor" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1244061463" result="Passed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.001339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29599" name="SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" methodname="SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="387867243" result="Failed" start-time="2026-10-23 03:20:48Z" end-time="2026-10-23 03:20:48Z" duration="0.001362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  world x
+  Expected: 17.0f +/- 9.99999975E-05f
+  But was:  8.5f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.RectangularActorProjectionTests.AssertPosition (UnityEngine.Vector3 expected, UnityEngine.Vector3 actual) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:270
+at CavesOfOoo.Tests.RectangularActorProjectionTests.SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt () [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RectangularActorProjectionTests.cs:122
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

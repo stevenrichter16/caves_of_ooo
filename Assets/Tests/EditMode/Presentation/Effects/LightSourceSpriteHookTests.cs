@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using CavesOfOoo.Core;
 using CavesOfOoo.Presentation.Effects;
 
 namespace CavesOfOoo.Tests
@@ -14,6 +16,7 @@ namespace CavesOfOoo.Tests
     {
         private GameObject _hookGo;
         private LightSourceSpriteHook _hook;
+        private Tile _fixtureTile;
 
         [SetUp]
         public void Setup()
@@ -26,6 +29,7 @@ namespace CavesOfOoo.Tests
         public void TearDown()
         {
             if (_hookGo != null) Object.DestroyImmediate(_hookGo);
+            if (_fixtureTile != null) Object.DestroyImmediate(_fixtureTile);
         }
 
         [Test]
@@ -33,6 +37,74 @@ namespace CavesOfOoo.Tests
         {
             Assert.IsTrue(_hook.TestOnly_IsLightingEnabled,
                 "LightSourceSpriteHook ships with lighting ON by default.");
+        }
+
+        [TestCase(1f, 0f, 0f)]
+        [TestCase(1.5f, 4f, 7f)]
+        public void FixtureLight_UsesOverlayCellCenter(float rowHeight, float offsetX, float offsetY)
+        {
+            var map = CreateWorldMap(rowHeight, offsetX, offsetY);
+            _fixtureTile = ScriptableObject.CreateInstance<Tile>();
+            _fixtureTile.name = "Campfire";
+            map.SetTile(new Vector3Int(3, 4, 0), _fixtureTile);
+            _hook.PostRender(8, 8, false);
+            var light = map.transform.parent.Find("Light_Campfire_3_4");
+            Assert.That(light, Is.Not.Null);
+            Assert.That(light.position.x, Is.EqualTo(offsetX + 3.5f).Within(0.0001f));
+            Assert.That(light.position.y, Is.EqualTo(offsetY + 4.5f * rowHeight).Within(0.0001f));
+            map.SetTile(new Vector3Int(3, 4, 0), null);
+            _hook.PostRender(8, 8, false);
+            Assert.That(_hook.TestOnly_SpawnedCount, Is.Zero, "Removed fixture cannot leave a light.");
+        }
+
+        [Test]
+        public void ExistingFixtureLight_ReprojectsWhenCellSpacingChanges()
+        {
+            var map = CreateWorldMap(1f, 2f, 3f);
+            _fixtureTile = ScriptableObject.CreateInstance<Tile>();
+            _fixtureTile.name = "Campfire";
+            map.SetTile(new Vector3Int(3, 4, 0), _fixtureTile);
+            _hook.PostRender(8, 8, false);
+            var light = map.transform.parent.Find("Light_Campfire_3_4");
+            int originalId = light.GetInstanceID();
+            map.GetComponentInParent<Grid>().cellSize = new Vector3(1f, 1.5f, 0f);
+            _hook.PostRender(8, 8, false);
+            Assert.That(light.position.y, Is.EqualTo(9.75f).Within(0.0001f));
+            Assert.That(light.GetInstanceID(), Is.EqualTo(originalId), "Projection changes reuse the light.");
+            _hook.LightingEnabled = false;
+            _hook.PostRender(8, 8, false);
+            Assert.That(_hook.TestOnly_SpawnedCount, Is.Zero);
+        }
+
+        [TestCase(1f, 0f, 0f)]
+        [TestCase(1.5f, 4f, 7f)]
+        public void PlayerTorch_FollowsProjectedFlippedRow(float rowHeight, float offsetX, float offsetY)
+        {
+            var map = CreateWorldMap(rowHeight, offsetX, offsetY);
+            var zone = new Zone("RectangularTorch");
+            var player = new Entity { BlueprintName = "Player" };
+            zone.AddEntity(player, 3, 4);
+            _hook.SetPlayerContext(player, zone);
+            _hook.PostRender(8, 8, true);
+            var torch = map.transform.parent.Find("PlayerTorchLight");
+            Assert.That(torch, Is.Not.Null);
+            Assert.That(torch.position.x, Is.EqualTo(offsetX + 3.5f).Within(0.0001f));
+            Assert.That(torch.position.y, Is.EqualTo(offsetY + (Zone.Height - 4.5f) * rowHeight).Within(0.0001f));
+            _hook.PostRender(8, 8, false);
+            Assert.That(map.transform.parent.Find("PlayerTorchLight"), Is.Null, "Outdoor counter-case retires the dungeon torch.");
+        }
+
+        private Tilemap CreateWorldMap(float rowHeight, float offsetX, float offsetY)
+        {
+            var gridObject = new GameObject("ProjectionGrid", typeof(Grid));
+            gridObject.transform.SetParent(_hookGo.transform, false);
+            gridObject.transform.position = new Vector3(offsetX, offsetY, 0f);
+            gridObject.GetComponent<Grid>().cellSize = new Vector3(1f, rowHeight, 0f);
+            var mapObject = new GameObject("Overlay", typeof(Tilemap));
+            mapObject.transform.SetParent(gridObject.transform, false);
+            var map = mapObject.GetComponent<Tilemap>();
+            _hook.Init(gridObject.transform, map, null);
+            return map;
         }
 
         [Test]

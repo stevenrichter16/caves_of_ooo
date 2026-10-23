@@ -419,7 +419,7 @@ namespace CavesOfOoo.Rendering
                 entityVisualObj.transform.SetParent(gridParent, false);
                 GameplayRenderLayers.SetLayerRecursive(entityVisualObj, GameplayRenderLayers.WorldLayer);
                 _entityVisualRenderer = entityVisualObj.AddComponent<AnimatedEntityRenderer>();
-                _entityVisualRenderer.Init(ResolveEntityVisualTint);
+                _entityVisualRenderer.Init(ResolveEntityVisualTint, _tilemap);
                 _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
                 _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
                 var village3DObject = new GameObject("Village3DPresenter");

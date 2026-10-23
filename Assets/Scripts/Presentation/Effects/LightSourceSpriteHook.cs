@@ -187,8 +187,10 @@ namespace CavesOfOoo.Presentation.Effects
                     if (kind == LightKind.None) continue;
 
                     seenThisFrame.Add(pos);
-                    if (!_spawned.ContainsKey(pos))
+                    if (!_spawned.TryGetValue(pos, out var existing))
                         SpawnLight(pos, kind);
+                    else if (existing.Go != null)
+                        existing.Go.transform.position = _overlayTilemap.GetCellCenterWorld(pos);
                 }
             }
 
@@ -207,8 +209,9 @@ namespace CavesOfOoo.Presentation.Effects
         {
             var go = new GameObject($"Light_{kind}_{cellPos.x}_{cellPos.y}");
             go.transform.SetParent(_gridParent != null ? _gridParent : transform, false);
-            // Cells are 1-unit; offset to cell center.
-            go.transform.localPosition = new Vector3(cellPos.x + 0.5f, cellPos.y + 0.5f, 0f);
+            // The overlay is the coordinate source for rectangular cells and
+            // translated grids. Parent-local unit coordinates are not sufficient.
+            go.transform.position = _overlayTilemap.GetCellCenterWorld(cellPos);
 
             var light = go.AddComponent<Light2D>();
             light.lightType = Light2D.LightType.Point;
@@ -283,16 +286,13 @@ namespace CavesOfOoo.Presentation.Effects
                 _playerTorchLight.falloffIntensity = 0.55f;
             }
 
-            // Reposition to player's current cell (cell-center offset).
-            // Pass 15 R2: the tilemap is painted vertically flipped
-            // relative to zone space — use the same Height-y-0.5
-            // convention CameraFollow uses, or the torch floats at the
-            // player's MIRRORED row.
+            // Zone rows run downwards; the presentation tilemap runs upwards.
+            // Resolve the flipped cell through the same overlay as fixture lights.
             var (px, py) = _activeZone.GetEntityPosition(_playerEntity);
             if (px >= 0 && py >= 0)
             {
-                _playerTorchGo.transform.localPosition =
-                    new Vector3(px + 0.5f, Zone.Height - py - 0.5f, 0f);
+                _playerTorchGo.transform.position = _overlayTilemap.GetCellCenterWorld(
+                    new Vector3Int(px, Zone.Height - 1 - py, 0));
             }
         }
 

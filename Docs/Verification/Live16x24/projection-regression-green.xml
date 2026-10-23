@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="73" result="Passed" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 03:29:06Z" end-time="2026-10-23 03:29:18Z" duration="12.3547136">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29582" result="Passed" start-time="2026-10-23 03:29:06Z" end-time="2026-10-23 03:29:18Z" duration="12.354714" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="36463" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29582" result="Passed" start-time="2026-10-23 03:29:06Z" end-time="2026-10-23 03:29:18Z" duration="12.344483" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="36464" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29582" result="Passed" start-time="2026-10-23 03:29:06Z" end-time="2026-10-23 03:29:18Z" duration="12.337536" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="36465" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29582" result="Passed" start-time="2026-10-23 03:29:06Z" end-time="2026-10-23 03:29:18Z" duration="12.331213" total="73" passed="73" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="25247" name="CameraFollowOverrideTests" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.025092" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25257" name="OverrideTarget_BeyondViewportMargin_PansCamera_AndClearsBackToPlayer" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.OverrideTarget_BeyondViewportMargin_PansCamera_AndClearsBackToPlayer" methodname="OverrideTarget_BeyondViewportMargin_PansCamera_AndClearsBackToPlayer" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="673740613" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.009102" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25256" name="OverrideTarget_WithinViewportMargin_DoesNotRecentreCamera" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.OverrideTarget_WithinViewportMargin_DoesNotRecentreCamera" methodname="OverrideTarget_WithinViewportMargin_DoesNotRecentreCamera" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="404897309" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25251" name="RectangularWorld_ClampsToTranslatedCellEdges" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ClampsToTranslatedCellEdges" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.004821" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25249" name="RectangularWorld_ClampsToTranslatedCellEdges(0,0,False,True)" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ClampsToTranslatedCellEdges(0,0,False,True)" methodname="RectangularWorld_ClampsToTranslatedCellEdges" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="54426584" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.001575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25250" name="RectangularWorld_ClampsToTranslatedCellEdges(79,24,True,False)" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ClampsToTranslatedCellEdges(79,24,True,False)" methodname="RectangularWorld_ClampsToTranslatedCellEdges" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="530105900" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25248" name="RectangularWorld_FollowsTranslatedCellCentre_AndUsesRowSpacingForZoom" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_FollowsTranslatedCellCentre_AndUsesRowSpacingForZoom" methodname="RectangularWorld_FollowsTranslatedCellCentre_AndUsesRowSpacingForZoom" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="1145222414" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000540" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25254" name="RectangularWorld_FullscreenUIKeepsSquareCoordinates_ThenRestoresWorld" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_FullscreenUIKeepsSquareCoordinates_ThenRestoresWorld" methodname="RectangularWorld_FullscreenUIKeepsSquareCoordinates_ThenRestoresWorld" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="484631018" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.001283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25253" name="RectangularWorld_OverrideUsesProjectedCell_AndClearingRestoresPlayer" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_OverrideUsesProjectedCell_AndClearingRestoresPlayer" methodname="RectangularWorld_OverrideUsesProjectedCell_AndClearingRestoresPlayer" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="1813874231" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000486" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25255" name="RectangularWorld_ProjectionChangesAreObserved_AndFallbackZoomRemainsWorldUnits" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ProjectionChangesAreObserved_AndFallbackZoomRemainsWorldUnits" methodname="RectangularWorld_ProjectionChangesAreObserved_AndFallbackZoomRemainsWorldUnits" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="1310324619" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000451" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25252" name="RectangularWorld_WhenEntireZoneFits_CentresProjectedExtents" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_WhenEntireZoneFits_CentresProjectedExtents" methodname="RectangularWorld_WhenEntireZoneFits_CentresProjectedExtents" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="1559152325" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000334" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25260" name="SetCenteredPopupOverlayView_KeepsSplitLayout_AndEnablesPopupCamera" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.SetCenteredPopupOverlayView_KeepsSplitLayout_AndEnablesPopupCamera" methodname="SetCenteredPopupOverlayView_KeepsSplitLayout_AndEnablesPopupCamera" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="966010311" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000858" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25259" name="SetUIView_DisablesSidebarCamera_AndRestoreGameView_ReenablesSplitLayout" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.SetUIView_DisablesSidebarCamera_AndRestoreGameView_ReenablesSplitLayout" methodname="SetUIView_DisablesSidebarCamera_AndRestoreGameView_ReenablesSplitLayout" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="1963714482" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000486" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25258" name="SnapToPlayer_UsesSplitRects_WithoutBiasingCameraPosition" fullname="CavesOfOoo.Tests.CameraFollowOverrideTests.SnapToPlayer_UsesSplitRects_WithoutBiasingCameraPosition" methodname="SnapToPlayer_UsesSplitRects_WithoutBiasingCameraPosition" classname="CavesOfOoo.Tests.CameraFollowOverrideTests" runstate="Runnable" seed="933803287" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27386" name="EntityVisualStateTests" fullname="CavesOfOoo.Tests.EntityVisualStateTests" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.029486" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27389" name="AcceptedAttack_EmitsOnceAndFacesTheDefender" fullname="CavesOfOoo.Tests.EntityVisualStateTests.AcceptedAttack_EmitsOnceAndFacesTheDefender" methodname="AcceptedAttack_EmitsOnceAndFacesTheDefender" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="2070617733" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.011961" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27393" name="AnimatedCast_UsesCastingArtAndReturnsToIdleWithoutMovingTheCell" fullname="CavesOfOoo.Tests.EntityVisualStateTests.AnimatedCast_UsesCastingArtAndReturnsToIdleWithoutMovingTheCell" methodname="AnimatedCast_UsesCastingArtAndReturnsToIdleWithoutMovingTheCell" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="220984590" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.006630" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27391" name="AnimatedRenderer_RebuildsAVisibleActorViewFromZoneState" fullname="CavesOfOoo.Tests.EntityVisualStateTests.AnimatedRenderer_RebuildsAVisibleActorViewFromZoneState" methodname="AnimatedRenderer_RebuildsAVisibleActorViewFromZoneState" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="1089788653" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.001286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27392" name="Cast_UsesCapturedAimAfterTargetRemovalAndRetainsSelfFacing" fullname="CavesOfOoo.Tests.EntityVisualStateTests.Cast_UsesCapturedAimAfterTargetRemovalAndRetainsSelfFacing" methodname="Cast_UsesCapturedAimAfterTargetRemovalAndRetainsSelfFacing" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="475130179" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.001228" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27390" name="LethalDamage_EmitsDamageThenDeathAtTheOriginalCell" fullname="CavesOfOoo.Tests.EntityVisualStateTests.LethalDamage_EmitsDamageThenDeathAtTheOriginalCell" methodname="LethalDamage_EmitsDamageThenDeathAtTheOriginalCell" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="1431941772" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.002176" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27388" name="RejectedMovement_DoesNotEmitOrChangeFacing" fullname="CavesOfOoo.Tests.EntityVisualStateTests.RejectedMovement_DoesNotEmitOrChangeFacing" methodname="RejectedMovement_DoesNotEmitOrChangeFacing" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="280952759" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27387" name="SuccessfulMovement_SavesFacingAndEmitsResolvedCoordinates" fullname="CavesOfOoo.Tests.EntityVisualStateTests.SuccessfulMovement_SavesFacingAndEmitsResolvedCoordinates" methodname="SuccessfulMovement_SavesFacingAndEmitsResolvedCoordinates" classname="CavesOfOoo.Tests.EntityVisualStateTests" runstate="Runnable" seed="1448710068" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.003149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27613" name="FellingCameraClearTests" fullname="CavesOfOoo.Tests.FellingCameraClearTests" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.408740" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27617" name="MarginClearIsReusedDisabledOutsideSourceAndDestroyedWithItsOwner" fullname="CavesOfOoo.Tests.FellingCameraClearTests.MarginClearIsReusedDisabledOutsideSourceAndDestroyedWithItsOwner" methodname="MarginClearIsReusedDisabledOutsideSourceAndDestroyedWithItsOwner" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" seed="1684251309" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.087566" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27618" name="PausedFullscreenAndDisabledCameraDoNotLeaveAnActiveClearPass" fullname="CavesOfOoo.Tests.FellingCameraClearTests.PausedFullscreenAndDisabledCameraDoNotLeaveAnActiveClearPass" methodname="PausedFullscreenAndDisabledCameraDoNotLeaveAnActiveClearPass" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" seed="1472208387" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.042608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27616" name="RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap" fullname="CavesOfOoo.Tests.FellingCameraClearTests.RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.276134" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27614" name="RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap(640,360)" fullname="CavesOfOoo.Tests.FellingCameraClearTests.RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap(640,360)" methodname="RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" seed="1509285356" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.125988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27615" name="RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap(640,640)" fullname="CavesOfOoo.Tests.FellingCameraClearTests.RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap(640,640)" methodname="RestoringTheSourceViewportClearsOldGpuPixelsOnlyInsideTheMap" classname="CavesOfOoo.Tests.FellingCameraClearTests" runstate="Runnable" seed="346761485" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.146840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25278" name="LightSourceSpriteHookTests" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.023787" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="25279" name="Default_LightingEnabled_IsTrue" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.Default_LightingEnabled_IsTrue" methodname="Default_LightingEnabled_IsTrue" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1380430222" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25283" name="ExistingFixtureLight_ReprojectsWhenCellSpacingChanges" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.ExistingFixtureLight_ReprojectsWhenCellSpacingChanges" methodname="ExistingFixtureLight_ReprojectsWhenCellSpacingChanges" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="2105354930" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.003727" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25282" name="FixtureLight_UsesOverlayCellCenter" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.FixtureLight_UsesOverlayCellCenter" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.003710" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25280" name="FixtureLight_UsesOverlayCellCenter(1.0f,0.0f,0.0f)" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.FixtureLight_UsesOverlayCellCenter(1.0f,0.0f,0.0f)" methodname="FixtureLight_UsesOverlayCellCenter" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="480661761" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25281" name="FixtureLight_UsesOverlayCellCenter(1.5f,4.0f,7.0f)" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.FixtureLight_UsesOverlayCellCenter(1.5f,4.0f,7.0f)" methodname="FixtureLight_UsesOverlayCellCenter" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1008914278" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25288" name="Init_WithNullArgs_DoesNotCrash" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.Init_WithNullArgs_DoesNotCrash" methodname="Init_WithNullArgs_DoesNotCrash" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="719710089" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25291" name="PlayerTorch_DefaultsEnabled" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PlayerTorch_DefaultsEnabled" methodname="PlayerTorch_DefaultsEnabled" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1210413092" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000120" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25286" name="PlayerTorch_FollowsProjectedFlippedRow" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PlayerTorch_FollowsProjectedFlippedRow" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.007066" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25284" name="PlayerTorch_FollowsProjectedFlippedRow(1.0f,0.0f,0.0f)" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PlayerTorch_FollowsProjectedFlippedRow(1.0f,0.0f,0.0f)" methodname="PlayerTorch_FollowsProjectedFlippedRow" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1736342728" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.002153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25285" name="PlayerTorch_FollowsProjectedFlippedRow(1.5f,4.0f,7.0f)" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PlayerTorch_FollowsProjectedFlippedRow(1.5f,4.0f,7.0f)" methodname="PlayerTorch_FollowsProjectedFlippedRow" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1600856668" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.002373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25290" name="PostRender_NullOverlayTilemap_NoSpawn" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PostRender_NullOverlayTilemap_NoSpawn" methodname="PostRender_NullOverlayTilemap_NoSpawn" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="605308650" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000256" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25289" name="PostRender_WithoutInit_NoOps" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.PostRender_WithoutInit_NoOps" methodname="PostRender_WithoutInit_NoOps" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="616802165" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25292" name="SetPlayerContext_AcceptsNulls_NoCrash" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.SetPlayerContext_AcceptsNulls_NoCrash" methodname="SetPlayerContext_AcceptsNulls_NoCrash" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1092670140" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25287" name="TestOnly_SetEnabled_FlipsState" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.TestOnly_SetEnabled_FlipsState" methodname="TestOnly_SetEnabled_FlipsState" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="730336794" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000268" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25293" name="Tunables_HaveSaneDefaults" fullname="CavesOfOoo.Tests.LightSourceSpriteHookTests.Tunables_HaveSaneDefaults" methodname="Tunables_HaveSaneDefaults" classname="CavesOfOoo.Tests.LightSourceSpriteHookTests" runstate="Runnable" seed="1311713217" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:09Z" duration="0.000369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="28395" name="MorrowfastCameraHeadroomTests" fullname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests" classname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:10Z" duration="0.552159" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="28398" name="NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom" fullname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests.NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom" classname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:10Z" duration="0.547953" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28396" name="NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom(False)" fullname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests.NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom(False)" methodname="NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom" classname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests" runstate="Runnable" seed="778363488" result="Passed" start-time="2026-10-23 03:29:09Z" end-time="2026-10-23 03:29:10Z" duration="0.351942" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Conversation] Loaded 79 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+              </test-case>
+              <test-case id="28397" name="NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom(True)" fullname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests.NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom(True)" methodname="NorthArrivalFitsTheActualPlayerHeadAndWholeSourceWithoutAStepZoom" classname="CavesOfOoo.Tests.MorrowfastCameraHeadroomTests" runstate="Runnable" seed="983260152" result="Passed" start-time="2026-10-23 03:29:10Z" end-time="2026-10-23 03:29:10Z" duration="0.192032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="28468" name="MorrowfastDerivedActorTests" fullname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" classname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 03:29:10Z" end-time="2026-10-23 03:29:11Z" duration="1.522112" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="28472" name="AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion" fullname="CavesOfOoo.Tests.MorrowfastDerivedActorTests.AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion" classname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:10Z" end-time="2026-10-23 03:29:11Z" duration="1.516084" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28470" name="AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion(&quot;MorrowfastFarra&quot;,&quot;actor.morrowfast_farra&quot;,&quot;western-shopkeeper-sprite&quot;,5,3)" fullname="CavesOfOoo.Tests.MorrowfastDerivedActorTests.AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion(&quot;MorrowfastFarra&quot;,&quot;actor.morrowfast_farra&quot;,&quot;western-shopkeeper-sprite&quot;,5,3)" methodname="AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion" classname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" runstate="Runnable" seed="1856491443" result="Passed" start-time="2026-10-23 03:29:10Z" end-time="2026-10-23 03:29:11Z" duration="0.782804" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28471" name="AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion(&quot;MorrowfastEdden&quot;,&quot;actor.morrowfast_edden&quot;,&quot;east-robed-resident-sprite&quot;,4,3)" fullname="CavesOfOoo.Tests.MorrowfastDerivedActorTests.AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion(&quot;MorrowfastEdden&quot;,&quot;actor.morrowfast_edden&quot;,&quot;east-robed-resident-sprite&quot;,4,3)" methodname="AdditionalResidentsResolveToDetailedSourceBodySheetsWithoutGroundOrInventedMotion" classname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" runstate="Runnable" seed="1037893285" result="Passed" start-time="2026-10-23 03:29:11Z" end-time="2026-10-23 03:29:11Z" duration="0.730182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28469" name="IneligibleTerrainDoesNotInvokeTheSourceViewScan" fullname="CavesOfOoo.Tests.MorrowfastDerivedActorTests.IneligibleTerrainDoesNotInvokeTheSourceViewScan" methodname="IneligibleTerrainDoesNotInvokeTheSourceViewScan" classname="CavesOfOoo.Tests.MorrowfastDerivedActorTests" runstate="Runnable" seed="459291656" result="Passed" start-time="2026-10-23 03:29:11Z" end-time="2026-10-23 03:29:11Z" duration="0.000830" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="28537" name="MorrowfastSharedPresentationTests" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-23 03:29:11Z" end-time="2026-10-23 03:29:12Z" duration="0.734186" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="28538" name="AnimatedCatalogExclusionSuppressesOneSourceBodyAndRestoresOrdinaryBodies" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.AnimatedCatalogExclusionSuppressesOneSourceBodyAndRestoresOrdinaryBodies" methodname="AnimatedCatalogExclusionSuppressesOneSourceBodyAndRestoresOrdinaryBodies" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="748548660" result="Passed" start-time="2026-10-23 03:29:11Z" end-time="2026-10-23 03:29:11Z" duration="0.098279" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28546" name="AuthoredWaterSkipsOnlyItsOwnPermanentPlainWaterCoating" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.AuthoredWaterSkipsOnlyItsOwnPermanentPlainWaterCoating" methodname="AuthoredWaterSkipsOnlyItsOwnPermanentPlainWaterCoating" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1616056879" result="Passed" start-time="2026-10-23 03:29:11Z" end-time="2026-10-23 03:29:12Z" duration="0.085489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28545" name="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.376926" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28541" name="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(False,0)" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(False,0)" methodname="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1473343768" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.148118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28542" name="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(False,79)" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(False,79)" methodname="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1543358585" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.075728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28543" name="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(True,0)" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(True,0)" methodname="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1372687721" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.074943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28544" name="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(True,79)" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt(True,79)" methodname="CameraFitsAllTopdownRowsAndKeepsPlayerOrLookTargetsVisibleOutsideArt" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1135116004" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.073071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28540" name="SharedSourcePredicateFollowsActualNativeOwnerVisibilityAndZone" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.SharedSourcePredicateFollowsActualNativeOwnerVisibilityAndZone" methodname="SharedSourcePredicateFollowsActualNativeOwnerVisibilityAndZone" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="1015854330" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.095627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28539" name="ZoneBindingAndDisableHooksIncludeMorrowfastWithoutClaimingOtherZones" fullname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests.ZoneBindingAndDisableHooksIncludeMorrowfastWithoutClaimingOtherZones" methodname="ZoneBindingAndDisableHooksIncludeMorrowfastWithoutClaimingOtherZones" classname="CavesOfOoo.Tests.MorrowfastSharedPresentationTests" runstate="Runnable" seed="2044224528" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.073866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="29595" name="RectangularActorProjectionTests" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.011813" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="29605" name="ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" methodname="ForeignZoneMovementAndDeath_DoNotMoveTheCurrentView" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="2047762936" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.001829" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29606" name="HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" methodname="HiddenActorHasNoView_VisibleActorUsesProjection_ThenReleasesWhenHidden" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="861629473" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29604" name="LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" methodname="LethalDamageDuringMovement_AnchorsDeathAtTheActualDestinationCell" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1432648644" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000648" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29603" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.003176" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29600" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(1,0)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(1,0)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="160593141" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29601" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(0,1)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(0,1)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1358394065" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29602" name="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(-1,-1)" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination(-1,-1)" methodname="NativeMovement_InterpolatesBetweenProjectedCellsAndEndsAtDestination" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1614858832" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29598" name="NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" methodname="NoTilemap_PreservesLegacyAnchorDespiteUnrelatedRectangularGrid" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="611972933" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000502" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29607" name="PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" methodname="PooledViewReacquiredAfterProjectionChange_UsesCurrentGeometry" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="579478879" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000428" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29596" name="Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" methodname="Spawn_UsesRectangularTileBottomCenterAndWorldTranslation" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="241012821" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29597" name="SquareIdentityTilemap_PreservesExistingUnitAnchor" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.SquareIdentityTilemap_PreservesExistingUnitAnchor" methodname="SquareIdentityTilemap_PreservesExistingUnitAnchor" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="1634202818" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000366" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29599" name="SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" fullname="CavesOfOoo.Tests.RectangularActorProjectionTests.SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" methodname="SyncAfterProjectionChange_ReanchorsTheExistingViewWithoutRebuildingIt" classname="CavesOfOoo.Tests.RectangularActorProjectionTests" runstate="Runnable" seed="528308383" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.000358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="29608" name="RectangularActorProjectionWiringTests" fullname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests" classname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.191465" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="29611" name="NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap" fullname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests.NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap" classname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.189819" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29609" name="NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap(1.0f,0.0f,0.0f)" fullname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests.NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap(1.0f,0.0f,0.0f)" methodname="NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap" classname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests" runstate="Runnable" seed="92503849" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.176539" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29610" name="NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap(1.5f,3.25f,-4.5f)" fullname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests.NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap(1.5f,3.25f,-4.5f)" methodname="NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap" classname="CavesOfOoo.Tests.RectangularActorProjectionWiringTests" runstate="Runnable" seed="1515011383" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:12Z" duration="0.012345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="30424" name="SpawnRing3DCameraIntegrationTests" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:18Z" duration="5.849523" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="30428" name="AReadyRingElsewhereCannotChangeAnUnrelatedNativeZoneCamera" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.AReadyRingElsewhereCannotChangeAnUnrelatedNativeZoneCamera" methodname="AReadyRingElsewhereCannotChangeAnUnrelatedNativeZoneCamera" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="1679817186" result="Passed" start-time="2026-10-23 03:29:12Z" end-time="2026-10-23 03:29:14Z" duration="2.063387" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30427" name="DisablingRingRestoresOrdinaryZoomAndEnablingRestoresNativeBounds" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.DisablingRingRestoresOrdinaryZoomAndEnablingRestoresNativeBounds" methodname="DisablingRingRestoresOrdinaryZoomAndEnablingRestoresNativeBounds" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="1248797052" result="Passed" start-time="2026-10-23 03:29:14Z" end-time="2026-10-23 03:29:16Z" duration="1.149741" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30430" name="FullscreenInventoryThenRestoreReturnsToRingGameplayViewportAndBounds" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.FullscreenInventoryThenRestoreReturnsToRingGameplayViewportAndBounds" methodname="FullscreenInventoryThenRestoreReturnsToRingGameplayViewportAndBounds" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="1566239246" result="Passed" start-time="2026-10-23 03:29:16Z" end-time="2026-10-23 03:29:16Z" duration="0.840345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30429" name="LookTargetTracksRingBordersAndClearingLookReturnsToUnmovedPlayer" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.LookTargetTracksRingBordersAndClearingLookReturnsToUnmovedPlayer" methodname="LookTargetTracksRingBordersAndClearingLookReturnsToUnmovedPlayer" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="938780549" result="Passed" start-time="2026-10-23 03:29:16Z" end-time="2026-10-23 03:29:17Z" duration="0.823742" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30426" name="ReadyFellingRingUsesNativeFramingEvenWhenLegacySourcePresenterExists" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.ReadyFellingRingUsesNativeFramingEvenWhenLegacySourcePresenterExists" methodname="ReadyFellingRingUsesNativeFramingEvenWhenLegacySourcePresenterExists" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="750620087" result="Passed" start-time="2026-10-23 03:29:17Z" end-time="2026-10-23 03:29:17Z" duration="0.165659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30425" name="ReadyRingFitsTwentyFiveRowsAndAllFourBordersWithTiltHeadroom" fullname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests.ReadyRingFitsTwentyFiveRowsAndAllFourBordersWithTiltHeadroom" methodname="ReadyRingFitsTwentyFiveRowsAndAllFourBordersWithTiltHeadroom" classname="CavesOfOoo.Tests.SpawnRing3DCameraIntegrationTests" runstate="Runnable" seed="884410919" result="Passed" start-time="2026-10-23 03:29:17Z" end-time="2026-10-23 03:29:18Z" duration="0.801509" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="35059" name="WorldCursorRendererTests" fullname="CavesOfOoo.Tests.WorldCursorRendererTests" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.087208" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="35061" name="CursorColor_IsRedForHostileCreature" fullname="CavesOfOoo.Tests.WorldCursorRendererTests.CursorColor_IsRedForHostileCreature" methodname="CursorColor_IsRedForHostileCreature" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" seed="1551687668" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.001516" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35062" name="CursorColor_IsYellowForTakeableItem_AndCyanForContainer" fullname="CavesOfOoo.Tests.WorldCursorRendererTests.CursorColor_IsYellowForTakeableItem_AndCyanForContainer" methodname="CursorColor_IsYellowForTakeableItem_AndCyanForContainer" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" seed="911741914" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.000402" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35064" name="CursorOutline_UsesTilemapCellBounds_InsteadOfIntegerCenteredWorldCoords" fullname="CavesOfOoo.Tests.WorldCursorRendererTests.CursorOutline_UsesTilemapCellBounds_InsteadOfIntegerCenteredWorldCoords" methodname="CursorOutline_UsesTilemapCellBounds_InsteadOfIntegerCenteredWorldCoords" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" seed="1772380342" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.017084" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35060" name="ThrowContactAndRestOutlinesDoNotOverpaintEachOther" fullname="CavesOfOoo.Tests.WorldCursorRendererTests.ThrowContactAndRestOutlinesDoNotOverpaintEachOther" methodname="ThrowContactAndRestOutlinesDoNotOverpaintEachOther" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" seed="1732309184" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.017359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35063" name="ZoneRenderer_ClearsCursorAndSidebar_OnZoneChange" fullname="CavesOfOoo.Tests.WorldCursorRendererTests.ZoneRenderer_ClearsCursorAndSidebar_OnZoneChange" methodname="ZoneRenderer_ClearsCursorAndSidebar_OnZoneChange" classname="CavesOfOoo.Tests.WorldCursorRendererTests" runstate="Runnable" seed="1423629700" result="Passed" start-time="2026-10-23 03:29:18Z" end-time="2026-10-23 03:29:18Z" duration="0.021794" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

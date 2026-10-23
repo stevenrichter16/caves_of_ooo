@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
@@ -54,6 +55,7 @@ namespace CavesOfOoo.Rendering
         private Material _sharedMaterial;
         private Func<Entity, int, int, Color> _tintProvider;
         private Func<Entity, bool> _sourceEntityPredicate;
+        private Tilemap _worldTilemap;
         private bool _initialized;
         private bool _presentationVisible = true;
 
@@ -61,11 +63,16 @@ namespace CavesOfOoo.Rendering
         public int PooledViewCount => _pool.Count;
         public Zone CurrentZone => _zone;
 
-        public void Init(Func<Entity, int, int, Color> tintProvider)
+        /// <summary>
+        /// Uses the supplied world tilemap for actor foot positions. Omitting it
+        /// preserves the original unit-cell projection for standalone presenters.
+        /// </summary>
+        public void Init(Func<Entity, int, int, Color> tintProvider, Tilemap worldTilemap = null)
         {
             if (_initialized) return;
             _initialized = true;
             _tintProvider = tintProvider;
+            _worldTilemap = worldTilemap;
             _shadowSprite = Resources.Load<Sprite>("Sprites/Actors/actor_shadow");
 
             Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Lit-Default");
@@ -505,10 +512,19 @@ namespace CavesOfOoo.Rendering
             view.Shadow.enabled = _shadowSprite != null;
         }
 
-        private static Vector3 CellAnchor(int x, int zoneY)
+        private Vector3 CellAnchor(int x, int zoneY)
         {
-            float tileY = Zone.Height - 1 - zoneY;
-            return new Vector3(x + 0.5f, tileY, -zoneY * 0.001f);
+            int tileY = Zone.Height - 1 - zoneY;
+            if (_worldTilemap == null)
+                return new Vector3(x + 0.5f, tileY, -zoneY * 0.001f);
+
+            var cell = new Vector3Int(x, tileY, 0);
+            Vector3 origin = _worldTilemap.CellToWorld(cell);
+            // Actor pivots are bottom-center, unlike tile sprites' center anchors.
+            Vector3 horizontalStep = _worldTilemap.CellToWorld(cell + Vector3Int.right) - origin;
+            Vector3 anchor = origin + horizontalStep * 0.5f;
+            anchor.z = -zoneY * 0.001f;
+            return anchor;
         }
 
         private static void UpdateSortingDepth(EntityView view)

@@ -1,0 +1,71 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "f6a5f948cceb4049a6b2065589fc6139",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1792725555913,
+      "finished_unix_ms": 1792725577497,
+      "last_update_unix_ms": 1792725577497,
+      "progress": {
+        "completed": 25,
+        "total": 25,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1792725577166,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.LightSourceSpriteHookTests.Tunables_HaveSaneDefaults",
+        "last_finished_unix_ms": 1792725577167,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ClampsToTranslatedCellEdges(0,0,False,True)",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ClampsToTranslatedCellEdges(79,24,True,False)",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_FollowsTranslatedCellCentre_AndUsesRowSpacingForZoom",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_FullscreenUIKeepsSquareCoordinates_ThenRestoresWorld",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_OverrideUsesProjectedCell_AndClearingRestoresPlayer",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_ProjectionChangesAreObserved_AndFallbackZoomRemainsWorldUnits",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.CameraFollowOverrideTests.RectangularWorld_WhenEntireZoneFits_CentresProjectedExtents",
+            "message": "  Camera follow needs an explicit optional world projection source.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.LightSourceSpriteHookTests.ExistingFixtureLight_ReprojectsWhenCellSpacingChanges",
+            "message": "  Expected: 9.75f +/- 9.99999975E-05f\n  But was:  7.5f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.LightSourceSpriteHookTests.FixtureLight_UsesOverlayCellCenter(1.5f,4.0f,7.0f)",
+            "message": "  Expected: 13.75f +/- 9.99999975E-05f\n  But was:  11.5f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.LightSourceSpriteHookTests.PlayerTorch_FollowsProjectedFlippedRow(1.5f,4.0f,7.0f)",
+            "message": "  Expected: 37.75f +/- 9.99999975E-05f\n  But was:  27.5f\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}
