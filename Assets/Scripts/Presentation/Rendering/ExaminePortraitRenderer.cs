@@ -45,6 +45,41 @@ namespace CavesOfOoo.Rendering
         internal ExaminePortraitRenderer(Action<Camera, RenderTexture> capture)
         { this.capture = capture ?? throw new ArgumentNullException(nameof(capture)); }
 
+        /// <summary>
+        /// Uses the explicitly bound world presentation. Active flat mode owns
+        /// both successful and rejected results, so it can never fall through to
+        /// an old model. Native sprites and textures remain world-catalog owned.
+        /// </summary>
+        public ExaminePortrait GetPortrait(AnnouncementDocument document, ZoneRenderer presentation)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(ExaminePortraitRenderer));
+            if (!IsCurrentPresentationSubject(document, presentation)) { Clear(); return default; }
+            if (presentation != null && presentation.TryGetFlatExaminePortrait(document, out var portrait))
+            {
+                // DropModel alone retains the stage, camera and render target.
+                // Release that entire previous preview before borrowing flat art.
+                Clear();
+                return portrait;
+            }
+            return GetPortrait(document);
+        }
+
+        /// <summary>
+        /// Cheap disclosure/context validation for open and repaint. This never
+        /// resolves art, creates a preview, simulates state or rebuilds prose.
+        /// </summary>
+        internal static bool IsCurrentPresentationSubject(AnnouncementDocument document, ZoneRenderer presentation)
+        {
+            if (!ExamineDocumentBuilder.IsCurrentSubject(document)) return false;
+            if (presentation == null || !presentation.FlatPixelModeActive) return true;
+            var zone = document.SubjectZone ?? CurrentPresentationZone(document.SubjectViewer);
+            if (zone == null || !ReferenceEquals(zone, presentation.CurrentZone)) return false;
+            var manager = WorldLocationContext.For(zone);
+            return manager == null || manager.CachedZones != null
+                && manager.CachedZones.TryGetValue(zone.ZoneID, out var currentZone)
+                && ReferenceEquals(currentZone, zone);
+        }
+
         /// <summary>Open a current authorized document. Carried items borrow the
         /// owner's real presentation context without becoming world occupants.</summary>
         public ExaminePortrait GetPortrait(AnnouncementDocument document)

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Failed(Child)" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="1.1419095">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29857" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="1.141910" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36789" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29857" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="1.076380" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36790" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29857" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="1.022130" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36791" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29857" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="0.958633" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27826" name="FlatPixelActorMotionTests" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="0.660045" total="27" passed="0" failed="27" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27827" name="AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" methodname="AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="241167571" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.153731" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:19
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27836" name="AttackInterruptsWalkAtActualDestinationWithoutLunge" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.AttackInterruptsWalkAtActualDestinationWithoutLunge" methodname="AttackInterruptsWalkAtActualDestinationWithoutLunge" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1235507418" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014111" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.AttackInterruptsWalkAtActualDestinationWithoutLunge () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27831" name="BlockedNativeMoveDoesNotStartAnimation" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.BlockedNativeMoveDoesNotStartAnimation" methodname="BlockedNativeMoveDoesNotStartAnimation" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1042720007" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.BlockedNativeMoveDoesNotStartAnimation () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27832" name="ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" methodname="ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2112269286" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014516" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:68
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27856" name="DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" methodname="DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1596279250" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.015271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:204
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27840" name="DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" methodname="DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1464261727" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:131
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27835" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.033176" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27833" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(True,1)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(True,1)" methodname="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1557394160" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent (System.Boolean adjacent, System.Int32 distance) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27834" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(False,3)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(False,3)" methodname="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1326479153" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.014508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent (System.Boolean adjacent, System.Int32 distance) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:80
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27855" name="ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" methodname="ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="163111793" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.017837" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:194
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27849" name="HiddenHooksDoNotReplayAfterReveal" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.HiddenHooksDoNotReplayAfterReveal" methodname="HiddenHooksDoNotReplayAfterReveal" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="371062795" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.018333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.HiddenHooksDoNotReplayAfterReveal () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:159
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27829" name="IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" methodname="IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1985619856" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.018028" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:37
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27828" name="MissingMotionKeepsStaticTileAndDoesNotCreateBody" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.MissingMotionKeepsStaticTileAndDoesNotCreateBody" methodname="MissingMotionKeepsStaticTileAndDoesNotCreateBody" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1038519085" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.016924" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.MissingMotionKeepsStaticTileAndDoesNotCreateBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27837" name="NativeAcceptedMissShowsAttackButBeforeAttackVetoDoesNot" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeAcceptedMissShowsAttackButBeforeAttackVetoDoesNot" methodname="NativeAcceptedMissShowsAttackButBeforeAttackVetoDoesNot" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1496250584" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.018711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeAcceptedMissShowsAttackButBeforeAttackVetoDoesNot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27853" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="0.080035" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27850" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;fog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;fog&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1271635478" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.017929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline (System.String stop) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:170
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27851" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;replacement&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1437234204" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:12:59Z" duration="0.026205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline (System.String stop) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:170
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27852" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;elapsed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;elapsed&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1885233866" result="Failed" start-time="2026-10-23 06:12:59Z" end-time="2026-10-23 06:13:00Z" duration="0.033049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline (System.String stop) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:170
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27830" name="NativeMoveUsesBothPosesAndPreservesImmediateSimulation" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeMoveUsesBothPosesAndPreservesImmediateSimulation" methodname="NativeMoveUsesBothPosesAndPreservesImmediateSimulation" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="399965975" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.059812" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeMoveUsesBothPosesAndPreservesImmediateSimulation () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27854" name="PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" methodname="PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1196928888" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.016004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.PauseAndModeTransitionsTwiceClearMotionAndResumeIdle () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:181
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27838" name="PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" methodname="PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1435353993" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.015333" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:112
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27848" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.117404" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27841" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;hidden&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1020621319" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.014721" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27842" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;unexplored&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="375562950" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.014823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27843" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;render-hidden&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="994231273" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.013970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27844" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-render&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="226514064" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.014083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27845" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;identity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;identity&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="176691342" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.024313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27846" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;removed&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2106103472" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.015210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27847" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="654698699" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.015388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27839" name="SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" methodname="SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="244783929" result="Failed" start-time="2026-10-23 06:13:00Z" end-time="2026-10-23 06:13:00Z" duration="0.014897" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Compact native motion catalog is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelActorMotionTests+Fixture..ctor (System.Boolean motion) [0x0051c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:265
+at CavesOfOoo.Tests.FlatPixelActorMotionTests.SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelActorMotionTests.cs:121
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -15,8 +15,33 @@ namespace CavesOfOoo.Rendering
         public string SearchQuery => _inventoryQuery;
         public void HideForDecisionReader() { if (Tilemap != null) Tilemap.ClearAllTiles(); }
         public void RestoreAfterDecisionReader() { if (_isOpen) { Rebuild(); ClampCursor(); Render(); } }
-        public string SelectedDecisionDetails()
+        public string SelectedDecisionDetails() => BuildSelectedDecisionDetails(out _);
+
+        /// <summary>Preserves the selected decision prose while borrowing current examine
+        /// metadata for a single owned item. Composite previews remain neutral. An invalidated
+        /// item returns neither a document nor stale fallback text.</summary>
+        public AnnouncementDocument SelectedDecisionPresentation(out string text)
         {
+            var viewer = PlayerEntity;
+            var zone = CurrentZone;
+            text = BuildSelectedDecisionDetails(out var subject);
+            if (string.IsNullOrWhiteSpace(text) || subject == null) return null;
+            var identity = ExamineDocumentBuilder.BuildInventory(subject, viewer);
+            if (identity == null || !_isOpen || _inventorySearchActive
+                || PlayerEntity != viewer || CurrentZone != zone)
+            {
+                text = null;
+                return null;
+            }
+            return new AnnouncementDocument(identity.Title, identity.Kind,
+                new[] { new AnnouncementSection("Decision details", text) }, identity.Facts,
+                identity.BlueprintName, identity.Glyph, identity.GlyphColor,
+                identity.Subject, identity.SubjectZone, identity.SubjectCell, identity.SubjectViewer);
+        }
+
+        private string BuildSelectedDecisionDetails(out Entity subject)
+        {
+            subject = null;
             if (!_isOpen || _inventorySearchActive) return null;
             if (_itemActionPopup != null)
             {
@@ -26,17 +51,26 @@ namespace CavesOfOoo.Rendering
                 {
                     var action = _itemActionPopup.Actions[_itemActionPopup.CursorIndex];
                     if (action.Command == "put_container") return InventoryDecisionDetails.Container(PlayerEntity, CurrentZone, action.Container, item);
-                    if (action.Command == "disassemble") return item.GetDisplayName() + "\n\n" + InventoryDecisionDetails.Disassembly(PlayerEntity, item);
+                    if (action.Command == "disassemble")
+                    {
+                        subject = item;
+                        return item.GetDisplayName() + "\n\n" + InventoryDecisionDetails.Disassembly(PlayerEntity, item);
+                    }
                 }
+                subject = item;
                 return DetailsForItem(item);
             }
             if (_modTargetPopup != null && _modTargetPopup.CursorIndex >= 0 && _modTargetPopup.CursorIndex < _modTargetPopup.Targets.Count)
             {
                 var item = _modTargetPopup.Targets[_modTargetPopup.CursorIndex];
+                subject = item;
                 return InventoryDecisionDetails.Owned(PlayerEntity, item) ? InventoryDecisionDetails.Modification(item, _modTargetPopup.Recipe) : null;
             }
             if (_equipPopup != null && _equipPopup.CursorItemIndex >= 0 && _equipPopup.CursorItemIndex < _equipPopup.Items.Count)
-                return DetailsForItem(_equipPopup.Items[_equipPopup.CursorItemIndex]);
+            {
+                subject = _equipPopup.Items[_equipPopup.CursorItemIndex];
+                return DetailsForItem(subject);
+            }
             if (_panel == PANEL_CRAFTING)
             {
                 // Current selection is re-read through the existing pure previews.
@@ -57,9 +91,16 @@ namespace CavesOfOoo.Rendering
                     + "\nProduces: " + recipe.NumberMade + "\nIngredient: " + (recipe.Ingredient ?? "none")
                     + (row.Value.Affordable ? "\nCurrent prerequisites met; execution rechecks." : "\nMissing current prerequisites; see the recipe list.");
             }
-            if (_panel == PANEL_INVENTORY && _cursorIndex >= 0 && _cursorIndex < _rows.Count) return DetailsForItem(_rows[_cursorIndex].Item?.Item);
+            if (_panel == PANEL_INVENTORY && _cursorIndex >= 0 && _cursorIndex < _rows.Count)
+            {
+                subject = _rows[_cursorIndex].Item?.Item;
+                return DetailsForItem(subject);
+            }
             if (_panel == PANEL_EQUIPMENT && _equipCursorIndex >= 0 && _equipCursorIndex < _equipSlots.Count)
-                return DetailsForItem(_equipSlots[_equipCursorIndex].EquippedItem);
+            {
+                subject = _equipSlots[_equipCursorIndex].EquippedItem;
+                return DetailsForItem(subject);
+            }
             return null;
         }
         private string DetailsForItem(Entity item)

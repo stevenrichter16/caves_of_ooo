@@ -1,0 +1,1206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="98" result="Failed(Child)" total="98" passed="44" failed="54" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 06:44:48Z" end-time="2026-10-23 06:44:57Z" duration="8.3051678">
+  <test-suite type="TestSuite" id="36990" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30004" result="Failed" site="Child" start-time="2026-10-23 06:44:48Z" end-time="2026-10-23 06:44:57Z" duration="8.305168" total="98" passed="44" failed="54" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36962" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30004" result="Failed" site="Child" start-time="2026-10-23 06:44:48Z" end-time="2026-10-23 06:44:57Z" duration="8.103108" total="98" passed="44" failed="54" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36963" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30004" result="Failed" site="Child" start-time="2026-10-23 06:44:49Z" end-time="2026-10-23 06:44:57Z" duration="8.005287" total="98" passed="44" failed="54" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36964" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30004" result="Failed" site="Child" start-time="2026-10-23 06:44:49Z" end-time="2026-10-23 06:44:57Z" duration="7.606262" total="98" passed="44" failed="54" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27913" name="FlatPixelExaminePortraitLayoutTests" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-23 06:44:50Z" end-time="2026-10-23 06:44:51Z" duration="0.501111" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27917" name="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.206248" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27914" name="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(870,40,176,96,4)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(870,40,176,96,4)" methodname="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="1132339308" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.005480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale (System.Single x, System.Single y, System.Single width, System.Single height, System.Int32 scale) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27915" name="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(1305,60,264,144,6)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(1305,60,264,144,6)" methodname="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="1375450274" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale (System.Single x, System.Single y, System.Single width, System.Single height, System.Int32 scale) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27916" name="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(25.25f,35.75f,109.5f,73.25f,3)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale(25.25f,35.75f,109.5f,73.25f,3)" methodname="AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="325454056" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.AtlasSubrectangleKeepsSixteenByTwentyFourPixelsAtIntegerScale (System.Single x, System.Single y, System.Single width, System.Single height, System.Int32 scale) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:25
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27924" name="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.193838" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27921" name="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(0,96)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(0,96)" methodname="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="2039689094" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea (System.Single width, System.Single height) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27922" name="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(96,0)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(96,0)" methodname="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="133764002" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea (System.Single width, System.Single height) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27923" name="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(-1,96)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea(-1,96)" methodname="EmptyOrNegativeSlotDoesNotDrawOutsideItsArea" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="1983973804" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.EmptyOrNegativeSlotDoesNotDrawOutsideItsArea (System.Single width, System.Single height) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27919" name="ExistingModelCaptureKeepsItsCenteredSquareLayout" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.ExistingModelCaptureKeepsItsCenteredSquareLayout" methodname="ExistingModelCaptureKeepsItsCenteredSquareLayout" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="509745215" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000209" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.ExistingModelCaptureKeepsItsCenteredSquareLayout () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:49
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27925" name="FractionalTightSlotStillContainsTheWholeImage" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.FractionalTightSlotStillContainsTheWholeImage" methodname="FractionalTightSlotStillContainsTheWholeImage" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="627962575" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000219" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.FractionalTightSlotStillContainsTheWholeImage () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:69
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27920" name="MissingPortraitDoesNotInventAVisibleRectangle" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.MissingPortraitDoesNotInventAVisibleRectangle" methodname="MissingPortraitDoesNotInventAVisibleRectangle" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="1031083030" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000136" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.MissingPortraitDoesNotInventAVisibleRectangle () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:55
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27918" name="UndersizedSlotContainsTheImageWithoutChangingItsAspect" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.UndersizedSlotContainsTheImageWithoutChangingItsAspect" methodname="UndersizedSlotContainsTheImageWithoutChangingItsAspect" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests" runstate="Runnable" seed="779893153" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.000161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The popup must preserve source-pixel aspect rather than stretch16x24 into a square.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.Measure (UnityEngine.Rect slot, CavesOfOoo.Rendering.ExaminePortrait portrait) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:80
+at CavesOfOoo.Tests.FlatPixelExaminePortraitLayoutTests.UndersizedSlotContainsTheImageWithoutChangingItsAspect () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitLayoutTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27926" name="FlatPixelExaminePortraitTests" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:56Z" duration="4.902425" total="42" passed="0" failed="42" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27973" name="AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor" methodname="AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1206248540" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.016711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor () [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:341
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27955" name="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.040858" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27951" name="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;lost&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;lost&quot;)" methodname="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="2078575149" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.002619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27952" name="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;transfer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;transfer&quot;)" methodname="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="463111341" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27953" name="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;hidden&quot;)" methodname="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1529576059" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27954" name="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(&quot;empty-stack&quot;)" methodname="CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1750864019" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:155
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27972" name="CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.196590" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27970" name="CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(&quot;detached&quot;)" methodname="CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1309246639" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer (System.String change) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:323
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27971" name="CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(&quot;foreign-zone&quot;)" methodname="CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="466661294" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer (System.String change) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:323
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27960" name="ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames" methodname="ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1538436406" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.003286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames () [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:214
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27974" name="ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement" methodname="ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1088346419" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.001239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The same exact-owner selector must serve world and authorized portraits.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement () [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:353
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27935" name="ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner" methodname="ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1945628240" result="Failed" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:51Z" duration="0.004025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner () [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27950" name="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 06:44:51Z" end-time="2026-10-23 06:44:52Z" duration="0.195151" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27946" name="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,False)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,False)" methodname="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="570923175" result="Failed" start-time="2026-10-23 06:44:52Z" end-time="2026-10-23 06:44:52Z" duration="0.002029" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas (System.Boolean equipped, System.Boolean paused) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27947" name="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,True)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,True)" methodname="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1847525874" result="Failed" start-time="2026-10-23 06:44:52Z" end-time="2026-10-23 06:44:52Z" duration="0.001442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas (System.Boolean equipped, System.Boolean paused) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27948" name="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,False)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,False)" methodname="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="2125362777" result="Failed" start-time="2026-10-23 06:44:52Z" end-time="2026-10-23 06:44:52Z" duration="0.001671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas (System.Boolean equipped, System.Boolean paused) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27949" name="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,True)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,True)" methodname="GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="921080619" result="Failed" start-time="2026-10-23 06:44:52Z" end-time="2026-10-23 06:44:52Z" duration="0.001178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas (System.Boolean equipped, System.Boolean paused) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27962" name="InactivePresentationPreservesTheExactLegacyModelRoute" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InactivePresentationPreservesTheExactLegacyModelRoute" methodname="InactivePresentationPreservesTheExactLegacyModelRoute" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1014099545" result="Failed" start-time="2026-10-23 06:44:52Z" end-time="2026-10-23 06:44:54Z" duration="2.044974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InactivePresentationPreservesTheExactLegacyModelRoute () [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:248
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27966" name="InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.111113" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27964" name="InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(&quot;missing&quot;)" methodname="InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="756766161" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.003551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState (System.String mutation) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:286
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27965" name="InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(&quot;foreign&quot;)" methodname="InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1067631478" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState (System.String mutation) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:286
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27969" name="ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.146614" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27967" name="ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(False)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(False)" methodname="ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1519853120" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.005415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority (System.Boolean carried) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:306
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27968" name="ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(True)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(True)" methodname="ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1225774181" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.004488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority (System.Boolean carried) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:306
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27958" name="MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.093160" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27956" name="MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(False)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(False)" methodname="MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="236243301" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001593" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups (System.Boolean malformed) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27957" name="MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(True)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(True)" methodname="MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1961758324" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups (System.Boolean malformed) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27961" name="PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority" methodname="PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1279700509" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001329" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:231
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27978" name="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.100202" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27975" name="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;subject-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;subject-hidden&quot;)" methodname="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="784561454" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.002097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Popup needs an explicit bootstrap-bound current presentation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture (System.String change) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:373
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27976" name="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;flat-mode-left&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;flat-mode-left&quot;)" methodname="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="166869590" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Popup needs an explicit bootstrap-bound current presentation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture (System.String change) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:373
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27977" name="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;presented-zone-left&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(&quot;presented-zone-left&quot;)" methodname="PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="822251320" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Popup needs an explicit bootstrap-bound current presentation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture (System.String change) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:373
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27944" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.205075" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27936" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;moved&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1397517013" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27937" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;removed&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1334322443" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27938" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;hidden&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="167818018" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27939" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;fog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;fog&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="2145272586" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27940" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;unexplored&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="156270228" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27941" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;replaced-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;replaced-cell&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1192116115" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27942" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;foreign-render&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1804217356" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27943" name="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;viewer-left&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(&quot;viewer-left&quot;)" methodname="PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1966070760" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority (System.String change) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27959" name="RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage" methodname="RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="429548229" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage () [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:188
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27945" name="SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation" methodname="SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="145710450" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001282" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:106
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27934" name="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.093025" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27930" name="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;wet&quot;)" methodname="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1605010070" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27931" name="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;frozen&quot;)" methodname="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="78959107" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27932" name="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;disabled&quot;)" methodname="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1771815474" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27933" name="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(&quot;empty&quot;)" methodname="SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="2085620351" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:54Z" duration="0.001090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel (System.String change) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27963" name="SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas" methodname="SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1203010107" result="Failed" start-time="2026-10-23 06:44:54Z" end-time="2026-10-23 06:44:56Z" duration="1.420511" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas () [0x00078] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:266
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27929" name="WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.077732" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27927" name="WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(False,9)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(False,9)" methodname="WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="1320551775" result="Failed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview (System.Boolean lit, System.Int32 frame) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27928" name="WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(True,10)" fullname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(True,10)" methodname="WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview" classname="CavesOfOoo.Tests.FlatPixelExaminePortraitTests" runstate="Runnable" seed="2103245398" result="Failed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Examine must route through the explicit active presentation before old 3D lookup.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.Get (CavesOfOoo.Rendering.ExaminePortraitRenderer renderer, CavesOfOoo.Core.AnnouncementDocument document, CavesOfOoo.Rendering.ZoneRenderer presentation) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:401
+at CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview (System.Boolean lit, System.Int32 frame) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExaminePortraitTests.cs:27
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="28143" name="FlatPixelOpeningItemsTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:57Z" duration="0.700816" total="46" passed="44" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28189" name="CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" methodname="CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="974845403" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.005237" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28156" name="CurrentLooseOwnerUsesOneCachedNativeFrame" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.189736" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28144" name="CurrentLooseOwnerUsesOneCachedNativeFrame(0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(0)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="480187048" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.003025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28145" name="CurrentLooseOwnerUsesOneCachedNativeFrame(1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(1)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="401132830" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28146" name="CurrentLooseOwnerUsesOneCachedNativeFrame(2)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(2)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="265984783" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28147" name="CurrentLooseOwnerUsesOneCachedNativeFrame(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(3)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2025502963" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28148" name="CurrentLooseOwnerUsesOneCachedNativeFrame(4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(4)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2079523156" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28149" name="CurrentLooseOwnerUsesOneCachedNativeFrame(5)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(5)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="440643389" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28150" name="CurrentLooseOwnerUsesOneCachedNativeFrame(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(6)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1445793243" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28151" name="CurrentLooseOwnerUsesOneCachedNativeFrame(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(7)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="902860551" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28152" name="CurrentLooseOwnerUsesOneCachedNativeFrame(8)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(8)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1983909063" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28153" name="CurrentLooseOwnerUsesOneCachedNativeFrame(9)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(9)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1770053728" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.000993" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28154" name="CurrentLooseOwnerUsesOneCachedNativeFrame(10)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(10)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2011359716" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28155" name="CurrentLooseOwnerUsesOneCachedNativeFrame(11)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(11)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="212961787" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28193" name="DefaultCatalogBindsAllActualImportedItems" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.DefaultCatalogBindsAllActualImportedItems" methodname="DefaultCatalogBindsAllActualImportedItems" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="217149118" result="Failed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002836" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual item atlas missing: synthetic art is not integration.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.DefaultCatalogBindsAllActualImportedItems () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28188" name="FoodAndSeedRequireTheirAuthoredTransformationTargets" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.FoodAndSeedRequireTheirAuthoredTransformationTargets" methodname="FoodAndSeedRequireTheirAuthoredTransformationTargets" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1240993108" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002115" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28178" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.092095" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28171" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;inventory&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="700881117" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28172" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;equipped&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1221462989" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28173" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;hidden&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="235743046" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28174" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-render&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1317199774" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28175" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-physics&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="208288816" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28176" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;zero-stack&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="797711930" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28177" name="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(&quot;foreign-stack&quot;)" methodname="InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="508558341" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28187" name="LaterEqualLayerSeedCoversShellUntilActuallyRemoved" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.LaterEqualLayerSeedCoversShellUntilActuallyRemoved" methodname="LaterEqualLayerSeedCoversShellUntilActuallyRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="159633824" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28192" name="MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" methodname="MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1771541420" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28191" name="MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" methodname="MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1885302813" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002718" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28170" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.247608" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28157" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1852002097" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.003836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28158" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Cookable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Cookable&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1826158695" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28159" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1533910489" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28160" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,&quot;Waterskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,&quot;Waterskin&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1697763424" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28161" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,&quot;Seed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,&quot;Seed&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2076685355" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.003913" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28162" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1326092614" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.004474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28163" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Cookable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Cookable&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="573073904" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28164" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="250223283" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.002843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28165" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,&quot;MineralPreparation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,&quot;MineralPreparation&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="685113581" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.004450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28166" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,&quot;Tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,&quot;Tonic&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1994019074" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.004063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28167" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1720172758" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.004399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28168" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,&quot;Physics&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1277981038" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.004307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28169" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,&quot;Physics&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1842021718" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.024472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28190" name="RawQuartzAndClayDoNotBecomeSourcesOrFlames" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RawQuartzAndClayDoNotBecomeSourcesOrFlames" methodname="RawQuartzAndClayDoNotBecomeSourcesOrFlames" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1757782715" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:56Z" duration="0.001253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28185" name="RealPortableFootprintCanRenderItsCurrentCoveredCell" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RealPortableFootprintCanRenderItsCurrentCoveredCell" methodname="RealPortableFootprintCanRenderItsCurrentCoveredCell" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1052052322" result="Passed" start-time="2026-10-23 06:44:56Z" end-time="2026-10-23 06:44:57Z" duration="0.002519" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28186" name="RememberedAndUnexploredCellsCannotExposeLooseItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RememberedAndUnexploredCellsCannotExposeLooseItem" methodname="RememberedAndUnexploredCellsCannotExposeLooseItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="581452672" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001372" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28183" name="SemanticCarriedArtworkResolvesWithoutWorldInsertionOrPortraitAuthorization" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.SemanticCarriedArtworkResolvesWithoutWorldInsertionOrPortraitAuthorization" methodname="SemanticCarriedArtworkResolvesWithoutWorldInsertionOrPortraitAuthorization" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1348397349" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28184" name="StaleOldCellCannotDuplicateAMovedItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.StaleOldCellCannotDuplicateAMovedItem" methodname="StaleOldCellCannotDuplicateAMovedItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1094519840" result="Failed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001935" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(mushroom)>
+  But was:  <Entity(emberwheat sheaf)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.StaleOldCellCannotDuplicateAMovedItem () [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:102
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28182" name="UnrecognizedItemIdentityDoesNotAliasKnownArt" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UnrecognizedItemIdentityDoesNotAliasKnownArt" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.025616" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28180" name="UnrecognizedItemIdentityDoesNotAliasKnownArt(&quot;unknown-blueprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UnrecognizedItemIdentityDoesNotAliasKnownArt(&quot;unknown-blueprint&quot;)" methodname="UnrecognizedItemIdentityDoesNotAliasKnownArt" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1254387727" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28181" name="UnrecognizedItemIdentityDoesNotAliasKnownArt(&quot;explicit-reskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UnrecognizedItemIdentityDoesNotAliasKnownArt(&quot;explicit-reskin&quot;)" methodname="UnrecognizedItemIdentityDoesNotAliasKnownArt" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="247366637" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28179" name="UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt" methodname="UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1394008564" result="Passed" start-time="2026-10-23 06:44:57Z" end-time="2026-10-23 06:44:57Z" duration="0.001811" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

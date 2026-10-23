@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
         {
             using (var renderer = new ExaminePortraitRenderer())
             {
-                Assert.Null(renderer.GetPortrait(null, null).Texture);
+                Assert.Null(renderer.GetPortrait((Zone)null, null).Texture);
                 Assert.Null(renderer.GetPortrait(null, new Entity()).Texture);
                 Assert.Null(Read<RenderTexture>(renderer, "OwnedTarget"));
             }

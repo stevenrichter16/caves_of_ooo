@@ -17,6 +17,8 @@ namespace CavesOfOoo.Rendering
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
         public Camera PopupCamera;
+        /// <summary>Explicit current-world binding; portraits never find scene renderers.</summary>
+        public ZoneRenderer WorldPresentation;
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
@@ -45,6 +47,8 @@ namespace CavesOfOoo.Rendering
         private DocumentReadAudio _documentAudio;
         private ExaminePortraitRenderer _portraitRenderer;
         private ExaminePortrait _portrait;
+        private ZoneRenderer _portraitPresentation;
+        private bool _portraitWasFlat;
         private bool _controllerHints;
         private string _message;
         private readonly List<string> _wrappedLines = new List<string>();
@@ -139,13 +143,33 @@ namespace CavesOfOoo.Rendering
                 if (_titleLines.Count > 2) { AddLines("Full name", SeaGreen); AddLines(document.Title, Ivory); }
             }
             _portrait = default;
-            if (Application.isPlaying && ExamineDocumentBuilder.IsCurrentSubject(document))
-            {
-                if (_portraitRenderer == null) _portraitRenderer = new ExaminePortraitRenderer();
-                _portrait = _portraitRenderer.GetPortrait(document);
-            }
+            if (Application.isPlaying) RefreshPortrait();
             else _portraitRenderer?.Clear();
             Render();
+        }
+
+        // Called only on explicit popup open/refresh, never during repaint.
+        private void RefreshPortrait()
+        {
+            _portrait = default;
+            _portraitPresentation = WorldPresentation;
+            _portraitWasFlat = WorldPresentation != null && WorldPresentation.FlatPixelModeActive;
+            if (!ExaminePortraitRenderer.IsCurrentPresentationSubject(Document, WorldPresentation))
+            { _portraitRenderer?.Clear(); return; }
+            if (_portraitRenderer == null) _portraitRenderer = new ExaminePortraitRenderer();
+            _portrait = _portraitRenderer.GetPortrait(Document, WorldPresentation);
+        }
+
+        // State changes require an explicit refresh to choose new art. Losing
+        // authority or changing presentation may only hide the old cached image.
+        private void ValidatePortrait()
+        {
+            if (_portrait.Texture == null) return;
+            bool flat = WorldPresentation != null && WorldPresentation.FlatPixelModeActive;
+            if (_portraitPresentation == WorldPresentation && _portraitWasFlat == flat
+                && ExaminePortraitRenderer.IsCurrentPresentationSubject(Document, WorldPresentation)) return;
+            _portrait = default;
+            _portraitRenderer?.Clear();
         }
 
         private void AddLines(string text, Color color)
@@ -222,17 +246,57 @@ namespace CavesOfOoo.Rendering
         private void OnDisable(){Close();}
         private void OnGUI()
         {
-            if(!_isOpen || _portrait.Texture==null || PopupCamera==null || !PopupCamera.enabled || Tilemap==null || Event.current.type!=EventType.Repaint)return;
+            if(!_isOpen || Event.current.type!=EventType.Repaint)return;
+            ValidatePortrait();
+            if(_portrait.Texture==null || PopupCamera==null || !PopupCamera.enabled || Tilemap==null)return;
             // Convert the header's tile rectangle through the same overlay camera.
             // The texture is captured only on Open, never in this repaint callback.
             var bottom=PopupCamera.WorldToScreenPoint(Tilemap.CellToWorld(new Vector3Int(_worldOriginX+43,_worldTopY-6,0)));
             var top=PopupCamera.WorldToScreenPoint(Tilemap.CellToWorld(new Vector3Int(_worldOriginX+54,_worldTopY,0)));
-            float side=Mathf.Min(top.x-bottom.x,top.y-bottom.y);
-            var rect=new Rect(bottom.x+(top.x-bottom.x-side)*.5f,Screen.height-top.y+(top.y-bottom.y-side)*.5f,side,side);
+            var slot=new Rect(bottom.x,Screen.height-top.y,top.x-bottom.x,top.y-bottom.y);
+            var rect=MeasurePortraitRect(slot,_portrait);
+            if(rect.width<=0 || rect.height<=0)return;
             var color=GUI.color;int depth=GUI.depth;
             try{GUI.color=_portrait.Tint;GUI.depth=-20;GUI.DrawTextureWithTexCoords(rect,_portrait.Texture,_portrait.Uv,true);}
             finally{GUI.color=color;GUI.depth=depth;}
         }
+
+        /// <summary>
+        /// Fits the selected atlas rectangle without stretching. Native sprites
+        /// use whole source pixels at integer scale/position when space permits;
+        /// tiny slots retain aspect. Existing model captures remain square.
+        /// </summary>
+        public static Rect MeasurePortraitRect(Rect slot, ExaminePortrait portrait)
+        {
+            if (portrait.Texture == null || slot.width <= 0 || slot.height <= 0
+                || !Finite(slot.x) || !Finite(slot.y) || !Finite(slot.width) || !Finite(slot.height)) return Rect.zero;
+            if (portrait.IsModel)
+            {
+                float side = Mathf.Min(slot.width, slot.height);
+                return new Rect(slot.center.x - side * .5f, slot.center.y - side * .5f, side, side);
+            }
+            float width = portrait.Uv.width * portrait.Texture.width;
+            float height = portrait.Uv.height * portrait.Texture.height;
+            if (!Finite(width) || !Finite(height) || width < 1 || height < 1) return Rect.zero;
+            // Sprite rectangles contain whole source pixels; remove normalized
+            // UV roundoff before selecting an integer enlargement.
+            width = Mathf.Round(width); height = Mathf.Round(height);
+            float left = Mathf.Ceil(slot.xMin), top = Mathf.Ceil(slot.yMin);
+            float right = Mathf.Floor(slot.xMax), bottom = Mathf.Floor(slot.yMax);
+            float scale = Mathf.Floor(Mathf.Min((right - left) / width, (bottom - top) / height));
+            if (scale >= 1)
+            {
+                width *= scale; height *= scale;
+                float x = Mathf.Clamp(Mathf.Round(slot.center.x - width * .5f), left, right - width);
+                float y = Mathf.Clamp(Mathf.Round(slot.center.y - height * .5f), top, bottom - height);
+                return new Rect(x, y, width, height);
+            }
+            scale = Mathf.Min(slot.width / width, slot.height / height);
+            width *= scale; height *= scale;
+            return new Rect(slot.center.x - width * .5f, slot.center.y - height * .5f, width, height);
+        }
+
+        private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
 
         // ===== Rendering =====
 

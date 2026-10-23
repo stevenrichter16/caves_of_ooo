@@ -314,6 +314,7 @@ namespace CavesOfOoo.Rendering
         private void OnDestroy() { _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null; }
 
         private Func<Entity, bool> _entityVisualPredicate;
+        private Func<Zone, Entity, int, int, bool> _flatActorObserver;
         private Func<int, int, bool> _authoredSceneClaim;
         private Func<Entity, bool> _authoredSceneEntity;
 
@@ -580,6 +581,19 @@ namespace CavesOfOoo.Rendering
         /// top entity, this pass removes the displaced glyph/static sprite but still
         /// paints the correct ground beneath it. Null preserves the legacy renderer.
         /// </summary>
+        public void SetFlatActorObserver(Func<Zone, Entity, int, int, bool> observer) => _flatActorObserver = observer;
+
+        /// <summary>Borrow the exact subject's cached flat art after the caller
+        /// has checked examine authority. This does not grant world ownership.</summary>
+        public bool TryGetFlatSubjectSprite(Entity subject, int x, int y, out Sprite sprite, out Color tint)
+        {
+            sprite = null;
+            tint = Color.white;
+            if (!RenderingEnabled || !FlatPixelGreyboxEnabled) return false;
+            if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
+            return _flatPixelGreybox.TryGetSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
         public void SetEntityVisualPredicate(Func<Entity, bool> predicate)
         {
             _entityVisualPredicate = predicate;
@@ -1036,7 +1050,8 @@ namespace CavesOfOoo.Rendering
                 if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
                 if (_flatPixelGreybox.TryResolve(zone, x, zoneY, out var flat))
                 {
-                    if (flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, flat.ForegroundColor);
+                    bool actorAccepted = !flat.Remembered && _flatActorObserver?.Invoke(zone, flat.Owner, x, zoneY) == true;
+                    if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, flat.ForegroundColor);
                     else ClaimMainCellWithoutOverlay(pos);
                     PaintBackgroundClaim(pos, flat.GroundTile, flat.GroundColor);
                     return;

@@ -41,6 +41,27 @@ namespace CavesOfOoo.Rendering
             && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled
             && FlatPixelGreyboxCatalog.IsAdmitted(CurrentZone);
 
+        /// <summary>Handle an authorized subject using the active flat world art.
+        /// A rejected subject is still handled here, so it cannot fall through to
+        /// an older model illustration. Sprites and textures remain borrowed.</summary>
+        public bool TryGetFlatExaminePortrait(AnnouncementDocument document, out ExaminePortrait portrait)
+        {
+            portrait = default;
+            if (!FlatPixelModeActive) return false;
+            if (!ExaminePortraitRenderer.IsCurrentPresentationSubject(document, this)) return true;
+            var cell = document.SubjectCell ?? CurrentZone.GetEntityCell(document.SubjectViewer);
+            if (_envSpriteRenderer.TryGetFlatSubjectSprite(document.Subject, cell?.X ?? 0, cell?.Y ?? 0,
+                out var sprite, out var tint) && sprite != null && sprite.texture != null)
+            {
+                var texture = sprite.texture;
+                var rect = sprite.rect;
+                portrait = new ExaminePortrait(texture,
+                    new Rect(rect.x / texture.width, rect.y / texture.height,
+                        rect.width / texture.width, rect.height / texture.height), tint, false);
+            }
+            return true;
+        }
+
         /// <summary>Both fresh and loaded bootstraps bind after creating the camera,
         /// before their first SnapToPlayer. No global camera setting is overwritten.</summary>
         public void BindFlatPixelCamera(CameraFollow follow)
@@ -61,7 +82,8 @@ namespace CavesOfOoo.Rendering
             if (active) _flatProjection?.Apply(true, Paused);
             else { _flatProjection?.Dispose(); _flatProjection = null; }
             if (_envSpriteRenderer != null) _envSpriteRenderer.FlatPixelGreyboxEnabled = active;
-            _entityVisualRenderer?.SetPresentationVisible(!Paused && !active
+            _entityVisualRenderer?.SetFlatPixelMode(active);
+            _entityVisualRenderer?.SetPresentationVisible(!Paused
                 && (_envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled));
             if (_flatModeWasActive != active)
             {

@@ -55,7 +55,8 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -73,8 +74,13 @@ namespace CavesOfOoo.Rendering
         /// <summary>Borrowed base/cast/anchor/state atlases remain independent;
         /// omitted injected groups never load their resource implicitly.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, null) { }
+
+        /// <summary>Five optional borrowed groups; earlier overloads never load
+        /// omitted art. This catalog owns generated frames, not their textures.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -93,9 +99,9 @@ namespace CavesOfOoo.Rendering
             result = default;
             if (_disposed || !IsAdmitted(zone)) return false;
             Cell cell = zone.GetCell(x, y);
-            if (cell == null || !cell.Explored) return false;
+            if (cell == null || cell.ParentZone != zone || !cell.Explored) return false;
             bool remembered = !cell.IsVisible;
-            Entity owner = remembered ? RememberedTerrain(zone, cell) : cell.GetTopVisibleObject();
+            Entity owner = remembered ? RememberedTerrain(zone, cell) : VisibleOwner(zone, cell);
             FlatPixelGreyboxKind kind = Classify(owner);
             FlatPixelGreyboxGround ground = GroundOf(zone, cell, owner, remembered);
             Color groundColor = GroundColor(ground);
@@ -118,6 +124,65 @@ namespace CavesOfOoo.Rendering
                 groundColor, foregroundColor, owner, kind, ground, remembered,
                 !remembered && cell.BlocksMovement());
             return true;
+        }
+
+        /// <summary>Borrow the exact subject's current sprite without selecting a
+        /// cell occupant. This is semantic artwork only; the caller must authorize
+        /// its world/inventory document and presentation context first.</summary>
+        public bool TryGetSubjectSprite(Entity owner, int x, int y, out Sprite sprite, out Color tint)
+        {
+            sprite = null;
+            tint = Color.white;
+            if (_disposed || owner == null) return false;
+            var render = owner.GetPart<RenderPart>();
+            if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            var kind = Classify(owner);
+            Tile tile;
+            if (_openingArt.TryResolve(owner, x, y, out tile))
+            {
+                sprite = tile.sprite;
+                return sprite != null;
+            }
+            if (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
+            {
+                tile = _tiles[(int)FlatPixelGreyboxKind.Ground];
+                tint = GroundColor(kind == FlatPixelGreyboxKind.Road
+                    ? FlatPixelGreyboxGround.Road : FlatPixelGreyboxGround.Ground);
+            }
+            else
+            {
+                tile = _tiles[(int)kind];
+                tint = ForegroundColor(kind);
+            }
+            sprite = tile.sprite;
+            return sprite != null;
+        }
+
+        private static Entity VisibleOwner(Zone zone, Cell cell)
+        {
+            Entity result = null;
+            int layer = int.MinValue;
+            foreach (var owner in cell.Occupants)
+            {
+                var render = owner.GetPart<RenderPart>();
+                if (render == null || !render.Visible || render.RenderLayer < layer) continue;
+                var physics = owner.GetPart<PhysicsPart>();
+                // Preserve existing non-item placeholder semantics. Portable
+                // owners must not leak a generic glyph after leaving the ground.
+                if (!owner.HasTag("Creature") && !owner.HasTag("Player")
+                    && (owner.HasTag("Item") || owner.HasTag("Corpse") || physics?.Takeable == true))
+                {
+                    var anchor = zone.GetEntityCell(owner);
+                    var stack = owner.GetPart<StackerPart>();
+                    if (render.ParentEntity != owner || !WorldResourceActions.Ground(owner, zone)
+                        || anchor == null || zone.GetCell(anchor.X, anchor.Y) != anchor
+                        || SpatialQuery.DistanceToCell(zone, owner, cell.X, cell.Y) != 0
+                        || stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0)) continue;
+                }
+                result = owner;
+                layer = render.RenderLayer;
+            }
+            return result;
         }
 
         private static Entity RememberedTerrain(Zone zone, Cell cell)

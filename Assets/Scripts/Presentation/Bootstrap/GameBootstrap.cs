@@ -638,6 +638,7 @@ namespace CavesOfOoo
                         announcementUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     announcementUI.PopupCamera = popupOverlayCamera;
+                    announcementUI.WorldPresentation = ZoneRenderer;
                     inputHandler.AnnouncementUI = announcementUI;
 
                     // Phase 4d — Pause menu (Esc → centered modal with Save/Load).

@@ -422,6 +422,7 @@ namespace CavesOfOoo.Rendering
                 _entityVisualRenderer.Init(ResolveEntityVisualTint, _tilemap);
                 _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
                 _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
+                _envSpriteRenderer.SetFlatActorObserver(_entityVisualRenderer.ObserveFlatCell);
                 var village3DObject = new GameObject("Village3DPresenter");
                 village3DObject.transform.SetParent(gridParent, false);
                 _village3DPresenter = village3DObject.AddComponent<Village3DPresenter>();
@@ -906,7 +907,8 @@ namespace CavesOfOoo.Rendering
                 SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
                 _entityVisualRenderer?.SetPresentationVisible(
-                    !FlatPixelModeActive && (_envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled));
+                    (_envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled));
+                if (FlatPixelModeActive) _entityVisualRenderer?.ReconcileFlatViews();
                 // AsciiFxRenderer.Render clears and repaints _fxTilemap
                 // (sortingOrder 2) whenever anything is alive, which is
                 // ABOVE the order-0 main tilemap a fullscreen UI paints
@@ -976,7 +978,8 @@ namespace CavesOfOoo.Rendering
                             // per NPC step. Clear AFTER the sprite pass.
                             if (_envSpriteRenderer != null)
                                 _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
-                            _entityVisualRenderer?.SyncZone(CurrentZone);
+                            if (FlatPixelModeActive) _entityVisualRenderer?.CompleteFlatCellPass();
+                            else _entityVisualRenderer?.SyncZone(CurrentZone);
                         }
                         _dirtyCells.Clear();
                     }
@@ -1086,7 +1089,8 @@ namespace CavesOfOoo.Rendering
                 if (_envSpriteRenderer != null)
                     _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
 
-                _entityVisualRenderer?.SyncZone(CurrentZone);
+                if (FlatPixelModeActive) _entityVisualRenderer?.CompleteFlatCellPass();
+                else _entityVisualRenderer?.SyncZone(CurrentZone);
 
                 // Pass 8 §8E.1: scan the env sprite overlay for
                 // campfire/shrine tiles and attach Light2D point lights.

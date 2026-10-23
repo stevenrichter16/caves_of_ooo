@@ -1,0 +1,1187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="116" result="Failed(Child)" total="116" passed="76" failed="40" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 06:26:59Z" end-time="2026-10-23 06:27:04Z" duration="4.7671266">
+  <test-suite type="TestSuite" id="36917" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29946" result="Failed" site="Child" start-time="2026-10-23 06:26:59Z" end-time="2026-10-23 06:27:04Z" duration="4.767127" total="116" passed="76" failed="40" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36889" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29946" result="Failed" site="Child" start-time="2026-10-23 06:26:59Z" end-time="2026-10-23 06:27:04Z" duration="4.703512" total="116" passed="76" failed="40" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36890" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29946" result="Failed" site="Child" start-time="2026-10-23 06:26:59Z" end-time="2026-10-23 06:27:04Z" duration="4.558995" total="116" passed="76" failed="40" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36891" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29946" result="Failed" site="Child" start-time="2026-10-23 06:26:59Z" end-time="2026-10-23 06:27:04Z" duration="4.496714" total="116" passed="76" failed="40" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27826" name="FlatPixelActorMotionCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="39" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.098474" total="39" passed="39" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27832" name="AttackAndHurtRecoverToSharedIdleWhileUnauthoredCastingStaysIdle" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.AttackAndHurtRecoverToSharedIdleWhileUnauthoredCastingStaysIdle" methodname="AttackAndHurtRecoverToSharedIdleWhileUnauthoredCastingStaysIdle" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="270308501" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.020527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27869" name="BorrowedTextureSettingsAreNeverChangedBySlicingOrDisposal" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.BorrowedTextureSettingsAreNeverChangedBySlicingOrDisposal" methodname="BorrowedTextureSettingsAreNeverChangedBySlicingOrDisposal" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1571106969" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.001088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27868" name="DisposalReleasesAllOwnedSpritesButPreservesBorrowedTexturesAndPeerCatalog" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.DisposalReleasesAllOwnedSpritesButPreservesBorrowedTexturesAndPeerCatalog" methodname="DisposalReleasesAllOwnedSpritesButPreservesBorrowedTexturesAndPeerCatalog" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1780929832" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.001418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27852" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.005217" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27842" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;missing-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;missing-tag&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1513243645" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27843" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;missing-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;missing-tag&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1113499568" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27844" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;MarlbackScrabbler&quot;,&quot;missing-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;MarlbackScrabbler&quot;,&quot;missing-tag&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="707497879" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27845" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;MarlbackGleaner&quot;,&quot;missing-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;MarlbackGleaner&quot;,&quot;missing-tag&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1187297507" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27846" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;hidden&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1490268535" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27847" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;hidden&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="447627850" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27848" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;foreign-render&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="168577721" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27849" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;foreign-render&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="631892447" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27850" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;no-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;Player&quot;,&quot;no-render&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="2066662603" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27851" name="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;no-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached(&quot;PetDog&quot;,&quot;no-render&quot;)" methodname="EligibilityIsRecheckedEvenAfterTheSpeciesAssetIsCached" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1724368342" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27831" name="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.003781" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27827" name="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;Player&quot;,0,0)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;Player&quot;,0,0)" methodname="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="92984471" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.001969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27828" name="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;PetDog&quot;,1,1)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;PetDog&quot;,1,1)" methodname="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="119897630" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27829" name="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;MarlbackScrabbler&quot;,2,2)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;MarlbackScrabbler&quot;,2,2)" methodname="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="961333657" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27830" name="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;MarlbackGleaner&quot;,3,3)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses(&quot;MarlbackGleaner&quot;,3,3)" methodname="ExactActorsUseTheirOwnIdleAndFourBottomAnchoredMotionPoses" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="2013415837" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27860" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.001943" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27854" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,0,0)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,0,0)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="359849090" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27855" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,159,24)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,159,24)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="506686121" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27856" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,160,23)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;base&quot;,160,23)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="2077888355" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27857" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,0,0)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,0,0)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="32772988" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000099" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27858" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,63,24)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,63,24)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1315246384" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27859" name="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,64,25)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors(&quot;cast&quot;,64,25)" methodname="MissingOrMalformedIdleGroupDoesNotDisableTheOtherActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1951660235" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27866" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.001883" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27861" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(0,0)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(0,0)" methodname="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1889401720" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27862" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(255,24)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(255,24)" methodname="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1304766850" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27863" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(257,24)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(257,24)" methodname="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="2058125214" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27864" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(256,23)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(256,23)" methodname="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1990090656" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27865" name="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(256,25)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.MissingOrMalformedMotionLeavesAllOwnersOnStaticArt(256,25)" methodname="MissingOrMalformedMotionLeavesAllOwnersOnStaticArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1502359900" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27853" name="PlayerRoleIsExplicitAndDoesNotRequireThePlayerBlueprintOrCreatureTag" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.PlayerRoleIsExplicitAndDoesNotRequireThePlayerBlueprintOrCreatureTag" methodname="PlayerRoleIsExplicitAndDoesNotRequireThePlayerBlueprintOrCreatureTag" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1503014360" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27867" name="RepeatedOwnersAndFacingsReuseExactlyFourAssetsAndTwentySprites" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.RepeatedOwnersAndFacingsReuseExactlyFourAssetsAndTwentySprites" methodname="RepeatedOwnersAndFacingsReuseExactlyFourAssetsAndTwentySprites" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1262221494" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000748" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27870" name="ShippedMotionResourceHasNativeImportSettingsAndDefaultCatalogUsesIt" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ShippedMotionResourceHasNativeImportSettingsAndDefaultCatalogUsesIt" methodname="ShippedMotionResourceHasNativeImportSettingsAndDefaultCatalogUsesIt" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1256950015" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.045973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27841" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.002929" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27833" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Villager&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Villager&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1763201177" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27834" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Warden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Warden&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="692226269" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27835" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Cook&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;Cook&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="90830459" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27836" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;SeedKeeper&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;SeedKeeper&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="282071345" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27837" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;MarlbackCorpse&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;MarlbackCorpse&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1937682614" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27838" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;MarlbackScrabblerElite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;MarlbackScrabblerElite&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1365182392" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27839" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;petdog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;petdog&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="104063570" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27840" name="UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.UnauthoredOwnersDoNotBorrowOtherActorsMotion(&quot;&quot;)" methodname="UnauthoredOwnersDoNotBorrowOtherActorsMotion" classname="CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests" runstate="Runnable" seed="1070467484" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.000128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="27871" name="FlatPixelActorMotionTests" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="37" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:03Z" duration="2.387871" total="37" passed="37" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27872" name="AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" methodname="AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1868046165" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.169270" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27881" name="AttackInterruptsWalkAtActualDestinationWithoutLunge" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.AttackInterruptsWalkAtActualDestinationWithoutLunge" methodname="AttackInterruptsWalkAtActualDestinationWithoutLunge" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1600999157" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.032795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27876" name="BlockedNativeMoveDoesNotStartAnimation" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.BlockedNativeMoveDoesNotStartAnimation" methodname="BlockedNativeMoveDoesNotStartAnimation" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="504863496" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27908" name="CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.054319" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27906" name="CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(&quot;walk&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(&quot;walk&quot;)" methodname="CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2000512035" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.025515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27907" name="CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(&quot;attack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(&quot;attack&quot;)" methodname="CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="900276671" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27911" name="ComponentDisableAndEnableRestoresStaticThenReacquiresIdleWithoutMovement" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ComponentDisableAndEnableRestoresStaticThenReacquiresIdleWithoutMovement" methodname="ComponentDisableAndEnableRestoresStaticThenReacquiresIdleWithoutMovement" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2061225629" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.028640" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27877" name="ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" methodname="ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2128652753" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27905" name="DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" methodname="DestroyingOnlyComponentDestroysItsViewsAndPreservesOtherSubscribers" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1820231201" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27885" name="DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" methodname="DuplicateAttackDoesNotRestartPoseAndCastingHasNoBorrowedAttackArt" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2025708732" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024213" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27880" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.054108" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27878" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(True,1)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(True,1)" methodname="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="490760437" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.025229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27879" name="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(False,3)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent(False,3)" methodname="ForcedRelocationUsesIdleAndSnapsOnlyWhenNonAdjacent" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1408071184" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27904" name="ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" methodname="ForeignZoneHooksLeaveCurrentPoseAndPositionUnchanged" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2026401085" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.024069" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27898" name="HiddenHooksDoNotReplayAfterReveal" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.HiddenHooksDoNotReplayAfterReveal" methodname="HiddenHooksDoNotReplayAfterReveal" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="661986822" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.026278" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27874" name="IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" methodname="IncrementalUnrelatedRenderRetainsUntouchedActorAndCachedBody" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1630886128" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.036184" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27873" name="MissingMotionKeepsStaticTileAndDoesNotCreateBody" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.MissingMotionKeepsStaticTileAndDoesNotCreateBody" methodname="MissingMotionKeepsStaticTileAndDoesNotCreateBody" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="510462460" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.026122" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27882" name="NativeAcceptedMissShowsAttackButBeforeMeleeAttackVetoDoesNot" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeAcceptedMissShowsAttackButBeforeMeleeAttackVetoDoesNot" methodname="NativeAcceptedMissShowsAttackButBeforeMeleeAttackVetoDoesNot" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1410096198" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:01Z" duration="0.032193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27902" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:02Z" duration="0.087647" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27899" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;fog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;fog&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1523930846" result="Passed" start-time="2026-10-23 06:27:01Z" end-time="2026-10-23 06:27:02Z" duration="0.031077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27900" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;replacement&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1256520277" result="Passed" start-time="2026-10-23 06:27:02Z" end-time="2026-10-23 06:27:02Z" duration="0.025418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27901" name="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;elapsed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline(&quot;elapsed&quot;)" methodname="NativeDeathCapturesRemovedOwnerButStopsAtVisibilityReplacementOrDeadline" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1088453469" result="Passed" start-time="2026-10-23 06:27:02Z" end-time="2026-10-23 06:27:02Z" duration="0.025236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27909" name="NativeHorizontalFacingMirrorsAndVerticalMovementKeepsThatOrientation" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeHorizontalFacingMirrorsAndVerticalMovementKeepsThatOrientation" methodname="NativeHorizontalFacingMirrorsAndVerticalMovementKeepsThatOrientation" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1824484486" result="Passed" start-time="2026-10-23 06:27:02Z" end-time="2026-10-23 06:27:02Z" duration="0.025963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27875" name="NativeMoveUsesBothPosesAndPreservesImmediateSimulation" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.NativeMoveUsesBothPosesAndPreservesImmediateSimulation" methodname="NativeMoveUsesBothPosesAndPreservesImmediateSimulation" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="783693394" result="Passed" start-time="2026-10-23 06:27:02Z" end-time="2026-10-23 06:27:02Z" duration="0.029844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27903" name="PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" methodname="PauseAndModeTransitionsTwiceClearMotionAndResumeIdle" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1506519954" result="Passed" start-time="2026-10-23 06:27:02Z" end-time="2026-10-23 06:27:03Z" duration="1.187833" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27883" name="PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" methodname="PositiveNativeDamageShowsHurtWhileZeroDamageDoesNot" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1124891334" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.027475" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27910" name="QuietFramesAllocateNoManagedObjectsAndDoNotDiscoverUnpaintedActors" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietFramesAllocateNoManagedObjectsAndDoNotDiscoverUnpaintedActors" methodname="QuietFramesAllocateNoManagedObjectsAndDoNotDiscoverUnpaintedActors" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="238203114" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028027" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27897" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.350461" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27886" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;hidden&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="20892293" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.054910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27887" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;unexplored&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1336110217" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.027605" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27888" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;render-hidden&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="689046762" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27889" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-render&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="980549756" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27890" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;identity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;identity&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="170981949" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27891" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;removed&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="584004983" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27892" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1630913491" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.029223" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27893" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;replaced-cell&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="2043171073" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.029947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27894" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-cell&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="582061295" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.029651" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27895" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;foreign-physics&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="623261251" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27896" name="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback(&quot;inventory&quot;)" methodname="QuietTrackedValidationDropsInvalidBodyAndRestoresVisibleFallback" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="403572500" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.028592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27884" name="SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" methodname="SameFrameRetaliationPreservesAttackThenHurtWithBoundedCompletion" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="1339999239" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.027596" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27912" name="ZoneTransitionsTwiceDropOldBodiesAndPendingReactions" fullname="CavesOfOoo.Tests.FlatPixelActorMotionTests.ZoneTransitionsTwiceDropOldBodiesAndPendingReactions" methodname="ZoneTransitionsTwiceDropOldBodiesAndPendingReactions" classname="CavesOfOoo.Tests.FlatPixelActorMotionTests" runstate="Runnable" seed="206519105" result="Passed" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:03Z" duration="0.038355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="28077" name="FlatPixelOpeningItemsTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-10-23 06:27:03Z" end-time="2026-10-23 06:27:04Z" duration="0.303114" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28116" name="CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" methodname="CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="59235516" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.007348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:87
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28090" name="CurrentLooseOwnerUsesOneCachedNativeFrame" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.060001" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28078" name="CurrentLooseOwnerUsesOneCachedNativeFrame(0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(0)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2120391899" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.004290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28079" name="CurrentLooseOwnerUsesOneCachedNativeFrame(1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(1)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="562517966" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.003982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28080" name="CurrentLooseOwnerUsesOneCachedNativeFrame(2)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(2)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1022895082" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.033895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28081" name="CurrentLooseOwnerUsesOneCachedNativeFrame(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(3)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="805699465" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28082" name="CurrentLooseOwnerUsesOneCachedNativeFrame(4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(4)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1246593735" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28083" name="CurrentLooseOwnerUsesOneCachedNativeFrame(5)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(5)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="224341512" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28084" name="CurrentLooseOwnerUsesOneCachedNativeFrame(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(6)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="273352603" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.001144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28085" name="CurrentLooseOwnerUsesOneCachedNativeFrame(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(7)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1404786642" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28086" name="CurrentLooseOwnerUsesOneCachedNativeFrame(8)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(8)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="599665248" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28087" name="CurrentLooseOwnerUsesOneCachedNativeFrame(9)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(9)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="649868079" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28088" name="CurrentLooseOwnerUsesOneCachedNativeFrame(10)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(10)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="961737389" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28089" name="CurrentLooseOwnerUsesOneCachedNativeFrame(11)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(11)" methodname="CurrentLooseOwnerUsesOneCachedNativeFrame" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1667242709" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame (System.Int32 frame) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28120" name="DefaultCatalogBindsAllActualImportedItems" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.DefaultCatalogBindsAllActualImportedItems" methodname="DefaultCatalogBindsAllActualImportedItems" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1878422285" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual item atlas missing: synthetic art is not integration.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.DefaultCatalogBindsAllActualImportedItems () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:113
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28115" name="FoodAndSeedRequireTheirAuthoredTransformationTargets" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.FoodAndSeedRequireTheirAuthoredTransformationTargets" methodname="FoodAndSeedRequireTheirAuthoredTransformationTargets" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="34364992" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000570" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.FoodAndSeedRequireTheirAuthoredTransformationTargets () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28112" name="InvalidGroundOwnershipCannotShowTheItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.004822" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28105" name="InvalidGroundOwnershipCannotShowTheItem(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;inventory&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="501732824" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28106" name="InvalidGroundOwnershipCannotShowTheItem(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;equipped&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="375180118" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28107" name="InvalidGroundOwnershipCannotShowTheItem(&quot;untakeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;untakeable&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="280838509" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28108" name="InvalidGroundOwnershipCannotShowTheItem(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;hidden&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="67791838" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28109" name="InvalidGroundOwnershipCannotShowTheItem(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;foreign-render&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1561798889" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28110" name="InvalidGroundOwnershipCannotShowTheItem(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;zero-stack&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1845240620" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28111" name="InvalidGroundOwnershipCannotShowTheItem(&quot;foreign-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem(&quot;foreign-stack&quot;)" methodname="InvalidGroundOwnershipCannotShowTheItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1305444863" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipCannotShowTheItem (System.String mutation) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28114" name="LaterEqualLayerSeedCoversShellUntilActuallyRemoved" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.LaterEqualLayerSeedCoversShellUntilActuallyRemoved" methodname="LaterEqualLayerSeedCoversShellUntilActuallyRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1628915760" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000700" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.LaterEqualLayerSeedCoversShellUntilActuallyRemoved () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28119" name="MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" methodname="MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="2105809421" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:106
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28118" name="MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" methodname="MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="637860593" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28104" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.008527" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28091" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="108154601" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28092" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Cookable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,&quot;Cookable&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1546166779" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000473" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28093" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="683668041" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28094" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,&quot;Waterskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,&quot;Waterskin&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="475557726" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28095" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,&quot;Seed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,&quot;Seed&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1601485317" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28096" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1758654279" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28097" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Cookable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,&quot;Cookable&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1947019287" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28098" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="940473612" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28099" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,&quot;MineralPreparation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,&quot;MineralPreparation&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="894643205" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28100" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,&quot;Tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,&quot;Tonic&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="567259049" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28101" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,&quot;Food&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,&quot;Food&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1301664749" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28102" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,&quot;Physics&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="786487884" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28103" name="MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,&quot;Physics&quot;)" methodname="MissingOrForeignFunctionCannotAdvertiseTheKnownItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="700379860" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem (System.Int32 frame, System.String name) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28117" name="RawQuartzAndClayDoNotBecomeSourcesOrFlames" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RawQuartzAndClayDoNotBecomeSourcesOrFlames" methodname="RawQuartzAndClayDoNotBecomeSourcesOrFlames" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="407767052" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000536" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RawQuartzAndClayDoNotBecomeSourcesOrFlames () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28113" name="RememberedAndUnexploredCellsCannotExposeLooseItem" fullname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RememberedAndUnexploredCellsCannotExposeLooseItem" methodname="RememberedAndUnexploredCellsCannotExposeLooseItem" classname="CavesOfOoo.Tests.FlatPixelOpeningItemsTests" runstate="Runnable" seed="1893441854" result="Failed" start-time="2026-10-23 06:27:04Z" end-time="2026-10-23 06:27:04Z" duration="0.000488" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fifth independently optional borrowed item atlas is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.NewCatalog (UnityEngine.Texture2D a, UnityEngine.Texture2D b, UnityEngine.Texture2D c, UnityEngine.Texture2D d, UnityEngine.Texture2D e) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:130
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:126
+at CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RememberedAndUnexploredCellsCannotExposeLooseItem () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

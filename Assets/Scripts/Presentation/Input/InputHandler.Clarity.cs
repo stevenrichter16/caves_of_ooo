@@ -20,8 +20,19 @@ namespace CavesOfOoo.Rendering
         }
         private void OpenInventoryDetailsReader()
         {
-            if (_inputState == InputState.InventoryOpen && InventoryUI?.PlayerEntity == PlayerEntity)
-                OpenDecisionReader(InventoryUI.SelectedDecisionDetails());
+            var inventory = InventoryUI;
+            var viewer = PlayerEntity;
+            var zone = CurrentZone;
+            if (_inputState != InputState.InventoryOpen || inventory == null
+                || inventory.PlayerEntity != viewer || inventory.CurrentZone != zone) return;
+            var document = inventory.SelectedDecisionPresentation(out string text);
+            // Description providers may invalidate the selected owner or replace the reader's
+            // live context. Do not publish the old text into that new context.
+            if (_inputState != InputState.InventoryOpen || InventoryUI != inventory
+                || PlayerEntity != viewer || CurrentZone != zone
+                || inventory.PlayerEntity != viewer || inventory.CurrentZone != zone
+                || (document != null && !ExamineDocumentBuilder.IsCurrentSubject(document))) return;
+            OpenDecisionReaderWithPresentation(text, document);
         }
         private void OpenPickupDetailsReader()
         {
@@ -33,7 +44,9 @@ namespace CavesOfOoo.Rendering
             if (_inputState == InputState.TradeOpen && TradeUI?.PlayerEntity == PlayerEntity)
                 OpenDecisionReader(TradeUI.SelectedDecisionDetails());
         }
-        private void OpenDecisionReader(string text)
+        private void OpenDecisionReader(string text) => OpenDecisionReaderWithPresentation(text, null);
+
+        private void OpenDecisionReaderWithPresentation(string text, AnnouncementDocument document)
         {
             if (PlayerEntity == null || AnnouncementUI == null || string.IsNullOrWhiteSpace(text)) return;
             _decisionReaderActor = PlayerEntity; _decisionReaderZone = CurrentZone;
@@ -44,7 +57,7 @@ namespace CavesOfOoo.Rendering
             if ((_inputState == InputState.InventoryOpen || _inputState == InputState.TradeOpen) && CameraFollow != null)
                 CameraFollow.SetCenteredPopupOverlayOverUIView();
             else EnterCenteredPopupOverlayView();
-            AnnouncementUI.Open(text);
+            AnnouncementUI.Open(text, null, document);
             _inputState = InputState.AnnouncementOpen;
         }
         private void RestoreDecisionReader(InputState prior)

@@ -94,6 +94,7 @@ namespace CavesOfOoo.Rendering
         private const int MaxFrames = 4;
 
         private readonly Sprite[,,] _frames = new Sprite[StateCount, FacingCount, MaxFrames];
+        private readonly EntityVisualState _castingFallback = EntityVisualState.Attack;
 
         public EntityVisualDefinition Definition { get; }
         public bool HasCastingArt { get; private set; }
@@ -105,11 +106,34 @@ namespace CavesOfOoo.Rendering
             SliceCasting(castSheet);
         }
 
+        /// <summary>
+        /// Compact canonical poses, borrowed from an owning catalog. All facings
+        /// share the same references; horizontal mirroring belongs to the view.
+        /// Attack and hurt recover to idle, and unauthored casting stays idle.
+        /// The definition supplies one idle and two walk/attack/hurt frames.
+        /// </summary>
+        public EntityVisualAsset(EntityVisualDefinition definition, Sprite idle, Sprite walkA,
+            Sprite walkB, Sprite attack, Sprite hurt)
+        {
+            Definition = definition;
+            _castingFallback = EntityVisualState.Idle;
+            for (int facing = 0; facing < FacingCount; facing++)
+            {
+                _frames[(int)EntityVisualState.Idle, facing, 0] = idle;
+                _frames[(int)EntityVisualState.Walk, facing, 0] = walkA;
+                _frames[(int)EntityVisualState.Walk, facing, 1] = walkB;
+                _frames[(int)EntityVisualState.Attack, facing, 0] = attack;
+                _frames[(int)EntityVisualState.Attack, facing, 1] = idle;
+                _frames[(int)EntityVisualState.Hurt, facing, 0] = hurt;
+                _frames[(int)EntityVisualState.Hurt, facing, 1] = idle;
+            }
+        }
+
         public int GetFrameCount(EntityVisualState state)
             => Definition.GetFrameCount(ResolveState(state));
 
         private EntityVisualState ResolveState(EntityVisualState state)
-            => state == EntityVisualState.Cast && !HasCastingArt ? EntityVisualState.Attack : state;
+            => state == EntityVisualState.Cast && !HasCastingArt ? _castingFallback : state;
 
         public Sprite GetFrame(EntityVisualState state, EntityVisualFacing facing, int frame)
         {

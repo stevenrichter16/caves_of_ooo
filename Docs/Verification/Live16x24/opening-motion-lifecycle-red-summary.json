@@ -1,0 +1,35 @@
+{
+  "start-time": "2026-10-23 06:22:43Z",
+  "end-time": "2026-10-23 06:22:46Z",
+  "total": "72",
+  "passed": "66",
+  "failed": "6",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionCatalogTests.ShippedMotionResourceHasNativeImportSettingsAndDefaultCatalogUsesIt",
+      "message": "  Static fallback cannot prove the motion artwork is shipped.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.AcceptedBodySuppressesOnlyItsStaticForegroundAndKeepsGround",
+      "message": "  Expected: (8.50, 22.50, -0.01)\n  But was:  (8.50, 22.50, -0.01)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(\"walk\")",
+      "message": "  Expected: not same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.CastInterruptsPriorMotionAndPendingReactionWithoutBorrowingMelee(\"attack\")",
+      "message": "  Expected: not same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.ComponentDisableAndEnableRestoresStaticThenReacquiresIdleWithoutMovement",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.ConsecutiveMovesBeginAtDisplayedAnchorWithoutRewind",
+      "message": "  Expected: not same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n"
+    }
+  ]
+}

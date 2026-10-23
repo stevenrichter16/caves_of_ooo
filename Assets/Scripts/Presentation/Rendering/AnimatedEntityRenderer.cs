@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
     /// discrete and authoritative; this component only interpolates their presentation.
     /// </summary>
     [ExecuteAlways]
-    public sealed class AnimatedEntityRenderer : MonoBehaviour
+    public sealed partial class AnimatedEntityRenderer : MonoBehaviour
     {
         public const int ShadowSortingOrder = 5;
         public const int BodySortingOrder = 6;
@@ -40,6 +40,10 @@ namespace CavesOfOoo.Rendering
             public Vector2 AttackDirection;
             public Color LightTint = Color.white;
             public bool Dying;
+            public bool Flat;
+            public bool ForcedIdle;
+            public bool HasPendingReaction;
+            public EntityVisualState PendingReaction;
 
             public bool IsMoving => !Dying && State == EntityVisualState.Walk;
         }
@@ -98,7 +102,8 @@ namespace CavesOfOoo.Rendering
         {
             return _initialized
                 && _presentationVisible
-                && EntityVisualCatalog.TryGetAsset(entity, out _)
+                && (_flatPixelMode ? _flatMotionCatalog != null && _flatMotionCatalog.TryGetAsset(entity, out _)
+                    : EntityVisualCatalog.TryGetAsset(entity, out _))
                 && !IsOwnedBySource(entity);
         }
 
@@ -112,6 +117,8 @@ namespace CavesOfOoo.Rendering
         {
             if (ReferenceEquals(_zone, zone)) return;
             ClearViews();
+            _flatRepaintCells.Clear();
+            _flatResumeOwners.Clear();
             _zone = zone;
         }
 
@@ -119,6 +126,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_presentationVisible == visible) return;
             _presentationVisible = visible;
+            if (_flatPixelMode && !visible) { ClearViews(); return; }
             foreach (EntityView view in _views.Values)
                 SetViewVisible(view, visible);
         }
@@ -135,6 +143,7 @@ namespace CavesOfOoo.Rendering
                 SetZone(zone);
             if (_zone == null || !_presentationVisible)
                 return;
+            if (_flatPixelMode) { CompleteFlatCellPass(); return; }
 
             _seen.Clear();
             foreach (Entity entity in _zone.GetReadOnlyEntities())
@@ -191,12 +200,17 @@ namespace CavesOfOoo.Rendering
                 ReleaseView(_releaseScratch[i]);
         }
 
-        private void Update()
+        private void Update() => AdvancePresentation(Time.unscaledDeltaTime);
+
+        /// <summary>Advances presentation only; gameplay remains turn-discrete.</summary>
+        public void AdvancePresentation(float deltaTime)
         {
+            if (float.IsNaN(deltaTime) || float.IsInfinity(deltaTime)) return;
+            deltaTime = Mathf.Max(0f, deltaTime);
+            ReconcileFlatViews();
             if (!_initialized || !_presentationVisible || _views.Count == 0)
                 return;
 
-            float deltaTime = Time.unscaledDeltaTime;
             _releaseScratch.Clear();
             foreach (var pair in _views)
             {
@@ -207,10 +221,12 @@ namespace CavesOfOoo.Rendering
             }
             for (int i = 0; i < _releaseScratch.Count; i++)
                 ReleaseView(_releaseScratch[i]);
+            if (_flatPixelMode) FlushFlatRepaints();
         }
 
         private void TickView(EntityView view, float deltaTime)
         {
+            if (view.Flat) { TickFlatView(view, deltaTime); return; }
             view.StateTime += deltaTime;
 
             if (view.Dying)
@@ -328,10 +344,16 @@ namespace CavesOfOoo.Rendering
             view.StateDuration = 0f;
             view.IdlePhase = StablePhase(entity?.ID ?? entity?.BlueprintName);
             view.Dying = false;
+            view.Flat = _flatPixelMode;
+            view.ForcedIdle = false;
+            view.HasPendingReaction = false;
+            view.Body.flipX = false;
+            view.Body.sharedMaterial = view.Flat ? _flatMaterial : _sharedMaterial;
             view.BodyTransform.localPosition = Vector3.zero;
             view.RootTransform.position = CellAnchor(x, y);
             view.Root.name = "Visual_" + (entity?.BlueprintName ?? "Entity");
-            view.LightTint = ResolveTint(entity, x, y);
+            view.LightTint = view.Flat ? Color.white : ResolveTint(entity, x, y);
+            SetFlatFacing(view);
             view.Body.sprite = asset.GetFrame(EntityVisualState.Idle, facing, 0);
             ApplyBodyColor(view, false);
             UpdateSortingDepth(view);
@@ -377,7 +399,9 @@ namespace CavesOfOoo.Rendering
             if (entity == null || !_views.TryGetValue(entity, out EntityView view))
                 return;
 
+            QueueFlatRepaint(view);
             _views.Remove(entity);
+            view.HasPendingReaction = false;
             view.Entity = null;
             view.Asset = null;
             view.Dying = false;
@@ -389,7 +413,7 @@ namespace CavesOfOoo.Rendering
             if (_pool.Count < MaxPooledViews)
                 _pool.Push(view);
             else
-                Destroy(view.Root);
+                DestroyOwned(view.Root);
         }
 
         private void OnMoved(
@@ -401,6 +425,12 @@ namespace CavesOfOoo.Rendering
             int newY,
             bool forced)
         {
+            if (_flatPixelMode)
+            {
+                if (TryFlatEventView(entity, zone, false, out var flatView))
+                    MoveFlatView(flatView, oldX, oldY, newX, newY, forced);
+                return;
+            }
             if (!ReferenceEquals(zone, _zone) || entity == null) return;
             if (!_views.TryGetValue(entity, out EntityView view)) return;
 
@@ -419,6 +449,16 @@ namespace CavesOfOoo.Rendering
 
         private void OnAttack(Entity attacker, Entity defender, Zone zone)
         {
+            if (_flatPixelMode)
+            {
+                if (TryFlatEventView(attacker, zone, false, out var flatView))
+                {
+                    flatView.Facing = attacker.GetPart<RenderPart>().VisualFacing;
+                    SetFlatFacing(flatView);
+                    RequestFlatReaction(flatView, EntityVisualState.Attack);
+                }
+                return;
+            }
             if (!ReferenceEquals(zone, _zone) || attacker == null) return;
             if (!_views.TryGetValue(attacker, out EntityView view) || view.Dying) return;
 
@@ -440,6 +480,12 @@ namespace CavesOfOoo.Rendering
 
         private void OnDamage(Entity target, Entity source, Zone zone, int amount, bool lethal)
         {
+            if (_flatPixelMode)
+            {
+                if (amount > 0 && TryFlatEventView(target, zone, lethal, out var flatView))
+                    RequestFlatReaction(flatView, EntityVisualState.Hurt);
+                return;
+            }
             if (!ReferenceEquals(zone, _zone) || target == null || amount <= 0) return;
             if (!_views.TryGetValue(target, out EntityView view) || view.Dying) return;
             BeginState(view, EntityVisualState.Hurt,
@@ -449,6 +495,21 @@ namespace CavesOfOoo.Rendering
         private void OnCast(Entity caster, Zone zone, string spellID,
             int sourceX, int sourceY, int targetX, int targetY, float duration)
         {
+            if (_flatPixelMode)
+            {
+                // No casting pose was authored; do not misrepresent it as melee.
+                if (TryFlatEventView(caster, zone, false, out var flatView))
+                {
+                    var cell = zone.GetEntityCell(caster);
+                    flatView.CellX = cell.X; flatView.CellY = cell.Y;
+                    flatView.RootTransform.position = CellAnchor(cell.X, cell.Y);
+                    flatView.Facing = caster.GetPart<RenderPart>().VisualFacing;
+                    flatView.HasPendingReaction = false;
+                    BeginState(flatView, EntityVisualState.Idle, 0f);
+                    UpdateSortingDepth(flatView);
+                }
+                return;
+            }
             if (!_presentationVisible || !ReferenceEquals(zone, _zone) || caster == null) return;
             if (!_views.TryGetValue(caster, out EntityView view) || view.Dying) return;
             Cell source = zone.GetCell(sourceX, sourceY);
@@ -460,6 +521,19 @@ namespace CavesOfOoo.Rendering
 
         private void OnDeath(Entity target, Entity killer, Zone zone, int x, int y)
         {
+            if (_flatPixelMode)
+            {
+                // Native death emits while the dead owner is still in its cell.
+                if (!TryFlatEventView(target, zone, true, out var flatView)
+                    || !ValidFlatOwner(target, x, y, true)) return;
+                flatView.CellX = x; flatView.CellY = y;
+                flatView.RootTransform.position = CellAnchor(x, y);
+                flatView.HasPendingReaction = false;
+                BeginState(flatView, EntityVisualState.Hurt, DeathDuration);
+                flatView.Dying = true;
+                UpdateSortingDepth(flatView);
+                return;
+            }
             if (!ReferenceEquals(zone, _zone) || target == null) return;
             if (!_views.TryGetValue(target, out EntityView view)) return;
             view.CellX = x;
@@ -479,7 +553,13 @@ namespace CavesOfOoo.Rendering
             view.StateDuration = duration;
             view.BodyTransform.localPosition = Vector3.zero;
             view.Body.enabled = true;
-            view.Shadow.enabled = true;
+            view.Shadow.enabled = !view.Flat;
+            if (view.Flat)
+            {
+                view.ForcedIdle = false;
+                view.Body.sprite = view.Asset.GetFrame(state, view.Facing, 0);
+                SetFlatFacing(view);
+            }
             ApplyBodyColor(view, false);
         }
 
@@ -499,7 +579,7 @@ namespace CavesOfOoo.Rendering
 
         private static void ApplyBodyColor(EntityView view, bool flash)
         {
-            view.Body.color = flash
+            view.Body.color = view.Flat ? Color.white : flash
                 ? Color.Lerp(view.LightTint, new Color(1f, 0.48f, 0.38f, 1f), 0.68f)
                 : view.LightTint;
         }
@@ -509,7 +589,7 @@ namespace CavesOfOoo.Rendering
             view.Root.SetActive(visible);
             if (!visible) return;
             view.Body.enabled = true;
-            view.Shadow.enabled = _shadowSprite != null;
+            view.Shadow.enabled = !view.Flat && _shadowSprite != null;
         }
 
         private Vector3 CellAnchor(int x, int zoneY)
@@ -560,6 +640,35 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private void OnDisable()
+        {
+            if (!_flatPixelMode) return;
+            _flatResumeOwners.Clear();
+            foreach (var view in _views.Values)
+                if (!view.Dying) _flatResumeOwners.Add(view.Entity);
+            ClearViews();
+        }
+
+        private void OnEnable()
+        {
+            if (!_initialized || !_flatPixelMode) return;
+            // Rediscover only the current cells of previously tracked owners.
+            // Component re-enable does not need a whole-zone scan or refresh.
+            for (int i = 0; i < _flatResumeOwners.Count; i++)
+            {
+                var cell = _zone?.GetEntityCell(_flatResumeOwners[i]);
+                if (cell != null) QueueFlatRepaint(cell.X, cell.Y);
+            }
+            _flatResumeOwners.Clear();
+            FlushFlatRepaints();
+        }
+
+        private static void DestroyOwned(UnityEngine.Object owned)
+        {
+            if (owned == null) return;
+            if (Application.isPlaying) Destroy(owned); else DestroyImmediate(owned);
+        }
+
         private void OnDestroy()
         {
             EntityVisualHooks.MovedCallback -= OnMoved;
@@ -568,11 +677,12 @@ namespace CavesOfOoo.Rendering
             EntityVisualHooks.DamageCallback -= OnDamage;
             EntityVisualHooks.DeathCallback -= OnDeath;
 
-            if (_sharedMaterial != null)
-            {
-                if (Application.isPlaying) Destroy(_sharedMaterial);
-                else DestroyImmediate(_sharedMaterial);
-            }
+            ClearViews();
+            while (_pool.Count > 0) DestroyOwned(_pool.Pop().Root);
+            _flatMotionCatalog?.Dispose();
+            _flatMotionCatalog = null;
+            DestroyOwned(_flatMaterial);
+            DestroyOwned(_sharedMaterial);
         }
     }
 }

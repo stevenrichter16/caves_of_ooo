@@ -16,6 +16,7 @@ namespace CavesOfOoo.Rendering
         public const string CastResourcePath = "Sprites/Live16x24/opening-cast";
         public const string AnchorsResourcePath = "Sprites/Live16x24/opening-anchors";
         public const string StatesResourcePath = "Sprites/Live16x24/opening-states";
+        public const string ItemsResourcePath = "Sprites/Live16x24/opening-items";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -25,11 +26,13 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _anchorSprites;
         private readonly Tile[] _stateTiles;
         private readonly Sprite[] _stateSprites;
+        private readonly Tile[] _itemTiles;
+        private readonly Sprite[] _itemSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
             Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
-            Resources.Load<Texture2D>(StatesResourcePath)) { }
+            Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -47,11 +50,17 @@ namespace CavesOfOoo.Rendering
         /// <summary>All resources are borrowed and independently optional. State
         /// frames follow current owned parts; no presentation state is persisted.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, null) { }
+
+        /// <summary>Item identity is semantic, independent of ground placement.
+        /// World and authorized examine callers enforce their own ownership context.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
             _anchorTiles = BuildFrames(anchorsAtlas, 12, "anchors", out _anchorSprites);
             _stateTiles = BuildFrames(statesAtlas, 12, "states", out _stateSprites);
+            _itemTiles = BuildFrames(itemsAtlas, 12, "items", out _itemSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -105,9 +114,44 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = StateFrameOf(owner);
-            if (frame < 0 || _stateTiles == null) return false;
-            tile = _stateTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _stateTiles == null ? null : _stateTiles[frame];
+                return tile != null;
+            }
+            frame = ItemFrameOf(owner, render.VisualID);
+            if (frame < 0 || _itemTiles == null) return false;
+            tile = _itemTiles[frame];
             return tile != null;
+        }
+
+        private static int ItemFrameOf(Entity owner, string visual)
+        {
+            // An explicitly assigned visual is a reskin. Glyph/color changes do
+            // not redefine item identity; they are the legacy fallback presentation.
+            if (!string.IsNullOrEmpty(visual) || owner.HasTag("Creature") || owner.HasTag("Player")
+                || owner.HasPart<CropPart>() || Owned<PhysicsPart>(owner)?.Takeable != true) return -1;
+            var stack = owner.GetPart<StackerPart>();
+            if (stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0)) return -1;
+            switch (owner.BlueprintName)
+            {
+                case "Emberwheat": return Owned<FoodPart>(owner) != null && Owned<CookablePart>(owner)?.Into == "ToastedEmberwheat" ? 0 : -1;
+                case "ToastedEmberwheat": return Owned<FoodPart>(owner) != null ? 1 : -1;
+                case "DrawgourdShell": return Owned<WaterskinPart>(owner) != null ? 2 : -1;
+                case "DrawgourdSeed": return Owned<SeedPart>(owner)?.CropBlueprint == "DrawgourdCrop" ? 3 : -1;
+                case "Mushroom": return Owned<FoodPart>(owner) != null && Owned<CookablePart>(owner)?.Into == "RoastedMushroom" ? 4 : -1;
+                case "RoastedMushroom": return Owned<FoodPart>(owner) != null ? 5 : -1;
+                case "GlowQuartz": return Owned<MineralPreparationPart>(owner) != null ? 6 : -1;
+                case "HealingTonic": return !string.IsNullOrWhiteSpace(Owned<TonicPart>(owner)?.Healing) ? 7 : -1;
+                case "DriedMeat": return Owned<FoodPart>(owner) != null ? 8 : -1;
+                case "FireClay": return 9;
+                case "SalvagedTimber": return 10;
+                case "MarlbackCorpse":
+                    if (!owner.HasTag("Corpse") || !owner.Properties.TryGetValue("SourceID", out var sourceId)
+                        || string.IsNullOrWhiteSpace(sourceId) || !owner.Properties.TryGetValue("SourceBlueprint", out var species)) return -1;
+                    return species == "MarlbackScrabbler" || species == "MarlbackGleaner" ? 11 : -1;
+                default: return -1;
+            }
         }
 
         private static int StateFrameOf(Entity owner)
@@ -233,6 +277,8 @@ namespace CavesOfOoo.Rendering
             if (_anchorSprites != null) foreach (var sprite in _anchorSprites) DestroyOwned(sprite);
             if (_stateTiles != null) foreach (var tile in _stateTiles) DestroyOwned(tile);
             if (_stateSprites != null) foreach (var sprite in _stateSprites) DestroyOwned(sprite);
+            if (_itemTiles != null) foreach (var tile in _itemTiles) DestroyOwned(tile);
+            if (_itemSprites != null) foreach (var sprite in _itemSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)
