@@ -26,6 +26,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase(Path, Path)]
         [TestCase("Assets/Scenes/Studies/SeedKeeper16x24.unity", "Assets/Scenes/Studies/SeedKeeper16x24.unity")]
+        [TestCase("Assets/Scenes/Studies/SeedKeeperClearing16x24.unity", "Assets/Scenes/Studies/SeedKeeperClearing16x24.unity")]
         [TestCase("Assets/Scenes/Main/SampleScene.unity", "Assets/Scenes/Main/SampleScene.unity")]
         public void PlayStartsTheSelectedSupportedScene(string activePath, string expected)
         {
@@ -36,6 +37,22 @@ namespace CavesOfOoo.Tests
                     .Select(a => a.GetType("CavesOfOoo.Editor.DefaultSceneLoader")).First(t => t != null);
                 type.GetMethod("EnsurePlayModeStartScene", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, null);
                 Assert.AreEqual(expected, AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene));
+            });
+        }
+
+        [Test]
+        public void ClearingSceneRetainsItsEnvironmentTilesAlongsideApprovedActors()
+        {
+            WithIsolatedScene("Assets/Scenes/Studies/SeedKeeperClearing16x24.unity", scene =>
+            {
+                var roots = scene.GetRootGameObjects();
+                int tiles = 0;
+                foreach (var map in roots.SelectMany(r => r.GetComponentsInChildren<UnityEngine.Tilemaps.Tilemap>(true)))
+                    foreach (var cell in map.cellBounds.allPositionsWithin)
+                        if (map.HasTile(cell)) tiles++;
+                Assert.AreEqual(56, tiles, "Static props must survive scene save/reload, not disappear when Play starts.");
+                Assert.AreEqual(5, roots.SelectMany(r => r.GetComponentsInChildren<SpriteRenderer>(true)).Count());
+                Assert.IsEmpty(roots.SelectMany(r => r.GetComponentsInChildren<GameBootstrap>(true)), "The art clearing must not create a gameplay/save session.");
             });
         }
 

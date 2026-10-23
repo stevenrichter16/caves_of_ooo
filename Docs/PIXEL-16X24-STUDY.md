@@ -2,6 +2,13 @@
 
 Status: completed and verified in Unity Play mode; latest addition 2026-10-21.
 
+2026-10-22: the separate [seed keeper clearing](CLEARING-16X24-OVERNIGHT.md)
+adds a modular environment around these approved sprites. This blank five-sprite
+study remains unchanged. Open the clearing through **Caves Of Ooo → Scenes →
+Open 16x24 Seed Keeper Clearing**; both it and this original study are visual
+art scenes, with the existing playable world still available through **Return
+to 3D Spawn**.
+
 ## User scope
 
 Initial scope: a blank dark-green field and Seed Keeper 3 alone. The user then

@@ -1,0 +1,242 @@
+{
+  "status": "pass",
+  "sourceContract": "Each actual Blender output pixel equals the authored voxel cell and palette exactly; transparent pixels are zero RGBA.",
+  "nativeSprites": [
+    {
+      "id": "clay-oven",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 216,
+      "opaqueColorCount": 5
+    },
+    {
+      "id": "stone-well",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 142,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "striped-seed-shelter",
+      "dimensions": [
+        48,
+        48
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 960,
+      "opaqueColorCount": 7
+    },
+    {
+      "id": "sorting-table",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 106,
+      "opaqueColorCount": 7
+    },
+    {
+      "id": "drying-rack",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 136,
+      "opaqueColorCount": 7
+    },
+    {
+      "id": "woven-basket",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 106,
+      "opaqueColorCount": 5
+    },
+    {
+      "id": "seed-sack",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 114,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "broken-wall",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 186,
+      "opaqueColorCount": 5
+    },
+    {
+      "id": "fence-horizontal",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 96,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "fence-vertical",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 72,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "tilled-bed",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 121,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "emberwheat",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 94,
+      "opaqueColorCount": 5
+    },
+    {
+      "id": "marlroot",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 76,
+      "opaqueColorCount": 5
+    },
+    {
+      "id": "grass-tuft",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 44,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "stool",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 54,
+      "opaqueColorCount": 4
+    },
+    {
+      "id": "firewood",
+      "dimensions": [
+        16,
+        24
+      ],
+      "nativeRgbaMismatches": 0,
+      "alpha": [
+        0,
+        255
+      ],
+      "opaquePixels": 84,
+      "opaqueColorCount": 5
+    }
+  ],
+  "scope": "Source and Blender rendering only. Unity/gameplay verification belongs to the parent integration.",
+  "totalKitBytes": 246856,
+  "polishCountercheck": {
+    "comparison": "Previously imported Unity PNGs before reimport; all fifteen other props retain identical RGBA pixels.",
+    "changedSprites": [
+      {
+        "id": "tilled-bed",
+        "changedPixels": 224
+      }
+    ],
+    "nativePngRebuild": "Two consecutive builds byte-identical after removing wall-clock stamp metadata."
+  }
+}
