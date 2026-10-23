@@ -114,14 +114,14 @@ is the RED evidence. During regression one MCP polling call timed out;
 the native run subsequently completed338/338 (22:36:19–22:37:07 UTC).
 No failure was removed from the recorded case set.
 
-### Measurement and editor connection limit
+### Initial measurement and editor connection limit (recovered below)
 
 The stopped-editor warmed selector probe in
 `Tools/Live16x24/profile_north_works_products.cs` was requested twice after
 the native suites completed. Both calls lost the Unity plugin connection;
 `works-products-selector-disconnected.json` and
-`works-products-selector-profile.json` preserve those failures. **No timing
-or allocation result exists for this packet.** The snippet is retained to
+`works-products-selector-profile.json` preserve those failures. **At that initial checkpoint, no timing
+or allocation result existed.** The snippet was retained to
 rerun after reconnection; it would measure70,000 detached warmed selector
 calls, not real rendering, draw calls, a speedup or Deck performance.
 
@@ -137,6 +137,28 @@ packet's cleanup receipt as a fresh result.
 Twelve old import metas were restored only after proving linewise trailing-
 whitespace equivalence to HEAD; see `works-products-import-meta-cleanup.json`.
 Unrelated untracked/recovery files were preserved.
+
+### Reconnected editor evidence —2026-10-23 22:47 heartbeat
+
+The Mac remains locked, but the Unity tool connection recovered. Re-ran
+only the saved stopped-editor selector probe; no new test suite, source
+change or Play session. [The separate result](Verification/Live16x24/works-products-selector-reconnected.json)
+records70,000/70,000 cached matches,655.6434ms total and0managed bytes,
+after100 warmup passes over seven detached fixture owners. No owners were
+placed in the live world. This closes the missing bounded selector
+observation only: no before/after comparison, whole-frame improvement,
+draw-call measurement, active action timing or Deck result is claimed.
+
+[Fresh editor state](Verification/Live16x24/works-products-editor-state-reconnected.json)
+confirms Play/pending/compilation/isolation/view flags false and original
+SampleScene. Earlier failed receipts remain unchanged.
+[The five-entry console sample](Verification/Live16x24/works-products-console-reconnected.json)
+contains warnings in existing gas/plasma effects, an equipment audit,
+GameBootstrap and Backstab; it is neither empty-console nor exhaustive
+error evidence. Both new-item ordinary-gameplay gates remain pending.
+Independent read-only probe review confirmed its isolation and measurement
+bounds. This continuation changes evidence and docs only; the prior396 native
+passes are not a newly run or additive count.
 
 ## Self-review and scope divergence
 
@@ -164,8 +186,8 @@ Unrelated untracked/recovery files were preserved.
   upstream brewing metadata needs a separate behavior-first packet.
 
 **Can verify:** exact native source, actual Unity import/default binding,
-396 native cases including real transactions and independent code/art
-review. **Cannot verify:** new ordinary-input readability, new Game
+396 native cases including real transactions, independent code/art
+review, the bounded warmed selector observation and recovered editor state. **Cannot verify:** new ordinary-input readability, new Game
 screenshots, whole-frame/draw-call effect, physical Deck, release activation
 or whole-route/whole-biome completeness. No new Play session was launched;
 contacts and reused captures are not new gameplay acceptance.

@@ -514,3 +514,14 @@ profile. Do not add more unverified areas first. Merchant crop families,
 incidental owners, new north actor motion, east/kitchen, normal activation
 and physical Deck acceptance remain open. Keep the heartbeat active: the
 finite seven-milestone brief is not complete.
+
+
+**22:47 heartbeat recovery:** Unity tools respond again and a fresh readback
+confirms stopped SampleScene with all pending/isolation/view flags clear.
+The saved works selector probe completed70,000/70,000 cached matches in
+655.6434ms with0managed bytes. This is stopped-editor detached selection,
+not rendering/Deck performance or an improvement comparison. Separate
+`works-products-*-reconnected.json` receipts preserve the earlier failures.
+No source or gameplay was changed and no tests were rerun. The Mac is
+still locked; the plot-product and works-product ordinary routes remain
+the next gates. No new art areas were started.
