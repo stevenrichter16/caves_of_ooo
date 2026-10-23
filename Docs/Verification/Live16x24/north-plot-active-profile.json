@@ -1,0 +1,71 @@
+{
+  "label": "north-plot-active-profile",
+  "start": "2026-10-23T13:01:02.401223Z",
+  "end": "2026-10-23T13:02:03.31587Z",
+  "elapsedSeconds": 60.914648,
+  "frames": 40091,
+  "zone": "Overworld.11.8.0",
+  "player": [
+    18,
+    9
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 40092,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 87827.065100269378,
+      "max": 23877750,
+      "p99": 161833
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 40092,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 1514516.7537663374,
+      "max": 893887083,
+      "p99": 2306541
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 40092,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 40.894392896338424,
+      "max": 44,
+      "p99": 44
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 40092,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 40.894392896338424,
+      "max": 44,
+      "p99": 44
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 40092,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 9515.1980694402882,
+      "max": 12787,
+      "p99": 12787
+    }
+  ],
+  "bounds": "Editor crop harvest, pickup, walking, menu and idle/tool time during the recorded 60-second window; not Deck or a controlled speedup benchmark."
+}

@@ -1,6 +1,6 @@
 # Nella's crop stages, reserve tray and ground cords
 
-Status: original native source rendered/source-verified and runtime integration tested,2026-10-23. The [parent record](../../../Docs/LIVE-16X24-NORTH-PLOT.md) supplies860 distinct passing Unity tests and an actual arrival capture. Ordinary rights/watering/growth/harvest/save-load visual acceptance remains pending after the computer locked; the whole north route is incomplete. Source verification below retains its narrower claims.
+Status: original native source rendered/source-verified and runtime integration tested,2026-10-23. The [parent record](../../../Docs/LIVE-16X24-NORTH-PLOT.md) supplies860 distinct passing Unity tests and an actual arrival capture. A second ordinary keyboard visit closes the earlier lock gap with actual keeper/crop examine, paid rights, rain-fed growth, harvest/pickup, trade return, save/load and border revisit captures. The whole north route remains incomplete. Source verification below retains its narrower claims.
 
 ## Rebuild and inspect
 
