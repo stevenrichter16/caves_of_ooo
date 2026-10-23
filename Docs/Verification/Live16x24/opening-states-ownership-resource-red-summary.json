@@ -1,0 +1,35 @@
+{
+  "start-time": "2026-10-23 05:44:02Z",
+  "end-time": "2026-10-23 05:44:04Z",
+  "total": "65",
+  "passed": "59",
+  "failed": "6",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelOpeningStatesTests.DefaultCatalogBindsEveryImportedStateWithoutReplacingEarlierGroups",
+      "message": "  Shipping states must be imported; synthetic routing is not integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ForeignEffectOwnershipCannotClaimAnActualFlame(5,4)",
+      "message": "  Expected: (x:64.00, y:0.00, width:16.00, height:24.00)\n  But was:  (x:80.00, y:0.00, width:16.00, height:24.00)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ForeignEffectOwnershipCannotClaimAnActualFlame(10,9)",
+      "message": "  Expected: (x:144.00, y:0.00, width:16.00, height:24.00)\n  But was:  (x:160.00, y:0.00, width:16.00, height:24.00)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelOpeningStatesTests.RealGeneratedOpeningHasNoInitialForegroundFallbackButUnknownRuntimeOwnersStillDo",
+      "message": "  All accepted source groups must be imported before coverage can pass.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.DirectWetOrFrozenTransitionUpdatesControlledTorchBeforeItsNextTick(False)",
+      "message": "  Already submitted foreground is stale.\n  Expected: (x:144.00, y:0.00, width:16.00, height:24.00)\n  But was:  (x:160.00, y:0.00, width:16.00, height:24.00)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.DirectWetOrFrozenTransitionUpdatesControlledTorchBeforeItsNextTick(True)",
+      "message": "  Already submitted foreground is stale.\n  Expected: (x:144.00, y:0.00, width:16.00, height:24.00)\n  But was:  (x:160.00, y:0.00, width:16.00, height:24.00)\n"
+    }
+  ]
+}

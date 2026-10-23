@@ -23,6 +23,18 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
+            // ThermalPart already invalidates the finite 150-degree boundary.
+            // Actual destructive fire is independent of residual cooking heat.
+            if (FiniteCooking && (e.ID == "EffectApplied" || e.ID == "EffectRemoved")
+                && e.GetParameter<Entity>("Target") == ParentEntity && e.GetParameter<Effect>("Effect") is BurningEffect)
+            {
+                var owner = ParentEntity; var zone = owner?.SpatialZone;
+                if (owner?.GetPart<CampfirePart>() == this && WorldResourceActions.Ground(owner, zone))
+                {
+                    var cell = zone.GetEntityCell(owner);
+                    if (ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell)) ZoneRenderHooks.MarkCellDirty(cell, "FiniteCampfire.Burning");
+                }
+            }
             if (e.ID == "Render")
                 return HandleRender(e);
             if (e.ID == "EndTurn")

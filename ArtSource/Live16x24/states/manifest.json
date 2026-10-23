@@ -1,0 +1,399 @@
+{
+  "schema": 1,
+  "artifact": "opening-states.png",
+  "width": 192,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 12,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "alpha": "Binary, verified independently.",
+  "animation": "None. Twelve authoritative object-state illustrations, not animation frames.",
+  "source": "opening-states.blend",
+  "generator": "Tools/Live16x24/build_opening_states.py",
+  "renderHelper": "Tools/Live16x24/build_opening_base.py (read-only import)",
+  "concept": "ArtSource/Live16x24/concepts/state-parts-v1.png (visual reference only)",
+  "sha256": "9f4697147f14166ca6615672e12b2da0cbfa4a8ebeb70c7072151fca72f4983d",
+  "frames": [
+    {
+      "index": 0,
+      "id": "wicket-buckled",
+      "blueprint": "GleanersBuckledWicket",
+      "state": "RepairablePart.BlocksFunction(owner)",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "The same two timber posts enclose sagging broken rails; damage does not imply a passable gap.",
+      "occupiedPixels": 90,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        9,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "wicket-closed",
+      "blueprint": "GleanersBuckledWicket",
+      "state": "Function restored and DoorPart.IsClosed",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Identical posts, continuous straight rails; repaired does not mean open.",
+      "occupiedPixels": 97,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        9,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "wicket-open",
+      "blueprint": "GleanersBuckledWicket",
+      "state": "Function restored and not DoorPart.IsClosed",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Identical posts with rails folded narrowly beside the right hinge; unobstructed center.",
+      "occupiedPixels": 74,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        9,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "campfire-cold",
+      "blueprint": "Campfire",
+      "state": "No BurningEffect; finite temperature below 150 degrees",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Low stone ring and dark charred sticks; no ember, flame or implied cooking availability.",
+      "occupiedPixels": 45,
+      "palette": [
+        "342E25",
+        "526657",
+        "5F4830",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        17,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "campfire-hot-coals",
+      "blueprint": "Campfire",
+      "state": "No BurningEffect; finite ThermalPart.Temperature >= CookingService.MinimumFiniteCookingTemperature (150f)",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Identical stone ring and sticks, with three sparse embers. Stored heat does not promise available fuel or cooking readiness.",
+      "occupiedPixels": 45,
+      "palette": [
+        "342E25",
+        "526657",
+        "5F4830",
+        "7D8E71",
+        "9B442B",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        17,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "campfire-burning",
+      "blueprint": "Campfire",
+      "state": "Actual BurningEffect on the current owner",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Same ring and sticks beneath a distinct compact flame. No halo, smoke, projected light or animation frames.",
+      "occupiedPixels": 70,
+      "palette": [
+        "342E25",
+        "526657",
+        "5F4830",
+        "7D8E71",
+        "D57932",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        9,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "drawgourd-seed",
+      "blueprint": "DrawgourdCrop",
+      "state": "Owned CropPart.GrowthStage == 0",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Three planted seed marks and low soil divots. Soil moisture belongs to the independent ground layer.",
+      "occupiedPixels": 10,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        20,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 7,
+      "id": "drawgourd-sprout",
+      "blueprint": "DrawgourdCrop",
+      "state": "Owned CropPart.GrowthStage == 1",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Two olive leaves on a short stem, no fruit and no wilted or falsely ripe variant.",
+      "occupiedPixels": 28,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        15,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 8,
+      "id": "drawgourd-ripe",
+      "blueprint": "DrawgourdCrop",
+      "state": "Owned CropPart.GrowthStage == 2 and HarvestAtMaturity",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Olive vine bears one bulbous hard gourd with an unmistakable narrow vessel neck; no lantern, flower or grain head.",
+      "occupiedPixels": 79,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B",
+        "9C6B32",
+        "C99538",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        8,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 9,
+      "id": "torch-unlit",
+      "blueprint": "Torch",
+      "state": "Owned controlled-light switch is off, with no destructive BurningEffect",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Loose diagonal wooden torch with a pale wrapped head; shaft and head are unchanged in its lit state.",
+      "occupiedPixels": 37,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        11,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 10,
+      "id": "torch-lit",
+      "blueprint": "Torch",
+      "state": "Actual owned TorchLight/LightSource.Enabled with usable heat/fuel, or actual destructive BurningEffect",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Same loose shaft and wrap with a small controlled flame; not a planted post or wearer-only light.",
+      "occupiedPixels": 52,
+      "palette": [
+        "5F4830",
+        "92703D",
+        "B5A47E",
+        "D57932",
+        "E4D0A0",
+        "E8B34B"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        5,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 11,
+      "id": "waterskin",
+      "blueprint": "Waterskin",
+      "state": "Actual loose current owner with WaterskinPart; neutral silhouette for any charge count",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "description": "Small soft leather pouch with narrow neck and loose dark strap. No contents, water-source icon or implied full state.",
+      "occupiedPixels": 78,
+      "palette": [
+        "342E25",
+        "5F4830",
+        "92703D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        10,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}

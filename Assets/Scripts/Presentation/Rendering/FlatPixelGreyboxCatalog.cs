@@ -54,7 +54,8 @@ namespace CavesOfOoo.Rendering
 
         public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -67,8 +68,13 @@ namespace CavesOfOoo.Rendering
         /// <summary>All three native groups are borrowed, optional and independent.
         /// Null injection never consults Resources.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, null) { }
+
+        /// <summary>Borrowed base/cast/anchor/state atlases remain independent;
+        /// omitted injected groups never load their resource implicitly.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -126,6 +132,7 @@ namespace CavesOfOoo.Rendering
                     || entity.HasTag("Creature") || entity.HasTag("Item") || entity.HasTag("Player")
                     || entity.HasPart<CropPart>() || entity.HasPart<FieldHarvestPart>()
                     || entity.HasPart<HarvestablePart>()
+                    || entity.HasPart<CampfirePart>() || entity.HasPart<TorchLightPart>()
                     || entity.HasPart<LiquidPoolPart>() || entity.HasPart<RepairablePart>()
                     || entity.GetPart<PhysicsPart>()?.Takeable == true
                     || (!entity.HasTag("Terrain") && !entity.HasTag("Wall"))) continue;

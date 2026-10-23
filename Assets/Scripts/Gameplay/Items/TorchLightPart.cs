@@ -12,8 +12,34 @@ namespace CavesOfOoo.Core
         public const string LightCommand = "LightTorch", ExtinguishCommand = "ExtinguishTorch";
         public float LightTemperature = 450f;
 
+        /// <summary>Read-only controlled tool flame, distinct from destructive
+        /// BurningEffect. Shares the persistence rule used by the normal tick.</summary>
+        public bool ControlledFlameActive
+        {
+            get
+            {
+                var owner = ParentEntity; var light = owner?.GetPart<LightSourcePart>();
+                var fuel = owner?.GetPart<FuelPart>(); var thermal = owner?.GetPart<ThermalPart>();
+                return owner?.GetPart<TorchLightPart>() == this && light?.ParentEntity == owner && light.Enabled
+                    && fuel?.ParentEntity == owner && thermal?.ParentEntity == owner
+                    && Finite(thermal.Temperature) && Finite(thermal.FlameTemperature)
+                    && CanSustainFlame(fuel, thermal);
+            }
+        }
+
+        private bool CanSustainFlame(FuelPart fuel, ThermalPart thermal) => UsableFuel(fuel)
+            && !ParentEntity.HasEffect<FrozenEffect>() && !(ParentEntity.GetEffect<WetEffect>()?.Moisture > 0.35f)
+            && !(thermal.Temperature < thermal.FlameTemperature);
+
         public override bool HandleEvent(GameEvent e)
         {
+            if ((e.ID == "EffectApplied" || e.ID == "EffectRemoved") && e.GetParameter<Entity>("Target") == ParentEntity)
+            {
+                // Wet/frozen suppression changes controlled-flame appearance
+                // immediately, before the next material tick can extinguish it.
+                var effect = e.GetParameter<Effect>("Effect");
+                if (effect is BurningEffect || effect is WetEffect || effect is FrozenEffect) InvalidateLooseCell();
+            }
             if (e.ID == "GetInventoryActions")
             {
                 var actor = e.GetParameter<Entity>("Actor");
@@ -47,8 +73,7 @@ namespace CavesOfOoo.Core
             var fuel = ParentEntity.GetPart<FuelPart>();
             var thermal = ParentEntity.GetPart<ThermalPart>();
             if (light?.Enabled != true || fuel == null || thermal == null) return;
-            if (!UsableFuel(fuel) || ParentEntity.HasEffect<FrozenEffect>() || ParentEntity.GetEffect<WetEffect>()?.Moisture > 0.35f
-                || thermal.Temperature < thermal.FlameTemperature)
+            if (!CanSustainFlame(fuel, thermal))
             { Extinguish(null); return; }
             // Destructive fire already draws fuel in BeginTakeAction. Preserve
             // its normal damage/heat rules rather than burning the same fuel twice.
@@ -105,10 +130,11 @@ namespace CavesOfOoo.Core
                     if (burning != null && effects.GetEffect<BurningEffect>() == null)
                         effects.RestoreRemovedEffectForInventoryUndo(burning, burningIndex);
                     EquipmentChangeBus.NotifyChanged(actor);
+                    InvalidateLooseCell();
                 });
                 if (lighting) { light.Enabled = true; thermal.Temperature = LightTemperature; }
                 else Extinguish(actor);
-                transaction.AfterCommit(() => EquipmentChangeBus.NotifyChanged(actor));
+                transaction.AfterCommit(() => { EquipmentChangeBus.NotifyChanged(actor); InvalidateLooseCell(); });
                 transaction.AfterCommit(() => Diag.Record("event", lighting ? "TorchLit" : "TorchExtinguished", actor, ParentEntity,
                     new { fuel = fuel.FuelMass }));
                 transaction.AfterCommit(() => MessageLog.Add(lighting ? "You light the torch." : "You extinguish the torch."));
@@ -126,6 +152,15 @@ namespace CavesOfOoo.Core
             if (thermal != null) thermal.Temperature = thermal.AmbientTemperature;
             ParentEntity.RemoveEffect<BurningEffect>();
             EquipmentChangeBus.NotifyChanged(actor);
+            InvalidateLooseCell();
+        }
+
+        private void InvalidateLooseCell()
+        {
+            var owner = ParentEntity; var zone = owner?.SpatialZone;
+            if (owner?.GetPart<TorchLightPart>() != this || !WorldResourceActions.Ground(owner, zone)) return;
+            var cell = zone.GetEntityCell(owner);
+            if (ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell)) ZoneRenderHooks.MarkCellDirty(cell, "Torch.State");
         }
         /// <summary>Splits preserve the known torch environmental states. Unknown
         /// effects refuse splitting before quantity changes instead of being lost.</summary>

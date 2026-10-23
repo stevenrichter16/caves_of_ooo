@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="106" result="Failed(Child)" total="106" passed="101" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 05:37:58Z" end-time="2026-10-23 05:38:01Z" duration="2.8992669">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29824" result="Failed" site="Child" start-time="2026-10-23 05:37:58Z" end-time="2026-10-23 05:38:01Z" duration="2.899267" total="106" passed="101" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36750" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29824" result="Failed" site="Child" start-time="2026-10-23 05:37:58Z" end-time="2026-10-23 05:38:01Z" duration="2.750878" total="106" passed="101" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36751" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29824" result="Failed" site="Child" start-time="2026-10-23 05:37:59Z" end-time="2026-10-23 05:38:01Z" duration="2.697953" total="106" passed="101" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36752" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29824" result="Failed" site="Child" start-time="2026-10-23 05:37:59Z" end-time="2026-10-23 05:38:01Z" duration="2.644073" total="106" passed="101" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="11143" name="DensityTorchLightTests" fullname="CavesOfOoo.Tests.DensityTorchLightTests" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.652320" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="11161" name="DeadActor_CannotExtinguish" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.070839" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11159" name="DeadActor_CannotExtinguish(False)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish(False)" methodname="DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1190853900" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.048162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11160" name="DeadActor_CannotExtinguish(True)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish(True)" methodname="DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="206998641" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.019820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="11168" name="DifferentTorchPayload_DoesNotMerge" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.098196" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11165" name="DifferentTorchPayload_DoesNotMerge(&quot;fuel&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;fuel&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1607035415" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.021103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11166" name="DifferentTorchPayload_DoesNotMerge(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;thermal&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="2076419971" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.032244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11167" name="DifferentTorchPayload_DoesNotMerge(&quot;light&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;light&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1371098506" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.043811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="11155" name="DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" methodname="DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="89154940" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.075456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11147" name="Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" methodname="Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1873851763" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.023681" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11156" name="ExtinguishedTick_DoesNotConsumeFuelOrHeat" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTick_DoesNotConsumeFuelOrHeat" methodname="ExtinguishedTick_DoesNotConsumeFuelOrHeat" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1171614610" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020498" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11148" name="ExtinguishedTorch_RelightsOnlyAtActualHotFire" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTorch_RelightsOnlyAtActualHotFire" methodname="ExtinguishedTorch_RelightsOnlyAtActualHotFire" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1565893869" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.024038" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11162" name="ForeignOrStaleEquipmentReference_Refuses" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ForeignOrStaleEquipmentReference_Refuses" methodname="ForeignOrStaleEquipmentReference_Refuses" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="589417183" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.021022" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11144" name="FreshTorch_HasExplicitLightPartAndHandEquipment" fullname="CavesOfOoo.Tests.DensityTorchLightTests.FreshTorch_HasExplicitLightPartAndHandEquipment" methodname="FreshTorch_HasExplicitLightPartAndHandEquipment" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="835662565" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020903" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11154" name="HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" fullname="CavesOfOoo.Tests.DensityTorchLightTests.HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" methodname="HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1917892188" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11146" name="HeldTorch_OffersExtinguish_ThenRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.HeldTorch_OffersExtinguish_ThenRelight" methodname="HeldTorch_OffersExtinguish_ThenRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="554553453" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.024853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11169" name="IdenticalFreshTorches_StillStack" fullname="CavesOfOoo.Tests.DensityTorchLightTests.IdenticalFreshTorches_StillStack" methodname="IdenticalFreshTorches_StillStack" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1825527855" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.021383" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11157" name="LastFuelTick_ExtinguishesAndCannotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.LastFuelTick_ExtinguishesAndCannotRelight" methodname="LastFuelTick_ExtinguishesAndCannotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1404957821" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.021497" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11158" name="LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" fullname="CavesOfOoo.Tests.DensityTorchLightTests.LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" methodname="LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="533498304" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.025199" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11145" name="OrdinaryEquip_SplitsOneTorchFromStack" fullname="CavesOfOoo.Tests.DensityTorchLightTests.OrdinaryEquip_SplitsOneTorchFromStack" methodname="OrdinaryEquip_SplitsOneTorchFromStack" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1618225729" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.022568" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11170" name="OtherLights_RemainUntouched" fullname="CavesOfOoo.Tests.DensityTorchLightTests.OtherLights_RemainUntouched" methodname="OtherLights_RemainUntouched" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1461173500" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.021109" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11163" name="PostActionFailure_RestoresLightHeatAndFuel" fullname="CavesOfOoo.Tests.DensityTorchLightTests.PostActionFailure_RestoresLightHeatAndFuel" methodname="PostActionFailure_RestoresLightHeatAndFuel" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1274464217" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020302" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11149" name="RemoteOrColdFire_DoesNotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.RemoteOrColdFire_DoesNotRelight" methodname="RemoteOrColdFire_DoesNotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="897025843" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11164" name="SaveGraph_PreservesOffStateAndRemainingFuel" fullname="CavesOfOoo.Tests.DensityTorchLightTests.SaveGraph_PreservesOffStateAndRemainingFuel" methodname="SaveGraph_PreservesOffStateAndRemainingFuel" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1357884151" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.027241" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11153" name="StowedTorch_DoesNotLightTickOrOfferAction" fullname="CavesOfOoo.Tests.DensityTorchLightTests.StowedTorch_DoesNotLightTickOrOfferAction" methodname="StowedTorch_DoesNotLightTickOrOfferAction" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1403219419" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.020438" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="11152" name="WetOrExhaustedTorch_RefusesRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.043640" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11150" name="WetOrExhaustedTorch_RefusesRelight(False)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(False)" methodname="WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="591920991" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.019991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11151" name="WetOrExhaustedTorch_RefusesRelight(True)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(True)" methodname="WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1435898157" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.022828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="12707" name="FiniteCookingThermalInvalidationTests" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.015453" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="12719" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.004088" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12714" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,1.0f,True,1)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,1.0f,True,1)" methodname="ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="348172954" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.001685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12715" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy(150.0f,-1.0f,True,1)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy(150.0f,-1.0f,True,1)" methodname="ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="852180310" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12716" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy(500.0f,-1.0f,True,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy(500.0f,-1.0f,True,0)" methodname="ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="294687632" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12717" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,0.0f,True,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,0.0f,True,0)" methodname="ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="354781626" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12718" name="ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,1.0f,False,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.ActualApplyHeatSharesBoundaryAndPreservesLegacy(149.0f,1.0f,False,0)" methodname="ActualApplyHeatSharesBoundaryAndPreservesLegacy" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1829418924" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12734" name="IgnitionCallbackCannotPublishStaleOriginalCell" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003897" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12728" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;unchanged&quot;,1)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;unchanged&quot;,1)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1768544217" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12729" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;move&quot;,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;move&quot;,0)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1126353462" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12730" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;remove&quot;,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;remove&quot;,0)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="309096502" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12731" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;replace-campfire&quot;,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;replace-campfire&quot;,0)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1482740673" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12732" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;clear-opt-in&quot;,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;clear-opt-in&quot;,0)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1411301420" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12733" name="IgnitionCallbackCannotPublishStaleOriginalCell(&quot;replace-thermal&quot;,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.IgnitionCallbackCannotPublishStaleOriginalCell(&quot;replace-thermal&quot;,0)" methodname="IgnitionCallbackCannotPublishStaleOriginalCell" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="82585708" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12727" name="InvalidCurrentSourceCannotInvalidateAnotherGraph" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003781" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12720" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-zone&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="16825009" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12721" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;removed&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1435860777" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12722" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-physics&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="437373566" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12723" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-campfire&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-campfire&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1116338259" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12724" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;replaced-thermal&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;replaced-thermal&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1751554802" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12725" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;carried&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="595884596" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12726" name="InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.InvalidCurrentSourceCannotInvalidateAnotherGraph(&quot;foreign-cell&quot;)" methodname="InvalidCurrentSourceCannotInvalidateAnotherGraph" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="320600919" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12713" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002259" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="12708" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource(150.0f,25.0f,True,1)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource(150.0f,25.0f,True,1)" methodname="PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="953039591" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12709" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource(500.0f,25.0f,True,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource(500.0f,25.0f,True,0)" methodname="PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="526388251" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12710" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource(149.0f,25.0f,True,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource(149.0f,25.0f,True,0)" methodname="PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="1725125368" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12711" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource(149.0f,200.0f,True,1)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource(149.0f,200.0f,True,1)" methodname="PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="483552293" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="12712" name="PassiveBoundaryOnlyInvalidatesExactFiniteSource(150.0f,25.0f,False,0)" fullname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests.PassiveBoundaryOnlyInvalidatesExactFiniteSource(150.0f,25.0f,False,0)" methodname="PassiveBoundaryOnlyInvalidatesExactFiniteSource" classname="CavesOfOoo.Tests.FiniteCookingThermalInvalidationTests" runstate="Runnable" seed="383833190" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.000248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="27990" name="FlatPixelOpeningStatesTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="46" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.221299" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="28034" name="ControlledTorchUsesActualFlameConditions" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.035787" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28028" name="ControlledTorchUsesActualFlameConditions(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;disabled&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1092110653" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.012056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28029" name="ControlledTorchUsesActualFlameConditions(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;cold&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1888817505" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002804" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28030" name="ControlledTorchUsesActualFlameConditions(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;empty&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="2107590249" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28031" name="ControlledTorchUsesActualFlameConditions(&quot;no-rate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;no-rate&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="236038769" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28032" name="ControlledTorchUsesActualFlameConditions(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;wet&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="923989811" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28033" name="ControlledTorchUsesActualFlameConditions(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ControlledTorchUsesActualFlameConditions(&quot;frozen&quot;)" methodname="ControlledTorchUsesActualFlameConditions" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="48401477" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28035" name="DestructiveTorchFireRemainsVisibleWhenControlledLightIsOff" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.DestructiveTorchFireRemainsVisibleWhenControlledLightIsOff" methodname="DestructiveTorchFireRemainsVisibleWhenControlledLightIsOff" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="681877988" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.004181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28044" name="DisposeDoesNotDestroyBorrowedTextureOrPeerFrames" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.DisposeDoesNotDestroyBorrowedTextureOrPeerFrames" methodname="DisposeDoesNotDestroyBorrowedTextureOrPeerFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="458915097" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28003" name="ExactOwnerAndStateSelectDistinctCachedFrames" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.039251" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27991" name="ExactOwnerAndStateSelectDistinctCachedFrames(0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(0)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="86639084" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27992" name="ExactOwnerAndStateSelectDistinctCachedFrames(1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(1)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="340892706" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27993" name="ExactOwnerAndStateSelectDistinctCachedFrames(2)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(2)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1426518815" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27994" name="ExactOwnerAndStateSelectDistinctCachedFrames(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(3)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1200697780" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27995" name="ExactOwnerAndStateSelectDistinctCachedFrames(4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(4)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1475444535" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27996" name="ExactOwnerAndStateSelectDistinctCachedFrames(5)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(5)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="452310103" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27997" name="ExactOwnerAndStateSelectDistinctCachedFrames(6)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(6)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="666042794" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27998" name="ExactOwnerAndStateSelectDistinctCachedFrames(7)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(7)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1153089220" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27999" name="ExactOwnerAndStateSelectDistinctCachedFrames(8)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(8)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="259680556" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28000" name="ExactOwnerAndStateSelectDistinctCachedFrames(9)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(9)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="60803020" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003168" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28001" name="ExactOwnerAndStateSelectDistinctCachedFrames(10)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(10)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1062738630" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28002" name="ExactOwnerAndStateSelectDistinctCachedFrames(11)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ExactOwnerAndStateSelectDistinctCachedFrames(11)" methodname="ExactOwnerAndStateSelectDistinctCachedFrames" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1510629348" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28027" name="GourdRequiresItsOwnHarvestContractAndDoesNotReplaceOtherCrops" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.GourdRequiresItsOwnHarvestContractAndDoesNotReplaceOtherCrops" methodname="GourdRequiresItsOwnHarvestContractAndDoesNotReplaceOtherCrops" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1089756344" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003586" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28026" name="InvalidCropStageDoesNotMasqueradeAsMaturity" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.InvalidCropStageDoesNotMasqueradeAsMaturity" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.007752" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28024" name="InvalidCropStageDoesNotMasqueradeAsMaturity(-1)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.InvalidCropStageDoesNotMasqueradeAsMaturity(-1)" methodname="InvalidCropStageDoesNotMasqueradeAsMaturity" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="875364326" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28025" name="InvalidCropStageDoesNotMasqueradeAsMaturity(3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.InvalidCropStageDoesNotMasqueradeAsMaturity(3)" methodname="InvalidCropStageDoesNotMasqueradeAsMaturity" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="273808588" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28015" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.036828" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28004" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(0,&quot;Door&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(0,&quot;Door&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="198661529" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28005" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(0,&quot;Repairable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(0,&quot;Repairable&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="520475523" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002700" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28006" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Campfire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Campfire&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1116136844" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28007" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Thermal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Thermal&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1471964832" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28008" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Fuel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(4,&quot;Fuel&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1429397882" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28009" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(8,&quot;Crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(8,&quot;Crop&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1455355670" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28010" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;TorchLight&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;TorchLight&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="2037720229" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28011" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;LightSource&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;LightSource&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="200958166" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28012" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;Thermal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;Thermal&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1374991643" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28013" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;Fuel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(10,&quot;Fuel&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1864297872" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28014" name="MissingAndForeignStatePartsCannotAdvertiseNativeFunction(11,&quot;Waterskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingAndForeignStatePartsCannotAdvertiseNativeFunction(11,&quot;Waterskin&quot;)" methodname="MissingAndForeignStatePartsCannotAdvertiseNativeFunction" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1068014299" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28042" name="MissingOrMalformedStatesPreserveEarlierGroups" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingOrMalformedStatesPreserveEarlierGroups" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.010297" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28040" name="MissingOrMalformedStatesPreserveEarlierGroups(False)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingOrMalformedStatesPreserveEarlierGroups(False)" methodname="MissingOrMalformedStatesPreserveEarlierGroups" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1041208935" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.005572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28041" name="MissingOrMalformedStatesPreserveEarlierGroups(True)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.MissingOrMalformedStatesPreserveEarlierGroups(True)" methodname="MissingOrMalformedStatesPreserveEarlierGroups" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="299188019" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28023" name="NonfiniteHeatCannotPretendToBeResidualCoals" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.NonfiniteHeatCannotPretendToBeResidualCoals" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.007029" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28021" name="NonfiniteHeatCannotPretendToBeResidualCoals(float.NaN)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.NonfiniteHeatCannotPretendToBeResidualCoals(float.NaN)" methodname="NonfiniteHeatCannotPretendToBeResidualCoals" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="68637630" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28022" name="NonfiniteHeatCannotPretendToBeResidualCoals(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.NonfiniteHeatCannotPretendToBeResidualCoals(float.PositiveInfinity)" methodname="NonfiniteHeatCannotPretendToBeResidualCoals" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1299341978" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002856" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28038" name="RememberedLowTerrainDoesNotExposeCurrentFireState" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.RememberedLowTerrainDoesNotExposeCurrentFireState" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.006734" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28036" name="RememberedLowTerrainDoesNotExposeCurrentFireState(&quot;Campfire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.RememberedLowTerrainDoesNotExposeCurrentFireState(&quot;Campfire&quot;)" methodname="RememberedLowTerrainDoesNotExposeCurrentFireState" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1548529048" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003242" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28037" name="RememberedLowTerrainDoesNotExposeCurrentFireState(&quot;Torch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.RememberedLowTerrainDoesNotExposeCurrentFireState(&quot;Torch&quot;)" methodname="RememberedLowTerrainDoesNotExposeCurrentFireState" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="271242987" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28020" name="ResidualHeatIsNotDestructiveFireOrCookingService" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ResidualHeatIsNotDestructiveFireOrCookingService" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.009829" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28017" name="ResidualHeatIsNotDestructiveFireOrCookingService(149.99f,3)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ResidualHeatIsNotDestructiveFireOrCookingService(149.99f,3)" methodname="ResidualHeatIsNotDestructiveFireOrCookingService" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1084579076" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28018" name="ResidualHeatIsNotDestructiveFireOrCookingService(150.0f,4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ResidualHeatIsNotDestructiveFireOrCookingService(150.0f,4)" methodname="ResidualHeatIsNotDestructiveFireOrCookingService" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1103000242" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002634" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28019" name="ResidualHeatIsNotDestructiveFireOrCookingService(500.0f,4)" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.ResidualHeatIsNotDestructiveFireOrCookingService(500.0f,4)" methodname="ResidualHeatIsNotDestructiveFireOrCookingService" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="2003845958" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28043" name="StatesAreIndependentAndEarlierInjectionNeverLoadsThem" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.StatesAreIndependentAndEarlierInjectionNeverLoadsThem" methodname="StatesAreIndependentAndEarlierInjectionNeverLoadsThem" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="517398324" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.003190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28039" name="WaterskinRemainsAVesselWhenEmptiedAndDisappearsWhenPickedUp" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.WaterskinRemainsAVesselWhenEmptiedAndDisappearsWhenPickedUp" methodname="WaterskinRemainsAVesselWhenEmptiedAndDisappearsWhenPickedUp" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="1918100062" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28016" name="WicketRepairDoesNotOpenItAndLockStillMeansClosed" fullname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests.WicketRepairDoesNotOpenItAndLockStillMeansClosed" methodname="WicketRepairDoesNotOpenItAndLockStillMeansClosed" classname="CavesOfOoo.Tests.FlatPixelOpeningStatesTests" runstate="Runnable" seed="461124041" result="Passed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:00Z" duration="0.002692" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="28045" name="FlatPixelStateRenderCadenceTests" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:01Z" duration="0.751384" total="13" passed="8" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28049" name="ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:01Z" duration="0.269573" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28047" name="ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame(0.1f,9)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame(0.1f,9)" methodname="ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="1264959668" result="Failed" start-time="2026-10-23 05:38:00Z" end-time="2026-10-23 05:38:01Z" duration="0.160495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Already submitted foreground is stale.
+  Expected: (x:144.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:160.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests+Fixture.Expect (System.Int32 frame) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:147
+at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame (System.Single fuel, System.Int32 expected) [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28048" name="ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame(50.0f,10)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame(50.0f,10)" methodname="ActualLooseMaterialTickRepaintsExhaustionButNotUnchangedFlame" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="184299118" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.107509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28051" name="DirectBurningOnsetAndRemovalRepaintResidualCoals" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.DirectBurningOnsetAndRemovalRepaintResidualCoals" methodname="DirectBurningOnsetAndRemovalRepaintResidualCoals" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="499273312" result="Failed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.100817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Already submitted foreground is stale.
+  Expected: (x:80.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:64.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests+Fixture.Expect (System.Int32 frame) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:147
+at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.DirectBurningOnsetAndRemovalRepaintResidualCoals () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28050" name="FailedInventoryActionRollsBackAndRepaintsFinalTorchState" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.FailedInventoryActionRollsBackAndRepaintsFinalTorchState" methodname="FailedInventoryActionRollsBackAndRepaintsFinalTorchState" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="330331427" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.038003" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28056" name="HiddenFireChangesDoNotRevealAStateTile" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.HiddenFireChangesDoNotRevealAStateTile" methodname="HiddenFireChangesDoNotRevealAStateTile" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="516859810" result="Failed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.039157" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Live16x24 opening states 4 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.HiddenFireChangesDoNotRevealAStateTile () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28046" name="LooseTorchTogglesWithoutMovementOrForcedRefresh" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.LooseTorchTogglesWithoutMovementOrForcedRefresh" methodname="LooseTorchTogglesWithoutMovementOrForcedRefresh" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="1363186231" result="Failed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.037377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Already submitted foreground is stale.
+  Expected: (x:144.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:160.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests+Fixture.Expect (System.Int32 frame) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:147
+at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.LooseTorchTogglesWithoutMovementOrForcedRefresh () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28055" name="NativeThermalEndTurnUpdatesOnlyTheChangedState" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.NativeThermalEndTurnUpdatesOnlyTheChangedState" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.115856" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28052" name="NativeThermalEndTurnUpdatesOnlyTheChangedState(150.0f,False,3)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.NativeThermalEndTurnUpdatesOnlyTheChangedState(150.0f,False,3)" methodname="NativeThermalEndTurnUpdatesOnlyTheChangedState" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="1765606102" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.039191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28053" name="NativeThermalEndTurnUpdatesOnlyTheChangedState(500.0f,False,4)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.NativeThermalEndTurnUpdatesOnlyTheChangedState(500.0f,False,4)" methodname="NativeThermalEndTurnUpdatesOnlyTheChangedState" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="79704128" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.035962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28054" name="NativeThermalEndTurnUpdatesOnlyTheChangedState(300.0f,True,4)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.NativeThermalEndTurnUpdatesOnlyTheChangedState(300.0f,True,4)" methodname="NativeThermalEndTurnUpdatesOnlyTheChangedState" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="440210890" result="Failed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.036866" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Already submitted foreground is stale.
+  Expected: (x:64.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:80.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests+Fixture.Expect (System.Int32 frame) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:147
+at CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.NativeThermalEndTurnUpdatesOnlyTheChangedState (System.Single temperature, System.Boolean burning, System.Int32 expected) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStateRenderCadenceTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28061" name="RetainedTorchCannotDirtyAnUnrelatedCurrentCell" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.148209" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28057" name="RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;removed&quot;)" methodname="RetainedTorchCannotDirtyAnUnrelatedCurrentCell" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="643327923" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.037120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28058" name="RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;foreign-part&quot;)" methodname="RetainedTorchCannotDirtyAnUnrelatedCurrentCell" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="1344138144" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.035746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28059" name="RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;foreign-physics&quot;)" methodname="RetainedTorchCannotDirtyAnUnrelatedCurrentCell" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="347042394" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.036598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28060" name="RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell(&quot;carried&quot;)" methodname="RetainedTorchCannotDirtyAnUnrelatedCurrentCell" classname="CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests" runstate="Runnable" seed="2134307875" result="Passed" start-time="2026-10-23 05:38:01Z" end-time="2026-10-23 05:38:01Z" duration="0.036369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

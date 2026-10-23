@@ -15,6 +15,7 @@ namespace CavesOfOoo.Rendering
         public const string ResourcePath = "Sprites/Live16x24/opening-base";
         public const string CastResourcePath = "Sprites/Live16x24/opening-cast";
         public const string AnchorsResourcePath = "Sprites/Live16x24/opening-anchors";
+        public const string StatesResourcePath = "Sprites/Live16x24/opening-states";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -22,10 +23,13 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _castSprites;
         private readonly Tile[] _anchorTiles;
         private readonly Sprite[] _anchorSprites;
+        private readonly Tile[] _stateTiles;
+        private readonly Sprite[] _stateSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
-            Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath)) { }
+            Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
+            Resources.Load<Texture2D>(StatesResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -38,10 +42,16 @@ namespace CavesOfOoo.Rendering
         /// <summary>Each optional group owns only its generated frames. Earlier
         /// injection overloads deliberately omit anchors without loading Resources.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, null) { }
+
+        /// <summary>All resources are borrowed and independently optional. State
+        /// frames follow current owned parts; no presentation state is persisted.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
             _anchorTiles = BuildFrames(anchorsAtlas, 12, "anchors", out _anchorSprites);
+            _stateTiles = BuildFrames(statesAtlas, 12, "states", out _stateSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -89,9 +99,52 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = AnchorFrameOf(owner, render.VisualID);
-            if (frame < 0 || _anchorTiles == null) return false;
-            tile = _anchorTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _anchorTiles == null ? null : _anchorTiles[frame];
+                return tile != null;
+            }
+            frame = StateFrameOf(owner);
+            if (frame < 0 || _stateTiles == null) return false;
+            tile = _stateTiles[frame];
             return tile != null;
+        }
+
+        private static int StateFrameOf(Entity owner)
+        {
+            switch (owner.BlueprintName)
+            {
+                case "GleanersBuckledWicket":
+                    var repair = Owned<RepairablePart>(owner); var door = Owned<DoorPart>(owner);
+                    if (repair == null || door == null || repair.PortableEquipment || repair.RecipeId != "timber-wicket-hinge") return -1;
+                    return RepairablePart.BlocksFunction(owner) ? 0 : door.IsClosed ? 1 : 2;
+                case "Campfire":
+                    var fire = Owned<CampfirePart>(owner); var heat = Owned<ThermalPart>(owner);
+                    if (fire == null || !fire.FiniteCooking || heat == null || Owned<FuelPart>(owner) == null) return -1;
+                    if (OwnedBurning(owner)) return 5;
+                    if (!Finite(heat.Temperature)) return -1;
+                    return heat.Temperature >= CookingService.MinimumFiniteCookingTemperature ? 4 : 3;
+                case "DrawgourdCrop":
+                    var crop = Owned<CropPart>(owner);
+                    if (crop == null || crop.YieldBlueprint != "DrawgourdShell" || crop.GrowthStage < 0 || crop.GrowthStage > 2
+                        || crop.GrowthStage == 2 && !crop.HarvestAtMaturity) return -1;
+                    return 6 + crop.GrowthStage;
+                case "Torch":
+                    var torch = Owned<TorchLightPart>(owner); var light = Owned<LightSourcePart>(owner);
+                    var thermal = Owned<ThermalPart>(owner); var fuel = Owned<FuelPart>(owner);
+                    if (torch == null || light == null || thermal == null || fuel == null) return -1;
+                    return OwnedBurning(owner) || torch.ControlledFlameActive ? 10 : 9;
+                case "Waterskin": return Owned<WaterskinPart>(owner) != null ? 11 : -1;
+                default: return -1;
+            }
+        }
+
+        private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+
+        private static bool OwnedBurning(Entity owner)
+        {
+            var effect = Owned<StatusEffectsPart>(owner)?.GetEffect<BurningEffect>();
+            return effect != null && effect.Owner == owner;
         }
 
         private static int AnchorFrameOf(Entity owner, string visual)
@@ -178,6 +231,8 @@ namespace CavesOfOoo.Rendering
             if (_castSprites != null) foreach (var sprite in _castSprites) DestroyOwned(sprite);
             if (_anchorTiles != null) foreach (var tile in _anchorTiles) DestroyOwned(tile);
             if (_anchorSprites != null) foreach (var sprite in _anchorSprites) DestroyOwned(sprite);
+            if (_stateTiles != null) foreach (var tile in _stateTiles) DestroyOwned(tile);
+            if (_stateSprites != null) foreach (var sprite in _stateSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)
