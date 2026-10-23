@@ -76,9 +76,23 @@ namespace CavesOfOoo.Core
                 && zone.GetEntityPosition(FirstSoil) == (FirstX, FirstY) && zone.GetEntityPosition(SecondSoil) == (SecondX, SecondY)
                 && Tray?.ID == TrayID && LocalGatheringClaims.Ground(Tray, zone, "ConnectedReserveTray")
                 && zone.GetEntityPosition(Tray) == (TrayX, TrayY) && Tray.GetPart<ContainerPart>()?.ParentEntity == Tray
-                && Permissions != null && Permissions.Count <= 64 && Permissions.All(p => p != null && p.Player != null
-                    && p.State >= ReserveAccessState.Unknown && p.State <= ReserveAccessState.Suspended && p.BreachOrdinal >= 0)
-                && Permissions.Select(p => p.Player).Distinct().Count() == Permissions.Count;
+                && ValidPermissions();
+        }
+
+        // Bound is also observed by presentation. Keep the same bounded identity
+        // validation without creating LINQ iterators and a set on quiet frames.
+        private bool ValidPermissions()
+        {
+            if (Permissions == null || Permissions.Count > 64) return false;
+            for (int i = 0; i < Permissions.Count; i++)
+            {
+                var record = Permissions[i];
+                if (record == null || record.Player == null || record.BreachOrdinal < 0
+                    || record.State < ReserveAccessState.Unknown || record.State > ReserveAccessState.Suspended) return false;
+                for (int j = 0; j < i; j++)
+                    if (ReferenceEquals(Permissions[j].Player, record.Player)) return false;
+            }
+            return true;
         }
         internal bool OwnsBed(Zone zone, Cell cell) => Bound(zone) && cell != null && cell.ParentZone == zone
             && (zone.GetEntityCell(FirstSoil) == cell || zone.GetEntityCell(SecondSoil) == cell);

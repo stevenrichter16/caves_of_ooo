@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "artifact": "north-plot.png",
+  "width": 128,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 8,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; independently verified.",
+  "source": "north-plot.blend",
+  "generator": "Tools/Live16x24/build_north_plot.py",
+  "resource": "Sprites/Live16x24/north-plot",
+  "reference": "ArtSource/Live16x24/concepts/north-parts-reference.png",
+  "concept": "ArtSource/Live16x24/concepts/north-plot-concept.png",
+  "capture": "Docs/Verification/Live16x24/north-greybox-plot.png",
+  "scope": "Six real standing crop states, neutral tray and separate ground decoration. No runtime integration claim.",
+  "sha256": "e14359280ce3d97fa645c3bbce0a5a316e0fd212a7025da363f66b01a42df641",
+  "frames": [
+    {
+      "index": 0,
+      "id": "candycarrot-sprout",
+      "blueprint": "CandyCarrotCrop",
+      "stage": 1,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "Low spray of fine branching leaves gathered at one quiet ground crown.",
+      "actualUse": "Gladroot's actual second and final standing stage; yield stays below ground.",
+      "limits": "No exposed root, ripe carrot, harvest flag or new third stage. Completion releases yield and removes the crop.",
+      "occupiedPixels": 48,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        14,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "emberwheat-sprout",
+      "blueprint": "EmberwheatCrop",
+      "stage": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "A narrow unequal cluster of upright stalks and long green leaf blades without filled grain heads.",
+      "actualUse": "Actual stage1 before automatic produce release; unfilled immature grain silhouette.",
+      "limits": "No ripe kernel head or standing ripe frame. Existing RipeCropRow remains a different owner.",
+      "occupiedPixels": 57,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        10,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "marlroot-sprout",
+      "blueprint": "MarlrootCrop",
+      "stage": 1,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "Two low broad angular leaves rising from a dark knuckled crown.",
+      "actualUse": "The middle growing stage of the real harvest-at-maturity root crop.",
+      "limits": "No ripe clay shoulder or loose harvested clod is visible yet. Crop ownership does not require Vegetation tag.",
+      "occupiedPixels": 54,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "marlroot-ripe",
+      "blueprint": "MarlrootCrop",
+      "stage": 2,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "Broad leaves above attached knuckled red-clay shoulders with root ridges.",
+      "actualUse": "Actual mature unharvested MarlrootCrop; harvest releases clods and a seed through simulation.",
+      "limits": "One growing plant, not a loose FireClay pile, loose clod item or fixed yield-count pictogram.",
+      "occupiedPixels": 109,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B",
+        "94713D",
+        "9B442B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        1,
+        10,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "pitchpod-sprout",
+      "blueprint": "PitchpodCrop",
+      "stage": 1,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "A slim stem with two opposed pointed leaves and one small central growing tip.",
+      "actualUse": "The middle stage of the actual harvest-at-maturity resin crop.",
+      "limits": "No amber resin or paper pods before maturity; no flowering interpretation.",
+      "occupiedPixels": 42,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        12,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "pitchpod-ripe",
+      "blueprint": "PitchpodCrop",
+      "stage": 2,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "Paired olive leaves with two angular hanging paper pods and a small amber resin bead.",
+      "actualUse": "Actual mature unharvested resin crop; products and seed appear only through real harvest.",
+      "limits": "Pods are not round flowers, lamps, flame, a brewing effect or a promise of a fixed visible yield.",
+      "occupiedPixels": 126,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B",
+        "94713D",
+        "B5A47E",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        6,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "reserve-tray",
+      "blueprint": "ConnectedReserveTray",
+      "stage": null,
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "A shallow worn wooden sorting tray with two small cord loops and an empty open center.",
+      "actualUse": "Existing non-solid ContainerPart owner; neutral contents-independent identity.",
+      "limits": "No painted seed, stock, loot promise, chest lock, permission color or new open/closed state.",
+      "occupiedPixels": 70,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "foreground",
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 7,
+      "id": "reserve-cord",
+      "blueprint": null,
+      "stage": null,
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "Asymmetric short twine runs with small tie knots laid flat near a bed's edges; fully transparent center.",
+      "actualUse": "Decoration only on the two actual bound claimed ground owners; survives crop removal.",
+      "limits": "No fence, collision, seed/contents count, permission color or full-cell border. Not a standalone owner.",
+      "occupiedPixels": 32,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "ground-decoration",
+      "alphaBoundsTopLeft": [
+        1,
+        3,
+        15,
+        22
+      ],
+      "baselineTopLeft": 22
+    }
+  ]
+}

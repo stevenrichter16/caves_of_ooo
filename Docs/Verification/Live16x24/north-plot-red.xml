@@ -1,0 +1,1664 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="104" result="Failed(Child)" total="104" passed="9" failed="95" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 12:03:52Z" end-time="2026-10-23 12:04:13Z" duration="21.1989939">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30373" result="Failed" site="Child" start-time="2026-10-23 12:03:52Z" end-time="2026-10-23 12:04:13Z" duration="21.198994" total="104" passed="9" failed="95" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37402" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30373" result="Failed" site="Child" start-time="2026-10-23 12:03:53Z" end-time="2026-10-23 12:04:13Z" duration="20.799174" total="104" passed="9" failed="95" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37403" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30373" result="Failed" site="Child" start-time="2026-10-23 12:03:54Z" end-time="2026-10-23 12:04:13Z" duration="19.906456" total="104" passed="9" failed="95" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37404" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30373" result="Failed" site="Child" start-time="2026-10-23 12:03:54Z" end-time="2026-10-23 12:04:13Z" duration="19.506573" total="104" passed="9" failed="95" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28101" name="FlatPixelNorthPlotGroundTests" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-10-23 12:03:56Z" end-time="2026-10-23 12:04:10Z" duration="13.289861" total="50" passed="9" failed="41" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28116" name="BothExactBedsKeepCordAfterRealHarvestAndAProductCoversTheSoil" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BothExactBedsKeepCordAfterRealHarvestAndAProductCoversTheSoil" methodname="BothExactBedsKeepCordAfterRealHarvestAndAProductCoversTheSoil" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="679995238" result="Failed" start-time="2026-10-23 12:03:57Z" end-time="2026-10-23 12:03:57Z" duration="0.739622" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BothExactBedsKeepCordAfterRealHarvestAndAProductCoversTheSoil () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28156" name="BoundStillRejectsMalformedPermissionGraphs" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-23 12:03:57Z" end-time="2026-10-23 12:03:59Z" duration="1.788889" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28149" name="BoundStillRejectsMalformedPermissionGraphs(&quot;null-list&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;null-list&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="2042263434" result="Passed" start-time="2026-10-23 12:03:57Z" end-time="2026-10-23 12:03:57Z" duration="0.184683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28150" name="BoundStillRejectsMalformedPermissionGraphs(&quot;null-record&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;null-record&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1422700042" result="Passed" start-time="2026-10-23 12:03:57Z" end-time="2026-10-23 12:03:58Z" duration="0.171466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28151" name="BoundStillRejectsMalformedPermissionGraphs(&quot;null-player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;null-player&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1456900040" result="Passed" start-time="2026-10-23 12:03:58Z" end-time="2026-10-23 12:03:58Z" duration="0.654755" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28152" name="BoundStillRejectsMalformedPermissionGraphs(&quot;duplicate-reference&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;duplicate-reference&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1662610422" result="Passed" start-time="2026-10-23 12:03:58Z" end-time="2026-10-23 12:03:59Z" duration="0.184144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28153" name="BoundStillRejectsMalformedPermissionGraphs(&quot;negative-breach&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;negative-breach&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="825626585" result="Passed" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:03:59Z" duration="0.176337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28154" name="BoundStillRejectsMalformedPermissionGraphs(&quot;invalid-state&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;invalid-state&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1674478889" result="Passed" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:03:59Z" duration="0.185080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28155" name="BoundStillRejectsMalformedPermissionGraphs(&quot;too-many&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundStillRejectsMalformedPermissionGraphs(&quot;too-many&quot;)" methodname="BoundStillRejectsMalformedPermissionGraphs" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="405967586" result="Passed" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:03:59Z" duration="0.179463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28148" name="BoundValidationIsAllocationFreeAfterWarmupWithoutChangingPermissionSemantics" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.BoundValidationIsAllocationFreeAfterWarmupWithoutChangingPermissionSemantics" methodname="BoundValidationIsAllocationFreeAfterWarmupWithoutChangingPermissionSemantics" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="832919718" result="Passed" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:03:59Z" duration="0.199239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28145" name="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:04:00Z" duration="0.656011" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28142" name="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;paused&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;paused&quot;)" methodname="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1320226407" result="Failed" start-time="2026-10-23 12:03:59Z" end-time="2026-10-23 12:04:00Z" duration="0.205533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:278
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28143" name="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;mode&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;mode&quot;)" methodname="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1026059303" result="Failed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:00Z" duration="0.205004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:278
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28144" name="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;sprites&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims(&quot;sprites&quot;)" methodname="CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1510693981" result="Failed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:00Z" duration="0.184431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CanvasAndModeChangesClearDecorationAndRestoreOnlyCurrentClaims (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:278
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28136" name="ClaimReplacementWithoutMembershipChangeInvalidatesAndRecovers" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.ClaimReplacementWithoutMembershipChangeInvalidatesAndRecovers" methodname="ClaimReplacementWithoutMembershipChangeInvalidatesAndRecovers" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1164356904" result="Failed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:00Z" duration="0.179515" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.ClaimReplacementWithoutMembershipChangeInvalidatesAndRecovers () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:213
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28138" name="CordMeansBoundOwnershipRatherThanCurrentPlantingReadiness" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CordMeansBoundOwnershipRatherThanCurrentPlantingReadiness" methodname="CordMeansBoundOwnershipRatherThanCurrentPlantingReadiness" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="604934885" result="Failed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:00Z" duration="0.186641" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CordMeansBoundOwnershipRatherThanCurrentPlantingReadiness () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:248
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28146" name="CurrentGraphReplacementCannotKeepOldCordsAndRestorationReobserves" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CurrentGraphReplacementCannotKeepOldCordsAndRestorationReobserves" methodname="CurrentGraphReplacementCannotKeepOldCordsAndRestorationReobserves" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="13051270" result="Failed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:00Z" duration="0.172470" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.CurrentGraphReplacementCannotKeepOldCordsAndRestorationReobserves () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:297
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28157" name="EqualPlayerIdsAreDistinctPermissionReferencesAndSixtyFourIsValid" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.EqualPlayerIdsAreDistinctPermissionReferencesAndSixtyFourIsValid" methodname="EqualPlayerIdsAreDistinctPermissionReferencesAndSixtyFourIsValid" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1290935311" result="Passed" start-time="2026-10-23 12:04:00Z" end-time="2026-10-23 12:04:01Z" duration="0.170878" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28121" name="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:01Z" end-time="2026-10-23 12:04:02Z" duration="0.905315" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28117" name="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;unmarked&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;unmarked&quot;)" methodname="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1269350952" result="Failed" start-time="2026-10-23 12:04:01Z" end-time="2026-10-23 12:04:01Z" duration="0.182743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28118" name="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;wrong-marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;wrong-marker&quot;)" methodname="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1267371780" result="Failed" start-time="2026-10-23 12:04:01Z" end-time="2026-10-23 12:04:01Z" duration="0.208973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28119" name="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;copied-marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;copied-marker&quot;)" methodname="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="957531220" result="Failed" start-time="2026-10-23 12:04:01Z" end-time="2026-10-23 12:04:01Z" duration="0.208740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28120" name="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;same-id-replacement&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims(&quot;same-id-replacement&quot;)" methodname="FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="2052206082" result="Failed" start-time="2026-10-23 12:04:01Z" end-time="2026-10-23 12:04:02Z" duration="0.211099" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.FreshDirectResolutionDoesNotTrustCachedOrForgedSoilClaims (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28137" name="GrantAndSuspensionNeverRecolorCordOrSpendAnythingWhileRendering" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.GrantAndSuspensionNeverRecolorCordOrSpendAnythingWhileRendering" methodname="GrantAndSuspensionNeverRecolorCordOrSpendAnythingWhileRendering" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1209911318" result="Failed" start-time="2026-10-23 12:04:02Z" end-time="2026-10-23 12:04:02Z" duration="0.320294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.GrantAndSuspensionNeverRecolorCordOrSpendAnythingWhileRendering () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:228
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28141" name="HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 12:04:02Z" end-time="2026-10-23 12:04:03Z" duration="0.775079" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28139" name="HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture(False)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture(False)" methodname="HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="909266622" result="Failed" start-time="2026-10-23 12:04:02Z" end-time="2026-10-23 12:04:02Z" duration="0.505072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture (System.Boolean explored) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:260
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28140" name="HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture(True)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture(True)" methodname="HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1390376532" result="Failed" start-time="2026-10-23 12:04:02Z" end-time="2026-10-23 12:04:03Z" duration="0.205077" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.HiddenBedLosesCordAndNeverExposesItsCurrentCropMoisture (System.Boolean explored) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:260
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28113" name="InvalidLowerCropCannotSupplyWetGround" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 12:04:03Z" end-time="2026-10-23 12:04:04Z" duration="1.539733" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28106" name="InvalidLowerCropCannotSupplyWetGround(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;foreign-part&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1098152766" result="Failed" start-time="2026-10-23 12:04:03Z" end-time="2026-10-23 12:04:03Z" duration="0.210313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28107" name="InvalidLowerCropCannotSupplyWetGround(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;foreign-render&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="590760880" result="Failed" start-time="2026-10-23 12:04:03Z" end-time="2026-10-23 12:04:03Z" duration="0.211872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28108" name="InvalidLowerCropCannotSupplyWetGround(&quot;hidden-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;hidden-render&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1812836943" result="Failed" start-time="2026-10-23 12:04:03Z" end-time="2026-10-23 12:04:03Z" duration="0.204857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28109" name="InvalidLowerCropCannotSupplyWetGround(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;foreign-physics&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1010758171" result="Failed" start-time="2026-10-23 12:04:03Z" end-time="2026-10-23 12:04:04Z" duration="0.243699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28110" name="InvalidLowerCropCannotSupplyWetGround(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;carried&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="792369136" result="Failed" start-time="2026-10-23 12:04:04Z" end-time="2026-10-23 12:04:04Z" duration="0.205887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28111" name="InvalidLowerCropCannotSupplyWetGround(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;removed&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="691800911" result="Failed" start-time="2026-10-23 12:04:04Z" end-time="2026-10-23 12:04:04Z" duration="0.201391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28112" name="InvalidLowerCropCannotSupplyWetGround(&quot;stale-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround(&quot;stale-cell&quot;)" methodname="InvalidLowerCropCannotSupplyWetGround" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="2001733333" result="Failed" start-time="2026-10-23 12:04:04Z" end-time="2026-10-23 12:04:04Z" duration="0.170857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.InvalidLowerCropCannotSupplyWetGround (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28135" name="KeeperMayWalkWithinTheZoneWithoutErasingThePhysicalReserve" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.KeeperMayWalkWithinTheZoneWithoutErasingThePhysicalReserve" methodname="KeeperMayWalkWithinTheZoneWithoutErasingThePhysicalReserve" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="926446193" result="Failed" start-time="2026-10-23 12:04:04Z" end-time="2026-10-23 12:04:04Z" duration="0.184004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.KeeperMayWalkWithinTheZoneWithoutErasingThePhysicalReserve () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:202
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28114" name="OrdinaryWaterAndDryHooksUpdateSubmittedSoilBelowAnActor" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.OrdinaryWaterAndDryHooksUpdateSubmittedSoilBelowAnActor" methodname="OrdinaryWaterAndDryHooksUpdateSubmittedSoilBelowAnActor" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="112895109" result="Failed" start-time="2026-10-23 12:04:04Z" end-time="2026-10-23 12:04:05Z" duration="0.203612" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.OrdinaryWaterAndDryHooksUpdateSubmittedSoilBelowAnActor () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28134" name="QuietRemoteInvalidationRetiresBothSubmittedCords" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:08Z" duration="3.844518" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28122" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-move&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-move&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="841270701" result="Failed" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:05Z" duration="0.204907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28123" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-remove&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-remove&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1801936776" result="Failed" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:05Z" duration="0.198973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28124" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-render&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1400793962" result="Failed" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:05Z" duration="0.202810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28125" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-container&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="696873029" result="Failed" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:05Z" duration="0.206761" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28126" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-remove&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-remove&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1724492038" result="Failed" start-time="2026-10-23 12:04:05Z" end-time="2026-10-23 12:04:06Z" duration="0.204545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28127" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-render&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="351688364" result="Failed" start-time="2026-10-23 12:04:06Z" end-time="2026-10-23 12:04:06Z" duration="0.201457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28128" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;claim-owner&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;claim-owner&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1088033567" result="Failed" start-time="2026-10-23 12:04:06Z" end-time="2026-10-23 12:04:06Z" duration="0.525446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28129" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;world-key&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;world-key&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1941927338" result="Failed" start-time="2026-10-23 12:04:06Z" end-time="2026-10-23 12:04:07Z" duration="0.516261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28130" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;soil-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;soil-part&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="978509599" result="Failed" start-time="2026-10-23 12:04:07Z" end-time="2026-10-23 12:04:07Z" duration="0.499770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28131" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;soil-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;soil-cell&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1731478590" result="Failed" start-time="2026-10-23 12:04:07Z" end-time="2026-10-23 12:04:08Z" duration="0.669545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28132" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;tray-cell&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="738293349" result="Failed" start-time="2026-10-23 12:04:08Z" end-time="2026-10-23 12:04:08Z" duration="0.156011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28133" name="QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords(&quot;keeper-cell&quot;)" methodname="QuietRemoteInvalidationRetiresBothSubmittedCords" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="209935317" result="Failed" start-time="2026-10-23 12:04:08Z" end-time="2026-10-23 12:04:08Z" duration="0.186018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.QuietRemoteInvalidationRetiresBothSubmittedCords (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28147" name="SavedClaimReferencesRebindToLoadedSoilsWithoutReusingOldGraph" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.SavedClaimReferencesRebindToLoadedSoilsWithoutReusingOldGraph" methodname="SavedClaimReferencesRebindToLoadedSoilsWithoutReusingOldGraph" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1992365472" result="Failed" start-time="2026-10-23 12:04:08Z" end-time="2026-10-23 12:04:09Z" duration="0.219833" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.SavedClaimReferencesRebindToLoadedSoilsWithoutReusingOldGraph () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:308
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28105" name="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:09Z" duration="0.675795" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28102" name="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;Player&quot;)" methodname="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="21374529" result="Failed" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:09Z" duration="0.181333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28103" name="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;HealingTonic&quot;)" methodname="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="507572570" result="Failed" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:09Z" duration="0.185771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28104" name="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner(&quot;Chest&quot;)" methodname="VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1076085305" result="Failed" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:09Z" duration="0.212646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.VisibleLowerCropKeepsItsActualMoistureUnderAnotherForegroundOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28158" name="WarmIndexedReconciliationAllocatesNothingAndLeavesAnUnchangedCanvasQuiet" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.WarmIndexedReconciliationAllocatesNothingAndLeavesAnUnchangedCanvasQuiet" methodname="WarmIndexedReconciliationAllocatesNothingAndLeavesAnUnchangedCanvasQuiet" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="1139650354" result="Failed" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:09Z" duration="0.203298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.WarmIndexedReconciliationAllocatesNothingAndLeavesAnUnchangedCanvasQuiet () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:374
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28115" name="WaterAndAnotherHazardKeepTheirLayersWhileCordStaysIndependent" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.WaterAndAnotherHazardKeepTheirLayersWhileCordStaysIndependent" methodname="WaterAndAnotherHazardKeepTheirLayersWhileCordStaysIndependent" classname="CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests" runstate="Runnable" seed="325039791" result="Failed" start-time="2026-10-23 12:04:09Z" end-time="2026-10-23 12:04:10Z" duration="0.206292" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent plot and keeper injection must forward the reserve cord atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests+Fixture..ctor (System.Boolean renderer) [0x005a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:462
+at CavesOfOoo.Tests.FlatPixelNorthPlotGroundTests.WaterAndAnotherHazardKeepTheirLayersWhileCordStaysIndependent () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotGroundTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="28159" name="FlatPixelNorthPlotTests" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:13Z" duration="3.714393" total="54" passed="0" failed="54" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28216" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.107395" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28210" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(0)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1329926773" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.007590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28211" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(1)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1060594645" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28212" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(2)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="438610264" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28213" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(3)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1708705429" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28214" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(4)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="430458126" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28215" name="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility(5)" methodname="AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="2071664702" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000978" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AuthorizedExactSubjectPortraitUsesSameNativeFrameAndEndsWithVisibility (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28202" name="CordIsOnlyAnExplicitBorrowedGroundDecorationNeverAForegroundOwner" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CordIsOnlyAnExplicitBorrowedGroundDecorationNeverAForegroundOwner" methodname="CordIsOnlyAnExplicitBorrowedGroundDecorationNeverAForegroundOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="635065278" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.CordIsOnlyAnExplicitBorrowedGroundDecorationNeverAForegroundOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:116
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28192" name="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.087805" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28188" name="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(0)" methodname="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1734221586" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28189" name="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(1)" methodname="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="901838787" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000335" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28190" name="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(2)" methodname="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="836882761" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28191" name="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput(3)" methodname="CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1569990308" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.CropArtworkRequiresItsOwnedStageAndExactFunctionalOutput (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28223" name="DefaultKeeperResourceIsByteIdenticalAndBindsAuthorizedWorldPortrait" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.DefaultKeeperResourceIsByteIdenticalAndBindsAuthorizedWorldPortrait" methodname="DefaultKeeperResourceIsByteIdenticalAndBindsAuthorizedWorldPortrait" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1146284796" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Real missing-resource RED is separate from synthetic selectors.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AssertImported (UnityEngine.Texture2D actual, System.Int32 width) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:243
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.DefaultKeeperResourceIsByteIdenticalAndBindsAuthorizedWorldPortrait () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:203
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28222" name="DefaultPlotResourceBindsAllSixGrowthFramesNeutralTrayAndGroundCord" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.DefaultPlotResourceBindsAllSixGrowthFramesNeutralTrayAndGroundCord" methodname="DefaultPlotResourceBindsAllSixGrowthFramesNeutralTrayAndGroundCord" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1239488294" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Real missing-resource RED is separate from synthetic selectors.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.AssertImported (UnityEngine.Texture2D actual, System.Int32 width) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:243
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.DefaultPlotResourceBindsAllSixGrowthFramesNeutralTrayAndGroundCord () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:192
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28209" name="DisposalOwnsGeneratedFramesButNeverApprovedKeeperOrOtherBorrowedTextures" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.DisposalOwnsGeneratedFramesButNeverApprovedKeeperOrOtherBorrowedTextures" methodname="DisposalOwnsGeneratedFramesButNeverApprovedKeeperOrOtherBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="255799863" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.DisposalOwnsGeneratedFramesButNeverApprovedKeeperOrOtherBorrowedTextures () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:139
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28172" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.097491" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28165" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(0,1,0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(0,1,0)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1864746412" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28166" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(1,1,1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(1,1,1)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1035067246" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28167" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(2,1,2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(2,1,2)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1328944552" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28168" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(2,2,3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(2,2,3)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="628470186" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28169" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(3,1,4)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(3,1,4)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="138320712" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28170" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(3,2,5)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(3,2,5)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1504552813" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28171" name="ExactGrowthAndNeutralTraySelectCachedFullCellFrames(4,0,6)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames(4,0,6)" methodname="ExactGrowthAndNeutralTraySelectCachedFullCellFrames" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="402837886" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000913" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExactGrowthAndNeutralTraySelectCachedFullCellFrames (System.Int32 index, System.Int32 stage, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28180" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.198326" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28174" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(0)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="888743230" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.001255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28175" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(1)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="347221793" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28176" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(2)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1273465242" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28177" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(3)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1011962128" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000336" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28178" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(4)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1287361656" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28179" name="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback(5)" methodname="ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1926794167" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ExplicitReskinsForeignRenderAndUnknownIdentityKeepFallback (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28173" name="KeeperUsesAllTwentyFourRowsAndDoesNotRequireAReserveClaim" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.KeeperUsesAllTwentyFourRowsAndDoesNotRequireAReserveClaim" methodname="KeeperUsesAllTwentyFourRowsAndDoesNotRequireAReserveClaim" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1719100191" result="Failed" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:10Z" duration="0.000638" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.KeeperUsesAllTwentyFourRowsAndDoesNotRequireAReserveClaim () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:50
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28208" name="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:10Z" end-time="2026-10-23 12:04:11Z" duration="0.102393" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28204" name="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(True,127,24)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(True,127,24)" methodname="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="737865068" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.002272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings (System.Boolean malformedPlot, System.Int32 width, System.Int32 height) [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28205" name="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(True,128,23)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(True,128,23)" methodname="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="803556938" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.001027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings (System.Boolean malformedPlot, System.Int32 width, System.Int32 height) [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28206" name="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(False,15,24)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(False,15,24)" methodname="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1992956861" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000994" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings (System.Boolean malformedPlot, System.Int32 width, System.Int32 height) [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28207" name="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(False,16,23)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings(False,16,23)" methodname="MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="655608706" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MalformedOptionalGroupDoesNotDisablePeersOrMutateBorrowedImportSettings (System.Boolean malformedPlot, System.Int32 width, System.Int32 height) [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28200" name="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.198818" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28196" name="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(0)" methodname="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1737112568" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.001725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28197" name="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(1)" methodname="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1947228342" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28198" name="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(2)" methodname="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1687551034" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28199" name="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates(3)" methodname="MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="446252135" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000923" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.MoistureTimingCompostAndValidQuantityTuningDoNotInventIdentityStates (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28203" name="NinthAndTenthGroupsRemainIndependentAndEarlierInjectionsOmitBoth" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.NinthAndTenthGroupsRemainIndependentAndEarlierInjectionsOmitBoth" methodname="NinthAndTenthGroupsRemainIndependentAndEarlierInjectionsOmitBoth" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="882629538" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.012353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ground-only cached cord access is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Cord (CavesOfOoo.Rendering.FlatPixelOpeningArtCatalog catalog, UnityEngine.Tilemaps.Tile& tile) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:234
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NinthAndTenthGroupsRemainIndependentAndEarlierInjectionsOmitBoth () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:124
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28187" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.089232" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28181" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(0)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="32203616" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.001940" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28182" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(1)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1879334598" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28183" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(2)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="718119916" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28184" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(3)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="191379282" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28185" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(4)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1755523763" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28186" name="PhysicalAndRoleIdentityMustBelongToTheActualOwner(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner(5)" methodname="PhysicalAndRoleIdentityMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="975925111" result="Failed" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:11Z" duration="0.000898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PhysicalAndRoleIdentityMustBelongToTheActualOwner (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28164" name="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:11Z" end-time="2026-10-23 12:04:13Z" duration="1.717980" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28160" name="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(0)" methodname="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1900697604" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.003037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28161" name="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(1)" methodname="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1105063689" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.001361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28162" name="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(2)" methodname="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="449304456" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.000887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28163" name="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas(3)" methodname="PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="465564931" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.000661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.PlantedStageReusesAcceptedMarkWithoutLoadingTheNewPlotAtlas (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28221" name="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.787950" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28217" name="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(0)" methodname="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="421605116" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.178600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle (System.Int32 index) [0x000e9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28218" name="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(1)" methodname="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="169704771" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.177843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle (System.Int32 index) [0x000e9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28219" name="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(2)" methodname="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="885832446" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.176588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle (System.Int32 index) [0x000e9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28220" name="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle(3)" methodname="RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="884006640" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.180415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward plot and approved keeper resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewWorld (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:229
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.RealElapsedGrowthAndFiniteHarvestKeepTheAuthoredLifecycle (System.Int32 index) [0x000e9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28195" name="ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.089445" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28193" name="ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract(2)" methodname="ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1503758410" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.001996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28194" name="ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract(3)" methodname="ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1254109064" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.001199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.ReserveCropsNeedNoVegetationTagButKeepTheirRealSavedSeedContract (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28201" name="TrayArtworkIsNeutralWhenContentsChangeAndDoesNotRequireClaimBinding" fullname="CavesOfOoo.Tests.FlatPixelNorthPlotTests.TrayArtworkIsNeutralWhenContentsChangeAndDoesNotRequireClaimBinding" methodname="TrayArtworkIsNeutralWhenContentsChangeAndDoesNotRequireClaimBinding" classname="CavesOfOoo.Tests.FlatPixelNorthPlotTests" runstate="Runnable" seed="1729521622" result="Failed" start-time="2026-10-23 12:04:13Z" end-time="2026-10-23 12:04:13Z" duration="0.001637" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent ninth plot and tenth keeper atlas APIs are required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthPlotTests.NewArt (UnityEngine.Texture2D states, UnityEngine.Texture2D works, UnityEngine.Texture2D plot, UnityEngine.Texture2D keeper, System.Int32 count) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:224
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:216
+at CavesOfOoo.Tests.FlatPixelNorthPlotTests.TrayArtworkIsNeutralWhenContentsChangeAndDoesNotRequireClaimBinding () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthPlotTests.cs:109
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -311,9 +311,19 @@ namespace CavesOfOoo.Rendering
         /// <summary>Renderer-owned opt-in; admission and visibility are rechecked by the catalog.</summary>
         public bool FlatPixelGreyboxEnabled { get; set; }
         private FlatPixelGreyboxCatalog _flatPixelGreybox;
+        private Tilemap _flatGroundDecorationTilemap;
         private ZoneRenderer _flatStateOwner;
         private Action<int, int, string> _flatStateDirty;
-        private void OnDestroy() { _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null; }
+        private void OnDestroy()
+        {
+            _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null;
+            if (_flatGroundDecorationTilemap != null)
+            {
+                var groundObject = _flatGroundDecorationTilemap.gameObject;
+                if (Application.isPlaying) Destroy(groundObject); else DestroyImmediate(groundObject);
+                _flatGroundDecorationTilemap = null;
+            }
+        }
 
         /// <summary>Quiet-frame checks of previously observed finite-supply
         /// actors. The owning renderer receives bounded cell dirtiness directly;
@@ -589,6 +599,16 @@ namespace CavesOfOoo.Rendering
             _overlayTilemap = go.AddComponent<Tilemap>();
             var renderer = go.AddComponent<TilemapRenderer>();
             renderer.sortingOrder = OverlaySortingOrder;
+
+            // Physical twine belongs beneath crops/items, independent of the
+            // top foreground owner and the existing hazard layer.
+            var decoration = new GameObject("FlatGroundDecorationTilemap");
+            decoration.transform.SetParent(gridParent, false);
+            decoration.layer = GameplayRenderLayers.WorldLayer;
+            _flatGroundDecorationTilemap = decoration.AddComponent<Tilemap>();
+            var decorationRenderer = decoration.AddComponent<TilemapRenderer>();
+            decorationRenderer.sortingOrder = 1;
+            decorationRenderer.sharedMaterial = renderer.sharedMaterial;
 
             LoadSprites();
             BuildTiles();
@@ -979,6 +999,7 @@ namespace CavesOfOoo.Rendering
         public void NotifyMainTilemapCleared()
         {
             _flatPixelGreybox?.ClearObservedOwners();
+            _flatGroundDecorationTilemap?.ClearAllTiles();
             if (!IsInitialized) return;
             foreach (var kvp in _claims)
                 _overlayTilemap.SetTile(kvp.Key, null);
@@ -1076,6 +1097,14 @@ namespace CavesOfOoo.Rendering
                     if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, flat.ForegroundColor);
                     else ClaimMainCellWithoutOverlay(pos);
                     PaintBackgroundClaim(pos, flat.GroundTile, flat.GroundColor);
+                    if (flat.GroundDecorationTile != null && _flatGroundDecorationTilemap != null)
+                    {
+                        _flatGroundDecorationTilemap.SetTile(pos, flat.GroundDecorationTile);
+                        _flatGroundDecorationTilemap.SetTileFlags(pos, TileFlags.None);
+                        _flatGroundDecorationTilemap.SetColor(pos, Color.white);
+                        _flatPixelGreybox.ObservePaintedReserveBed(zone, x, zoneY);
+                        Perf.TilemapWrites += 3;
+                    }
                     return;
                 }
             }
@@ -1333,6 +1362,11 @@ namespace CavesOfOoo.Rendering
 
         private void RestoreMainClaim(in Claim claim)
         {
+            if (_flatGroundDecorationTilemap != null && _flatGroundDecorationTilemap.HasTile(claim.Pos))
+            {
+                _flatGroundDecorationTilemap.SetTile(claim.Pos, null);
+                Perf.TilemapWrites++;
+            }
             _overlayTilemap.SetTile(claim.Pos, null);
             Perf.TilemapWrites++;
             if (_mainTilemap.GetTile(claim.Pos) != null) return;

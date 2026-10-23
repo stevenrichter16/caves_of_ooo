@@ -1,6 +1,6 @@
 # Live 16×24 — north route and seed plot
 
-Status: exact scope, ordinary greybox journey, concept/parts reference and the first native vegetation packet are integrated and reviewed in ordinary Play, 2026-10-23. The nine-frame north works/creatures packet is now integrated and reviewed too; Nella's approved keeper, crops, reserve cues and products are next. Continues the accepted glade/cellar work (`e332cf040`) and screenshot-delivery preference (`f136ba4ee`). Normal release activation remains a separate gate. Follow [the live art direction](LIVE-16X24-ART-DIRECTION.md), [connected-site inventory](LIVE-16X24-CONNECTED-SITES.md) and [vegetation implementation/evidence](LIVE-16X24-NORTH-VEGETATION.md), and [works implementation/evidence](LIVE-16X24-NORTH-WORKS.md).
+Status: exact scope, ordinary greybox journey, concept/parts reference and the first native vegetation packet are integrated and reviewed in ordinary Play, 2026-10-23. The nine-frame north works/creatures packet is now integrated and reviewed too; Nella's approved keeper, crop states, tray and reserve cords are now integrated with860 native passes and actual arrival; ordinary crop/service acceptance is next after a computer lock, then products. Continues the accepted glade/cellar work (`e332cf040`) and screenshot-delivery preference (`f136ba4ee`). Normal release activation remains a separate gate. Follow [the live art direction](LIVE-16X24-ART-DIRECTION.md), [connected-site inventory](LIVE-16X24-CONNECTED-SITES.md) and [vegetation implementation/evidence](LIVE-16X24-NORTH-VEGETATION.md), and [works implementation/evidence](LIVE-16X24-NORTH-WORKS.md).
 
 ## Design and implementation prompt
 
@@ -104,10 +104,15 @@ The collision, harvest and plot receipts record20HP; this was not a danger-free 
 Historical scope/concept packet changed catalog scope and renderer comments; north tests/meta and obsolete cellar-pin correction; plan/contracts/parts audit; capture/receipt/test evidence; imagegen prompts/concepts and living handoffs. The later vegetation packet adds its source assets, optional runtime atlas/routes, tests and acceptance receipts, detailed in [its own record](LIVE-16X24-NORTH-VEGETATION.md). Neither packet changes blueprints, generation, saves, gameplay rules or normal launch defaults.
 
 
-### Native works acceptance and current next packet
+### Historical native works acceptance and then-next packet
 
 [North works](LIVE-16X24-NORTH-WORKS.md) is accepted as a bounded packet: nine new frames, real imported resources, bounded stationary healing-slot invalidation and exact world/portrait ownership. All 755 selected native Unity cases passed, including 69 new cases. These counts overlap earlier packets and must not be added together as unique tests.
 
 Ordinary seed64 gameplay repeated the entry/worksite route, used Calm after real combat, drank a starter tonic, examined and harvested Stoneburr, examined the still, and brewed two stoneskin tonics from the two harvested seeds. The source disappeared; outputs are actual `BrewedTonic` instances. Actual patchbearer examine shows the new sprite with its carried tonic. Self-treatment, transfer and replenishment remain native-test-only transition evidence. All seven native captures are 1280×800; profiler and clean session restoration are recorded in the works document. New creatures are static identities, not new motion sheets.
 
-**Current next packet supersedes earlier “actors/works next” pointers:** Nella's byte-identical approved keeper, six real growth frames, neutral tray and persistent validated reserve-ground cords. Follow the verified next-packet handoff in the works record, then direct products and remaining incidental owners. The complete north journey, east/kitchen and normal release/physical Deck acceptance are still unfinished.
+**Historical next packet, superseded by plot integration below:** Nella's byte-identical approved keeper, six real growth frames, neutral tray and persistent validated reserve-ground cords. Follow the verified next-packet handoff in the works record, then direct products and remaining incidental owners. The complete north journey, east/kitchen and normal release/physical Deck acceptance are still unfinished.
+
+
+### Current north plot handoff
+
+Read [the plot implementation/acceptance record](LIVE-16X24-NORTH-PLOT.md). The unchanged approved keeper, six growth states, neutral tray and separate persistent twine are integrated and native-tested;767+93 disjoint cases pass. Actual ordinary western travel reached Nella with40HP and produced [this1280×800 capture](Verification/Live16x24/north-plot-arrival.png). The Mac locked before the new service/crop interactions. Re-run those ordinary acceptance steps first, then direct products and incidental owners. The complete north journey, new motion, east/kitchen and release/physical Deck acceptance remain unfinished.

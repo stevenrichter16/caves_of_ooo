@@ -1,6 +1,6 @@
 # North connector and Nella: native parts proposal
 
-Status: **vegetation and the nine-frame works/creatures packet are integrated and reviewed in ordinary Play; remaining parts are planned**. Updated 2026-10-23 after exact scope, real greybox capture, imagegen critique and native production. Four Tree/Hedge/BerryBush/DryBrush frames plus Bush/Reeds reuse, still/shelf/three forage sources and Magpie/Viper/Patchbearer healing-slot pair are complete. Nella's approved keeper, crops, tray and persistent reserve cords are next, then products. See [vegetation evidence](../../../Docs/LIVE-16X24-NORTH-VEGETATION.md) and [works evidence](../../../Docs/LIVE-16X24-NORTH-WORKS.md). This ledger does not claim whole-route or release completion.
+Status: **vegetation and the nine-frame works/creatures packet are integrated and reviewed in ordinary Play; remaining parts are planned**. Updated 2026-10-23 after exact scope, real greybox capture, imagegen critique and native production. Four Tree/Hedge/BerryBush/DryBrush frames plus Bush/Reeds reuse, still/shelf/three forage sources and Magpie/Viper/Patchbearer healing-slot pair are complete. Nella's approved keeper, six crop-stage cells, tray and persistent cords are now integrated and native-tested; ordinary arrival is captured but service/crop acceptance stopped at a computer lock. Finish those checks, then products; see [plot evidence](../../../Docs/LIVE-16X24-NORTH-PLOT.md). See [vegetation evidence](../../../Docs/LIVE-16X24-NORTH-VEGETATION.md) and [works evidence](../../../Docs/LIVE-16X24-NORTH-WORKS.md). This ledger does not claim whole-route or release completion.
 
 ## Evidence and limits
 
@@ -43,7 +43,7 @@ The four newly covered crops may reuse the accepted cellar planted-seed mark for
 
 ## Proposed new art, split into reviewable groups
 
-The original minimum observed-route proposal is **45 new cells**:39 named blueprint identities plus one reserve-ground overlay role, with state variants accounting for the additional cells. Reused art above is excluded. **Four of these cells are now integrated vegetation;41 proposed cells remain**, before later revisions or additional merchant-crop coverage. This ledger includes seed65 surroundings and finite liquid states rather than treating the seed64 destination as the whole route. Remaining groups still require their own production and acceptance gates.
+The original minimum observed-route proposal is **45 new cells**:39 named blueprint identities plus one reserve-ground overlay role, with state variants accounting for the additional cells. Reused art above is excluded. **21 of these cells are now integrated:4 vegetation,9 works/creature and8 plot;24 proposed cells remain**, before later revisions or additional merchant-crop coverage. This ledger includes seed65 surroundings and finite liquid states rather than treating the seed64 destination as the whole route. Remaining groups still require their own production and acceptance gates.
 
 ### Ordinary surroundings —12 identities,14 cells
 
@@ -178,3 +178,8 @@ Production corrections remain mandatory:
 - Keep shelf compartments empty and the tray shallow. The extracted still's highlights/receiver size can be reduced while preserving its identifying condenser shape. Use one actual16×24 cell per owner; the impressive enlarged sheet is not a native-size readability proof.
 
 The reference supports the priority order above. The first native packet should be judged at1× beside accepted base/cast/keeper art and in a repeated hedge/wall strip before import, then in the actual captured route—not accepted from this enlarged sheet alone.
+
+
+### Current plot state,2026-10-23
+
+The approved keeper is reused byte-for-byte; six new growth cells, neutral tray and asymmetric ground cord are integrated. Stage0 reuses the accepted planted mark. Source/native/contact verification and860 distinct native tests pass; actual arrival confirms the plot composition. Ordinary rights, watering/growth, post-harvest cord and save/load visuals are still owed after the Mac locked. Do those before the next direct-product packet. [The plot record](../../../Docs/LIVE-16X24-NORTH-PLOT.md) also corrects StoneburrSeed (reagent, not plantable), neutral BrewedTonic admission, and the omitted ConcentratedMendleaf outcome. Merchant-added crop families, grimoire, incidental owners and motion remain explicit gaps.

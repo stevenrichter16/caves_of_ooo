@@ -1,0 +1,71 @@
+{
+  "label": "north-plot-profile",
+  "start": "2026-10-23T12:32:03.679365Z",
+  "end": "2026-10-23T12:35:06.381616Z",
+  "elapsedSeconds": 182.702252,
+  "frames": 181515,
+  "zone": "Overworld.11.8.0",
+  "player": [
+    20,
+    10
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 61770.343505859375,
+      "max": 267833,
+      "p99": 78541
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 981703.5849380493,
+      "max": 567888750,
+      "p99": 1280500
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 41.0,
+      "max": 41,
+      "p99": 41
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.0,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 8194.0,
+      "max": 8194,
+      "p99": 8194
+    }
+  ],
+  "bounds": "Editor idle only after real arrival; recorder wrapped during context handoff. Retained tail samples, not full-window statistics, ordinary-action benchmark, Deck evidence or speedup comparison."
+}

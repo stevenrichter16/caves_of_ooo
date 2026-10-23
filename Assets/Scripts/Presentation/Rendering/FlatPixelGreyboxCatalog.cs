@@ -21,6 +21,8 @@ namespace CavesOfOoo.Rendering
     public readonly struct FlatPixelGreyboxCell
     {
         public readonly Tile GroundTile, ForegroundTile;
+        /// <summary>Observed physical ground detail, independent of the top occupant.</summary>
+        public readonly Tile GroundDecorationTile;
         public readonly Color GroundColor, ForegroundColor;
         public readonly Entity Owner;
         public readonly FlatPixelGreyboxKind Kind;
@@ -29,9 +31,9 @@ namespace CavesOfOoo.Rendering
 
         internal FlatPixelGreyboxCell(Tile ground, Tile foreground, Color groundColor,
             Color foregroundColor, Entity owner, FlatPixelGreyboxKind kind,
-            FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement)
+            FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null)
         {
-            GroundTile = ground; ForegroundTile = foreground;
+            GroundTile = ground; ForegroundTile = foreground; GroundDecorationTile = groundDecoration;
             GroundColor = groundColor; ForegroundColor = foregroundColor;
             Owner = owner; Kind = kind; GroundKind = groundKind;
             Remembered = remembered; BlocksMovement = blocksMovement;
@@ -59,6 +61,11 @@ namespace CavesOfOoo.Rendering
             internal bool Covered;
         }
         private Zone _observedZone;
+        private Zone _reserveZone;
+        private IReadOnlyList<Entity> _reserveOwners;
+        private int _reserveMembership = -1;
+        private Dictionary<int, Entity> _reserveBeds = new Dictionary<int, Entity>();
+        private Dictionary<int, Entity> _nextReserveBeds = new Dictionary<int, Entity>();
         private readonly Dictionary<Entity, SupplyObservation> _supplyOwners = new Dictionary<Entity, SupplyObservation>();
         private readonly List<Entity> _releaseSupplyOwners = new List<Entity>();
 
@@ -69,7 +76,9 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.KeeperResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -107,8 +116,17 @@ namespace CavesOfOoo.Rendering
         /// <summary>The eighth optional borrowed atlas adds works and creatures;
         /// earlier injection overloads never implicitly load it.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, null) { }
+
+        /// <summary>Independent borrowed crop/ground atlas; keeper remains omitted.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, null) { }
+
+        /// <summary>Ten optional borrowed groups. The approved keeper's full cell
+        /// is independent of plot art; omitted injections never load Resources.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -168,13 +186,13 @@ namespace CavesOfOoo.Rendering
             }
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
-                !remembered && cell.BlocksMovement());
+                !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _));
             return true;
         }
 
         private void ObserveSupply(Zone zone, Cell cell, Entity owner, Tile tile)
         {
-            if (_observedZone != zone) { ClearObservedOwners(); _observedZone = zone; }
+            if (_observedZone != zone) { ClearSupplyOwners(); _observedZone = zone; }
             if (!_supplyOwners.TryGetValue(owner, out var observation))
             {
                 observation = new SupplyObservation();
@@ -191,7 +209,9 @@ namespace CavesOfOoo.Rendering
         /// Covered owners retain no supply signature and do not query inventory.</summary>
         internal void ReconcileObservedOwners(Zone zone, Action<int, int, string> dirty)
         {
-            if (_disposed || zone != _observedZone || !IsAdmitted(zone)) { ClearObservedOwners(); return; }
+            if (_disposed || !IsAdmitted(zone)) { ClearObservedOwners(); return; }
+            ReconcileReserveBeds(zone, dirty);
+            if (zone != _observedZone) { ClearSupplyOwners(); return; }
             _releaseSupplyOwners.Clear();
             foreach (var pair in _supplyOwners)
             {
@@ -224,9 +244,106 @@ namespace CavesOfOoo.Rendering
 
         internal void ClearObservedOwners()
         {
+            ClearSupplyOwners();
+            _reserveZone = null; _reserveOwners = null; _reserveMembership = -1;
+            _reserveBeds.Clear(); _nextReserveBeds.Clear();
+        }
+
+        private void ClearSupplyOwners()
+        {
             _supplyOwners.Clear();
             _releaseSupplyOwners.Clear();
             _observedZone = null;
+        }
+
+        private IReadOnlyList<Entity> ReserveOwners(Zone zone)
+        {
+            int version = zone.GetPartMembershipVersion<LocalGatheringClaimPart>();
+            if (_reserveZone != zone || version != _reserveMembership)
+            {
+                if (_reserveZone != zone) { _reserveBeds.Clear(); _nextReserveBeds.Clear(); }
+                _reserveZone = zone; _reserveMembership = version;
+                _reserveOwners = zone.GetReadOnlyEntitiesWithPart<LocalGatheringClaimPart>();
+            }
+            return _reserveOwners;
+        }
+
+        private static bool CurrentClaim(Zone zone, Entity owner, LocalGatheringClaimPart claim)
+            => claim != null && claim.ParentEntity == owner && claim.Bound(zone)
+                && CurrentOwnerCell(zone, zone.GetEntityCell(owner), owner)
+                && CurrentOwnerCell(zone, zone.GetEntityCell(claim.Tray), claim.Tray)
+                && CurrentOwnerCell(zone, zone.GetEntityCell(claim.FirstSoil), claim.FirstSoil)
+                && CurrentOwnerCell(zone, zone.GetEntityCell(claim.SecondSoil), claim.SecondSoil);
+
+        private static bool VisibleReserveSoil(Zone zone, Entity soil, Entity keeper, out Cell cell)
+        {
+            cell = zone.GetEntityCell(soil);
+            return CurrentOwnerCell(zone, cell, soil) && cell.Explored && cell.IsVisible
+                && soil.GetProperty(SpreadExplorationResidents.ReserveBedKey) == keeper.ID;
+        }
+
+        // Direct callers receive fresh authority; a previously painted cord is
+        // never evidence that a replacement soil or copied marker owns a bed.
+        private Tile ReserveCord(Zone zone, Cell cell, out Entity matched)
+        {
+            matched = null;
+            if (!_openingArt.TryGetReserveCordTile(out var tile)) return null;
+            bool marked = false;
+            for (int i = 0; i < cell.Objects.Count; i++)
+                if (!string.IsNullOrEmpty(cell.Objects[i].GetProperty(SpreadExplorationResidents.ReserveBedKey))) { marked = true; break; }
+            if (!marked) return null;
+            var owners = ReserveOwners(zone);
+            for (int i = 0; i < owners.Count; i++)
+            {
+                Entity keeper = owners[i]; var claim = keeper.GetPart<LocalGatheringClaimPart>();
+                if (!CurrentClaim(zone, keeper, claim)) continue;
+                Entity soil = zone.GetEntityCell(claim.FirstSoil) == cell ? claim.FirstSoil
+                    : zone.GetEntityCell(claim.SecondSoil) == cell ? claim.SecondSoil : null;
+                if (soil == null || !VisibleReserveSoil(zone, soil, keeper, out _)) continue;
+                if (matched != null) return null; // Ambiguous graphs do not assert ownership.
+                matched = soil;
+            }
+            return matched == null ? null : tile;
+        }
+
+        // Full repaints clear the old observation before submitting tiles. Seed
+        // only actually painted cords, so a remote invalidation on the very next
+        // quiet frame can retire them. Direct read-only queries never seed this.
+        internal void ObservePaintedReserveBed(Zone zone, int x, int y)
+        {
+            Cell cell = zone?.GetCell(x, y);
+            if (cell == null || ReserveCord(zone, cell, out var soil) == null) return;
+            _reserveBeds[y * Zone.Width + x] = soil;
+        }
+
+        private void ReconcileReserveBeds(Zone zone, Action<int, int, string> dirty)
+        {
+            if (!_openingArt.TryGetReserveCordTile(out _)) return;
+            var owners = ReserveOwners(zone);
+            _nextReserveBeds.Clear();
+            for (int i = 0; i < owners.Count; i++)
+            {
+                Entity keeper = owners[i]; var claim = keeper.GetPart<LocalGatheringClaimPart>();
+                if (!CurrentClaim(zone, keeper, claim)) continue;
+                CollectReserveBed(zone, claim.FirstSoil, keeper);
+                CollectReserveBed(zone, claim.SecondSoil, keeper);
+            }
+            foreach (var pair in _reserveBeds)
+                if (!_nextReserveBeds.TryGetValue(pair.Key, out var current) || current != pair.Value)
+                    dirty(pair.Key % Zone.Width, pair.Key / Zone.Width, "flat reserve ownership");
+            foreach (var pair in _nextReserveBeds)
+                if (!_reserveBeds.TryGetValue(pair.Key, out var prior) || prior != pair.Value)
+                    dirty(pair.Key % Zone.Width, pair.Key / Zone.Width, "flat reserve ownership");
+            var swap = _reserveBeds; _reserveBeds = _nextReserveBeds; _nextReserveBeds = swap;
+        }
+
+        private void CollectReserveBed(Zone zone, Entity soil, Entity keeper)
+        {
+            if (!VisibleReserveSoil(zone, soil, keeper, out var cell)) return;
+            int key = cell.Y * Zone.Width + cell.X;
+            // A null sentinel keeps ambiguous claims suppressed for this pass.
+            if (_nextReserveBeds.ContainsKey(key)) _nextReserveBeds[key] = null;
+            else _nextReserveBeds.Add(key, soil);
         }
 
         private static bool CurrentOwnerCell(Zone zone, Cell cell, Entity owner)
@@ -383,9 +500,17 @@ namespace CavesOfOoo.Rendering
                 if (coatings != null)
                     foreach (var coating in coatings)
                         if (coating.Id == "water" && coating.Turns > 0) return FlatPixelGreyboxGround.Water;
-                var crop = owner?.GetPart<CropPart>();
-                if (crop != null && crop.ParentEntity == owner)
-                    return crop.MoistureTicks > 0 ? FlatPixelGreyboxGround.WetSoil : FlatPixelGreyboxGround.DrySoil;
+                // Soil belongs to the real lower crop even while an actor or
+                // loose item covers it. This reads state without advancing time.
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    Entity plant = cell.Objects[i]; var crop = plant.GetPart<CropPart>();
+                    var render = plant.GetPart<RenderPart>();
+                    if (CropTime.IsCurrentOwner(crop, zone) && CurrentOwnerCell(zone, cell, plant)
+                        && render != null && render.ParentEntity == plant && render.Visible
+                        && crop.GrowthStage >= 0 && crop.GrowthStage <= (crop.HarvestAtMaturity ? 2 : 1))
+                        return crop.MoistureTicks > 0 ? FlatPixelGreyboxGround.WetSoil : FlatPixelGreyboxGround.DrySoil;
+                }
                 var field = owner?.GetPart<FieldHarvestPart>();
                 if (field != null && field.ParentEntity == owner || owner?.BlueprintName == "CropRow"
                     || CultivatedSoilPart.IsCultivated(zone, cell))

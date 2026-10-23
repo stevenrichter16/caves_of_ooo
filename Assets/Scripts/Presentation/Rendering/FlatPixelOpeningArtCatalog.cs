@@ -20,6 +20,8 @@ namespace CavesOfOoo.Rendering
         public const string CellarResourcePath = "Sprites/Live16x24/opening-cellar";
         public const string VegetationResourcePath = "Sprites/Live16x24/north-vegetation";
         public const string WorksResourcePath = "Sprites/Live16x24/north-works";
+        public const string PlotResourcePath = "Sprites/Live16x24/north-plot";
+        public const string KeeperResourcePath = "Sprites/Live16x24/seed-keeper-3";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -37,13 +39,18 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _vegetationSprites;
         private readonly Tile[] _worksTiles;
         private readonly Sprite[] _worksSprites;
+        private readonly Tile[] _plotTiles;
+        private readonly Sprite[] _plotSprites;
+        private readonly Tile[] _keeperTiles;
+        private readonly Sprite[] _keeperSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
             Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
             Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
             Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath),
-            Resources.Load<Texture2D>(WorksResourcePath)) { }
+            Resources.Load<Texture2D>(WorksResourcePath), Resources.Load<Texture2D>(PlotResourcePath),
+            Resources.Load<Texture2D>(KeeperResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -81,6 +88,16 @@ namespace CavesOfOoo.Rendering
         /// <summary>The eighth borrowed atlas adds exact works and creature
         /// identities. The healing slot follows only actual carried medicine.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, null) { }
+
+        /// <summary>Plot frames are independent of the approved keeper sprite.
+        /// Earlier injection overloads omit both without loading resources.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, null) { }
+
+        /// <summary>All ten groups borrow their textures. Keeper art uses the
+        /// entire approved 16x24 cell; crop art follows owned functional state.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -90,6 +107,8 @@ namespace CavesOfOoo.Rendering
             _cellarTiles = BuildFrames(cellarAtlas, 9, "cellar", out _cellarSprites);
             _vegetationTiles = BuildFrames(vegetationAtlas, 4, "vegetation", out _vegetationSprites);
             _worksTiles = BuildFrames(worksAtlas, 9, "works", out _worksSprites);
+            _plotTiles = BuildFrames(plotAtlas, 8, "plot", out _plotSprites);
+            _keeperTiles = BuildFrames(keeperAtlas, 1, "keeper", out _keeperSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -167,8 +186,66 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = WorksFrameOf(owner, render.VisualID);
-            if (frame < 0 || _worksTiles == null) return false;
-            tile = _worksTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _worksTiles == null ? null : _worksTiles[frame];
+                return tile != null;
+            }
+            return TryResolvePlot(owner, render, out tile);
+        }
+
+        /// <summary>Returns only the cached transparent ground cord. This is
+        /// not an ownership or permission check: the world caller must validate
+        /// the current bound reserve, soil marker and visibility before drawing.</summary>
+        public bool TryGetReserveCordTile(out Tile tile)
+        {
+            tile = _disposed || _plotTiles == null ? null : _plotTiles[7];
+            return tile != null;
+        }
+
+        private bool TryResolvePlot(Entity owner, RenderPart render, out Tile tile)
+        {
+            tile = null;
+            if (!string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
+                || !string.IsNullOrEmpty(render.GlyphVariants) || owner.HasTag("Player") || owner.HasTag("Item")) return false;
+            var physics = Owned<PhysicsPart>(owner);
+            if (physics == null || physics.Takeable || physics.InInventory != null || physics.Equipped != null) return false;
+            if (owner.BlueprintName == "SpreadSeedKeeper")
+            {
+                // A claim, mood or stock change does not change Nella's body.
+                tile = owner.HasTag("Creature") && _keeperTiles != null ? _keeperTiles[0] : null;
+                return tile != null;
+            }
+            if (owner.HasTag("Creature") || physics.Solid) return false;
+            if (owner.BlueprintName == "ConnectedReserveTray")
+            {
+                // Neutral art deliberately promises neither stock nor access.
+                tile = Owned<ContainerPart>(owner) != null && _plotTiles != null ? _plotTiles[6] : null;
+                return tile != null;
+            }
+
+            string produce, seed;
+            int sprout, ripe;
+            switch (owner.BlueprintName)
+            {
+                case "CandyCarrotCrop": produce = "CandyCarrot"; seed = null; sprout = 0; ripe = -1; break;
+                case "EmberwheatCrop": produce = "Emberwheat"; seed = null; sprout = 1; ripe = -1; break;
+                case "MarlrootCrop": produce = "MarlrootClod"; seed = "MarlrootSeed"; sprout = 2; ripe = 3; break;
+                case "PitchpodCrop": produce = "PitchpodResin"; seed = "PitchpodSeed"; sprout = 4; ripe = 5; break;
+                default: return false;
+            }
+            var crop = Owned<CropPart>(owner);
+            bool cultivated = seed != null;
+            if (!owner.HasTag("Crop") || crop == null || crop.HarvestAtMaturity != cultivated
+                || crop.GrowthStage < 0 || crop.GrowthStage > (cultivated ? 2 : 1)
+                || crop.YieldBlueprint != produce || crop.YieldCount <= 0
+                || crop.YieldCount > CropYieldService.MaximumYieldUnits) return false;
+            // Automatic maturity does not use the saved-seed fields. Standing
+            // reserve crops must retain their real, bounded produce+seed yield.
+            if (cultivated && (crop.SeedYieldBlueprint != seed || crop.SeedYieldCount <= 0
+                || crop.SeedYieldCount > CropYieldService.MaximumYieldUnits - crop.YieldCount)) return false;
+            tile = crop.GrowthStage == 0 ? (_stateTiles == null ? null : _stateTiles[6])
+                : _plotTiles == null ? null : _plotTiles[crop.GrowthStage == 1 ? sprout : ripe];
             return tile != null;
         }
 
@@ -444,6 +521,10 @@ namespace CavesOfOoo.Rendering
             if (_vegetationSprites != null) foreach (var sprite in _vegetationSprites) DestroyOwned(sprite);
             if (_worksTiles != null) foreach (var tile in _worksTiles) DestroyOwned(tile);
             if (_worksSprites != null) foreach (var sprite in _worksSprites) DestroyOwned(sprite);
+            if (_plotTiles != null) foreach (var tile in _plotTiles) DestroyOwned(tile);
+            if (_plotSprites != null) foreach (var sprite in _plotSprites) DestroyOwned(sprite);
+            if (_keeperTiles != null) foreach (var tile in _keeperTiles) DestroyOwned(tile);
+            if (_keeperSprites != null) foreach (var sprite in _keeperSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

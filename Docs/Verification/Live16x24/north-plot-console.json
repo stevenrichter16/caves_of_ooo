@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "message": "Retrieved 2 log entries.",
+  "data": [
+    {
+      "type": "Exception",
+      "message": "[Combat] Autosaved.",
+      "file": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs",
+      "line": 198,
+      "stackTrace": "UnityEngine.Debug:Log (object)\nCavesOfOoo.GameBootstrap/<>c:<DoStart>b__18_4 (string) (at Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:198)\nCavesOfOoo.Core.MessageLog:AddRaw (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:106)\nCavesOfOoo.Core.MessageLog:Add (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:85)\nCavesOfOoo.Core.SaveGameService:PublishAutosave (CavesOfOoo.Core.SaveGameService/CapturedSave,System.Exception) (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:718)\nCavesOfOoo.Core.BackgroundSaveQueue`1<CavesOfOoo.Core.SaveGameService/CapturedSave>:Pump (System.Action`2<CavesOfOoo.Core.SaveGameService/CapturedSave, System.Exception>) (at Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs:77)\nCavesOfOoo.Core.SaveGameService:PumpPendingSaves () (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:701)\nCavesOfOoo.Rendering.InputHandler:UpdateInput () (at Assets/Scripts/Presentation/Input/InputHandler.cs:448)\nCavesOfOoo.Rendering.InputHandler:Update () (at Assets/Scripts/Presentation/Input/InputHandler.cs:436)"
+    },
+    {
+      "type": "Error",
+      "message": "[Worker0] Import Error Code:(4)",
+      "file": "",
+      "line": 0,
+      "stackTrace": "Message: Build asset version error: assets/unitymcp/log/mcp.log in SourceAssetDB has modification time of '2026-10-23T12:37:35Z' while content on disk has modification time of '2026-10-23T12:37:54Z'"
+    }
+  ]
+}
