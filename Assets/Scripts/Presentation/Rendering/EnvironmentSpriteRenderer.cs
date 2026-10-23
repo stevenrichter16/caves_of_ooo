@@ -311,7 +311,28 @@ namespace CavesOfOoo.Rendering
         /// <summary>Renderer-owned opt-in; admission and visibility are rechecked by the catalog.</summary>
         public bool FlatPixelGreyboxEnabled { get; set; }
         private FlatPixelGreyboxCatalog _flatPixelGreybox;
+        private ZoneRenderer _flatStateOwner;
+        private Action<int, int, string> _flatStateDirty;
         private void OnDestroy() { _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null; }
+
+        /// <summary>Quiet-frame checks of previously observed finite-supply
+        /// actors. The owning renderer receives bounded cell dirtiness directly;
+        /// an unrelated global hook or renderer cannot redirect these writes.</summary>
+        public void ReconcileFlatOwnerStates(Zone zone, ZoneRenderer owner)
+        {
+            if (owner == null || !owner.OwnsEnvironmentRenderer(this) || owner.CurrentZone != zone) return;
+            if (!RenderingEnabled || !FlatPixelGreyboxEnabled || owner.Paused || !owner.FlatPixelModeActive)
+            {
+                _flatPixelGreybox?.ClearObservedOwners();
+                return;
+            }
+            if (_flatStateOwner != owner)
+            {
+                _flatStateOwner = owner;
+                _flatStateDirty = owner.MarkCellDirty;
+            }
+            _flatPixelGreybox?.ReconcileObservedOwners(zone, _flatStateDirty);
+        }
 
         private Func<Entity, bool> _entityVisualPredicate;
         private Func<Zone, Entity, int, int, bool> _flatActorObserver;
@@ -957,6 +978,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void NotifyMainTilemapCleared()
         {
+            _flatPixelGreybox?.ClearObservedOwners();
             if (!IsInitialized) return;
             foreach (var kvp in _claims)
                 _overlayTilemap.SetTile(kvp.Key, null);
@@ -1342,6 +1364,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void ReleaseAllClaims()
         {
+            _flatPixelGreybox?.ClearObservedOwners();
             if (!IsInitialized) return;
             ReleaseClaims();
         }

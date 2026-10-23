@@ -1,0 +1,1119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="64" result="Failed(Child)" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 10:57:33Z" end-time="2026-10-23 10:57:36Z" duration="2.9980132">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30264" result="Failed" site="Child" start-time="2026-10-23 10:57:33Z" end-time="2026-10-23 10:57:36Z" duration="2.998013" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37274" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30264" result="Failed" site="Child" start-time="2026-10-23 10:57:33Z" end-time="2026-10-23 10:57:36Z" duration="2.800057" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="76312" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37275" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30264" result="Failed" site="Child" start-time="2026-10-23 10:57:33Z" end-time="2026-10-23 10:57:36Z" duration="2.701950" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37276" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30264" result="Failed" site="Child" start-time="2026-10-23 10:57:33Z" end-time="2026-10-23 10:57:36Z" duration="2.501941" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28204" name="FlatPixelNorthWorksTests" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:36Z" duration="2.201534" total="64" passed="0" failed="64" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28273" name="CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner" methodname="CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="2042188096" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.178501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:219
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28265" name="DefaultWorldAndCatalogBindAllNineActualImportedFrames" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.DefaultWorldAndCatalogBindAllNineActualImportedFrames" methodname="DefaultWorldAndCatalogBindAllNineActualImportedFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="695388439" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Synthetic routing does not prove native art is imported.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.DefaultWorldAndCatalogBindAllNineActualImportedFrames () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:171
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28264" name="DisposalReleasesOnlyOwnGeneratedFrames" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.DisposalReleasesOnlyOwnGeneratedFrames" methodname="DisposalReleasesOnlyOwnGeneratedFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="659568231" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000316" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.DisposalReleasesOnlyOwnGeneratedFrames () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:161
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28260" name="EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt" methodname="EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="321331491" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.002462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt () [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:149
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28213" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.086864" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28205" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(0)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1021190601" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28206" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(1)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="933549882" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000168" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28207" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(2)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="22215856" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28208" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(3)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1868528703" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28209" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(4)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="179699958" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28210" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(5)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="319166158" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28211" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(6)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(6)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1385118948" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28212" name="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(7)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(7)" methodname="ExactOwnersUseCachedNativeFramesWithoutChangingGameplay" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1188258358" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28222" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.201715" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28214" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(0)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1413267098" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000951" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28215" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(1)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1444146030" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28216" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(2)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="497462442" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28217" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(3)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="432769586" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28218" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(4)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="737154406" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28219" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(5)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="478238899" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28220" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(6)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(6)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1850757088" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28221" name="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(7)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(7)" methodname="ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1519425862" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28229" name="FunctionalPartsMustBelongToTheActualOwner" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.098996" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28223" name="FunctionalPartsMustBelongToTheActualOwner(0,&quot;AlchemyStill&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(0,&quot;AlchemyStill&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="673311078" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28224" name="FunctionalPartsMustBelongToTheActualOwner(1,&quot;Container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(1,&quot;Container&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="911442734" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28225" name="FunctionalPartsMustBelongToTheActualOwner(7,&quot;FieldMedicine&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,&quot;FieldMedicine&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="2005566977" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28226" name="FunctionalPartsMustBelongToTheActualOwner(7,&quot;Inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,&quot;Inventory&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="882984397" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28227" name="FunctionalPartsMustBelongToTheActualOwner(7,&quot;Body&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,&quot;Body&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1297424387" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28228" name="FunctionalPartsMustBelongToTheActualOwner(7,&quot;Brain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,&quot;Brain&quot;)" methodname="FunctionalPartsMustBelongToTheActualOwner" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1989428518" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000326" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner (System.Int32 index, System.String partName) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28233" name="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.198639" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28230" name="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(2)" methodname="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="757530928" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28231" name="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(3)" methodname="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1531872170" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28232" name="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(4)" methodname="HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="2098202633" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28238" name="HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote" methodname="HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1114973564" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.000892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28274" name="HiddenChangesStayHiddenAndRevealCurrentSupply" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.HiddenChangesStayHiddenAndRevealCurrentSupply" methodname="HiddenChangesStayHiddenAndRevealCurrentSupply" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1706320511" result="Failed" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:34Z" duration="0.050866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.HiddenChangesStayHiddenAndRevealCurrentSupply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:229
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28246" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-23 10:57:34Z" end-time="2026-10-23 10:57:35Z" duration="0.152410" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28239" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;zero-stack&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1450361256" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.001271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28240" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-inventory&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="368195673" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28241" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;equipped&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="337077652" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28242" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-physics&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1948597873" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28243" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;foreign-tonic&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="249376946" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28244" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;no-healing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;no-healing&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1571997250" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28245" name="InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;on-ground&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(&quot;on-ground&quot;)" methodname="InvalidMedicineReferencesNeverPaintAFullHealingSlot" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1386200720" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:103
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28279" name="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.227592" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28276" name="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;paused&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;paused&quot;)" methodname="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="472863005" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.052187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:247
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28277" name="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;mode&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;mode&quot;)" methodname="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="89459924" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.038239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:247
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28278" name="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(&quot;disabled&quot;)" methodname="InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1344740394" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.043244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:247
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28263" name="MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.066704" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28261" name="MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(143,24)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(143,24)" methodname="MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="519782805" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings (System.Int32 width, System.Int32 height) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28262" name="MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(144,23)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(144,23)" methodname="MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1875942541" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.000172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings (System.Int32 width, System.Int32 height) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28272" name="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.363457" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28268" name="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;medicine&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;medicine&quot;)" methodname="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1158727469" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.055106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:209
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28269" name="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;inventory&quot;)" methodname="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="2103138166" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.037840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:209
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28270" name="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;render&quot;)" methodname="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="154785106" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.035582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:209
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28271" name="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;tonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(&quot;tonic&quot;)" methodname="QuietInvalidOwnershipAndRecoveryRepaintSubmittedState" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1490353500" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.035373" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:209
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28259" name="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.128667" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28256" name="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(2,&quot;StoneburrSeed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(2,&quot;StoneburrSeed&quot;)" methodname="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1911537880" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.031034" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield (System.Int32 index, System.String yield) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28257" name="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(3,&quot;FrostLichen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(3,&quot;FrostLichen&quot;)" methodname="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1697801750" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.028968" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield (System.Int32 index, System.String yield) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28258" name="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(4,&quot;MendleafSprig&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(4,&quot;MendleafSprig&quot;)" methodname="RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1195721041" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.032911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield (System.Int32 index, System.String yield) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28275" name="RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement" methodname="RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1549783664" result="Failed" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:35Z" duration="0.049137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:238
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28237" name="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-23 10:57:35Z" end-time="2026-10-23 10:57:36Z" duration="0.059275" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28234" name="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(5)" methodname="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="61124734" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000696" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28235" name="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(6)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(6)" methodname="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="499929383" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28236" name="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(7)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(7)" methodname="StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="196689698" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Eighth independent works atlas API is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewArt (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:273
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.Create () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:267
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28266" name="StationaryNativeSelfTreatmentConsumesTheVisibleBottle" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryNativeSelfTreatmentConsumesTheVisibleBottle" methodname="StationaryNativeSelfTreatmentConsumesTheVisibleBottle" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1895828972" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.070143" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryNativeSelfTreatmentConsumesTheVisibleBottle () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:185
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28267" name="StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange" methodname="StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1470819213" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.082583" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests+CadenceFixture..ctor () [0x00514] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:317
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:195
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28255" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.046585" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28247" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(0)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(0)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1988329442" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28248" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(1)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(1)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="570982751" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28249" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(2)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(2)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1932740247" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28250" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(3)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(3)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1554660013" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28251" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(4)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(4)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1485397892" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28252" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(5)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(5)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="130366780" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28253" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(6)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(6)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="862514317" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28254" name="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(7)" fullname="CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(7)" methodname="WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners" classname="CavesOfOoo.Tests.FlatPixelNorthWorksTests" runstate="Runnable" seed="1861580795" result="Failed" start-time="2026-10-23 10:57:36Z" end-time="2026-10-23 10:57:36Z" duration="0.000129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  World selector must forward eighth works atlas.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNorthWorksTests.NewWorld (UnityEngine.Texture2D first, UnityEngine.Texture2D seventh, UnityEngine.Texture2D eighth) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:278
+at CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNorthWorksTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

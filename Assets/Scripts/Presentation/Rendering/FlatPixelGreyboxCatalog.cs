@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -51,6 +52,15 @@ namespace CavesOfOoo.Rendering
         private readonly FlatPixelOpeningArtCatalog _openingArt;
         private Texture2D _atlas;
         private bool _disposed;
+        private sealed class SupplyObservation
+        {
+            internal Cell Cell;
+            internal Tile Tile;
+            internal bool Covered;
+        }
+        private Zone _observedZone;
+        private readonly Dictionary<Entity, SupplyObservation> _supplyOwners = new Dictionary<Entity, SupplyObservation>();
+        private readonly List<Entity> _releaseSupplyOwners = new List<Entity>();
 
         public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
@@ -58,7 +68,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath)) { }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -91,8 +102,13 @@ namespace CavesOfOoo.Rendering
         /// <summary>The seventh optional borrowed atlas adds native vegetation;
         /// earlier injections preserve explicit fallback for omitted groups.</summary>
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas)
+            : this(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, null) { }
+
+        /// <summary>The eighth optional borrowed atlas adds works and creatures;
+        /// earlier injection overloads never implicitly load it.</summary>
+        public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas)
         {
-            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas);
+            _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas);
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -141,6 +157,8 @@ namespace CavesOfOoo.Rendering
                 foreground = openingTile;
                 foregroundColor = Color.white;
             }
+            if (!remembered && owner?.BlueprintName == "MarlbackPatchbearer" && CurrentOwnerCell(zone, cell, owner))
+                ObserveSupply(zone, cell, owner, foreground);
             if (remembered)
             {
                 // No independent light source or live-state read through memory.
@@ -153,6 +171,67 @@ namespace CavesOfOoo.Rendering
                 !remembered && cell.BlocksMovement());
             return true;
         }
+
+        private void ObserveSupply(Zone zone, Cell cell, Entity owner, Tile tile)
+        {
+            if (_observedZone != zone) { ClearObservedOwners(); _observedZone = zone; }
+            if (!_supplyOwners.TryGetValue(owner, out var observation))
+            {
+                observation = new SupplyObservation();
+                _supplyOwners.Add(owner, observation);
+            }
+            observation.Cell = cell;
+            observation.Tile = tile;
+            observation.Covered = false;
+        }
+
+        /// <summary>Only previously painted exact owners are revisited. World
+        /// membership and visibility precede the local medicine query. Invalid
+        /// semantic parts remain observed so repairing ownership can recover art.
+        /// Covered owners retain no supply signature and do not query inventory.</summary>
+        internal void ReconcileObservedOwners(Zone zone, Action<int, int, string> dirty)
+        {
+            if (_disposed || zone != _observedZone || !IsAdmitted(zone)) { ClearObservedOwners(); return; }
+            _releaseSupplyOwners.Clear();
+            foreach (var pair in _supplyOwners)
+            {
+                Entity owner = pair.Key;
+                SupplyObservation previous = pair.Value;
+                Cell cell = zone.GetEntityCell(owner);
+                if (owner.BlueprintName != "MarlbackPatchbearer" || !CurrentOwnerCell(zone, cell, owner)
+                    || !cell.Explored || !cell.IsVisible)
+                {
+                    dirty(previous.Cell.X, previous.Cell.Y, "flat medicine ownership");
+                    _releaseSupplyOwners.Add(owner);
+                    continue;
+                }
+                bool covered = !ReferenceEquals(VisibleOwner(zone, cell), owner);
+                Tile tile = null;
+                if (!covered && !_openingArt.TryResolve(owner, cell.X, cell.Y, out tile))
+                    tile = _tiles[(int)Classify(owner)];
+                if (previous.Cell != cell || previous.Covered != covered || previous.Tile != tile)
+                {
+                    dirty(previous.Cell.X, previous.Cell.Y, "flat medicine state");
+                    if (previous.Cell != cell) dirty(cell.X, cell.Y, "flat medicine state");
+                    previous.Cell = cell;
+                    previous.Covered = covered;
+                    previous.Tile = tile;
+                }
+            }
+            for (int i = 0; i < _releaseSupplyOwners.Count; i++) _supplyOwners.Remove(_releaseSupplyOwners[i]);
+            _releaseSupplyOwners.Clear();
+        }
+
+        internal void ClearObservedOwners()
+        {
+            _supplyOwners.Clear();
+            _releaseSupplyOwners.Clear();
+            _observedZone = null;
+        }
+
+        private static bool CurrentOwnerCell(Zone zone, Cell cell, Entity owner)
+            => cell != null && cell.ParentZone == zone && zone.GetCell(cell.X, cell.Y) == cell
+                && owner.SpatialZone == zone && zone.GetEntityCell(owner) == cell && cell.Objects.Contains(owner);
 
         /// <summary>Borrow the exact subject's current sprite without selecting a
         /// cell occupant. This is semantic artwork only; the caller must authorize
@@ -193,6 +272,9 @@ namespace CavesOfOoo.Rendering
             int layer = int.MinValue;
             foreach (var owner in cell.Occupants)
             {
+                // An old cell list can retain a reference after its indexed owner
+                // moved or the cell was replaced. Never repaint that stale body.
+                if (owner.BlueprintName == "MarlbackPatchbearer" && !CurrentOwnerCell(zone, cell, owner)) continue;
                 var render = owner.GetPart<RenderPart>();
                 if (render == null || !render.Visible || render.RenderLayer < layer) continue;
                 var physics = owner.GetPart<PhysicsPart>();
@@ -431,6 +513,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed) return;
             _disposed = true;
+            ClearObservedOwners();
             _openingArt.Dispose();
             foreach (Tile tile in _tiles) DestroyOwned(tile);
             foreach (Sprite sprite in _sprites) DestroyOwned(sprite);

@@ -19,6 +19,7 @@ namespace CavesOfOoo.Rendering
         public const string ItemsResourcePath = "Sprites/Live16x24/opening-items";
         public const string CellarResourcePath = "Sprites/Live16x24/opening-cellar";
         public const string VegetationResourcePath = "Sprites/Live16x24/north-vegetation";
+        public const string WorksResourcePath = "Sprites/Live16x24/north-works";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -34,12 +35,15 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _cellarSprites;
         private readonly Tile[] _vegetationTiles;
         private readonly Sprite[] _vegetationSprites;
+        private readonly Tile[] _worksTiles;
+        private readonly Sprite[] _worksSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
             Resources.Load<Texture2D>(CastResourcePath), Resources.Load<Texture2D>(AnchorsResourcePath),
             Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
-            Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath)) { }
+            Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath),
+            Resources.Load<Texture2D>(WorksResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -72,6 +76,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>Independent borrowed vegetation art adds four static source
         /// silhouettes. Earlier injections never load omitted vegetation resources.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, null) { }
+
+        /// <summary>The eighth borrowed atlas adds exact works and creature
+        /// identities. The healing slot follows only actual carried medicine.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -80,6 +89,7 @@ namespace CavesOfOoo.Rendering
             _itemTiles = BuildFrames(itemsAtlas, 12, "items", out _itemSprites);
             _cellarTiles = BuildFrames(cellarAtlas, 9, "cellar", out _cellarSprites);
             _vegetationTiles = BuildFrames(vegetationAtlas, 4, "vegetation", out _vegetationSprites);
+            _worksTiles = BuildFrames(worksAtlas, 9, "works", out _worksSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -151,9 +161,58 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             frame = VegetationFrameOf(owner, render.VisualID);
-            if (frame < 0 || _vegetationTiles == null) return false;
-            tile = _vegetationTiles[frame];
+            if (frame >= 0)
+            {
+                tile = _vegetationTiles == null ? null : _vegetationTiles[frame];
+                return tile != null;
+            }
+            frame = WorksFrameOf(owner, render.VisualID);
+            if (frame < 0 || _worksTiles == null) return false;
+            tile = _worksTiles[frame];
             return tile != null;
+        }
+
+        private static int WorksFrameOf(Entity owner, string visual)
+        {
+            if (!string.IsNullOrEmpty(visual) || owner.HasTag("Player") || owner.HasTag("Item")) return -1;
+            var render = Owned<RenderPart>(owner);
+            if (render == null || !string.IsNullOrEmpty(render.VisualVariant) || !string.IsNullOrEmpty(render.GlyphVariants)) return -1;
+            var physics = Owned<PhysicsPart>(owner);
+            if (physics == null || physics.Takeable || physics.InInventory != null || physics.Equipped != null) return -1;
+            if (owner.HasTag("Creature"))
+            {
+                switch (owner.BlueprintName)
+                {
+                    case "Magpie": return 5;
+                    case "Viper": return 6;
+                    case "MarlbackPatchbearer":
+                        var medicine = Owned<FieldMedicinePart>(owner);
+                        var inventory = Owned<InventoryPart>(owner);
+                        if (medicine == null || medicine.TonicBlueprint != "HealingTonic"
+                            || inventory?.Objects == null || Owned<Body>(owner) == null || Owned<BrainPart>(owner) == null) return -1;
+                        return medicine.FindCarriedMedicine()?.BlueprintName == "HealingTonic" ? 7 : 8;
+                    default: return -1;
+                }
+            }
+            switch (owner.BlueprintName)
+            {
+                case "AlchemyStill": return !physics.Solid && Owned<AlchemyStillPart>(owner) != null ? 0 : -1;
+                case "AlchemyShelf": return physics.Solid && Owned<ContainerPart>(owner) != null ? 1 : -1;
+                case "StoneburrPatch": return ValidWorksHarvest(owner, "StoneburrSeed") ? 2 : -1;
+                case "FrostLichenPatch": return ValidWorksHarvest(owner, "FrostLichen") ? 3 : -1;
+                case "MendleafPlant": return ValidWorksHarvest(owner, "MendleafSprig") ? 4 : -1;
+                default: return -1;
+            }
+        }
+
+        private static bool ValidWorksHarvest(Entity owner, string yield)
+        {
+            if (!OrdinaryVegetation(owner, "", false)) return false;
+            var harvest = Owned<HarvestablePart>(owner);
+            return harvest != null && !harvest.Harvested && harvest.YieldBlueprint == yield
+                && harvest.YieldMin > 0 && harvest.YieldMax >= harvest.YieldMin
+                && harvest.YieldMax <= HarvestablePart.MaximumYieldCount
+                && harvest.YieldChance > 0 && harvest.YieldChance <= 100;
         }
 
         private static bool OrdinaryVegetation(Entity owner, string visual, bool solid)
@@ -383,6 +442,8 @@ namespace CavesOfOoo.Rendering
             if (_cellarSprites != null) foreach (var sprite in _cellarSprites) DestroyOwned(sprite);
             if (_vegetationTiles != null) foreach (var tile in _vegetationTiles) DestroyOwned(tile);
             if (_vegetationSprites != null) foreach (var sprite in _vegetationSprites) DestroyOwned(sprite);
+            if (_worksTiles != null) foreach (var tile in _worksTiles) DestroyOwned(tile);
+            if (_worksSprites != null) foreach (var sprite in _worksSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

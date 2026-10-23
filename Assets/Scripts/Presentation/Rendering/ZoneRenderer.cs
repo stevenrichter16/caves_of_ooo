@@ -808,6 +808,8 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private static int EncodeCellKey(int x, int y) => y * Zone.Width + x;
 
+        internal bool OwnsEnvironmentRenderer(EnvironmentSpriteRenderer renderer) => _envSpriteRenderer == renderer;
+
         private void LateUpdate()
         {
             long frameStart = Stopwatch.GetTimestamp();
@@ -909,6 +911,7 @@ namespace CavesOfOoo.Rendering
                 _entityVisualRenderer?.SetPresentationVisible(
                     (_envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled));
                 if (FlatPixelModeActive) _entityVisualRenderer?.ReconcileFlatViews();
+                _envSpriteRenderer?.ReconcileFlatOwnerStates(CurrentZone, this);
                 // AsciiFxRenderer.Render clears and repaints _fxTilemap
                 // (sortingOrder 2) whenever anything is alive, which is
                 // ABOVE the order-0 main tilemap a fullscreen UI paints

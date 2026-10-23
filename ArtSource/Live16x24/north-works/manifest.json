@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "artifact": "north-works.png",
+  "width": 144,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 9,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; independently verified.",
+  "source": "north-works.blend",
+  "generator": "Tools/Live16x24/build_north_works.py",
+  "resource": "Sprites/Live16x24/north-works",
+  "reference": "ArtSource/Live16x24/concepts/north-parts-reference.png",
+  "concept": "ArtSource/Live16x24/concepts/north-works-concept.png",
+  "capture": "Docs/Verification/Live16x24/north-greybox-works.png",
+  "scope": "Nine static functional/creature identity states. No animation or runtime integration claim.",
+  "sha256": "fb318bdbf5e49c4a0efd36639415e92fc27a548559fc5574de5deee58bdaeab4",
+  "frames": [
+    {
+      "index": 0,
+      "id": "alchemy-still",
+      "blueprint": "AlchemyStill",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "Compact warm receiving body and bent condenser with a small attached receiving vessel.",
+      "actualUse": "Owned AlchemyStillPart provides immediate real brewing interaction; existing non-solid furniture.",
+      "limits": "No flame, bubbles, liquid level, output item or invented ready/running state.",
+      "occupiedPixels": 115,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "A97542",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        5,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "alchemy-shelf",
+      "blueprint": "AlchemyShelf",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "Two broad empty compartments between upright wooden posts and low feet.",
+      "actualUse": "Existing solid wooden Container owner. Empty native compartments do not manufacture stock.",
+      "limits": "No bottle silhouettes, herbs, painted supplies, loot count or new open/closed state.",
+      "occupiedPixels": 144,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        5,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "stoneburr",
+      "blueprint": "StoneburrPatch",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "Three ochre hooked burr heads over dark leathery leaves on irregular stems.",
+      "actualUse": "Unspent HarvestablePart yields StoneburrSeed and removes the source after successful gathering.",
+      "limits": "Burrs identify the source, not yield count. No corn-like kernels, ripe crop flag or permanent spent plant.",
+      "occupiedPixels": 83,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B",
+        "B5A47E",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        6,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "frost-lichen",
+      "blueprint": "FrostLichenPatch",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "Low broken cold mineral crust with broad, quiet lobes close to the ground.",
+      "actualUse": "Unspent HarvestablePart yields FrostLichen and removes this source on success.",
+      "limits": "Not a flowering plant, pool, emitted frost cloud, ready coating or safe drink.",
+      "occupiedPixels": 61,
+      "palette": [
+        "3C5148",
+        "526657",
+        "70A68A"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        17,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "mendleaf",
+      "blueprint": "MendleafPlant",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "Three broad pointed soft leaves, each with a simple pale central vein.",
+      "actualUse": "Unspent HarvestablePart yields MendleafSprig and removes this source on success.",
+      "limits": "No new flower, glow, crop growth state, harvest count or baked effect.",
+      "occupiedPixels": 67,
+      "palette": [
+        "53683E",
+        "5F4830",
+        "75834B",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        11,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "magpie",
+      "blueprint": "Magpie",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "Compact cream-breasted dark bird with a low long tail, angular head, short beak and two separated feet.",
+      "actualUse": "Actual passive hoarder creature; inventory and pickup events remain simulation-owned.",
+      "limits": "No permanent stolen item, sack, toy eyes, wing animation or directional sheet claim.",
+      "occupiedPixels": 65,
+      "palette": [
+        "233C32",
+        "3C5148",
+        "526657",
+        "5F4830",
+        "E4D0A0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        10,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "viper",
+      "blueprint": "Viper",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "Low angular S-shaped snake with a broad raised head, narrow neck and open lower coil.",
+      "actualUse": "Actual hostile creature with ViperBite; poison and corpse/gland outcomes remain simulation state.",
+      "limits": "No permanent poison, tongue flick, invented limbs or new directional motion.",
+      "occupiedPixels": 60,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        11,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 7,
+      "id": "patchbearer-healing-slot-present",
+      "blueprint": "MarlbackPatchbearer",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "Forward-leaning shale-backed Gleaner anatomy, repaired pale straps and one small accessible healing bottle in its cradle.",
+      "actualUse": "Actual owned FieldMedicinePart.FindCarriedMedicine() returns a positive carried healing tonic.",
+      "limits": "Healing slot only, not total medicine count; hands remain equipment-neutral. Static pose.",
+      "occupiedPixels": 166,
+      "palette": [
+        "3C5148",
+        "526657",
+        "70A68A",
+        "A97542",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        3,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 8,
+      "id": "patchbearer-healing-slot-absent",
+      "blueprint": "MarlbackPatchbearer",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "description": "The identical shale body and repaired straps, with the small healing cradle exposed.",
+      "actualUse": "Actual owned medicine query finds no carried healing tonic. Separate Antidote may remain.",
+      "limits": "Not an all-medicine-empty claim; no changed stance, missing equipment, injury or weakened behavior implied.",
+      "occupiedPixels": 165,
+      "palette": [
+        "3C5148",
+        "526657",
+        "A97542",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        3,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}
