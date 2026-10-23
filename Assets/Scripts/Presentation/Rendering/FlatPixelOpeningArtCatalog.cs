@@ -22,6 +22,7 @@ namespace CavesOfOoo.Rendering
         public const string WorksResourcePath = "Sprites/Live16x24/north-works";
         public const string PlotResourcePath = "Sprites/Live16x24/north-plot";
         public const string KeeperResourcePath = "Sprites/Live16x24/seed-keeper-3";
+        public const string PlotProductsResourcePath = "Sprites/Live16x24/plot-products";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -43,6 +44,8 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _plotSprites;
         private readonly Tile[] _keeperTiles;
         private readonly Sprite[] _keeperSprites;
+        private readonly Tile[] _plotProductTiles;
+        private readonly Sprite[] _plotProductSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
@@ -50,7 +53,7 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(StatesResourcePath), Resources.Load<Texture2D>(ItemsResourcePath),
             Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath),
             Resources.Load<Texture2D>(WorksResourcePath), Resources.Load<Texture2D>(PlotResourcePath),
-            Resources.Load<Texture2D>(KeeperResourcePath)) { }
+            Resources.Load<Texture2D>(KeeperResourcePath), Resources.Load<Texture2D>(PlotProductsResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -98,6 +101,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>All ten groups borrow their textures. Keeper art uses the
         /// entire approved 16x24 cell; crop art follows owned functional state.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, null) { }
+
+        /// <summary>The independently optional eleventh atlas represents loose
+        /// plot goods, not their plants. It borrows its texture and creates no owners.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -109,6 +117,7 @@ namespace CavesOfOoo.Rendering
             _worksTiles = BuildFrames(worksAtlas, 9, "works", out _worksSprites);
             _plotTiles = BuildFrames(plotAtlas, 8, "plot", out _plotSprites);
             _keeperTiles = BuildFrames(keeperAtlas, 1, "keeper", out _keeperSprites);
+            _plotProductTiles = BuildFrames(plotProductsAtlas, 8, "plot-products", out _plotProductSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -191,7 +200,61 @@ namespace CavesOfOoo.Rendering
                 tile = _worksTiles == null ? null : _worksTiles[frame];
                 return tile != null;
             }
+            frame = PlotProductFrameOf(owner, render);
+            if (frame >= 0)
+            {
+                tile = _plotProductTiles == null ? null : _plotProductTiles[frame];
+                return tile != null;
+            }
             return TryResolvePlot(owner, render, out tile);
+        }
+
+        private static int PlotProductFrameOf(Entity owner, RenderPart render)
+        {
+            if (!string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
+                || !string.IsNullOrEmpty(render.GlyphVariants) || !owner.HasTag("Item")
+                || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Terrain")
+                || owner.HasTag("Crop") || owner.HasPart<CropPart>()) return -1;
+            var physics = Owned<PhysicsPart>(owner);
+            if (physics == null || !physics.Takeable || physics.Solid) return -1;
+            var stack = owner.GetPart<StackerPart>();
+            if (stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0
+                || stack.StackCount > stack.MaxStack)) return -1;
+            switch (owner.BlueprintName)
+            {
+                case "CandyCarrot": return Owned<FoodPart>(owner) != null ? 0 : -1;
+                case "CandyCarrotSeed": return PlotSeed(owner, "CandyCarrotCrop", false) ? 1 : -1;
+                case "EmberwheatSeed": return PlotSeed(owner, "EmberwheatCrop", false) ? 2 : -1;
+                case "MarlrootClod":
+                    var recipe = Owned<BotanicalProcessingPart>(owner);
+                    return recipe != null && recipe.OutputBlueprint == "FireClay"
+                        && recipe.OutputCount >= 1 && recipe.OutputCount <= 8 ? 3 : -1;
+                case "MarlrootSeed": return PlotSeed(owner, "MarlrootCrop", true) ? 4 : -1;
+                case "PitchpodResin":
+                    var reagent = Owned<ReagentPart>(owner);
+                    if (reagent == null) return -1;
+                    // Reagent owns the parsed cache. Reading it neither brews nor
+                    // allocates per refresh after the raw properties settle.
+                    var properties = reagent.GetProperties();
+                    bool heat = false, combustible = false;
+                    for (int i = 0; i < properties.Count; i++)
+                    {
+                        var property = properties[i];
+                        if (property == null || property.Potency <= 0) continue;
+                        if (property.Property == BrewProperties.Heat) heat = true;
+                        if (property.Property == BrewProperties.Combustible) combustible = true;
+                    }
+                    return heat && combustible ? 5 : -1;
+                case "PitchpodSeed": return PlotSeed(owner, "PitchpodCrop", true) ? 6 : -1;
+                case "InertSludge": return 7;
+                default: return -1;
+            }
+        }
+
+        private static bool PlotSeed(Entity owner, string crop, bool cultivated)
+        {
+            var seed = Owned<SeedPart>(owner);
+            return seed != null && seed.CropBlueprint == crop && seed.RequireCultivatedSoil == cultivated;
         }
 
         /// <summary>Returns only the cached transparent ground cord. This is
@@ -525,6 +588,8 @@ namespace CavesOfOoo.Rendering
             if (_plotSprites != null) foreach (var sprite in _plotSprites) DestroyOwned(sprite);
             if (_keeperTiles != null) foreach (var tile in _keeperTiles) DestroyOwned(tile);
             if (_keeperSprites != null) foreach (var sprite in _keeperSprites) DestroyOwned(sprite);
+            if (_plotProductTiles != null) foreach (var tile in _plotProductTiles) DestroyOwned(tile);
+            if (_plotProductSprites != null) foreach (var sprite in _plotProductSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

@@ -452,3 +452,30 @@ A 69.4-second unwrapped editor profile retained 47,866 samples: renderer mean 0.
 The earlier lock boundary is closed in [the plot record](LIVE-16X24-NORTH-PLOT.md). The real starter WateringGrimoire supplies Conjure Rain; no waterskin was assumed or inserted. Paid rights, wet soil, actual0→1→2 Marlroot growth, gladroot auto-yield, both reserve harvests and material pickup, neutral cords after depletion, fullscreen trade return, F5/F6 and actual border exit/revisit now have14 new1280×800 captures. Prior860 native passes remain the implementation evidence; this continuation is evidence/docs only. The active60.915-second editor profile includes actual harvest/pickup/menu/walking input and retains its23.88ms renderer maximum and893.89ms editor main-thread maximum. No Deck or controlled-speedup claim. Final stopped scene/isolation/view flags are clean, including editor-only restore after the Mac locked again during cleanup.
 
 **Next:** native direct-product art, beginning with the clods/resin/seeds now visibly produced by the plot. Remaining products, merchant-added crop families, incidental owners, north motion, east/kitchen, complete release journey and normal/Deck activation are unfinished; the heartbeat stays active.
+
+
+### Eight plot products — native integration, ordinary Play pending
+
+[The plot-product record](LIVE-16X24-PLOT-PRODUCTS.md) is the current handoff.
+Eight original loose-item sprites now cover gladroot, four planting seeds,
+raw marlroot clod, pitchpod resin and inert compost. Actual harvest imagery
+fed the saved imagegen parts target; native editable geometry reconstructs
+truthful compact silhouettes. Approved actors/earlier atlases are preserved.
+One independent optional atlas follows exact real item semantics through
+existing ground and authorized carried-examine paths. Real planting selects
+the existing stage0 mark; clod preparation selects existing FireClay art.
+
+Native RED65 (8passed/57expected failures) → GREEN65/65, plus285 disjoint
+existing regression cases: **350 distinct passes**,zero skipped. Static
+source/import checks and independent cold review pass. An80,000-call warmed
+selector observation used0 managed bytes,98.0444ms total; this is not a
+frame-time or Deck benchmark. No new gameplay/normal-build activation.
+
+The Mac is locked, so ordinary input and new Game screenshots were not
+attempted by substituting state injection. Final editor state remains
+stopped, original SampleScene, no pending/isolation/view flags. **Next:**
+close the new live harvest/pickup/prepare/plant/examine capture gate when
+input is available, then remaining works products. Do not repeat source
+authoring or count a source contact as gameplay. Purchased crops, incidental
+owners, motion, east/kitchen and release/Deck gates remain open. Keep the
+heartbeat active; the finite seven-milestone brief is unfinished.

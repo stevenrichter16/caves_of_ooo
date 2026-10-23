@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "artifact": "plot-products.png",
+  "width": 128,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 8,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; independently verified.",
+  "source": "plot-products.blend",
+  "generator": "Tools/Live16x24/build_plot_products.py",
+  "resource": "Sprites/Live16x24/plot-products",
+  "reference": "ArtSource/Live16x24/concepts/plot-products-v1.png",
+  "prompt": "ArtSource/Live16x24/concepts/plot-products-prompt.txt",
+  "capture": "Docs/Verification/Live16x24/north-plot-harvest.png",
+  "scope": "Eight static portable-item identities. No new gameplay, spawns, animation or runtime integration claim.",
+  "sha256": "453c1eef4fa91f7d607c037a7398f2c6b376ca653e692e4f7bd8782cce3cf7da",
+  "frames": [
+    {
+      "index": 0,
+      "id": "gladroot",
+      "blueprint": "CandyCarrot",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "One detached squat orange root with short cut sage leaves and a tapered edible end.",
+      "realSource": "The public CandyCarrotCrop automatically releases two real food owners on completion.",
+      "actualUse": "Consume a carried unit for1d4 healing through FoodPart.",
+      "limits": "Food.Cooking=Meal is flavor, not a Cookable part. No prepared meal, planted crown, soil or new growth state.",
+      "occupiedPixels": 49,
+      "palette": [
+        "526657",
+        "75834B",
+        "9C6B32",
+        "B5A47E",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        12,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 1,
+      "id": "gladroot-seed",
+      "blueprint": "CandyCarrotSeed",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "One small pale oblique seed with a dry crease; no sack or planted mound.",
+      "realSource": "Starting supplies and finite SeedKeeperStock; not a saved-seed yield of this automatic crop.",
+      "actualUse": "Consume a carried seed to plant CandyCarrotCrop on eligible Plantable ground, or an adjacent prepared bed.",
+      "limits": "A loose seed is not already planted and does not promise water, growth time or multiple units.",
+      "occupiedPixels": 13,
+      "palette": [
+        "5F4830",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        18,
+        10,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 2,
+      "id": "emberwheat-seed",
+      "blueprint": "EmberwheatSeed",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "One long narrow golden grain with a quiet dry seam.",
+      "realSource": "Starting supplies and finite SeedKeeperStock; distinct from the harvested Emberwheat sheaf.",
+      "actualUse": "Consume a carried seed to plant EmberwheatCrop on eligible ground.",
+      "limits": "Warm lore does not grant LightSource or combustion. No flame, glow, cut stalk or seed packet.",
+      "occupiedPixels": 12,
+      "palette": [
+        "9C6B32",
+        "B5A47E",
+        "D8A446"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        17,
+        9,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 3,
+      "id": "marlroot-clod",
+      "blueprint": "MarlrootClod",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "Detached knuckled red-clay clod with short pale root strands wrapped around it.",
+      "realSource": "Actual mature MarlrootCrop yields two clods and one separate saved seed.",
+      "actualUse": "BotanicalProcessing Prepare consumes one carried clod and creates one FireClay.",
+      "limits": "Unprepared clod, not already refined repair clay, edible root, stone ore, leafy crop or decorative extra yield.",
+      "occupiedPixels": 53,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B5A47E",
+        "B85834"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        15,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 4,
+      "id": "marlroot-seed",
+      "blueprint": "MarlrootSeed",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "One squat angular red-brown seed with a pale nick and dark dry lower edge.",
+      "realSource": "One saved seed accompanies real mature Marlroot harvest.",
+      "actualUse": "Consume a carried seed to plant MarlrootCrop in actual cultivated soil.",
+      "limits": "No root strands, soil clod, resin, prepared clay or already claimed bed.",
+      "occupiedPixels": 17,
+      "palette": [
+        "5F4830",
+        "9B442B",
+        "B5A47E"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        18,
+        10,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 5,
+      "id": "pitchpod-resin",
+      "blueprint": "PitchpodResin",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "One irregular low amber solid with a restrained matte cut face and thick dark edge.",
+      "realSource": "Actual mature PitchpodCrop yields two resin units and one separate saved seed.",
+      "actualUse": "Raw Reagent heat:1,combustible:1, usable in existing brewing.",
+      "limits": "Not a finished bottle, burning coating, glowing jewel, detached paper pod or planted crop.",
+      "occupiedPixels": 37,
+      "palette": [
+        "9C6B32",
+        "BCA576",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        16,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 6,
+      "id": "pitchpod-seed",
+      "blueprint": "PitchpodSeed",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "One tapered dry olive seed with a warm amber seam, smaller and darker than the resin.",
+      "realSource": "One saved seed accompanies real mature Pitchpod harvest.",
+      "actualUse": "Consume a carried seed to plant PitchpodCrop in actual cultivated soil.",
+      "limits": "No growing stem, pod shell, flower, flame, resin supply or seed packet.",
+      "occupiedPixels": 15,
+      "palette": [
+        "3C5148",
+        "75834B",
+        "C99538"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        6,
+        17,
+        10,
+        23
+      ],
+      "baselineTopLeft": 23
+    },
+    {
+      "index": 7,
+      "id": "inert-sludge",
+      "blueprint": "InertSludge",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "A single low irregular grey-olive compost lump with one muted dry fold; no separate chips.",
+      "realSource": "Finite keeper/provisioner stock and an actual fallback BrewingService output.",
+      "actualUse": "Consume one carried unit to compost a freshly planted crop once, reducing growth-stage time25 percent without water.",
+      "limits": "Neutral stable material, not a container, spilled liquid, water source, sprouting plant or ready potion.",
+      "occupiedPixels": 38,
+      "palette": [
+        "3C5148",
+        "526657",
+        "75834B"
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        18,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23
+    }
+  ]
+}
