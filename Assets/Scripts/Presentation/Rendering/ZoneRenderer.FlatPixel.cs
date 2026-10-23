@@ -8,7 +8,7 @@ namespace CavesOfOoo.Rendering
     {
         [SerializeField, FormerlySerializedAs("Paused")]
         private bool _paused;
-        [SerializeField, Tooltip("Opt-in16x24 presentation for the opening glade and cellar. Earlier art is retained.")]
+        [SerializeField, Tooltip("Opt-in16x24 opening/cellar art and north-route greybox. Earlier art is retained.")]
         private bool _flatPixelModeEnabled;
         private FlatPixelWorldProjection _flatProjection;
         private CameraFollow _flatCamera;
@@ -22,8 +22,8 @@ namespace CavesOfOoo.Rendering
             set { if (_paused == value) return; _paused = value; SyncFlatPixelMode(); }
         }
 
-        /// <summary>Opt-in presentation request. Only the reference glade and its
-        /// cellar are admitted at this stage; leaving them restores earlier art.</summary>
+        /// <summary>Opt-in presentation request for the opening, cellar and north
+        /// greybox route; leaving these exact graphs restores earlier art.</summary>
         public bool FlatPixelModeEnabled
         {
             get => _flatPixelModeEnabled;

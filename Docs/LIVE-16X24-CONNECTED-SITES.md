@@ -1,6 +1,6 @@
 # Live 16×24 — connected sites
 
-**Status: PARTIALLY IMPLEMENTED, 2026-10-23.** The actual two-seed census is complete and the glade’s connected cellar is integrated in the opt-in presentation; its precise evidence and remaining acceptance gates are in [the cellar record](LIVE-16X24-CELLAR.md). The four other proposed surface sites remain unadmitted and unimplemented. A release build still does not enable flat mode. [Live art direction](LIVE-16X24-ART-DIRECTION.md) owns overall implementation status and the required production pipeline.
+**Status: PARTIALLY IMPLEMENTED, 2026-10-23.** The actual two-seed census is complete and the glade’s connected cellar is integrated in the opt-in presentation; its precise evidence and remaining acceptance gates are in [the cellar record](LIVE-16X24-CELLAR.md). The north connector/seed plot now have tested greybox admission, ordinary travel and captured concept targets; their native art remains next. East connector/kitchen remain unadmitted. See [north continuation](LIVE-16X24-NORTH-ROUTE.md). A release build still does not enable flat mode. [Live art direction](LIVE-16X24-ART-DIRECTION.md) owns overall implementation status and the required production pipeline.
 
 **Current cellar acceptance:** nine native frames are imported, including dedicated solid masonry; native [714/714 cellar/opening tests](Verification/Live16x24/opening-cellar-green.xml) passed. The portrait color correction passed [9/9 GPU tests](Verification/Live16x24/opening-portrait-color-green.xml), the overlapping [348/348 regression](Verification/Live16x24/opening-portrait-color-regression.xml), and an [exact actual-popup palette comparison](Verification/Live16x24/cellar-native-portrait-palette-review.json). These are overlapping receipts, not a sum of unique tests.
 
@@ -84,7 +84,7 @@ Do not manufacture glade VisualIDs on ordinary terrain to force matching. Route 
 
 ## Original staged plan — historical, 2026-10-23 before cellar implementation
 
-This table records the initial six-site plan. Implementation deliberately admitted only glade+cellar first; Stage0's two-seed census and the bounded cellar packet are complete as summarized above. The four surface sites and continuous six-site journey remain planned, not enabled by their addresses appearing here.
+This table records the initial six-site plan. Implementation deliberately admitted only glade+cellar first; Stage0's two-seed census and the bounded cellar packet are complete as summarized above. At that checkpoint, the four surface sites and continuous six-site journey remained planned, not enabled by their addresses appearing here. Current north greybox admission is recorded below.
 
 Before each production change: read its actual APIs, write meaningful failing tests and confirm native RED. Follow the living art direction’s playable greybox → actual capture → imagegen reinterpretation → parts → native source → reintegration loop. Preserve all accepted source art and the previous presentation.
 
@@ -156,7 +156,7 @@ This sequence is retained to explain the work's progression. Actual admission wa
 
 ## Cellar foundation packet — scope and floor, 2026-10-23
 
-**Foundation checkpoint at 07:40 UTC:** native scope/floor GREEN, 31/31 passed with zero skips, before the first ordinary-input cellar capture. This packet admitted **only the opening glade and its current managed cellar**, as production still does. The four surface extensions keep their previous presentation until their own packets. This foundation itself added no atlas; the subsequent nine-frame integration and completed cellar journey are recorded above and in [the cellar record](LIVE-16X24-CELLAR.md).
+**Foundation checkpoint at 07:40 UTC:** native scope/floor GREEN, 31/31 passed with zero skips, before the first ordinary-input cellar capture. This packet admitted **only the opening glade and its current managed cellar**, at that checkpoint. The later north foundation admits two additional rough graphs; east/kitchen retain their prior presentation. This foundation itself added no atlas; the subsequent nine-frame integration and completed cellar journey are recorded above and in [the cellar record](LIVE-16X24-CELLAR.md).
 
 ### Verified contracts and corrections
 
@@ -181,7 +181,7 @@ The exact-subject floor portrait borrows the same cached solid sprite and stone 
 
 The editor executed [census_connected_sites.cs](../Tools/Live16x24/census_connected_sites.cs) against detached managers for seeds **64 and 65**, generating the glade before its cellar and then the four surface destinations. All **12 zones generated** in **9,373 ms** with no failure or restoration errors. Both detached managers retained a null active zone; reported world, settlement, save-root and equipment-version cleanup checks were all true. Evidence: [execution receipt](Verification/Live16x24/connected-two-seed-census-execute.json), [structured summary](Verification/Live16x24/connected-two-seed-census-summary.json), [compressed raw census](Verification/Live16x24/connected-two-seed-census.json.gz). The decompressed raw SHA-256 matches the summary's `9fd153f5817892537ed16eae02a9f4c4729ff7a70b0c8b9c44d75209ce8c4279`.
 
-| Generated zone | Placed entities, seed64 / seed65 | Actual flat admission |
+| Generated zone | Placed entities, seed64 / seed65 | Flat admission at census checkpoint |
 | --- | --- | --- |
 | Glade `11.10.0` | 2,681 / 2,679 | Yes |
 | Cellar `11.10.1` | 2,008 / 2,008 | Yes |
@@ -194,4 +194,11 @@ Both cellars contain the actual upward stair, notice, beam, guard, crate, two cu
 
 Placement varies materially: seed64's north yard includes the Patchbearer, two shelves and Mendleaf; seed65 has the basic still/forage/walls without that enrichment. Conversely, the east forge's authored Cindercaller/Scrabbler pair appears in seed65 but not seed64. Both eastern chunks also contain a real pen gate and Reedback Grazer, which the earlier destination-only source list did not enumerate. Nella's reserve plot and Orven's pan/escrow/pickup packet were present in both seeds at different resident coordinates. These are observed placements, not guarantees for other seeds; nothing was inserted to fill an absent group.
 
-**Bounds:** placed and potential-top counts include hidden entities and deliberately ignore player fog; held goods are separate custody records. This one-shot diagnostic constructs no renderer/catalog textures, player or live graph and performs no gameplay actions or saves. It verifies generation/ownership for two explicit seeded runs, **not** current player visibility, native art coverage, live-session RNG replay, visual quality, the ordinary journey or Deck performance. The four generated surface extensions remain unadmitted. The earlier source-only census limitation is closed for these two runs; capture and art acceptance remain separate gates.
+**Bounds:** placed and potential-top counts include hidden entities and deliberately ignore player fog; held goods are separate custody records. This one-shot diagnostic constructs no renderer/catalog textures, player or live graph and performs no gameplay actions or saves. It verifies generation/ownership for two explicit seeded runs, **not** current player visibility, native art coverage, live-session RNG replay, visual quality, the ordinary journey or Deck performance. The four generated surface extensions were unadmitted at this census checkpoint; subsequent north admission is recorded below. The earlier source-only census limitation is closed for these two runs; capture and art acceptance remain separate gates.
+
+
+## North foundation — 2026-10-23
+
+Exact current managed11.9/11.8 graphs now admit to the opt-in rough catalog; east/kitchen remain excluded. Native RED95(25 expected failures)→GREEN95 plus117 unaffected consumer cases all pass. Actual ordinary glade→works→Nella travel, still examine, Calm, public/reserve terms, two gladroot seed purchase and full-screen trade return are captured at1280×800. No gameplay/owner generation or native north asset was added.
+
+Three built-in imagegen scene/parts references are saved with exact prompts, derived from those actual captures and approved art. They require native reconstruction; original keeper/other approved pixels stay authoritative. [North route](LIVE-16X24-NORTH-ROUTE.md) owns current receipts, source corrections, review and next production action; [contracts](LIVE-16X24-NORTH-CONTRACTS.md) and [parts/critique](../ArtSource/Live16x24/concepts/north-parts-plan.md) cover all38 measured placed identities and later outcomes. Begin ordinary north vegetation assets next, then source/actor/crop/cord/product groups. All four surface destinations still lack complete native-art acceptance; the two north greyboxes are not a whole-biome conversion.

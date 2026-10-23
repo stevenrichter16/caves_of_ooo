@@ -93,17 +93,24 @@ namespace CavesOfOoo.Rendering
             BuildAtlas();
         }
 
-        /// <summary>Only the reference glade and its current managed cellar are
-        /// admitted at this stage. Other connected sites retain their earlier art.
+        /// <summary>The reference glade, its cellar and the two north route graphs
+        /// are admitted. North art remains a greybox until its native packet lands.
         /// Eligibility reads the current graph; it never generates or repairs it.</summary>
         public static bool IsAdmitted(Zone zone)
         {
             if (ReferenceGladePlan.IsActive(zone)) return true;
-            if (zone?.ZoneID != GleanersCellarBuilder.ZoneID
-                || !SpreadPresentationScope.IsActive(zone)) return false;
-            // The broader Spread scope also admits committed lair floors. The
-            // opening cellar must retain its own no-surface-POI authority.
-            return WorldLocationContext.For(zone).WorldMap.GetPOI(11, 10) == null;
+            int surfaceY;
+            switch (zone?.ZoneID)
+            {
+                case GleanersCellarBuilder.ZoneID: surfaceY = 10; break;
+                case "Overworld.11.9.0": surfaceY = 9; break;
+                case "Overworld.11.8.0": surfaceY = 8; break;
+                default: return false;
+            }
+            if (!SpreadPresentationScope.IsActive(zone)) return false;
+            // Broad Spread admission also permits POIs and committed lair floors.
+            // Each opening graph retains authority over its own unclaimed address.
+            return WorldLocationContext.For(zone).WorldMap.GetPOI(11, surfaceY) == null;
         }
 
         /// <summary>Rejects unexplored, foreign and disposed contexts. Remembered
