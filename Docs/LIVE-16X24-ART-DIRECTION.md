@@ -34,7 +34,7 @@ Animations should explain action and character: directional movement, readable a
 
 **Continuation record required for each asset group:** current pass; greybox capture and tested actions; concept inputs/prompt/output; extracted parts and owner mappings; editable sources; production assets; actual integration capture; tests/performance observations; unresolved issues and next action. Future agents must read this record before continuing. Static studies and concept renders must remain labeled as such.
 
-**Current handoff:** the earlier clearing greybox demonstrated the art pipeline only. A real opening greybox, its gameplay checks and its capture are still pending. Establish the presentation contract in milestone 1, then carry out the playable greybox in milestone 2 before detailed opening art.
+**Current handoff:** milestones1–2 now have an opt-in playable opening, corrected native capture,306 passing selected Unity tests and an initial imagegen paintover. See the continuation record at the end. Base sprites, animation and the full release journey remain pending; the imagegen paintover is reference only.
 
 ## Verification sweep before runtime work
 
@@ -102,3 +102,76 @@ Implementation: optional `CameraFollow.WorldTilemap` projects normal gameplay ca
 - 🟡 Resolved plan issue: an arbitrary morning cutoff could reward unfinished art. The user explicitly allows the time needed; continuation should finish the defined live opening release, then report remaining regional work.
 - 🧪 Runtime and visual acceptance remain pending. No additional Unity test result is claimed by this document.
 
+
+### Playable greybox activation — implementation plan
+
+Next bounded slice, after projection commit6f62c4734: an explicit opt-in mode on the existing ZoneRenderer, admitted only by `ReferenceGladePlan.IsActive`. Requested mode and zone ownership remain separate from fullscreen visibility. Preserve previous settings and assets; no world-layout or gameplay mutation is needed for this first capture.
+
+Verification corrections before code:
+
+| Inspected seam | Decision |
+| --- | --- |
+| `ZoneRenderer.Paused` is a serialized field; inventory/quest/faction currently paint before pausing | Preserve serialization via a backing field/property; apply square UI geometry synchronously and order page entry before painting. Restore world geometry before camera restoration. |
+| Both GameBootstrap paths create CameraFollow after initial SetZone | Explicitly bind the helper in both fresh and loaded paths, before SnapToPlayer. |
+| Grid spacing does not resize16×16 art | New disposable greybox atlas uses native16×24 tiles at16PPU. This is temporary shape/blocking study art, not production sprite acceptance. |
+| EnvironmentSpriteRenderer has complete full/incremental claim restoration | Intercept ResolveCell before legacy art tiers and reuse existing claims; no extra per-frame world scan. |
+| Reference glade pond uses actual TileState coating | Resolve visible water from current state; never paint from hardcoded pond coordinates. Fog memory remains terrain-only and cannot expose hidden occupants or changed water. |
+| Several legacy presenters can reactivate outside SyncVillagePresentation | Gate all native/authored scene admission and ordinary actor/ambient passes through the same ownership flag. Fullscreen must not hand the zone back to3D. |
+| World cursor/affordance/intent already use Tilemap corners; sprite spell FX does not | Keep existing cursor paths and add rectangular round-trip tests. Give sprite FX the same optional Tilemap source. |
+
+Substeps: tests first for catalog states/fog, grid lifecycle, four actual fullscreen pages, popup retention, renderer admission and cursor round trips; native RED; implement; native GREEN and independent review; isolated ordinary fresh-game Play, real input and1280×800 capture. Then use that actual capture for imagegen reinterpretation before detailed opening art. Keep old ambience disabled only inside this rough mode until its rectangular replacement is ready. No final-animation, full-biome or Deck performance claim belongs to this slice.
+
+
+Activation review in progress:
+
+- Native RED:66 cases,40 passing and26 failures. Nine projection-owner assertions, nine spell projection/wiring assertions and seven mode/UI assertions failed as intended. The remaining failure exposed a fixture assumption: the real finite basin leaves a permanent wet-ground coating when emptied, so its empty foreground changes while the wet surface remains. Do not imply drawing the basin dries the surrounding ground.
+- First implementation run:139 cases,135 passing; four fullscreen assertions assumed Grid depth0 rather than Unity's default1. Corrected the fixture to assert exact original metrics.
+- Expanded regression:217 cases,214 passing. It reproduced the new component-disable ownership bug and caught inactive-mode code restoring a grid it had never borrowed. Fixed both: own projection only while admitted, release on disable/exit, reacquire on enable. The older camera-pan fixture also depends on the current free-aspect GameView and is under review.
+- Independent reviews: gate Felling binds on changed zone to avoid per-frame retries after asset failure; perform parent-Grid lookup only when constructing the projection helper; restore the launcher's prior Play-start override, scene, seed and view; validate the temporary resolution's unique ownership before removing it. F11 leaves the greybox and truthfully reports restoration of the previous presentation. Approved source sprites remain unchanged.
+- Current asset group: procedural greybox only. It uses one128×72 atlas,17 cached16×24 shapes and the existing incremental world-claim renderer. Actual seed64 exploration coverage includes28 blueprint types; this is shape/category coverage, not finished per-object art. Sprite spell FX now follows projected cell centers and retains native pixel size. Directional actor animation, authored status-color response and replacement ambience remain subsequent art work.
+
+Live capture and imagegen reinterpretation are the next gate. Native Play input, screenshot and cleanup evidence will be recorded here; no finished-art claim is made from EditMode results.
+
+
+Activation native verification, 2026-10-22/23: the reviewed integration run completed217 cases with216 passing; the only failure was the pre-existing camera test's dependence on an ultrawide free-aspect GameView. Its two affected fixtures now set16:9 explicitly and assert the viewport is narrower than the zone before testing pan. The final targeted native camera rerun passed12/12. This is217 selected cases covered across the integration run and targeted rerun, not a single all-green217-case execution. The first final camera request was rejected because Unity was in ordinary Play; it executed zero tests and is not counted.
+
+A final launcher review found an Edit-mode recovery hole: a pending capture session whose deferred restore callback is lost during reload can finish save isolation without restoring its scene/view/seed. A narrow recovery fix and regression checks precede the actual live capture.
+
+### First ordinary Play review — framing issue found
+
+The isolated launcher entered the real seed-64 `Overworld.11.10.0` opening. Ordinary keyboard input started a new game, moved the player from `(40,12)` to `(41,12)`, opened/closed inventory twice and entered Look/action selection. The world continued its NPC turns. Actual Game captures are `greybox-game-20261023-041214.png` (inventory) and `greybox-game-20261023-041232.png` (world), both1280×800. The world projection was1×1.5 and inventory synchronously returned to1×1. This is a partial route, not the full release journey; mouse targeting still needs a clean retest after the framing correction.
+
+- 🟡 **Live finding:** the world capture squeezed square source pixels horizontally and undersampled the rough sprites. The camera retained an aspect derived from the previous free-aspect editor view instead of the fixed capture target. `GameplayViewportLayout.GetDisplayAspect` reconstructs display aspect from the camera aspect that the layout itself previously assigned; changing output dimensions can therefore preserve stale framing. `TargetVisibleTileRows=34` with a1.2 gameplay zoom also produces a view too distant for native16×24 art. Correct the target-aspect path and establish native-pixel framing before accepting the greybox composition for imagegen.
+- 🟡 **Launcher recovery fixed:** four native RED cases now pass with fourteen existing save-isolation cases (18/18 GREEN). `Finish` queues presentation restore even from Edit mode; delayed reload recovery leaves Play/entry transitions alone. Receipts: `greybox-launcher-{red,green}*`.
+- **Actual cleanup verified:** ordinary Finish returned to the saved clearing study, left Play and isolation inactive, cleared the launcher's pending flag, and restored seed, inherited save root and last-game preference. `live-first-cleanup.json` records these booleans without publishing a user save ID. The source study was not saved over.
+- **Capture caveat:** `Screen.width/height` queried by an editor command reported the editor context dimensions; the saved PNG dimensions are the authoritative output resolution. Do not call that metadata a1280×800 render measurement.
+
+The first world image is retained as a failed visual check, not an accepted art target. The next pass corrects framing, repeats movement/menu/cursor checks, and captures again. The source audit and practical owner/state mapping are in `ArtSource/Live16x24/PARTS.md`; no new final sprites have been integrated yet.
+
+Camera correction verification: eight new native cases produced seven expected RED failures and one passing legacy counter-case. Physical output dimensions now drive layout aspect; optional `CameraFollow.WorldPixelsPerUnit=16` chooses integer magnification after the requested zoom and aligns the view to source-pixel boundaries. The projection owner borrows/restores that option. The focused camera/projection run passed32/32, including resize, odd dimensions, UI return and legacy zoom checks. Actual1280×800 framing is still to be recaptured after the water overlay fix; a focused test does not substitute for that image.
+
+Water overlay correction verification: the new flat-ground painter tests plus existing native-ground controls ran36 cases:27 passed and9 failed RED. Plain water was still painted as a blue CP437 wave over the teal ground, and that coating branch masked charge/temperature/cloud cues. The narrow fix yields36/36 GREEN, zero skipped: only a sole live water coating relinquishes its generic marker in the active flat mode, while later hazard branches still execute. Oil, ice, acid, mixed coatings, residue and legacy/nonadmitted modes retain their cues. The tests inspect actual painter tiles and positively establish catalog water coverage; they do not replace a fresh gameplay screenshot. Independent cold review found no P1/P2 issue in this fix.
+
+### Corrected live greybox and first paintover — 2026-10-23 UTC
+
+The combined native Unity regression passed **306/306, zero skipped**, in21.17seconds. `framing-water-regression-green.xml` is authoritative. It retains the previous217 selected cases and adds89 to the selection:33 newly authored cases (framing9, water20, recovery4) and56 existing controls (Felling24, native ground16, save isolation14, hotbar2). The extra odd1281×801 case failed RED before float pixelRect sizing and physical pixel-boundary alignment fixed it. This is a selected regression, not a complete project test run.
+
+The ordinary isolated seed64 game was started withN. Two inventory open/close cycles restored the world. Keyboard Look selected the actual reed-bank water basin at36,9 and opened its matching action popup. From40,12, ordinary input walked down4 and west9 to31,16. Up struck the wall at31,15 without moving through it; Left entered30,16, then10Right and4Up returned to40,12. NPC turns, combat, deaths and drops continued normally. No movement, fog or gameplay state was injected.
+
+Captures (all native1280×800):
+- `greybox-game-20261023-042705.png`: inventory.
+- `greybox-game-20261023-042904.png`: basin action popup.
+- `greybox-game-20261023-043002.png`: ruin passage after movement.
+- **`greybox-game-20261023-043026.png`: accepted geometry/composition input for the first art paintover**, after returning to40,12. The rough sprites are not finished art.
+
+`live-corrected-start-state.json` records the actual camera pixelRect940×680 (sidebar consumes340pixels), ortho21.25, aspect1.382353,16PPU and1×1.5 grid. The saved PNG confirms correct square source pixels and teal pond coverage. `Screen.width/height` still reports editor context dimensions, so it is not used as render-resolution evidence. `live-ruin-passage-state.json` records the passage endpoint. `live-corrected-cleanup.json` confirms Play/isolation/pending flags cleared and original scene, seed, save root, last-game preference, view and play-start scene restored.
+
+- 🟡 Corrected before capture: stale camera aspect, sub-native pixel scale, fractional viewport alignment, generic water wave overlay and launcher reload recovery.
+- 🧪 **Mouse world selection remains unverified/unsuccessful in this editor session.** CUA clicking the visible basin did not move the Look cursor or open its menu. The cached legacy pointer was outside the viewport; direct reads of legacy and new input backends disagreed and neither matched the intended image coordinate. Earlier `THROWING-IMPLEMENTATION-PLAN.md` already records the stale legacy pointer limitation. Keyboard selection and native coordinate round trips pass; do not claim real mouse/controller acceptance. Investigate a shared pointer seam without speculative DPI multipliers.
+- 🧪 Harvest, repair, cellar travel, save/load, mode/travel round trips, motion and hardware Deck performance remain release gates. No final-art or whole-world coverage claim.
+
+**Art continuation:** built-in imagegen used the corrected actual game capture as image1 and `Docs/Verification/Clearing16x24/clearing-game-final.png` as style-only image2. Exact prompt: `ArtSource/Live16x24/concepts/opening-reinterpretation-prompt.md`; output: `opening-paintover-v1.png`. The pond reed silhouettes, sparse rubble and separated wall material are useful design references. The generator added a cook/oven and creatures not present in the capture, introduced gradients and altered text; those additions are rejected. Use only owner-matched motifs, then extract references and author native sprites. `PARTS.md` maps all28 generated top-owner types plus player and state layers.
+
+**Next bounded art group:** equipment-neutral player and warden base frames; dark/low walls, two pale reed clusters, low olive bush, sparse rubble, ripe grain and cut stubble. Keep the plain ground. Native sprites must be integrated with actual owner/state selection and recaptured before adding more variation. Preserve approved character PNGs unchanged. The production art release remains incomplete.
+
+Final bounded cold review found no new P1/P2 defect in activation, fullscreen ordering, claims, projection restoration or launcher recovery. The concept comparison additionally rejects road bands turned into barriers, a chest painted as an oven, gravel painted as flowers and spent rows painted as ready grain. A second built-in imagegen call produced the ten-part isolated reference `ArtSource/Live16x24/concepts/base-parts-v1.png` using `base-parts-prompt.md`. These are concept-guided design references; native reconstruction and integration are the next pass.

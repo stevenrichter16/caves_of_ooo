@@ -21,6 +21,13 @@ namespace CavesOfOoo.Rendering
             }
             else
             {
+                var renderer = GetComponent<ZoneRenderer>();
+                if (renderer != null && renderer.FlatPixelModeEnabled)
+                {
+                    renderer.FlatPixelModeEnabled = false;
+                    MessageLog.Add("World view: previous presentation restored.");
+                    return;
+                }
                 Village3DSettings.Enabled = !Village3DSettings.Enabled;
                 MessageLog.Add(Village3DSettings.Enabled ? "World view: 3D." : "World view: original.");
             }

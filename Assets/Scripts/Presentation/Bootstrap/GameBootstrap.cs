@@ -441,6 +441,7 @@ namespace CavesOfOoo
                         cameraFollow.ReservedHotbarHeightRows = GameplayHotbarLayout.GridHeight;
                     }
 
+                    ZoneRenderer?.BindFlatPixelCamera(cameraFollow);
                     cameraFollow.SnapToPlayer();
 
                     var shakeCamera = cameraFollow;
@@ -1057,6 +1058,7 @@ namespace CavesOfOoo
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
                 cameraFollow.GameplayZoomMultiplier = GameplayZoomMultiplier;
+                ZoneRenderer?.BindFlatPixelCamera(cameraFollow);
                 cameraFollow.SnapToPlayer();
             }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
@@ -10,6 +11,7 @@ namespace CavesOfOoo.Tests
     public class CameraFollowOverrideTests
     {
         private GameObject _worldGrid;
+        private readonly List<RenderTexture> _targets = new List<RenderTexture>();
 
         [TearDown]
         public void TearDown()
@@ -18,6 +20,15 @@ namespace CavesOfOoo.Tests
                 Object.DestroyImmediate(camera.gameObject);
             if (_worldGrid != null)
                 Object.DestroyImmediate(_worldGrid);
+            foreach (var target in _targets) Object.DestroyImmediate(target);
+            _targets.Clear();
+        }
+
+        private RenderTexture CreateTarget(int width, int height)
+        {
+            var target = new RenderTexture(width, height, 0);
+            _targets.Add(target);
+            return target;
         }
 
         [Test]
@@ -150,7 +161,7 @@ namespace CavesOfOoo.Tests
             cameraGo.transform.position = new Vector3(0f, 0f, -10f);
             camera = cameraGo.AddComponent<Camera>();
             camera.orthographic = true;
-            camera.aspect = 1.6f;
+            camera.targetTexture = CreateTarget(1280, 800);
             var follow = cameraGo.AddComponent<CameraFollow>();
             follow.Player = player;
             follow.CurrentZone = zone;
@@ -171,7 +182,8 @@ namespace CavesOfOoo.Tests
 
             var cameraGo = new GameObject("Main Camera");
             cameraGo.tag = "MainCamera";
-            cameraGo.AddComponent<Camera>();
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.targetTexture = CreateTarget(1600, 900);
             var sidebarCamera = CreateSidebarCamera();
             var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
@@ -183,6 +195,8 @@ namespace CavesOfOoo.Tests
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
+            Assert.Less(camera.orthographicSize * camera.aspect, Zone.Width * 0.5f,
+                "This scenario requires a viewport narrower than the zone.");
             float playerX = cameraGo.transform.position.x;
 
             follow.SetOverrideTargetCell(40, 10);
@@ -202,7 +216,8 @@ namespace CavesOfOoo.Tests
 
             var cameraGo = new GameObject("Main Camera");
             cameraGo.tag = "MainCamera";
-            cameraGo.AddComponent<Camera>();
+            var camera = cameraGo.AddComponent<Camera>();
+            camera.targetTexture = CreateTarget(1600, 900);
             var sidebarCamera = CreateSidebarCamera();
             var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
@@ -214,6 +229,8 @@ namespace CavesOfOoo.Tests
             follow.PopupOverlayCamera = popupOverlayCamera;
 
             follow.SnapToPlayer();
+            Assert.Less(camera.orthographicSize * camera.aspect, Zone.Width * 0.5f,
+                "This scenario requires a viewport narrower than the zone.");
             float playerX = cameraGo.transform.position.x;
 
             follow.SetOverrideTargetCell(70, 10);
@@ -240,7 +257,7 @@ namespace CavesOfOoo.Tests
             cameraGo.tag = "MainCamera";
             var camera = cameraGo.AddComponent<Camera>();
             camera.orthographic = true;
-            camera.aspect = 16f / 9f;
+            camera.targetTexture = CreateTarget(1600, 900);
             var sidebarCamera = CreateSidebarCamera();
             var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
@@ -285,7 +302,7 @@ namespace CavesOfOoo.Tests
             cameraGo.tag = "MainCamera";
             var camera = cameraGo.AddComponent<Camera>();
             camera.orthographic = true;
-            camera.aspect = 16f / 9f;
+            camera.targetTexture = CreateTarget(1600, 900);
             var sidebarCamera = CreateSidebarCamera();
             var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();
@@ -327,7 +344,7 @@ namespace CavesOfOoo.Tests
             cameraGo.tag = "MainCamera";
             var camera = cameraGo.AddComponent<Camera>();
             camera.orthographic = true;
-            camera.aspect = 16f / 9f;
+            camera.targetTexture = CreateTarget(1600, 900);
             var sidebarCamera = CreateSidebarCamera();
             var hotbarCamera = CreateHotbarCamera();
             var popupOverlayCamera = CreatePopupOverlayCamera();

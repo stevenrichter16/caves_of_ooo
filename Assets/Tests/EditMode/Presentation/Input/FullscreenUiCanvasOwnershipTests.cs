@@ -13,6 +13,102 @@ namespace CavesOfOoo.Tests
     // incorrect fullscreen-map ownership from the first-paused-frame claim leak.
     public class FullscreenUiCanvasOwnershipTests
     {
+        [Test]
+        public void FlatMode_DisablingRendererReleasesBorrowedProjectionAndReenableReacquiresIt()
+        {
+            using (var r = new Rig(flat: true))
+            {
+                Invoke(r.Renderer, "OnDisable");
+                Assert.That(r.Main.layoutGrid.cellSize, Is.EqualTo(Vector3.one));
+                Assert.That(r.Follow.WorldTilemap, Is.Null);
+                Invoke(r.Renderer, "OnEnable");
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                Assert.That(r.Follow.WorldTilemap, Is.SameAs(r.Main));
+            }
+        }
+
+        [TestCase("Trade")]
+        [TestCase("Faction")]
+        [TestCase("QuestLog")]
+        [TestCase("Inventory")]
+        public void FlatMode_FullscreenPagesRestoreSquareUiAndRectangularWorldTwice(string screen)
+        {
+            using (var r = new Rig(flat: true))
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                    r.Renderer.RenderZone();
+                    r.Open(screen);
+                    Assert.That(r.Main.layoutGrid.cellSize, Is.EqualTo(Vector3.one));
+                    Assert.That(r.Renderer.FlatPixelModeActive, Is.True, "UI must not give ownership back to3D");
+                    r.PauseFrame();
+                    Assert.That(r.Overlay.GetUsedTilesCount(), Is.Zero);
+                    r.Close(screen);
+                    Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                    Assert.That(r.Follow.WorldTilemap, Is.SameAs(r.Main));
+                    r.PauseFrame();
+                    r.AssertWorldUntouched();
+                }
+            }
+        }
+
+        [Test]
+        public void FlatMode_CenteredPopupKeepsWorldGeometryAndPicking()
+        {
+            using (var r = new Rig(flat: true))
+            {
+                r.Renderer.RenderZone();
+                r.Follow.SetCenteredPopupOverlayView();
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                Assert.That(r.Renderer.Paused, Is.False);
+                var cell = new Vector3Int(74, CavesOfOoo.Core.Zone.Height - 1 - 15, 0);
+                Vector3 screen = r.Camera.WorldToScreenPoint(r.Main.GetCellCenterWorld(cell));
+                Assert.That(r.Renderer.ScreenToZoneCell(screen, r.Camera, out int x, out int y), Is.True);
+                Assert.That(new Vector2Int(x,y), Is.EqualTo(new Vector2Int(74,15)));
+            }
+        }
+
+        [Test]
+        public void FlatMode_ExitWhileFullscreenAndForeignZoneRestoreOriginalProjection()
+        {
+            using (var r = new Rig(flat: true))
+            {
+                r.Open("Inventory");
+                r.Renderer.FlatPixelModeEnabled = false;
+                r.Close("Inventory");
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1));
+                Assert.That(r.Follow.WorldTilemap, Is.Null);
+                r.Renderer.FlatPixelModeEnabled = true;
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                r.Renderer.SetZone(new Zone("FlatModeForeignZone"));
+                Assert.That(r.Renderer.FlatPixelModeActive, Is.False);
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1));
+                r.Renderer.SetZone(r.Zone);
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+            }
+        }
+
+        [Test]
+        public void FlatMode_RealRendererUsesRectangularTilesAndSuppressesLegacyPresenters()
+        {
+            using (var r = new Rig(flat: true))
+            {
+                r.Renderer.RenderZone();
+                var tile = r.Renderer.BgTilemap.GetTile<Tile>(r.WorldPos);
+                Assert.That(tile, Is.Not.Null);
+                Assert.That(tile.sprite.rect.size, Is.EqualTo(new Vector2(16,24)));
+                Assert.That(r.Renderer.SpawnRing3D.PresentationVisible, Is.False);
+                Assert.That(r.Renderer.Village3D.PresentationVisible, Is.False);
+                Assert.That(r.Renderer.FellingPresenter.PresentationVisible, Is.False);
+                Assert.That(r.Renderer.MorrowfastPresenter.PresentationVisible, Is.False);
+                r.Environment.RenderingEnabled = false;
+                r.PauseFrame();
+                Assert.That(r.Renderer.FlatPixelModeActive, Is.False);
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1));
+            }
+        }
+
         [TestCase("Trade")]
         [TestCase("Faction")]
         public void FullscreenEntryTakesMainCanvasEvenWhenLegacyPopupWasAssigned(string screen)
@@ -131,7 +227,7 @@ namespace CavesOfOoo.Tests
             private readonly GameObject grid, cameraHost, popupHost, uiHost;
             private readonly Action<int, int, string> oldCellDirty = ZoneRenderHooks.CellDirtyCallback;
             private readonly Action<string> oldFullDirty = ZoneRenderHooks.FullDirtyCallback;
-            public readonly Zone Zone = new Zone("FullscreenUiCanvasOwnershipTest");
+            public readonly Zone Zone;
             public readonly Entity Player, Trader, Grass, Stock;
             public readonly Camera Camera, PopupCamera;
             public readonly CameraFollow Follow;
@@ -146,8 +242,9 @@ namespace CavesOfOoo.Tests
             public readonly Tile Glyph;
             public readonly Vector3Int WorldPos = new Vector3Int(75, 9, 0);
 
-            public Rig()
+            public Rig(bool flat = false)
             {
+                Zone = new Zone(flat ? ReferenceGladePlan.ZoneID : "FullscreenUiCanvasOwnershipTest");
                 cameraHost = new GameObject("Opaque UI test camera");
                 cameraHost.tag = "MainCamera";
                 Camera = cameraHost.AddComponent<Camera>();
@@ -193,6 +290,11 @@ namespace CavesOfOoo.Tests
                 Follow.Player = Player;
                 Follow.CurrentZone = Zone;
                 Follow.PopupOverlayCamera = PopupCamera;
+                if (flat)
+                {
+                    Renderer.BindFlatPixelCamera(Follow);
+                    Renderer.FlatPixelModeEnabled = true;
+                }
                 Follow.SnapToPlayer();
                 uiHost = new GameObject("Opaque UI controls");
                 Trade = uiHost.AddComponent<TradeUI>(); Trade.Tilemap = Main;
@@ -224,6 +326,7 @@ namespace CavesOfOoo.Tests
             {
                 if (screen == "Trade") Trade.Close();
                 else if (screen == "Faction") Faction.Close();
+                else if (screen == "Inventory") Inventory.Close();
                 else QuestLog.Close();
                 Invoke(Input, "Close" + screen);
             }

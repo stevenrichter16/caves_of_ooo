@@ -1,0 +1,47 @@
+{
+  "start-time": "2026-10-23 04:22:24Z",
+  "end-time": "2026-10-23 04:22:25Z",
+  "total": "36",
+  "passed": "27",
+  "failed": "9",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt(False)",
+      "message": "  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt(True)",
+      "message": "  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.RepeatedModeChangesEraseOldWaterMarksWithoutChangingWorldState",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(6)",
+      "message": "  The flat catalog already depicts this water.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(int.MaxValue)",
+      "message": "  The flat catalog already depicts this water.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(\"charge\",'*')",
+      "message": "  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(\"heat\",'^')",
+      "message": "  Expected: same as <CP437_5E (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(\"cold\",'^')",
+      "message": "  Expected: same as <CP437_5E (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(\"cloud\",'\\'')",
+      "message": "  Expected: same as <CP437_27 (UnityEngine.Tilemaps.Tile)>\n  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>\n"
+    }
+  ]
+}

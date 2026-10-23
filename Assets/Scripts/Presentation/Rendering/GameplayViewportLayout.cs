@@ -182,10 +182,17 @@ namespace CavesOfOoo.Rendering
             if (camera == null)
                 return 16f / 9f;
 
+            // Projection aspect is explicitly assigned by the split layout. It is
+            // not an output-size measurement and remains stale after a resize.
+            // A borrowed render target is authoritative; otherwise recover the
+            // actual destination from viewport pixels, independent of projection.
+            if (camera.targetTexture != null && camera.targetTexture.width > 0 && camera.targetTexture.height > 0)
+                return (float)camera.targetTexture.width / camera.targetTexture.height;
             Rect rect = camera.rect;
-            float rectWidth = Mathf.Max(0.0001f, rect.width);
-            float rectHeight = Mathf.Max(0.0001f, rect.height);
-            return Mathf.Max(0.01f, camera.aspect * rectHeight / rectWidth);
+            Rect pixels = camera.pixelRect;
+            if (rect.width > 0f && rect.height > 0f && pixels.width > 0f && pixels.height > 0f)
+                return Mathf.Max(0.01f, (pixels.width / rect.width) / (pixels.height / rect.height));
+            return Screen.width > 0 && Screen.height > 0 ? (float)Screen.width / Screen.height : 16f / 9f;
         }
 
         private static float MeasureRectAspect(float displayAspect, Rect rect)

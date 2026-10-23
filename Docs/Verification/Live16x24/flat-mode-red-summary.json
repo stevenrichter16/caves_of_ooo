@@ -1,0 +1,115 @@
+{
+  "start-time": "2026-10-23 03:44:42Z",
+  "end-time": "2026-10-23 03:44:47Z",
+  "total": "66",
+  "passed": "40",
+  "failed": "26",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelGreyboxCatalogTests.EmptyFiniteDrawPointIsStillABasin_AndDoesNotPromiseWater",
+      "message": "  Expected: not equal to Water\n  But was:  Water\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.AdmissionAppliesRectangularWorld_AndInactiveCallPreservesOriginal",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.DestroyedCameraDoesNotPreventRestoringBorrowedGrid",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.DestroyedGridDoesNotPreventRestoringBorrowedCamera",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.DisableWhileFullscreen_DoesNotRestorePixelSpacingOnClose",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.DisposeRestoresOnce_AndLaterCallsCannotReacquireWorld",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.FullscreenEntryRestoresOriginalBeforeReturn_AndReentryIsIdempotent",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.LeavingAdmissionRestoresCapturedState_AndSecondVisitReappliesIt",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.OriginalDepthIsPreserved_AndCallbackObservesCompletedProjection",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelWorldProjectionTests.RepeatedApplyAndCameraOnlyRebinding_DoNotInvalidateGeometry",
+      "message": "  The shared world/UI grid needs one explicit projection owner.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_CenteredPopupKeepsWorldGeometryAndPicking",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_ExitWhileFullscreenAndForeignZoneRestoreOriginalProjection",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_FullscreenPagesRestoreSquareUiAndRectangularWorldTwice(\"Trade\")",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_FullscreenPagesRestoreSquareUiAndRectangularWorldTwice(\"Faction\")",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_FullscreenPagesRestoreSquareUiAndRectangularWorldTwice(\"QuestLog\")",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_FullscreenPagesRestoreSquareUiAndRectangularWorldTwice(\"Inventory\")",
+      "message": "  Expected: 1.5f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_RealRendererUsesRectangularTilesAndSuppressesLegacyPresenters",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.ActiveCast_ReprojectsWithoutAllocatingWhenGridGeometryChanges",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.Coordinator_ForwardsProjectionToSpriteFallback",
+      "message": "  Coordinator must forward the optional projection without changing native-library argument order.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.Coordinator_WithProjectedFallback_StillPrefersAvailableNativeSurface",
+      "message": "  Coordinator must forward the optional projection without changing native-library argument order.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.ExpandedImpact_RemainsContinuousNativePixelMosaicAtProjectedTarget",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.PooledCast_UsesCurrentProjectionAndReleasesOnPresentationHide",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.ProjectedCast_UsesTilemapWorldCenterInsteadOfFxParentLocalUnits",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.ProjectedDiagonalProjectile_UsesDirectionBetweenRenderedCells",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionTests.ProjectedImpact_DoesNotExposeHiddenTargetOrFogNeighbors",
+      "message": "  Sprite spells need an explicit optional Tilemap projection source.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularSpellFxProjectionWiringTests.OrdinaryZoneRenderer_ForwardsItsRealTilemapToSpellPresentation",
+      "message": "  Expected: 24.75f +/- 0.00100000005f\n  But was:  15.0f\n"
+    }
+  ]
+}

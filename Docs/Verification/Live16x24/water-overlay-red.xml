@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="27" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 04:22:24Z" end-time="2026-10-23 04:22:25Z" duration="0.9737598">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29678" result="Failed" site="Child" start-time="2026-10-23 04:22:24Z" end-time="2026-10-23 04:22:25Z" duration="0.973760" total="36" passed="27" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36575" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29678" result="Failed" site="Child" start-time="2026-10-23 04:22:24Z" end-time="2026-10-23 04:22:25Z" duration="0.850969" total="36" passed="27" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36576" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29678" result="Failed" site="Child" start-time="2026-10-23 04:22:24Z" end-time="2026-10-23 04:22:25Z" duration="0.797599" total="36" passed="27" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36577" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29678" result="Failed" site="Child" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.745957" total="36" passed="27" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27861" name="FlatPixelGroundStateReadabilityTests" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.051026" total="20" passed="11" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27886" name="FogClearsExistingHazardAndVisibleReentryRestoresIt" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.021104" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27884" name="FogClearsExistingHazardAndVisibleReentryRestoresIt(False)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt(False)" methodname="FogClearsExistingHazardAndVisibleReentryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="671711060" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.017711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt (System.Boolean explored) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:148
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27885" name="FogClearsExistingHazardAndVisibleReentryRestoresIt(True)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt(True)" methodname="FogClearsExistingHazardAndVisibleReentryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="487605854" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.FogClearsExistingHazardAndVisibleReentryRestoresIt (System.Boolean explored) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:148
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27882" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.009436" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27876" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;oil&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;oil&quot;,False)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1589093403" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.004359" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27877" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;ice&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;ice&quot;,False)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1314338855" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27878" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;acid&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;acid&quot;,False)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1859096755" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27879" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;oil&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;oil&quot;,True)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1670485974" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27880" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;ice&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;ice&quot;,True)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1487039380" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27881" name="NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;acid&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.NonwaterAndMixedCoatingsKeepTheirFallbackCue(&quot;acid&quot;,True)" methodname="NonwaterAndMixedCoatingsKeepTheirFallbackCue" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1949854641" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27883" name="RepeatedModeChangesEraseOldWaterMarksWithoutChangingWorldState" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.RepeatedModeChangesEraseOldWaterMarksWithoutChangingWorldState" methodname="RepeatedModeChangesEraseOldWaterMarksWithoutChangingWorldState" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="249923964" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001332" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.RepeatedModeChangesEraseOldWaterMarksWithoutChangingWorldState () [0x000a8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:134
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27868" name="SameWaterKeepsLegacyStripesOutsideActiveFlatMode" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SameWaterKeepsLegacyStripesOutsideActiveFlatMode" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.003774" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27865" name="SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;mode-off&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;mode-off&quot;)" methodname="SameWaterKeepsLegacyStripesOutsideActiveFlatMode" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1174591656" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27866" name="SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;sprites-off&quot;)" methodname="SameWaterKeepsLegacyStripesOutsideActiveFlatMode" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1789506587" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27867" name="SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SameWaterKeepsLegacyStripesOutsideActiveFlatMode(&quot;foreign-zone&quot;)" methodname="SameWaterKeepsLegacyStripesOutsideActiveFlatMode" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1421254135" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27864" name="SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.005088" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27862" name="SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(6)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(6)" methodname="SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="386286491" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.002977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The flat catalog already depicts this water.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes (System.Int32 turns) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27863" name="SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(int.MaxValue)" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes(int.MaxValue)" methodname="SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1695203825" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The flat catalog already depicts this water.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.SoleLiveWaterUsesCatalogGroundWithoutLegacyStripes (System.Int32 turns) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27875" name="WaterGroundDoesNotHideAnotherLiveHazard" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.005480" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27869" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;charge&quot;,'*')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="520985676" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_2A (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard (System.String hazard, System.Char expected) [0x000f1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27870" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;heat&quot;,'^')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1211859093" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_5E (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard (System.String hazard, System.Char expected) [0x000f1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27871" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;cold&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;cold&quot;,'^')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="739467553" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_5E (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard (System.String hazard, System.Char expected) [0x000f1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27872" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;cloud&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;cloud&quot;,'\'')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="34502395" result="Failed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CP437_27 (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_7E (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard (System.String hazard, System.Char expected) [0x000f1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGroundStateReadabilityTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27873" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;veil-mist&quot;,'\'')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="931526400" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27874" name="WaterGroundDoesNotHideAnotherLiveHazard(&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests.WaterGroundDoesNotHideAnotherLiveHazard(&quot;embers&quot;,'&quot;')" methodname="WaterGroundDoesNotHideAnotherLiveHazard" classname="CavesOfOoo.Tests.FlatPixelGroundStateReadabilityTests" runstate="Runnable" seed="1087634219" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="28788" name="NativeGroundStateReadabilityTests" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.122208" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="28795" name="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.091292" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28792" name="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;none&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;none&quot;)" methodname="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1725668640" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.088277" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28793" name="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;felling-sprites&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;felling-sprites&quot;)" methodname="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1341396249" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28794" name="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;morrowfast-sprites&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers(&quot;morrowfast-sprites&quot;)" methodname="FallbackAndAuthoredTwoDimensionalScenes_KeepFullCellMarkers" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1910682905" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28802" name="HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.006477" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28800" name="HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(False,False)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(False,False)" methodname="HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1309633282" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28801" name="HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(True,True)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(True,True)" methodname="HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="685335738" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.003961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28799" name="NativeReadinessLoss_RepaintsExistingCellAtIdentity" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.004663" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28796" name="NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,&quot;hidden&quot;)" methodname="NativeReadinessLoss_RepaintsExistingCellAtIdentity" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1831294988" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28797" name="NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,&quot;disabled-mode&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,&quot;disabled-mode&quot;)" methodname="NativeReadinessLoss_RepaintsExistingCellAtIdentity" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="921364116" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000730" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28798" name="NativeReadinessLoss_RepaintsExistingCellAtIdentity(True,&quot;wrong-zone&quot;)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(True,&quot;wrong-zone&quot;)" methodname="NativeReadinessLoss_RepaintsExistingCellAtIdentity" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1292417669" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28805" name="RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.003595" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28803" name="RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(False)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(False)" methodname="RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1963734068" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28804" name="RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(True)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(True)" methodname="RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="991494845" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28807" name="RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.003100" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28806" name="RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks(False)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks(False)" methodname="RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="579411837" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28812" name="SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.005084" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28810" name="SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(False)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(False)" methodname="SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="398693375" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.002104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28811" name="SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(True)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(True)" methodname="SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1953946822" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28809" name="TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.002768" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28808" name="TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState(True)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState(True)" methodname="TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="2054362107" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.001039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28791" name="VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.002937" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28789" name="VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(False)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(False)" methodname="VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="275001478" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28790" name="VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(True)" fullname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests.VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(True)" methodname="VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner" classname="CavesOfOoo.Tests.NativeGroundStateReadabilityTests" runstate="Runnable" seed="1022314290" result="Passed" start-time="2026-10-23 04:22:25Z" end-time="2026-10-23 04:22:25Z" duration="0.000790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

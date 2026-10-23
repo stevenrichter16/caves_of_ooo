@@ -3975,20 +3975,20 @@ namespace CavesOfOoo.Rendering
             if (InventoryUI == null) return;
             InventoryUI.PlayerEntity = PlayerEntity;
             InventoryUI.CurrentZone = CurrentZone;
-            InventoryUI.Open();
-            _inputState = InputState.InventoryOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+            InventoryUI.Open();
+            _inputState = InputState.InventoryOpen;
         }
 
         // ── Q1: Quest Log overlay (KeyCode.Q) — mirrors OpenInventory ──
         private void OpenQuestLog()
         {
             if (QuestLogUI == null) return;
-            QuestLogUI.Open();
-            _inputState = InputState.QuestLogOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+            QuestLogUI.Open();
+            _inputState = InputState.QuestLogOpen;
         }
 
         private void HandleQuestLogInput()
@@ -4006,12 +4006,12 @@ namespace CavesOfOoo.Rendering
         private void CloseQuestLog()
         {
             _inputState = InputState.Normal;
-            if (CameraFollow != null) CameraFollow.RestoreGameView();
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
                 ZoneRenderer.MarkDirty("UI.QuestLog.Close");
             }
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
         }
 
         private void HandleInventoryInput()
@@ -4051,12 +4051,12 @@ namespace CavesOfOoo.Rendering
         private void CloseInventory()
         {
             _inputState = InputState.Normal;
-            if (CameraFollow != null) CameraFollow.RestoreGameView();
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
                 ZoneRenderer.MarkDirty("UI.Inventory.Close");
             }
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
         }
 
         private void OpenFaction()
@@ -4065,10 +4065,10 @@ namespace CavesOfOoo.Rendering
             // Fullscreen pages own the main canvas, including reused UI components.
             if (ZoneRenderer != null) FactionUI.Tilemap = ZoneRenderer.GetComponent<UnityEngine.Tilemaps.Tilemap>();
             FactionUI.PlayerEntity = PlayerEntity;
-            FactionUI.Open();
-            _inputState = InputState.FactionOpen;
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
+            FactionUI.Open();
+            _inputState = InputState.FactionOpen;
         }
 
         private void HandleFactionInput()
@@ -4088,12 +4088,12 @@ namespace CavesOfOoo.Rendering
         private void CloseFaction()
         {
             _inputState = InputState.Normal;
-            if (CameraFollow != null) CameraFollow.RestoreGameView();
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
                 ZoneRenderer.MarkDirty("UI.Faction.Close");
             }
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
         }
 
         /// <summary>
@@ -4360,12 +4360,12 @@ namespace CavesOfOoo.Rendering
         private void CloseTrade()
         {
             _inputState = InputState.Normal;
-            if (CameraFollow != null) CameraFollow.RestoreGameView();
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.Paused = false;
                 ZoneRenderer.MarkDirty("UI.Trade.Close");
             }
+            if (CameraFollow != null) CameraFollow.RestoreGameView();
         }
 
         private void RequestZoneRedraw(string source)

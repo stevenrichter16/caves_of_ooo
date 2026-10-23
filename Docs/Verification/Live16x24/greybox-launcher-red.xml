@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 04:08:52Z" end-time="2026-10-23 04:08:53Z" duration="1.0641942">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29650" result="Failed" site="Child" start-time="2026-10-23 04:08:52Z" end-time="2026-10-23 04:08:53Z" duration="1.064194" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36539" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29650" result="Failed" site="Child" start-time="2026-10-23 04:08:52Z" end-time="2026-10-23 04:08:53Z" duration="0.766457" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36540" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29650" result="Failed" site="Child" start-time="2026-10-23 04:08:52Z" end-time="2026-10-23 04:08:53Z" duration="0.668543" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36541" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29650" result="Failed" site="Child" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.568057" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14036" name="LiveFlatPixelGreyboxRecoveryTests" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.168002" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="14037" name="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" methodname="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1420435315" result="Failed" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.035620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Scene/view/seed restoration still needs an editor callback after isolated shutdown.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.AssertCompletedAndQueued () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:99
+at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:60
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14040" name="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" methodname="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1757023489" result="Failed" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.009171" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing recovery entry point: RecoverPendingSession
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.Call (System.Type type, System.String name, System.Object[] arguments) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:117
+at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadAfterIsolationFinished_RequeuesLostPresentationRestore () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:89
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14039" name="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" methodname="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="503300534" result="Failed" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.009793" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing recovery entry point: RecoverPendingSession
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.Call (System.Type type, System.String name, System.Object[] arguments) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:117
+at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:75
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14038" name="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" methodname="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1922797728" result="Failed" start-time="2026-10-23 04:08:53Z" end-time="2026-10-23 04:08:53Z" duration="0.008664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing recovery entry point: RecoverPendingSession
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.Call (System.Type type, System.String name, System.Object[] arguments) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:117
+at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:68
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

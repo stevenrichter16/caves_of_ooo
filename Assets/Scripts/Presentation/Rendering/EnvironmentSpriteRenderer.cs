@@ -308,6 +308,11 @@ namespace CavesOfOoo.Rendering
         // already cleared by us.
 
         public bool RenderingEnabled = true;
+        /// <summary>Renderer-owned opt-in; admission and visibility are rechecked by the catalog.</summary>
+        public bool FlatPixelGreyboxEnabled { get; set; }
+        private FlatPixelGreyboxCatalog _flatPixelGreybox;
+        private void OnDestroy() { _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null; }
+
         private Func<Entity, bool> _entityVisualPredicate;
         private Func<int, int, bool> _authoredSceneClaim;
         private Func<Entity, bool> _authoredSceneEntity;
@@ -1026,6 +1031,17 @@ namespace CavesOfOoo.Rendering
             // dimmed, mirroring RenderRememberedCell's contract.
             var cell = zone.GetCell(x, zoneY);
             if (cell == null || !cell.Explored) return;
+            if (FlatPixelGreyboxEnabled)
+            {
+                if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
+                if (_flatPixelGreybox.TryResolve(zone, x, zoneY, out var flat))
+                {
+                    if (flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, flat.ForegroundColor);
+                    else ClaimMainCellWithoutOverlay(pos);
+                    PaintBackgroundClaim(pos, flat.GroundTile, flat.GroundColor);
+                    return;
+                }
+            }
             bool visible = cell.IsVisible;
             Color tint = visible ? Color.white : RememberedTint;
 
@@ -1208,6 +1224,12 @@ namespace CavesOfOoo.Rendering
             var mt = macro[MacroIndex(x, zoneY, macro.Length)];
             if (mt == null) return;
 
+            PaintBackgroundClaim(pos, mt, tint);
+        }
+
+        private void PaintBackgroundClaim(Vector3Int pos, Tile mt, Color tint)
+        {
+            if (_bgTilemap == null || mt == null) return;
             if (_bgClaims.TryGetValue(pos, out var existingBg))
             {
                 // Re-claim without release (defensive): KEEP the
@@ -1232,6 +1254,7 @@ namespace CavesOfOoo.Rendering
             // Round 2: the tint carries fog dimming (RememberedTint) and
             // the player's ground highlight — no more always-white.
             _bgTilemap.SetColor(pos, tint);
+            _bgTilemap.SetTransformMatrix(pos, Matrix4x4.identity);
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
@@ -40,11 +41,16 @@ namespace CavesOfOoo.Rendering
             (AsciiFxBus.HasPendingBlocking || SpellFxBus.HasPendingBlocking ||
              _ascii.HasBlockingFx || _sprites.HasBlockingFx || _native.HasBlockingFx || HasBlockingPlayback());
 
-        public WorldFxCoordinator(AsciiFxRenderer ascii, Transform parent = null, NativeSpellFxLibrary nativeLibrary = null)
+        /// <summary>
+        /// The optional world tilemap projects the flat sprite fallback only;
+        /// native effects continue to use their borrowed 3D render surface.
+        /// </summary>
+        public WorldFxCoordinator(AsciiFxRenderer ascii, Transform parent = null, NativeSpellFxLibrary nativeLibrary = null,
+            Tilemap worldTilemap = null)
         {
             _ascii = ascii ?? throw new ArgumentNullException(nameof(ascii));
             _ascii.CoordinatorOwned = true;
-            _sprites = new SpriteSpellFxRenderer(parent);
+            _sprites = new SpriteSpellFxRenderer(parent, worldTilemap);
             _native = new NativeSpellFxRenderer(nativeLibrary);
             EmberAudio = new EmberSpitAudioPlayer(parent);
             StarterAudio = new StarterSpellAudioPlayer(parent);

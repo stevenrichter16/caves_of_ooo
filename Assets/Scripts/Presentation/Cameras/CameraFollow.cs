@@ -21,6 +21,13 @@ namespace CavesOfOoo.Rendering
         /// fullscreen UI remain independent; activation belongs to the presentation mode.
         /// </summary>
         public Tilemap WorldTilemap { get; set; }
+        /// <summary>
+        /// Optional native pixel density for the projected flat world. Zero keeps
+        /// the existing continuous zoom; positive values use integer magnification
+        /// at least one output pixel per source pixel. Fullscreen and authored
+        /// scene framing bypass this setting. The flat mode owns its restoration.
+        /// </summary>
+        public int WorldPixelsPerUnit { get; set; }
         public Camera SidebarCamera { get; set; }
         public Camera HotbarCamera { get; set; }
         public Camera PopupOverlayCamera { get; set; }
@@ -333,11 +340,20 @@ namespace CavesOfOoo.Rendering
             }
 
             _camera.orthographicSize *= Mathf.Max(0.1f, GameplayZoomMultiplier);
+            bool projectedWorld = !ring && WorldTilemap != null;
+            float pixelsPerWorldUnit = 0f;
+            Rect viewportPixels = _camera.pixelRect;
+            if (projectedWorld && WorldPixelsPerUnit > 0 && viewportPixels.height > 0f)
+            {
+                float preferredScale = viewportPixels.height / (2f * _camera.orthographicSize * WorldPixelsPerUnit);
+                int scale = Mathf.Max(1, Mathf.FloorToInt(preferredScale + 0.0001f));
+                pixelsPerWorldUnit = WorldPixelsPerUnit * scale;
+                _camera.orthographicSize = viewportPixels.height / (2f * pixelsPerWorldUnit);
+            }
             float halfH = _camera.orthographicSize;
             float halfW = halfH * _camera.aspect;
             float targetX = zoneX + 0.5f;
             float targetY = Zone.Height - zoneY - 0.5f;
-            bool projectedWorld = !ring && WorldTilemap != null;
             if (projectedWorld)
             {
                 Vector3 center = WorldTilemap.GetCellCenterWorld(new Vector3Int(zoneX, Zone.Height - zoneY - 1, 0));
@@ -396,6 +412,16 @@ namespace CavesOfOoo.Rendering
             // If zone fits entirely within camera view on an axis, center it
             float clampedX = minX <= maxX ? Mathf.Clamp(desiredX, minX, maxX) : centerX;
             float clampedY = minY <= maxY ? Mathf.Clamp(desiredY, minY, maxY) : centerY;
+
+            if (pixelsPerWorldUnit > 0f)
+            {
+                // Align the viewport's lower-left world pixel boundary, not just
+                // the center: odd raster dimensions and fractional viewport origins
+                // otherwise shift source edges between physical screen pixels.
+                Vector2 pixelCenter = viewportPixels.center;
+                clampedX = (Mathf.Round(clampedX * pixelsPerWorldUnit - pixelCenter.x) + pixelCenter.x) / pixelsPerWorldUnit;
+                clampedY = (Mathf.Round(clampedY * pixelsPerWorldUnit - pixelCenter.y) + pixelCenter.y) / pixelsPerWorldUnit;
+            }
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
         }

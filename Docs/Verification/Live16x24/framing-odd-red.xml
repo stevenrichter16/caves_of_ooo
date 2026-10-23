@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.123421">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="29679" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.123421" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="36576" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="29679" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.110197" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9009" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="36577" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="29679" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.099162" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="36578" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="29679" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.088936" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25266" name="FlatPixelCameraFramingTests" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.030376" total="9" passed="8" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25267" name="DisplayAspect_UsesOutputPixelsDespiteStaleProjection_AndObservesResize" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.DisplayAspect_UsesOutputPixelsDespiteStaleProjection_AndObservesResize" methodname="DisplayAspect_UsesOutputPixelsDespiteStaleProjection_AndObservesResize" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="995510464" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.007089" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25268" name="DisplayAspect_UsesViewportPixelsWithoutRenderTexture" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.DisplayAspect_UsesViewportPixelsWithoutRenderTexture" methodname="DisplayAspect_UsesViewportPixelsWithoutRenderTexture" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="1865619348" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.000240" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25273" name="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.012709" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25269" name="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1280,800)" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1280,800)" methodname="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="423487060" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.007558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25270" name="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1281,801)" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1281,801)" methodname="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="1113267101" result="Failed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.001550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No native source pixel may be undersampled.
+  Expected: greater than or equal to 1.0f
+  But was:  0.999779761f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges (System.Int32 width, System.Int32 height) [0x0008a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Cameras/FlatPixelCameraFramingTests.cs:64
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25271" name="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1920,1080)" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(1920,1080)" methodname="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="813481991" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.000502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25272" name="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(3840,2160)" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges(3840,2160)" methodname="FlatWorld_UsesSquareNativePixelsAtIntegerScale_WithAlignedEdges" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="234535917" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.000442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25274" name="FullscreenRoundTripsUsePhysicalAspect_AndBypassWorldPixelZoom" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.FullscreenRoundTripsUsePhysicalAspect_AndBypassWorldPixelZoom" methodname="FullscreenRoundTripsUsePhysicalAspect_AndBypassWorldPixelZoom" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="200884156" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.000853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25276" name="ProjectionOwnerBorrowsAndRestoresPixelDensity_ForFullscreenAndExit" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.ProjectionOwnerBorrowsAndRestoresPixelDensity_ForFullscreenAndExit" methodname="ProjectionOwnerBorrowsAndRestoresPixelDensity_ForFullscreenAndExit" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="2143670880" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.001160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="25275" name="UnoptedProjectedWorldRetainsRowZoomAndMultiplier" fullname="CavesOfOoo.Tests.FlatPixelCameraFramingTests.UnoptedProjectedWorldRetainsRowZoomAndMultiplier" methodname="UnoptedProjectedWorldRetainsRowZoomAndMultiplier" classname="CavesOfOoo.Tests.FlatPixelCameraFramingTests" runstate="Runnable" seed="1327417980" result="Passed" start-time="2026-10-23 04:24:26Z" end-time="2026-10-23 04:24:26Z" duration="0.000760" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

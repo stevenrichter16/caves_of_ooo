@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
@@ -19,6 +20,7 @@ namespace CavesOfOoo.Rendering
         public const int GroundSortingOrder = 4;
         private static readonly float[] ImpactFragmentOffsets = { .25f, 0f, -.25f };
         private readonly Transform _root;
+        private readonly Tilemap _worldTilemap;
         private readonly List<Atom> _active = new List<Atom>(128);
         private readonly Stack<Atom> _atomPool = new Stack<Atom>(128);
         private readonly Stack<SpriteRenderer> _spritePool = new Stack<SpriteRenderer>(64);
@@ -42,8 +44,14 @@ namespace CavesOfOoo.Rendering
             public bool Impact, Resisted, Reverse, Ground, Blocking, HasAnchor;
         }
 
-        public SpriteSpellFxRenderer(Transform parent)
+        /// <summary>
+        /// A supplied tilemap projects flat-world cell centers without stretching
+        /// native effect pixels. Null retains the original parent-local unit grid.
+        /// Native 3D effects remain the coordinator's separate backend.
+        /// </summary>
+        public SpriteSpellFxRenderer(Transform parent, Tilemap worldTilemap = null)
         {
+            _worldTilemap = worldTilemap;
             var root = new GameObject("Sprite Spell FX");
             root.hideFlags = HideFlags.DontSave;
             root.transform.SetParent(parent, false);
@@ -283,7 +291,10 @@ namespace CavesOfOoo.Rendering
                 float brightness = 1f + (atom.Impact && frame == 0 ? Mathf.Clamp01(SpellFxSettings.FlashIntensity) * .12f : 0f);
                 atom.View.color = new Color(brightness, brightness, brightness, 1f);
                 atom.View.sortingOrder = atom.Ground ? GroundSortingOrder : EffectSortingOrder;
-                atom.View.transform.localPosition = CellCenter(atom.Cell) + new Vector3(atom.Offset.x, atom.Offset.y, 0f);
+                if (_worldTilemap != null)
+                    atom.View.transform.position = ProjectedPosition(atom);
+                else
+                    atom.View.transform.localPosition = CellCenter(atom.Cell) + new Vector3(atom.Offset.x, atom.Offset.y, 0f);
                 // A rotated square can overhang. Near fog only quarter-turns are allowed.
                 float angle = AllNeighborsVisible(atom.Cell) ? atom.Angle : Mathf.Round(atom.Angle / 90f) * 90f;
                 atom.View.transform.localRotation = Quaternion.Euler(0f, 0f, angle);
@@ -433,8 +444,36 @@ namespace CavesOfOoo.Rendering
             return true;
         }
         private static long Key(Point point) => ((long)point.X << 32) ^ (uint)point.Y;
-        private static Vector3 CellCenter(Point cell) => new Vector3(cell.X + .5f, Zone.Height - cell.Y - .5f, -cell.Y * .001f);
-        private static float Angle(Point from, Point to) => Mathf.Atan2(from.Y - to.Y, to.X - from.X) * Mathf.Rad2Deg;
+        private Vector3 ProjectedPosition(Atom atom)
+        {
+            if (!atom.HasAnchor)
+                return CellCenter(atom.Cell) + new Vector3(atom.Offset.x, atom.Offset.y, 0f);
+
+            // The 32px impact atlas was split into 8/16/8px fragments. Keep
+            // that mosaic contiguous around its target instead of separating
+            // the fragments by the taller cell spacing or stretching pixels.
+            // Cell and anchor visibility still gate each fragment in Update.
+            Vector3 position = CellCenter(atom.Anchor);
+            position.x += atom.Cell.X - atom.Anchor.X + atom.Offset.x;
+            position.y += atom.Anchor.Y - atom.Cell.Y + atom.Offset.y;
+            position.z = -atom.Cell.Y * .001f;
+            return position;
+        }
+        private Vector3 CellCenter(Point cell)
+        {
+            if (_worldTilemap == null)
+                return new Vector3(cell.X + .5f, Zone.Height - cell.Y - .5f, -cell.Y * .001f);
+            Vector3 position = _worldTilemap.GetCellCenterWorld(new Vector3Int(cell.X, Zone.Height - cell.Y - 1, 0));
+            position.z = -cell.Y * .001f;
+            return position;
+        }
+        private float Angle(Point from, Point to)
+        {
+            if (_worldTilemap == null)
+                return Mathf.Atan2(from.Y - to.Y, to.X - from.X) * Mathf.Rad2Deg;
+            Vector3 delta = CellCenter(to) - CellCenter(from);
+            return Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+        }
         private static float SafeDuration(float value, float fallback, float minimum)
             => float.IsNaN(value) || float.IsInfinity(value) ? fallback : Mathf.Clamp(value, minimum, .8f);
     }

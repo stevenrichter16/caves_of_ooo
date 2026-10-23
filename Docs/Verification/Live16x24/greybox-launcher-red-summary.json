@@ -1,0 +1,27 @@
+{
+  "start-time": "2026-10-23 04:08:52Z",
+  "end-time": "2026-10-23 04:08:53Z",
+  "total": "4",
+  "passed": "0",
+  "failed": "4",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore",
+      "message": "  Scene/view/seed restoration still needs an editor callback after isolated shutdown.\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadAfterIsolationFinished_RequeuesLostPresentationRestore",
+      "message": "  Missing recovery entry point: RecoverPendingSession\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore",
+      "message": "  Missing recovery entry point: RecoverPendingSession\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore",
+      "message": "  Missing recovery entry point: RecoverPendingSession\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

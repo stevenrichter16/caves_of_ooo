@@ -18,7 +18,7 @@ namespace CavesOfOoo.Rendering
     /// to Unity's rendering. Attach to a GameObject with a Tilemap + Grid.
     /// </summary>
     [RequireComponent(typeof(Tilemap))]
-    public class ZoneRenderer : MonoBehaviour
+    public partial class ZoneRenderer : MonoBehaviour
     {
         /// <summary>
         /// The zone currently being rendered.
@@ -34,7 +34,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// When true, zone rendering is suppressed (e.g. inventory screen is open).
         /// </summary>
-        public bool Paused;
+        // Fullscreen canvas ownership is implemented in ZoneRenderer.FlatPixel.cs.
 
         /// <summary>
         /// The player entity. Used for field-of-view calculations.
@@ -333,7 +333,7 @@ namespace CavesOfOoo.Rendering
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
             fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
-            _worldFxCoordinator = new WorldFxCoordinator(_asciiFxRenderer, gridParent);
+            _worldFxCoordinator = new WorldFxCoordinator(_asciiFxRenderer, gridParent, worldTilemap: _tilemap);
             _worldFxCoordinator.CameraAccent = (strength, duration) =>
             {
                 // Unity keeps a managed wrapper after native camera destruction.
@@ -557,8 +557,12 @@ namespace CavesOfOoo.Rendering
             ZoneRenderHooks.FullDirtyCallback = MarkDirty;
         }
 
+        private void OnEnable() => SyncFlatPixelMode();
+
         private void OnDisable()
         {
+            _flatProjection?.Dispose();
+            _flatProjection = null;
             ClearWorldAffordance();
             _worldFxCoordinator?.CancelAll();
             _fellingScenePresenter?.SetPresentationVisible(false);
@@ -579,6 +583,8 @@ namespace CavesOfOoo.Rendering
             _morrowfastScenePresenter?.Unbind();
             _village3DPresenter?.Bind(null, _mainCamera);
             _spawnRing3DPresenter?.Bind(null, _mainCamera);
+            _flatProjection?.Dispose();
+            _flatProjection = null;
             _worldFxCoordinator?.Dispose();
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
@@ -605,8 +611,9 @@ namespace CavesOfOoo.Rendering
             ZoneTileStateSystem.BindRenderHook(zone);
             ClearWorldAffordance();
             CurrentZone = zone;
-            _fellingScenePresenter?.Bind(zone);
-            _fellingDressingPresenter?.Bind(zone);
+            SyncFlatPixelMode();
+            _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
+            _fellingDressingPresenter?.Bind(FlatPixelModeActive ? null : zone);
             SyncVillagePresentation(!Paused);
             _entityVisualRenderer?.SetZone(zone);
             if (_worldFxCoordinator != null) _worldFxCoordinator.SetZone(zone);
@@ -813,6 +820,7 @@ namespace CavesOfOoo.Rendering
                 if (_mainCamera == null)
                     _mainCamera = Camera.main;
 
+                SyncFlatPixelMode();
                 UpdatePopupOverlayGridLayout();
                 UpdateHotbarGridLayout();
 
@@ -895,11 +903,10 @@ namespace CavesOfOoo.Rendering
                 }
 
                 // FX ticks only while the world is actually on screen.
-                _fellingScenePresenter?.SetPresentationVisible(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
                 _entityVisualRenderer?.SetPresentationVisible(
-                    _envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled);
+                    !FlatPixelModeActive && (_envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled));
                 // AsciiFxRenderer.Render clears and repaints _fxTilemap
                 // (sortingOrder 2) whenever anything is alive, which is
                 // ABOVE the order-0 main tilemap a fullscreen UI paints
@@ -929,9 +936,9 @@ namespace CavesOfOoo.Rendering
                 if (_wasPaused)
                 {
                     if (_campfireEmberRenderer != null)
-                        _campfireEmberRenderer.gameObject.SetActive(true);
+                        _campfireEmberRenderer.gameObject.SetActive(!FlatPixelModeActive);
                     if (_ambientMotesRenderer != null)
-                        _ambientMotesRenderer.gameObject.SetActive(true);
+                        _ambientMotesRenderer.gameObject.SetActive(!FlatPixelModeActive);
                     _wasPaused = false;
                     _fullDirty = true; // Force full redraw to restore bg/fx layers
                     _nativeGeometryFullDirty = true;
@@ -1005,6 +1012,7 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Zone.RenderZone.Auto())
             {
                 if (CurrentZone == null || _tilemap == null) return;
+                SyncFlatPixelMode();
 
                 _tilemap.ClearAllTiles();
                 // Pass 15 R3: the sprite overlay's claims remember
@@ -1059,7 +1067,7 @@ namespace CavesOfOoo.Rendering
                 // Re-routes water/grass/fire glyphs from the main
                 // tilemap to overlay tilemaps with shader-based
                 // animation. See Docs/GRAPHICS-PASS5.md.
-                if (_animatedEnvRenderer != null)
+                if (_animatedEnvRenderer != null && !FlatPixelModeActive)
                     _animatedEnvRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
 
                 // Pass 6 (motion-ghost trails) removed — see the field
@@ -1284,7 +1292,8 @@ namespace CavesOfOoo.Rendering
             {
                 glyph = '~'; color = new Color(0.35f, 0.25f, 0.45f);     // oil
             }
-            else if (state.Coatings.Count > 0 && !IsAuthoredRiverWater(x, y, cell, state))
+            else if (state.Coatings.Count > 0 && !IsAuthoredRiverWater(x, y, cell, state)
+                && !IsFlatPixelWaterRepresented(state))
             {
                 // Per-liquid tint: ice used to paint the same blue as
                 // water — indistinguishable even on the map (study §1).
@@ -1327,6 +1336,15 @@ namespace CavesOfOoo.Rendering
                 || (_spawnRing3DPresenter != null
                     && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.ClaimsCell(x, y));
             _tileStateTilemap.SetTransformMatrix(tilePos, nativeCell ? NativeGroundMarkTransform : Matrix4x4.identity);
+        }
+
+        private bool IsFlatPixelWaterRepresented(ZoneTileState.TileState state)
+        {
+            // FlatPixelGreyboxCatalog already colors live water ground. Relinquish
+            // only that coating, then continue to charge/heat/cold/cloud marks.
+            // Mixed liquids and other coatings still need their fallback cue.
+            return FlatPixelModeActive && state.Coatings.Count == 1
+                && state.Coatings[0].Id == "water" && state.Coatings[0].Turns > 0;
         }
 
         private bool IsAuthoredRiverWater(int x, int y, Cell cell, ZoneTileState.TileState state)
@@ -1374,6 +1392,8 @@ namespace CavesOfOoo.Rendering
                     _bgTilemap.SetTile(tilePos, bgTile);
                     _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
                     _bgTilemap.SetColor(tilePos, UnexploredColor);
+                    _bgTilemap.SetTransformMatrix(tilePos, FlatPixelModeActive
+                        ? Matrix4x4.Scale(new Vector3(1f, 1.5f, 1f)) : Matrix4x4.identity);
                 }
                 _tilemap.SetTile(tilePos, null);
                 return;
@@ -1849,6 +1869,12 @@ namespace CavesOfOoo.Rendering
 
         private void SyncVillagePresentation(bool worldVisible)
         {
+            SyncFlatPixelMode();
+            if (FlatPixelModeActive) { HideLegacyForFlatMode(); return; }
+            if (_fellingScenePresenter != null && !ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone))
+                _fellingScenePresenter.Bind(CurrentZone);
+            if (_fellingDressingPresenter != null && !ReferenceEquals(_fellingDressingPresenter.CurrentZone, CurrentZone))
+                _fellingDressingPresenter.Bind(CurrentZone);
             if (_village3DPresenter != null) _village3DPresenter.FullReveal = RevealEntire3DZone;
             if (_spawnRing3DPresenter != null) _spawnRing3DPresenter.FullReveal = RevealEntire3DZone;
             _village3DPresenter?.Bind(CurrentZone, _mainCamera);
@@ -2449,7 +2475,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void UpdateAmbientAnimations(float deltaTime)
         {
-            if (CurrentZone == null || _tilemap == null) return;
+            if (FlatPixelModeActive || CurrentZone == null || _tilemap == null) return;
 
             _ambientTimer += deltaTime;
 

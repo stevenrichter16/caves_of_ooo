@@ -1,0 +1,23 @@
+{
+  "start-time": "2026-10-23 03:51:39Z",
+  "end-time": "2026-10-23 03:52:10Z",
+  "total": "217",
+  "passed": "214",
+  "failed": "3",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.CameraFollowOverrideTests.OverrideTarget_BeyondViewportMargin_PansCamera_AndClearsBackToPlayer",
+      "message": "  Expected: greater than 40.0f\n  But was:  40.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_DisablingRendererReleasesBorrowedProjectionAndReenableReacquiresIt",
+      "message": "  Expected: (1.00, 1.00, 1.00)\n  But was:  (1.00, 1.50, 1.00)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RectangularActorProjectionWiringTests.NativeZoneRenderer_ProjectsItsActorViewsThroughTheWorldTilemap(1.5f,3.25f,-4.5f)",
+      "message": "  Expected: 18.0f +/- 9.99999975E-05f\n  But was:  10.5f\n"
+    }
+  ]
+}
