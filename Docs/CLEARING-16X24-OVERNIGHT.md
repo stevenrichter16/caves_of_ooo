@@ -1,6 +1,6 @@
 # Seed keeper clearing — overnight art pipeline
 
-Status: started 2026-10-22 evening America/Chicago. Work window ends 2026-10-23 07:00 America/Chicago (12:00 UTC), or earlier when the deliverables pass review.
+Status: started 2026-10-22 evening America/Chicago. The user subsequently clarified full gameplay integration and allowed the time each sprite and animation requires. The morning deadline and crop-only next step are superseded by [Live 16×24 art direction and integration](LIVE-16X24-ART-DIRECTION.md). Finish the defined live opening release and report regional coverage honestly.
 
 ## Direction and boundaries
 
@@ -55,7 +55,7 @@ Continue the next unfinished milestone below. Inspect current files before editi
 - Unity opened with a recovered scene backup preserved in Assets/_Recovery. Expired cloud connector endpoints bypassed via the installed local MCP server; no new service/account required.
 - New clearing Play-route regression: RED 1 failure of 6 (redirected to SampleScene), then GREEN all 6 passed after exact allowlist/menu entry. Receipts in `Docs/Verification/Clearing16x24`.
 - 16-prop kit and Unity assembly under way. Existing five-sprite study and approved PNG bytes remain unchanged.
-- Hourly heartbeat `overnight-clearing-art-pipeline` continues this same chat until completion or the stated morning cutoff. Caffeinate is running with a bounded timeout.
+- Hourly heartbeat `overnight-clearing-art-pipeline` continues this same chat. Its original morning cutoff was later replaced by the finite live-opening completion criteria in the revised brief. Caffeinate has its own bounded timeout; inspect task-owned process state before renewing it when needed.
 
 - Native kit completed: 16 props, 15 at16×24 and shelter48×48 (3×2 cells), editable voxel geometry plus exact Blender renders. Native binary alpha and palette verification passed. Two consecutive builds produce identical native PNG bytes.
 - Actual clearing Play frame captured. Final layout contains56 environmental tiles and the5 unchanged approved characters/objects. Static props use10 Tilemap layers sharing one atlas; actors remain sprites.
@@ -65,7 +65,7 @@ Continue the next unfinished milestone below. Inspect current files before editi
 
 First art milestone complete and reviewed. All **7 focused native Unity EditMode tests passed**, including existing scene routes and the saved tile regression. Final actual Game frame is **1280×800** at exact4× native pixel scale; every captured pixel matches the approved/source composite, with **zero differences**. All16 imports are16PPU, Point, uncompressed, no mipmaps/NPOT scaling. One128×128 packed texture is used; final observer reports9 draw calls and123 triangles. Original8 selected asset/scene files match pre-work hashes byte-for-byte. Menu switches to the blank study, original3D scene and clearing were exercised. Play stopped, temporary capture size removed, original Game view index0 restored; clearing is clean and open.
 
-Next: proceed to the bounded functional crop-presentation connection below. The art milestone does not satisfy that gameplay integration gate.
+Next: follow the live presentation contract and complete-opening coverage in [the revised brief](LIVE-16X24-ART-DIRECTION.md). The crop audit below remains useful source evidence, but crop-only integration no longer satisfies the next milestone. The completed static art milestone is not the requested playable visual transformation.
 
 ## Review and evidence
 
@@ -76,7 +76,7 @@ Next: proceed to the bounded functional crop-presentation connection below. The 
 - 🔵 Scope: this clearing remains an art composition. It does not merge Nella and Orven's distinct authored world sites or simulate invented dialogue/harvest actions.
 - 🧪 Actual Game capture and pixel comparison prove scale, color, layout and successful scene reload. They do not prove live gameplay, Deck hardware performance or interaction reachability. No Steam Deck hardware is connected.
 
-## Bounded next overnight slice
+## Previous crop-only slice — superseded by the live opening brief
 
 After the art milestone is pushed, prioritize one genuine connection to existing game systems over another decorative kit. Investigate the existing crop presentation path and use the new emberwheat/marlroot designs for seedling, growing and ripe states. Use imagegen as needed for coherent state references, retain editable sources and prove that visual states follow the real CropPart rather than a showcase timer. Preserve the original 3D route and avoid a parallel miniature game. Test the chosen renderer path and validate actual growth/harvest through ordinary input with NativeSaveIsolation when possible. If the broad rectangular-grid conversion is required, document the concrete dependency rather than presenting the static study as playable. Continue further only after this slice is tested and useful.
 
