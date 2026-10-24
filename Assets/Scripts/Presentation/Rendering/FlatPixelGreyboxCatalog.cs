@@ -52,6 +52,7 @@ namespace CavesOfOoo.Rendering
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
         private readonly FlatPixelOpeningArtCatalog _openingArt;
+        private FlatPixelFallbackCatalog _glyphFallback;
         private Texture2D _atlas;
         private bool _disposed;
         private sealed class SupplyObservation
@@ -646,12 +647,34 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        /// <summary>Explicit unskinned-cell query. This does not change native
+        /// admission or the existing authored/greybox resolver.</summary>
+        public bool TryResolveFallback(Zone zone, int x, int y, out FlatPixelGreyboxCell result)
+        {
+            result = default;
+            if (_disposed) return false;
+            if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+            return _glyphFallback.TryResolve(zone, x, y, out result);
+        }
+
+        /// <summary>Semantic fallback only; existing portrait authorization must
+        /// precede this query. The borrowed world bank remains globally owned.</summary>
+        public bool TryGetFallbackSubjectSprite(Entity subject, int x, int y, out Sprite sprite, out Color tint)
+        {
+            sprite = null; tint = Color.white;
+            if (_disposed) return false;
+            if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+            return _glyphFallback.TryGetSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
         public void Dispose()
         {
             if (_disposed) return;
             _disposed = true;
             ClearObservedOwners();
             _openingArt.Dispose();
+            _glyphFallback?.Dispose();
+            _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);
             foreach (Sprite sprite in _sprites) DestroyOwned(sprite);
             DestroyOwned(_atlas);

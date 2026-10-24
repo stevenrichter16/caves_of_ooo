@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="40" result="Failed(Child)" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 00:53:36Z" end-time="2026-10-24 00:53:38Z" duration="1.7086818">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30536" result="Failed" site="Child" start-time="2026-10-24 00:53:36Z" end-time="2026-10-24 00:53:38Z" duration="1.708682" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37592" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30536" result="Failed" site="Child" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:38Z" duration="1.509173" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37593" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30536" result="Failed" site="Child" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:38Z" duration="1.410343" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37594" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30536" result="Failed" site="Child" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:38Z" duration="1.110233" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28039" name="FlatPixelFallbackCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:38Z" duration="0.809580" total="40" passed="0" failed="40" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28052" name="AuthoritativeColorsAndBackgroundSurviveWithoutGameplayRenderEvents" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.AuthoritativeColorsAndBackgroundSurviveWithoutGameplayRenderEvents" methodname="AuthoritativeColorsAndBackgroundSurviveWithoutGameplayRenderEvents" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1843449334" result="Failed" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:37Z" duration="0.009174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.AuthoritativeColorsAndBackgroundSurviveWithoutGameplayRenderEvents () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:115
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28062" name="CanonicalRenderOnlyOwnersRemainVisibleButForeignPresentPhysicsDoesNot" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.CanonicalRenderOnlyOwnersRemainVisibleButForeignPresentPhysicsDoesNot" methodname="CanonicalRenderOnlyOwnersRemainVisibleButForeignPresentPhysicsDoesNot" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1874665814" result="Failed" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:37Z" duration="0.000810" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.CanonicalRenderOnlyOwnersRemainVisibleButForeignPresentPhysicsDoesNot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:151
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28076" name="CurrentGraphAndCoordinateChecksAreIndependentOfNativeBiomeScope" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.CurrentGraphAndCoordinateChecksAreIndependentOfNativeBiomeScope" methodname="CurrentGraphAndCoordinateChecksAreIndependentOfNativeBiomeScope" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="742862403" result="Failed" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:37Z" duration="0.000656" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.CurrentGraphAndCoordinateChecksAreIndependentOfNativeBiomeScope () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:215
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28042" name="DefaultLoaderCopiesWorldBankAndDisposalNeverClearsSharedWorldOrUiBank" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.DefaultLoaderCopiesWorldBankAndDisposalNeverClearsSharedWorldOrUiBank" methodname="DefaultLoaderCopiesWorldBankAndDisposalNeverClearsSharedWorldOrUiBank" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="613823200" result="Failed" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:37Z" duration="0.010971" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.NewDefault () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:274
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.DefaultLoaderCopiesWorldBankAndDisposalNeverClearsSharedWorldOrUiBank () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28075" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-24 00:53:37Z" end-time="2026-10-24 00:53:38Z" duration="0.082250" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28065" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;creature&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1687872091" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.001141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28066" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;item&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;item&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1243817113" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28067" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;crop&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1506285921" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28068" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;harvest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;harvest&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1370305131" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28069" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;field&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;field&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="95108829" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28070" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;repair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;repair&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1423276002" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000438" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28071" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;pool&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="457292779" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000443" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28072" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;campfire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;campfire&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1924147169" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28073" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;torch&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;torch&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1264476089" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28074" name="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;door&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain(&quot;door&quot;)" methodname="FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="507143648" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FogRejectsLowLayerLiveStateButKeepsDimmedStaticTerrain (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28082" name="InvalidInjectionNeverLoadsGlobalFallback" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.197057" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28078" name="InvalidInjectionNeverLoadsGlobalFallback(&quot;null&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback(&quot;null&quot;)" methodname="InvalidInjectionNeverLoadsGlobalFallback" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="366026596" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.001623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: No Exception to be thrown
+  But was:  <NUnit.Framework.AssertionException:   G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests+<>c__DisplayClass27_0.<InvalidInjectionNeverLoadsGlobalFallback>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250 
+  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback (System.String fault) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28079" name="InvalidInjectionNeverLoadsGlobalFallback(&quot;wrong-size&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback(&quot;wrong-size&quot;)" methodname="InvalidInjectionNeverLoadsGlobalFallback" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="367877186" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: No Exception to be thrown
+  But was:  <NUnit.Framework.AssertionException:   G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests+<>c__DisplayClass27_0.<InvalidInjectionNeverLoadsGlobalFallback>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250 
+  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback (System.String fault) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28080" name="InvalidInjectionNeverLoadsGlobalFallback(&quot;unreadable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback(&quot;unreadable&quot;)" methodname="InvalidInjectionNeverLoadsGlobalFallback" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="284216509" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: No Exception to be thrown
+  But was:  <NUnit.Framework.AssertionException:   G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests+<>c__DisplayClass27_0.<InvalidInjectionNeverLoadsGlobalFallback>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250 
+  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback (System.String fault) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28081" name="InvalidInjectionNeverLoadsGlobalFallback(&quot;blank-question&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback(&quot;blank-question&quot;)" methodname="InvalidInjectionNeverLoadsGlobalFallback" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1759202550" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: No Exception to be thrown
+  But was:  <NUnit.Framework.AssertionException:   G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269 
+  at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests+<>c__DisplayClass27_0.<InvalidInjectionNeverLoadsGlobalFallback>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250 
+  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidInjectionNeverLoadsGlobalFallback (System.String fault) [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:250
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28061" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.100775" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28053" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;invisible&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="92865623" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28054" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-render&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1467864234" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28055" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;missing-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;missing-render&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="355842194" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28056" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-physics&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1185911014" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28057" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;carried&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="377422266" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28058" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;equipped&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1273153362" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28059" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;empty-stack&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1183517967" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28060" name="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity(&quot;foreign-stack&quot;)" methodname="InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="537832812" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidTopOwnerExposesValidLowerTerrainInsteadOfGhostIdentity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28050" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.199352" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28043" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(null)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(null)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1570243882" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000781" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28044" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="2137432664" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28045" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;AB&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;AB&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1493598099" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28046" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;\n&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;\n&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="824262343" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28047" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;☃&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;☃&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="2074272818" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28048" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;Z&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;Z&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="277988783" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000424" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28049" name="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;°&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame(&quot;°&quot;)" methodname="InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="550213046" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.InvalidUnsupportedOrUndrawnGlyphsUseOneVisibleQuestionFrame (System.String glyph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:91
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28064" name="LegitimateSecondaryFootprintCellRendersButStaleOrForeignFootprintDoesNot" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.LegitimateSecondaryFootprintCellRendersButStaleOrForeignFootprintDoesNot" methodname="LegitimateSecondaryFootprintCellRendersButStaleOrForeignFootprintDoesNot" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="796920559" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000560" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.LegitimateSecondaryFootprintCellRendersButStaleOrForeignFootprintDoesNot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:178
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28063" name="MovedAndReplacedCellsCannotBorrowStaleOwnerListsOrSameIdReferences" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.MovedAndReplacedCellsCannotBorrowStaleOwnerListsOrSameIdReferences" methodname="MovedAndReplacedCellsCannotBorrowStaleOwnerListsOrSameIdReferences" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="170514409" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.MovedAndReplacedCellsCannotBorrowStaleOwnerListsOrSameIdReferences () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:164
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28041" name="NativeFramesCopyActualInkWithoutStretchingAndOwnOnlyTheirCopies" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.NativeFramesCopyActualInkWithoutStretchingAndOwnOnlyTheirCopies" methodname="NativeFramesCopyActualInkWithoutStretchingAndOwnOnlyTheirCopies" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="127900841" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.NativeFramesCopyActualInkWithoutStretchingAndOwnOnlyTheirCopies () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28077" name="SubjectQueryPreservesCarriedIdentityWithoutGrantingWorldOccupancy" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.SubjectQueryPreservesCarriedIdentityWithoutGrantingWorldOccupancy" methodname="SubjectQueryPreservesCarriedIdentityWithoutGrantingWorldOccupancy" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="448175239" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.SubjectQueryPreservesCarriedIdentityWithoutGrantingWorldOccupancy () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:226
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28040" name="UnskinnedFallbackDoesNotExpandNativeAdmissionOrChangeExistingLocalArt" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.UnskinnedFallbackDoesNotExpandNativeAdmissionOrChangeExistingLocalArt" methodname="UnskinnedFallbackDoesNotExpandNativeAdmissionOrChangeExistingLocalArt" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="23866512" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.002974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  TryResolveFallback must be explicitly callable.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.BindResolve (System.Object instance, System.String name) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:281
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.UnskinnedFallbackDoesNotExpandNativeAdmissionOrChangeExistingLocalArt () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28051" name="VariantsFollowActualCoordinateHashAndSpaceRemainsIntentionallyBlank" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.VariantsFollowActualCoordinateHashAndSpaceRemainsIntentionallyBlank" methodname="VariantsFollowActualCoordinateHashAndSpaceRemainsIntentionallyBlank" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="447402129" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000517" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.VariantsFollowActualCoordinateHashAndSpaceRemainsIntentionallyBlank () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28083" name="WarmResolutionAllocatesNothingAndReadsChangedColorWithoutNewFrames" fullname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.WarmResolutionAllocatesNothingAndReadsChangedColorWithoutNewFrames" methodname="WarmResolutionAllocatesNothingAndReadsChangedColorWithoutNewFrames" classname="CavesOfOoo.Tests.FlatPixelFallbackCatalogTests" runstate="Runnable" seed="1634857872" result="Failed" start-time="2026-10-24 00:53:38Z" end-time="2026-10-24 00:53:38Z" duration="0.000460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.1 identity-preserving native fallback is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.FallbackType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:278
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.New (UnityEngine.Texture2D atlas) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:269
+at CavesOfOoo.Tests.FlatPixelFallbackCatalogTests.WarmResolutionAllocatesNothingAndReadsChangedColorWithoutNewFrames () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFallbackCatalogTests.cs:257
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

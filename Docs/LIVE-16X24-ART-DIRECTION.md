@@ -568,3 +568,15 @@ linewise whitespace-equivalence checks. The next implementation is G1's
 identity-preserving fallback, global projection continuity and reversible
 normal activation, tested before enabling the default. The heartbeat remains
 active; the original finite opening brief is unfinished.
+
+### G1.1 foundation verified — next: live rendering
+
+The [fallback catalog slice](GRAPHICS-G1-PRESENTATION.md) now has actual
+corrected RED (40 cases) followed by40 focused and90 disjoint regression
+passes in Unity. Two independent source reviews found no blocking issue.
+It preserves actual world glyphs/colors in cached16×24 frames with canonical
+ownership, fog and lifetime checks. This is not new regional artwork and is
+not yet connected to the live renderer; normal launch still uses its earlier
+behavior. Continue G1.2's shared selection, travel continuity, event color and
+hazard work, then G1.3's reversible default/menu. Do not count these native
+catalog tests as actual gameplay or physical Deck acceptance.
