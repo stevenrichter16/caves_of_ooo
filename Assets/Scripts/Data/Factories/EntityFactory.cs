@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Anatomy;
@@ -49,6 +50,19 @@ namespace CavesOfOoo.Data
         private Dictionary<string, Type> _partTypes = new Dictionary<string, Type>();
 
         private int _nextEntityID = 1;
+
+        /// <summary>
+        /// Reserve an existing saved numeric identity without rewriting it or
+        /// rewinding this factory. Call only after the save graph is validated.
+        /// Opaque IDs (including GUID stack identities) need no numeric range.
+        /// </summary>
+        internal void ReserveLoadedIdentity(string id)
+        {
+            if (!int.TryParse(id, NumberStyles.None, CultureInfo.InvariantCulture, out int value)
+                || value < 1 || value < _nextEntityID)
+                return;
+            _nextEntityID = value == int.MaxValue ? int.MaxValue : value + 1;
+        }
 
         public EntityFactory()
         {
@@ -170,7 +184,11 @@ namespace CavesOfOoo.Data
         public Entity CreateEntity(Blueprint blueprint)
         {
             var entity = new Entity();
-            entity.ID = (_nextEntityID++).ToString();
+            // A loaded maximum must never wrap or be issued again. GUID-N is
+            // already the identity convention for independently split items.
+            entity.ID = _nextEntityID == int.MaxValue
+                ? Guid.NewGuid().ToString("N")
+                : (_nextEntityID++).ToString(CultureInfo.InvariantCulture);
             entity.BlueprintName = blueprint.Name;
 
             // Copy properties

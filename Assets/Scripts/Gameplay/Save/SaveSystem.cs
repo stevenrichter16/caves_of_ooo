@@ -249,6 +249,15 @@ namespace CavesOfOoo.Core
         // Session loading calls this only after all parser and section checks pass.
         internal void RunLoadHooks()
         {
+            // Token graphs have passed EntityBodies.End; sessions additionally
+            // finish their footer and saved-plan validation before arriving here.
+            // Reserve the whole decoded graph before any hook can create items.
+            // Doing this during body reads would mutate QuickLoad's live factory
+            // even if a later parser check rejected the save.
+            if (Factory != null)
+                for (int i = 0; i < _loadedEntities.Count; i++)
+                    Factory.ReserveLoadedIdentity(_loadedEntities[i].ID);
+
             for (int i = 0; i < _loadedEntities.Count; i++)
             {
                 var parts = _loadedEntities[i].Parts;

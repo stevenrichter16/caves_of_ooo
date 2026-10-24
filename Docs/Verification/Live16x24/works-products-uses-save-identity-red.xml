@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 16:34:44Z" end-time="2026-10-24 16:34:45Z" duration="0.5893985">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30847" result="Failed" site="Child" start-time="2026-10-24 16:34:44Z" end-time="2026-10-24 16:34:45Z" duration="0.589399" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37974" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30847" result="Failed" site="Child" start-time="2026-10-24 16:34:44Z" end-time="2026-10-24 16:34:45Z" duration="0.543371" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37975" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30847" result="Failed" site="Child" start-time="2026-10-24 16:34:44Z" end-time="2026-10-24 16:34:45Z" duration="0.501562" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37976" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30847" result="Failed" site="Child" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.462642" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="13745" name="EntityFactorySaveIdentityTests" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.176587" total="12" passed="6" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="13752" name="AllReferencedBodiesAreReservedBeforeTheFirstLoadHookAllocates" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.AllReferencedBodiesAreReservedBeforeTheFirstLoadHookAllocates" methodname="AllReferencedBodiesAreReservedBeforeTheFirstLoadHookAllocates" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="903488835" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.019386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 4 but was 1. Strings differ at index 0.
+  Expected: "9201"
+  But was:  "1"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.AllReferencedBodiesAreReservedBeforeTheFirstLoadHookAllocates () [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:96
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="13747" name="APreviouslyHigherLiveFactoryNeverRewindsAcrossRepeatedLoads" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.APreviouslyHigherLiveFactoryNeverRewindsAcrossRepeatedLoads" methodname="APreviouslyHigherLiveFactoryNeverRewindsAcrossRepeatedLoads" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="983796976" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.003370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13753" name="ARejectedTokenGraphCannotAdvanceTheBorrowedLiveFactory" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.ARejectedTokenGraphCannotAdvanceTheBorrowedLiveFactory" methodname="ARejectedTokenGraphCannotAdvanceTheBorrowedLiveFactory" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="66692971" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13760" name="ContinuedHarvestKeepsTheRealConcentrationActionAndExactPayment" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.ContinuedHarvestKeepsTheRealConcentrationActionAndExactPayment" methodname="ContinuedHarvestKeepsTheRealConcentrationActionAndExactPayment" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1804247678" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.084354" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Continued-game harvest must remain discoverable through the real inventory action list.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.ContinuedHarvestKeepsTheRealConcentrationActionAndExactPayment () [0x001b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:183
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="13746" name="LoadedNumericIdentityAdvancesANewFactoryWithoutRewritingTheOwner" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.LoadedNumericIdentityAdvancesANewFactoryWithoutRewritingTheOwner" methodname="LoadedNumericIdentityAdvancesANewFactoryWithoutRewritingTheOwner" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="911162266" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002998" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 4 but was 1. Strings differ at index 0.
+  Expected: "7198"
+  But was:  "1"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.LoadedNumericIdentityAdvancesANewFactoryWithoutRewritingTheOwner () [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:58
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13759" name="NumericExhaustionCannotWrapOrReissueTheSavedMaximum" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.NumericExhaustionCannotWrapOrReissueTheSavedMaximum" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.007207" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="13757" name="NumericExhaustionCannotWrapOrReissueTheSavedMaximum(&quot;2147483646&quot;)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.NumericExhaustionCannotWrapOrReissueTheSavedMaximum(&quot;2147483646&quot;)" methodname="NumericExhaustionCannotWrapOrReissueTheSavedMaximum" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="2036315998" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  1
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.NumericExhaustionCannotWrapOrReissueTheSavedMaximum (System.String id) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="13758" name="NumericExhaustionCannotWrapOrReissueTheSavedMaximum(&quot;2147483647&quot;)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.NumericExhaustionCannotWrapOrReissueTheSavedMaximum(&quot;2147483647&quot;)" methodname="NumericExhaustionCannotWrapOrReissueTheSavedMaximum" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1640758230" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002247" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  1
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.NumericExhaustionCannotWrapOrReissueTheSavedMaximum (System.String id) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="13751" name="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.007561" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13748" name="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;custom:item/7197&quot;)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;custom:item/7197&quot;)" methodname="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1067949710" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13749" name="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;f72c8cc150b44a28a15bb5c56d40d806&quot;)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;f72c8cc150b44a28a15bb5c56d40d806&quot;)" methodname="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1350299785" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13750" name="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;-5&quot;)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator(&quot;-5&quot;)" methodname="OpaqueSavedIdentityIsUnchangedAndDoesNotResetTheNumericAllocator" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1293493264" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.002251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="13756" name="SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.043955" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="13754" name="SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck(False)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck(False)" methodname="SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="1198406463" result="Failed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.026214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 9000
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EntityFactorySaveIdentityTests.SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck (System.Boolean corrupt) [0x001a1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/EntityFactorySaveIdentityTests.cs:138
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="13755" name="SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck(True)" fullname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests.SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck(True)" methodname="SessionReservesInactiveZoneContainerOnlyAfterTheFinalParseCheck" classname="CavesOfOoo.Tests.EntityFactorySaveIdentityTests" runstate="Runnable" seed="2047109770" result="Passed" start-time="2026-10-24 16:34:45Z" end-time="2026-10-24 16:34:45Z" duration="0.017315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

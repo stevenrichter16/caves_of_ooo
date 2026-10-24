@@ -2,11 +2,14 @@
 
 ## Status and bounded plan
 
-**Current schedule,2026-10-24:** Unity and ordinary input have recovered.
-Plot products now have partial harvest/pickup/carried-Examine acceptance;
-the remaining plot loop comes before this packet's new-art forage/preparation/
-brew/coin route. Works-product ordinary acceptance is still pending. See the
-[scheduling continuation](#scheduling-continuation--2026-10-24) below.
+**Current schedule,2026-10-24 16:01 continuation completed:** the basic works
+product route is **ordinary_bounded_accepted**. All seven exact native readers
+were observed across the named pre-fix and post-fix sessions. Continued-save
+ID allocation was fixed and independently reviewed; the ordinary concentration,
+brewing, F5/F6 and drinking replay passed. These bounds do not complete all
+item applications, actors, the six-site journey or hardware acceptance.
+Next new art is the east connector/kitchen, using the full production pipeline.
+Historical partial/locked-machine status below is retained as historical evidence.
 
 Initial implementation record,2026-10-23: seven native sprites and runtime integration implemented; focused
 native Unity GREEN, affected regression and independent cold review
@@ -20,7 +23,9 @@ complete or add more unverified areas until these two live gates close.
 Seven original native frames cover the six remaining identities in the
 14-item direct-product ledger plus the previously omitted preparation
 outcome. This is CoO-original art; Qud is a readability reference, with no
-copied assets or implementation-parity claim. Normal builds remain unchanged.
+copied assets or implementation-parity claim. This initial packet did not alter
+normal-build defaults; subsequent G1 ordinary flat-launch work is documented
+in GRAPHICS-G1-LAUNCH.md and the latest completion plan.
 
 ## Verification sweep and corrections before production
 
@@ -198,7 +203,7 @@ screenshots, whole-frame/draw-call effect, physical Deck, release activation
 or whole-route/whole-biome completeness. No new Play session was launched;
 contacts and reused captures are not new gameplay acceptance.
 
-## Next action
+## Historical next action (superseded by final continuation below)
 
 Ordinary input is available. Finish the remaining plot-product ground
 Examine/prepare/plant route in [the plot-product record](LIVE-16X24-PLOT-PRODUCTS.md),
@@ -263,3 +268,119 @@ product identities, actual forage/preparation, coin discovery/conversion and
 application remain pending. No new art, runtime code or native suite rerun.
 The checkpoint in `plot-products-uses-local-checkpoint.json` can continue
 south to the existing works without replaying the accepted farming loop.
+
+### Ordinary works-use continuation plan — 2026-10-24 16:01 UTC
+
+Resume the last real plot checkpoint inside owned isolation and walk south to
+the works. Reuse accepted geometry, concept/extraction and native sources.
+Observe current forage and stock; harvest/examine finite burr, lichen, sprigs
+and berries; prepare concentrated mendleaf only if actual supplies permit;
+brew and read resulting flasks. Inspect actual coin custody and use ordinary
+destruction/pickup if needed for its ground art/currency conversion. No grants,
+teleports, forced ticks or rewinding finite rolls. Capture real Game images
+and bounded receipts, independent review, save/load and restore. Fix significant
+presentation defects with saved source sweep and RED before runtime changes.
+Native suites/concepts alone do not close these remaining ordinary gates.
+
+## Ordinary works use and identity collision — 2026-10-24 16:01 UTC
+
+Continued the prior real plot checkpoint in fresh owned save isolation, with
+ordinary C/keyboard controls and no forced presentation. Walked south to
+`Overworld.11.9.0`; all captures remain actual1280×800 Unity Game images.
+Opened the real crate, left its four coins inside and broke it through the
+ordinary menu. The spilled coin's exact shared reader shows native art; Take
+converts the four coins into20drams (36→56) without a carried coin. Harvested
+two berries, read their exact portrait and ate one at full40HP. Harvested two
+mendleaf sprigs, one burr and one lichen; each exact carried reader matches
+its native source. Independent pixel review found zero opaque RGB/shape
+mismatches in these five portraits. This is current visual evidence, not a
+new art implementation or complete service acceptance.
+
+Route correction: a scratch path calculation treated `Cell.IsPassable` as
+sufficient, but ordinary bump movement struck the destructible hedges at
+60,4 and60,10. One hedge was destroyed; subsequent walking used the observed
+57-column gap. No passability, damage, movement or supply was injected.
+Nearby AI continued: a viper killed a magpie. Do not call this an unchanged
+world or a successful obstacle-aware pathfinder test.
+
+The one burr brewed a stoneskin tonic and the one lichen brewed a frozen
+coating through actual ingredient selection. Both previews show their real
+form/potency; brewing itself did not advance the clock. However, the carried
+sprig's concentration action was absent despite two units and a nearby still.
+A read-only custody probe found **CandyCarrot and MendleafSprig both ID2710**.
+The loaded factory had restarted numbering below existing owners. Strict
+ownership checks correctly refused the ambiguous carried item. The failure
+and isolated save are preserved in the `works-products-uses-duplicate-identities`
+and `collision-checkpoint` receipts. Do not use that checkpoint as the next
+journey baseline, weaken the guard or rewrite IDs to force a screenshot.
+
+[The save repair](SAVE-ENTITY-IDENTITY-RESTORE.md) follows behavioral native
+RED→GREEN and includes actual harvest/action discovery, inactive/nested owners,
+load-hook allocation, rejected-save isolation and overflow counters. Replay
+must use the untouched earlier plot checkpoint after the fix. These pre-fix
+screenshots establish identity/readability and actual finite actions only;
+they do not yet accept concentration, save/load or the full product route.
+
+## Completed ordinary works-product route — 2026-10-24 16:01 continuation
+
+**Bounded acceptance:** all seven exact identities have actual1280×800 shared
+reader captures across two distinct ordinary sessions. Pre-fix coin, berries,
+sprig, burr and lichen establish their pictured art and transactions described
+above. They are not relabeled as post-fix save proof. Post-fix concentrate and
+healing-only flask complete the native reader coverage. Independent source-
+pixel comparison found zero opaque RGB or silhouette differences in all seven
+portraits. Accepted sprites and atlas bytes remain unchanged.
+
+The actual blocker was saved-ID reuse, corrected in EntityFactory and the
+validated SaveReader load-hook boundary; see
+[SAVE-ENTITY-IDENTITY-RESTORE.md](SAVE-ENTITY-IDENTITY-RESTORE.md).
+Native RED12:6passed/6failed; GREEN12/12; affected regression220/220 with no
+skips and232 distinct GREEN cases. The first fixture discovery returned0before
+import and is not RED; the regression MCP initialization timeout is not a
+native failure (fresh matching XML completed normally). Both code and captured
+native portraits received independent review.
+
+Replayed the untouched prior plot checkpoint with ordinary Continue/keyboard.
+A wandering Patchbearer at46,3 intercepted the attempted path. Actual bump
+attacks reduced HP40→18; a carried healing tonic and return hits left26.
+The real Calm skill pacified it, then walking bypassed it via45,9 and57,18.
+New harvested sprigs ID7202 did not collide with saved carrot2710. The still
+menu consumed2sprigs→1concentrate7204; real brewing consumed that into mending
+tonic7205 with Healing2d4. Its native neutral flask correctly works without a
+BrewItem part. No grants, teleports, forced ticks or injected world mutations.
+
+F5/F6 preserved253 recorded current-zone rows as an unordered multiset and12
+carried rows, including IDs and2d4 metadata, at62,18/HP26/36drams/tick2800.
+Raw world-row order changed; unrecorded fields and other zones are not proved.
+Drinking after reload consumed the flask and healed7HP to33. Four ordinary
+steps returned to62,18; finalF5 tick2850 and byte-verified continuation files
+are described in `works-products-uses-fixed-checkpoint.json`. Existing
+historically colliding saves are intentionally not repaired. The failed
+collision checkpoint is repro-only, never the next baseline.
+
+The short profile has22.852seconds/22141samples, below32768capacity: renderer
+mean0.0678ms/p990.1113ms, main-thread mean1.0295ms/p991.7965ms, draw calls
+mean35.12/max37. It includes four ordinary steps plus editor idle/tool time;
+main-thread max944.56ms is retained, so this is not a no-stall or Deck claim.
+The earlier129.39second window wrapped; its samples describe only the retained
+tail and must not be treated as whole-window statistics or a controlled speedup.
+
+Final cleanup: Play stopped; isolation/artPending/viewBorrowed false; borrowed
+saveRoot cleared. Game view FreeAspect/2× restored visually. Native console has
+0errors/2Metal memoryless-depth warnings. MCP read_console misclassified these
+warnings and an Autosaved log; `works-products-uses-console-counts.json` records
+actual Unity LogEntries counts. No new package or physical controller test.
+
+**Next:** east connector and Orven kitchen. Start from the real existing zones,
+greybox/capture actual controls and compositions, reinterpret with imagegen,
+extract exact owner/state parts, create editable native16×24 sources, integrate,
+then ordinary route/profile/comparison. Reuse the approved Cook unchanged.
+Do not replay accepted basic north product loops without a named defect.
+North actors' motion/self-medicine, all applications and ground/carried
+permutations, purchased crop families, G2 final scene/defence, all-seed routes,
+whole six-site release, packaged activation and physical Deck remain open.
+
+Evidence index: [37 actual captures and receipts](Verification/Live16x24/works-products-uses-index.json).
+[Visual review](Verification/Live16x24/works-products-uses-visual-review.md),
+[save comparison](Verification/Live16x24/works-products-uses-fixed-save-comparison.json),
+[native test summary](Verification/Live16x24/works-products-uses-test-summary.json).

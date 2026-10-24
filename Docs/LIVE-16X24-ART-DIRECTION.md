@@ -798,3 +798,36 @@ plot route or redraw its sprites without a named defect. Carried MarlrootSeed
 remains unobserved (exact ground/planting accepted); purchased crop families,
 G2 scene/framing/Player defence, all-seed variants, packaged launch, physical
 Deck and the complete six-site release remain open. Continue the hourly work.
+
+## Latest continuation — works products accepted and save blocker fixed, 2026-10-24 16:01 UTC
+
+The existing works product art passed its bounded ordinary route. Seven native
+readers match source pixels exactly across named pre-/post-fix sessions. Real
+crate destruction/pickup converted4coins into20drams; berries were harvested
+and eaten; burr and lichen were harvested and brewed. A genuine continued-save
+ID collision blocked preparation, so two runtime files now reserve loaded
+numeric identities before load hooks allocate new objects. Native RED had6
+expected failures; focused12 plus affected220 passed,232 distinct cases.
+[Save correction](SAVE-ENTITY-IDENTITY-RESTORE.md) includes source counterchecks,
+independent review, test-discovery/transport limitations and no-migration bounds.
+
+The untouched earlier checkpoint was replayed through actual input, including
+an intervening Patchbearer fight, healing and Calm. New sprigs7202→concentrate7204
+→mending flask7205; F5/F6 preserved253 observed zone rows and12 carried rows.
+Drinking after reload consumed the flask and healed26→33HP. Actual images and
+receipt index: [works route](Verification/Live16x24/works-products-uses-index.json).
+Existing already-colliding saves are not repaired; unrecorded/other-zone state
+and every product use remain outside this bounded acceptance. No new sprite art.
+
+Editor Play/isolation/save root/view restored; native console0errors/2existing
+Metal warnings. The short unwrapped22.85second profile is an editor observation,
+not Deck performance; the earlier long profile wrapped and only measures its
+tail. No new packaged build or physical Deck acceptance.
+
+**Next action:** east connector/kitchen via real playable greybox and captures,
+imagegen reinterpretation, exact owner/state extraction, editable native sprites
+and integration, ordinary controls and visual comparison. Reuse approved Cook.
+The accepted basic plot/works product loops need no arbitrary repeat. Remaining
+G2 scene/Player defence, north actor motion/self-treatment, incidental/purchased
+content, full six-zone journey and packaged/device release remain open. Graphics
+is still priority1; continue the heartbeat and regional work after the opening.
