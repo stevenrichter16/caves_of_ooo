@@ -16,7 +16,7 @@ namespace CavesOfOoo.Tests
     public sealed class FlatPixelGlobalPresentationTests
     {
         const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        const string Outside = "Overworld.12.10.0";
+        const string Outside = "Overworld.13.10.0";
         const int X = 10, Y = 10;
         static readonly Vector3Int At = Position(X, Y);
         EntityFactory factory;

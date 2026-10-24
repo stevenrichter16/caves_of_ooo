@@ -154,3 +154,22 @@ This brief is a source/state audit and visual production proposal. It can establ
 - [Art reference library](../../Docs/ART-REFERENCE-LIBRARY.md): source pages, observed features and rights notes. These external images are observational references, not imported game assets.
 
 Review: source inventory and native sprite metadata checked; no gameplay/code changes in this brief. Proposed final-art and animation states remain subject to the existing test-first integration workflow and actual screenshot review.
+
+
+## East/kitchen companion — 2026-10-24
+
+See [source contract](east-kitchen/README.md) and [living integration record](../../Docs/LIVE-16X24-EAST-KITCHEN.md).
+18 exact16×24 frames in one288×24 strip: forge,oven,cot,chair,damaged/repaired
+claypan,neutralinput/pickuptrays,Claspbean stages0–2,pulp,seed,FieldMeal,
+CharmFlowers,CopperPipe,neutralSteamVent,MillStone. ApprovedCook is a separate
+byte-identical16×24 resource. Editable Blender+source-cell records and verifier
+are included. Built-in imagegen v1/v2 are concepts; no generatedpixels imported.
+
+Actual two graphs12.10/12.11 now admit exact native roles.495 distinct native
+tests passed. Ordinary keyboard repair/harvest/collect/F5F6/eastreturn/kitchen
+revisit captures recorded; paid meal and full forge craft remain unproved.
+Pan title/flavor contradiction is fixed and confirmed in the actual reader. Trays
+remain neutral intentionally, not an inferred working/ready display. The
+surrounding repetitive hedge rooms and ground/framing remain scene-level debt.
+Keep approved frames stable; do not substitute additional assetcounts for
+closing scene composition and the remaining authoritative service states.

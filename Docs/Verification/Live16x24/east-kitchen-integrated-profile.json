@@ -1,0 +1,71 @@
+{
+  "label": "east-kitchen-integrated-profile",
+  "start": "2026-10-24T17:47:49.466926Z",
+  "end": "2026-10-24T17:48:55.912807Z",
+  "elapsedSeconds": 66.445881,
+  "frames": 53142,
+  "zone": "Overworld.12.10.0",
+  "player": [
+    6,
+    19
+  ],
+  "hp": 33,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 75101.13461303711,
+      "max": 37395167,
+      "p99": 136333
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1333169.6390075684,
+      "max": 1468988292,
+      "p99": 2417917
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.674072265625,
+      "max": 39,
+      "p99": 39
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.674072265625,
+      "max": 39,
+      "p99": 39
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9191.222747802734,
+      "max": 10921,
+      "p99": 10921
+    }
+  ],
+  "bounds": "Editor ordinary walking plus idle/tool time; all-world/UI costs and live combat differ; not Deck or a controlled speedup benchmark. Ring buffer wrapped: statistics describe only last32768 samples of53142frames, not the complete66.45s. UI/tool commands and zone streaming contributed spikes; no controlled before/after performance claim."
+}

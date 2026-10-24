@@ -164,32 +164,47 @@
       "id": "east_connector",
       "zone_id": "Overworld.12.10.0",
       "purpose": "Existing tempering shelter on route to Orven",
-      "flat_admission": "not_admitted",
-      "native_integration": "not_admitted",
-      "ordinary_play": "ordinary_pending",
-      "accepted": [],
+      "flat_admission": "Exact current managed Spread graph, X12 and unclaimed surface address",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "accepted": [
+        "Ordinary east entry from glade and bidirectional kitchen travel with flat projection",
+        "Native forge exact-subject portrait and real component picker; no carried components, no craft claimed",
+        "Native sparse CharmFlowers, copper pipe, neutral vent body and millstone visible in actual connector"
+      ],
       "open": [
-        "Region-specific native kit and real greybox route",
-        "Owner/state extraction from existing census",
-        "Native functional worksite and incidental coverage",
-        "Ordinary full journey acceptance"
+        "Full forging/tempering use and product feedback",
+        "Whole-scene composition, remaining actors/incidental owners and fog review",
+        "Ordinary complete journey and packaged/hardware acceptance"
       ],
       "refs": [
         "Docs/LIVE-16X24-CONNECTED-SITES.md",
         "Docs/Verification/Live16x24/connected-two-seed-census-summary.json",
-        "Docs/Verification/Live16x24/g3-east-kitchen-source-audit.md"
+        "Docs/Verification/Live16x24/g3-east-kitchen-source-audit.md",
+        "Docs/LIVE-16X24-EAST-KITCHEN.md"
       ],
-      "primary_packets": [],
+      "primary_packets": [
+        "east_kitchen",
+        "opening_static",
+        "opening_motion"
+      ],
       "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "orven_kitchen",
       "zone_id": "Overworld.12.11.0",
       "purpose": "Existing WaysideKitchen service and introduction",
-      "flat_admission": "not_admitted",
-      "native_integration": "not_admitted",
-      "ordinary_play": "ordinary_pending",
-      "accepted": [],
+      "flat_admission": "Exact current managed Spread graph, X12 and unclaimed surface address",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "accepted": [
+        "Approved Cook byte-identical resource visible in ordinary world and reader",
+        "Native oven, cot, chair, neutral trays and actual clay-pan repair world/portrait change",
+        "Ordinary Marlroot preparation supplied second clay; real repair consumed2FireClay",
+        "Actual Claspbean harvest removed ripe owner, dropped2pulp+1seed and pickup cleared tile",
+        "F5/F6 preserved recorded repair flag, depleted crop and11 carried rows; real east return/revisit",
+        "Already-repaired ordinary Continue/Examine now agrees across title, FOCUS, Contents and description; raw saved/custom text preserved, independent visual P2 closed."
+      ],
       "known_planning_owners": [
         "SpreadWaysideCook",
         "Oven",
@@ -202,17 +217,22 @@
         "ClaspbeanCrop"
       ],
       "open": [
-        "Bind unchanged approved Cook artwork",
-        "Actual oven, pan repair/batch and escrow/pickup states",
-        "Claspbean stages and outputs",
-        "Ordinary repair/cook/introduction/return journey"
+        "Authoritative working/ready escrow/pickup visual feedback and actual paid meal collection",
+        "Full crop growth/replanting and pulp/meal use acceptance",
+        "Whole-scene hedge/ground composition and remaining actors",
+        "Full six-site release and packaged/hardware acceptance"
       ],
       "refs": [
         "Docs/LIVE-16X24-CONNECTED-SITES.md",
         "Assets/Art/Cook16x24/cook-16x24.png",
-        "Docs/Verification/Live16x24/g3-east-kitchen-source-audit.md"
+        "Docs/Verification/Live16x24/g3-east-kitchen-source-audit.md",
+        "Docs/LIVE-16X24-EAST-KITCHEN.md"
       ],
-      "primary_packets": [],
+      "primary_packets": [
+        "east_kitchen",
+        "opening_static",
+        "opening_motion"
+      ],
       "flat_projection": "global_requested_flat_mode"
     }
   ],
@@ -461,6 +481,29 @@
         "Docs/Verification/Live16x24/g2-ground-play-verification.json"
       ],
       "limits": "Start, road/pond walk, freeze\u2192expiry, covered field and Harvest\u2192Prepare accepted. Wet20 has native tests only; no ordinary successful melt/fullpack/Deck/packaged release proof."
+    },
+    "east_kitchen": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "contract": "18 native frames plus unchanged approved Cook; optional cached atlas with exact-owner state gates. Neutral trays/vent promise no stock/job/heat.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/east-kitchen/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-EAST-KITCHEN.md",
+        "Docs/Verification/Live16x24/east-kitchen-integrated-index.json",
+        "Docs/Verification/Live16x24/east-kitchen-green-summary.json",
+        "Docs/Verification/Live16x24/east-kitchen-regression-summary.json",
+        "Docs/Verification/Live16x24/east-kitchen-final-verification.json",
+        "Docs/Verification/Live16x24/east-kitchen-readout-fixed-reader.png",
+        "Docs/Verification/Live16x24/east-kitchen-integration-visual-review.md"
+      ],
+      "not_accepted": [
+        "All service/job/output states",
+        "Complete crop lifecycle",
+        "All incidental owners/regions",
+        "Full scene composition, package or physical Deck"
+      ]
     }
   },
   "rough_or_unclassified_coverage": {
@@ -487,7 +530,7 @@
     {
       "id": "projection_scope",
       "status": "implemented_bounded_editor_play_accepted",
-      "detail": "Requested flat projection is global while four exact native-art graphs remain scoped. Ordinary west travel to an unadmitted graph and back retained16\u00d724; native tests cover other biomes/underground and explicit exit.",
+      "detail": "Requested flat projection is global while six exact native-art graphs remain scoped. Ordinary west travel to an unadmitted graph and back retained16\u00d724; native tests cover other biomes/underground and explicit exit.",
       "refs": [
         "Docs/GRAPHICS-G1-RENDERER.md",
         "Docs/Verification/Live16x24/g1-west-outside-native-kit.json"
@@ -529,8 +572,8 @@
     }
   ],
   "next_acceptance_order": [
-    "G3_east_connector_and_kitchen_native_art",
-    "G2_scene_level_opening_finish",
+    "G2_scene_level_opening_and_connected_working_landscape_finish",
+    "G3_remaining_east_kitchen_services_and_crop_lifecycle",
     "G3_complete_six_zone_journey",
     "packaged_native_launch_and_device_gate",
     "remaining_regional_kits"
@@ -554,10 +597,10 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "ordinary_works_product_route_bounded_accepted_save_identity_fixed",
-    "capture": "Docs/Verification/Live16x24/works-products-uses-fixed-mending-used.png",
-    "receipt": "Docs/LIVE-16X24-WORKS-PRODUCTS.md",
-    "route": "37actual Game captures across pre-fix forage/coin and untouched-checkpoint post-fix concentration/brew/save/load/drink sessions.232distinct native GREEN tests. No accepted art changed; no historical collision migration. Next east/kitchen; G2 and full release remain open."
+    "kind": "east_kitchen_native_integration_bounded_repair_harvest_revisit_accepted",
+    "capture": "Docs/Verification/Live16x24/east-kitchen-integrated-kitchen-revisited.png",
+    "receipt": "Docs/LIVE-16X24-EAST-KITCHEN.md",
+    "route": "18native frames plus unchanged approved Cook. Actual repair/harvest/collect/F5F6/east return/kitchen revisit; repaired reader contradiction fixed and replayed.495 distinct native cases pass. Next scene-level hedge/court/flower composition; full service lifecycle, six-site and packaged/device gates remain open."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
@@ -575,7 +618,9 @@
       "Docs/Verification/Live16x24/plot-products-uses-console.json",
       "Docs/Verification/Live16x24/plot-products-uses-storage-audit.md",
       "Docs/Verification/Live16x24/works-products-uses-fixed-cleanup.json",
-      "Docs/Verification/Live16x24/works-products-uses-console-counts.json"
+      "Docs/Verification/Live16x24/works-products-uses-console-counts.json",
+      "Docs/Verification/Live16x24/east-kitchen-readout-cleanup.json",
+      "Docs/Verification/Live16x24/east-kitchen-final-console-counts.json"
     ]
   }
 }

@@ -486,7 +486,11 @@ namespace CavesOfOoo.Core
             var render = GetPart("Render");
             string name;
             if (render is RenderPart rp && !string.IsNullOrEmpty(rp.DisplayName))
+            {
                 name = rp.DisplayName;
+                if (rp.ParentEntity == this && GetPart<KitchenBatchPart>() is KitchenBatchPart batch && batch.ParentEntity == this)
+                    name = batch.ResolveDisplayName(name);
+            }
             else
                 name = BlueprintName ?? ID ?? "unknown";
 

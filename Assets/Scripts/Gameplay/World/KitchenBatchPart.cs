@@ -26,6 +26,37 @@ namespace CavesOfOoo.Core
         [NonSerialized] private bool reconciling;
         [NonSerialized] private bool invalidatedDuringReconcile;
 
+        const string BrokenPanName = "split clay batch pan";
+        const string PanDescriptionStart = "A shallow clay pan for wrapped expedition meals. The open oven beside it remains free to use. ";
+        const string PanCommissionDetails = "two emberwheat, one claspbean pulp and two drams. A batch takes 120 world ticks. Leave the tied ingredients alone; interruption returns only what remains, and the fee is kept.";
+        const string BrokenPanDescription = PanDescriptionStart + "Repair the split with two fire clay, then commission Orven: " + PanCommissionDetails;
+        const string RepairedPanDescription = PanDescriptionStart + "Commission Orven: " + PanCommissionDetails;
+
+        // Presentation only: repaired saves retain their original authored fields.
+        // This must never bind or reconcile a kitchen job merely to read its label.
+        bool HasRepairedPanReadout()
+        {
+            var owner = ParentEntity;
+            if (owner?.BlueprintName != "ConnectedBatchPan" || owner.GetPart<KitchenBatchPart>() != this) return false;
+            RepairablePart fault = null;
+            for (int i = 0; i < owner.Parts.Count; i++)
+            {
+                if (owner.Parts[i] is not RepairablePart candidate) continue;
+                if (fault != null) return false;
+                fault = candidate;
+            }
+            return fault?.ParentEntity == owner && !fault.PortableEquipment
+                && fault.RecipeId == "clay-batch-pan" && fault.Repaired;
+        }
+
+        /// <summary>Projects only the canonical pan label; custom names and saved fields remain unchanged.</summary>
+        internal string ResolveDisplayName(string authoredName) => authoredName == BrokenPanName && HasRepairedPanReadout()
+            ? "clay batch pan" : authoredName;
+
+        /// <summary>Removes the obsolete repair instruction only from the canonical repaired-pan prose.</summary>
+        internal string ResolveDescription(string authoredText) => authoredText == BrokenPanDescription && HasRepairedPanReadout()
+            ? RepairedPanDescription : authoredText;
+
         /// <summary>Called once by generation after the four real owners are placed.
         /// It binds a broken pan too; only starting work requires its repair.</summary>
         public bool Configure(Zone zone, Entity worker, Entity escrow, Entity pickup)

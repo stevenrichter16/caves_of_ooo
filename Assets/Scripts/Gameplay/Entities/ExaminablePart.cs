@@ -52,6 +52,16 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string Description { get => Text; set => Text = value; }
 
+        /// <summary>Current flavor copy without changing authored or saved Text/Description fields.</summary>
+        public string GetDescriptionText()
+        {
+            var owner = ParentEntity;
+            if (owner?.GetPart<ExaminablePart>() == this && owner.GetPart<KitchenBatchPart>() is KitchenBatchPart batch
+                && batch.ParentEntity == owner)
+                return batch.ResolveDescription(Text);
+            return Text;
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
@@ -132,8 +142,9 @@ namespace CavesOfOoo.Core
                 if (!string.IsNullOrEmpty(cooking)) baseLine += "\n" + cooking;
                 if (!string.IsNullOrEmpty(growth)) baseLine += "\n" + growth;
             }
-            if (!string.IsNullOrWhiteSpace(Text))
-                baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();
+            string flavor = GetDescriptionText();
+            if (!string.IsNullOrWhiteSpace(flavor))
+                baseLine += (statusFirst ? "\n\n" : " ") + flavor.Trim();
 
             var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
             if (!string.IsNullOrWhiteSpace(carriedReward))

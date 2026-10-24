@@ -1,0 +1,629 @@
+{
+  "schema": 1,
+  "artifact": "east-kitchen.png",
+  "width": 288,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 18,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary; independently checked.",
+  "source": "east-kitchen.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_east_kitchen.py",
+  "resource": "Sprites/Live16x24/east-kitchen",
+  "references": [
+    "ArtSource/Live16x24/concepts/east-kitchen-v1.png",
+    "ArtSource/Live16x24/concepts/east-kitchen-v2.png",
+    "ArtSource/Live16x24/anchors/opening-anchors-contact.png"
+  ],
+  "scope": "Original static source kit only. No Unity import, runtime selectors, new behavior, state-loop or ordinary gameplay acceptance.",
+  "sha256": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+  "frames": [
+    {
+      "index": 0,
+      "id": "forge",
+      "blueprint": "TinkersForge",
+      "state": "identity",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "description": "Tall squared masonry hearth with an unlit recessed opening and broad work lip.",
+      "limits": "No flame, coal glow, tool table, stock, heat, craft-ready or active-work cue.",
+      "occupiedPixels": 208,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        5,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 1,
+      "id": "oven",
+      "blueprint": "Oven",
+      "state": "identity",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "description": "Squat rounded pale masonry oven with a clay arch and short capped neck.",
+      "limits": "Neutral station: no invented flame, smoke, finite fuel, food or readiness state.",
+      "occupiedPixels": 140,
+      "palette": [
+        "342E25",
+        "526657",
+        "7D8E71",
+        "A97542",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        8,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 2,
+      "id": "vertical-cot",
+      "blueprint": "Bed",
+      "state": "identity",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "description": "Narrow north-south wooden cot with a flat woven linen bed and two end rails.",
+      "limits": "One real bed cell; no sleeping actor, bedding occupancy or claimed-use cue.",
+      "occupiedPixels": 184,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        4,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "id": "chair",
+      "blueprint": "Chair",
+      "state": "identity",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "description": "Upright spare wooden chair with a broad back, open back gap and separated legs.",
+      "limits": "No new behavior or decoration outside the real owner.",
+      "occupiedPixels": 113,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        5,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "id": "cracked-clay-pan",
+      "blueprint": "ConnectedBatchPan",
+      "state": "damaged",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "description": "Low broad earthenware batch pan with a split in its front clay wall.",
+      "limits": "Clay/masonry only; no iron, fire, food, ingredients, active job or ready cue.",
+      "occupiedPixels": 98,
+      "palette": [
+        "342E25",
+        "765337",
+        "A97542",
+        "C39565"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        14,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 5,
+      "id": "sealed-clay-pan",
+      "blueprint": "ConnectedBatchPan",
+      "state": "repaired",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "description": "Low broad earthenware batch pan with a quiet pale clay repair seam.",
+      "limits": "Clay/masonry only; no iron, fire, food, ingredients, active job or ready cue.",
+      "occupiedPixels": 98,
+      "palette": [
+        "342E25",
+        "765337",
+        "A97542",
+        "B5A47E",
+        "C39565"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        14,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "id": "neutral-input-tray",
+      "blueprint": "ConnectedKitchenEscrow",
+      "state": "identity",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "description": "Shallow tied woven tray with an empty dark inset, quiet crossing fibers and no depicted contents.",
+      "limits": "Neutral container at every unproved service state; no paid ingredients or working cue.",
+      "occupiedPixels": 86,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 7,
+      "id": "neutral-pickup-board",
+      "blueprint": "ConnectedKitchenPickup",
+      "state": "identity",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "description": "Flat rectangular serving board with two short handles and a plain empty face.",
+      "limits": "No meal parcel or readiness cue painted onto the container.",
+      "occupiedPixels": 100,
+      "palette": [
+        "5F4830",
+        "94713D",
+        "BCA576"
+      ],
+      "alphaBoundsTopLeft": [
+        1,
+        15,
+        15,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 8,
+      "id": "claspbean-planted",
+      "blueprint": "ClaspbeanCrop",
+      "state": "stage0",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "description": "Low newly planted crown: two tiny cotyledons and a short ground line.",
+      "limits": "No ripe pod, visible yield count or damp-soil promise.",
+      "occupiedPixels": 20,
+      "palette": [
+        "435A35",
+        "5F4830",
+        "75834B",
+        "94713D"
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        18,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 9,
+      "id": "claspbean-growing",
+      "blueprint": "ClaspbeanCrop",
+      "state": "stage1",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "description": "Two broad climbing leaves on a young forked stem above a quiet crown.",
+      "limits": "No pods, harvest-ready mark or moisture indicator.",
+      "occupiedPixels": 54,
+      "palette": [
+        "435A35",
+        "5F4830",
+        "75834B",
+        "94713D",
+        "96A462"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        11,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 10,
+      "id": "claspbean-ripe",
+      "blueprint": "ClaspbeanCrop",
+      "state": "stage2",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "description": "Upright claspbean with two pale hanging pods, small upper leaves and rooted crown.",
+      "limits": "Only actual mature crop selects this; drawn pods do not specify yielded stack quantity or moisture.",
+      "occupiedPixels": 109,
+      "palette": [
+        "435A35",
+        "5F4830",
+        "75834B",
+        "96A462",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        4,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 11,
+      "id": "claspbean-pulp",
+      "blueprint": "ClaspbeanPulp",
+      "state": "identity",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "description": "Small loose pale pulp with two soft lobes and a quiet olive underside.",
+      "limits": "Raw portable pulp; no bowl, blood, bandage or prepared meal.",
+      "occupiedPixels": 36,
+      "palette": [
+        "75834B",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        17,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 12,
+      "id": "claspbean-seed",
+      "blueprint": "ClaspbeanSeed",
+      "state": "identity",
+      "rect": [
+        192,
+        0,
+        16,
+        24
+      ],
+      "description": "One small kidney-shaped pale seed with a recessed quiet seam.",
+      "limits": "Illustrates one identity, not a stack count or planted state.",
+      "occupiedPixels": 30,
+      "palette": [
+        "5F4830",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        5,
+        16,
+        11,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 13,
+      "id": "wrapped-field-meal",
+      "blueprint": "FieldMeal",
+      "state": "identity",
+      "rect": [
+        208,
+        0,
+        16,
+        24
+      ],
+      "description": "Compact folded linen meal parcel tied with a single dark cord.",
+      "limits": "Portable completed FieldMeal only; no extra food, serving tray, effect icon or invented quantity.",
+      "occupiedPixels": 52,
+      "palette": [
+        "5F4830",
+        "B5A47E",
+        "E4D0A0"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        16,
+        12,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 14,
+      "id": "charm-flowers",
+      "blueprint": "CharmFlowers",
+      "state": "identity",
+      "rect": [
+        224,
+        0,
+        16,
+        24
+      ],
+      "description": "Sparse pair of small muted pink flowers on uneven stems, with open ground between.",
+      "limits": "No glow, bloom, dense carpet or implied pickable output.",
+      "occupiedPixels": 34,
+      "palette": [
+        "435A35",
+        "75834B",
+        "AC6C88",
+        "B5A47E",
+        "CA91A3"
+      ],
+      "alphaBoundsTopLeft": [
+        3,
+        12,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 15,
+      "id": "copper-pipe",
+      "blueprint": "CopperPipe",
+      "state": "identity",
+      "rect": [
+        240,
+        0,
+        16,
+        24
+      ],
+      "description": "Small elbow of worn copper with a neutral greenish union collar.",
+      "limits": "No flow, heat, leak, connection or active machinery cue.",
+      "occupiedPixels": 72,
+      "palette": [
+        "758972",
+        "8E5B36",
+        "B67A49",
+        "C99565"
+      ],
+      "alphaBoundsTopLeft": [
+        4,
+        10,
+        13,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 16,
+      "id": "neutral-vent",
+      "blueprint": "SteamVent",
+      "state": "identity",
+      "rect": [
+        256,
+        0,
+        16,
+        24
+      ],
+      "description": "Low inset metal grille with two dark slots inside a dull stone-green surround.",
+      "limits": "Neutral opening only; no drawn steam, plume, heat, safety or pressure cue.",
+      "occupiedPixels": 96,
+      "palette": [
+        "342E25",
+        "3C5148",
+        "526657",
+        "7D8E71"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        15,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    },
+    {
+      "index": 17,
+      "id": "millstone",
+      "blueprint": "MillStone",
+      "state": "identity",
+      "rect": [
+        272,
+        0,
+        16,
+        24
+      ],
+      "description": "Broad pale circular grinding stone with a square axle opening and one plain radial groove.",
+      "limits": "No stoneburr, seed, active rotation, grinding contents or cast shadow.",
+      "occupiedPixels": 120,
+      "palette": [
+        "526657",
+        "7D8E71",
+        "B5A47E"
+      ],
+      "alphaBoundsTopLeft": [
+        2,
+        11,
+        14,
+        23
+      ],
+      "baselineTopLeft": 23,
+      "footprintCells": [
+        1,
+        1
+      ]
+    }
+  ],
+  "approvedCook": {
+    "source": "Assets/Art/Cook16x24/cook-16x24.png",
+    "resource": "Sprites/Live16x24/east-kitchen-cook",
+    "byteCopy": true,
+    "sha256": "d534b0e3cab143d8a1523829fc4bd101b76d776d307a152fd18cfe9c5681dbdd"
+  },
+  "baselineCaptures": [
+    "Docs/Verification/Live16x24/east-kitchen-baseline-forge-reader.png",
+    "Docs/Verification/Live16x24/east-kitchen-baseline-kitchen-layout.png",
+    "Docs/Verification/Live16x24/east-kitchen-baseline-pan-actions.png"
+  ],
+  "conceptPrompts": [
+    "ArtSource/Live16x24/concepts/east-kitchen-v1-prompt.md",
+    "ArtSource/Live16x24/concepts/east-kitchen-v2-prompt.md"
+  ],
+  "sourceEvidence": {
+    "red": "source-red.txt",
+    "firstPassFindings": "source-first-pass-findings.txt",
+    "green": "source-green.txt",
+    "verification": "verification.json"
+  },
+  "nativeReview": "Independent final source/contact review found no actionable art or semantic defect. This is not runtime or gameplay acceptance."
+}

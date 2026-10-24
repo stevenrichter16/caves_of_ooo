@@ -567,3 +567,48 @@ The accepted basic plot/works product loops need no arbitrary repeat. Remaining
 G2 scene/Player defence, north actor motion/self-treatment, incidental/purchased
 content, full six-zone journey and packaged/device release remain open. Graphics
 is still priority1; continue the heartbeat and regional work after the opening.
+
+
+## Latest continuation — east/kitchen native route, 2026-10-24 17:07 UTC heartbeat
+
+The two remaining surface addresses now use18 new native16×24 frames and the
+unchanged approved Cook. Actual playable baseline captures led to two builtin
+imagegen concepts, rejected/included part contracts, editable Blender/source
+cells, a single native atlas and exact owner/state admission. Both world and
+shared-reader portraits use the imported assets. See
+[east/kitchen record](LIVE-16X24-EAST-KITCHEN.md) and
+[actual kitchen revisit](Verification/Live16x24/east-kitchen-integrated-kitchen-revisited.png).
+
+Ordinary keys repaired the clay pan using2FireClay, harvested Claspbean into
+2pulp+1seed, collected it, saved/reloaded and walked east/kitchen both ways.
+Forge inspection and real component picker worked; missing forge components
+and Emberwheat grain were not invented. The approved Cook and repaired pan
+portraits match native pixels exactly. Visual review found repaired-pan text
+still claiming damage; this is fixed after11RED→11GREEN,152regression passes
+and actual already-repaired Continue/Examine. Combined art/readout verification
+has**495 distinct native Unity cases passing**, zero skipped. Independent
+source and visual reviews have no remaining material finding in this slice.
+[Corrected actual reader](Verification/Live16x24/east-kitchen-readout-fixed-reader.png).
+
+Final Play/isolation/view/save-root/scene cleanup is recorded; console0errors,
+2existing Metal memoryless-depth warnings. The bounded editor profile wrapped,
+so its statistics describe only the32768-frame tail, not the full66.45seconds
+or Deck performance. No new packaged build or physical device proof.
+
+**Next action: scene-level working-landscape composition.** Existing east/kitchen
+views have repeated hedge rectangles and parallel flower bands that overwhelm
+the useful service clusters. Read the concrete cold-generation plan in
+[visual review](Verification/Live16x24/east-kitchen-integration-visual-review.md).
+Greybox exact opening neighbors with asymmetric courts, short broken hedge runs,
+unequal flower drifts and truthful owner-backed ground. Preserve existing saved
+graphs, approved sprites, mechanics, finite resources and safe approaches.
+Use current actual captures→constrained imagegen scene study→real owner mapping,
+then native finish and seed64/65 tests, ordinary six-stop travel and1×/2× review.
+Do not substitute another disconnected sprite packet for this visible work.
+
+Paid meal/authoritative working-ready trays, full forging and Claspbean lifecycle
+remain open along with G2 defence/motion, incidental/purchased identities, full
+six-zone release, package/device and regional completion. Resume the actual
+18,7 kitchen checkpoint only inside owned isolation, using
+`east-kitchen-integrated-checkpoint.json`. The complete release is not accepted;
+keep the hourly work active. Graphics remains the release blocker and priority1.

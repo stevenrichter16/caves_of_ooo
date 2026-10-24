@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.3769543">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30873" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.376954" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38004" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30873" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.369268" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38005" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30873" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.365505" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38006" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30873" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.362501" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28057" name="FlatPixelEastKitchenTests" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="1.351813" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28072" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.340030" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28066" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;visual-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;visual-id&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1517727563" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.090153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28067" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;visual-variant&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1405404538" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.049764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28068" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;glyph-variants&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="2131116876" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.050647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28069" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-render&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1775535442" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.048759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28070" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-physics&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="833549212" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.048726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28071" name="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-identity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt(&quot;foreign-identity&quot;)" methodname="AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1972588113" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.048584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AuthoredOverridesAndForeignOwnersNeverBorrowTheNewArt (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28076" name="CropStagesAndProductsRetainTheirActualNonFoodContracts" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.CropStagesAndProductsRetainTheirActualNonFoodContracts" methodname="CropStagesAndProductsRetainTheirActualNonFoodContracts" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1629792165" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.048355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.CropStagesAndProductsRetainTheirActualNonFoodContracts () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:203
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28085" name="DefaultResourcesBindEveryFrameAndTheApprovedFullCookCanvas" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.DefaultResourcesBindEveryFrameAndTheApprovedFullCookCanvas" methodname="DefaultResourcesBindEveryFrameAndTheApprovedFullCookCanvas" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1927601106" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.051152" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.DefaultResourcesBindEveryFrameAndTheApprovedFullCookCanvas () [0x000f2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:322
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28065" name="EveryAuthoredFrameIsDistinctCachedAndDoesNotMutateItsOwner" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.EveryAuthoredFrameIsDistinctCachedAndDoesNotMutateItsOwner" methodname="EveryAuthoredFrameIsDistinctCachedAndDoesNotMutateItsOwner" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1143399916" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:14Z" duration="0.047740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.EveryAuthoredFrameIsDistinctCachedAndDoesNotMutateItsOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:134
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28060" name="ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="0.155780" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28058" name="ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval(&quot;Overworld.12.10.0&quot;)" methodname="ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="579839169" result="Failed" start-time="2026-10-24 17:32:14Z" end-time="2026-10-24 17:32:15Z" duration="0.114363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28059" name="ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval(&quot;Overworld.12.11.0&quot;)" methodname="ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="85378939" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.037754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.ExactCurrentGraphsUseTheirOwnColumnTwelvePoiAndSurviveSiteRemoval (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28073" name="FunctionalPartsRequireExactOwnershipAndMissingPartsFallBack" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.FunctionalPartsRequireExactOwnershipAndMissingPartsFallBack" methodname="FunctionalPartsRequireExactOwnershipAndMissingPartsFallBack" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="643226646" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.037266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.FunctionalPartsRequireExactOwnershipAndMissingPartsFallBack () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:164
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28083" name="GeneratedObjectsDisposeIndependentlyButBorrowedTexturesSurvive" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.GeneratedObjectsDisposeIndependentlyButBorrowedTexturesSurvive" methodname="GeneratedObjectsDisposeIndependentlyButBorrowedTexturesSurvive" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1246588771" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.037667" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.GeneratedObjectsDisposeIndependentlyButBorrowedTexturesSurvive () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:299
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28082" name="MissingAndMalformedOptionalGroupsRemainIndependentAndDoNotLoadResources" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.MissingAndMalformedOptionalGroupsRemainIndependentAndDoNotLoadResources" methodname="MissingAndMalformedOptionalGroupsRemainIndependentAndDoNotLoadResources" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1247990468" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.036999" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.MissingAndMalformedOptionalGroupsRemainIndependentAndDoNotLoadResources () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:286
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28074" name="NeutralFurnitureAndCookDoNotInventAvailabilityOrHeatState" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.NeutralFurnitureAndCookDoNotInventAvailabilityOrHeatState" methodname="NeutralFurnitureAndCookDoNotInventAvailabilityOrHeatState" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1200017478" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.036806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.NeutralFurnitureAndCookDoNotInventAvailabilityOrHeatState () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:176
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28080" name="NewArtIsLocalAndStaleCellReferencesCannotRetainIt" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.NewArtIsLocalAndStaleCellReferencesCannotRetainIt" methodname="NewArtIsLocalAndStaleCellReferencesCannotRetainIt" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1863077512" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.037845" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.NewArtIsLocalAndStaleCellReferencesCannotRetainIt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:261
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28064" name="OtherAddressesAndGladeOnlyGroundRemainUnchanged" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.OtherAddressesAndGladeOnlyGroundRemainUnchanged" methodname="OtherAddressesAndGladeOnlyGroundRemainUnchanged" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="87471206" result="Passed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.050257" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28078" name="PhysicalRolesAndMaterialSpeciesCannotMasqueradeAsTheAuthoredObjects" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.PhysicalRolesAndMaterialSpeciesCannotMasqueradeAsTheAuthoredObjects" methodname="PhysicalRolesAndMaterialSpeciesCannotMasqueradeAsTheAuthoredObjects" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1040356427" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.036494" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.PhysicalRolesAndMaterialSpeciesCannotMasqueradeAsTheAuthoredObjects () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:235
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28086" name="RealPanRepairChangesTheSubmittedTileOnceWithoutManualRedraw" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.RealPanRepairChangesTheSubmittedTileOnceWithoutManualRedraw" methodname="RealPanRepairChangesTheSubmittedTileOnceWithoutManualRedraw" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="237250240" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.168040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.RealPanRepairChangesTheSubmittedTileOnceWithoutManualRedraw () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:337
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28075" name="RepairPairUsesTheOwnedMasonryFaultNotJobStringsOrCombatHp" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.RepairPairUsesTheOwnedMasonryFaultNotJobStringsOrCombatHp" methodname="RepairPairUsesTheOwnedMasonryFaultNotJobStringsOrCombatHp" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1930245912" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.036849" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.RepairPairUsesTheOwnedMasonryFaultNotJobStringsOrCombatHp () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:194
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28063" name="SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.083789" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28061" name="SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes(&quot;Overworld.12.10.0&quot;)" methodname="SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="86267627" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.039853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes (System.String id) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28062" name="SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes(&quot;Overworld.12.11.0&quot;)" methodname="SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1472259354" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.039030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.SameAddressWithoutTheCurrentGraphDoesNotAdmitButLegacyExplorationDoes (System.String id) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28081" name="StaticTerrainMemoryDimsOnceWhileServiceAndCropStateStayHidden" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.StaticTerrainMemoryDimsOnceWhileServiceAndCropStateStayHidden" methodname="StaticTerrainMemoryDimsOnceWhileServiceAndCropStateStayHidden" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="913234329" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.035685" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.StaticTerrainMemoryDimsOnceWhileServiceAndCropStateStayHidden () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:272
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28077" name="StructuralCustodyAndProductStackCountersRemainDistinct" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.StructuralCustodyAndProductStackCountersRemainDistinct" methodname="StructuralCustodyAndProductStackCountersRemainDistinct" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="1760513681" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.035096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.StructuralCustodyAndProductStackCountersRemainDistinct () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:219
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28084" name="WarmSemanticQueriesAllocateNothingAndNeverAdvanceCropTime" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.WarmSemanticQueriesAllocateNothingAndNeverAdvanceCropTime" methodname="WarmSemanticQueriesAllocateNothingAndNeverAdvanceCropTime" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="85999636" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.034910" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.WarmSemanticQueriesAllocateNothingAndNeverAdvanceCropTime () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:309
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28079" name="WorldAndExactSubjectShareNativeFramesButNotWorldOrFogAuthority" fullname="CavesOfOoo.Tests.FlatPixelEastKitchenTests.WorldAndExactSubjectShareNativeFramesButNotWorldOrFogAuthority" methodname="WorldAndExactSubjectShareNativeFramesButNotWorldOrFogAuthority" classname="CavesOfOoo.Tests.FlatPixelEastKitchenTests" runstate="Runnable" seed="541668584" result="Failed" start-time="2026-10-24 17:32:15Z" end-time="2026-10-24 17:32:15Z" duration="0.035549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional east/kitchen companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastKitchenTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:48
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Construct (UnityEngine.Texture2D strip, UnityEngine.Texture2D cookArt) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:52
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.Create (System.Boolean injectWorld) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:62
+at CavesOfOoo.Tests.FlatPixelEastKitchenTests.WorldAndExactSubjectShareNativeFramesButNotWorldOrFogAuthority () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastKitchenTests.cs:248
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

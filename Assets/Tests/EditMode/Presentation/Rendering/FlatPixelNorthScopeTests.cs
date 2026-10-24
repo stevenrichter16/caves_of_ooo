@@ -125,7 +125,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(2, manager.CachedZoneCount);
         }
 
-        [TestCase("Overworld.12.10.0")][TestCase("Overworld.12.11.0")][TestCase("Overworld.11.11.0")]
+        [TestCase("Overworld.13.10.0")][TestCase("Overworld.13.11.0")][TestCase("Overworld.11.11.0")]
         [TestCase("Overworld.11.7.0")][TestCase("Overworld.11.9.1")][TestCase("Overworld.11.8.1")]
         [TestCase("Overworld.011.9.0")][TestCase("Overworld.11.08.0")]
         public void OtherSitesDepthsAndNoncanonicalAliasesRetainPreviousPresentation(string id)
@@ -160,7 +160,7 @@ namespace CavesOfOoo.Tests
         [Test] public void ActualRendererKeepsWorldCellsRectangularAndRestoresFullscreenTwice()
         {
             var glade = Attach(ReferenceGladePlan.ZoneID); var north = Attach(Connector);
-            var plot = Attach(Plot); var outside = Attach("Overworld.12.10.0");
+            var plot = Attach(Plot); var outside = Attach("Overworld.13.10.0");
             using (var graph = new PresentationGraph())
             {
                 for (int i = 0; i < 2; i++)

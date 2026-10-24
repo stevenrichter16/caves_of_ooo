@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 17:56:11Z" end-time="2026-10-24 17:56:12Z" duration="1.2739436">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30884" result="Failed" site="Child" start-time="2026-10-24 17:56:11Z" end-time="2026-10-24 17:56:12Z" duration="1.273944" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38017" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30884" result="Failed" site="Child" start-time="2026-10-24 17:56:11Z" end-time="2026-10-24 17:56:12Z" duration="1.190761" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38018" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30884" result="Failed" site="Child" start-time="2026-10-24 17:56:11Z" end-time="2026-10-24 17:56:12Z" duration="1.000109" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38019" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30884" result="Failed" site="Child" start-time="2026-10-24 17:56:11Z" end-time="2026-10-24 17:56:12Z" duration="0.917705" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="20987" name="KitchenPanReadoutTests" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.551911" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="20998" name="AlreadyRepairedSaveRoundTripUsesCurrentCopyWithTheOriginalRawFields" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.AlreadyRepairedSaveRoundTripUsesCurrentCopyWithTheOriginalRawFields" methodname="AlreadyRepairedSaveRoundTripUsesCurrentCopyWithTheOriginalRawFields" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1948160788" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.148406" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.AlreadyRepairedSaveRoundTripUsesCurrentCopyWithTheOriginalRawFields () [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:129
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="20997" name="CustomNamesAndProseRemainUntouchedAndStackSuffixIsAppliedOnce" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.CustomNamesAndProseRemainUntouchedAndStackSuffixIsAppliedOnce" methodname="CustomNamesAndProseRemainUntouchedAndStackSuffixIsAppliedOnce" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1405647725" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.112499" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.CustomNamesAndProseRemainUntouchedAndStackSuffixIsAppliedOnce () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="20996" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.214287" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="20989" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;unrepaired&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;unrepaired&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="303759211" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.031411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20990" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;foreign-fault&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;foreign-fault&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="253175054" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.030102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20991" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;portable&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;portable&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1126623434" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.030465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20992" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;wrong-recipe&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;wrong-recipe&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1232425647" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.029429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20993" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;duplicate-fault&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;duplicate-fault&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1772932220" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.029030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20994" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;foreign-batch&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;foreign-batch&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="720534713" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.029286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="20995" name="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;other-blueprint&quot;)" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy(&quot;other-blueprint&quot;)" methodname="OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="878234269" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.029384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.OnlyTheActualUnambiguousRepairedPanProjectsTheCanonicalCopy (System.String fault) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="20999" name="ReadoutNeverReconcilesOrConfiguresTheUnboundJob" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.ReadoutNeverReconcilesOrConfiguresTheUnboundJob" methodname="ReadoutNeverReconcilesOrConfiguresTheUnboundJob" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1890285965" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.029924" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.ReadoutNeverReconcilesOrConfiguresTheUnboundJob () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:137
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="20988" name="RealRepairUpdatesNameFreshFocusAndBothReadersWithoutRewritingAuthoredFields" fullname="CavesOfOoo.Tests.KitchenPanReadoutTests.RealRepairUpdatesNameFreshFocusAndBothReadersWithoutRewritingAuthoredFields" methodname="RealRepairUpdatesNameFreshFocusAndBothReadersWithoutRewritingAuthoredFields" classname="CavesOfOoo.Tests.KitchenPanReadoutTests" runstate="Runnable" seed="1160037430" result="Failed" start-time="2026-10-24 17:56:12Z" end-time="2026-10-24 17:56:12Z" duration="0.041181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 14 but was 20. Strings differ at index 0.
+  Expected: "clay batch pan"
+  But was:  "split clay batch pan"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.KitchenPanReadoutTests.AssertSound (CavesOfOoo.Core.Entity owner) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:58
+at CavesOfOoo.Tests.KitchenPanReadoutTests.RealRepairUpdatesNameFreshFocusAndBothReadersWithoutRewritingAuthoredFields () [0x000e2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/KitchenPanReadoutTests.cs:87
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

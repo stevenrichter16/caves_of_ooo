@@ -57,10 +57,10 @@ namespace CavesOfOoo.Tests
             manager.CachedZones[Cellar] = zone; Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
             Assert.AreSame(zone, manager.GetZone(Cellar)); Assert.True(FlatPixelGreyboxCatalog.IsAdmitted(zone));
         }
-        [TestCase("Overworld.12.10.0")][TestCase("Overworld.12.11.0")]
+        [TestCase("Overworld.13.10.0")][TestCase("Overworld.13.11.0")]
         [TestCase("Overworld.11.11.0")][TestCase("Overworld.11.10.2")]
         [TestCase("Overworld.12.10.1")][TestCase("Overworld.011.10.1")]
-        public void PlannedButUnacceptedSitesAndOtherDepthsRetainPreviousPresentation(string id)
+        public void UnselectedSitesAndOtherDepthsRetainPreviousPresentation(string id)
         { Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(Attach(id))); }
         [Test] public void CurrentGraphIdentityIsRecheckedRatherThanCachedByAddress()
         {
@@ -159,7 +159,7 @@ namespace CavesOfOoo.Tests
         [Test] public void RealZoneBindingKeepsGlobalPixelsAndRestoresFullscreenAndExplicitOff()
         {
             var cellar = Attach(); Add(cellar, "Floor");
-            var glade = new Zone(ReferenceGladePlan.ZoneID); var outside = Attach("Overworld.12.10.0");
+            var glade = new Zone(ReferenceGladePlan.ZoneID); var outside = Attach("Overworld.13.10.0");
             using (var graph = new PresentationGraph())
             {
                 for (int i = 0; i < 2; i++)

@@ -59,6 +59,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelFallbackCatalog _glyphFallback;
         private FlatPixelBoundaryCatalog _boundaryArt;
         private FlatPixelOpeningGroundCatalog _groundArt;
+        private FlatPixelEastKitchenCatalog _eastKitchenArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -155,24 +156,26 @@ namespace CavesOfOoo.Rendering
             BuildAtlas();
         }
 
-        /// <summary>The reference glade, its cellar and the two north route graphs
-        /// are admitted. North art remains a greybox until its native packet lands.
+        /// <summary>The glade, cellar and four exact connected surface graphs
+        /// are admitted. Other regions retain their identity-preserving fallback.
         /// Eligibility reads the current graph; it never generates or repairs it.</summary>
         public static bool IsAdmitted(Zone zone)
         {
             if (ReferenceGladePlan.IsActive(zone)) return true;
-            int surfaceY;
+            int surfaceX = 11, surfaceY;
             switch (zone?.ZoneID)
             {
                 case GleanersCellarBuilder.ZoneID: surfaceY = 10; break;
                 case "Overworld.11.9.0": surfaceY = 9; break;
                 case "Overworld.11.8.0": surfaceY = 8; break;
+                case "Overworld.12.10.0": surfaceX = 12; surfaceY = 10; break;
+                case "Overworld.12.11.0": surfaceX = 12; surfaceY = 11; break;
                 default: return false;
             }
             if (!SpreadPresentationScope.IsActive(zone)) return false;
             // Broad Spread admission also permits POIs and committed lair floors.
             // Each opening graph retains authority over its own unclaimed address.
-            return WorldLocationContext.For(zone).WorldMap.GetPOI(11, surfaceY) == null;
+            return WorldLocationContext.For(zone).WorldMap.GetPOI(surfaceX, surfaceY) == null;
         }
 
         /// <summary>Rejects unexplored, foreign and disposed contexts. Remembered
@@ -711,7 +714,9 @@ namespace CavesOfOoo.Rendering
             var boundaries = BoundaryArtFor(zone, owner, fallback.Remembered, out bool allowNativeFallback);
             bool boundaryNative = boundaries != null
                 && boundaries.TryResolve(zone, x, y, out art, out boundaryTint);
-            bool native = boundaryNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            var eastern = local ? EastKitchenArtFor(zone, owner) : null;
+            bool eastNative = eastern != null && eastern.TryResolve(owner, out art);
+            bool native = boundaryNative || eastNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -740,12 +745,26 @@ namespace CavesOfOoo.Rendering
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
+            var eastern = local ? EastKitchenArtFor(zone, subject) : null;
+            if (eastern != null && eastern.TryResolve(subject, out var easternTile))
+            { sprite = easternTile.sprite; return sprite != null; }
             if ((local || FlatPixelActorMotionCatalog.IsPortableActor(subject)) && _openingArt.TryResolve(subject, x, y, out var tile))
             { sprite = tile.sprite; return sprite != null; }
             var kind = Classify(subject);
             if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
                 return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
             return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        private FlatPixelEastKitchenCatalog EastKitchenArtFor(Zone zone, Entity owner)
+        {
+            // This companion remains local even when portable actor art travels.
+            // The caller has already established current regional admission.
+            if (zone.ZoneID != "Overworld.12.10.0" && zone.ZoneID != "Overworld.12.11.0"
+                || !FlatPixelEastKitchenCatalog.HasKnownRole(owner)) return null;
+            if (_eastKitchenArt == null && _loadOptionalResources)
+                _eastKitchenArt = new FlatPixelEastKitchenCatalog();
+            return _eastKitchenArt;
         }
 
         private FlatPixelBoundaryCatalog BoundaryArtFor(Zone zone, Entity owner, bool remembered, out bool allowNativeFallback)
@@ -809,6 +828,8 @@ namespace CavesOfOoo.Rendering
             _boundaryArt = null;
             _groundArt?.Dispose();
             _groundArt = null;
+            _eastKitchenArt?.Dispose();
+            _eastKitchenArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

@@ -102,8 +102,9 @@ namespace CavesOfOoo.Core
             Add(sections,"Current state",string.Join("\n",state));
 
             var examine=owner.GetPart<ExaminablePart>();
-            Add(sections,"Description",!string.IsNullOrWhiteSpace(examine?.Text)
-                ?examine.Text.Trim():"You see "+Article(owner.GetDisplayName())+owner.GetDisplayName()+".");
+            string flavor=examine?.GetDescriptionText();
+            Add(sections,"Description",!string.IsNullOrWhiteSpace(flavor)
+                ?flavor.Trim():"You see "+Article(owner.GetDisplayName())+owner.GetDisplayName()+".");
 
             var uses=new List<string>();
             if(owner.HasPart<CultivatedSoilPart>())Add(uses,"Tilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; watered crops keep growing while you travel and rest, but dry soil stops growth.");
