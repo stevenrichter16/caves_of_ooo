@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-16",
+  "tool": "built-in image_gen.imagegen",
+  "designSource": "../EXPERIENCE-BASED-EXAMINE.md",
+  "reference": "../../Verification/ExamineLedger/final-well-1280x800.png",
+  "commonPrompt": "Use case: ui-mockup. Edit the supplied native Caves of Ooo gameplay screenshot into ONE polished, highly legible concept of its proposed experience-based EXAMINE reader. Output one landscape screenshot, approximately 1600 x 1000, no collage. Reference image is the actual game UI and composition guide. Keep the same dark green pixel/voxel overworld, right-hand VITALS / FOCUS / LOG sidebar and ten-slot pixel skill bar at bottom. Preserve the recognizably modest, chunky original game aesthetic. Gently dim background. Replace the existing well popup completely with the subject below; never show old well text or old well portrait unless this subject is the well. Keep dialog entirely within the left gameplay column, above the bottom hotbar, with right sidebar visible. Clear irrelevant old well text from the sidebar log, replacing with only the neutral short line \"You pause to examine.\" Keep other HUD unobtrusive.\nDesign: warm nearly black charcoal #090b0a panel; fine bronze #aa753b rectangular double outline; sea-green #6bb092 uppercase small section labels; amber #f7b852 title; ivory #e3dec4 readable body. Pixel monospace of normal proportions, generous line spacing and margins, strong alignment, no anti-readable tiny text. A compact voxel subject portrait occupies upper-right of the header, title on left; prose below spans panel width. Layout header, divider, CURRENT STATE, brief atmospheric paragraph without Description heading, divider, FIELD NOTES with short provenance labels, optional muted amber INFERENCE, fixed footer. Fit all requested content on one page with sufficient breathing room. Improve clarity over cramped source without replacing its aesthetic. No ornate fantasy parchment, rounded web cards, glossy gradients, photoreal illustration, XP meters, progress percentages, checklist of unknown abilities, rarity labels, damage dice, exact stats, revealed resistances or new gameplay action buttons. This is a read-only reader: only \"[A] Close\", \"[B] Back\", \"READING / no turn passes\", \"1 / 1\" in footer. Do not add designer annotations or mockup watermarks. Render the exact requested dialog text, with natural line wraps and flawless spelling. Main UI text must dominate, portrait remains small. Current visible state and historical evidence must be visually distinct; inference is always labeled and uncertain. The subject and illustrative encounter are specified below.",
+  "images": [
+    {
+      "slug": "01-viper",
+      "title": "Viper",
+      "blueprint": "Viper",
+      "text": "Subject: a small moss-green voxel snake in a raised, coiled posture, two tiny pale fangs, no oversized monster or magic glow. Example: the player has seen a fang strike and later felt sickness after being bitten. The claims are hypothetical player evidence, not omniscient traits.\nExact dialog content:\neyebrow \"EXAMINE\"\ntitle \"Viper\"\nCURRENT STATE\n\"Head raised. Body tightly coiled.\"\nAtmospheric description:\n\"A narrow green shape lies folded in the grass. Its tongue tests the air.\"\nFIELD NOTES\n\"SEEN\"\n\"You saw it snap forward with its fangs.\"\n\"EXPERIENCED\"\n\"Sickness followed a bite.\"\nINFERENCE\n\"Venom is a possibility.\"\nFooter as specified."
+    },
+    {
+      "slug": "02-cave-bear",
+      "title": "Cave bear",
+      "blueprint": "CaveBear",
+      "text": "Subject: broad, heavy brown voxel bear, low-set head, pale hooked claws, small dark red mark on one flank. Non-graphic, modest game-scale portrait.\nExact dialog content:\n\"EXAMINE\"\n\"Cave bear\"\n\"CURRENT STATE\"\n\"Blood darkens one flank.\"\nAtmospheric paragraph: \"Heavy fur shifts over a broad frame. Pale claws catch the light.\"\n\"FIELD NOTES\"\n\"SEEN\"\n\"Its forepaw swept across your guard.\"\n\"EXPERIENCED\"\n\"You felt the claws cut through.\"\nNo inference section. No health numbers or armor penetration claims. Keep generous space, small portrait, footer as specified."
+    },
+    {
+      "slug": "03-glowmaw",
+      "title": "Glowmaw",
+      "blueprint": "Glowmaw",
+      "text": "Subject: revealed squat ochre-yellow voxel cave creature with a disproportionately broad toothy maw. It has already dropped from a ceiling crevice. NO current luminous lure, light beam, or glowing body. Hypothetical remembered sequence, not an always-true attack description. In the background replace grass immediately surrounding dialog only with dim cave stone if necessary; retain exact game HUD.\nExact dialog content:\n\"EXAMINE\"\n\"Glowmaw\"\n\"CURRENT STATE\"\n\"Revealed on the cave floor.\"\nAtmospheric paragraph: \"A broad mouth opens beneath the shape that fell from the ceiling.\"\n\"FIELD NOTES\"\n\"SEEN\"\n\"A pale light hung overhead before this creature dropped beside you.\"\n\"It struck with its maw.\"\nNo inference section, no universal ambush claims, no detection radius. Footer as specified."
+    },
+    {
+      "slug": "04-spore-shambler",
+      "title": "Spore shambler",
+      "blueprint": "Shambler",
+      "text": "Subject: blocky fungal humanoid, purple-mauve fungal growth on gray-green body, one long tendril pulled back in a clearly directed windup. Small voxel portrait, no detailed gore.\nExact dialog content:\n\"EXAMINE\"\n\"Spore shambler\"\n\"CURRENT STATE\"\n\"A tendril draws straight back.\"\nAmber immediate warning line: \"You are in its path. Step aside.\"\nAtmospheric paragraph: \"It was somebody's shape once. The growth kept the shape because the shape still walked.\"\n\"FIELD NOTES\"\n\"SEEN REPEATEDLY\"\n\"You have seen its tendril strike along that line, then hang loose while it gathers again.\"\nNo inferred reach number, cooldown or damage formula. Footer as specified."
+    },
+    {
+      "slug": "05-scorpion",
+      "title": "Scorpion",
+      "blueprint": "Scorpion",
+      "text": "Subject: pale sand-colored chunky voxel scorpion with low segmented body, two pincers, a curved raised tail ending in dark stinger; recognizable small portrait.\nExact dialog content:\n\"EXAMINE\"\n\"Scorpion\"\n\"CURRENT STATE\"\n\"Tail raised above its shell.\"\nAtmospheric paragraph: \"Pale plates cover a low body. The tail curls over them like a question.\"\n\"FIELD NOTES\"\n\"EXPERIENCED\"\n\"Its tail struck your leg.\"\n\"Sickness followed the puncture.\"\n\"INFERENCE\"\n\"The sting may carry venom.\"\nDo not display confirmed poison type, damage, proc chance, duration or health stats. Footer as specified."
+    },
+    {
+      "slug": "06-fire-clay",
+      "title": "Fire clay",
+      "blueprint": "FireClay",
+      "text": "Subject: three compact chipped red-orange clay pieces with pale inclusions, shallow cracks and finger impressions; a modest chunky voxel item portrait matching the game's actual FireClay art. No flame on portrait, no magical glow.\nExact dialog content:\n\"EXAMINE\"\n\"Fire clay\"\n\"CURRENT STATE\"\n\"Carried in your pack.\"\nAtmospheric paragraph: \"Dense clay that keeps the shape pressed into it.\"\n\"FIELD NOTES\"\n\"TRIED\"\n\"You pressed clay over a burning sleeve.\"\n\"The flames went out.\"\nNo inference section. Show one quiet historical-context line below notes: \"Remembered from your own use.\"\nNo claims of permanent protection, no resistances, no recipe numbers, no use button. Footer as specified."
+    },
+    {
+      "slug": "07-clay-lined-well",
+      "title": "Clay-lined catch well",
+      "blueprint": "RepairLinedWell",
+      "text": "Subject: use the actual reference well silhouette: compact pale blocky masonry shallow basin and rim, orange fired-clay lining, small simple frame above it. A fresh orange clay patch visibly closes a seam. Keep small voxel portrait.\nExact dialog content:\n\"EXAMINE\"\n\"Clay-lined catch well\"\n\"CURRENT STATE\"\n\"A fresh clay seam closes the split.\"\nAtmospheric paragraph: \"Its fired-clay lining forms a shallow basin beneath a broad stone rim.\"\n\"FIELD NOTES\"\n\"REPAIRED BY YOU\"\n\"You packed the split with fire clay.\"\n\"The patched lining held the drawn water.\"\nNo inference section. No structure HP, exact recipe or repair button. This is historical experience separated from present visible state. Footer as specified."
+    },
+    {
+      "slug": "08-seamleaf-crop",
+      "title": "Seamleaf crop",
+      "blueprint": "SeamleafCrop",
+      "text": "Subject: small voxel cultivated bed with three upright thick green paired leaves, pale central seams and little cross-stitch markings, tiny white flowers; the distinctive Caves of Ooo seamleaf visual, no glow.\nExact dialog content:\n\"EXAMINE\"\n\"Seamleaf crop\"\n\"CURRENT STATE\"\n\"White flowers open between the leaves.\"\nAtmospheric paragraph: \"Thick paired leaves grow along a pale central seam.\"\n\"FIELD NOTES\"\n\"GATHERED BEFORE\"\n\"You gathered sprigs from a flowering seamleaf plant.\"\n\"The picked leaves held green sap.\"\nNo inference section. One muted provenance line: \"A memory of another plant of this kind.\"\nNo exact harvest yield, growth timer or healing claim. Footer as specified."
+    },
+    {
+      "slug": "09-salt-cured-body",
+      "title": "Salt-cured body",
+      "blueprint": "SaltCuredBody",
+      "text": "Subject: solemn NON-GRAPHIC small voxel portrait of clothed desiccated human-shaped remains, fully covered body with folded arms, white salt crystals, small wrist tally cord. No blood, exposed organs, horror illustration or invented identity. Show sparse first-encounter knowledge; make popup naturally shorter than other specimens instead of huge empty sections.\nExact dialog content:\n\"EXAMINE\"\n\"Salt-cured body\"\n\"CURRENT STATE\"\n\"Salt fills the folds of its clothing.\"\nAtmospheric paragraph: \"Kept, and heavy with it. The salt has taken up residence in every part that used to be soft.\"\n\"FIELD NOTES\"\n\"No field notes recorded.\"\nNo inference section, no unknown-stat checklist, cause of death, age, biography, numerical weight or invented lore. Footer as specified."
+    },
+    {
+      "slug": "10-grooved-dagger",
+      "title": "Grooved dagger",
+      "blueprint": "VenomDagger",
+      "text": "Subject: slender voxel steel dagger with a narrow channel near the point, separated brown grip and muted dark green smear beside tip. This is the game's VenomDagger seen before its hidden mechanism is identified. Use perceived title Grooved dagger, NEVER poison dagger or venom dagger anywhere. Keep small portrait and current object in carried context.\nExact dialog content:\n\"EXAMINE\"\n\"Grooved dagger\"\n\"CURRENT STATE\"\n\"A dark smear remains beside the point.\"\nAtmospheric paragraph: \"A narrow channel runs alongside the point. The grip sits well clear of the blade.\"\n\"FIELD NOTES\"\n\"TRIED\"\n\"You struck a creature with this blade.\"\n\"It faltered afterward.\"\n\"INFERENCE\"\n\"Something on the blade may have caused it.\"\nNo exact material stats, poison chance, doses, duration, weapon damage or item rarity. Footer as specified."
+    }
+  ]
+}
