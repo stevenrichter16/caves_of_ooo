@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.6215652">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31032" result="Failed" site="Child" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.621565" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38198" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31032" result="Failed" site="Child" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.562822" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38199" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31032" result="Failed" site="Child" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.511855" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38200" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31032" result="Failed" site="Child" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.459695" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28118" name="FlatPixelCindercallerTests" fullname="CavesOfOoo.Tests.FlatPixelCindercallerTests" classname="CavesOfOoo.Tests.FlatPixelCindercallerTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.159747" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28120" name="CurrentCindercallerSubjectUsesItsNativeFrameInsteadOfTheCachedGlyph" fullname="CavesOfOoo.Tests.FlatPixelCindercallerTests.CurrentCindercallerSubjectUsesItsNativeFrameInsteadOfTheCachedGlyph" methodname="CurrentCindercallerSubjectUsesItsNativeFrameInsteadOfTheCachedGlyph" classname="CavesOfOoo.Tests.FlatPixelCindercallerTests" runstate="Runnable" seed="1782976545" result="Failed" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.109051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The exact-subject art path still returns the Cindercaller glyph.
+  Expected: not same as <Flat world glyph 103 (UnityEngine.Sprite)>
+  But was:  <Flat world glyph 103 (UnityEngine.Sprite)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCindercallerTests.CurrentCindercallerSubjectUsesItsNativeFrameInsteadOfTheCachedGlyph () [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCindercallerTests.cs:71
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28119" name="FactoryCindercallerHasItsOwnNativeWorldBodyInsteadOfInheritedOrGlyphArt" fullname="CavesOfOoo.Tests.FlatPixelCindercallerTests.FactoryCindercallerHasItsOwnNativeWorldBodyInsteadOfInheritedOrGlyphArt" methodname="FactoryCindercallerHasItsOwnNativeWorldBodyInsteadOfInheritedOrGlyphArt" classname="CavesOfOoo.Tests.FlatPixelCindercallerTests" runstate="Runnable" seed="1418712813" result="Failed" start-time="2026-10-24 22:30:52Z" end-time="2026-10-24 22:30:52Z" duration="0.044211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The actual Cindercaller still resolves the glyph fallback.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCindercallerTests.FactoryCindercallerHasItsOwnNativeWorldBodyInsteadOfInheritedOrGlyphArt () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCindercallerTests.cs:56
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

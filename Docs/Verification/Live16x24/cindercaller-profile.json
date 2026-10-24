@@ -1,0 +1,71 @@
+{
+  "label": "cindercaller-profile",
+  "start": "2026-10-24T22:38:31.962802Z",
+  "end": "2026-10-24T22:42:42.897102Z",
+  "elapsedSeconds": 250.93429999999998,
+  "frames": 205844,
+  "zone": "Overworld.12.10.0",
+  "player": [
+    61,
+    23
+  ],
+  "hp": 29,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 56639.033973693848,
+      "max": 41667250,
+      "p99": 112250
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1211979.5246810913,
+      "max": 1041511833,
+      "p99": 1937041
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 42.407272338867188,
+      "max": 45,
+      "p99": 45
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 42.363731384277344,
+      "max": 45,
+      "p99": 45
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 10459.354331970215,
+      "max": 12595,
+      "p99": 12595
+    }
+  ],
+  "bounds": "Editor Cindercaller world/Look/readers and actual input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

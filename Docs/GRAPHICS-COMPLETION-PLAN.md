@@ -783,3 +783,34 @@ local notice variants. No worthwhile unused cache/build candidate remained;
 and import workers remain open; preserve their useful active caches. Continue
 Player identity/action feedback next. No new Deck package or whole-release
 acceptance is implied, and the graphics heartbeat remains active.
+
+
+## Latest continuation — Cindercaller native body, 2026-10-24 22:43 UTC
+
+[Exact Cindercaller integration](GRAPHICS-G2-CINDERCALLER.md) replaces a real
+red-g fallback in the east wilderness with an editable16×24 native body and
+matching exact-subject portrait. The actual baseline→imagegen→native Blender
+cells→integration loop is recorded; all65 protected art hashes are unchanged.
+The source sweep corrected the earlier Player-identity premise: Cindercaller is
+an NPC, and the accepted Player body/motion stay unchanged.
+
+[Actual Examine](Verification/Live16x24/cindercaller-native-reader.png) and
+[actual moved/reloaded world](Verification/Live16x24/cindercaller-native-reloaded.png)
+verify visible integration. Ordinary keyboard movement advances tick5250→5310,
+moves the real caster78,7→78,5, and keeps its new body. F5/F6 matches all6 recorded
+actor/18inventory rows. Native behavioral RED2 precedes final334distinct passes,
+0fail/skip. Independent code/source/gameplay reviews find no significant issue.
+This is one static identity, not a cast animation or whole-bestiary completion.
+
+Owned Play/save/view/preference state is restored. The250.934s Editor profile
+wrapped its131072-sample rings; retained max45draws and renderer mean0.05664ms
+are not physical Deck or full-window performance. Only the two existing Metal
+memoryless-depth diagnostics remain; MCP labels them Error while Editor shows
+warnings. No new script/exception diagnostic was found. No new package was made.
+
+**Next:** separately fix and test the direct Riposte counterstrike's missing
+Attack visual/facing event using the saved
+[action-source audit](Verification/Live16x24/riposte-action-source-audit.md).
+Preserve accepted Player art and existing parry/guard outcomes. Then complete
+crop/forge lifecycles, the literal six-zone journey and packaged/device gates.
+G2/G3/full release remain open; the graphics continuation stays active.

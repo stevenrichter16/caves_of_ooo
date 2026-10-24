@@ -6,29 +6,38 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Two exact static bodies. Textures are borrowed; only cached
+    /// <summary>Exact static bodies. Textures are borrowed; only cached
     /// tiles/sprites are owned. Graph, cell and reader authority stay with the
     /// existing presentation callers. This is not a motion or gameplay service.</summary>
     public sealed class FlatPixelIncidentalActorCatalog : IDisposable
     {
         public const string FarmerResourcePath = "Sprites/Live16x24/farmer";
         public const string GrazerResourcePath = "Sprites/Live16x24/reedback-grazer";
-        private readonly Tile _farmer, _grazer;
+        public const string CindercallerResourcePath = "Sprites/Live16x24/cindercaller";
+        private readonly Tile _farmer, _grazer, _cindercaller;
         private bool _disposed;
 
         public FlatPixelIncidentalActorCatalog()
-            : this(Resources.Load<Texture2D>(FarmerResourcePath), Resources.Load<Texture2D>(GrazerResourcePath)) { }
+            : this(Resources.Load<Texture2D>(FarmerResourcePath), Resources.Load<Texture2D>(GrazerResourcePath),
+                Resources.Load<Texture2D>(CindercallerResourcePath)) { }
 
         /// <summary>Optional groups are independent. Missing or malformed
         /// injected textures remain unavailable; no implicit Resources lookup.</summary>
         public FlatPixelIncidentalActorCatalog(Texture2D farmer, Texture2D grazer)
+            : this(farmer, grazer, null) { }
+
+        /// <summary>Borrow independent optional textures; null or malformed
+        /// inputs stay unavailable without loading replacement resources.</summary>
+        public FlatPixelIncidentalActorCatalog(Texture2D farmer, Texture2D grazer, Texture2D cindercaller)
         {
             _farmer = Build(farmer, "Farmer");
             _grazer = Build(grazer, "Approved reedback grazer");
+            _cindercaller = Build(cindercaller, "Marlback cindercaller");
         }
 
         internal static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "Farmer" || owner?.BlueprintName == "ReedbackGrazer";
+            => owner?.BlueprintName == "Farmer" || owner?.BlueprintName == "ReedbackGrazer"
+                || owner?.BlueprintName == "MarlbackCindercaller";
 
         /// <summary>Semantic image, not visibility/custody authorization. Neutral
         /// body art does not encode health, trade stock, mood or forage progress.</summary>
@@ -51,10 +60,17 @@ namespace CavesOfOoo.Rendering
                 if (render.RenderString != "@") return false;
                 tile = _farmer;
             }
-            else
+            else if (owner.BlueprintName == "ReedbackGrazer")
             {
                 if (render.RenderString != "g" || Owned<SpreadGrazerPart>(owner) == null) return false;
                 tile = _grazer;
+            }
+            else
+            {
+                // A neutral living body, independent of current reagent stock,
+                // held weapon, health, hostility and the EmberSpit cooldown.
+                if (render.RenderString != "g") return false;
+                tile = _cindercaller;
             }
             return tile != null;
         }
@@ -85,7 +101,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed) return;
             _disposed = true;
-            DestroyFrame(_farmer); DestroyFrame(_grazer);
+            DestroyFrame(_farmer); DestroyFrame(_grazer); DestroyFrame(_cindercaller);
         }
         private static void DestroyFrame(Tile tile)
         {
