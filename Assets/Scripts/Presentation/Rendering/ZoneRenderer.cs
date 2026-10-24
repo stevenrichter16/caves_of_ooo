@@ -562,6 +562,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnDisable()
         {
+            _envSpriteRenderer?.ClearFlatPaintReceipts();
             _flatProjection?.Dispose();
             _flatProjection = null;
             ClearWorldAffordance();
@@ -612,6 +613,7 @@ namespace CavesOfOoo.Rendering
             ZoneTileStateSystem.BindRenderHook(zone);
             ClearWorldAffordance();
             CurrentZone = zone;
+            _envSpriteRenderer?.ClearFlatPaintReceipts();
             SyncFlatPixelMode();
             _fellingScenePresenter?.Bind(FlatPixelModeActive ? null : zone);
             _fellingDressingPresenter?.Bind(FlatPixelModeActive ? null : zone);
@@ -1253,6 +1255,13 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void PaintTileStateMark(int x, int y, Vector3Int tilePos, Cell cell)
         {
+            bool represented = FlatPixelModeActive && _envSpriteRenderer.TryResolveFlatPresentation(this, CurrentZone, x, y, out var flat)
+                && flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water;
+            PaintTileStateMarkCore(x, y, tilePos, cell, represented);
+        }
+
+        private void PaintTileStateMarkCore(int x, int y, Vector3Int tilePos, Cell cell, bool flatWaterRepresented)
+        {
             if (_tileStateTilemap == null) return;
 
             // Never reveal state through fog — it would leak information
@@ -1300,7 +1309,7 @@ namespace CavesOfOoo.Rendering
                 glyph = '~'; color = new Color(0.35f, 0.25f, 0.45f);     // oil
             }
             else if (state.Coatings.Count > 0 && !IsAuthoredRiverWater(x, y, cell, state)
-                && !IsFlatPixelWaterRepresented(state))
+                && !IsFlatPixelWaterRepresented(state, flatWaterRepresented))
             {
                 // Per-liquid tint: ice used to paint the same blue as
                 // water — indistinguishable even on the map (study §1).
@@ -1345,12 +1354,12 @@ namespace CavesOfOoo.Rendering
             _tileStateTilemap.SetTransformMatrix(tilePos, nativeCell ? NativeGroundMarkTransform : Matrix4x4.identity);
         }
 
-        private bool IsFlatPixelWaterRepresented(ZoneTileState.TileState state)
+        private static bool IsFlatPixelWaterRepresented(ZoneTileState.TileState state, bool represented)
         {
             // FlatPixelGreyboxCatalog already colors live water ground. Relinquish
             // only that coating, then continue to charge/heat/cold/cloud marks.
             // Mixed liquids and other coatings still need their fallback cue.
-            return FlatPixelModeActive && state.Coatings.Count == 1
+            return represented && state.Coatings.Count == 1
                 && state.Coatings[0].Id == "water" && state.Coatings[0].Turns > 0;
         }
 
@@ -1384,6 +1393,12 @@ namespace CavesOfOoo.Rendering
 
             // Unity tilemap Y is inverted relative to our grid (0=bottom in Unity, 0=top in roguelike)
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+
+            if (FlatPixelModeActive)
+            {
+                RenderFlatCellCore(x, y, tilePos, cell);
+                return;
+            }
 
             // Painted before the fog/entity branches below, all of which
             // early-return. The mark layer has its own fog check.
@@ -1443,29 +1458,7 @@ namespace CavesOfOoo.Rendering
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
 
-            // Parse and apply color. Rendering participates in entity event flow,
-            // so effects/parts can mutate color similarly to Qud's RenderEvent path.
-            string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string colorIssue);
-            LogRenderIssueOnce(topEntity, colorIssue);
-            var renderEvent = GameEvent.New("Render");
-            renderEvent.SetParameter("Entity", (object)topEntity);
-            renderEvent.SetParameter("RenderPart", (object)render);
-            renderEvent.SetParameter("ColorString", colorString ?? "");
-            renderEvent.SetParameter("DetailColor", render.DetailColor ?? "");
-            topEntity.FireEvent(renderEvent);
-
-            string eventColor = renderEvent.GetStringParameter("ColorString", colorString);
-            if (AsciiWorldRenderPolicy.IsValidColorString(eventColor))
-                colorString = eventColor;
-            else
-                colorString = AsciiWorldRenderPolicy.FallbackColorString;
-            renderEvent.Release();
-
-            Color color = QudColorParser.Parse(colorString);
-
-            // Apply lighting tint
-            if (_lightMap != null)
-                color = _lightMap.ApplyToColor(color, x, y);
+            Color color = ResolveRenderColor(topEntity, render, x, y);
 
             _tilemap.SetColor(tilePos, color);
 
@@ -2364,6 +2357,11 @@ namespace CavesOfOoo.Rendering
             _waterTilePositions.Clear();
             _waterAdjacentPositions.Clear();
             _bankTilePositions.Clear();
+            if (FlatPixelModeActive)
+            {
+                _fineWaterTilemap?.ClearAllTiles();
+                return;
+            }
             if (CurrentZone == null) return;
 
             // Per-row centerline cache for debris targeting. First core

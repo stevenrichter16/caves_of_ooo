@@ -58,7 +58,7 @@ namespace CavesOfOoo.Rendering
 
         private bool ValidFlatOwner(Entity owner, int x, int y, bool allowDead)
         {
-            if (owner == null || _zone == null || owner.SpatialZone != _zone
+            if (owner == null || !FlatPixelFallbackCatalog.IsCurrentGraph(_zone) || owner.SpatialZone != _zone
                 || _flatMotionCatalog == null || !_flatMotionCatalog.TryGetAsset(owner, out _)) return false;
             var cell = _zone.GetEntityCell(owner);
             var physical = owner.GetPart<PhysicsPart>();
@@ -73,7 +73,8 @@ namespace CavesOfOoo.Rendering
 
         private bool ValidFlatView(EntityView view)
         {
-            if (!_presentationVisible || !enabled || !_flatPixelMode || _zone == null) return false;
+            if (!_presentationVisible || !enabled || !_flatPixelMode
+                || !FlatPixelFallbackCatalog.IsCurrentGraph(_zone)) return false;
             if (!view.Dying)
             {
                 var current = _zone.GetEntityCell(view.Entity);

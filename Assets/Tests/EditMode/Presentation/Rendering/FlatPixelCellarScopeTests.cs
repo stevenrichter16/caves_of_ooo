@@ -156,7 +156,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(FlatPixelGreyboxKind.Wall, memory.Kind); Assert.NotNull(memory.ForegroundTile);
             Assert.False(memory.BlocksMovement);
         }
-        [Test] public void RealZoneBindingKeepsCellarPixelsAndRestoresUnselectedWorldAndFullscreen()
+        [Test] public void RealZoneBindingKeepsGlobalPixelsAndRestoresFullscreenAndExplicitOff()
         {
             var cellar = Attach(); Add(cellar, "Floor");
             var glade = new Zone(ReferenceGladePlan.ZoneID); var outside = Attach("Overworld.12.10.0");
@@ -168,7 +168,8 @@ namespace CavesOfOoo.Tests
                     graph.Show(cellar); graph.Pixel(true); graph.AssertFloor(X, Y);
                     graph.Presentation.Paused = true; graph.Pixel(false); Assert.True(graph.Presentation.FlatPixelModeActive);
                     graph.Presentation.Paused = false; graph.Pixel(true);
-                    graph.Show(outside); graph.Pixel(false); Assert.False(graph.Presentation.FlatPixelModeActive);
+                    graph.Show(outside); graph.Pixel(true); Assert.True(graph.Presentation.FlatPixelModeActive);
+                    Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(outside), "Regional native art stays scoped while projection continues.");
                 }
                 graph.Show(cellar); graph.Presentation.FlatPixelModeEnabled = false; graph.Pixel(false);
                 graph.Presentation.FlatPixelModeEnabled = true; graph.Pixel(true);

@@ -35,6 +35,7 @@ namespace CavesOfOoo.Tests
             _marks = host.GetComponent<Tilemap>();
             _renderer = host.AddComponent<ZoneRenderer>();
             _environment = host.AddComponent<EnvironmentSpriteRenderer>();
+            _environment.FlatPixelGreyboxEnabled = true;
             _zone = new Zone(ReferenceGladePlan.ZoneID);
             SetZone(_zone);
             Set("_tileStateTilemap", _marks);
@@ -64,12 +65,12 @@ namespace CavesOfOoo.Tests
         [TestCase("mode-off")]
         [TestCase("sprites-off")]
         [TestCase("foreign-zone")]
-        public void SameWaterKeepsLegacyStripesOutsideActiveFlatMode(string loss)
+        public void SameWaterKeepsStripesWhenFlatGroundDoesNotRepresentIt(string loss)
         {
             if (loss == "mode-off") Set("_flatPixelModeEnabled", false);
             else if (loss == "sprites-off") _environment.RenderingEnabled = false;
             else SetZone(new Zone("Overworld.12.10.0"));
-            Assert.That(_renderer.FlatPixelModeActive, Is.False);
+            Assert.That(_renderer.FlatPixelModeActive, Is.EqualTo(loss == "foreign-zone"));
             Water();
             Paint();
             AssertMark('~', WaterColor);

@@ -157,7 +157,7 @@ namespace CavesOfOoo.Tests
             zone.GetCell(X, Y).Explored = false; Assert.False(catalog.TryResolve(zone, X, Y, out _));
         }
 
-        [Test] public void ActualRendererKeepsNorthCellsRectangularAndRestoresOutsideAndFullscreenTwice()
+        [Test] public void ActualRendererKeepsWorldCellsRectangularAndRestoresFullscreenTwice()
         {
             var glade = Attach(ReferenceGladePlan.ZoneID); var north = Attach(Connector);
             var plot = Attach(Plot); var outside = Attach("Overworld.12.10.0");
@@ -169,7 +169,8 @@ namespace CavesOfOoo.Tests
                     graph.Show(plot); graph.Pixel(true);
                     graph.Presentation.Paused = true; graph.Pixel(false); Assert.True(graph.Presentation.FlatPixelModeActive);
                     graph.Presentation.Paused = false; graph.Pixel(true);
-                    graph.Show(outside); graph.Pixel(false); Assert.False(graph.Presentation.FlatPixelModeActive);
+                    graph.Show(outside); graph.Pixel(true); Assert.True(graph.Presentation.FlatPixelModeActive);
+                    Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(outside), "Regional native art stays scoped while projection continues.");
                 }
                 graph.Show(north); graph.Presentation.FlatPixelModeEnabled = false; graph.Pixel(false);
                 graph.Presentation.FlatPixelModeEnabled = true; graph.Pixel(true);

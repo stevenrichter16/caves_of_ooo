@@ -55,6 +55,8 @@ namespace CavesOfOoo.Scenarios.Custom
         private string[] _displayPreferenceKeys;
         private bool[] _displayPreferencePresent;
         private int[] _displayPreferenceValues;
+        private WorldPresentationMode _savedPresentationMode;
+        private bool _savedLegacySprites;
         private EntityCastVisualHandler _castObserver;
         private int _observedNativeCasts, _observedNativeFx;
         private SpellFxMode _savedFxMode;
@@ -298,7 +300,10 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private void SnapshotDisplayPreferences()
         {
-            _displayPreferenceKeys = new[] { Village3DSettings.PreferenceKey, Village3DSettings.LowDetailPreferenceKey };
+            _savedPresentationMode = WorldPresentationSettings.Mode;
+            _savedLegacySprites = WorldPresentationSettings.LegacySpritesEnabled;
+            _displayPreferenceKeys = new[] { Village3DSettings.PreferenceKey, Village3DSettings.LowDetailPreferenceKey,
+                WorldPresentationSettings.PreferenceKey, WorldPresentationSettings.LegacySpritesPreferenceKey };
             _displayPreferencePresent = _displayPreferenceKeys.Select(PlayerPrefs.HasKey).ToArray();
             _displayPreferenceValues = _displayPreferenceKeys.Select(k => PlayerPrefs.GetInt(k)).ToArray();
         }
@@ -306,8 +311,11 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             Require(!_profileActive && State() == "Normal", "Additional native probes are outside timed phases.");
             var at = Position(); int tick = _input.TurnManager.TickCount, energy = _input.TurnManager.GetEnergy(_input.PlayerEntity);
-            yield return Tap(Key.F11); Check("native_F11_original_view", !Village3DSettings.Enabled && !Native3D.PresentationVisible && Presenter().PresentationVisible);
-            yield return Tap(Key.F11); yield return WaitForScene(); Check("native_F11_restores_3d", Village3DSettings.Enabled && Native3D.PresentationVisible);
+            bool retained3D = Village3DSettings.Enabled;
+            yield return Tap(Key.F11); Check("native_F11_flat_view", WorldPresentationSettings.Mode == WorldPresentationMode.Flat16x24
+                && _input.ZoneRenderer.FlatPixelModeActive && Village3DSettings.Enabled == retained3D && !Native3D.PresentationVisible && !Presenter().PresentationVisible);
+            yield return Tap(Key.F11); yield return WaitForScene(); Check("native_F11_restores_3d", WorldPresentationSettings.Mode == WorldPresentationMode.Previous
+                && Village3DSettings.Enabled == retained3D && Native3D.PresentationVisible);
             var full = Native3D.WorldCamera.targetTexture; int width = full.width, height = full.height;
             yield return Tap(Key.LeftShift, Key.F11); var small = Native3D.WorldCamera.targetTexture;
             Check("native_shift_F11_actual_low_detail", Village3DSettings.LowDetail && small != full && small.width < width && small.height < height
@@ -362,6 +370,8 @@ namespace CavesOfOoo.Scenarios.Custom
             if (_castObserver != null) { EntityVisualHooks.CastCallback -= _castObserver; _castObserver = null; }
             if (_fxOverride) { SpellFxSettings.Mode = _savedFxMode; SpellFxSettings.AnimationSpeed = _savedFxSpeed; _fxOverride = false; }
             if (_displayPreferenceKeys == null) return;
+            WorldPresentationSettings.Mode = _savedPresentationMode;
+            WorldPresentationSettings.LegacySpritesEnabled = _savedLegacySprites;
             for (int i = 0; i < _displayPreferenceKeys.Length; i++)
                 if (_displayPreferencePresent[i]) PlayerPrefs.SetInt(_displayPreferenceKeys[i], _displayPreferenceValues[i]); else PlayerPrefs.DeleteKey(_displayPreferenceKeys[i]);
             PlayerPrefs.Save();

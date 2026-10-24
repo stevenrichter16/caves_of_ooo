@@ -275,7 +275,7 @@ namespace CavesOfOoo.Tests
         {
             using(var f=new CadenceFixture(true))
             {
-                var replacement=new Zone(f.Zone.ZoneID);f.Manager.CachedZones[f.Zone.ZoneID]=replacement;f.Frame();Assert.False(f.Renderer.FlatPixelModeActive);
+                var replacement=new Zone(f.Zone.ZoneID);f.Manager.CachedZones[f.Zone.ZoneID]=replacement;f.Frame();Assert.True(f.Renderer.FlatPixelModeActive);Assert.IsNull(f.Submitted);
                 Assert.True(f.Owner.GetPart<InventoryPart>().RemoveObject(f.Tonic));long passes=EnvironmentSpriteRenderer.Perf.IncrementalPasses;f.Frame();Assert.AreEqual(passes,EnvironmentSpriteRenderer.Perf.IncrementalPasses);
                 f.Manager.CachedZones[f.Zone.ZoneID]=f.Zone;f.Frame();Assert.True(f.Renderer.FlatPixelModeActive);f.Expect(8);f.Quiet();
             }

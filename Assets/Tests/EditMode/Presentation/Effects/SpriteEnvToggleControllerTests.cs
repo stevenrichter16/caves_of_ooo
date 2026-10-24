@@ -16,14 +16,26 @@ namespace CavesOfOoo.Tests
         private SpriteEnvToggleController _toggle;
         private GameObject _rendererGo;
         private EnvironmentSpriteRenderer _renderer;
+        private WorldPresentationMode _oldMode;
+        private bool _oldSprites, _hadPreference;
+        private int _oldPreference;
+        private System.Action<string> _oldDirty;
 
         [SetUp]
         public void Setup()
         {
-            _toggleGo = new GameObject("ToggleTest");
+            _oldDirty = CavesOfOoo.Core.ZoneRenderHooks.FullDirtyCallback; CavesOfOoo.Core.ZoneRenderHooks.FullDirtyCallback = null;
+            _oldMode = WorldPresentationSettings.Mode; _oldSprites = WorldPresentationSettings.LegacySpritesEnabled;
+            _hadPreference = PlayerPrefs.HasKey(WorldPresentationSettings.LegacySpritesPreferenceKey);
+            _oldPreference = PlayerPrefs.GetInt(WorldPresentationSettings.LegacySpritesPreferenceKey);
+            WorldPresentationSettings.Mode = WorldPresentationMode.Previous;
+            WorldPresentationSettings.LegacySpritesEnabled = true;
+            _toggleGo = new GameObject("ToggleTest"); _toggleGo.SetActive(false);
             _toggle = _toggleGo.AddComponent<SpriteEnvToggleController>();
-            _rendererGo = new GameObject("RendererTest");
+            _rendererGo = new GameObject("RendererTest"); _rendererGo.SetActive(false);
+            var owner = _rendererGo.AddComponent<ZoneRenderer>();
             _renderer = _rendererGo.AddComponent<EnvironmentSpriteRenderer>();
+            typeof(ZoneRenderer).GetField("_envSpriteRenderer", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(owner, _renderer);
             _toggle.TestOnly_SetRenderer(_renderer);
         }
 
@@ -32,6 +44,11 @@ namespace CavesOfOoo.Tests
         {
             if (_toggleGo != null) Object.DestroyImmediate(_toggleGo);
             if (_rendererGo != null) Object.DestroyImmediate(_rendererGo);
+            WorldPresentationSettings.Mode = _oldMode; WorldPresentationSettings.LegacySpritesEnabled = _oldSprites;
+            if (_hadPreference) PlayerPrefs.SetInt(WorldPresentationSettings.LegacySpritesPreferenceKey, _oldPreference);
+            else PlayerPrefs.DeleteKey(WorldPresentationSettings.LegacySpritesPreferenceKey);
+            PlayerPrefs.Save();
+            CavesOfOoo.Core.ZoneRenderHooks.FullDirtyCallback = _oldDirty;
         }
 
         [Test]
@@ -47,6 +64,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Toggle_FromOff_TurnsOn()
         {
+            WorldPresentationSettings.LegacySpritesEnabled = false;
             _renderer.RenderingEnabled = false;
             bool result = _toggle.TestOnly_Toggle();
             Assert.IsTrue(result);

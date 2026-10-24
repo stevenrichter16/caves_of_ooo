@@ -86,7 +86,7 @@ namespace CavesOfOoo.Tests
             controller.ClickSelect(Constant("GraphicsIndex"), service, null);
             Assert.IsTrue(controller.IsOpen);
             Assert.IsTrue(Get<bool>(controller, "IsGraphicsOpen"));
-            Assert.AreEqual(7, Get<int>(controller, "VisibleItemCount"));
+            Assert.AreEqual(10, Get<int>(controller, "VisibleItemCount")); // World view and two explicit retained-view switches precede quality controls.
             Assert.AreEqual(0, service.Saves + service.Loads + quits);
         }
 

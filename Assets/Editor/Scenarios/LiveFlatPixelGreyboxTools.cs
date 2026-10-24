@@ -38,6 +38,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetInt(Prefix + "seed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetString(Prefix + "startScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene));
             string token = NativeSaveIsolation.Begin(Prefix, "FlatPixelGreyboxMarker", false);
+            NativeSaveIsolation.SetPresentation(Prefix, token, WorldPresentationMode.Flat16x24);
             SessionState.SetString(Prefix + "token", token);
             SessionState.SetBool(Prefix + "pending", true);
             try
@@ -47,8 +48,7 @@ namespace CavesOfOoo.Editor
                 EditorSceneManager.OpenScene("Assets/Scenes/Main/SampleScene.unity");
                 var renderer = UnityEngine.Object.FindFirstObjectByType<ZoneRenderer>();
                 if (renderer == null) throw new InvalidOperationException("The ordinary scene has no world renderer.");
-                renderer.FlatPixelModeEnabled = true;
-                EditorSceneManager.playModeStartScene = null; // play this unsaved presentation configuration
+                EditorSceneManager.playModeStartScene = null; // this owned audit uses the normal game scene
                 EditorApplication.playModeStateChanged -= OnPlayState;
                 EditorApplication.playModeStateChanged += OnPlayState;
                 EditorApplication.isPlaying = true;

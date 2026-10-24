@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="50" result="Failed(Child)" total="50" passed="2" failed="48" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 01:11:36Z" end-time="2026-10-24 01:11:44Z" duration="8.7530115">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30586" result="Failed" site="Child" start-time="2026-10-24 01:11:36Z" end-time="2026-10-24 01:11:44Z" duration="8.753012" total="50" passed="2" failed="48" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37656" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30586" result="Failed" site="Child" start-time="2026-10-24 01:11:36Z" end-time="2026-10-24 01:11:44Z" duration="8.667768" total="50" passed="2" failed="48" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37657" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30586" result="Failed" site="Child" start-time="2026-10-24 01:11:36Z" end-time="2026-10-24 01:11:44Z" duration="8.579750" total="50" passed="2" failed="48" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37658" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30586" result="Failed" site="Child" start-time="2026-10-24 01:11:36Z" end-time="2026-10-24 01:11:44Z" duration="8.417238" total="50" passed="2" failed="48" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28084" name="FlatPixelGlobalPresentationTests" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-10-24 01:11:37Z" end-time="2026-10-24 01:11:44Z" duration="7.877727" total="29" passed="2" failed="27" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28119" name="ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" methodname="ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="593694935" result="Failed" start-time="2026-10-24 01:11:37Z" end-time="2026-10-24 01:11:39Z" duration="2.188130" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache () [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:289
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28096" name="CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" methodname="CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="58025915" result="Failed" start-time="2026-10-24 01:11:39Z" end-time="2026-10-24 01:11:39Z" duration="0.140822" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature () [0x00048] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:138
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28112" name="CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" methodname="CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="781133692" result="Failed" start-time="2026-10-24 01:11:39Z" end-time="2026-10-24 01:11:39Z" duration="0.158149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertPortrait (CavesOfOoo.Rendering.ExaminePortrait image, UnityEngine.Sprite sprite) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:326
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas () [0x000bd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:244
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28101" name="CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" methodname="CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="120316649" result="Failed" start-time="2026-10-24 01:11:39Z" end-time="2026-10-24 01:11:39Z" duration="0.200987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint () [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:175
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28099" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:39Z" end-time="2026-10-24 01:11:41Z" duration="1.941573" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28097" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(False)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(False)" methodname="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="106025380" result="Failed" start-time="2026-10-24 01:11:40Z" end-time="2026-10-24 01:11:41Z" duration="0.897033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner (System.Boolean explored) [0x00126] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28098" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(True)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(True)" methodname="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="753664514" result="Failed" start-time="2026-10-24 01:11:41Z" end-time="2026-10-24 01:11:41Z" duration="0.135625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner (System.Boolean explored) [0x000be] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:151
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28106" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 01:11:41Z" end-time="2026-10-24 01:11:42Z" duration="0.684091" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28102" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;Player&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;Player&quot;,0)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1610100438" result="Failed" start-time="2026-10-24 01:11:41Z" end-time="2026-10-24 01:11:41Z" duration="0.142519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening (System.String identity, System.Int32 idle) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28103" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;PetDog&quot;,1)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;PetDog&quot;,1)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1103349518" result="Failed" start-time="2026-10-24 01:11:41Z" end-time="2026-10-24 01:11:42Z" duration="0.192271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening (System.String identity, System.Int32 idle) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28104" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackScrabbler&quot;,2)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackScrabbler&quot;,2)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="238060473" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.138193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening (System.String identity, System.Int32 idle) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28105" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackGleaner&quot;,3)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackGleaner&quot;,3)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="82684363" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.190033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening (System.String identity, System.Int32 idle) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28090" name="FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" methodname="FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1058638528" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.037697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Glyph ink at 3,3
+  Expected: 0
+  But was:  255
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x000a9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:320
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting () [0x0007a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:89
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28086" name="FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" methodname="FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="113975059" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.145934" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (1.00, 1.50, 1.00)
+  But was:  (1.00, 1.00, 1.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice () [0x000cf] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:60
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28095" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.090549" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28092" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-render&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="257000716" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.029502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent (System.String fault) [0x000d0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28093" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-physics&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="490140964" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.028424" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent (System.String fault) [0x000d0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28094" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;carried&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="734688650" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.028333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent (System.String fault) [0x000d0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28108" name="MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" methodname="MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="190800259" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:42Z" duration="0.136143" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:215
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28107" name="MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" methodname="MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1348340763" result="Failed" start-time="2026-10-24 01:11:42Z" end-time="2026-10-24 01:11:43Z" duration="0.448745" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-cast (UnityEngine.Texture2D)>
+  But was:  <pet_dog (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody () [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:205
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28113" name="QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" methodname="QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="478338616" result="Failed" start-time="2026-10-24 01:11:43Z" end-time="2026-10-24 01:11:43Z" duration="0.136743" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:254
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28111" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:43Z" end-time="2026-10-24 01:11:43Z" duration="0.332773" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28109" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;HealingTonic&quot;)" methodname="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1075761049" result="Failed" start-time="2026-10-24 01:11:43Z" end-time="2026-10-24 01:11:43Z" duration="0.181125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (8.00, 10.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside (System.String blueprint) [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28110" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;MarlbackPatchbearer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;MarlbackPatchbearer&quot;)" methodname="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1349711839" result="Failed" start-time="2026-10-24 01:11:43Z" end-time="2026-10-24 01:11:43Z" duration="0.147091" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside (System.String blueprint) [0x00064] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28085" name="RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" methodname="RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1368298840" result="Failed" start-time="2026-10-24 01:11:43Z" end-time="2026-10-24 01:11:44Z" duration="0.298969" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Overworld.12.10.0
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs () [0x00081] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:35
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28089" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.168544" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28087" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.12.10.0&quot;)" methodname="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2060515752" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.135009" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope (System.String zone) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28088" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.11.10.0&quot;)" methodname="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1632363931" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.029660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Glyph ink at 4,2
+  Expected: 0
+  But was:  255
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x000a9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:320
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope (System.String zone) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28100" name="UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" methodname="UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="177548053" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.188493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (16.00, 24.00)
+  But was:  (16.00, 16.00)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertGlyph (UnityEngine.Tilemaps.Tile tile, System.Char glyph) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:316
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:163
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28091" name="ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" methodname="ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="450882827" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.137181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce () [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28118" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.400267" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28114" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.12.10.0&quot;,False,'~')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.12.10.0&quot;,False,'~')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="423233550" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.183967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater (System.String zone, System.Boolean charge, System.Char expected) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:272
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28115" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.12.10.0&quot;,True,'~')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.12.10.0&quot;,True,'~')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="404353712" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.143927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater (System.String zone, System.Boolean charge, System.Char expected) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:272
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28116" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,False,'\0')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,False,'\0')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="866927777" result="Passed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.034789" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28117" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,True,'*')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,True,'*')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1842145410" result="Passed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.032750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="36274" name="WorldPresentationSettingsTests" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.022353" total="21" passed="0" failed="21" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="36299" name="ApplyWithoutWorldCanRememberRequestWithoutCreatingOrSavingAWorld" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.ApplyWithoutWorldCanRememberRequestWithoutCreatingOrSavingAWorld" methodname="ApplyWithoutWorldCanRememberRequestWithoutCreatingOrSavingAWorld" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="2045082587" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.003299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RequireApply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:252
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.ApplyWithoutWorldCanRememberRequestWithoutCreatingOrSavingAWorld () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:192
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="36281" name="ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.002373" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36279" name="ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad(0)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad(0)" methodname="ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="865511758" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad (System.Int32 selected) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36280" name="ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad(1)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad(1)" methodname="ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="944229591" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.ExplicitChoiceWinsReadOnlyLoadAndRepeatLoad (System.Int32 selected) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="36284" name="InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.001311" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36282" name="InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences(-1)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences(-1)" methodname="InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="387217143" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences (System.Int32 invalid) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36283" name="InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences(99)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences(99)" methodname="InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="2115695644" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000401" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.InvalidNewValueUsesSafeRuntimeDefaultWithoutRewritingRawPreferences (System.Int32 invalid) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:101
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="36292" name="LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.001198" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36290" name="LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode(0)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode(0)" methodname="LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="364137548" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode (System.Int32 spriteChoice) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36291" name="LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode(1)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode(1)" methodname="LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="351099886" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.LegacySpriteChoiceLoadsItsExistingBooleanWithoutWritingMode (System.Int32 spriteChoice) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="36285" name="LoadingModeDoesNotReloadOrModifyExistingRuntimeQuality" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.LoadingModeDoesNotReloadOrModifyExistingRuntimeQuality" methodname="LoadingModeDoesNotReloadOrModifyExistingRuntimeQuality" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="2092880829" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000528" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.LoadingModeDoesNotReloadOrModifyExistingRuntimeQuality () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:109
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="36278" name="MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.001179" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36276" name="MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice(False)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice(False)" methodname="MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1116881662" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice (System.Boolean oldChoicesExist) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36277" name="MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice(True)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice(True)" methodname="MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="757427589" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.MissingNewChoiceDefaultsFlatWithoutWritingOrInferringAnOldChoice (System.Boolean oldChoicesExist) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="36294" name="OldSettingsLoadCannotOverwriteAnAlreadySelectedPresentation" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.OldSettingsLoadCannotOverwriteAnAlreadySelectedPresentation" methodname="OldSettingsLoadCannotOverwriteAnAlreadySelectedPresentation" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1997014958" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000383" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.OldSettingsLoadCannotOverwriteAnAlreadySelectedPresentation () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:151
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="36297" name="OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.001307" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36295" name="OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid(False)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid(False)" methodname="OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1299162530" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RequireApply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:252
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid (System.Boolean legacySprites) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:159
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36296" name="OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid(True)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid(True)" methodname="OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="597508519" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RequireApply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:252
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyRoundTripRestoresLegacyEnvironmentAndExactBorrowedGrid (System.Boolean legacySprites) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:159
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="36298" name="OwnerApplyWhileFullscreenRetainsSquareCanvasThenRestoresChosenWorld" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyWhileFullscreenRetainsSquareCanvasThenRestoresChosenWorld" methodname="OwnerApplyWhileFullscreenRetainsSquareCanvasThenRestoresChosenWorld" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="2107931214" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000444" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RequireApply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:252
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.OwnerApplyWhileFullscreenRetainsSquareCanvasThenRestoresChosenWorld () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:180
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="36275" name="PersistedContractHasTwoStableModesAndIndependentKeys" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.PersistedContractHasTwoStableModesAndIndependentKeys" methodname="PersistedContractHasTwoStableModesAndIndependentKeys" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="776112442" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000459" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.PersistedContractHasTwoStableModesAndIndependentKeys () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:71
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="36301" name="RealGraphicsModeRowAcceptsBothArrowDirectionsButBackAndUnrelatedKeyDoNotChangeIt" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.RealGraphicsModeRowAcceptsBothArrowDirectionsButBackAndUnrelatedKeyDoNotChangeIt" methodname="RealGraphicsModeRowAcceptsBothArrowDirectionsButBackAndUnrelatedKeyDoNotChangeIt" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1186538701" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RealGraphicsModeRowAcceptsBothArrowDirectionsButBackAndUnrelatedKeyDoNotChangeIt () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:220
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="36300" name="RealGraphicsModeRowSwitchesBothDirectionsAndAppliesOnlyItsBoundOwner" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.RealGraphicsModeRowSwitchesBothDirectionsAndAppliesOnlyItsBoundOwner" methodname="RealGraphicsModeRowSwitchesBothDirectionsAndAppliesOnlyItsBoundOwner" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1019932246" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000484" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Separate stable presentation enum is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.ModeType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:237
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RequireApply () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:252
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RealGraphicsModeRowSwitchesBothDirectionsAndAppliesOnlyItsBoundOwner () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:203
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="36289" name="RuntimeAssignmentsDoNotPersistOrChangeLegacyQuality" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.RuntimeAssignmentsDoNotPersistOrChangeLegacyQuality" methodname="RuntimeAssignmentsDoNotPersistOrChangeLegacyQuality" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="2141361476" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000470" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.RuntimeAssignmentsDoNotPersistOrChangeLegacyQuality () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:128
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="36293" name="SavingLegacySpritesCannotPersistOrNormalizeTheModeOrOtherLegacyKeys" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingLegacySpritesCannotPersistOrNormalizeTheModeOrOtherLegacyKeys" methodname="SavingLegacySpritesCannotPersistOrNormalizeTheModeOrOtherLegacyKeys" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="318429082" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000370" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Call (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:246
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingLegacySpritesCannotPersistOrNormalizeTheModeOrOtherLegacyKeys () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="36288" name="SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.001082" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="36286" name="SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence(0)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence(0)" methodname="SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="469083920" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence (System.Int32 selected) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:120
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="36287" name="SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence(1)" fullname="CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence(1)" methodname="SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence" classname="CavesOfOoo.Tests.WorldPresentationSettingsTests" runstate="Runnable" seed="1549135299" result="Failed" start-time="2026-10-24 01:11:44Z" end-time="2026-10-24 01:11:44Z" duration="0.000337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  G1.3 presentation preference authority is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldPresentationSettingsTests.SettingsType () [0x00005] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:233
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.Property (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:240
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SetMode (System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:242
+at CavesOfOoo.Tests.WorldPresentationSettingsTests.SavingModeWritesOnlyNewKeyAndPreservesExactLegacyValuesAndPresence (System.Int32 selected) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldPresentationSettingsTests.cs:120
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

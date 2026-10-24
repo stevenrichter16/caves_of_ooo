@@ -24,7 +24,7 @@ namespace CavesOfOoo.Scenarios.Custom
         public string RunId { get; private set; }
         const int Seed = 729490642;
         const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
-        static readonly string[] PreferenceKeys = { Village3DSettings.PreferenceKey, Village3DSettings.LowDetailPreferenceKey };
+        static readonly string[] PreferenceKeys = { Village3DSettings.PreferenceKey, Village3DSettings.LowDetailPreferenceKey, WorldPresentationSettings.PreferenceKey, WorldPresentationSettings.LegacySpritesPreferenceKey };
         readonly List<CheckRow> checks = new List<CheckRow>();
         readonly List<BorderRow> borders = new List<BorderRow>();
         readonly List<ZoneRow> zones = new List<ZoneRow>();
@@ -34,8 +34,10 @@ namespace CavesOfOoo.Scenarios.Custom
         Keyboard keyboard, oldKeyboard;
         InputSettings originalSettings, ownedSettings;
         bool originalBackground, originalEnabled, originalLow, initialized, cleaned, completed;
-        readonly bool[] prefPresent = new bool[2];
-        readonly int[] prefValue = new int[2];
+        WorldPresentationMode originalPresentationMode;
+        bool originalLegacySprites;
+        readonly bool[] prefPresent = new bool[PreferenceKeys.Length];
+        readonly int[] prefValue = new int[PreferenceKeys.Length];
         int failures, unexpected, nativeSteps;
         string saveRoot, markerId, gameId, fatal;
         byte[] markerBytes;
@@ -55,6 +57,7 @@ namespace CavesOfOoo.Scenarios.Custom
             markerBytes = File.ReadAllBytes(Path.Combine(saveRoot, markerId, "Quick.sav.gz"));
             Directory.CreateDirectory(Dir); watch = System.Diagnostics.Stopwatch.StartNew();
             originalEnabled = Village3DSettings.Enabled; originalLow = Village3DSettings.LowDetail;
+            originalPresentationMode = WorldPresentationSettings.Mode; originalLegacySprites = WorldPresentationSettings.LegacySpritesEnabled;
             for (int i = 0; i < PreferenceKeys.Length; i++) { prefPresent[i] = PlayerPrefs.HasKey(PreferenceKeys[i]); prefValue[i] = PlayerPrefs.GetInt(PreferenceKeys[i]); }
             originalBackground = Application.runInBackground; originalSettings = InputSystem.settings; oldKeyboard = Keyboard.current;
             ownedSettings = Instantiate(originalSettings); ownedSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
@@ -244,9 +247,14 @@ namespace CavesOfOoo.Scenarios.Custom
             int tick=input.TurnManager.TickCount,energy=input.TurnManager.GetEnergy(input.PlayerEntity); var at=Position();
             yield return Tap(Key.L); Check("native_L_look_menu",State()=="LookMode"); yield return Capture("look-ui"); yield return Tap(Key.Escape);
             yield return Tap(Key.I); Check("native_I_inventory",State()=="InventoryOpen"); yield return Capture("inventory-ui"); yield return Tap(Key.Escape);
+            bool retained3D = Village3DSettings.Enabled;
             yield return Tap(Key.F11); yield return null;
-            Check("native_F11_original_fallback_mode",!Village3DSettings.Enabled&&!Presenter().PresentationVisible&&ReferenceEquals(input.ZoneRenderer.CurrentZone,input.CurrentZone));
-            yield return Capture("original-view"); yield return Tap(Key.F11); yield return WaitForRing();
+            Check("native_F11_flat_mode",WorldPresentationSettings.Mode==WorldPresentationMode.Flat16x24
+                &&input.ZoneRenderer.FlatPixelModeActive&&Village3DSettings.Enabled==retained3D
+                &&!Presenter().PresentationVisible&&ReferenceEquals(input.ZoneRenderer.CurrentZone,input.CurrentZone));
+            yield return Capture("flat-view"); yield return Tap(Key.F11); yield return WaitForRing();
+            Check("native_F11_previous_mode_restored",WorldPresentationSettings.Mode==WorldPresentationMode.Previous
+                &&!input.ZoneRenderer.FlatPixelModeActive&&Village3DSettings.Enabled==retained3D&&Presenter().PresentationVisible);
             int fullWidth=Presenter().WorldCamera.targetTexture.width,fullHeight=Presenter().WorldCamera.targetTexture.height;
             yield return Tap(Key.LeftShift,Key.F11); yield return null; yield return null;
             var reduced=Presenter().WorldCamera.targetTexture;
@@ -451,10 +459,11 @@ namespace CavesOfOoo.Scenarios.Custom
             if(keyboard!=null&&keyboard.added)InputSystem.RemoveDevice(keyboard);if(oldKeyboard!=null&&oldKeyboard.added)oldKeyboard.MakeCurrent();
             if(originalSettings!=null)InputSystem.settings=originalSettings;if(ownedSettings!=null)Destroy(ownedSettings);Application.runInBackground=originalBackground;
             Village3DSettings.Enabled=originalEnabled;Village3DSettings.LowDetail=originalLow;
+            WorldPresentationSettings.Mode=originalPresentationMode;WorldPresentationSettings.LegacySpritesEnabled=originalLegacySprites;
             for(int i=0;i<PreferenceKeys.Length;i++)if(prefPresent[i])PlayerPrefs.SetInt(PreferenceKeys[i],prefValue[i]);else PlayerPrefs.DeleteKey(PreferenceKeys[i]);PlayerPrefs.Save();
             if(report!=null)
             {
-                report.displayPreferencesRestored=Village3DSettings.Enabled==originalEnabled&&Village3DSettings.LowDetail==originalLow&&Enumerable.Range(0,2).All(i=>PlayerPrefs.HasKey(PreferenceKeys[i])==prefPresent[i]&&(!prefPresent[i]||PlayerPrefs.GetInt(PreferenceKeys[i])==prefValue[i]));
+                report.displayPreferencesRestored=Village3DSettings.Enabled==originalEnabled&&Village3DSettings.LowDetail==originalLow&&WorldPresentationSettings.Mode==originalPresentationMode&&WorldPresentationSettings.LegacySpritesEnabled==originalLegacySprites&&Enumerable.Range(0,PreferenceKeys.Length).All(i=>PlayerPrefs.HasKey(PreferenceKeys[i])==prefPresent[i]&&(!prefPresent[i]||PlayerPrefs.GetInt(PreferenceKeys[i])==prefValue[i]));
                 report.inputSettingsRestored=ReferenceEquals(InputSystem.settings,originalSettings)&&Application.runInBackground==originalBackground&&(keyboard==null||!keyboard.added);
                 if(!report.displayPreferencesRestored||!report.inputSettingsRestored)failures++;
             }

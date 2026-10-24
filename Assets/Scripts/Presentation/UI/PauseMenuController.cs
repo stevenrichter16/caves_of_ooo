@@ -21,14 +21,17 @@ namespace CavesOfOoo.Rendering
         public const int ItemCount = 6;
         public const int MusicVolumeIndex = 0, AmbienceVolumeIndex = 1, SfxVolumeIndex = 2, AudioCreditsIndex = 3, AudioBackIndex = 4;
         public const int AudioItemCount = 5;
-        public const int HandheldPresetIndex = 0;
-        public const int FullPresetIndex = 1;
-        public const int WorldResolutionIndex = 2;
-        public const int WorldShadowsIndex = 3;
-        public const int WorldDetailIndex = 4;
-        public const int SpellEffectsIndex = 5;
-        public const int GraphicsBackIndex = 6;
-        public const int GraphicsItemCount = 7;
+        public const int WorldPresentationIndex = 0;
+        public const int Previous3DIndex = 1;
+        public const int PreviousSpritesIndex = 2;
+        public const int HandheldPresetIndex = 3;
+        public const int FullPresetIndex = 4;
+        public const int WorldResolutionIndex = 5;
+        public const int WorldShadowsIndex = 6;
+        public const int WorldDetailIndex = 7;
+        public const int SpellEffectsIndex = 8;
+        public const int GraphicsBackIndex = 9;
+        public const int GraphicsItemCount = 10;
         private static readonly float[] ResolutionChoices = { 1f, .75f, .5f };
         private static readonly string[] MainLabels = { "Save game", "Load game", "Controls", "Graphics", "Audio", "Quit" };
 
@@ -39,6 +42,10 @@ namespace CavesOfOoo.Rendering
         /// <summary>Invoked by the Quit entry (host wires this to
         /// Application.Quit; no-ops in the editor by Unity contract).</summary>
         public Action RequestQuit;
+
+        /// <summary>Apply the runtime mode to the explicit presentation owner.
+        /// An unbound menu cannot change or persist the presentation mode.</summary>
+        public Action WorldPresentationChanged;
 
         public KeyCode OpenCloseKey = KeyCode.Tab;
         /// <summary>ALPHA onboarding: Escape aliases open/close. This
@@ -108,13 +115,17 @@ namespace CavesOfOoo.Rendering
                 }
             }
             if (!IsGraphicsOpen) return MainLabels[index];
+            bool flat = WorldPresentationSettings.Mode == WorldPresentationMode.Flat16x24;
             switch (index)
             {
+                case WorldPresentationIndex: return flat ? "World view: 16x24" : "World view: Previous";
+                case Previous3DIndex: return "Previous 3D: " + (Village3DSettings.Enabled ? "On" : "Off");
+                case PreviousSpritesIndex: return "Previous sprites: " + (WorldPresentationSettings.LegacySpritesEnabled ? "On" : "Off");
                 case HandheldPresetIndex: return "Handheld preset";
                 case FullPresetIndex: return "Full preset";
-                case WorldResolutionIndex: return "World resolution: " + Mathf.RoundToInt(Village3DSettings.WorldResolutionScale * 100) + "%";
-                case WorldShadowsIndex: return "World shadows: " + (Village3DSettings.ShadowsEnabled ? "On" : "Off");
-                case WorldDetailIndex: return "World detail: " + (Village3DSettings.LowDetail ? "Low" : "Full");
+                case WorldResolutionIndex: return (flat ? "Previous res: " : "World resolution: ") + Mathf.RoundToInt(Village3DSettings.WorldResolutionScale * 100) + "%";
+                case WorldShadowsIndex: return (flat ? "Previous shadows: " : "World shadows: ") + (Village3DSettings.ShadowsEnabled ? "On" : "Off");
+                case WorldDetailIndex: return (flat ? "Previous detail: " : "World detail: ") + (Village3DSettings.LowDetail ? "Low" : "Full");
                 case SpellEffectsIndex: return "Spell effects: " + SpellFxSettings.Mode;
                 default: return "Back";
             }
@@ -196,7 +207,8 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (IsGraphicsOpen && SelectedIndex >= WorldResolutionIndex && SelectedIndex <= SpellEffectsIndex)
+            if (IsGraphicsOpen && (SelectedIndex <= PreviousSpritesIndex
+                || (SelectedIndex >= WorldResolutionIndex && SelectedIndex <= SpellEffectsIndex)))
             {
                 if (input.GetKeyDown(KeyCode.LeftArrow)) { ChangeGraphics(-1); return true; }
                 if (input.GetKeyDown(KeyCode.RightArrow)) { ChangeGraphics(1); return true; }
@@ -253,7 +265,7 @@ namespace CavesOfOoo.Rendering
                     IsAudioOpen=true;SelectedIndex=MusicVolumeIndex;ViewRevision++;break;
                 case GraphicsIndex:
                     IsGraphicsOpen = true;
-                    SelectedIndex = HandheldPresetIndex;
+                    SelectedIndex = WorldPresentationIndex;
                     ViewRevision++;
                     break;
 
@@ -303,6 +315,27 @@ namespace CavesOfOoo.Rendering
         {
             switch (SelectedIndex)
             {
+                case WorldPresentationIndex:
+                    if (WorldPresentationSettings.Toggle(WorldPresentationChanged)) ViewRevision++;
+                    return;
+                case Previous3DIndex:
+                    if (WorldPresentationChanged == null) return;
+                    bool previous3D = Village3DSettings.Enabled;
+                    Village3DSettings.Enabled = !previous3D;
+                    try { WorldPresentationChanged(); }
+                    catch { Village3DSettings.Enabled = previous3D; throw; }
+                    Village3DSettings.Save();
+                    ViewRevision++;
+                    return;
+                case PreviousSpritesIndex:
+                    if (WorldPresentationChanged == null) return;
+                    bool previousSprites = WorldPresentationSettings.LegacySpritesEnabled;
+                    WorldPresentationSettings.LegacySpritesEnabled = !previousSprites;
+                    try { WorldPresentationChanged(); }
+                    catch { WorldPresentationSettings.LegacySpritesEnabled = previousSprites; throw; }
+                    WorldPresentationSettings.SaveLegacySprites();
+                    ViewRevision++;
+                    return;
                 case HandheldPresetIndex:
                 case FullPresetIndex:
                     bool handheld = SelectedIndex == HandheldPresetIndex;

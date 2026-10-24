@@ -41,15 +41,16 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Applies geometry synchronously, before painting or framing the next
-        /// view. Only admitted gameplay uses 1-by-1.5 cells; fullscreen pages
-        /// and other zones use the captured original layout. The callback runs
+        /// view. Enabled flat gameplay uses 1-by-1.5 cells in every world zone;
+        /// fullscreen pages and disabled presentation use the captured layout.
+        /// Native regional art admission does not affect geometry. The callback runs
         /// after an actual cell-size change and completed camera binding only.
         /// Calls after disposal are harmless.
         /// </summary>
-        public void Apply(bool admitted, bool fullscreen)
+        public void Apply(bool enabled, bool fullscreen)
         {
             if (_disposed) return;
-            ApplyWorld(admitted && !fullscreen && _main != null && _grid != null);
+            ApplyWorld(enabled && !fullscreen && _main != null && _grid != null);
         }
 
         private void ApplyWorld(bool pixelWorld)

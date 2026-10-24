@@ -22,6 +22,11 @@ namespace CavesOfOoo.Tests
         Keyboard keyboard;
         bool hadMode, hadDetail, oldEnabled, oldLow;
         int oldMode, oldDetail, flash, serial;
+        bool hadPresentation, hadSprites, oldSprites;
+        int savedPresentation, savedSprites;
+        WorldPresentationMode oldPresentation;
+        bool hadResolution, hadShadows; float savedResolution; int savedShadows;
+        object oldResolutionOverride, oldShadowsOverride;
         Action<string> dirty, message;
         Func<int> tickProvider;
         List<MessageLog.Entry> entries;
@@ -47,6 +52,17 @@ namespace CavesOfOoo.Tests
         }
         [SetUp] public void Setup()
         {
+            hadResolution = PlayerPrefs.HasKey(Village3DSettings.WorldResolutionPreferenceKey);
+            savedResolution = PlayerPrefs.GetFloat(Village3DSettings.WorldResolutionPreferenceKey);
+            hadShadows = PlayerPrefs.HasKey(Village3DSettings.ShadowsPreferenceKey);
+            savedShadows = PlayerPrefs.GetInt(Village3DSettings.ShadowsPreferenceKey);
+            oldResolutionOverride = typeof(Village3DSettings).GetField("resolutionOverride", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            oldShadowsOverride = typeof(Village3DSettings).GetField("shadowsOverride", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            hadPresentation = PlayerPrefs.HasKey(WorldPresentationSettings.PreferenceKey);
+            savedPresentation = PlayerPrefs.GetInt(WorldPresentationSettings.PreferenceKey);
+            hadSprites = PlayerPrefs.HasKey(WorldPresentationSettings.LegacySpritesPreferenceKey);
+            savedSprites = PlayerPrefs.GetInt(WorldPresentationSettings.LegacySpritesPreferenceKey);
+            oldPresentation = WorldPresentationSettings.Mode; oldSprites = WorldPresentationSettings.LegacySpritesEnabled;
             hadMode = PlayerPrefs.HasKey(ModeKey); oldMode = PlayerPrefs.GetInt(ModeKey);
             hadDetail = PlayerPrefs.HasKey(DetailKey); oldDetail = PlayerPrefs.GetInt(DetailKey);
             oldEnabled = Village3DSettings.Enabled;
@@ -64,8 +80,15 @@ namespace CavesOfOoo.Tests
             foreach (var go in objects) if (go != null) Object.DestroyImmediate(go);
             objects.Clear(); input.TearDown();
             ZoneRenderHooks.FullDirtyCallback = null;
+            WorldPresentationSettings.Mode = oldPresentation; WorldPresentationSettings.LegacySpritesEnabled = oldSprites;
+            if (hadPresentation) PlayerPrefs.SetInt(WorldPresentationSettings.PreferenceKey, savedPresentation); else PlayerPrefs.DeleteKey(WorldPresentationSettings.PreferenceKey);
+            if (hadSprites) PlayerPrefs.SetInt(WorldPresentationSettings.LegacySpritesPreferenceKey, savedSprites); else PlayerPrefs.DeleteKey(WorldPresentationSettings.LegacySpritesPreferenceKey);
             Village3DSettings.Enabled = oldEnabled;
             if (LowProperty != null) LowProperty.SetValue(null, oldLow);
+            typeof(Village3DSettings).GetField("resolutionOverride", BindingFlags.Static | BindingFlags.NonPublic).SetValue(null, oldResolutionOverride);
+            typeof(Village3DSettings).GetField("shadowsOverride", BindingFlags.Static | BindingFlags.NonPublic).SetValue(null, oldShadowsOverride);
+            if (hadResolution) PlayerPrefs.SetFloat(Village3DSettings.WorldResolutionPreferenceKey, savedResolution); else PlayerPrefs.DeleteKey(Village3DSettings.WorldResolutionPreferenceKey);
+            if (hadShadows) PlayerPrefs.SetInt(Village3DSettings.ShadowsPreferenceKey, savedShadows); else PlayerPrefs.DeleteKey(Village3DSettings.ShadowsPreferenceKey);
             if (hadMode) PlayerPrefs.SetInt(ModeKey, oldMode); else PlayerPrefs.DeleteKey(ModeKey);
             if (hadDetail) PlayerPrefs.SetInt(DetailKey, oldDetail); else PlayerPrefs.DeleteKey(DetailKey);
             PlayerPrefs.Save();
@@ -79,7 +102,14 @@ namespace CavesOfOoo.Tests
         {
             var type = typeof(Village3DPresenter).Assembly.GetType("CavesOfOoo.Rendering.Village3DControls");
             Assert.NotNull(type, "The ordinary-game display controller must exist.");
-            var go = new GameObject("Village controls owned test"); objects.Add(go);
+            var go = new GameObject("Village controls owned test"); go.SetActive(false); objects.Add(go);
+            var renderer = go.AddComponent<ZoneRenderer>();
+            var env = go.AddComponent<EnvironmentSpriteRenderer>();
+            typeof(ZoneRenderer).GetField("_envSpriteRenderer", Instance).SetValue(renderer, env);
+            typeof(ZoneRenderer).GetProperty("CurrentZone", Instance).SetValue(renderer, new Zone("PreviousControls"));
+            WorldPresentationSettings.Mode = WorldPresentationMode.Previous;
+            WorldPresentationSettings.LegacySpritesEnabled = true;
+            renderer.ApplyWorldPresentation(WorldPresentationMode.Previous, true);
             var controls = go.AddComponent(type);
             // Explicit EditMode lifecycle invocation; native PlayMode still verifies real boot wiring.
             Invoke(controls, "Awake"); return controls;
@@ -133,12 +163,12 @@ namespace CavesOfOoo.Tests
             Village3DSettings.Enabled = true; Low = false; SettingsCall("Load");
             Assert.IsFalse(Village3DSettings.Enabled); Assert.IsTrue(Low);
         }
-        [Test] public void ControlsAwakeLoadsPreferenceWithoutAnnouncementOrSave()
+        [Test] public void ControlsAwakeLeavesRuntimePreferencesToBootstrapWithoutAnnouncementOrSave()
         {
             PlayerPrefs.SetInt(ModeKey, 0); PlayerPrefs.SetInt(DetailKey, 1);
             Village3DSettings.Enabled = true; Low = false;
             int count = MessageLog.Count, stamp = MessageLog.FlashStamp; Controls();
-            Assert.IsFalse(Village3DSettings.Enabled); Assert.IsTrue(Low);
+            Assert.IsTrue(Village3DSettings.Enabled); Assert.IsFalse(Low);
             Assert.AreEqual(count, MessageLog.Count); Assert.AreEqual(stamp, MessageLog.FlashStamp);
             Assert.AreEqual(0, PlayerPrefs.GetInt(ModeKey)); Assert.AreEqual(1, PlayerPrefs.GetInt(DetailKey));
         }
@@ -146,26 +176,33 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new Village3DIntegrationFixture())
             {
-                PlayerPrefs.SetInt(ModeKey, 1); PlayerPrefs.SetInt(DetailKey, 0); var controls = Controls();
+                PlayerPrefs.SetInt(ModeKey, 1); PlayerPrefs.SetInt(DetailKey, 0); SettingsCall("Load"); var controls = Controls();
+                var renderer = controls.GetComponent<ZoneRenderer>();
+                typeof(ZoneRenderer).GetField("_village3DPresenter", Instance).SetValue(renderer, f.Presenter);
+                typeof(ZoneRenderer).GetField("_mainCamera", Instance).SetValue(renderer, f.Source);
+                typeof(ZoneRenderer).GetProperty("CurrentZone", Instance).SetValue(renderer, f.Zone);
+                renderer.ApplyWorldPresentation(WorldPresentationMode.Previous, true);
                 var turns = new TurnManager(); turns.RestoreSavedState(37, true, f.Player,
                     new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = f.Player, Energy = 731 } });
                 var at = f.Zone.GetEntityPosition(f.Player); int stamp = MessageLog.FlashStamp, count = MessageLog.Count;
                 Press(controls, Key.F11); f.Refresh();
-                Assert.IsFalse(Village3DSettings.Enabled); Assert.IsFalse(f.Presenter.PresentationVisible);
-                Assert.AreEqual(0, PlayerPrefs.GetInt(ModeKey)); Assert.IsFalse(Low);
+                Assert.IsTrue(Village3DSettings.Enabled); Assert.IsFalse(f.Presenter.PresentationVisible);
+                Assert.AreEqual(WorldPresentationMode.Flat16x24, WorldPresentationSettings.Mode);
+                Assert.AreEqual(0, PlayerPrefs.GetInt(WorldPresentationSettings.PreferenceKey, -1));
+                Assert.AreEqual(1, PlayerPrefs.GetInt(ModeKey)); Assert.IsFalse(Low);
                 Assert.AreEqual(37, turns.TickCount); Assert.AreEqual(731, turns.GetEnergy(f.Player));
                 Assert.IsTrue(turns.WaitingForInput); Assert.AreSame(f.Player, turns.CurrentActor);
                 Assert.AreEqual(at, f.Zone.GetEntityPosition(f.Player));
                 Assert.AreEqual(count + 1, MessageLog.Count); StringAssert.Contains("World view", MessageLog.GetLast());
                 Assert.AreEqual(stamp, MessageLog.FlashStamp, "A display change is not a modal announcement.");
                 Press(controls, Key.F11); f.Refresh(); Assert.IsTrue(f.Presenter.PresentationVisible);
-                Assert.AreEqual(1, PlayerPrefs.GetInt(ModeKey)); Assert.AreEqual(37, turns.TickCount);
+                Assert.AreEqual(1, PlayerPrefs.GetInt(ModeKey)); Assert.AreEqual(1, PlayerPrefs.GetInt(WorldPresentationSettings.PreferenceKey, -1)); Assert.AreEqual(37, turns.TickCount);
             }
         }
         [TestCase(Key.LeftShift)] [TestCase(Key.RightShift)]
         public void ActualShiftF11ChangesOnlyDetailAndPersists(Key shift)
         {
-            PlayerPrefs.SetInt(ModeKey, 0); PlayerPrefs.SetInt(DetailKey, 0); var controls = Controls();
+            PlayerPrefs.SetInt(ModeKey, 0); PlayerPrefs.SetInt(DetailKey, 0); SettingsCall("Load"); var controls = Controls();
             int count = MessageLog.Count; Press(controls, shift, Key.F11);
             Assert.IsFalse(Village3DSettings.Enabled, "Detail can be selected while the 3D view is off.");
             Assert.IsTrue(Low); Assert.AreEqual(0, PlayerPrefs.GetInt(ModeKey)); Assert.AreEqual(1, PlayerPrefs.GetInt(DetailKey));
@@ -174,12 +211,13 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void OtherKeysAndHeldF11DoNotRepeatTheToggle()
         {
-            PlayerPrefs.SetInt(ModeKey, 1); PlayerPrefs.SetInt(DetailKey, 0); var controls = Controls();
+            PlayerPrefs.SetInt(ModeKey, 1); PlayerPrefs.SetInt(DetailKey, 0); SettingsCall("Load"); var controls = Controls();
             int count = MessageLog.Count; Keys(Key.F10); Invoke(controls, "Update");
             Assert.IsTrue(Village3DSettings.Enabled); Assert.AreEqual(count, MessageLog.Count);
-            Press(controls, Key.F11); Assert.IsFalse(Village3DSettings.Enabled);
+            Press(controls, Key.F11); Assert.AreEqual(WorldPresentationMode.Flat16x24, WorldPresentationSettings.Mode);
             Keys(Key.F11); Assert.IsFalse(keyboard.f11Key.wasPressedThisFrame); Invoke(controls, "Update");
-            Assert.IsFalse(Village3DSettings.Enabled); Assert.IsFalse(Low); Assert.AreEqual(count + 1, MessageLog.Count);
+            Assert.AreEqual(WorldPresentationMode.Flat16x24, WorldPresentationSettings.Mode);
+            Assert.IsTrue(Village3DSettings.Enabled); Assert.IsFalse(Low); Assert.AreEqual(count + 1, MessageLog.Count);
         }
         [Test] public void LowDetailReplacesOnlyOwnedTargetAtThreeQuarterResolutionAndReusesIt()
         {

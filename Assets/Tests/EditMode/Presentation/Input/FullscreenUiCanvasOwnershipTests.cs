@@ -70,7 +70,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void FlatMode_ExitWhileFullscreenAndForeignZoneRestoreOriginalProjection()
+        public void FlatMode_ExplicitExitRestoresProjectionWhileUnskinnedTravelKeepsIt()
         {
             using (var r = new Rig(flat: true))
             {
@@ -81,11 +81,24 @@ namespace CavesOfOoo.Tests
                 Assert.That(r.Follow.WorldTilemap, Is.Null);
                 r.Renderer.FlatPixelModeEnabled = true;
                 Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
-                r.Renderer.SetZone(new Zone("FlatModeForeignZone"));
+                var unskinned = new Zone("FlatModeForeignZone");
+                Assert.That(FlatPixelGreyboxCatalog.IsAdmitted(unskinned), Is.False);
+                r.Renderer.SetZone(unskinned);
+                Assert.That(r.Renderer.FlatPixelModeActive, Is.True);
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                Assert.That(r.Follow.WorldTilemap, Is.SameAs(r.Main));
+                r.Renderer.FlatPixelModeEnabled = false;
                 Assert.That(r.Renderer.FlatPixelModeActive, Is.False);
                 Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1));
-                r.Renderer.SetZone(r.Zone);
+                Assert.That(r.Follow.WorldTilemap, Is.Null);
+                r.Renderer.FlatPixelModeEnabled = true;
+                Assert.That(r.Renderer.FlatPixelModeActive, Is.True);
                 Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                Assert.That(r.Follow.WorldTilemap, Is.SameAs(r.Main));
+                r.Renderer.SetZone(r.Zone);
+                Assert.That(r.Renderer.FlatPixelModeActive, Is.True);
+                Assert.That(r.Main.layoutGrid.cellSize.y, Is.EqualTo(1.5f));
+                Assert.That(r.Follow.WorldTilemap, Is.SameAs(r.Main));
             }
         }
 

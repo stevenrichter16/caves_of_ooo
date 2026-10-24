@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Player display preferences. Added by the ordinary game renderer;
-    /// neither shortcut executes a game command or consumes a turn.</summary>
+    /// <summary>Owner-bound display shortcuts. Bootstrap owns initial preference
+    /// loading; neither shortcut executes a game command or consumes a turn.</summary>
     [DisallowMultipleComponent]
     public sealed class Village3DControls : MonoBehaviour
     {
-        private void Awake() => Village3DSettings.Load();
+        private ZoneRenderer _renderer;
+        private void Awake() => _renderer = GetComponent<ZoneRenderer>();
 
         private void Update()
         {
@@ -17,21 +18,18 @@ namespace CavesOfOoo.Rendering
             if (detail)
             {
                 Village3DSettings.LowDetail = !Village3DSettings.LowDetail;
-                MessageLog.Add(Village3DSettings.LowDetail ? "World detail: low." : "World detail: full.");
+                string scope = WorldPresentationSettings.Mode == WorldPresentationMode.Flat16x24 ? "Previous 3D detail: " : "World detail: ";
+                MessageLog.Add(scope + (Village3DSettings.LowDetail ? "low." : "full."));
+                Village3DSettings.Save();
+                return;
             }
-            else
-            {
-                var renderer = GetComponent<ZoneRenderer>();
-                if (renderer != null && renderer.FlatPixelModeEnabled)
-                {
-                    renderer.FlatPixelModeEnabled = false;
-                    MessageLog.Add("World view: previous presentation restored.");
-                    return;
-                }
-                Village3DSettings.Enabled = !Village3DSettings.Enabled;
-                MessageLog.Add(Village3DSettings.Enabled ? "World view: 3D." : "World view: original.");
-            }
-            Village3DSettings.Save();
+            if (_renderer == null) return;
+            if (WorldPresentationSettings.Toggle(ApplyPresentation))
+                MessageLog.Add(WorldPresentationSettings.Mode == WorldPresentationMode.Flat16x24
+                    ? "World view: 16x24." : "World view: previous graphics.");
         }
+
+        private void ApplyPresentation() => _renderer.ApplyWorldPresentation(
+            WorldPresentationSettings.Mode, WorldPresentationSettings.LegacySpritesEnabled);
     }
 }

@@ -41,6 +41,7 @@ namespace CavesOfOoo
         /// withheld at step 6 and the build picker supplies them instead.
         /// </summary>
         private bool _awaitingBuildChoice;
+        private bool _worldPresentationInitialized;
 
         private EntityFactory _factory;
         private OverworldZoneManager _zoneManager;
@@ -80,8 +81,32 @@ namespace CavesOfOoo
             }
         }
 
+        private void InitializeWorldPresentation()
+        {
+            if (_worldPresentationInitialized) return;
+            Village3DSettings.Load();
+            WorldPresentationSettings.LoadForLaunch();
+            _worldPresentationInitialized = true;
+        }
+
+        private void BindWorldPresentation(Zone zone, Entity player)
+        {
+            if (ZoneRenderer != null)
+            {
+                // Establish the requested view before SetZone can bind any painter.
+                ZoneRenderer.ApplyWorldPresentation(WorldPresentationSettings.Mode,
+                    WorldPresentationSettings.LegacySpritesEnabled);
+                ZoneRenderer.SetZone(zone);
+                ZoneRenderer.PlayerEntity = player;
+                SettlementRuntime.ZoneDirtyCallback = () => ZoneRenderer.MarkDirty("SettlementRuntime");
+                SettlementRuntime.ActiveZone = zone;
+            }
+            GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>()?.Bind(ZoneRenderer);
+        }
+
         private void DoStart()
         {
+            InitializeWorldPresentation();
             PerformanceDiagnostics.ResetAll();
             long startupStart = Stopwatch.GetTimestamp();
 
@@ -397,10 +422,7 @@ namespace CavesOfOoo
                 {
                     if (ZoneRenderer != null)
                     {
-                        ZoneRenderer.SetZone(_zone);
-                        ZoneRenderer.PlayerEntity = _player;
-                        SettlementRuntime.ZoneDirtyCallback = () => ZoneRenderer.MarkDirty("SettlementRuntime");
-                        SettlementRuntime.ActiveZone = _zone;
+                        BindWorldPresentation(_zone, _player);
                         Debug.Log("[Bootstrap] ZoneRenderer wired successfully");
                     }
                     else
@@ -459,9 +481,9 @@ namespace CavesOfOoo
 
                     // GLYPHS-ONLY GATE: Pass 4 / 6 / 7 effect controllers
                     // are gated behind GraphicsPolish.IsEnabled. When the
-                    // master flag is false (the shipping default), none
-                    // of these are added — pure CP437 gameplay. Flip the
-                    // constant in GraphicsPolish.cs to bring them back.
+                    // master flag is false, none of these are added. The
+                    // current feature gate is enabled; WorldPresentationSettings
+                    // selects the presentation without repurposing that gate.
                     // Also disables the URP Volume post-processing stack
                     // (Pass 1-3 bloom / vignette / color grading / etc.)
                     // by toggling all Volume components in the scene off.
@@ -494,8 +516,10 @@ namespace CavesOfOoo
                         // Backslash key toggles the hybrid sprite
                         // environment (walls/floors/water/doors as
                         // pixel-art sprites instead of CP437 glyphs).
-                        if (GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>() == null)
-                            gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+                        var spriteControl = GetComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+                        if (spriteControl == null)
+                            spriteControl = gameObject.AddComponent<CavesOfOoo.Presentation.Effects.SpriteEnvToggleController>();
+                        spriteControl.Bind(ZoneRenderer);
 
                         // Round 6 (user call, 2026-08-09): NO VIGNETTE.
                         // The Pass 1-3 volume profile ships a Vignette
@@ -1040,13 +1064,8 @@ namespace CavesOfOoo
             if (travelHandler != null)
                 travelHandler.CancelStairTravel(null);
 
-            if (ZoneRenderer != null)
-            {
-                ZoneRenderer.SetZone(_zone);
-                ZoneRenderer.PlayerEntity = _player;
-                SettlementRuntime.ZoneDirtyCallback = () => ZoneRenderer.MarkDirty("SettlementRuntime");
-                SettlementRuntime.ActiveZone = _zone;
-            }
+            // Continue preserves the current session view; do not reload preferences.
+            BindWorldPresentation(_zone, _player);
 
             Camera cam = Camera.main;
             CameraFollow cameraFollow = null;

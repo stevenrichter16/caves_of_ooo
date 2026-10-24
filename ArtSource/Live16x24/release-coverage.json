@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "planning_status_ledger_not_runtime_manifest",
-  "reviewed_on": "2026-10-23",
-  "release_status": "incomplete_opt_in_development_presentation",
+  "reviewed_on": "2026-10-24",
+  "release_status": "normal_flat_delivery_editor_accepted_art_and_packaged_release_incomplete",
   "bounds": [
-    "Initial bounded synthesis of current code, source manifests and recorded evidence; not a fresh Unity run or a complete object census.",
+    "Updated bounded synthesis of code, native tests and named ordinary Unity Play receipts; not a complete object census or packaged/hardware acceptance.",
     "Zone integration status applies only to listed primary packets; it does not certify complete art for every owner in that zone.",
     "Authored frames, imported resources, native tests and ordinary Play acceptance are separate gates; frame counts are not coverage percentages.",
     "Native tests and manifests do not prove all gameplay uses, arbitrary seeds, physical controller input, Steam Deck performance or packaged activation.",
@@ -25,7 +25,7 @@
     "ordinary_partial": "Specific ordinary-input actions/captures are accepted; the full object/state/use journey is not.",
     "ordinary_bounded_accepted": "The referenced bounded service/route acceptance is recorded, not every possible encounter or product.",
     "ordinary_pending": "New artwork has no accepted ordinary-input capture/use evidence.",
-    "not_admitted": "This real destination is not enabled in the current flat presentation."
+    "not_admitted": "No region-specific native kit is admitted here; global flat projection still applies with truthful glyph fallback."
   },
   "journey": [
     {
@@ -54,7 +54,8 @@
         "opening_static",
         "opening_motion",
         "opening_items_examine"
-      ]
+      ],
+      "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "cellar",
@@ -82,7 +83,8 @@
         "cellar",
         "opening_motion",
         "opening_items_examine"
-      ]
+      ],
+      "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "north_connector",
@@ -113,7 +115,8 @@
         "north_vegetation",
         "north_works",
         "works_products"
-      ]
+      ],
+      "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "nella_plot",
@@ -142,7 +145,8 @@
         "north_vegetation",
         "north_plot",
         "plot_products"
-      ]
+      ],
+      "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "east_connector",
@@ -153,7 +157,7 @@
       "ordinary_play": "ordinary_pending",
       "accepted": [],
       "open": [
-        "Current native scope and real greybox route",
+        "Region-specific native kit and real greybox route",
         "Owner/state extraction from existing census",
         "Native functional worksite and incidental coverage",
         "Ordinary full journey acceptance"
@@ -162,7 +166,8 @@
         "Docs/LIVE-16X24-CONNECTED-SITES.md",
         "Docs/Verification/Live16x24/connected-two-seed-census-summary.json"
       ],
-      "primary_packets": []
+      "primary_packets": [],
+      "flat_projection": "global_requested_flat_mode"
     },
     {
       "id": "orven_kitchen",
@@ -193,7 +198,8 @@
         "Docs/LIVE-16X24-CONNECTED-SITES.md",
         "Assets/Art/Cook16x24/cook-16x24.png"
       ],
-      "primary_packets": []
+      "primary_packets": [],
+      "flat_projection": "global_requested_flat_mode"
     }
   ],
   "packets": {
@@ -354,7 +360,7 @@
   "rough_or_unclassified_coverage": {
     "status": "incomplete_not_exhaustively_censused_against_current_catalog",
     "known": [
-      "Uncovered visible creatures share rough Actor silhouettes; uncovered portable goods share LooseItem; props/unknowns use rough category marks.",
+      "Uncovered visible owners now retain their actual glyph/color on the native16×24 grid rather than rough Actor/Prop/LooseItem silhouettes; dedicated native identity art is still incomplete.",
       "WateringGrimoire, arbitrary magpie/equipment/manual/loot drops and viper death outcomes remain explicit gaps unless later catalog evidence proves coverage.",
       "Purchased Knotflax/Hearthbulb/Seamleaf seed, growth and product families require their own measured lifecycle coverage.",
       "Seed-dependent/incidental hazards and secondary processing outcomes are not closed by the initial owner list.",
@@ -374,28 +380,29 @@
   "global_delivery_gaps": [
     {
       "id": "projection_scope",
-      "status": "open",
-      "detail": "Current flat admission covers four exact graphs, not the six-site journey or whole world; leaving scope restores earlier art.",
+      "status": "implemented_bounded_editor_play_accepted",
+      "detail": "Requested flat projection is global while four exact native-art graphs remain scoped. Ordinary west travel to an unadmitted graph and back retained16×24; native tests cover other biomes/underground and explicit exit.",
       "refs": [
-        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
-        "Assets/Scripts/Presentation/Rendering/ZoneRenderer.FlatPixel.cs"
+        "Docs/GRAPHICS-G1-RENDERER.md",
+        "Docs/Verification/Live16x24/g1-west-outside-native-kit.json"
       ]
     },
     {
       "id": "normal_launch",
-      "status": "open",
-      "detail": "Normal bootstrap binds projection but does not enable flat mode. Editor-only launcher enables it; no accepted default fresh/load packaged route or persistent native setting.",
+      "status": "implemented_bounded_editor_play_accepted_packaged_pending",
+      "detail": "Ordinary New Game, C Continue, F5/F6 and reversible Graphics control passed without forced art mode. Fresh settings defaultFlat16x24. Packaged activation and physical input remain pending.",
       "refs": [
-        "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs",
-        "Assets/Editor/Scenarios/LiveFlatPixelGreyboxTools.cs"
+        "Docs/GRAPHICS-G1-LAUNCH.md",
+        "Docs/Verification/Live16x24/g1-normal-start.json",
+        "Docs/Verification/Live16x24/g1-ordinary-continue.json"
       ]
     },
     {
       "id": "world_fallback",
-      "status": "open",
-      "detail": "No approved comprehensive native family fallback replaces the rough greybox categories across all regions.",
+      "status": "implemented_interim_identity_preserving_coverage",
+      "detail": "Canonical current owners retain truthful glyph/color with bounded cache, fog and render-event authority. Four portable approved actors retain native art globally. This does not complete regional native art.",
       "refs": [
-        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs"
+        "Docs/GRAPHICS-G1-RENDERER.md"
       ]
     },
     {
@@ -416,19 +423,22 @@
     }
   ],
   "next_acceptance_order": [
-    "G1_global_flat_projection",
-    "G1_reversible_normal_launch",
     "G2_scene_level_opening_finish",
     "G3_plot_and_works_product_ordinary_gates",
-    "G3_complete_six_zone_journey"
+    "G3_complete_six_zone_journey",
+    "packaged_native_launch_and_device_gate",
+    "remaining_regional_kits"
   ],
   "update_rule": "Update status only from matching current code/source plus named native or ordinary-play evidence. Never promote a packet from old pre-art captures, a source contact or aggregate test/frame counts.",
   "verified_foundations": [
     {
       "id": "G1_identity_preserving_fallback",
-      "status": "catalog_tests_passed_live_integration_pending",
-      "detail": "40 corrected native RED cases followed by40 focused and90 disjoint regression passes; two cold reviews clear. No normal-launch or live-renderer change in this slice.",
-      "refs": ["Docs/GRAPHICS-G1-PRESENTATION.md"]
+      "status": "catalog_and_live_integration_verified",
+      "detail": "G1.1 catalog foundation now wired into global presentation with native integration counters and bounded ordinary travel evidence.",
+      "refs": [
+        "Docs/GRAPHICS-G1-PRESENTATION.md",
+        "Docs/GRAPHICS-G1-RENDERER.md"
+      ]
     }
   ],
   "project_priority": {
@@ -438,9 +448,9 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "actual_game_baseline_not_new_art_acceptance",
-    "capture": "Docs/Verification/Live16x24/graphics-finish-baseline-plot.png",
-    "receipt": "Docs/Verification/Live16x24/graphics-finish-baseline-plot.json",
-    "route": "Ordinary seed64 travel from spawn through north works to Nella at20,10;40HP. New product use gates remain pending."
+    "kind": "actual_normal_launch_travel_and_continue_acceptance_not_finished_art",
+    "capture": "Docs/Verification/Live16x24/g1-normal-start.png",
+    "receipt": "Docs/Verification/Live16x24/g1-normal-start.json",
+    "route": "Seed64 normal fresh launch, mode roundtrip, inventory/Look, west outside-kit travel/return, changed-state F5/F6 and new-session C Continue. Regional native art and product-use gates remain incomplete."
   }
 }

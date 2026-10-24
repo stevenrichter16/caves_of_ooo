@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
 using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios.Custom;
 using UnityEditor;
@@ -60,6 +61,7 @@ namespace CavesOfOoo.Editor
             {
                 Configure1080p();
                 string token=NativeSaveIsolation.Begin(Prefix,"SpawnRing3D-native-marker-"+Guid.NewGuid().ToString("N"),false);
+                NativeSaveIsolation.SetPresentation(Prefix,token,WorldPresentationMode.Previous);
                 SessionState.SetString(Prefix+"token",token);SessionState.SetString(Prefix+"root",SaveGameService.SaveRootOverride);
                 SessionState.SetBool(Prefix+"active",true);SessionState.SetFloat(Prefix+"deadline",(float)EditorApplication.timeSinceStartup+900);
                 Subscribe();EditorSceneManager.OpenScene("Assets/Scenes/Main/SampleScene.unity");EditorApplication.isPlaying=true;

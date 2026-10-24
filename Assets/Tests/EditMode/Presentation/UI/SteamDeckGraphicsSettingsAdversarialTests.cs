@@ -196,7 +196,7 @@ namespace CavesOfOoo.Tests
         {
             var menu = SteamDeckGraphicsSettingsTests.GraphicsMenu();
             menu.Tick(new SteamDeckGraphicsSettingsTests.KeyProbe(KeyCode.UpArrow), null, null);
-            Assert.AreEqual(PauseMenuController.HandheldPresetIndex, menu.SelectedIndex);
+            Assert.AreEqual(PauseMenuController.WorldPresentationIndex, menu.SelectedIndex);
             menu.HoverSelect(PauseMenuController.GraphicsBackIndex);
             menu.Tick(new SteamDeckGraphicsSettingsTests.KeyProbe(KeyCode.DownArrow), null, null);
             Assert.AreEqual(PauseMenuController.GraphicsBackIndex, menu.SelectedIndex);
@@ -264,12 +264,15 @@ namespace CavesOfOoo.Tests
         public void Adversarial_NativeGamepad_OpensChangesAndBacksOutWithoutKeyboard()
         {
             var input = new InputTestFixture();
+            var contextField = typeof(NativeGamepadInput).GetField("context", BindingFlags.Static | BindingFlags.NonPublic);
+            var oldContext = (GamepadInputContext)contextField.GetValue(null);
             input.Setup();
             try
             {
                 var pad = InputSystem.AddDevice<Gamepad>();
                 pad.MakeCurrent();
                 var menu = new PauseMenuController();
+                NativeGamepadInput.SetContext(GamepadInputContext.Menu);
                 var probe = new NativeProbe();
                 void State(GamepadState state)
                 {
@@ -286,6 +289,8 @@ namespace CavesOfOoo.Tests
                 for (int i = 0; i < PauseMenuController.GraphicsIndex; i++) Press(GamepadButton.DpadDown);
                 Press(GamepadButton.South);
                 Assert.IsTrue(menu.IsGraphicsOpen);
+                // The new world-view row is first; the preset remains a separate action.
+                for (int i = 0; i < PauseMenuController.HandheldPresetIndex; i++) Press(GamepadButton.DpadDown);
                 Press(GamepadButton.South);
                 Assert.IsTrue(Village3DSettings.LowDetail);
                 Assert.AreEqual(SpellFxMode.Reduced, SpellFxSettings.Mode);
@@ -295,7 +300,7 @@ namespace CavesOfOoo.Tests
                 Press(GamepadButton.East);
                 Assert.IsFalse(menu.IsOpen);
             }
-            finally { input.TearDown(); }
+            finally { input.TearDown(); NativeGamepadInput.SetContext(oldContext); }
         }
 
         [Test]

@@ -297,7 +297,8 @@ namespace CavesOfOoo.Tests
             using (var f = new Fixture())
             {
                 f.Manager.CachedZones[f.Zone.ZoneID] = new Zone(f.Zone.ZoneID);
-                f.Frame(); Assert.False(f.Renderer.FlatPixelModeActive); f.ExpectNoCord(10, 10);
+                f.Frame(); Assert.True(f.Renderer.FlatPixelModeActive); f.ExpectNoCord(10, 10);
+                Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(f.Zone));
                 f.Manager.CachedZones[f.Zone.ZoneID] = f.Zone;
                 f.Frame(); Assert.True(f.Renderer.FlatPixelModeActive); f.ExpectCord(10, 10);
             }

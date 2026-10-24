@@ -242,6 +242,7 @@ namespace CavesOfOoo.Tests
             using (var f = new Fixture(factory))
             using (var portrait = Probe())
             {
+                f.Presentation.FlatPixelModeEnabled = false;
                 f.SetPresentedZone(legacy.Zone); Assert.False(f.Presentation.FlatPixelModeActive);
                 var well = legacy.Add("RepairLinedWell");
                 var document = ExamineDocumentBuilder.BuildWorld(well, legacy.Zone, legacy.Zone.GetEntityCell(well), legacy.Player);
@@ -263,11 +264,12 @@ namespace CavesOfOoo.Tests
                 var flatDoc = f.World(torch);
                 for (int i = 0; i < 2; i++)
                 {
+                    f.Presentation.FlatPixelModeEnabled = false;
                     f.SetPresentedZone(legacy.Zone); Assert.True(Get(portrait, oldDoc, f.Presentation).IsModel);
                     var oldTarget = Read<RenderTexture>(portrait, "OwnedTarget");
                     var oldCamera = Read<Camera>(portrait, "PreviewCamera");
                     Assert.NotNull(oldTarget); Assert.NotNull(oldCamera);
-                    f.SetPresentedZone(f.Zone);
+                    f.SetPresentedZone(f.Zone); f.Presentation.FlatPixelModeEnabled = true;
                     AssertFrame(Get(portrait, flatDoc, f.Presentation), f.States, 10);
                     AssertNoPreview(portrait, i + 1);
                     Assert.True(oldTarget == null && oldCamera == null, "Flat mode must not retain a hidden 3D camera/target.");

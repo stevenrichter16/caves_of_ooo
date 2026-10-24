@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace CavesOfOoo.Editor
         private static Action<int> _manualStop;
         static NativeSaveIsolation()
         {
+            WorldPresentationSettings.EditorLaunchModeResolver = ResolvePresentation;
             if (!Active) return;
             SaveGameService.SaveRootOverride = OwnedRoot(Token);
             Subscribe();
@@ -37,6 +39,8 @@ namespace CavesOfOoo.Editor
             if (string.IsNullOrWhiteSpace(markerID) || markerID=="." || markerID==".."
                 || markerID.IndexOfAny(new[]{'/','\\'})>=0) throw new ArgumentException("Marker must be one directory name.",nameof(markerID));
             string token=Guid.NewGuid().ToString("N");
+            WorldPresentationSettings.EditorLaunchModeResolver = ResolvePresentation;
+            SessionState.SetBool(Prefix+"hasPresentation",false);
             SessionState.SetString(Prefix+"owner",owner);SessionState.SetString(Prefix+"token",token);
             SessionState.SetBool(Prefix+"rootWasNull",SaveGameService.SaveRootOverride==null);
             SessionState.SetString(Prefix+"oldRoot",SaveGameService.SaveRootOverride??"");
@@ -54,6 +58,28 @@ namespace CavesOfOoo.Editor
             }
             catch { SessionState.SetInt(Prefix+"code",4);Complete(false);throw; }
         }
+        /// <summary>Force only this owned audit's startup view. Player preferences
+        /// are untouched; a new audit or completed root cannot inherit this request.</summary>
+        public static void SetPresentation(string owner, string token, WorldPresentationMode mode)
+        {
+            Validate(owner, token);
+            if (mode != WorldPresentationMode.Flat16x24 && mode != WorldPresentationMode.Previous)
+                throw new ArgumentOutOfRangeException(nameof(mode));
+            SessionState.SetInt(Prefix + "presentation", (int)mode);
+            SessionState.SetBool(Prefix + "hasPresentation", true);
+        }
+
+        private static WorldPresentationMode? ResolvePresentation()
+        {
+            if (!Active || !SessionState.GetBool(Prefix + "hasPresentation", false)) return null;
+            if (!Guid.TryParseExact(Token, "N", out _)) return null;
+            string root = OwnedRoot(Token);
+            if (!string.Equals(root, SaveGameService.SaveRootOverride, StringComparison.Ordinal)
+                || !Directory.Exists(root)) return null;
+            int mode = SessionState.GetInt(Prefix + "presentation", -1);
+            return mode == 0 || mode == 1 ? (WorldPresentationMode?)mode : null;
+        }
+
         private static void Validate(string owner,string token)
         {
             if (!Active || !string.Equals(owner,SessionState.GetString(Prefix+"owner",""),StringComparison.Ordinal)
@@ -132,6 +158,7 @@ namespace CavesOfOoo.Editor
                 if (restoreRoot) SaveGameService.SaveRootOverride=SessionState.GetBool(Prefix+"rootWasNull",false)?null:SessionState.GetString(Prefix+"oldRoot","");
                 try{string root=OwnedRoot(Token);if(Directory.Exists(root))Directory.Delete(root,true);}
                 catch(Exception ex){code=4;Debug.LogError("[NativeSaveIsolation] Owned-root cleanup failed: "+ex);}
+                SessionState.SetBool(Prefix+"hasPresentation",false);
                 SessionState.SetBool(Prefix+"active",false);SessionState.SetBool(owner+"active",false);SessionState.SetInt(Prefix+"lastCode",code);
                 _manualStop=null;EditorApplication.playModeStateChanged-=OnPlayState;EditorApplication.quitting-=OnQuitting;EditorApplication.delayCall-=ResumePendingFinish;
             }

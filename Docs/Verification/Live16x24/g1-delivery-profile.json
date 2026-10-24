@@ -1,0 +1,71 @@
+{
+  "label": "g1-delivery-profile",
+  "start": "2026-10-24T02:02:17.159595Z",
+  "end": "2026-10-24T02:03:55.523464Z",
+  "elapsedSeconds": 98.363869,
+  "frames": 85352,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    79,
+    9
+  ],
+  "hp": 27,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 85353,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 52781.073857978045,
+      "max": 15772750,
+      "p99": 116375
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 85353,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 1149152.0327112111,
+      "max": 849262667,
+      "p99": 2198875
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 85353,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 29.162583623305565,
+      "max": 34,
+      "p99": 34
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 85353,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 29.162583623305565,
+      "max": 34,
+      "p99": 34
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 85353,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 8335.9014094407921,
+      "max": 10861,
+      "p99": 10859
+    }
+  ],
+  "bounds": "Editor ordinary movement, graphics menu, inventory, save reload and idle/tool time. No controlled baseline, hardware Deck, standalone or isolated-renderer attribution."
+}

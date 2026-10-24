@@ -102,7 +102,8 @@ namespace CavesOfOoo.Rendering
         {
             return _initialized
                 && _presentationVisible
-                && (_flatPixelMode ? _flatMotionCatalog != null && _flatMotionCatalog.TryGetAsset(entity, out _)
+                && (_flatPixelMode ? FlatPixelFallbackCatalog.IsCurrentGraph(_zone)
+                    && _flatMotionCatalog != null && _flatMotionCatalog.TryGetAsset(entity, out _)
                     : EntityVisualCatalog.TryGetAsset(entity, out _))
                 && !IsOwnedBySource(entity);
         }
@@ -652,6 +653,12 @@ namespace CavesOfOoo.Rendering
         private void OnEnable()
         {
             if (!_initialized || !_flatPixelMode) return;
+            if (!FlatPixelFallbackCatalog.IsCurrentGraph(_zone))
+            {
+                _flatResumeOwners.Clear();
+                _flatRepaintCells.Clear();
+                return;
+            }
             // Rediscover only the current cells of previously tracked owners.
             // Component re-enable does not need a whole-zone scan or refresh.
             for (int i = 0; i < _flatResumeOwners.Count; i++)

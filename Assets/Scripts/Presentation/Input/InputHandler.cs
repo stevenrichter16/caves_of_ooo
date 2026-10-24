@@ -38,7 +38,32 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// The renderer to refresh after movement.
         /// </summary>
-        public ZoneRenderer ZoneRenderer { get; set; }
+        public ZoneRenderer ZoneRenderer
+        {
+            get => _zoneRenderer;
+            set
+            {
+                _zoneRenderer = value;
+                BindWorldPresentationMenu();
+            }
+        }
+        private ZoneRenderer _zoneRenderer;
+
+        private void BindWorldPresentationMenu()
+        {
+            _pauseMenuController.WorldPresentationChanged = _zoneRenderer != null
+                ? ApplyMenuWorldPresentation : (Action)null;
+        }
+
+        private void ApplyMenuWorldPresentation()
+        {
+            // A destroyed owner must not leave behind a callback that saves a
+            // preference even though nothing could apply it.
+            if (_zoneRenderer == null)
+                throw new InvalidOperationException("The world presentation owner is no longer available.");
+            _zoneRenderer.ApplyWorldPresentation(WorldPresentationSettings.Mode,
+                WorldPresentationSettings.LegacySpritesEnabled);
+        }
 
         /// <summary>
         /// The zone manager for zone transitions.
@@ -279,6 +304,7 @@ namespace CavesOfOoo.Rendering
             set
             {
                 _pauseMenuUI = value;
+                BindWorldPresentationMenu();
                 if (_pauseMenuUI != null)
                 {
                     _pauseMenuUI.Controller = _pauseMenuController;

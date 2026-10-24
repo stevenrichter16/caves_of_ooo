@@ -4,66 +4,51 @@ using CavesOfOoo.Rendering;
 
 namespace CavesOfOoo.Presentation.Effects
 {
-    /// <summary>
-    /// Pass 7 §7B.2 — toggle between hybrid sprite environment and
-    /// pure CP437 via hotkey. Default key: backslash `\`. State
-    /// persists via PlayerPrefs.
-    ///
-    /// <para>Mirrors the architectural pattern of
-    /// <see cref="CrtToggleController"/> (Pass 4 §4B.2) — same hotkey
-    /// + persistence shape, just different target.</para>
-    ///
-    /// <para>Plan: <c>Docs/GRAPHICS-PASS7.md</c> §7B.2.</para>
-    /// </summary>
+    /// <summary>Backslash edits the preserved previous-view sprite choice.
+    /// Flat16x24 always retains its required sprite layer. The bootstrap binds
+    /// the exact world owner; Awake never searches a scene or reloads preferences.</summary>
     public class SpriteEnvToggleController : MonoBehaviour
     {
         public KeyCode ToggleKey = KeyCode.Backslash;
-        private const string PREFS_KEY = "CavesOfOoo.SpriteEnvironmentEnabled";
+        private ZoneRenderer _owner;
 
-        private EnvironmentSpriteRenderer _renderer;
+        private void Awake() { }
 
-        private void Awake()
+        /// <summary>Bind or detach the actual bootstrap renderer, including after
+        /// Continue. Binding applies runtime choices without saving or loading them.</summary>
+        public void Bind(ZoneRenderer owner)
         {
-            // Find the renderer (it's added by ZoneRenderer at scene start).
-            // FindObjectsByType includes inactive — robust against init order.
-            var all = UnityEngine.Object.FindObjectsByType<EnvironmentSpriteRenderer>(
-                FindObjectsInactive.Include, FindObjectsSortMode.None);
-            if (all.Length > 0) _renderer = all[0];
+            _owner = owner;
+            ApplyPresentation();
+        }
 
-            // Default ON unless the user previously toggled OFF.
-            bool enabled = PlayerPrefs.GetInt(PREFS_KEY, 1) == 1;
-            if (_renderer != null) _renderer.RenderingEnabled = enabled;
+        private void ApplyPresentation()
+        {
+            if (_owner != null) _owner.ApplyWorldPresentation(WorldPresentationSettings.Mode,
+                WorldPresentationSettings.LegacySpritesEnabled);
         }
 
         private void Update()
         {
-            if (_renderer == null) return;
-            if (CavesOfOoo.Rendering.InputHelper.GetKeyDown(ToggleKey))
-            {
-                _renderer.RenderingEnabled = !_renderer.RenderingEnabled;
-                ZoneRenderHooks.MarkFullDirty("SpriteEnvironment.Toggle");
-                PlayerPrefs.SetInt(PREFS_KEY, _renderer.RenderingEnabled ? 1 : 0);
-                PlayerPrefs.Save();
-                Debug.Log($"[SpriteEnvToggle] Sprite environment "
-                    + $"{(_renderer.RenderingEnabled ? "ON" : "OFF")}");
-            }
+            if (_owner == null || !InputHelper.GetKeyDown(ToggleKey)) return;
+            Toggle();
+            MessageLog.Add("Previous sprites: " + (WorldPresentationSettings.LegacySpritesEnabled ? "on." : "off."));
         }
 
-        // ── Test seams ───────────────────────────────────────────────────
-
-        public bool TestOnly_Toggle()
+        private bool Toggle()
         {
-            if (_renderer == null) return false;
-            _renderer.RenderingEnabled = !_renderer.RenderingEnabled;
-            ZoneRenderHooks.MarkFullDirty("SpriteEnvironment.TestToggle");
-            return _renderer.RenderingEnabled;
+            if (_owner == null) return false;
+            WorldPresentationSettings.LegacySpritesEnabled = !WorldPresentationSettings.LegacySpritesEnabled;
+            ApplyPresentation();
+            WorldPresentationSettings.SaveLegacySprites();
+            return WorldPresentationSettings.LegacySpritesEnabled;
         }
 
-        public bool TestOnly_IsEnabled => _renderer != null && _renderer.RenderingEnabled;
-
-        public void TestOnly_SetRenderer(EnvironmentSpriteRenderer renderer)
-        {
-            _renderer = renderer;
-        }
+        // Existing focused tests retain a local-owner seam; it never searches globally.
+        public bool TestOnly_Toggle() => Toggle();
+        public bool TestOnly_IsEnabled => _owner != null
+            && _owner.GetComponent<EnvironmentSpriteRenderer>()?.RenderingEnabled == true;
+        public void TestOnly_SetRenderer(EnvironmentSpriteRenderer renderer) => Bind(renderer != null
+            ? renderer.GetComponent<ZoneRenderer>() : null);
     }
 }

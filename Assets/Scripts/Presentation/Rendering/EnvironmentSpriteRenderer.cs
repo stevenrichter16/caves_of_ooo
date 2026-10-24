@@ -314,6 +314,54 @@ namespace CavesOfOoo.Rendering
         private Tilemap _flatGroundDecorationTilemap;
         private ZoneRenderer _flatStateOwner;
         private Action<int, int, string> _flatStateDirty;
+        private struct FlatPaintReceipt
+        {
+            internal Zone Zone; internal Cell Cell; internal Entity Owner; internal RenderPart Render;
+            internal Color Tint;
+        }
+        private readonly FlatPaintReceipt[] _flatPaintReceipts = new FlatPaintReceipt[Zone.Width * Zone.Height];
+
+        internal void ClearFlatPaintReceipts() => Array.Clear(_flatPaintReceipts, 0, _flatPaintReceipts.Length);
+        internal void ClearFlatPaintReceipt(int x, int y) => _flatPaintReceipts[y * Zone.Width + x] = default;
+        internal Tile FlatBackgroundTile
+        {
+            get
+            {
+                if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
+                return _flatPixelGreybox.PresentationBackgroundTile;
+            }
+        }
+
+        internal bool TryResolveFlatPresentation(ZoneRenderer owner, Zone zone, int x, int y, out FlatPixelGreyboxCell result)
+        {
+            result = default;
+            if (owner == null || !owner.OwnsEnvironmentRenderer(this) || owner.CurrentZone != zone
+                || !RenderingEnabled || !FlatPixelGreyboxEnabled) return false;
+            if (_flatStateOwner != owner) { _flatStateOwner = owner; _flatStateDirty = owner.MarkCellDirty; }
+            if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
+            return _flatPixelGreybox.TryResolvePresentation(zone, x, y, out result);
+        }
+
+        internal void RecordFlatPaint(Zone zone, int x, int y, in FlatPixelGreyboxCell result, Color tint)
+        {
+            _flatPaintReceipts[y * Zone.Width + x] = new FlatPaintReceipt
+            { Zone = zone, Cell = zone.GetCell(x, y), Owner = result.Owner, Render = result.Owner?.GetPart<RenderPart>(), Tint = tint };
+        }
+
+        private Color FlatForegroundTint(Zone zone, int x, int y, in FlatPixelGreyboxCell flat)
+        {
+            if (flat.NativeForeground) return flat.ForegroundColor;
+            var receipt = _flatPaintReceipts[y * Zone.Width + x];
+            var render = flat.Owner?.GetPart<RenderPart>();
+            if (!flat.Remembered && receipt.Zone == zone && receipt.Cell == zone.GetCell(x, y)
+                && receipt.Owner == flat.Owner && receipt.Render == render && flat.Owner != null)
+                return receipt.Tint;
+            return FlatLight(zone, flat.ForegroundColor, x, y);
+        }
+
+        private Color FlatLight(Zone zone, Color color, int x, int y)
+            => _flatStateOwner != null && _flatStateOwner.CurrentZone == zone
+                ? _flatStateOwner.ApplyFlatLighting(color, x, y) : color;
         private void OnDestroy()
         {
             _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null;
@@ -633,6 +681,14 @@ namespace CavesOfOoo.Rendering
             if (!RenderingEnabled || !FlatPixelGreyboxEnabled) return false;
             if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
             return _flatPixelGreybox.TryGetSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        public bool TryGetFlatSubjectSprite(Zone zone, Entity subject, int x, int y, out Sprite sprite, out Color tint)
+        {
+            sprite = null; tint = Color.white;
+            if (!RenderingEnabled || !FlatPixelGreyboxEnabled) return false;
+            if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
+            return _flatPixelGreybox.TryGetPresentationSubjectSprite(zone, subject, x, y, out sprite, out tint);
         }
 
         public void SetEntityVisualPredicate(Func<Entity, bool> predicate)
@@ -998,6 +1054,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void NotifyMainTilemapCleared()
         {
+            ClearFlatPaintReceipts();
             _flatPixelGreybox?.ClearObservedOwners();
             _flatGroundDecorationTilemap?.ClearAllTiles();
             if (!IsInitialized) return;
@@ -1087,16 +1144,22 @@ namespace CavesOfOoo.Rendering
             // claimed. Remembered-not-visible cells claim TERRAIN ONLY,
             // dimmed, mirroring RenderRememberedCell's contract.
             var cell = zone.GetCell(x, zoneY);
-            if (cell == null || !cell.Explored) return;
+            if (cell == null || !cell.Explored)
+            {
+                if (FlatPixelGreyboxEnabled) ClaimMainCellWithoutOverlay(pos);
+                return;
+            }
             if (FlatPixelGreyboxEnabled)
             {
                 if (_flatPixelGreybox == null) _flatPixelGreybox = new FlatPixelGreyboxCatalog();
-                if (_flatPixelGreybox.TryResolve(zone, x, zoneY, out var flat))
+                if (_flatPixelGreybox.TryResolvePresentation(zone, x, zoneY, out var flat))
                 {
-                    bool actorAccepted = !flat.Remembered && _flatActorObserver?.Invoke(zone, flat.Owner, x, zoneY) == true;
-                    if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, flat.ForegroundColor);
+                    bool actorAccepted = flat.NativeForeground && !flat.Remembered
+                        && FlatPixelActorMotionCatalog.IsPortableActor(flat.Owner)
+                        && _flatActorObserver?.Invoke(zone, flat.Owner, x, zoneY) == true;
+                    if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, FlatForegroundTint(zone, x, zoneY, flat));
                     else ClaimMainCellWithoutOverlay(pos);
-                    PaintBackgroundClaim(pos, flat.GroundTile, flat.GroundColor);
+                    PaintBackgroundClaim(pos, flat.GroundTile, flat.LocalGround ? flat.GroundColor : FlatLight(zone, flat.GroundColor, x, zoneY));
                     if (flat.GroundDecorationTile != null && _flatGroundDecorationTilemap != null)
                     {
                         _flatGroundDecorationTilemap.SetTile(pos, flat.GroundDecorationTile);
@@ -1107,6 +1170,11 @@ namespace CavesOfOoo.Rendering
                     }
                     return;
                 }
+                // Rejected flat ownership must never fall through into an old
+                // sprite/model or a claim restored from the former cell owner.
+                ClaimMainCellWithoutOverlay(pos);
+                _bgTilemap?.SetTile(pos, null);
+                return;
             }
             bool visible = cell.IsVisible;
             Color tint = visible ? Color.white : RememberedTint;
@@ -1398,6 +1466,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void ReleaseAllClaims()
         {
+            ClearFlatPaintReceipts();
             _flatPixelGreybox?.ClearObservedOwners();
             if (!IsInitialized) return;
             ReleaseClaims();

@@ -1,9 +1,13 @@
 # Graphics completion plan
 
-Status: **planned; implementation incomplete**. Audited 2026-10-23 against
-`ce2fe36e7`. The normal game still starts in the older presentation. This
-document changes the delivery order of the ongoing visual overhaul; it does
-not claim the new presentation has shipped.
+Status: **G1 delivery implemented and accepted in bounded ordinary Unity Play;
+opening/region art and packaged/device release remain incomplete.** Initial
+audit was 2026-10-23 against `ce2fe36e7`; its findings below are historical.
+As of 2026-10-24 UTC, normal fresh/Continue launch defaults to flat16×24,
+with a reversible Graphics choice and continuous projection during travel.
+See [renderer evidence](GRAPHICS-G1-RENDERER.md) and
+[launch evidence](GRAPHICS-G1-LAUNCH.md). G2 scene-level finishing is next;
+this is not a claim of complete regional artwork or a new Steam Deck build.
 
 ## Project priority and decision authority
 

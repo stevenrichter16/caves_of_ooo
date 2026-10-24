@@ -28,15 +28,19 @@ namespace CavesOfOoo.Rendering
         public readonly FlatPixelGreyboxKind Kind;
         public readonly FlatPixelGreyboxGround GroundKind;
         public readonly bool Remembered, BlocksMovement;
+        /// <summary>Live presentation treatment, independent of regional admission.</summary>
+        public readonly bool NativeForeground, LocalGround;
 
         internal FlatPixelGreyboxCell(Tile ground, Tile foreground, Color groundColor,
             Color foregroundColor, Entity owner, FlatPixelGreyboxKind kind,
-            FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null)
+            FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null,
+            bool nativeForeground = false, bool localGround = false)
         {
             GroundTile = ground; ForegroundTile = foreground; GroundDecorationTile = groundDecoration;
             GroundColor = groundColor; ForegroundColor = foregroundColor;
             Owner = owner; Kind = kind; GroundKind = groundKind;
             Remembered = remembered; BlocksMovement = blocksMovement;
+            NativeForeground = nativeForeground; LocalGround = localGround;
         }
     }
 
@@ -60,6 +64,7 @@ namespace CavesOfOoo.Rendering
             internal Cell Cell;
             internal Tile Tile;
             internal bool Covered;
+            internal bool Presentation;
         }
         private Zone _observedZone;
         private Zone _reserveZone;
@@ -203,7 +208,7 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        private void ObserveSupply(Zone zone, Cell cell, Entity owner, Tile tile)
+        private void ObserveSupply(Zone zone, Cell cell, Entity owner, Tile tile, bool presentation = false)
         {
             if (_observedZone != zone) { ClearSupplyOwners(); _observedZone = zone; }
             if (!_supplyOwners.TryGetValue(owner, out var observation))
@@ -214,6 +219,7 @@ namespace CavesOfOoo.Rendering
             observation.Cell = cell;
             observation.Tile = tile;
             observation.Covered = false;
+            observation.Presentation = presentation;
         }
 
         /// <summary>Only previously painted exact owners are revisited. World
@@ -222,7 +228,7 @@ namespace CavesOfOoo.Rendering
         /// Covered owners retain no supply signature and do not query inventory.</summary>
         internal void ReconcileObservedOwners(Zone zone, Action<int, int, string> dirty)
         {
-            if (_disposed || !IsAdmitted(zone)) { ClearObservedOwners(); return; }
+            if (_disposed || !IsAdmitted(zone) || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) { ClearObservedOwners(); return; }
             ReconcileReserveBeds(zone, dirty);
             if (zone != _observedZone) { ClearSupplyOwners(); return; }
             _releaseSupplyOwners.Clear();
@@ -238,10 +244,15 @@ namespace CavesOfOoo.Rendering
                     _releaseSupplyOwners.Add(owner);
                     continue;
                 }
-                bool covered = !ReferenceEquals(VisibleOwner(zone, cell), owner);
+                bool covered = previous.Presentation
+                    ? !TryResolveFallback(zone, cell.X, cell.Y, out var selected) || !ReferenceEquals(selected.Owner, owner)
+                    : !ReferenceEquals(VisibleOwner(zone, cell), owner);
                 Tile tile = null;
                 if (!covered && !_openingArt.TryResolve(owner, cell.X, cell.Y, out tile))
-                    tile = _tiles[(int)Classify(owner)];
+                {
+                    if (previous.Presentation && TryResolveFallback(zone, cell.X, cell.Y, out var fallback)) tile = fallback.ForegroundTile;
+                    else tile = _tiles[(int)Classify(owner)];
+                }
                 if (previous.Cell != cell || previous.Covered != covered || previous.Tile != tile)
                 {
                     dirty(previous.Cell.X, previous.Cell.Y, "flat medicine state");
@@ -647,6 +658,54 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        /// <summary>Continuous flat presentation. G1.1 validates the actual owner;
+        /// exact local art/ground stays local, while the four motion identities
+        /// may carry their native idle art into other current world graphs.</summary>
+        public bool TryResolvePresentation(Zone zone, int x, int y, out FlatPixelGreyboxCell result)
+        {
+            result = default;
+            if (!TryResolveFallback(zone, x, y, out var fallback)) return false;
+            bool local = IsAdmitted(zone);
+            var owner = fallback.Owner;
+            var cell = zone.GetCell(x, y);
+            var kind = local ? Classify(owner) : fallback.Kind;
+            var ground = local ? GroundOf(zone, cell, owner, fallback.Remembered) : fallback.GroundKind;
+            var groundColor = local ? GroundColor(ground) : fallback.GroundColor;
+            var foreground = fallback.ForegroundTile;
+            var foregroundColor = fallback.ForegroundColor;
+            Tile art = null;
+            bool native = (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+                && _openingArt.TryResolve(owner, x, y, out art);
+            if (native) { foreground = art; foregroundColor = Color.white; }
+            else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
+            if (fallback.Remembered)
+            {
+                if (local) { groundColor *= .35f; groundColor.a = 1; }
+                if (native) { foregroundColor *= .35f; foregroundColor.a = 1; }
+            }
+            if (local && !fallback.Remembered && owner?.BlueprintName == "MarlbackPatchbearer")
+                ObserveSupply(zone, cell, owner, foreground, true);
+            result = new FlatPixelGreyboxCell(local ? _tiles[(int)FlatPixelGreyboxKind.Ground] : fallback.GroundTile,
+                foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local);
+            return true;
+        }
+
+        /// <summary>Shared world/examine art policy. This does not authorize a
+        /// subject: callers must validate the current world or carried document.</summary>
+        public bool TryGetPresentationSubjectSprite(Zone zone, Entity subject, int x, int y, out Sprite sprite, out Color tint)
+        {
+            sprite = null; tint = Color.white;
+            if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            bool local = IsAdmitted(zone);
+            if ((local || FlatPixelActorMotionCatalog.IsPortableActor(subject)) && _openingArt.TryResolve(subject, x, y, out var tile))
+            { sprite = tile.sprite; return sprite != null; }
+            var kind = Classify(subject);
+            if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
+                return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
+            return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
         /// <summary>Explicit unskinned-cell query. This does not change native
         /// admission or the existing authored/greybox resolver.</summary>
         public bool TryResolveFallback(Zone zone, int x, int y, out FlatPixelGreyboxCell result)
@@ -655,6 +714,16 @@ namespace CavesOfOoo.Rendering
             if (_disposed) return false;
             if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
             return _glyphFallback.TryResolve(zone, x, y, out result);
+        }
+
+        internal Tile PresentationBackgroundTile
+        {
+            get
+            {
+                if (_disposed) return null;
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                return _glyphFallback.BackgroundTile;
+            }
         }
 
         /// <summary>Semantic fallback only; existing portrait authorization must

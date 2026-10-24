@@ -580,3 +580,47 @@ not yet connected to the live renderer; normal launch still uses its earlier
 behavior. Continue G1.2's shared selection, travel continuity, event color and
 hazard work, then G1.3's reversible default/menu. Do not count these native
 catalog tests as actual gameplay or physical Deck acceptance.
+
+
+### G1.2/G1.3 ordinary delivery accepted — 2026-10-24 UTC
+
+[Continuous rendering](GRAPHICS-G1-RENDERER.md) and
+[normal launch/controls](GRAPHICS-G1-LAUNCH.md) now connect the existing
+native art to the ordinary SampleScene/GameBootstrap path. Fresh settings
+choose flat16×24; explicit Previous preserves the older graphics. Graphics
+menu/F11 share the mode choice, and inventory temporarily borrows square
+cells then restores the rectangular world. Current graph/owner/fog rules
+and one Render event per painted visible owner also apply to glyph fallback.
+
+Actual ordinary-input seed64 evidence covers fresh New Game without a forced
+art override, a Previous→flat menu round trip without advancing tick10,
+inventory/Look, west travel into an unadmitted art zone and return, F5/F6
+from changed position/health, and fresh-session C Continue from that actual
+private save. See [normal start](Verification/Live16x24/g1-normal-start.png)
+and its raw receipts. Ten new PNGs are1280×800; early script Screen reports
+2321×1139 are retained verbatim, not represented as physical Deck evidence.
+The outside zone remains glyph-based where native identities are missing.
+
+Native corrected renderer/settings foundation passed52/52 before launch
+production. Launch/override RED recorded23 failures; final targeted run is
+126/126. Across the separately run renderer regression and focused repairs,
+758 current distinct tests have passing latest results; the renamed obsolete
+scope pin and corrected fixture assumptions are explained in the raw
+[union receipt](Verification/Live16x24/g1-final-test-union.json). This is not
+one all-project sweep. Independent source reviews found no remaining P1/P2.
+
+The98.364s active/editor observation includes movement, menus, reload and
+idle/tool time. Renderer mean0.0528ms/p990.1164ms/max15.7728ms; main-thread
+max849.2627ms; draw calls mean29.16/max34. No speedup/GPU/physical-Deck claim.
+Both isolated sessions restored save root, settings, scene and view; final
+Play/isolation/art-pending/view-borrowed flags are false. Caffeinate remains
+running at the user's request. The accidental background-removal request
+was cancelled and is not part of this work.
+
+**Next:** G2 connected opening masonry from the already authored source and
+reviewed runtime-test draft. Preserve accepted sprites; resolve connected
+solid walls versus low crossings, then pond/path finishing and useful1×/2×
+framing. G2 art is not yet imported or accepted in Play. The plot/works-product
+ordinary gates, east/kitchen kits, complete six-site journey, packaged build
+and physical Deck performance/readability are still outstanding. Continue
+through the completion plan; do not treat this delivery fix as finished art.

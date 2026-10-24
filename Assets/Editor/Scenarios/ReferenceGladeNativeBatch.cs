@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
 using CavesOfOoo.Data;
 using CavesOfOoo.Scenarios;
 using CavesOfOoo.Scenarios.Custom;
@@ -166,6 +167,7 @@ namespace CavesOfOoo.Editor
             if (snapshot.Any(s => string.IsNullOrEmpty(s.path)))
                 throw new InvalidOperationException("Save untitled scenes before launching the completion audit.");
             string token = NativeSaveIsolation.Begin(Prefix, "Reference-glade-marker-" + Guid.NewGuid().ToString("N"), exitEditor);
+            NativeSaveIsolation.SetPresentation(Prefix, token, WorldPresentationMode.Previous);
             SessionState.SetString(Prefix + "token", token);
             SessionState.SetString(Prefix + "scenes", JsonUtility.ToJson(new SceneRows { rows = snapshot }));
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");

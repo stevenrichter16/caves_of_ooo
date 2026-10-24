@@ -1,0 +1,17 @@
+{
+  "kind": "per_test_latest_result_union_not_single_run",
+  "files_in_order": [
+    "g1-renderer-regression.xml",
+    "g1-launch-green.xml",
+    "g1-launch-final-green.xml"
+  ],
+  "distinct": 758,
+  "passed": 758,
+  "remaining_failures": {},
+  "limits": "Existing regression and changed startup/control fixtures were run separately. The two regression failures were corrected and rerun in the focused final suite. This is not an all-project test sweep. Renamed obsolete scope pin is excluded from current-test totals; its raw failed receipt is preserved.",
+  "superseded_contract_test": {
+    "old": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_ExitWhileFullscreenAndForeignZoneRestoreOriginalProjection",
+    "replacement": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FlatMode_ExplicitExitRestoresProjectionWhileUnskinnedTravelKeepsIt",
+    "reason": "Old pin asserted foreign-zone travel exits flat mode; G1 deliberately changes this. Replacement preserves explicit-off restoration and adds unskinned-travel/return counters. See source diff."
+  }
+}

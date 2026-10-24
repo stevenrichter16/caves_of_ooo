@@ -8,11 +8,13 @@ namespace CavesOfOoo.Rendering
     {
         [SerializeField, FormerlySerializedAs("Paused")]
         private bool _paused;
-        [SerializeField, Tooltip("Opt-in16x24 opening/cellar art and north-route greybox. Earlier art is retained.")]
+        [SerializeField, Tooltip("Continuous flat16x24 world presentation. Native regional art remains scoped; earlier presentation is retained.")]
         private bool _flatPixelModeEnabled;
         private FlatPixelWorldProjection _flatProjection;
         private CameraFollow _flatCamera;
         private bool _flatModeWasActive;
+        private Zone _flatGraphZone;
+        private bool _flatGraphCurrent;
 
         /// <summary>Fullscreen screens borrow the main canvas. Change grid metrics
         /// immediately, before their first paint and before restoring the world camera.</summary>
@@ -22,8 +24,8 @@ namespace CavesOfOoo.Rendering
             set { if (_paused == value) return; _paused = value; SyncFlatPixelMode(); }
         }
 
-        /// <summary>Opt-in presentation request for the opening, cellar and north
-        /// greybox route; leaving these exact graphs restores earlier art.</summary>
+        /// <summary>Continuous flat-world request. Local native artwork does not
+        /// determine projection; explicitly leaving this mode restores earlier art.</summary>
         public bool FlatPixelModeEnabled
         {
             get => _flatPixelModeEnabled;
@@ -39,7 +41,7 @@ namespace CavesOfOoo.Rendering
         /// and grid metrics pause. Sprite-disable explicitly leaves this mode.</summary>
         public bool FlatPixelModeActive => _flatPixelModeEnabled
             && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled
-            && FlatPixelGreyboxCatalog.IsAdmitted(CurrentZone);
+            && CurrentZone != null;
 
         /// <summary>Handle an authorized subject using the active flat world art.
         /// A rejected subject is still handled here, so it cannot fall through to
@@ -50,7 +52,7 @@ namespace CavesOfOoo.Rendering
             if (!FlatPixelModeActive) return false;
             if (!ExaminePortraitRenderer.IsCurrentPresentationSubject(document, this)) return true;
             var cell = document.SubjectCell ?? CurrentZone.GetEntityCell(document.SubjectViewer);
-            if (_envSpriteRenderer.TryGetFlatSubjectSprite(document.Subject, cell?.X ?? 0, cell?.Y ?? 0,
+            if (_envSpriteRenderer.TryGetFlatSubjectSprite(CurrentZone, document.Subject, cell?.X ?? 0, cell?.Y ?? 0,
                 out var sprite, out var tint) && sprite != null && sprite.texture != null)
             {
                 var texture = sprite.texture;
@@ -77,6 +79,13 @@ namespace CavesOfOoo.Rendering
         {
             if (_tilemap == null) return;
             bool active = FlatPixelModeActive;
+            bool current = active && FlatPixelFallbackCatalog.IsCurrentGraph(CurrentZone);
+            if (_flatGraphZone != CurrentZone || _flatGraphCurrent != current)
+            {
+                _flatGraphZone = CurrentZone; _flatGraphCurrent = current;
+                _envSpriteRenderer?.ClearFlatPaintReceipts();
+                _fullDirty = true;
+            }
             if (active && _flatProjection == null && _tilemap.GetComponentInParent<Grid>() != null)
                 _flatProjection = new FlatPixelWorldProjection(_tilemap, _flatCamera, ResetProjectedViews);
             if (active) _flatProjection?.Apply(true, Paused);

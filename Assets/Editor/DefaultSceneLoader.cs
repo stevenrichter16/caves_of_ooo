@@ -63,7 +63,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenes/Open 16x24 Seed Keeper Clearing")]
         private static void OpenPixelClearing() => OpenSavedScene(PixelClearingScenePath);
 
-        [MenuItem("Caves Of Ooo/Scenes/Return to 3D Spawn")]
+        [MenuItem("Caves Of Ooo/Scenes/Open Normal Game")]
         private static void OpenOriginalWorld() => OpenSavedScene(SampleScenePath);
 
         private static void OpenSavedScene(string path)

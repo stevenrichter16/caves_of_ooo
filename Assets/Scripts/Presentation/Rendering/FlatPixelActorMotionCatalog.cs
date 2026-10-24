@@ -46,25 +46,32 @@ namespace CavesOfOoo.Rendering
         public bool TryGetAsset(Entity owner, out EntityVisualAsset asset)
         {
             asset = null;
-            if (_disposed || owner == null) return false;
-            var render = owner.GetPart<RenderPart>();
-            if (render == null || render.ParentEntity != owner || !render.Visible) return false;
-
-            int index;
-            if (owner.HasTag("Player")) index = 0;
-            else
-            {
-                if (!owner.HasTag("Creature")) return false;
-                switch (owner.BlueprintName)
-                {
-                    case "PetDog": index = 1; break;
-                    case "MarlbackScrabbler": index = 2; break;
-                    case "MarlbackGleaner": index = 3; break;
-                    default: return false;
-                }
-            }
+            if (_disposed) return false;
+            int index = PortableActorIndex(owner);
+            if (index < 0) return false;
             asset = _assets[index];
             return asset != null;
+        }
+
+        /// <summary>The existing four semantic actor identities, independent of
+        /// atlas availability. World/portrait callers still own current-graph,
+        /// custody, cell and disclosure checks; this grants no such authority.</summary>
+        public static bool IsPortableActor(Entity owner) => PortableActorIndex(owner) >= 0;
+
+        private static int PortableActorIndex(Entity owner)
+        {
+            if (owner == null) return -1;
+            var render = owner.GetPart<RenderPart>();
+            if (render == null || render.ParentEntity != owner || !render.Visible) return -1;
+            if (owner.HasTag("Player")) return 0;
+            if (!owner.HasTag("Creature")) return -1;
+            switch (owner.BlueprintName)
+            {
+                case "PetDog": return 1;
+                case "MarlbackScrabbler": return 2;
+                case "MarlbackGleaner": return 3;
+                default: return -1;
+            }
         }
 
         private static bool ValidAtlas(Texture2D atlas, int frames)

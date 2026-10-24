@@ -22,6 +22,7 @@ namespace CavesOfOoo.Rendering
         private readonly bool[] _hasInk = new bool[GlyphCount];
         private Texture2D _atlas;
         private bool _disposed;
+        internal Tile BackgroundTile => _disposed ? null : _tiles[BackgroundIndex];
 
         public FlatPixelFallbackCatalog() : this(CP437TilesetGenerator.GetAtlasTexture()) { }
 
@@ -55,7 +56,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolve(Zone zone, int x, int y, out FlatPixelGreyboxCell result)
         {
             result = default;
-            if (_disposed || _atlas == null || !CurrentGraph(zone)) return false;
+            if (_disposed || _atlas == null || !IsCurrentGraph(zone)) return false;
             Cell cell = zone.GetCell(x, y);
             if (!CurrentCell(zone, cell) || cell.X != x || cell.Y != y || !cell.Explored) return false;
 
@@ -107,12 +108,12 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        private static bool CurrentGraph(Zone zone)
+        internal static bool IsCurrentGraph(Zone zone)
         {
             if (zone == null) return false;
             var manager = WorldLocationContext.For(zone);
             return manager == null || zone.ZoneID != null
-                && manager.CachedZones.TryGetValue(zone.ZoneID, out Zone current) && ReferenceEquals(current, zone);
+                && manager.CachedZones != null && manager.CachedZones.TryGetValue(zone.ZoneID, out Zone current) && ReferenceEquals(current, zone);
         }
 
         private static bool CurrentCell(Zone zone, Cell cell)
