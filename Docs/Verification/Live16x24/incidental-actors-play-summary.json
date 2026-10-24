@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-24",
+  "status": "bounded_native_and_ordinary_actor_acceptance",
+  "tests": {
+    "red": {
+      "total": "2",
+      "passed": "0",
+      "failed": "2",
+      "skipped": "0",
+      "start-time": "2026-10-24 20:24:33Z",
+      "end-time": "2026-10-24 20:24:33Z"
+    },
+    "green2": {
+      "total": "39",
+      "passed": "39",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-10-24 20:27:35Z",
+      "end-time": "2026-10-24 20:27:37Z"
+    },
+    "regression": {
+      "total": "311",
+      "passed": "311",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-10-24 20:28:49Z",
+      "end-time": "2026-10-24 20:30:32Z"
+    },
+    "presentation-regression": {
+      "total": "277",
+      "passed": "277",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-10-24 20:31:35Z",
+      "end-time": "2026-10-24 20:31:50Z"
+    }
+  },
+  "distinctFinalNativeCases": 588,
+  "checks": {
+    "seed64SaveLoad": {
+      "before": "incidental-actors-64-gate-open.json",
+      "after": "incidental-actors-64-saved-loaded.json",
+      "ownerRowsMatchedById": 300,
+      "inventoryRowsMatched": 6,
+      "tick": 1000
+    },
+    "seed65SaveLoad": {
+      "before": "incidental-actors-65-farmer-subject.json",
+      "after": "incidental-actors-65-saved-loaded.json",
+      "sameFarmerId": "7139",
+      "sameBedId": "7197",
+      "inventoryRowsMatched": 8,
+      "bounds": "Four ordinary movement turns intervene (1490 to1530); Magpie and Scrabbler move. This is actor/cot/inventory preservation, not identical whole-zone state."
+    },
+    "ordinaryGrazerMovement": {
+      "action": "Look selected gate53,17; open door via real menu and Return",
+      "tickBefore": 990,
+      "tickAfter": 1000,
+      "owner": "5036",
+      "from": [
+        51,
+        17
+      ],
+      "to": [
+        50,
+        18
+      ],
+      "hp": 10,
+      "bounds": "No debug position, AI, door, tick or graph mutation. One observed escape step, not a complete forage/flight loop or animation."
+    }
+  },
+  "cleanup": [
+    "incidental-actors-65-cleanup.json",
+    "incidental-actors-64-cleanup.json"
+  ],
+  "notClaimed": [
+    "animation for either actor",
+    "ordinary Farmer move-away from bed (native test only)",
+    "full six-zone release",
+    "all creatures or arbitrary seeds",
+    "packaged or physical Deck acceptance"
+  ]
+}

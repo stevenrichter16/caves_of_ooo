@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.6372658">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30950" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.637266" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38101" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30950" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.579808" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38102" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30950" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.528032" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38103" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30950" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.364616" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28357" name="FlatPixelIncidentalActorTests" fullname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests" classname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.181557" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28360" name="RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph" fullname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests.RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph" classname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.179689" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28358" name="RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph(&quot;Farmer&quot;,&quot;farmer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests.RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph(&quot;Farmer&quot;,&quot;farmer&quot;)" methodname="RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph" classname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests" runstate="Runnable" seed="115093060" result="Failed" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.105447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Farmer still paints the identity-preserving glyph instead of its native body.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalActorTests.RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph (System.String blueprint, System.String resource) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalActorTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28359" name="RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph(&quot;ReedbackGrazer&quot;,&quot;reedback-grazer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests.RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph(&quot;ReedbackGrazer&quot;,&quot;reedback-grazer&quot;)" methodname="RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph" classname="CavesOfOoo.Tests.FlatPixelIncidentalActorTests" runstate="Runnable" seed="772420414" result="Failed" start-time="2026-10-24 20:24:33Z" end-time="2026-10-24 20:24:33Z" duration="0.069352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ReedbackGrazer still paints the identity-preserving glyph instead of its native body.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalActorTests.RealIncidentalActorHasNativeWorldAndMatchingSubjectInsteadOfGlyph (System.String blueprint, System.String resource) [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalActorTests.cs:37
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,47 @@
+{
+  "nativeCounts": {
+    "at": "2026-10-24T20:46:28.468688Z",
+    "errors": 0,
+    "warnings": 2,
+    "logs": 95,
+    "compiling": false,
+    "playing": false
+  },
+  "connector": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved 3 log entries.\",\"data\":[{\"type\":\"Exception\",\"message\":\"[Combat] Autosaved.\",\"file\":\"Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs\",\"line\":223,\"stackTrace\":\"UnityEngine.Debug:Log (object)\\nCavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:223)\\nCavesOfOoo.Core.MessageLog:AddRaw (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:106)\\nCavesOfOoo.Core.MessageLog:Add (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:85)\\nCavesOfOoo.Core.SaveGameService:PublishAutosave (CavesOfOoo.Core.SaveGameService/CapturedSave,System.Exception) (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:727)\\nCavesOfOoo.Core.BackgroundSaveQueue`1<CavesOfOoo.Core.SaveGameService/CapturedSave>:Pump (System.Action`2<CavesOfOoo.Core.SaveGameService/CapturedSave, System.Exception>) (at Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs:77)\\nCavesOfOoo.Core.SaveGameService:PumpPendingSaves () (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:710)\\nCavesOfOoo.Rendering.InputHandler:UpdateInput () (at Assets/Scripts/Presentation/Input/InputHandler.cs:474)\\nCavesOfOoo.Rendering.InputHandler:Update () (at Assets/Scripts/Presentation/Input/InputHandler.cs:462)\"},{\"type\":\"Error\",\"message\":\"Ignoring depth surface load action as it is memoryless\",\"file\":\"\",\"line\":0,\"stackTrace\":null},{\"type\":\"Error\",\"message\":\"Ignoring depth surface store action as it is memoryless\",\"file\":\"\",\"line\":0,\"stackTrace\":null}]}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved 3 log entries.",
+      "data": [
+        {
+          "type": "Exception",
+          "message": "[Combat] Autosaved.",
+          "file": "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs",
+          "line": 223,
+          "stackTrace": "UnityEngine.Debug:Log (object)\nCavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:223)\nCavesOfOoo.Core.MessageLog:AddRaw (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:106)\nCavesOfOoo.Core.MessageLog:Add (string) (at Assets/Scripts/Gameplay/Events/MessageLog.cs:85)\nCavesOfOoo.Core.SaveGameService:PublishAutosave (CavesOfOoo.Core.SaveGameService/CapturedSave,System.Exception) (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:727)\nCavesOfOoo.Core.BackgroundSaveQueue`1<CavesOfOoo.Core.SaveGameService/CapturedSave>:Pump (System.Action`2<CavesOfOoo.Core.SaveGameService/CapturedSave, System.Exception>) (at Assets/Scripts/Gameplay/Save/BackgroundSaveQueue.cs:77)\nCavesOfOoo.Core.SaveGameService:PumpPendingSaves () (at Assets/Scripts/Gameplay/Save/SaveSystem.cs:710)\nCavesOfOoo.Rendering.InputHandler:UpdateInput () (at Assets/Scripts/Presentation/Input/InputHandler.cs:474)\nCavesOfOoo.Rendering.InputHandler:Update () (at Assets/Scripts/Presentation/Input/InputHandler.cs:462)"
+        },
+        {
+          "type": "Error",
+          "message": "Ignoring depth surface load action as it is memoryless",
+          "file": "",
+          "line": 0,
+          "stackTrace": null
+        },
+        {
+          "type": "Error",
+          "message": "Ignoring depth surface store action as it is memoryless",
+          "file": "",
+          "line": 0,
+          "stackTrace": null
+        }
+      ]
+    },
+    "isError": false
+  },
+  "bounds": "Native Unity counts confirm no errors. The connector mislabels the normal Debug.Log Autosaved entry and the two existing Metal memoryless-depth warnings. Console is not empty."
+}

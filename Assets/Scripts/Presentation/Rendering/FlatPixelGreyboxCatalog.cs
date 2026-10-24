@@ -61,6 +61,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelOpeningGroundCatalog _groundArt;
         private FlatPixelEastKitchenCatalog _eastKitchenArt;
         private FlatPixelWorkingCourtCatalog _workingCourtArt;
+        private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -726,7 +727,9 @@ namespace CavesOfOoo.Rendering
                 && boundaries.TryResolve(zone, x, y, out art, out boundaryTint);
             var eastern = local ? EastKitchenArtFor(zone, owner) : null;
             bool eastNative = eastern != null && eastern.TryResolve(owner, out art);
-            bool native = boundaryNative || eastNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            var incidental = local ? IncidentalActorArtFor(owner) : null;
+            bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
+            bool native = boundaryNative || eastNative || incidentalNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -758,6 +761,9 @@ namespace CavesOfOoo.Rendering
             var court = local ? WorkingCourtArtFor(zone) : null;
             if (court != null && court.TryResolve(zone, x, y, out var courtTile, out var courtFloor) && courtFloor == subject)
             { sprite = courtTile.sprite; return sprite != null; }
+            var incidental = local ? IncidentalActorArtFor(subject) : null;
+            if (incidental != null && incidental.TryResolve(subject, out var actorTile))
+            { sprite = actorTile.sprite; return sprite != null; }
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolve(subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -767,6 +773,14 @@ namespace CavesOfOoo.Rendering
             if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
                 return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
             return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        private FlatPixelIncidentalActorCatalog IncidentalActorArtFor(Entity owner)
+        {
+            if (!FlatPixelIncidentalActorCatalog.HasKnownRole(owner)) return null;
+            if (_incidentalActorArt == null && _loadOptionalResources)
+                _incidentalActorArt = new FlatPixelIncidentalActorCatalog();
+            return _incidentalActorArt;
         }
 
         private FlatPixelWorkingCourtCatalog WorkingCourtArtFor(Zone zone)
@@ -853,6 +867,8 @@ namespace CavesOfOoo.Rendering
             _eastKitchenArt = null;
             _workingCourtArt?.Dispose();
             _workingCourtArt = null;
+            _incidentalActorArt?.Dispose();
+            _incidentalActorArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

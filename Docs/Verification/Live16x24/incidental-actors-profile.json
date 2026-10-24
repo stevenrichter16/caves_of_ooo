@@ -1,0 +1,71 @@
+{
+  "label": "incidental-actors-profile",
+  "start": "2026-10-24T20:33:09.353936Z",
+  "end": "2026-10-24T20:36:35.721178Z",
+  "elapsedSeconds": 206.367242,
+  "frames": 167003,
+  "zone": "Overworld.12.11.0",
+  "player": [
+    54,
+    5
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 51698.29670715332,
+      "max": 32487709,
+      "p99": 103250
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1245266.4423522949,
+      "max": 1109868709,
+      "p99": 2217583
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 41.690528869628906,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 41.541938781738281,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9300.8161849975586,
+      "max": 10291,
+      "p99": 10291
+    }
+  ],
+  "bounds": "Editor bounded actor inspection, UI and ordinary movement including tool idle time; not physical Deck, combat benchmark or before/after speedup."
+}

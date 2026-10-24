@@ -993,3 +993,37 @@ and native editable source, then narrow owner routing and ordinary move-away /
 examine evidence. Do not silently alias inherited identities or reset the court.
 The named Cindercaller gap and other release gates remain open. Keep scheduled
 work active; this checkpoint completes one visible slice, not the overhaul.
+
+
+## Latest continuation — two real actor gaps closed, 2026-10-24 20:19 UTC heartbeat
+
+[Incidental actors](GRAPHICS-G2-INCIDENTAL-ACTORS.md) now has bounded ordinary
+acceptance: a newly authored editable16×24 Farmer replaces the kitchen cot
+glyph, and the user's unchanged approved Reedback Grazer is connected to the
+actual eastern-route animal. Both exact subject readers show the same body.
+Native RED2/2 preceded production; final311+277distinct Unity cases pass
+(588total,0failed). Source/production reviews found no P1/P2. Existing23approved
+art files stay unchanged; no AI/world-generation/motion policy was altered.
+
+[Actual Farmer beside Cook](Verification/Live16x24/incidental-actors-65-farmer-2x.png)
+and [actual Grazer after opening its pen](Verification/Live16x24/incidental-actors-64-gate-open.png).
+Seed65 ordinary Continue, movement and F5/F6 retain the Farmer/cot and8inventory
+rows. Fresh seed64 ordinary travel, Examine and real Open-door interaction make
+Grazer5036 move51,17→50,18; F5/F6 matches300owner/6inventory rows at tick1000.
+These are two static body identities, not new animations or a whole-bestiary claim.
+Farmer move-away/underlying Bed repaint has a native test, not ordinary replay.
+
+Both editor sessions are stopped/restored with null save override. Native console
+has0errors and2known Metal warnings. The206.37second editor profile wrapped its
+131072sample ring; retained renderer mean0.05170ms/p99 0.10325ms, max43draws.
+This includes idle/UI/load and is not a complete-window/device benchmark. No new
+package was made; the retained delivered SteamDeck archive still predates this art.
+
+**Next: execute [ordinary paid kitchen service](GRAPHICS-G3-KITCHEN-SERVICE.md).**
+The source-checked route uses real glade grain and cellar clay, repairs the pan,
+commissions with carried pulp/drams, waits real turns, collects and reads a meal.
+Current neutral trays suffice for the first acceptance; derive any new working/
+ready cue from actual captures and authoritative job/custody, not arbitrary stock.
+Retain Cindercaller, aggregate Look heading, intermittent court overlay, G2 defence/
+motion, complete crop/forge loops, six-site journey and packaged/device gates as
+open. Graphics remains priority1; the hourly continuation remains active.

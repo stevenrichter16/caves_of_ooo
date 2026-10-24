@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "farmer": {
+    "width": 16,
+    "height": 24,
+    "frameCount": 1,
+    "rect": [
+      0,
+      0,
+      16,
+      24
+    ],
+    "pixelsPerUnit": 16,
+    "tilePivotNormalized": [
+      0.5,
+      0.5
+    ],
+    "filterMode": "Point",
+    "mipmaps": false,
+    "compression": "None",
+    "animation": "None; static living body.",
+    "blueprint": "Farmer",
+    "resource": "Sprites/Live16x24/farmer",
+    "sha256": "4981b3cb861d30a3c8db4b426237f2a751dd48eca584034dac43d78acb63bfc0",
+    "bounds": [
+      3,
+      3,
+      13,
+      23
+    ],
+    "palette": {
+      "ink": "342E25",
+      "leather": "5F4830",
+      "skin": "DFA06A",
+      "cream": "E4D0A0",
+      "ochre": "B48B54",
+      "moss": "75834B",
+      "forest": "53683E"
+    },
+    "source": "incidental-actors.blend",
+    "cells": "source-cells.json",
+    "description": "Exposed receding hair, broad short moss waistcoat around ochre shirt, rolled cuffs, belt and separated dark trouser legs/boots; no held prop."
+  },
+  "grazer": {
+    "width": 16,
+    "height": 24,
+    "frameCount": 1,
+    "rect": [
+      0,
+      0,
+      16,
+      24
+    ],
+    "pixelsPerUnit": 16,
+    "tilePivotNormalized": [
+      0.5,
+      0.5
+    ],
+    "filterMode": "Point",
+    "mipmaps": false,
+    "compression": "None",
+    "animation": "None; static living body.",
+    "blueprint": "ReedbackGrazer",
+    "resource": "Sprites/Live16x24/reedback-grazer",
+    "sha256": "29db64b90637fdd305a355907c06547c5f46d82f912ec95a88307d92f28b4dad",
+    "bounds": [
+      0,
+      9,
+      16,
+      21
+    ],
+    "approvedSource": "Assets/Art/ReedbackGrazer16x24/03-ridge.png",
+    "sourceMode": "Exact approved PNG byte copy; fresh full-frame meta. No new grazer art, crop, padding, stretching or regeneration."
+  },
+  "generator": "Tools/Live16x24/build_incidental_actors.py",
+  "concept": "ArtSource/Live16x24/incidental-actors/farmer-concept.png",
+  "scope": "Source art only. Exact owner/custody/fog/reader routing and actual runtime acceptance remain parent-owned."
+}
