@@ -57,6 +57,8 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _sprites;
         private readonly FlatPixelOpeningArtCatalog _openingArt;
         private FlatPixelFallbackCatalog _glyphFallback;
+        private FlatPixelBoundaryCatalog _boundaryArt;
+        private readonly bool _loadBoundaryResources;
         private Texture2D _atlas;
         private bool _disposed;
         private sealed class SupplyObservation
@@ -86,7 +88,8 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.KeeperResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotProductsResourcePath),
-            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksProductsResourcePath)) { }
+            Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksProductsResourcePath))
+        { _loadBoundaryResources = true; }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -674,14 +677,20 @@ namespace CavesOfOoo.Rendering
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
-            bool native = (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            Color boundaryTint = Color.white;
+            var boundaries = BoundaryArtFor(zone, owner, fallback.Remembered, out bool allowNativeFallback);
+            bool boundaryNative = boundaries != null
+                && boundaries.TryResolve(zone, x, y, out art, out boundaryTint);
+            bool native = boundaryNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
-            if (native) { foreground = art; foregroundColor = Color.white; }
+            if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
             if (fallback.Remembered)
             {
                 if (local) { groundColor *= .35f; groundColor.a = 1; }
-                if (native) { foregroundColor *= .35f; foregroundColor.a = 1; }
+                // The boundary adapter already returns its conservative memory
+                // tint. Other native groups retain this existing single dim.
+                if (native && !boundaryNative) { foregroundColor *= .35f; foregroundColor.a = 1; }
             }
             if (local && !fallback.Remembered && owner?.BlueprintName == "MarlbackPatchbearer")
                 ObserveSupply(zone, cell, owner, foreground, true);
@@ -698,12 +707,36 @@ namespace CavesOfOoo.Rendering
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
             bool local = IsAdmitted(zone);
+            var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
+            if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
             if ((local || FlatPixelActorMotionCatalog.IsPortableActor(subject)) && _openingArt.TryResolve(subject, x, y, out var tile))
             { sprite = tile.sprite; return sprite != null; }
             var kind = Classify(subject);
             if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
                 return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
             return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        private FlatPixelBoundaryCatalog BoundaryArtFor(Zone zone, Entity owner, bool remembered, out bool allowNativeFallback)
+        {
+            allowNativeFallback = true;
+            if (!_loadBoundaryResources && _boundaryArt == null
+                || !ReferenceGladePlan.IsActive(zone) || !FlatPixelBoundaryCatalog.HasKnownRole(owner)) return null;
+            // A missing optional texture permits old art for a valid owner.
+            // Semantic rejection does not: old wall frames have weaker guards
+            // and would otherwise conceal authored variants or invalid state.
+            allowNativeFallback = FlatPixelBoundaryCatalog.IsEligible(owner, remembered);
+            if (!allowNativeFallback) return null;
+            if (_boundaryArt == null && _loadBoundaryResources)
+            {
+                // Default construction alone opts into this optional group.
+                // Missing Resources are cached as an unavailable adapter, and
+                // all older injected constructors remain deterministic.
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _boundaryArt = new FlatPixelBoundaryCatalog(_glyphFallback);
+            }
+            return _boundaryArt;
         }
 
         /// <summary>Explicit unskinned-cell query. This does not change native
@@ -742,6 +775,8 @@ namespace CavesOfOoo.Rendering
             _disposed = true;
             ClearObservedOwners();
             _openingArt.Dispose();
+            _boundaryArt?.Dispose();
+            _boundaryArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

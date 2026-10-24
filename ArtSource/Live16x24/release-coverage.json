@@ -38,22 +38,25 @@
       "accepted": [
         "Keyboard movement and combat",
         "Menu return and owner-aligned native portraits",
-        "Selected torch/gourd states and real tonic drop/pickup/examine"
+        "Selected torch/gourd states and real tonic drop/pickup/examine",
+        "Connected low/dark/mineral masonry, ordinary Stone examine, wall destruction/end-cap repaint, western passage and blocked low crossing"
       ],
       "open": [
         "Complete all services and item-use journey",
-        "Connected wall/pond/road finishing pass",
+        "Pond/road/soil finishing and complete scene acceptance",
         "Complete recorded reaction sequence"
       ],
       "refs": [
         "Docs/LIVE-16X24-ART-DIRECTION.md",
         "Docs/LIVE-16X24-MOTION.md",
-        "Docs/LIVE-16X24-LOOSE-ITEMS.md"
+        "Docs/LIVE-16X24-LOOSE-ITEMS.md",
+        "Docs/GRAPHICS-G2-BOUNDARIES.md"
       ],
       "primary_packets": [
         "opening_static",
         "opening_motion",
-        "opening_items_examine"
+        "opening_items_examine",
+        "opening_boundaries"
       ],
       "flat_projection": "global_requested_flat_mode"
     },
@@ -355,16 +358,35 @@
       ],
       "pending_gate": "Use ordinary forage/preparation/brewing/coin pickup and authorized examine with new sprites, after the pending plot-product gate.",
       "limits": "Explicit Food/unknown/foreign brew form retains fallback. Healing-only Food form loss is an existing upstream metadata gap, not solved here."
+    },
+    "opening_boundaries": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "owners": [
+        "Wall + reference-glade-low-wall",
+        "Wall + reference-glade-dark-ruin",
+        "Wall + reference-glade-lit-wall"
+      ],
+      "contract": "48 native16x24 cardinal masks; exact live opening owners; conservative remembered caps; no wall collision/FOV/layout change.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/boundaries/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/GRAPHICS-G2-BOUNDARIES.md",
+        "Docs/Verification/Live16x24/g2-boundaries-regression.xml",
+        "Docs/Verification/Live16x24/g2-play-verification.json"
+      ],
+      "limits": "Ordinary keyboard route/destruction/examine accepted. Vault landing, physical Deck, packaged activation and complete G2 scene remain pending. Wicket, beam, quartz, rubble and roads are not connectors."
     }
   },
   "rough_or_unclassified_coverage": {
     "status": "incomplete_not_exhaustively_censused_against_current_catalog",
     "known": [
-      "Uncovered visible owners now retain their actual glyph/color on the native16×24 grid rather than rough Actor/Prop/LooseItem silhouettes; dedicated native identity art is still incomplete.",
+      "Uncovered visible owners now retain their actual glyph/color on the native16\u00d724 grid rather than rough Actor/Prop/LooseItem silhouettes; dedicated native identity art is still incomplete.",
       "WateringGrimoire, arbitrary magpie/equipment/manual/loot drops and viper death outcomes remain explicit gaps unless later catalog evidence proves coverage.",
       "Purchased Knotflax/Hearthbulb/Seamleaf seed, growth and product families require their own measured lifecycle coverage.",
       "Seed-dependent/incidental hazards and secondary processing outcomes are not closed by the initial owner list.",
-      "Adjacency-based pond banks, connected wall/end/corner forms and road-edge composition remain planned finishing work."
+      "Connected opening wall/end/corner forms are integrated and bounded Play accepted. Pond banks, road-edge/soil composition and complete scene acceptance remain unfinished."
     ],
     "refs": [
       "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
@@ -381,7 +403,7 @@
     {
       "id": "projection_scope",
       "status": "implemented_bounded_editor_play_accepted",
-      "detail": "Requested flat projection is global while four exact native-art graphs remain scoped. Ordinary west travel to an unadmitted graph and back retained16×24; native tests cover other biomes/underground and explicit exit.",
+      "detail": "Requested flat projection is global while four exact native-art graphs remain scoped. Ordinary west travel to an unadmitted graph and back retained16\u00d724; native tests cover other biomes/underground and explicit exit.",
       "refs": [
         "Docs/GRAPHICS-G1-RENDERER.md",
         "Docs/Verification/Live16x24/g1-west-outside-native-kit.json"
@@ -448,9 +470,9 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "actual_normal_launch_travel_and_continue_acceptance_not_finished_art",
-    "capture": "Docs/Verification/Live16x24/g1-normal-start.png",
-    "receipt": "Docs/Verification/Live16x24/g1-normal-start.json",
-    "route": "Seed64 normal fresh launch, mode roundtrip, inventory/Look, west outside-kit travel/return, changed-state F5/F6 and new-session C Continue. Regional native art and product-use gates remain incomplete."
+    "kind": "actual_connected_masonry_keyboard_route_not_finished_opening",
+    "capture": "Docs/Verification/Live16x24/g2-normal-start.png",
+    "receipt": "Docs/Verification/Live16x24/g2-play-verification.json",
+    "route": "Seed64 ordinary start; wall condition/examine; actual destruction and capped neighbors; checkpoint reload; western y16 passage, visibility and blocked low crossing. Pond/road/soil, full art journey and packaged/device gates remain incomplete."
   }
 }

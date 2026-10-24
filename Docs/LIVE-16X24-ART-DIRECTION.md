@@ -11,8 +11,9 @@ prompts and asks for continued work across sessions. The new plan supersedes
 the historical next-packet order:
 normal-launch 2D continuity first, then scene-level opening finish and the
 complete six-zone journey. Existing evidence and pending ordinary-Play product
-gates remain valid; no release gate is waived. The old presentation still
-starts by default as of this audit.
+gates remain valid; no release gate is waived. The initial audit found the old
+presentation starting by default; G1 now fixes ordinary editor launch and travel.
+Read the latest continuation below for the current accepted scope.
 
 ## What completion means
 
@@ -620,7 +621,38 @@ was cancelled and is not part of this work.
 **Next:** G2 connected opening masonry from the already authored source and
 reviewed runtime-test draft. Preserve accepted sprites; resolve connected
 solid walls versus low crossings, then pond/path finishing and useful1×/2×
-framing. G2 art is not yet imported or accepted in Play. The plot/works-product
+framing. G2 was not yet imported at this checkpoint; the following continuation
+records its bounded integration and Play acceptance. The plot/works-product
 ordinary gates, east/kitchen kits, complete six-site journey, packaged build
 and physical Deck performance/readability are still outstanding. Continue
 through the completion plan; do not treat this delivery fix as finished art.
+
+
+### G2 connected masonry integrated — 2026-10-24 UTC
+
+[Boundary continuation](GRAPHICS-G2-BOUNDARIES.md) is current. The same approved
+source hash now supplies48 cached native wall masks through ordinary flat
+presentation. This corrects detached-post wall runs without changing actual
+world geometry. Strict current owner, variant, custody and disclosure controls
+preserve glyph identity when native art is invalid. Eight real fallback RED
+cases exposed and fixed an old-art bypass; final60focused and overlapping
+552regression cases pass. The fixture/import corrections are recorded honestly.
+
+Actual seed64 N start, northern wall/examine/destruction, F6 reset, y16 western
+passage and blocked low crossing have8 real1280×800 captures. Root and an
+independent art reviewer found continuous courses readable, empty routes and
+separate wicket/beam/quartz intact, and removed-wall caps updated. See
+[ordinary start](Verification/Live16x24/g2-normal-start.png),
+[ruin](Verification/Live16x24/g2-ruin-passage.png) and
+[destruction](Verification/Live16x24/g2-wall-destroyed.png).
+The81.902s active+idle editor profile retains66.93ms renderer/1084.46ms main-thread
+maxima; it does not establish a speedup or Deck performance. Normal build lacked
+Vault, so no ordinary Vault or physical Deck acceptance is claimed. Stopped
+cleanup restored all owned state, and caffeinate remains running.
+
+**Next:** G2 pond/road/soil scene finishing from these actual captures, with
+imagegen reinterpretation, state/owner extraction, native authoring and another
+ordinary route. Preserve accepted walls/actors. Full opening coverage/motion,
+product ordinary-use gates, east/kitchen, complete six-site journey, packaged
+build and physical Deck remain unfinished. Continue the #1 graphics priority;
+this family is progress, not a finished graphical release.

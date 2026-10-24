@@ -6,8 +6,10 @@ audit was 2026-10-23 against `ce2fe36e7`; its findings below are historical.
 As of 2026-10-24 UTC, normal fresh/Continue launch defaults to flat16×24,
 with a reversible Graphics choice and continuous projection during travel.
 See [renderer evidence](GRAPHICS-G1-RENDERER.md) and
-[launch evidence](GRAPHICS-G1-LAUNCH.md). G2 scene-level finishing is next;
-this is not a claim of complete regional artwork or a new Steam Deck build.
+[launch evidence](GRAPHICS-G1-LAUNCH.md). G2 connected masonry is now integrated
+and accepted within its bounded ordinary keyboard route; see
+[wall evidence](GRAPHICS-G2-BOUNDARIES.md). Pond/road/soil scene finishing is next.
+This is not complete regional artwork or a new Steam Deck build.
 
 ## Project priority and decision authority
 
@@ -357,7 +359,7 @@ Does it remain legible in combat and fog? Does the normal build show it?
 Fix significant correctness/readability failures before accepting a family.
 An aesthetic preference without a named defect does not reopen accepted work.
 
-## Current review and immediate handoff
+## Initial audit review and handoff — historical, 2026-10-23
 
 - 🟡 **Delivery failure identified:** normal launch remains old-style. G1 is
   the first implementation milestone. Do not mark it fixed by this document.
@@ -383,3 +385,16 @@ An aesthetic preference without a named defect does not reopen accepted work.
 This plan supersedes the old packet-by-packet scheduling notes while retaining
 the [required production pipeline](LIVE-16X24-ART-DIRECTION.md) and its existing
 evidence. It is a path to completion, not a report that completion occurred.
+
+
+## Current continuation — 2026-10-24 UTC
+
+G1 default launch/travel is accepted in bounded editor Play. G2's first family,
+[connected opening masonry](GRAPHICS-G2-BOUNDARIES.md), is now integrated:
+552 targeted native tests pass, actual normal-start/ruin/destruction/examine
+captures and independent native-size review accept the improvement. This is
+one scene-finishing family, not completion of G2. Next, use these real captures
+to improve the pond/road/soil grouping, then close the active combat/action view
+and remaining opening coverage. Physical Deck/Vault and packaged gates stay
+pending. The native plot/works-product ordinary-use gaps and east/kitchen
+remain in G3. Keep this continuation active across sessions.

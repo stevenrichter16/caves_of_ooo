@@ -1,0 +1,119 @@
+{
+  "kind": "bounded_actual_Unity_Play_acceptance",
+  "date_utc": "2026-10-24",
+  "seed": 64,
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "zone": "Overworld.11.10.0",
+  "input": "Ordinary keyboard via computer-use; no injected movement, damage, items, skills or visibility.",
+  "isolation": "Private saves and requested seed64 only; presentation preference absent and no forced presentation override.",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/g2-normal-start.png",
+      "sha256": "aa9ee54345ca221ed921bf5f55a06d30e0af4c9bb3ca8474185b2a771b06b5e3",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-normal-start.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-shelter-approach.png",
+      "sha256": "f1e68c236d8549af0a5e04f59060204c7e85b05d18ca37f4e8398f232b9b3566",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-shelter-approach.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-wall-examine.png",
+      "sha256": "0d65626deed005b582234e7da9e60eedb85a335152c42489c1c9a7004bb3a82f",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-wall-examine.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-wall-destroyed.png",
+      "sha256": "f6bf4ecc41efc70cfe9687f866ff46e0455076a97e653d225f90bbb9f5b65c39",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-wall-destroyed.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-ruin-passage.png",
+      "sha256": "a0916d0597db85d1fe43ce115d22d5da63159ee66591aaf7cabe6092f0a67713",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-ruin-passage.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-low-crossing-bump.png",
+      "sha256": "c2196a16e5196a8137587722e183c3545de26c892c6bc63a9d842dd584238605",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-low-crossing-bump.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-low-crossing-confirmed.png",
+      "sha256": "e385f3e1506a8a1d796bfa723e8872e45d5d5428534606a5472767e6898b61ac",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-low-crossing-confirmed.json"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/g2-western-ruin.png",
+      "sha256": "5261d572f63fca66bc56c3a855c2a9a257c61df2c77cf7e61d13b72e6b64870d",
+      "size": [
+        1280,
+        800
+      ],
+      "state_receipt": "g2-western-ruin.json"
+    }
+  ],
+  "actions": [
+    "N starts a fresh game at40,12,40HP,tick10. Current default chooses Flat16x24.",
+    "Walk north via actual well obstruction to44,7. Bump strikes44,6; C/Up and examine show Stone,structure39/40 and isolated native portrait.",
+    "Held Up bump-attacks destroy44,6. Read-only current owners are Grass and factory Rubble. Actual screenshot shows separate43/45 caps with no connecting arm across the wreckage.",
+    "Walk into the destroyed cell44,6. Repeated Right attempts hit45,6, rather than pass through remaining masonry. Incoming enemies reduce player to26HP; the long destruction sequence was not protected from simulation.",
+    "F6 reloads the isolated initial checkpoint. Ordinary west/south movement reveals and crosses y16 to27,16,40HP. Wicket/beam/quartz remain separate identities.",
+    "Move to28,16 and press Down again. Position remains28,16 while tick advances220 to230; log says You strike worn crossing wall. The28,17 owner has Solid but no Wall tag. No Vault skill was granted or tested.",
+    "Walk west through y16 to22,16,40HP,tick290. Live FOV shows connected visible masonry and conservatively isolated dim remembered caps.",
+    "Stop and restore owned save root, view, settings and original SampleScene. Final playing/isolation/artPending/viewBorrowed false; saveRoot null."
+  ],
+  "native_tests": {
+    "green": {
+      "total": "60",
+      "passed": "60",
+      "failed": "0",
+      "result": "Passed",
+      "start-time": "2026-10-24 02:34:05Z",
+      "end-time": "2026-10-24 02:34:06Z"
+    },
+    "regression": {
+      "total": "552",
+      "passed": "552",
+      "failed": "0",
+      "result": "Passed",
+      "start-time": "2026-10-24 02:36:00Z",
+      "end-time": "2026-10-24 02:36:24Z"
+    },
+    "overlap": "Regression552 includes focused60; do not sum. Not an all-project sweep."
+  },
+  "independent_review": "Source reviewer confirmed semantic-fallback fix and requested documentation corrections. Native-size art reviewer accepted ordinary start, ruin, destruction and portrait readability with no significant visual defect.",
+  "console": "Two Metal memoryless depth load/store messages returned by MCP as errors; Editor UI showed2warnings/0errors. No game C# exception or compilation error observed in this Play session. These graphics-driver messages are recorded, not claimed fixed.",
+  "can_verify": "Current exact owner/mask/resource routing, semantic fallback, imported native rectangles, ordinary keyboard collision/destruction/reveal/quickload and screenshot readability at1280x800.",
+  "cannot_verify": "Physical Steam Deck/controller input, Vault landing on this normal build, packaged activation/performance, every mutation/seed/site, complete opening artwork or historical hidden-wall topology.",
+  "performance_ref": "g2-delivery-profile.json",
+  "profile_bounds": "81.902s unwrapped active+idle editor observation, not controlled before/after comparison; includes popup/pause, repeated destruction strikes, walking/incoming combat, captures and tool time. No speedup claim.",
+  "next": "G2 pond/road/soil scene finishing from the accepted actual start/ruin captures; retain accepted wall and actor art."
+}

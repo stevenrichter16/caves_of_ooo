@@ -1,0 +1,47 @@
+{
+  "start-time": "2026-10-24 02:29:08Z",
+  "end-time": "2026-10-24 02:29:09Z",
+  "total": "60",
+  "passed": "51",
+  "failed": "9",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualResourceLoadsAllFortyEightFramesAndDefaultWorldAndPortraitUseTheSameGroup",
+      "message": "  Genuine absent-resource RED gate: do not substitute source art or a synthetic texture.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(0,\"visual-variant\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening base 2 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(1,\"visual-variant\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening base 1 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(2,\"glyph-variants\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening anchors 11 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(1,\"missing-destructible\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening base 1 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(2,\"foreign-destructible\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening anchors 11 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(0,\"gone\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening base 2 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(2,\"zero-hp\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening anchors 11 (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RejectedKnownBoundaryKeepsExactGlyphInsteadOfBorrowingOlderWallArt(0,\"non-solid\")",
+      "message": "  A rejected structural/native role must not fall through into older wall art.\n  Expected: same as <Flat world glyph 35 (UnityEngine.Tilemaps.Tile)>\n  But was:  <Live16x24 opening base 2 (UnityEngine.Tilemaps.Tile)>\n"
+    }
+  ]
+}

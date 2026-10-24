@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="49" result="Failed(Child)" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="1.1960548">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30662" result="Failed" site="Child" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="1.196055" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37747" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30662" result="Failed" site="Child" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="0.905218" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37748" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30662" result="Failed" site="Child" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="0.847689" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37749" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30662" result="Failed" site="Child" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="0.796841" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27939" name="FlatPixelBoundaryCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="49" result="Failed" site="Child" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="0.502997" total="49" passed="44" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27990" name="ActualDestructionDirtiesOnlyItsCellAndNeighborPassCapsTheAlreadySubmittedWall" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualDestructionDirtiesOnlyItsCellAndNeighborPassCapsTheAlreadySubmittedWall" methodname="ActualDestructionDirtiesOnlyItsCellAndNeighborPassCapsTheAlreadySubmittedWall" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="780765126" result="Failed" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:53Z" duration="0.164899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.Frame (UnityEngine.Tilemaps.Tile tile, System.Int32 material, System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:402
+at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualDestructionDirtiesOnlyItsCellAndNeighborPassCapsTheAlreadySubmittedWall () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:263
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Can't add component 'Tilemap' to Hotbar save fixture because such a component is already added to the game object!
+]]></output>
+            </test-case>
+            <test-case id="27989" name="ActualResourceLoadsAllFortyEightFramesAndDefaultWorldAndPortraitUseTheSameGroup" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualResourceLoadsAllFortyEightFramesAndDefaultWorldAndPortraitUseTheSameGroup" methodname="ActualResourceLoadsAllFortyEightFramesAndDefaultWorldAndPortraitUseTheSameGroup" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1659507586" result="Failed" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:53Z" duration="0.003073" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Genuine absent-resource RED gate: do not substitute source art or a synthetic texture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualResourceLoadsAllFortyEightFramesAndDefaultWorldAndPortraitUseTheSameGroup () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:241
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27992" name="ActualSubmittedMemoryUsesOneDimmingPassAndNeverKeepsLiveConnections" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualSubmittedMemoryUsesOneDimmingPassAndNeverKeepsLiveConnections" methodname="ActualSubmittedMemoryUsesOneDimmingPassAndNeverKeepsLiveConnections" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1213692467" result="Failed" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:53Z" duration="0.020080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.Frame (UnityEngine.Tilemaps.Tile tile, System.Int32 material, System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:402
+at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ActualSubmittedMemoryUsesOneDimmingPassAndNeverKeepsLiveConnections () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:291
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Can't add component 'Tilemap' to Hotbar save fixture because such a component is already added to the game object!
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27943" name="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 02:20:53Z" end-time="2026-10-24 02:20:54Z" duration="0.033153" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27940" name="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(0)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(0)" methodname="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1731573666" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.011539" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27941" name="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(1)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(1)" methodname="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="622048475" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.006841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27942" name="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(2)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache(2)" methodname="AllSixteenCardinalMasksUseNativeRectangularFramesAndStableCache" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="959177164" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.006971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27991" name="DisclosureAndTopOwnerChangesRepaintAdjacentConnectionsWithoutFullRedraw" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.DisclosureAndTopOwnerChangesRepaintAdjacentConnectionsWithoutFullRedraw" methodname="DisclosureAndTopOwnerChangesRepaintAdjacentConnectionsWithoutFullRedraw" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="922091400" result="Failed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.019544" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.Frame (UnityEngine.Tilemaps.Tile tile, System.Int32 material, System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:402
+at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.DisclosureAndTopOwnerChangesRepaintAdjacentConnectionsWithoutFullRedraw () [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:277
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Can't add component 'Tilemap' to Hotbar save fixture because such a component is already added to the game object!
+]]></output>
+            </test-case>
+            <test-case id="27974" name="ExactAddressStillRequiresTheManagedOpeningBiomePoiAndContentAuthority" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ExactAddressStillRequiresTheManagedOpeningBiomePoiAndContentAuthority" methodname="ExactAddressStillRequiresTheManagedOpeningBiomePoiAndContentAuthority" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1407204236" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.031791" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27988" name="ExactSubjectPortraitUsesIsolatedMaterialFrameWithoutQueryingNeighbors" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ExactSubjectPortraitUsesIsolatedMaterialFrameWithoutQueryingNeighbors" methodname="ExactSubjectPortraitUsesIsolatedMaterialFrameWithoutQueryingNeighbors" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="260365400" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27968" name="ExactTopOwnerWinsIncludingLastEqualLayerAndInvalidForeignCoverIsIgnored" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ExactTopOwnerWinsIncludingLastEqualLayerAndInvalidForeignCoverIsIgnored" methodname="ExactTopOwnerWinsIncludingLastEqualLayerAndInvalidForeignCoverIsIgnored" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="597047920" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003968" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27986" name="ExistingInjectedCatalogDoesNotLoadNewResourcesAndMissingBoundaryPreservesItsApprovedWall" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ExistingInjectedCatalogDoesNotLoadNewResourcesAndMissingBoundaryPreservesItsApprovedWall" methodname="ExistingInjectedCatalogDoesNotLoadNewResourcesAndMissingBoundaryPreservesItsApprovedWall" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="596226587" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.010214" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27985" name="IndependentCatalogsOwnOnlyCachedTilesAndSpritesNotAtlasOrSelector" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.IndependentCatalogsOwnOnlyCachedTilesAndSpritesNotAtlasOrSelector" methodname="IndependentCatalogsOwnOnlyCachedTilesAndSpritesNotAtlasOrSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="520140804" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003732" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27978" name="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.014326" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27975" name="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.11.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.11.10.1&quot;)" methodname="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1511525173" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27976" name="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.11.9.0&quot;)" methodname="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1914162889" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27977" name="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.12.12.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily(&quot;Overworld.12.12.0&quot;)" methodname="KnownVisualIdOutsideExactOpeningCannotImportItsMasonryFamily" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1584229414" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27984" name="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.012293" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27980" name="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(0,0)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(0,0)" methodname="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1594032497" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27981" name="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(255,72)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(255,72)" methodname="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1045803580" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27982" name="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(256,71)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(256,71)" methodname="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1263004128" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27983" name="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(272,72)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector(272,72)" methodname="MissingOrMalformedOptionalAtlasFallsThroughWithoutDamagingBorrowedSelector" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1611812157" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27944" name="MixedMaterialsJoinButDiagonalsAndDistantOwnersDoNotSupplyBits" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.MixedMaterialsJoinButDiagonalsAndDistantOwnersDoNotSupplyBits" methodname="MixedMaterialsJoinButDiagonalsAndDistantOwnersDoNotSupplyBits" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="907634363" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003107" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27979" name="NonSingleCellFootprintIsRejectedEvenWhenItsAnchorAndGeometryAreCurrent" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.NonSingleCellFootprintIsRejectedEvenWhenItsAnchorAndGeometryAreCurrent" methodname="NonSingleCellFootprintIsRejectedEvenWhenItsAnchorAndGeometryAreCurrent" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1521288658" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.005179" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27967" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.045382" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27953" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;visual-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;visual-id&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="944830221" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27954" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;visual-variant&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1591731732" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27955" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;glyph-variants&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="497230834" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27956" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-render&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="983571245" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003235" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27957" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-physics&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="2039941004" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27958" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;foreign-destructible&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1883964976" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27959" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;missing-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;missing-physics&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="731481748" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27960" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;missing-destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;missing-destructible&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1974546863" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27961" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;carried&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="596242043" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27962" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;equipped&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="955704736" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27963" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;takeable&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1734673967" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003012" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27964" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;gone&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1769657036" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27965" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;zero-hp&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1416845992" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27966" name="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;non-solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole(&quot;non-solid&quot;)" methodname="PositiveThenInvalidCenterAndNeighborCannotBorrowTheKnownNativeRole" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1398339928" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27993" name="RealFactoryWallDamageLeavesRubbleWhileSubmittedNeighborCaps" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RealFactoryWallDamageLeavesRubbleWhileSubmittedNeighborCaps" methodname="RealFactoryWallDamageLeavesRubbleWhileSubmittedNeighborCaps" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="485021785" result="Failed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.044105" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.Frame (UnityEngine.Tilemaps.Tile tile, System.Int32 material, System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:402
+at CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RealFactoryWallDamageLeavesRubbleWhileSubmittedNeighborCaps () [0x000bc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBoundaryCatalogTests.cs:318
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Can't add component 'Tilemap' to Hotbar save fixture because such a component is already added to the game object!
+]]></output>
+            </test-case>
+            <test-case id="27971" name="RememberedLiveFamilyDisguiseCannotBecomeStaticMasonry" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.RememberedLiveFamilyDisguiseCannotBecomeStaticMasonry" methodname="RememberedLiveFamilyDisguiseCannotBecomeStaticMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="2133622447" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003393" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27972" name="ReplacedCellsStaleListsAndDuplicateIdsCannotSupplyConnectivity" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.ReplacedCellsStaleListsAndDuplicateIdsCannotSupplyConnectivity" methodname="ReplacedCellsStaleListsAndDuplicateIdsCannotSupplyConnectivity" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="414107949" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27973" name="SameAddressManagerReplacementRejectsOldGraphAndRecoveryUsesExactReference" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SameAddressManagerReplacementRejectsOldGraphAndRecoveryUsesExactReference" methodname="SameAddressManagerReplacementRejectsOldGraphAndRecoveryUsesExactReference" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="847849101" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.027733" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27952" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.029006" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27945" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;GlowQuartzVein&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;GlowQuartzVein&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1360033040" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003330" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27946" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;GleanersBuckledWicket&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;GleanersBuckledWicket&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1860938701" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27947" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;FallenBeam&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="656765516" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27948" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;RoadStone&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="600182546" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27949" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;Rubble&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="75184626" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002951" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27950" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;BrokenColumn&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;BrokenColumn&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1600722044" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.002947" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27951" name="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry(&quot;StoneWall&quot;)" methodname="SimilarVisualIdsOnOtherBlueprintsNeverJoinOrBecomeMasonry" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1142211977" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="27970" name="UndisclosedNeighborsNeverConnectAndMemoryNeverReadsLiveDamageOrAdjacency" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.UndisclosedNeighborsNeverConnectAndMemoryNeverReadsLiveDamageOrAdjacency" methodname="UndisclosedNeighborsNeverConnectAndMemoryNeverReadsLiveDamageOrAdjacency" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1639579718" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003179" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27987" name="WarmFiveCellResolutionDoesNotAllocateOrMutateSimulation" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.WarmFiveCellResolutionDoesNotAllocateOrMutateSimulation" methodname="WarmFiveCellResolutionDoesNotAllocateOrMutateSimulation" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="767216152" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.008073" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27969" name="WornLowCrossingKeepsWalkingCollisionWhileItsSightTagRemainsAbsent" fullname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests.WornLowCrossingKeepsWalkingCollisionWhileItsSightTagRemainsAbsent" methodname="WornLowCrossingKeepsWalkingCollisionWhileItsSightTagRemainsAbsent" classname="CavesOfOoo.Tests.FlatPixelBoundaryCatalogTests" runstate="Runnable" seed="1438803395" result="Passed" start-time="2026-10-24 02:20:54Z" end-time="2026-10-24 02:20:54Z" duration="0.003148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
