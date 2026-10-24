@@ -1027,3 +1027,9 @@ ready cue from actual captures and authoritative job/custody, not arbitrary stoc
 Retain Cindercaller, aggregate Look heading, intermittent court overlay, G2 defence/
 motion, complete crop/forge loops, six-site journey and packaged/device gates as
 open. Graphics remains priority1; the hourly continuation remains active.
+
+Post-push/storage: `3e67ab983a543a4fd1851a89e07df863bd603975` was verified on origin/main with all84owned
+blobs matching. The [storage audit](Verification/Live16x24/incidental-actors-storage-audit.md)
+removed nothing (0bytes recovered); useful caches and the current archive are
+preserved. Free space was2.19GiB. Continue the source-checked kitchen
+service route next; full release and updated package remain open.

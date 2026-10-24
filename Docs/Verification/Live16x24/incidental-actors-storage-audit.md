@@ -37,3 +37,18 @@ Project-relative paths. Sizes are allocated KiB from `du -sk`, not logical bytes
 | `Temp` | 11,768 | 2026-10-24T20:37:05.483101+00:00 | Keep |
 
 Bee/Search/Temp were modified during the current editor session; BurstCache is also current editor state. No exact idle cache subtree was established. A deliberate editor shutdown and reassessment is separate from this inventory and must be coordinated by root. No broad Library/history/evidence scan or unrelated Downloads cleanup occurred.
+
+## Post-push decision — 2026-10-24T20:51:01.268303+00:00
+
+Root fetched/rebased and pushed `3e67ab983a543a4fd1851a89e07df863bd603975` to main. Independent server ref
+readback matched local HEAD and all84owned file blobs; no source
+cleanup preceded that verification. Both unrelated notice variants were backed
+up during rebase and restored exactly. Subsequent disk/cache/build inspection
+found no new stale candidate. Current archive still matches the SHA above.
+
+**Removed: nothing. Space recovered:0bytes.** Free space at this follow-up:
+2,349,445,120bytes (2.19GiB). Native Play is stopped and save/view isolation
+restored; the editor remains open and its useful caches are preserved. All source,
+editable assets, saves, backup evidence and current delivered package remain.
+This is a bounded safe-cleanup decision, not a claim that the entire Mac has no
+other reclaimable storage. No new build or hardware acceptance.
