@@ -13,9 +13,21 @@ specifics, open that section.
 
 ### Active graphics work — read before continuing
 
+**User priority: graphics completion is the game's #1 priority and a release
+blocker.** Incomplete/inconsistent graphics are preventing the existing deep
+mechanics from delivering their value. There is no arbitrary daily/weekly
+deadline. Use delegated judgment beyond individual prompts to solve this;
+prioritize coherent, verified normal gameplay over unrelated feature growth
+or asset counts. Continue across sessions with precise handoffs rather than
+stopping after isolated packets. Preserve the user's approved art direction.
+
 For this session's visual overhaul, read `Docs/LIVE-16X24-ART-DIRECTION.md`
-first, especially **Required production pipeline and agent handoff**. The
-actual game target is flat 16×24 pixel art. Use a playable real-world greybox,
+first, especially **Required production pipeline and agent handoff**. Read
+`Docs/GRAPHICS-COMPLETION-PLAN.md` next for the current delivery order:
+normal-launch 2D continuity and scene-level completion before more isolated
+asset packets. `ArtSource/Live16x24/release-coverage.json` records bounded
+coverage and pending acceptance; it is not a complete census. The actual
+game target is flat 16×24 pixel art. Use a playable real-world greybox,
 capture it, reinterpret it with imagegen, extract parts, produce sprites and
 animations, then reintegrate and verify in-game. The user authorizes agents to
 choose and use any available tools needed and to continue autonomously. This

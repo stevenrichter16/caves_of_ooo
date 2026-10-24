@@ -1,0 +1,381 @@
+# Graphics completion plan
+
+Status: **planned; implementation incomplete**. Audited 2026-10-23 against
+`ce2fe36e7`. The normal game still starts in the older presentation. This
+document changes the delivery order of the ongoing visual overhaul; it does
+not claim the new presentation has shipped.
+
+## Project priority and decision authority
+
+**Graphics completion is the game's #1 priority and a release blocker.** The
+user explicitly identifies incomplete and inconsistent graphics as the largest
+source of stress and the obstacle preventing the game's deep mechanics from
+fulfilling their potential. This is not a cosmetic backlog to revisit after
+more mechanics. A technically correct but visually incoherent build does not
+resolve the blocker.
+
+**There is no imposed completion date.** Do not rush to finish today, tomorrow
+or this week, cut acceptance to meet an overnight target, or confuse taking
+time with making progress. Spend the time needed on the highest-impact visual
+problem, demonstrate the improvement in the actual game, and move forward.
+
+**The user delegates judgment beyond individual prompts.** Current and future
+agents should identify missing steps, challenge an ineffective workflow,
+choose available tools, regroup asset work, improve real scene composition,
+and fix integration/performance/readability defects without waiting for a
+prompt for each decision. This is authority to achieve a coherent game, not
+to multiply speculative systems or discard approved art without cause.
+
+**Continue across sessions.** Breaks and tool/context limits require a precise
+handoff, not abandonment. Keep the authorized continuation active and pursue
+the next unfinished meaningful gate. Completing a small packet is not a reason
+to stop. Prioritize work by its effect on the player's delivered experience;
+defer unrelated feature growth until the visual release is dependable.
+
+## The outcome
+
+Make graphics a dependable part of playing Caves of Ooo: a distinctive,
+consistent, readable flat 16×24 world that exposes the existing mechanics.
+The player must see it by launching the actual game, keep it while travelling,
+and understand characters, terrain, objects and changes without consulting an
+art review. Preserve the previous presentation as an explicit reversible option.
+
+The immediate release is the **complete opening journey**, followed by region
+coverage using the same production system. A coherent fallback permits travel
+while art is unfinished; it is not evidence that a region's art is finished.
+Do not require every item in the whole game to have a bespoke picture before
+delivering the opening. Do require every encountered object to remain truthful,
+identifiable and usable.
+
+Graphics is the active priority. Defer new gameplay/content systems unless a
+specific defect blocks this visual release. Preserve the approved Seed Keeper,
+cook, bird, grazer and jar. Continue autonomously with available tools. This is
+original Caves of Ooo art inspired by the user's desired Qud-like readability,
+not a claim of copied art or engine parity.
+
+## What the audit found
+
+| Finding | Current evidence | Consequence |
+| --- | --- | --- |
+| Normal launch does not enable the native presentation | `Assets/Scenes/Main/SampleScene.unity`; `Assets/Editor/Scenarios/LiveFlatPixelGreyboxTools.cs`; both camera bindings in `GameBootstrap.cs` | The user sees old graphics despite work existing in the repository. Normal delivery moves to the first milestone. |
+| Presentation and native-art location eligibility are coupled | `ZoneRenderer.FlatPixel.cs`, `FlatPixelGreyboxCatalog.IsAdmitted` | Only glade, cellar, north works and Nella's plot stay in this mode. Separate global projection from local art eligibility before extending it. |
+| Switching out is not a complete return path | `Village3DControls.Update` exits flat mode, then toggles older modes | Add an explicit reversible presentation setting usable from the controller-accessible graphics menu. |
+| Static assets outnumber completed experiences | Twelve source groups contain 111 authored frames, including states and motion; approved standalone inputs are separate | Frame counts are not identity, animation, region or release coverage. Stop treating a few new icons as a major milestone. |
+| Generic category silhouettes still substitute for uncovered identities | `FlatPixelGreyboxCatalog.TryResolve` and existing family classification | Replace rough placeholders on the release route. Outside it, use deliberate family art where correct and the real object's glyph/color where not. |
+| The larger screen composition is unfinished | Existing Game captures and `ArtSource/Live16x24/PARTS.md` | Connected masonry, banks, paths, material contrast and framing have higher immediate value than more inventory detail. |
+| Two latest product groups lack ordinary Play acceptance | `LIVE-16X24-PLOT-PRODUCTS.md`, `LIVE-16X24-WORKS-PRODUCTS.md` | Close those gates within the route. Do not silently promote native test results to gameplay acceptance. |
+| Editor tests cannot establish the target device experience | Current profiles and capture records | Packaged launch, input, motion and physical Deck performance have distinct gates. |
+
+The fresh [Nella plot baseline](Verification/Live16x24/graphics-finish-baseline-plot.png)
+is a real 1280×800 Unity Game capture after ordinary travel from spawn to
+`Overworld.11.8.0`, player `(20,10)`, 40 HP. It demonstrates current integration,
+not a newly completed visual milestone. Its [read-only receipt](Verification/Live16x24/graphics-finish-baseline-plot.json)
+records simulation state; that inventory can include off-camera entities and
+must not be mistaken for a list of things visible in the screenshot.
+
+## Research and the method chosen
+
+This is a project-specific synthesis, not a claim that one universal art
+workflow is best. The useful principles are:
+
+- **Solve recognition before decoration.** Valve's production account works
+  from silhouette and interior masses toward the final in-game character and
+  uses screenshots/paintovers to solve design problems. It also treats contrast
+  and material differences as gameplay information. Apply those principles to
+  the small native sprites and real scene, rather than importing its 3D style.
+  [Valve, *How Valve Connects Art Direction to Gameplay*](https://cdn.steamstatic.com/apps/valve/2008/GameFest08_ArtInSource.pdf).
+- **Evaluate at the actual pixel scale.** Point filtering, uncompressed art,
+  consistent pixel density and deliberate pivots preserve the authored result.
+  Retain our tested rectangular projection; the older tutorial is not a reason
+  to replace it or install a different package.
+  [Unity/Mega Cat pixel-art workflow](https://unity.com/blog/games/2d-pixel-perfect-how-to-set-up-your-unity-project-for-retro-8-bits-games).
+- **Make exports repeatable, not tool-dependent.** Aseprite supports batch
+  sheet/data exports and animation tags. It is an optional native animation
+  tool if available; the existing integer-cell Blender exporter is already
+  useful and must not be discarded for a tool migration.
+  [Aseprite CLI](https://www.aseprite.org/docs/cli/).
+- **Judge the delivered device experience.** Steam's current Deck requirements
+  include playable defaults, controller access and readable text at 1280×800;
+  nine-pixel text is a minimum, with twelve recommended where possible. Treat
+  this as a floor, not proof our game looks or feels good.
+  [Steam Deck compatibility requirements](https://partner.steamgames.com/doc/steamhardware/compat).
+
+### The iteration loop
+
+Use one complete gameplay view or related visual family per loop:
+
+1. **Observe.** Play the real route with ordinary controls. Capture the actual
+   Game output and a short motion sequence, with seed, location, action, mode
+   and output size. Start with the three largest visible or functional defects.
+2. **Block.** Greybox only the geometry/composition that needs changing. Use
+   real cells and owners. Test paths, collisions, targeting and interactions.
+   Reuse accepted geometry when it is unchanged.
+3. **Design against the capture.** Use built-in imagegen on that screenshot,
+   the approved sprites and at most two relevant references. Specify the
+   particular defects to solve. Reject invented actors, fake services, changed
+   walkability, gradients and pseudo-3D lighting. Save input, exact prompt,
+   output and the selected design decisions.
+4. **Map parts and states.** Extract the needed silhouettes, connected edges,
+   palette clusters and animation poses. Give each a real owner, footprint,
+   pivot and state source. Art must never imply a resource, opening or service
+   the simulation does not have.
+5. **Author natively.** Produce editable exact-resolution sprites/frames.
+   Imagegen is the design assistant, not the final pixel-grid exporter.
+   Preserve approved bases; animation derivatives remain separate.
+6. **Integrate the family.** Use shared materials/atlases where suitable,
+   cached lookups and the existing state/visibility rules. Finish the related
+   outcomes together: a harvest may leave a spent plant, remove the owner, or
+   expose remaining soil, depending on the actual lifecycle.
+7. **Exercise it.** Repeat the route, including a changed state, departure and
+   return. Verify world/examine agreement and actual input. Capture the same
+   composition and zoom; enlarged contact sheets are supplementary only.
+8. **Critique and fix.** Compare baseline, concept and integrated game. Fix
+   the largest remaining defect first. An independent reviewer checks both
+   aesthetics/readability and state/ownership correctness.
+9. **Accept and freeze.** Record the passing criteria and share the real
+   screenshot or clip. Reopen accepted work only for a named defect or a
+   dependency exposed later. Update the ledger and move to the next family.
+
+There is no required count of iterations. If two passes do not improve the
+named defect, reconsider the silhouette, scale, composition or tool instead
+of adding detail. Limit work in progress to one unaccepted art family and one
+supporting implementation slice. The two already-integrated product groups are
+existing acceptance debt, not permission for more parallel unfinished batches;
+close them during the next relevant ordinary route. When live input is unavailable, close source
+or code work already in scope; do not accumulate new areas whose appearance
+has never been checked in the game.
+
+## Visual contract
+
+- Flat top-down world, native 16×24 cells, square pixels and integer display
+  magnification. No return to volumetric cubes or blurred generated textures.
+- Preserve approved character identities and source bytes. Their deliberate
+  color masses and negative space define the style; every sprite need not use
+  an identical palette.
+- Quiet dark green ground is the Spread anchor, not a universal biome paint.
+  Other materials and regions retain readable distinctions.
+- Read order: player and nearby danger; actionable objects; routes/boundaries;
+  incidental detail. Strong contrast, saturation and motion must earn their
+  place. Do not turn all interactables into glowing quest markers.
+- Distinguish walls, low crossings, doors and empty passage by shape. Connect
+  neighboring terrain visually without changing collision or revealing hidden
+  neighbors. Water edges must agree with water/hazard cells.
+- Native-size shape conveys object identity. Color alone must not be the only
+  cue for hostility, ripe/spent, intact/broken, or charged/empty where relevant.
+- Animation explains movement, attack contact, defence and state change.
+  Avoid generic bouncing or constant environmental motion. Diagonal travel
+  and action timing must be coherent; identical copied frames do not count as
+  a complete directional set.
+- Review 1× and 2× world magnification with the real HUD at 1280×800. Choose
+  the default from visibility, tactical area and reading comfort, not from
+  how large a sprite looks in an editor. Preserve a useful zoom choice.
+
+## Delivery milestones
+
+### G1 — A normal, reversible, consistently 2D playable candidate
+
+**First delivery.** Starting a new game or continuing a game must enter the
+flat presentation through ordinary launch. Walking to an unfinished location
+must not silently turn it back into 3D.
+
+Implementation order:
+
+1. Separate the request for flat world projection from eligibility for the
+   opening's authored skin. Preserve the current-world identity checks for
+   regional art. Do not simply return `true` from `IsAdmitted`.
+2. Add an identity-preserving native fallback for uncovered cells/subjects.
+   Prefer an approved semantic family; otherwise use the real `RenderPart`
+   glyph/color on the native grid. Keep terrain/material identity, actual water,
+   hazards and light/state cues. Never use one generic humanoid for every
+   unknown actor or paint every biome green.
+3. Route world, carried examine, ground, actors, fog and effects through the
+   same presentation choice. Older painters/models must not reappear through
+   a fallback path. Unexplored cells stay hidden; remembered terrain must not
+   expose live occupants, finite supplies or current hidden neighbors.
+4. Add a separate persistent presentation preference and a controller-accessible
+   graphics-menu choice. Make fresh installs default to native 2D; preserve an
+   explicit previous-presentation choice. F11 and menu must allow a round trip
+   without corrupting old detail settings or consuming a turn. Isolated tests
+   must restore any preferences they borrow.
+5. Wire the normal scene/bootstrap paths. Review the study/return menu labels
+   so their wording agrees with their behavior. Preserve fullscreen square UI,
+   rectangular world projection, camera framing and both new/loaded game paths.
+
+**Tests before code:** normal scene activation; fresh/continue; mode round trip;
+admitted opening → uncovered Spread → other biome → underground → return;
+foreign world contexts; no actor/glyph ghosts; water and hazardous coatings;
+fog and custody; world/examine identity; missing art; fullscreen and mouse
+coordinate alignment. Reuse existing `FlatPixel*`, `Village3DControlsTests`
+and save-isolation fixtures, adding behavior-specific failing cases first.
+
+**Acceptance:** ordinary packaged launch plus travel and menu return, with
+screenshots and a visible version identifier. This is a usable **candidate**,
+not final art acceptance. Unfinished native fallbacks are explicitly listed.
+
+### G2 — One reference-quality opening, judged as a scene
+
+Finish the full starting view and one active combat/interaction view before
+more disconnected item packets. Reuse the real ruin, pond, garden and routes.
+Prioritize connected wall forms/end caps, pond banks, road edges, soil,
+foreground/background contrast and purposeful clusters. Keep quiet ground.
+Add visual detail only where actual owners support it.
+
+Close player/nearby threat motion, contact/defence cues, harvest/repair changes,
+cursor and landing/attack outlines. Review the HUD alongside the world for
+competing contrast and readable text; do not begin an unrelated UI redesign.
+
+**Acceptance:** the same start, ruin passage, pond action and combat views are
+coherent at actual size and in motion, with zero rough category placeholders.
+Objects remain recognizable with selection outlines removed. All routes and
+actions remain usable; earlier art and approved actors remain recoverable.
+
+### G3 — The complete six-zone opening journey
+
+Complete the glade, its cellar, north works, Nella's plot, east connector and
+Orven's kitchen as one experience. The east-side scope needs a current graph
+audit before admission; do not admit an address belonging to a different POI.
+
+Close the pending plot/works product loops; cover merchant-added crops and
+products that this route can legitimately introduce, incidental residents,
+creatures, equipment, drops and functional props. Cover growth/harvest,
+repair/destruction, supply expenditure, brewing/cooking and revisit states
+where those mechanics actually exist. Keep the old clinical/test studies
+separate from real population.
+
+Maintain [the coverage ledger](../ArtSource/Live16x24/release-coverage.json).
+It initially records known coverage and explicit census gaps; it is not yet
+an exhaustive asset inventory. During G1/G2, enumerate real generated owners,
+service stock and reachable state transitions into that ledger. Count distinct
+visual treatments and state coverage, not all blueprint strings as separate
+artwork. Freeze this release inventory once audited. Add scope only for a
+documented encountered gap, not a new feature idea.
+
+**Acceptance route:** new game → glade interactions/combat → cellar loot and
+return → north works harvesting/preparation/brewing → Nella's permission,
+water/growth/harvest/plant loop → east/kitchen service → return → save/quit/
+continue. Include changed/depleted and failed/denied actions. Every visible
+owner on this audited route has approved bespoke or appropriate family art;
+no rough placeholder is excused by its small size.
+
+### G4 — A repeatable production path and whole-world coverage inventory
+
+Do the small part of this milestone needed by G2/G3 as those families land.
+Replace the growing atlas constructor chain with one bounded descriptor/
+loader seam and shared import validation. Keep semantic state selection in
+tested code; do not turn gameplay rules into a general art scripting language.
+One static family should add source/data, not another lifecycle implementation.
+
+Generate native PNG, metadata and contact output from editable source through
+one repeatable command. Validate dimensions, pivot, palette/alpha, references,
+approved-source hashes and resource disposal. Consolidate atlases only if
+measured rendering cost justifies it; current borrowed texture/portrait UV
+behavior makes blind SpriteAtlas substitution unsafe.
+
+Inventory reachable world content by visual family and biome/site kit:
+terrain/liquids/architecture, vegetation/crops, actors, usable props, equipment/
+loose goods, effects and interface illustrations. Distinguish authored native,
+approved shared family, temporary glyph fallback, and missing/incorrect art.
+Distinguish integrated, visually accepted and hardware-verified evidence.
+
+**Acceptance:** reproducible output; adding one family requires no new atlas
+lifecycle branch; no unknown treatment on the audited opening; a finite
+remaining-world backlog grounded in actual reachable generators, populations,
+loot and services. No invented whole-world percentage before this census.
+
+### G5 — Finish regional kits without reopening the style
+
+Extend the accepted system through the rest of the Spread, then the Sodden
+around Sumphold, then remaining reachable regions/depths ordered by observed
+exposure and the importance of their mechanics. Do not equate another green
+ground palette with a new biome.
+
+For each region, audit and finish its terrain/material kit, characteristic
+flora/fauna, people/structures, services/items and action states. Review a
+quiet wilderness, a populated destination and a dangerous encounter together.
+Use neighboring-region travel to catch abrupt material/scale changes. Common
+equipment and people reuse the common library; distinctive gameplay warrants
+distinctive forms.
+
+**Acceptance per region:** the frozen regional owner/state backlog is empty;
+ordinary travel and actions have comparable screenshots/clips; significant
+visual and gameplay defects are fixed. Report remaining regions separately.
+The first opening release does not wait for all of G5.
+
+### G6 — Release, measure and close
+
+After G3 and the necessary G4 tooling, deliver the opening build; repeat this
+gate after each regional batch. Build from the recorded commit, use the
+requested `-current` folder suffix, and verify the executable through ordinary
+launch rather than relying on an editor-only flag. Preserve the older art and
+an explicit restore choice.
+
+Test keyboard, mouse and controller through launch, continue/new game,
+exploration, targeting, graphics settings, inventory and popups. Capture actual
+1280×800 output. Measure CPU/GPU/frame-time distribution, allocations and
+rendering batches during a fixed active route and dense combat; record hardware,
+build, resolution and settings. Separate asset loading/travel from steady play.
+Do not hide spikes in an average or claim a speedup from unmatched captures.
+
+Provisional target: smooth 60fps steady rendering on Deck at 1280×800, with
+Valve's 30fps minimum as a compatibility floor, not the quality goal. Establish
+a real packaged baseline before committing to a device budget; current editor
+selector timings cannot prove it. Physical Deck performance/controller feel
+remain **unverified** without an accessible device and observed evidence. Do
+all desktop/package checks independently rather than stopping the art work.
+
+**Opening finished:** normal default works; no silent style changes; all six
+zones and their audited actions have accepted art; motion and targeting read
+clearly; no significant defects; reviewed gameplay captures; packaged build
+tested; remaining hardware/world limitations named. The original seven-milestone
+opening may only be reported complete when its actual coverage/release gates
+are met, not when this plan is written. The user subsequently requested
+continuing work across sessions. The existing heartbeat remains active through
+this release and the authorized remaining regional work.
+
+## Review discipline and reporting
+
+Use the existing `CLAUDE.md` RED → GREEN → counter-check → review cadence for
+runtime behavior. Data/art-only work uses meaningful shared source/import
+checks plus real visual review. Do not create a large duplicated test packet
+for every static sprite. Run affected regressions for each slice and a broader
+sweep at release boundaries; do not repeat unrelated tests as a substitute for
+playing the result.
+
+Keep one concise dashboard in the ledger: current delivery, completed and
+pending journey gates, unresolved placeholders/states, normal-launch status,
+three largest visual defects, latest accepted capture, next action. Historical
+records remain evidence, not competing schedules. Share actual before/after
+Game screenshots and clips at visible milestones; label concepts as concepts.
+
+Independent review asks: Can the player tell what this is? Can they see what
+changed? Does it promise something false? Does it match the neighboring art?
+Does it remain legible in combat and fog? Does the normal build show it?
+Fix significant correctness/readability failures before accepting a family.
+An aesthetic preference without a named defect does not reopen accepted work.
+
+## Current review and immediate handoff
+
+- 🟡 **Delivery failure identified:** normal launch remains old-style. G1 is
+  the first implementation milestone. Do not mark it fixed by this document.
+- 🟡 **Scheduling correction:** pause isolated new item/biome packets. Close
+  the two existing product acceptance gaps as part of the full route while
+  prioritizing presentation continuity and scene-level finish.
+- 🔵 **Reuse:** rectangular projection, approved assets, original sources,
+  existing gameplay graphs, source exporters and valid test evidence stay.
+- 🧪 **Not proven:** current normal-build 2D, whole-world native coverage,
+  completed east/kitchen, final motion, packaged/physical Deck acceptance.
+- **This turn's actions:** source/record audit, primary-source research,
+  independent activation/production reviews, ordinary seed-64 travel and the
+  new plot baseline. No gameplay or production-rendering code changed; no new
+  product acceptance or new native-test run is claimed. The isolated session
+  was stopped, original SampleScene/editor zoom restored, and pending/save/
+  view-isolation flags read back clear.
+- **Next action:** perform G1's detailed source sweep, save its corrections,
+  then write and run failing global projection/fallback tests before changing
+  renderer behavior. Keep native art eligibility exact while enabling coherent
+  presentation beyond it. Once G1 is playable, use the same actual opening
+  captures to drive G2, not another unrelated concept direction.
+
+This plan supersedes the old packet-by-packet scheduling notes while retaining
+the [required production pipeline](LIVE-16X24-ART-DIRECTION.md) and its existing
+evidence. It is a path to completion, not a report that completion occurred.

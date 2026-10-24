@@ -2,11 +2,23 @@
 
 Status: implementation brief, 2026-10-22. This supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
+**Current delivery order, 2026-10-23:** read [Graphics completion plan](GRAPHICS-COMPLETION-PLAN.md)
+and the [coverage ledger](../ArtSource/Live16x24/release-coverage.json) after this
+pipeline. The user's latest priority is to finish consistent graphics and
+unblock normal play. **Graphics is the game's #1 priority and a release blocker,
+without an imposed deadline.** The user delegates decisions beyond individual
+prompts and asks for continued work across sessions. The new plan supersedes
+the historical next-packet order:
+normal-launch 2D continuity first, then scene-level opening finish and the
+complete six-zone journey. Existing evidence and pending ordinary-Play product
+gates remain valid; no release gate is waived. The old presentation still
+starts by default as of this audit.
+
 ## What completion means
 
 A coherent playable opening: original characters, terrain, architecture, props, items, animation and feedback share one visual language. The real player can move, fight, inspect, use services and change the world; the art responds to those changes. The user-approved native 16×24 characters are the anchor. Existing 3D art and its return path remain recoverable.
 
-The current clearing is a static asset study. Its seven passing tests establish scene routing and asset persistence, not live integration. Do not present that study, an imagegen render or a crop-only reskin as completion of this goal.
+The earlier standalone clearing is a static asset study. Its seven passing tests establish scene routing and asset persistence, not live integration. Do not present that study, an imagegen render or a crop-only reskin as completion of this goal. The later opt-in live integration is recorded below; it does not yet complete the visual release.
 
 ## Visual direction
 
@@ -525,3 +537,34 @@ not rendering/Deck performance or an improvement comparison. Separate
 No source or gameplay was changed and no tests were rerun. The Mac is
 still locked; the plot-product and works-product ordinary routes remain
 the next gates. No new art areas were started.
+
+### Graphics completion reset — user-directed priority, 2026-10-23
+
+The user identified unfinished/inconsistent graphics as the main blocker to
+the game. [The completion plan](GRAPHICS-COMPLETION-PLAN.md) now owns delivery
+order, iteration/acceptance rules, researched workflow and remaining milestones.
+The native art already exists in four opt-in graphs; normal launch and travel
+continuity remain unresolved. This is the principal delivery correction, not
+another art-style restart. Preserve approved artwork and the previous mode.
+
+Independent source audits cover activation/fallback and the production path.
+The new [initial ledger](../ArtSource/Live16x24/release-coverage.json) separates
+integrated art, ordinary-play evidence, unknown coverage and remaining release
+gates across the six-zone journey. It does not claim an exhaustive census.
+
+Ordinary keyboard input started a fresh isolated seed-64 run, traversed the
+north connector and reached Nella's plot at `(20,10)` with 40 HP. The actual
+[1280×800 baseline](Verification/Live16x24/graphics-finish-baseline-plot.png)
+shows the current scene, with a [read-only state receipt](Verification/Live16x24/graphics-finish-baseline-plot.json).
+The latest product harvest/prepare/plant/brew gates were not exercised and
+remain pending. No gameplay/rendering code changed or native tests were rerun.
+The current screenshot is evidence to critique, not final visual acceptance.
+
+Cleanup stopped Play, restored the original SampleScene and prior 2× editor
+view zoom, then explicitly completed the stopped-session restore when the
+delayed callback remained pending. A readback confirmed Play/pending/save
+isolation/view flags all false. Import metadata may be restored only after
+linewise whitespace-equivalence checks. The next implementation is G1's
+identity-preserving fallback, global projection continuity and reversible
+normal activation, tested before enabling the default. The heartbeat remains
+active; the original finite opening brief is unfinished.

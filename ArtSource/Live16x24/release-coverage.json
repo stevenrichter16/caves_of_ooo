@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "kind": "planning_status_ledger_not_runtime_manifest",
+  "reviewed_on": "2026-10-23",
+  "release_status": "incomplete_opt_in_development_presentation",
+  "bounds": [
+    "Initial bounded synthesis of current code, source manifests and recorded evidence; not a fresh Unity run or a complete object census.",
+    "Zone integration status applies only to listed primary packets; it does not certify complete art for every owner in that zone.",
+    "Authored frames, imported resources, native tests and ordinary Play acceptance are separate gates; frame counts are not coverage percentages.",
+    "Native tests and manifests do not prove all gameplay uses, arbitrary seeds, physical controller input, Steam Deck performance or packaged activation.",
+    "Historical detached two-seed census includes hidden and held owners; it is authoring evidence, not player-visible coverage. Its saved admission flags are historical."
+  ],
+  "authority_refs": [
+    "Docs/GRAPHICS-COMPLETION-PLAN.md",
+    "Docs/LIVE-16X24-ART-DIRECTION.md",
+    "Docs/LIVE-16X24-CONNECTED-SITES.md",
+    "ArtSource/Live16x24/PARTS.md",
+    "ArtSource/Live16x24/concepts/north-parts-plan.md",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
+    "Docs/Verification/Live16x24/connected-two-seed-census-summary.json",
+    "Docs/Verification/Live16x24/connected-two-seed-census.json.gz"
+  ],
+  "status_terms": {
+    "native_integrated_verified": "Imported authored art and native runtime verification are recorded, within the referenced owner/state contracts.",
+    "ordinary_partial": "Specific ordinary-input actions/captures are accepted; the full object/state/use journey is not.",
+    "ordinary_bounded_accepted": "The referenced bounded service/route acceptance is recorded, not every possible encounter or product.",
+    "ordinary_pending": "New artwork has no accepted ordinary-input capture/use evidence.",
+    "not_admitted": "This real destination is not enabled in the current flat presentation."
+  },
+  "journey": [
+    {
+      "id": "glade",
+      "zone_id": "Overworld.11.10.0",
+      "purpose": "Spawn, pond, fieldwork, ruin and cellar entrance",
+      "flat_admission": "ReferenceGladePlan.IsActive",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "accepted": [
+        "Keyboard movement and combat",
+        "Menu return and owner-aligned native portraits",
+        "Selected torch/gourd states and real tonic drop/pickup/examine"
+      ],
+      "open": [
+        "Complete all services and item-use journey",
+        "Connected wall/pond/road finishing pass",
+        "Complete recorded reaction sequence"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-ART-DIRECTION.md",
+        "Docs/LIVE-16X24-MOTION.md",
+        "Docs/LIVE-16X24-LOOSE-ITEMS.md"
+      ],
+      "primary_packets": [
+        "opening_static",
+        "opening_motion",
+        "opening_items_examine"
+      ]
+    },
+    {
+      "id": "cellar",
+      "zone_id": "Overworld.11.10.1",
+      "purpose": "Gleaners cellar below actual glade stairs",
+      "flat_admission": "Exact current managed Spread graph and unclaimed surface address",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "accepted": [
+        "Ordinary descent and return",
+        "Finite crate loot, pallet dismantle and ripe sootroot harvest",
+        "Revisit and F5/F6 preservation of depleted state",
+        "Corrected native portrait palette"
+      ],
+      "open": [
+        "Watered sootroot growth in ordinary Play",
+        "All seed-dependent manuals/equipment and death outcomes"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-CELLAR.md",
+        "Docs/Verification/Live16x24/cellar-native-harvest.png",
+        "Docs/Verification/Live16x24/cellar-native-reloaded.png"
+      ],
+      "primary_packets": [
+        "cellar",
+        "opening_motion",
+        "opening_items_examine"
+      ]
+    },
+    {
+      "id": "north_connector",
+      "zone_id": "Overworld.11.9.0",
+      "purpose": "Field alembic, forage, wilderness and conditional drying yard",
+      "flat_admission": "Exact current managed Spread graph and no surface POI",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "accepted": [
+        "Border travel and real wall/hedge collision",
+        "Worksite and matching source portraits",
+        "Stoneburr harvest/removal and two-tonic batch brewing before new product artwork",
+        "Combat/Calm and inventory healing"
+      ],
+      "open": [
+        "New works-product ordinary gate",
+        "FrostLichen/Mendleaf ordinary harvest",
+        "Observed Patchbearer self-treatment",
+        "North actor motion",
+        "Incidental and alternate-seed surroundings"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-NORTH-VEGETATION.md",
+        "Docs/LIVE-16X24-NORTH-WORKS.md",
+        "Docs/LIVE-16X24-WORKS-PRODUCTS.md"
+      ],
+      "primary_packets": [
+        "north_vegetation",
+        "north_works",
+        "works_products"
+      ]
+    },
+    {
+      "id": "nella_plot",
+      "zone_id": "Overworld.11.8.0",
+      "purpose": "Existing SeedKeepersPlot and reserve agreement",
+      "flat_admission": "Exact current managed Spread graph and no surface POI",
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "accepted": [
+        "Approved Keeper 3 exact portrait",
+        "Paid rights, rain-fed public/reserve growth and both reserve harvests",
+        "Persistent ground cords after removal, trade return, save/load and border revisit"
+      ],
+      "open": [
+        "New plot-product ordinary gate",
+        "Purchased additional crop families and secondary products",
+        "Seed 65 visual visit",
+        "Physical mouse/controller acceptance"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-NORTH-PLOT.md",
+        "Docs/Verification/Live16x24/north-plot-play-verification.json",
+        "Docs/Verification/Live16x24/north-plot-returned.png"
+      ],
+      "primary_packets": [
+        "north_vegetation",
+        "north_plot",
+        "plot_products"
+      ]
+    },
+    {
+      "id": "east_connector",
+      "zone_id": "Overworld.12.10.0",
+      "purpose": "Existing tempering shelter on route to Orven",
+      "flat_admission": "not_admitted",
+      "native_integration": "not_admitted",
+      "ordinary_play": "ordinary_pending",
+      "accepted": [],
+      "open": [
+        "Current native scope and real greybox route",
+        "Owner/state extraction from existing census",
+        "Native functional worksite and incidental coverage",
+        "Ordinary full journey acceptance"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-CONNECTED-SITES.md",
+        "Docs/Verification/Live16x24/connected-two-seed-census-summary.json"
+      ],
+      "primary_packets": []
+    },
+    {
+      "id": "orven_kitchen",
+      "zone_id": "Overworld.12.11.0",
+      "purpose": "Existing WaysideKitchen service and introduction",
+      "flat_admission": "not_admitted",
+      "native_integration": "not_admitted",
+      "ordinary_play": "ordinary_pending",
+      "accepted": [],
+      "known_planning_owners": [
+        "SpreadWaysideCook",
+        "Oven",
+        "Bed",
+        "Chair",
+        "StoneWall",
+        "ConnectedBatchPan",
+        "ConnectedKitchenEscrow",
+        "ConnectedKitchenPickup",
+        "ClaspbeanCrop"
+      ],
+      "open": [
+        "Bind unchanged approved Cook artwork",
+        "Actual oven, pan repair/batch and escrow/pickup states",
+        "Claspbean stages and outputs",
+        "Ordinary repair/cook/introduction/return journey"
+      ],
+      "refs": [
+        "Docs/LIVE-16X24-CONNECTED-SITES.md",
+        "Assets/Art/Cook16x24/cook-16x24.png"
+      ],
+      "primary_packets": []
+    }
+  ],
+  "packets": {
+    "opening_static": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "manifest_refs": [
+        "ArtSource/Live16x24/base/manifest.json",
+        "ArtSource/Live16x24/cast/manifest.json",
+        "ArtSource/Live16x24/anchors/manifest.json",
+        "ArtSource/Live16x24/states/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-ART-DIRECTION.md",
+        "Docs/Verification/Live16x24/native-states-gourd-harvest.png",
+        "Docs/Verification/Live16x24/native-examine-torch-lit.png"
+      ]
+    },
+    "opening_motion": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "actors": [
+        "Player",
+        "PetDog",
+        "MarlbackScrabbler",
+        "MarlbackGleaner"
+      ],
+      "contract": "Two walk poses, one melee pose and one hurt pose plus accepted idle; canonical East, mirrored West, North/South retain last horizontal facing. Cast falls back to idle.",
+      "accepted": [
+        "Captured Player walk A",
+        "Observed Scrabbler attack pose and West mirror",
+        "Movement/combat/menu return without duplicate static bodies"
+      ],
+      "not_accepted": [
+        "Complete recorded walk-B/hurt/retaliation sequence",
+        "Full directional sheets",
+        "Native motion for other actors",
+        "Physical Deck feel"
+      ],
+      "receipt_warning": "native-motion-damage-reaction.png shows attack, not hurt; native-motion-melee.txt has no separate accepted melee PNG.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/motion/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-MOTION.md",
+        "Docs/Verification/Live16x24/native-motion-player-step.png",
+        "Docs/Verification/Live16x24/native-motion-melee.txt"
+      ]
+    },
+    "opening_items_examine": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "manifest_refs": [
+        "ArtSource/Live16x24/items/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-LOOSE-ITEMS.md",
+        "Docs/LIVE-16X24-EXAMINE.md",
+        "Docs/Verification/Live16x24/opening-items-examine-green.xml",
+        "Docs/Verification/Live16x24/native-examine-tonic-carried.png"
+      ],
+      "limits": "Exact ground/carried portraits are integrated; not every authored item acquisition/use or death outcome has ordinary acceptance."
+    },
+    "cellar": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "manifest_refs": [
+        "ArtSource/Live16x24/cellar/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-CELLAR.md"
+      ]
+    },
+    "north_vegetation": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "manifest_refs": [
+        "ArtSource/Live16x24/north-vegetation/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-NORTH-VEGETATION.md"
+      ],
+      "limits": "Tree/Hedge/BerryBush/DryBrush plus deliberate Bush/Reeds reuse; not all biome vegetation."
+    },
+    "north_works": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_partial",
+      "manifest_refs": [
+        "ArtSource/Live16x24/north-works/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-NORTH-WORKS.md"
+      ],
+      "limits": "Still/shelf/three forage sources/Magpie/Viper/Patchbearer healing-slot pair. New actors are static; medicine transfer/consumption has native tests, not observed ordinary self-treatment."
+    },
+    "north_plot": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "manifest_refs": [
+        "ArtSource/Live16x24/north-plot/manifest.json"
+      ],
+      "approved_source_refs": [
+        "Assets/Art/SeedKeeper3/seed-keeper-3.png"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-NORTH-PLOT.md",
+        "Docs/Verification/Live16x24/north-plot-play-verification.json"
+      ],
+      "limits": "Approved keeper, four authored crop lifecycles, neutral tray and reserve ground cords. Additional purchased crop families are outside this packet."
+    },
+    "plot_products": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_pending",
+      "owners": [
+        "CandyCarrot",
+        "CandyCarrotSeed",
+        "EmberwheatSeed",
+        "MarlrootClod",
+        "MarlrootSeed",
+        "PitchpodResin",
+        "PitchpodSeed",
+        "InertSludge"
+      ],
+      "manifest_refs": [
+        "ArtSource/Live16x24/plot-products/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-PLOT-PRODUCTS.md",
+        "Docs/Verification/Live16x24/plot-products-green.xml",
+        "Docs/Verification/Live16x24/plot-products-regression.xml"
+      ],
+      "pending_gate": "Use ordinary harvest/pickup, ground and carried examine, clod preparation and seed planting with new sprites. Existing pre-product captures do not close this gate."
+    },
+    "works_products": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_pending",
+      "owners": [
+        "StoneburrSeed",
+        "FrostLichen",
+        "MendleafSprig",
+        "WildBerries",
+        "GoldCoin",
+        "BrewedTonic",
+        "ConcentratedMendleaf"
+      ],
+      "manifest_refs": [
+        "ArtSource/Live16x24/north-works-products/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/LIVE-16X24-WORKS-PRODUCTS.md",
+        "Docs/Verification/Live16x24/works-products-green.xml",
+        "Docs/Verification/Live16x24/works-products-regression.xml"
+      ],
+      "pending_gate": "Use ordinary forage/preparation/brewing/coin pickup and authorized examine with new sprites, after the pending plot-product gate.",
+      "limits": "Explicit Food/unknown/foreign brew form retains fallback. Healing-only Food form loss is an existing upstream metadata gap, not solved here."
+    }
+  },
+  "rough_or_unclassified_coverage": {
+    "status": "incomplete_not_exhaustively_censused_against_current_catalog",
+    "known": [
+      "Uncovered visible creatures share rough Actor silhouettes; uncovered portable goods share LooseItem; props/unknowns use rough category marks.",
+      "WateringGrimoire, arbitrary magpie/equipment/manual/loot drops and viper death outcomes remain explicit gaps unless later catalog evidence proves coverage.",
+      "Purchased Knotflax/Hearthbulb/Seamleaf seed, growth and product families require their own measured lifecycle coverage.",
+      "Seed-dependent/incidental hazards and secondary processing outcomes are not closed by the initial owner list.",
+      "Adjacency-based pond banks, connected wall/end/corner forms and road-edge composition remain planned finishing work."
+    ],
+    "refs": [
+      "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
+      "ArtSource/Live16x24/PARTS.md",
+      "ArtSource/Live16x24/concepts/north-parts-plan.md"
+    ],
+    "unknowns": [
+      "Exact current unresolved identity/state count",
+      "Which random held goods become visible in an arbitrary playthrough",
+      "All-seed composition and rare owner/state readability"
+    ]
+  },
+  "global_delivery_gaps": [
+    {
+      "id": "projection_scope",
+      "status": "open",
+      "detail": "Current flat admission covers four exact graphs, not the six-site journey or whole world; leaving scope restores earlier art.",
+      "refs": [
+        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
+        "Assets/Scripts/Presentation/Rendering/ZoneRenderer.FlatPixel.cs"
+      ]
+    },
+    {
+      "id": "normal_launch",
+      "status": "open",
+      "detail": "Normal bootstrap binds projection but does not enable flat mode. Editor-only launcher enables it; no accepted default fresh/load packaged route or persistent native setting.",
+      "refs": [
+        "Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs",
+        "Assets/Editor/Scenarios/LiveFlatPixelGreyboxTools.cs"
+      ]
+    },
+    {
+      "id": "world_fallback",
+      "status": "open",
+      "detail": "No approved comprehensive native family fallback replaces the rough greybox categories across all regions.",
+      "refs": [
+        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs"
+      ]
+    },
+    {
+      "id": "target_platform",
+      "status": "open",
+      "detail": "Native tests, editor captures and bounded selector/editor timing are not physical Deck or mouse/controller acceptance. A current packaged native build and hardware performance/readability gate remain outstanding.",
+      "refs": [
+        "Docs/LIVE-16X24-ART-DIRECTION.md"
+      ]
+    },
+    {
+      "id": "full_journey",
+      "status": "open",
+      "detail": "Six-site ordinary route, full item/reaction loops, presentation roundtrips and release evidence have not all passed together.",
+      "refs": [
+        "Docs/LIVE-16X24-CONNECTED-SITES.md"
+      ]
+    }
+  ],
+  "next_acceptance_order": [
+    "G1_identity_preserving_fallback",
+    "G1_global_flat_projection",
+    "G1_reversible_normal_launch",
+    "G2_scene_level_opening_finish",
+    "G3_plot_and_works_product_ordinary_gates",
+    "G3_complete_six_zone_journey"
+  ],
+  "update_rule": "Update status only from matching current code/source plus named native or ordinary-play evidence. Never promote a packet from old pre-art captures, a source contact or aggregate test/frame counts.",
+  "project_priority": {
+    "rank": 1,
+    "classification": "release_blocker",
+    "deadline": "No imposed daily or weekly deadline; meaningful verified progress determines cadence.",
+    "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
+  },
+  "latest_observation": {
+    "kind": "actual_game_baseline_not_new_art_acceptance",
+    "capture": "Docs/Verification/Live16x24/graphics-finish-baseline-plot.png",
+    "receipt": "Docs/Verification/Live16x24/graphics-finish-baseline-plot.json",
+    "route": "Ordinary seed64 travel from spawn through north works to Nella at20,10;40HP. New product use gates remain pending."
+  }
+}
