@@ -80,3 +80,40 @@ Free space rose from275,427,328 to497,221,632 bytes at measurement time. No
 unique download or project source was removed. This remains insufficient
 headroom for a packaged build; do not repeatedly clear caches that must be
 regenerated for the same verification work.
+
+
+## Authorized cleanup and recovery — 2026-10-24
+
+Before deleting output, pushed4fc5a666e to main. It preserves the remaining
+examine design/gallery plus six exact local source/settings/evidence variants;
+prior archived source and local-only commits were reverified. Source originals
+remain intact. [Preservation record](Archive/LocalWork-2026-10-24/README.md).
+
+Stopped/restored the live flat audit, verified a clean SampleScene with no save
+isolation, and quit Unity. Removed seven checksum-verified superseded Deck
+archives (851,213,615 bytes), plus generated Bee/Burst/Search caches. Kept the
+latest delivered fullscreen-skills-current package, all build receipts, source,
+editable art and save backups. Each deleted package's source is an ancestor of
+the retained build and current main. No dated build directory was deleted
+wholesale because some contain historical player saves and source inputs.
+
+[Exact cleanup receipt](Verification/Live16x24/recovery-cleanup-20261024.json):
+1,253,801,016 logical bytes removed; free disk measured4,546,420,736 before and
+5,744,734,208 after. Unity will regenerate its needed caches; this is not a
+promise of permanent equal reclamation. The retained archive's SHA256 was
+rechecked after cleanup. No new game build is claimed by this operation.
+
+
+The latest retained build is `Builds/SteamDeck/2026-10-11-fullscreen-skills-current/`,
+including its128,049,954-byte archive with SHA256
+`debc85bfacc1c018b24dc8c742b35956768c131571df0e0cb01221a9badf001b`.
+Several removed older folders also ended in `-current`; those suffixes were
+historical, and their obsolete archives were explicitly compared against this
+newest delivered build before removal.700save-backup files/85,115,201bytes and
+all build audit/source files were retained. The current delivered package is
+from the earlier fullscreen-skills release and does not include today's2D work.
+
+Unity now compiles and runs actual gameplay. Saved TagManager reads32layers
+natively. [Signature diagnosis](Verification/Live16x24/recovery-package-signature-audit.md)
+identifies the old6000.3.4f1 verifier warning; a patched6.3 editor remains the
+durable follow-up. No clock/security-validation/package-lock change was made.

@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="61" result="Failed(Child)" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 13:33:38Z" end-time="2026-10-24 13:33:39Z" duration="0.7793135">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30805" result="Failed" site="Child" start-time="2026-10-24 13:33:38Z" end-time="2026-10-24 13:33:39Z" duration="0.779314" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37920" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30805" result="Failed" site="Child" start-time="2026-10-24 13:33:38Z" end-time="2026-10-24 13:33:39Z" duration="0.703036" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37921" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30805" result="Failed" site="Child" start-time="2026-10-24 13:33:38Z" end-time="2026-10-24 13:33:39Z" duration="0.554483" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37922" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30805" result="Failed" site="Child" start-time="2026-10-24 13:33:38Z" end-time="2026-10-24 13:33:39Z" duration="0.476059" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29421" name="GroupedDamageReadoutTests" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="61" result="Failed" site="Child" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.206780" total="61" passed="50" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29483" name="ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient" methodname="ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1098802514" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.104183" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Only reference identity exempts the recipient; equal string IDs do not exempt a nearer actor.
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient () [0x000ad] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:633
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29484" name="ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor" methodname="ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="713333486" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.005474" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:647
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29422" name="AdjacentActualDamageValuesRemainSeparateInsteadOfReadingAsTwelve" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AdjacentActualDamageValuesRemainSeparateInsteadOfReadingAsTwelve" methodname="AdjacentActualDamageValuesRemainSeparateInsteadOfReadingAsTwelve" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1724637250" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.002546" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29432" name="AdjacentDamageAndEventWordBothRemainComplete" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AdjacentDamageAndEventWordBothRemainComplete" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.004421" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29430" name="AdjacentDamageAndEventWordBothRemainComplete(False)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AdjacentDamageAndEventWordBothRemainComplete(False)" methodname="AdjacentDamageAndEventWordBothRemainComplete" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1992980576" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29431" name="AdjacentDamageAndEventWordBothRemainComplete(True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AdjacentDamageAndEventWordBothRemainComplete(True)" methodname="AdjacentDamageAndEventWordBothRemainComplete" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1852896816" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29494" name="AttributionChecksTheWholeClampedWordWidthAtWorldEdges" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003507" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29492" name="AttributionChecksTheWholeClampedWordWidthAtWorldEdges(0,7)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges(0,7)" methodname="AttributionChecksTheWholeClampedWordWidthAtWorldEdges" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="106178208" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The far end of the clamped eight-cell word must not sit beyond an unrelated actor.
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges (System.Int32 ownerX, System.Int32 competingX) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:768
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29493" name="AttributionChecksTheWholeClampedWordWidthAtWorldEdges(79,72)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges(79,72)" methodname="AttributionChecksTheWholeClampedWordWidthAtWorldEdges" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1634699584" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The far end of the clamped eight-cell word must not sit beyond an unrelated actor.
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges (System.Int32 ownerX, System.Int32 competingX) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:768
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29485" name="AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin" methodname="AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1895378504" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001733" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The new candidate row17 must test through21 to current recipient22, not stop at captured row20.
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin () [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:667
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29451" name="CompleteActualNumberFitsAtEveryWorldCorner" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CompleteActualNumberFitsAtEveryWorldCorner" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.005604" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29447" name="CompleteActualNumberFitsAtEveryWorldCorner(0,0)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CompleteActualNumberFitsAtEveryWorldCorner(0,0)" methodname="CompleteActualNumberFitsAtEveryWorldCorner" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="30928325" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29448" name="CompleteActualNumberFitsAtEveryWorldCorner(79,0)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CompleteActualNumberFitsAtEveryWorldCorner(79,0)" methodname="CompleteActualNumberFitsAtEveryWorldCorner" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1723896194" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29449" name="CompleteActualNumberFitsAtEveryWorldCorner(0,24)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CompleteActualNumberFitsAtEveryWorldCorner(0,24)" methodname="CompleteActualNumberFitsAtEveryWorldCorner" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1682761357" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29450" name="CompleteActualNumberFitsAtEveryWorldCorner(79,24)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CompleteActualNumberFitsAtEveryWorldCorner(79,24)" methodname="CompleteActualNumberFitsAtEveryWorldCorner" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1772023934" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29482" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.010532" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29474" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;visible&quot;,False)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;visible&quot;,False)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="2058532082" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt (System.String competingActor, System.Boolean expectedWord) [0x00269] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:608
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29475" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;cell-hidden&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;cell-hidden&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="466286672" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29476" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;unexplored&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;unexplored&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="2104658596" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29477" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;render-hidden&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;render-hidden&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1255772881" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29478" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;outside-span&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;outside-span&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="697875631" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001007" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29479" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;covered&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;covered&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1460802417" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29480" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;foreign-render&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;foreign-render&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="260032092" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29481" name="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;carried&quot;,True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(&quot;carried&quot;,True)" methodname="CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="128285371" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29458" name="DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003486" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29456" name="DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed(0.25f)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed(0.25f)" methodname="DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1593288280" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29457" name="DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed(4.0f)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed(4.0f)" methodname="DamageReadingTimeUsesWallTimeRatherThanDecorativeSpeed" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1454661109" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29427" name="DamageReadoutsRemainNonblockingInEveryFxMode" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadoutsRemainNonblockingInEveryFxMode" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.004096" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29424" name="DamageReadoutsRemainNonblockingInEveryFxMode(Full)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadoutsRemainNonblockingInEveryFxMode(Full)" methodname="DamageReadoutsRemainNonblockingInEveryFxMode" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1046569880" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29425" name="DamageReadoutsRemainNonblockingInEveryFxMode(Reduced)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadoutsRemainNonblockingInEveryFxMode(Reduced)" methodname="DamageReadoutsRemainNonblockingInEveryFxMode" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1697601525" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29426" name="DamageReadoutsRemainNonblockingInEveryFxMode(Off)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DamageReadoutsRemainNonblockingInEveryFxMode(Off)" methodname="DamageReadoutsRemainNonblockingInEveryFxMode" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="227594509" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29468" name="DelayedOwnerReceiptWaitsThenCanBeCancelledBeforeAnyGlyphAppears" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.DelayedOwnerReceiptWaitsThenCanBeCancelledBeforeAnyGlyphAppears" methodname="DelayedOwnerReceiptWaitsThenCanBeCancelledBeforeAnyGlyphAppears" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="2011518785" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29486" name="EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay" methodname="EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1975572324" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay () [0x00078] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:684
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29463" name="EventWordDoesNotPaintOverADisclosedNeighboringActor" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.EventWordDoesNotPaintOverADisclosedNeighboringActor" methodname="EventWordDoesNotPaintOverADisclosedNeighboringActor" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="104264969" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000986" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  All three same-column lanes lie on or beyond the nearer actor; omit the whole word rather than imply its condition.
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.EventWordDoesNotPaintOverADisclosedNeighboringActor () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:355
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29491" name="FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.006777" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29489" name="FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(False)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(False)" methodname="FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1420150102" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule (System.Boolean hideNeighbor) [0x000eb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:745
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29490" name="FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(True)" methodname="FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1942484894" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29471" name="ForeignRenderAndLaterCarriedCustodyRetireLivingOwnerFeedback" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ForeignRenderAndLaterCarriedCustodyRetireLivingOwnerFeedback" methodname="ForeignRenderAndLaterCarriedCustodyRetireLivingOwnerFeedback" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="2011574261" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29487" name="HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor" methodname="HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1543005415" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000975" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The rise reaches the other actor's row; higher lanes must not move the word beyond that actor.
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor () [0x0007c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:705
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29436" name="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.004343" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29433" name="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;hidden&quot;)" methodname="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="278665007" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29434" name="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;unexplored&quot;)" methodname="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="451910678" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29435" name="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove(&quot;render-hidden&quot;)" methodname="HiddenDamageOriginDoesNotLeakIntoVisibleRowAbove" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1576156700" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29466" name="HiddenNeighborDoesNotChangeEventWordPlacement" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenNeighborDoesNotChangeEventWordPlacement" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003311" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29464" name="HiddenNeighborDoesNotChangeEventWordPlacement(&quot;cell-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenNeighborDoesNotChangeEventWordPlacement(&quot;cell-hidden&quot;)" methodname="HiddenNeighborDoesNotChangeEventWordPlacement" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1986584022" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29465" name="HiddenNeighborDoesNotChangeEventWordPlacement(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.HiddenNeighborDoesNotChangeEventWordPlacement(&quot;render-hidden&quot;)" methodname="HiddenNeighborDoesNotChangeEventWordPlacement" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="486260202" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29429" name="LaterReceiptRetainsItsLaneWhenAnOlderReceiptExpires" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LaterReceiptRetainsItsLaneWhenAnOlderReceiptExpires" methodname="LaterReceiptRetainsItsLaneWhenAnOlderReceiptExpires" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1259153333" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001048" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29470" name="LethalOriginReceiptDoesNotAttachToALivingSameIdReplacement" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LethalOriginReceiptDoesNotAttachToALivingSameIdReplacement" methodname="LethalOriginReceiptDoesNotAttachToALivingSameIdReplacement" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="882227138" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001130" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29455" name="LifecycleCancellationClearsActiveAndQueuedDamage" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LifecycleCancellationClearsActiveAndQueuedDamage" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.004667" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29452" name="LifecycleCancellationClearsActiveAndQueuedDamage(&quot;clear&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LifecycleCancellationClearsActiveAndQueuedDamage(&quot;clear&quot;)" methodname="LifecycleCancellationClearsActiveAndQueuedDamage" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1573455813" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001131" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29453" name="LifecycleCancellationClearsActiveAndQueuedDamage(&quot;zone&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LifecycleCancellationClearsActiveAndQueuedDamage(&quot;zone&quot;)" methodname="LifecycleCancellationClearsActiveAndQueuedDamage" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="2116976267" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29454" name="LifecycleCancellationClearsActiveAndQueuedDamage(&quot;presentation&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LifecycleCancellationClearsActiveAndQueuedDamage(&quot;presentation&quot;)" methodname="LifecycleCancellationClearsActiveAndQueuedDamage" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1346855206" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29443" name="LivingReceiptsRecheckQueuedAndActiveOwners" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.007069" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29437" name="LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;origin-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;origin-hidden&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="257308311" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29438" name="LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;origin-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;origin-hidden&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="416702702" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29439" name="LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;removed&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;removed&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1880629806" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29440" name="LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;removed&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;removed&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1856394276" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29441" name="LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(False,&quot;render-hidden&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1443182771" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29442" name="LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.LivingReceiptsRecheckQueuedAndActiveOwners(True,&quot;render-hidden&quot;)" methodname="LivingReceiptsRecheckQueuedAndActiveOwners" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="921978187" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000896" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29472" name="MovingDiagonalOwnerCannotJoinAnotherActorsCompleteNumber" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.MovingDiagonalOwnerCannotJoinAnotherActorsCompleteNumber" methodname="MovingDiagonalOwnerCannotJoinAnotherActorsCompleteNumber" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="381138878" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001420" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29423" name="OneActualTwelveDamageHitRemainsOneContiguousNumber" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.OneActualTwelveDamageHitRemainsOneContiguousNumber" methodname="OneActualTwelveDamageHitRemainsOneContiguousNumber" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1195394298" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29446" name="RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003968" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29444" name="RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin(False)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin(False)" methodname="RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="293961977" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29445" name="RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin(True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin(True)" methodname="RealLethalReceiptUsesOnlyItsFiniteDisclosedOrigin" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1421613053" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29428" name="RepeatedActualOneDamageHitsRemainDistinctReceipts" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.RepeatedActualOneDamageHitsRemainDistinctReceipts" methodname="RepeatedActualOneDamageHitsRemainDistinctReceipts" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1376408058" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000958" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29469" name="ReplacedCapturedCellRetiresTheReceiptEvenWhenBothCellsAreVisible" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ReplacedCapturedCellRetiresTheReceiptEvenWhenBothCellsAreVisible" methodname="ReplacedCapturedCellRetiresTheReceiptEvenWhenBothCellsAreVisible" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="640336907" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000986" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29467" name="ReusedDamageRequestCannotCarryAnOldOwnerValueOrLethalAllowance" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ReusedDamageRequestCannotCarryAnOldOwnerValueOrLethalAllowance" methodname="ReusedDamageRequestCannotCarryAnOldOwnerValueOrLethalAllowance" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="725535620" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29461" name="SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.003764" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29459" name="SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt(False)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt(False)" methodname="SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1595159370" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29460" name="SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt(True)" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt(True)" methodname="SameIdReplacementDoesNotInheritAFormerLivingOwnersReceipt" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="554004120" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.000956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29473" name="ThreeNearbyReceiptLanesStayBoundedWhenAFourthRealHitArrives" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.ThreeNearbyReceiptLanesStayBoundedWhenAFourthRealHitArrives" methodname="ThreeNearbyReceiptLanesStayBoundedWhenAFourthRealHitArrives" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="379069222" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001159" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29488" name="TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient" methodname="TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="300741450" result="Failed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.001107" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Rows5 and3 lie beyond the actor at2; row1 is the nearby truthful lane below recipient0.
+  Expected: (37, 1)
+  But was:  (37, 5)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GroupedDamageReadoutTests.TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient () [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/GroupedDamageReadoutTests.cs:719
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29495" name="WarmCrowdedAttributionChecksAllocateNothingAndKeepValidLanesStable" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.WarmCrowdedAttributionChecksAllocateNothingAndKeepValidLanesStable" methodname="WarmCrowdedAttributionChecksAllocateNothingAndKeepValidLanesStable" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="981020267" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.002399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29462" name="WarmSubmittedReadoutLayoutAllocatesNothingOrMutatesTheWorld" fullname="CavesOfOoo.Tests.GroupedDamageReadoutTests.WarmSubmittedReadoutLayoutAllocatesNothingOrMutatesTheWorld" methodname="WarmSubmittedReadoutLayoutAllocatesNothingOrMutatesTheWorld" classname="CavesOfOoo.Tests.GroupedDamageReadoutTests" runstate="Runnable" seed="1399916937" result="Passed" start-time="2026-10-24 13:33:39Z" end-time="2026-10-24 13:33:39Z" duration="0.002079" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,55 @@
+{
+  "start-time": "2026-10-24 13:33:38Z",
+  "end-time": "2026-10-24 13:33:39Z",
+  "total": "61",
+  "passed": "50",
+  "failed": "11",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient",
+      "message": "  Only reference identity exempts the recipient; equal string IDs do not exempt a nearer actor.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges(0,7)",
+      "message": "  The far end of the clamped eight-cell word must not sit beyond an unrelated actor.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionChecksTheWholeClampedWordWidthAtWorldEdges(79,72)",
+      "message": "  The far end of the clamped eight-cell word must not sit beyond an unrelated actor.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin",
+      "message": "  The new candidate row17 must test through21 to current recipient22, not stop at captured row20.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(\"visible\",False)",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.EventWordDoesNotPaintOverADisclosedNeighboringActor",
+      "message": "  All three same-column lanes lie on or beyond the nearer actor; omit the whole word rather than imply its condition.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(False)",
+      "message": "  Expected: 2\n  But was:  3\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor",
+      "message": "  The rise reaches the other actor's row; higher lanes must not move the word beyond that actor.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GroupedDamageReadoutTests.TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient",
+      "message": "  Rows5 and3 lie beyond the actor at2; row1 is the nearby truthful lane below recipient0.\n  Expected: (37, 1)\n  But was:  (37, 5)\n"
+    }
+  ]
+}

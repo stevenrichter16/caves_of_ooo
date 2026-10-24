@@ -2,7 +2,13 @@
 
 ## Status and bounded plan
 
-2026-10-23: seven native sprites and runtime integration implemented; focused
+**Current schedule,2026-10-24:** Unity and ordinary input have recovered.
+Plot products now have partial harvest/pickup/carried-Examine acceptance;
+the remaining plot loop comes before this packet's new-art forage/preparation/
+brew/coin route. Works-product ordinary acceptance is still pending. See the
+[scheduling continuation](#scheduling-continuation--2026-10-24) below.
+
+Initial implementation record,2026-10-23: seven native sprites and runtime integration implemented; focused
 native Unity GREEN, affected regression and independent cold review
 completed. Ordinary Play remains unaccepted. The Mac remains
 locked. Advance this independent packet from the already accepted actual
@@ -160,7 +166,7 @@ Independent read-only probe review confirmed its isolation and measurement
 bounds. This continuation changes evidence and docs only; the prior396 native
 passes are not a newly run or additive count.
 
-## Self-review and scope divergence
+## Implementation-stage review and scope divergence — 2026-10-23
 
 - 🔵 Independent source/art review and settled production cold review
   found no actionable P1/P2. The reused portable-item guard is equivalent
@@ -194,9 +200,9 @@ contacts and reused captures are not new gameplay acceptance.
 
 ## Next action
 
-The first live action after unlock is the pending plot-product
-harvest/pickup/prepare/plant route in [the plot-product record](LIVE-16X24-PLOT-PRODUCTS.md),
-then the works forage/brew/coin route. Use the existing isolated seed64
+Ordinary input is available. Finish the remaining plot-product ground
+Examine/prepare/plant route in [the plot-product record](LIVE-16X24-PLOT-PRODUCTS.md),
+then the works forage/preparation/brew/coin route. Use the existing isolated seed64
 launcher and ordinary controls, including normal drop and exact-subject
 examine where a harvested item goes directly into inventory. Do not
 inject items, fill inventories, teleport, or relabel historical captures.
@@ -222,3 +228,25 @@ remain separate unfinished coverage.
 - This record, main art brief, north-plot/plot-product handoffs and parts
   ledger; `Verification/Live16x24/works-products-*` native/import evidence.
   No new gameplay PNG, scene, blueprint or release-default change.
+
+## Scheduling continuation — 2026-10-24
+
+The editor recovery supersedes the locked-machine scheduling blocker above.
+Source, saves and the selected current build were preserved before selective
+cleanup. Official package-signature warnings in6000.3.4f1 remain an editor-patch
+follow-up; they did not prevent the recovered ordinary route. Current stopped
+[cleanup](Verification/Live16x24/g2-attribution-launch-cleanup.json) confirms
+Play/isolation/artPending/viewBorrowed false and saveRoot null.
+
+The new plot visit demonstrates paid rights, Pitchpod harvest yielding2resin
+and1seed, pickup and a carried resin portrait. Its ground-examine filename
+contains only a pickup list, and planting/clod preparation remain pending.
+This does **not** supply ordinary evidence for any of the seven works-product
+frames. Their earlier native396-case/source/import/profile evidence stays
+valid within its original limits; no new test count is added by this update.
+
+Continue the actual remaining plot loop, then acquire and exercise the works
+goods through their existing source and preparation/brewing/coin mechanics.
+Capture only actual outcomes and exact-subject ground/carried Examine where
+appropriate. Do not add another unverified area or treat the north route,
+six-site journey, packaged build or physical Steam Deck as accepted.

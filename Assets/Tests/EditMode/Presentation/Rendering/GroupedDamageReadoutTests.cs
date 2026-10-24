@@ -352,12 +352,11 @@ namespace CavesOfOoo.Tests
             var neighbor = Actor(40, 19);
             AsciiFxBus.EmitEventText(zone, owner, "Stunned", "&C");
             world.Update(0);
-            var start = SingleGlyph('S');
-            AssertWordAt("Stunned", start);
-            Assert.AreEqual(36, start.x, "Keep the readout aligned with its actual owner.");
-            Assert.That(start.y, Is.InRange(15, 19));
-            Assert.False(start.y == 19 && start.x <= 40 && start.x + 7 > 40,
-                "Stunned must not replace the neighboring visible actor's world cell.");
+            Assert.Zero(ascii.ActiveEventTextCount,
+                "All three same-column lanes lie on or beyond the nearer actor; omit the whole word rather than imply its condition.");
+            Assert.Zero(GlyphPositions('S').Count);
+            Assert.Null(tiles.GetTile(new Vector3Int(40, Zone.Height - 1 - 19, 0)),
+                "Stunned must still never replace the neighboring visible actor's world cell.");
             Assert.AreSame(zone.GetCell(40, 19), zone.GetEntityCell(neighbor));
         }
 
@@ -555,6 +554,251 @@ namespace CavesOfOoo.Tests
             SingleGlyph('4');
             Assert.AreEqual(36, target.GetStatValue("Hitpoints"));
         }
+
+        // Attribution follow-up: a distant label cannot sit beyond an unrelated
+        // disclosed actor within its glyph columns and appear to describe it.
+        [TestCase("visible", false)]
+        [TestCase("cell-hidden", true)]
+        [TestCase("unexplored", true)]
+        [TestCase("render-hidden", true)]
+        [TestCase("outside-span", true)]
+        [TestCase("covered", true)]
+        [TestCase("foreign-render", true)]
+        [TestCase("carried", true)]
+        public void CrowdedWordCannotClaimANearerActorWhileUndisclosedOccupancyDoesNotMoveIt(
+            string competingActor, bool expectedWord)
+        {
+            var owner = Actor(40, 20);
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            var baseline = SingleGlyph('B');
+            Assert.AreEqual(new Vector2Int(37, 15), baseline);
+            AssertWordAt("Bleeding", baseline);
+            world.CancelAll();
+
+            var neighbor = Actor(competingActor == "outside-span" ? 45 : 41, 17);
+            neighbor.SetTag("Player");
+            if (competingActor == "cell-hidden") zone.GetCell(41, 17).IsVisible = false;
+            if (competingActor == "unexplored") zone.GetCell(41, 17).Explored = false;
+            if (competingActor == "render-hidden") neighbor.GetPart<RenderPart>().Visible = false;
+            if (competingActor == "covered")
+            {
+                var cover = new Entity { ID = "non-actor-corridor-cover" };
+                cover.AddPart(new RenderPart { Visible = true, RenderLayer = 100 });
+                Assert.True(zone.AddEntity(cover, 41, 17));
+                Assert.AreSame(cover, zone.GetCell(41, 17).GetTopVisibleObject());
+            }
+            if (competingActor == "foreign-render" || competingActor == "carried")
+            {
+                var custodian = new Entity { ID = "competing-actor-custodian" };
+                if (competingActor == "foreign-render") neighbor.GetPart<RenderPart>().ParentEntity = custodian;
+                else neighbor.GetPart<PhysicsPart>().InInventory = custodian;
+                Assert.AreSame(neighbor, zone.GetCell(41, 17).GetTopVisibleObject());
+                Assert.AreSame(zone.GetCell(41, 17), zone.GetEntityCell(neighbor));
+            }
+            // World reveal cannot make a hidden competitor affect layout.
+            ascii.ClipToFieldOfView = false;
+            QueueCrowdedBleeding(owner);
+            int version = zone.EntityVersion;
+            world.Update(0);
+
+            Assert.AreEqual(new Vector2Int(40, 19), SingleGlyph('1'));
+            Assert.AreEqual(new Vector2Int(40, 17), SingleGlyph('2'));
+            Assert.AreEqual(2, ascii.ActiveNumberCount);
+            Assert.AreEqual(expectedWord ? 1 : 0, ascii.ActiveEventTextCount);
+            if (expectedWord)
+            {
+                Assert.AreEqual(baseline, SingleGlyph('B'));
+                AssertWordAt("Bleeding", baseline);
+            }
+            else Assert.Zero(GlyphPositions('B').Count,
+                "Bleeding at row15 would appear above the closer Player41,17, although its true recipient is40,20.");
+            Assert.AreEqual(version, zone.EntityVersion);
+            Assert.AreEqual(44, owner.GetStatValue("Hitpoints"));
+            Assert.False(world.HasBlockingFx);
+        }
+
+        [Test]
+        public void ACompetingActorWithTheSameIdIsNotTheExactReadoutRecipient()
+        {
+            var owner = Actor(40, 20, "duplicate-readout-id");
+            var neighbor = Actor(41, 18, owner.ID);
+            Assert.AreNotSame(owner, neighbor);
+            Assert.AreEqual(owner.ID, neighbor.ID);
+            Assert.AreSame(zone.GetCell(40, 20), zone.GetEntityCell(owner));
+            Assert.AreSame(zone.GetCell(41, 18), zone.GetEntityCell(neighbor));
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            Assert.AreEqual(2, ascii.ActiveNumberCount);
+            Assert.Zero(ascii.ActiveEventTextCount,
+                "Only reference identity exempts the recipient; equal string IDs do not exempt a nearer actor.");
+            Assert.Zero(GlyphPositions('B').Count);
+        }
+
+        [Test]
+        public void ACompleteDamageNumberAlsoCannotFloatBeyondANearerActor()
+        {
+            var owner = Actor(40, 20);
+            var neighbor = Actor(41, 18);
+            CombatSystem.ApplyDamage(owner, new Damage(8), source: null, zone: zone);
+            CombatSystem.ApplyDamage(owner, new Damage(12), source: null, zone: zone);
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(40, 19), SingleGlyph('8'));
+            Assert.AreEqual(1, ascii.ActiveNumberCount);
+            Assert.Zero(GlyphPositions('1').Count);
+            Assert.Zero(GlyphPositions('2').Count,
+                "A whole twelve is omitted when the remaining lanes would imply damage to the nearer actor.");
+            Assert.AreEqual(30, owner.GetStatValue("Hitpoints"));
+            Assert.AreEqual(50, neighbor.GetStatValue("Hitpoints"));
+        }
+
+        [Test]
+        public void AttributionUsesTheRecipientsCurrentCellRatherThanItsCapturedOrigin()
+        {
+            var owner = Actor(40, 20);
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(37, 15), SingleGlyph('B'));
+            var neighbor = Actor(41, 21);
+            Assert.True(zone.MoveEntity(owner, 40, 22));
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(40, 21), SingleGlyph('1'));
+            Assert.AreEqual(new Vector2Int(40, 19), SingleGlyph('2'));
+            Assert.Zero(ascii.ActiveEventTextCount,
+                "The new candidate row17 must test through21 to current recipient22, not stop at captured row20.");
+            Assert.Zero(GlyphPositions('B').Count);
+            Assert.AreSame(zone.GetCell(41, 21), zone.GetEntityCell(neighbor));
+            Assert.True(zone.GetCell(40, 20).IsVisible, "Origin visibility remains independently valid.");
+        }
+
+        [Test]
+        public void EnteringTheAttributionCorridorRetiresTheWordWithoutDelayedReplay()
+        {
+            var owner = Actor(40, 20);
+            var neighbor = Actor(45, 18);
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(37, 15), SingleGlyph('B'));
+            Assert.True(zone.MoveEntity(neighbor, 41, 18));
+            world.Update(0);
+            Assert.Zero(GlyphPositions('B').Count);
+            Assert.Zero(ascii.ActiveEventTextCount);
+            Assert.True(zone.MoveEntity(neighbor, 45, 18));
+            world.Update(0);
+            Assert.Zero(GlyphPositions('B').Count, "Leaving the corridor cannot resurrect a retired event.");
+            AsciiFxBus.EmitEventText(zone, owner, "Bleeding", "&R");
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(37, 15), SingleGlyph('B'),
+                "A genuinely new event is still allowed when its local lanes become truthful again.");
+        }
+
+        [Test]
+        public void HalfLifeRiseCannotRelocateAWordPastAnUnrelatedActor()
+        {
+            var owner = Actor(40, 20);
+            Actor(41, 18);
+            AsciiFxBus.EmitEventText(zone, owner, "Bleeding", "&R");
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(37, 19), SingleGlyph('B'),
+                "The initial label lies between its own recipient and the other actor and is truthful.");
+            world.Update(.56f);
+            Assert.Zero(ascii.ActiveEventTextCount,
+                "The rise reaches the other actor's row; higher lanes must not move the word beyond that actor.");
+            Assert.Zero(GlyphPositions('B').Count);
+            Assert.AreEqual(50, owner.GetStatValue("Hitpoints"));
+        }
+
+        [Test]
+        public void TopEdgeCandidatesCheckTheSignedIntervalBelowTheirRecipient()
+        {
+            var owner = Actor(40, 0);
+            var neighbor = Actor(41, 2);
+            AsciiFxBus.EmitEventText(zone, owner, "Bleeding", "&R");
+            world.Update(0);
+            var start = SingleGlyph('B');
+            Assert.AreEqual(new Vector2Int(37, 1), start,
+                "Rows5 and3 lie beyond the actor at2; row1 is the nearby truthful lane below recipient0.");
+            AssertWordAt("Bleeding", start);
+            Assert.AreSame(zone.GetCell(41, 2), zone.GetEntityCell(neighbor));
+            Assert.AreEqual(1, ascii.ActiveEventTextCount);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FiniteLethalReceiptUsesItsOriginForTheSameAttributionRule(bool hideNeighbor)
+        {
+            var lower = Actor(39, 20);
+            var upper = Actor(39, 18);
+            var owner = Actor(40, 20);
+            owner.GetStat("Hitpoints").BaseValue = 12;
+            var neighbor = Actor(41, 18);
+            if (hideNeighbor) zone.GetCell(41, 18).IsVisible = false;
+            // Two earlier real receipts consume the lethal number's lower lanes.
+            CombatSystem.ApplyDamage(lower, new Damage(11), source: null, zone: zone);
+            CombatSystem.ApplyDamage(upper, new Damage(22), source: null, zone: zone);
+            CombatSystem.ApplyDamage(owner, new Damage(99), source: null, zone: zone);
+            Assert.Null(zone.GetEntityCell(owner));
+            ascii.ClipToFieldOfView = false;
+            world.Update(0);
+            AssertWordAt("11", new Vector2Int(39, 19));
+            AssertWordAt("22", new Vector2Int(39, 17));
+            Assert.AreEqual(hideNeighbor ? 3 : 2, ascii.ActiveNumberCount);
+            if (hideNeighbor) AssertWordAt("12", new Vector2Int(40, 15));
+            else
+            {
+                Assert.Null(tiles.GetTile(new Vector3Int(40, Zone.Height - 1 - 15, 0)));
+                Assert.Null(tiles.GetTile(new Vector3Int(41, Zone.Height - 1 - 15, 0)));
+            }
+            Assert.AreEqual(0, owner.GetStatValue("Hitpoints"), "Lethal receipt remains clamped to real remaining HP.");
+            Assert.AreEqual(50, neighbor.GetStatValue("Hitpoints"));
+            world.Update(.61f);
+            Assert.Zero(ascii.ActiveNumberCount);
+        }
+
+        [TestCase(0, 7)]
+        [TestCase(79, 72)]
+        public void AttributionChecksTheWholeClampedWordWidthAtWorldEdges(int ownerX, int competingX)
+        {
+            var owner = Actor(ownerX, 20);
+            var neighbor = Actor(competingX, 18);
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            Assert.AreEqual(new Vector2Int(ownerX, 19), SingleGlyph('1'));
+            Assert.AreEqual(new Vector2Int(ownerX, 17), SingleGlyph('2'));
+            Assert.Zero(ascii.ActiveEventTextCount,
+                "The far end of the clamped eight-cell word must not sit beyond an unrelated actor.");
+            Assert.Zero(GlyphPositions('B').Count);
+            Assert.AreSame(zone.GetCell(competingX, 18), zone.GetEntityCell(neighbor));
+        }
+
+        [Test]
+        public void WarmCrowdedAttributionChecksAllocateNothingAndKeepValidLanesStable()
+        {
+            var owner = Actor(40, 20);
+            Actor(45, 18); // Just outside the complete Bleeding span.
+            QueueCrowdedBleeding(owner);
+            world.Update(0);
+            AssertWordAt("Bleeding", new Vector2Int(37, 15));
+            int version = zone.EntityVersion;
+            for (int i = 0; i < 20; i++) ascii.Update(0, 0);
+            long before = GC.GetAllocatedBytesForCurrentThread();
+            for (int i = 0; i < 100; i++) ascii.Update(0, 0);
+            long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+            Assert.Zero(allocated);
+            AssertWordAt("Bleeding", new Vector2Int(37, 15));
+            Assert.AreEqual(new Vector2Int(40, 19), SingleGlyph('1'));
+            Assert.AreEqual(new Vector2Int(40, 17), SingleGlyph('2'));
+            Assert.AreEqual(version, zone.EntityVersion);
+            Assert.AreEqual(47, owner.GetStatValue("Hitpoints"));
+        }
+
+        void QueueCrowdedBleeding(Entity owner)
+        {
+            CombatSystem.ApplyDamage(owner, new Damage(1), source: null, zone: zone);
+            CombatSystem.ApplyDamage(owner, new Damage(2), source: null, zone: zone);
+            AsciiFxBus.EmitEventText(zone, owner, "Bleeding", "&R");
+        }
+
 
         Entity Actor(int x, int y, string id = null)
         {

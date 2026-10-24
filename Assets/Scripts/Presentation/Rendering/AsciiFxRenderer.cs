@@ -416,14 +416,14 @@ namespace CavesOfOoo.Rendering
             // Only inspect its bounded candidate span, after the cell's fog
             // gate; hidden actors must not influence otherwise identical layout.
             for (int x = text.StartX; x < text.StartX + text.Text.Length; x++)
-            {
-                var cell = _currentZone.GetCell(x, row);
-                if (cell == null || !cell.Explored || !cell.IsVisible) continue;
-                var owner = cell.GetTopVisibleObject();
-                if (owner != null && (owner.HasTag("Creature") || owner.HasTag("Player"))
-                    && ReferenceEquals(_currentZone.GetEntityCell(owner), cell)
-                    && AsciiFxBus.CanShowEventText(_currentZone, owner)) return false;
-            }
+                if (HasDisclosedActorAt(x, row, null)) return false;
+            // A clear row can still imply the wrong recipient if another actor
+            // lies between it and the owner. Check the whole glyph span, in
+            // either direction (top-edge lanes can sit below their owner).
+            var recipient = text.Anchor == null ? text.OriginCell : _currentZone.GetEntityCell(text.Anchor) ?? text.OriginCell;
+            for (int y = Math.Min(row, recipient.Y) + 1; y < Math.Max(row, recipient.Y); y++)
+                for (int x = text.StartX; x < text.StartX + text.Text.Length; x++)
+                    if (HasDisclosedActorAt(x, y, text.Anchor)) return false;
             for (int i = 0; i < precedingCount; i++)
             {
                 var prior = _eventTexts[i];
@@ -433,6 +433,17 @@ namespace CavesOfOoo.Rendering
                     && prior.StartX <= text.StartX + text.Text.Length) return false;
             }
             return true;
+        }
+
+        private bool HasDisclosedActorAt(int x, int y, Entity except)
+        {
+            var cell = _currentZone.GetCell(x, y);
+            if (cell == null || !cell.Explored || !cell.IsVisible) return false;
+            var owner = cell.GetTopVisibleObject();
+            return owner != null && !ReferenceEquals(owner, except)
+                && (owner.HasTag("Creature") || owner.HasTag("Player"))
+                && ReferenceEquals(_currentZone.GetEntityCell(owner), cell)
+                && AsciiFxBus.CanShowEventText(_currentZone, owner);
         }
 
         private bool EventTextCovers(int x, int y)

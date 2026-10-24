@@ -1,0 +1,206 @@
+{
+  "sequence": 18,
+  "frame": 118638,
+  "at": "2026-10-24T13:41:48.8608140Z",
+  "unscaledTime": 140.919556,
+  "deltaTime": 0.00140154478,
+  "zone": "Overworld.11.10.0",
+  "tick": 60,
+  "player": [
+    41,
+    17
+  ],
+  "hp": 40,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2076",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 15,
+      "sprite": "Live16x24 MarlbackScrabbler walk A",
+      "atlas": "opening-motion",
+      "rect": [
+        128.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Walk",
+      "stateTime": 0.0456605032,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        20,
+        3
+      ],
+      "world": [
+        21.0625,
+        30.625
+      ],
+      "screen": [
+        143.000015,
+        650.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2089",
+      "blueprint": "PetDog",
+      "hp": 15,
+      "sprite": "Live16x24 PetDog walk A",
+      "atlas": "opening-motion",
+      "rect": [
+        64.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Walk",
+      "stateTime": 0.0456605032,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        32,
+        19
+      ],
+      "world": [
+        32.5,
+        6.625
+      ],
+      "screen": [
+        326.000031,
+        266.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2698",
+      "blueprint": "Player",
+      "hp": 40,
+      "sprite": "Live16x24 Player walk A",
+      "atlas": "opening-motion",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Walk",
+      "stateTime": 0.0456605032,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        41,
+        17
+      ],
+      "world": [
+        41.5,
+        11.375
+      ],
+      "screen": [
+        470.0,
+        342.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    },
+    {
+      "id": "2071",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 0,
+      "sprite": "Live16x24 MarlbackScrabbler hurt",
+      "atlas": "opening-motion",
+      "rect": [
+        176.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.0456605032,
+      "pending": false,
+      "pendingState": "Hurt",
+      "dying": true,
+      "cell": [
+        40,
+        20
+      ],
+      "world": [
+        40.5,
+        6.0
+      ],
+      "screen": [
+        454.000031,
+        255.999985
+      ],
+      "flipX": true,
+      "alpha": 0.836926758
+    },
+    {
+      "id": "2074",
+      "blueprint": "MarlbackGleaner",
+      "hp": 20,
+      "sprite": "Live16x24 MarlbackGleaner walk A",
+      "atlas": "opening-motion",
+      "rect": [
+        192.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Walk",
+      "stateTime": 0.0456605032,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        39,
+        20
+      ],
+      "world": [
+        40.0625,
+        5.125
+      ],
+      "screen": [
+        447.000031,
+        242.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "2089",
+      "text": "Shaken",
+      "number": 0,
+      "numeric": false,
+      "x": 30,
+      "y": 17,
+      "width": 6,
+      "lane": 0,
+      "remaining": 0.54916656,
+      "originOnly": false
+    },
+    {
+      "owner": "2071",
+      "text": "6",
+      "number": 6,
+      "numeric": true,
+      "x": 40,
+      "y": 19,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.5543395,
+      "originOnly": true
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

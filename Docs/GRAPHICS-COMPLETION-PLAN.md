@@ -392,29 +392,51 @@ evidence. It is a path to completion, not a report that completion occurred.
 ## Current continuation — 2026-10-24 UTC
 
 Latest bounded action slice: [action readability](GRAPHICS-G2-ACTION-READABILITY.md).
-Ordinary16×24 walk A/B, Player melee, NPC hurt/death and later Idle recovery now
-have actual1280×800 frame receipts. Review found adjacent damage values merging
-into false12/62 and `Stunned` obscuring the Player. The scoped grouped-readout
-and disclosed-actor spacing fix passes253 native Unity tests, including the
-two behavioral REDs and six post-review hypothesis counters. Approved actor
-art is unchanged. **Post-fix ordinary visual acceptance is still pending:**
-disk-full interrupted the new capture. The isolated session was stopped and
-restored; generated caches and two obsolete non-current archives were removed
-with a receipt, preserving source/current builds/saves. Reopened Unity is in
-an unreadable native decision dialog; root asked the user for its message.
-Resolve this precise gate, repeat the matched encounter, then continue full
-G2 framing/Player defence and G3 product/east/kitchen work. Do not claim a
-finished opening, device acceptance or a post-fix screenshot from tests alone.
+The source-preservation and selective cleanup work is complete; source, saves
+and the selected current build remain preserved. Unity opens SampleScene,
+compiles and accepts ordinary controls. The earlier unread-dialog blocker is
+superseded. The installed6000.3.4f1 package-signature warnings match a documented
+certificate-verification defect; a patched6.3 editor remains a separate
+environment follow-up, not a completed upgrade. See [storage audit](LOCAL-STORAGE-AUDIT.md)
+and the [recovery receipt](Verification/Live16x24/recovery-cleanup-20261024.json).
+
+Recovered ordinary combat confirmed separated complete damage values and
+unobscured Player art, then exposed misleading attribution when a high status
+word appeared beyond a nearer actor. The additional local placement correction
+has native **61/61 focused plus211/211 prior-regression passes**, zero skipped,
+after61cases produced50passes/11behavioral failures. These are the current
+272cases; do not add the earlier253-case run as distinct new coverage.
+Approved sprites, gameplay and animation timing remain unchanged.
+
+The post-attribution replay supplies **41 actual1280×800 EOF frames**:
+[24frames/20events](Verification/Live16x24/G2Action-20261024-134107-270/index.json)
+and [17frames/6events](Verification/Live16x24/G2Action-20261024-134257-723/index.json).
+Independent review found no new P2 in these bounded samples. [A12](Verification/Live16x24/G2Action-20261024-134107-270/frame-12.png)
+shows nearby Shaken and separate1/8; [B07](Verification/Live16x24/G2Action-20261024-134257-723/frame-07.png)
+shows a clamped lethal2, with later Idle/readout clearance in B14–B16. Genuine
+combat rolls differed: the original Bleeding/Player geometry did not recur.
+Native tests establish that exact correction; the replay is ordinary visual
+regression evidence, not a controlled identical-event before/after or video.
+
+G3 plot products now have partial ordinary acceptance: paid reserve rights,
+actual Pitchpod harvest producing two resin units and one seed, pickup and
+[carried resin Examine](Verification/Live16x24/plot-products-resin-carried-examine.png).
+The file named `plot-products-resin-ground-examine.png` shows a pickup list,
+so ground Examine remains pending alongside planting, clod preparation and
+the remaining product families. Works-product forage/preparation/brew/coin
+use and east/kitchen still need their own ordinary gates. The latest
+[cleanup](Verification/Live16x24/g2-attribution-launch-cleanup.json) confirms
+stopped Play, no isolation/pending art/borrowed view, and restored save root.
 
 G1 default launch/travel is accepted in bounded editor Play. G2's first family,
 [connected opening masonry](GRAPHICS-G2-BOUNDARIES.md), is now integrated:
 552 targeted native tests pass, actual normal-start/ruin/destruction/examine
 captures and independent native-size review accept the improvement. This is
-one scene-finishing family, not completion of G2. Next, use these real captures
-to improve the pond/road/soil grouping, then close the active combat/action view
-and remaining opening coverage. Physical Deck/Vault and packaged gates stay
-pending. The native plot/works-product ordinary-use gaps and east/kitchen
-remain in G3. Keep this continuation active across sessions.
+one scene-finishing family, not completion of G2; pond/road/soil is also
+integrated as recorded below. Continue remaining scene/framing and Player
+defence/hurt coverage, then the incomplete plot/works loops and east/kitchen.
+Continuous motion/audio feel, physical Deck/Vault, the full six-site journey
+and packaged gates remain open. Keep this continuation active across sessions.
 
 
 ### Latest G2 ground continuation
@@ -424,17 +446,21 @@ Pond/road/soil family is integrated and bounded Play reviewed. Native71/71 plus
 update, water/path walking and Harvest→Prepare support this packet. Wet20 is
 native-only; no successful melt or completed scene claimed. See
 [ground record](GRAPHICS-G2-GROUND.md) for exact failures, fixes, screenshots,
-wrapped timing limits and restored isolated session. Next work is active
-framing/motion/combat acceptance and G3's existing product-use debt, followed
+wrapped timing limits and restored isolated session. Remaining work includes
+scene/framing and Player defence/hurt acceptance and G3's product-use debt, followed
 by east/kitchen and the full six-site journey. Preserve this family's accepted
 pixels unless a named defect appears.
 
 
-Recovery follow-up at04:36 UTC found a historical30-slot layer table in saved
+### Historical recovery follow-up — 2026-10-24 04:36 UTC
+
+The recovery follow-up at04:36 UTC found a historical30-slot layer table in saved
 TagManager source and restored32 slots without changing any named index. Seven
-standalone source checks pass; native startup and the post-fix combat capture
-remain unverified. A duplicate installer cache was removed with an identical
-complete copy retained; disk space remains tight. See the action record above.
+standalone source checks passed; native startup and the post-fix combat capture
+were still unverified at that checkpoint. A duplicate installer cache was removed
+with an identical complete copy retained; disk space was still tight. The later
+recovery and actual captures above supersede that blocker without rewriting its
+failure receipts. See the action record above.
 Independent [east/kitchen route audit](Verification/Live16x24/g3-east-kitchen-source-audit.md)
 now identifies exact current source constraints, historical seed landmarks and
 real service prerequisites for the next journey. It adds no art acceptance and

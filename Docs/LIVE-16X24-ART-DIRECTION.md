@@ -691,31 +691,41 @@ do not treat these accepted ground pixels as a finished graphics release.
 ## Latest continuation — G2 action readability, 2026-10-24 UTC
 
 See [GRAPHICS-G2-ACTION-READABILITY.md](GRAPHICS-G2-ACTION-READABILITY.md) first.
-Six real walk frames and seventeen real combat frames now show both walk
-poses, Player attacks, NPC hurt/death fade and recovery using the unchanged
-approved art. Later exact-state receipts confirm Idle; idle artwork during a
-reaction tail alone is not proof of that transition. No new art was needed.
+The earlier disk-full and unread-dialog failures remain dated in that record.
+Source preservation and selective cleanup restored ordinary Unity operation,
+with source, editable art, saves and the selected current build preserved.
+The package warnings match the installed6000.3.4f1 signature-verification
+defect; applying the official editor patch is still an environment follow-up.
+No user/modal blocker remains for the next ordinary-input graphics work.
 
-Actual review found false12/62 from adjacent separate damage numbers, and
-`Stunned` crossed the Player while describing an enemy. Grouped numeric
-receipts and shared bounded readout lanes fix those verified causes; candidate
-rows avoid disclosed actor cells without querying hidden occupants. Native
-Unity253/253 passed including actual damage, resistance/overkill/traps, fog,
-same-ID replacement, finite death receipts, modes, pool reuse and warm zero
-allocation. Root confirmed two behavioral REDs first; independent review and
-six post-review hypotheses are recorded. This is CoO-original presentation.
+Grouped numbers and actor-body avoidance fixed the observed false12/62 and
+Player overpaint. Recovered captures then exposed a further attribution P2:
+a high enemy word could appear beyond a nearer player. The bounded correction
+refuses those misleading lanes while keeping hidden actors private and omitting
+a whole readout when no truthful placement remains. Current native results are
+**61/61 focused and211/211 prior regressions**, zero skipped, after the exact
+geometry failed before production. Do not sum the older253-case result as new
+distinct coverage. Approved art, gameplay and animation timing are unchanged.
 
-**Next action is the post-fix ordinary capture, still pending.** Disk-full
-blocked code execution and screenshot creation. The attempted isolated launch
-was stopped/restored; only generated caches and two superseded non-current
-Deck archives were removed (exact receipt in the action record). Source,
-editable art, current builds and saves remain intact. Reopened Unity is
-waiting in a native decision dialog which CUA cannot enumerate/read; root
-asked the user what it says. Do not blind-confirm the dialog or invent an
-after screenshot. About304MiB was free after cache regeneration; avoid large
-builds/downloads. Continue useful source/release work if still blocked.
+New post-attribution sessions contain [24frames/20events](Verification/Live16x24/G2Action-20261024-134107-270/index.json)
+and [17frames/6events](Verification/Live16x24/G2Action-20261024-134257-723/index.json),
+all actual1280×800 EOF captures. Independent review found no new P2 in the
+bounded replay. [A12](Verification/Live16x24/G2Action-20261024-134107-270/frame-12.png)
+shows nearby Shaken and distinct1/8; B07 shows lethal2 and B14–B16 later Idle
+and readout clearance. The original Bleeding/Player event did not recur under
+these different genuine rolls: native tests prove its exact geometry, and
+the captures establish ordinary visual regression only. Selective stills do
+not establish continuous motion, audio synchronization or device performance.
+The [final cleanup](Verification/Live16x24/g2-attribution-launch-cleanup.json)
+confirms stopped Play and all owned isolation/view/save state released.
 
-After the matched combat capture, resume G2 scene/framing/Player defence,
-then G3 plot/works product gates and the east/kitchen journey. Whole graphics
-release, packaged activation, physical Deck and regional coverage remain open.
-Keep the heartbeat active; this packet is not an arbitrary stopping point.
+The [plot-product record](LIVE-16X24-PLOT-PRODUCTS.md) now has partial ordinary
+acceptance: paid rights, actual Pitchpod harvest, two resin plus one seed picked
+up, and carried resin Examine with native art. Its nominal ground-examine PNG
+is a pickup list; actual ground Examine, planting, clod preparation and other
+products remain pending. Works-product use has no new ordinary acceptance.
+
+**Next:** continue G2 scene/framing and Player defence/hurt coverage, close the
+remaining plot/works loops, then east/kitchen and the full six-site journey.
+Whole opening/graphics release, packaged activation, physical Deck and broader
+regional coverage remain unfinished. Keep the heartbeat active.

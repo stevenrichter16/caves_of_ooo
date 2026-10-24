@@ -2,7 +2,13 @@
 
 ## Status and purpose
 
-2026-10-23: native source, import, implementation and code review complete;
+**Current status,2026-10-24:** ordinary acceptance is partial. Actual Pitchpod
+harvest/pickup and carried resin Examine are verified; ground Examine,
+planting, clod preparation and other product loops remain open. See the
+[recovered ordinary continuation](#recovered-ordinary-continuation--2026-10-24)
+below. The Mac lock is no longer the current blocker.
+
+Initial implementation record,2026-10-23: native source, import, implementation and code review complete;
 ordinary-play acceptance pending because the Mac is locked.
 This bounded packet follows the accepted real harvest/revisit in
 `LIVE-16X24-NORTH-PLOT.md`. Eight loose products still fall back to generic
@@ -116,7 +122,7 @@ comparison or a Deck benchmark. Exact repeatable snippet is
 Reagent owns and invalidates its parsed cache. Actual rendering/profile
 acceptance remains with the ordinary-play gate.
 
-## Self-review and honesty bounds
+## Implementation-stage review and honesty bounds — 2026-10-23
 
 - 🔵 Independent cold review and root diff review found no remaining P1/P2.
   Tests exercise actual inventory consumption and invalidated documents,
@@ -148,7 +154,7 @@ This is not an empty-console claim. Eleven older import metas were restored
 only after linewise trailing-whitespace equivalence was proved; unrelated
 untracked/recovery files were untouched.
 
-## Exact next action
+## Historical next action — 2026-10-23
 
 Check ordinary input availability first. If unlocked, launch the existing
 isolated seed64 opt-in session and repeat the accepted route to Nella. Use
@@ -170,10 +176,50 @@ Purchased crop families, incidental surroundings, north creature motion,
 east/kitchen admission/art and full release journey remain unfinished.
 Keep the finite seven-milestone heartbeat active.
 
-## Files
+## Initial implementation files
 
 Changed: two rendering catalogs; FlatPixelPlotProductTests+meta; native
 resource+meta; original source generator/assets/verifier; import/profile
 snippets; concept/prompt; this record, main/north-plot continuation and
 native test/import/profile/editor evidence. No live screenshot is included
 in this packet.
+
+## Recovered ordinary continuation — 2026-10-24
+
+User-authorized source preservation and selective cleanup restored the editor
+and ordinary input; source, saves and the selected current build remain intact.
+The earlier locked-machine limit is historical. Native source/implementation
+results above remain their original runs; this continuation adds actual
+gameplay evidence without re-counting those tests.
+
+Seed64 reached Overworld.11.8.0 at20,10 with40HP. The [arrival](Verification/Live16x24/plot-products-arrival.json)
+records reserve rightsUnknown and50drams. Ordinary payment changed rights to
+Granted and drams to42. At18,7, the player harvested the ripe Pitchpod at18,6;
+the [harvest screenshot](Verification/Live16x24/plot-products-pitchpod-harvest.png)
+and matching receipt show the crop removed, two PitchpodResin owners and one
+PitchpodSeed on the ground. Pickup then put2resin and1seed in inventory.
+The [carried resin Examine](Verification/Live16x24/plot-products-resin-carried-examine.png)
+shows the native amber sprite, quantity2 and the actual descriptive/use text.
+No gameplay state was injected to create this route.
+
+**Evidence-label correction:** [plot-products-resin-ground-examine.png](Verification/Live16x24/plot-products-resin-ground-examine.png)
+shows the three-item **Pick up** list, not an Examine portrait. Keep the raw
+file unchanged; it verifies the ground selection/pickup flow and does not close
+ground-portrait acceptance. All four PNGs are1280×800; three matching receipts
+report an editor screen size2321×1139, which is not the saved image dimensions.
+
+This is **ordinary_partial** for the new eight-product group. It does not prove
+Marlroot/clod preparation, seed planting, use of the resin, all seed/produce
+families, or the works products. The observed Marlroot remained stage0 during
+this visit. The [route cleanup](Verification/Live16x24/g2-action-recovered-launch-cleanup.json)
+records stopped Play, no isolation/art pending/borrowed view and saveRoot null.
+The later action-capture [cleanup](Verification/Live16x24/g2-attribution-launch-cleanup.json)
+also confirms those restored fields. Neither is a save/load acceptance of this
+newly harvested inventory.
+
+**Next:** exercise an actual ground Examine portrait, plant a real acquired
+seed in eligible soil, acquire/prepare a Marlroot clod and verify its FireClay
+output. Continue the remaining product families where ordinary play provides
+them, then the works forage/preparation/brew/coin route. Preserve approved art
+and current evidence. Packaged activation, physical Deck, active frame timing,
+east/kitchen and the complete six-site journey remain separate open gates.

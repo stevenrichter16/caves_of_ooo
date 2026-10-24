@@ -260,3 +260,98 @@ the saved30-slot source failed its contract assertion; see [RED](Verification/Li
 This does not establish native parsing or resolve the still-unread startup
 dialog. The combat runtime remains the previously verified253-case version;
 no new gameplay or art was added during recovery.
+
+
+## Recovered ordinary run and attribution follow-up — 2026-10-24
+
+The user-authorized source backup and selective cleanup restored useful disk
+headroom. Unity now opens, compiles and runs SampleScene; the earlier modal was
+identified as package-signature warnings in the installed6000.3.4f1 editor.
+Detailed cleanup and retained-build evidence lives in LOCAL-STORAGE-AUDIT.md.
+This supersedes the earlier unread-dialog blocker; the official editor patch
+for signature validation remains a separately recorded environment follow-up.
+
+Ordinary seed64 launch, movement, two northbound transitions and real crop
+harvest/examine now have untouched1280×800 captures. New combat captures
+confirm complete separated values and unobscured Player art. Independent
+review found a further P2: Scrabbler2071's Bleeding at37..44,15 lies beyond
+Player41,17 while its actual recipient is40,20. Correct metadata and no body
+overpaint are insufficient when visual attribution is misleading.
+
+### Preimplementation plan / verified corrections
+
+| Premise | Source/evidence | Correction before production |
+| --- | --- | --- |
+| Avoiding actor cells is sufficient | G2Action-20261024-131115-920/frame-17.png | Also reject a label beyond another disclosed actor in its whole glyph span |
+| Captured origin always bounds attribution | UpdateEventTextPosition follows exact owner's current cell | Use the same current cell, falling back to finite lethal origin |
+| Top-edge labels always sit above owners | BaseY clamps to5 | Scan the strictly intermediate signed interval in either direction |
+| Existing Stunned test should stay visible | Owner39,20 and neighbor40,19 block all truthful lanes | Revise to whole omission; keep no-overpaint assertion |
+| Creature tag alone grants disclosure | CanShowEventText rejects foreign/carried ownership and fog | Reuse the existing predicate; preserve hidden/covered/foreign/carried parity |
+
+Minimum change: extend only AsciiFxRenderer.CanPlaceEventText with a bounded,
+allocation-free check between candidate row and current recipient across the
+entire glyph width. Retain candidate-row protection, three lanes, exact
+reference identity, chronological reservations, whole-readout retirement and
+authoritative combat log. No new sprites, combat/RNG, event schema or timing.
+At most24columns by5intermediate rows per candidate; no world scan or cache.
+Read current renderer, bus disclosure/custody predicates, Cell top-owner and
+existing grouped tests before patching. This is CoO-original presentation,
+not a claim of Qud source parity.
+
+Native RED must precede production:17 drafted new cases plus2 independent
+review counters (foreign-render/carried competitor), one revised existing
+expectation,61 total. Then native GREEN, prior bounded regression fixtures,
+independent cold review and actual ordinary-input recapture. Tests do not
+establish visual acceptance, capture-free pacing, packaged or physical Deck
+performance. Plot harvest/examine is partial G3 acceptance only; planting,
+clod preparation and the complete product/state loop remain pending.
+
+
+Native attribution RED reproduced11behavioral failures in61cases (50controls
+passed),13:33:38–13:33:39UTC. The minimal renderer predicate then passed61/61
+at13:35:22UTC,0skipped. Exact evidence: g2-attribution-red.xml and
+g2-attribution-green.xml plus summaries. Native controls include both
+independent foreign-render/carried competitor checks; warm layout remains
+zero measured managed bytes. This is not a new overall performance claim.
+Independent source cold-eye found no remaining P1/P2. The13 prior regression fixtures then passed211/211 at13:36:57–13:38:36UTC,
+0skipped (g2-attribution-regression.xml). Total272 current native cases pass.
+The warm allocation assertion covers bounded rendering only, not a speedup.
+
+### Actual post-attribution Play and acceptance
+
+Ordinary seed64 launch used SampleScene, actual Game target1280×800, no forced
+art override or seeded gameplay injection. N moved southeast to41,13 after
+bootstrap had already started; it is not evidence of selecting New Game. Six
+Down inputs approached the same actors, then Left/b/b supplied genuine bumps.
+Combat rolls differed from the earlier run; no exact original Bleeding replay
+is claimed.41 untouched EOF frames and26 attack/damage observations are saved:
+
+- G2Action-20261024-134107-270:24frames/20events. Frame12 shows separate1/8
+  at40,18/40,17 on Scrabbler2071; Shaken spans30..35,19 directly above
+  Dog2089 at32,20. Player41,16 stays visible. Frame17 shows the finite lethal6.
+- G2Action-20261024-134257-723:17frames/6events. Frame07 records actual
+  Player lethal2 on Gleaner2074, distinct from Warden2078's earlier2.
+  Frames14–16 clear readouts/dead owner; g2-attribution-idle.json later
+  confirms Player and Dog Idle, no pending reaction,40HP and inactive capture.
+- Both finish receipts report no export errors; event observers were removed.
+  g2-attribution-launch-cleanup.json confirms stopped Play, no save isolation,
+  no pending art/view borrowing, null save override and original SampleScene.
+
+Independent [visual review](Verification/Live16x24/g2-attribution-postfix-visual-review.md)
+found no new significant defect in the inspected PNGs/all41 indexed samples.
+The exact original competing-actor geometry is proven by native RED→GREEN;
+these captures provide ordinary regression evidence with genuine differing
+outcomes. Across sampled records no readout spans touch on the same row or
+cover Player's logical cell. The log preserves outcomes omitted by placement.
+
+Self-review: 🟡 visual-attribution defect fixed before commit; 🔵 independent
+source/visual review clear within scope; 🧪 Player hurt/guard/parry, continuous
+motion/audio sync, physical Deck, packaged delivery and complete G2 remain
+open. No approved art, gameplay/RNG, input or action timing changed. This
+closes the narrow grouped-readout/attribution gate, not the opening release.
+
+Recovery native check now reads32serialized layers at correct named indices
+(recovery-native-layer-read.json). Console has0errors and2 memoryless-depth
+warnings (recovery-console.json); package-signature warnings remain documented
+in recovery-package-signature-audit.md and need a patched6.3 editor. No new
+editor package or game build was downloaded or produced during this pass.
