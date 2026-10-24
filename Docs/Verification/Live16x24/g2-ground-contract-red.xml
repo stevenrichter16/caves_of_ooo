@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="66" result="Failed(Child)" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 03:11:56Z" end-time="2026-10-24 03:12:03Z" duration="7.206138">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30739" result="Failed" site="Child" start-time="2026-10-24 03:11:56Z" end-time="2026-10-24 03:12:03Z" duration="7.206138" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37838" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30739" result="Failed" site="Child" start-time="2026-10-24 03:11:56Z" end-time="2026-10-24 03:12:03Z" duration="7.112069" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37839" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30739" result="Failed" site="Child" start-time="2026-10-24 03:11:56Z" end-time="2026-10-24 03:12:03Z" duration="7.018681" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37840" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30739" result="Failed" site="Child" start-time="2026-10-24 03:11:56Z" end-time="2026-10-24 03:12:03Z" duration="6.831314" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28720" name="FlatPixelOpeningGroundCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="66" result="Failed" site="Child" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:12:03Z" duration="6.423805" total="66" passed="11" failed="55" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28735" name="ActualCoatingDirtyHookRepaintsNativeGroundAndItsBankBelowAnUnchangedActor" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualCoatingDirtyHookRepaintsNativeGroundAndItsBankBelowAnUnchangedActor" methodname="ActualCoatingDirtyHookRepaintsNativeGroundAndItsBankBelowAnUnchangedActor" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1242835618" result="Failed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.169564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+PaintFixture.UseGroundAtlas (UnityEngine.Texture2D atlas) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:631
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualCoatingDirtyHookRepaintsNativeGroundAndItsBankBelowAnUnchangedActor () [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:124
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28797" name="ActualResourceAndDefaultWorldShareAllTwentyOneNativeCells" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualResourceAndDefaultWorldShareAllTwentyOneNativeCells" methodname="ActualResourceAndDefaultWorldShareAllTwentyOneNativeCells" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="547230878" result="Failed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.003578" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualResourceAndDefaultWorldShareAllTwentyOneNativeCells () [0x00094] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:459
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28725" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.274622" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28721" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;Player&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="768597387" result="Passed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.062414" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28722" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;HealingTonic&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1887083882" result="Passed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.045915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28723" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;Player&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1416271553" result="Passed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.045453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28724" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;HealingTonic&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="928696657" result="Passed" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:11:57Z" duration="0.043946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28743" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-24 03:11:57Z" end-time="2026-10-24 03:12:01Z" duration="4.420148" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28737" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;remembered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;remembered&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="214373542" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.025105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28738" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;unexplored&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1699610171" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.023704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28739" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;water&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1366542594" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.024115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28740" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;ice&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1236641901" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.024147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28741" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;oil&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="615139872" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.023890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28742" name="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot(&quot;mixed&quot;)" methodname="ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1891186968" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.023288" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ADisclosedDryNeighborAddsOneBankButUnknownOrLiquidDoesNot (System.String condition) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28794" name="CachedFramesHaveIndependentOwnersAndBorrowedAssetsAreNeverMutatedOrDisposed" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.CachedFramesHaveIndependentOwnersAndBorrowedAssetsAreNeverMutatedOrDisposed" methodname="CachedFramesHaveIndependentOwnersAndBorrowedAssetsAreNeverMutatedOrDisposed" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="2018647206" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.023683" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.CachedFramesHaveIndependentOwnersAndBorrowedAssetsAreNeverMutatedOrDisposed () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:403
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28752" name="ExactLowerPassableGroundSurvivesAVisiblePlayerCover" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:02Z" duration="0.089873" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28749" name="ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;RoadStone&quot;,16)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;RoadStone&quot;,16)" methodname="ExactLowerPassableGroundSurvivesAVisiblePlayerCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="328750755" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.024519" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover (System.String blueprint, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:229
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28750" name="ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;CropRow&quot;,18)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;CropRow&quot;,18)" methodname="ExactLowerPassableGroundSurvivesAVisiblePlayerCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="631328838" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:01Z" duration="0.023935" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover (System.String blueprint, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:229
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28751" name="ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;RipeCropRow&quot;,18)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover(&quot;RipeCropRow&quot;,18)" methodname="ExactLowerPassableGroundSurvivesAVisiblePlayerCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="610308403" result="Failed" start-time="2026-10-24 03:12:01Z" end-time="2026-10-24 03:12:02Z" duration="0.022660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExactLowerPassableGroundSurvivesAVisiblePlayerCover (System.String blueprint, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:229
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28732" name="ExistingColorLookupCannotUseAnInvalidLowerRow" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.257899" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28726" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;foreign-render&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1011242662" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.044607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28727" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;hidden-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;hidden-render&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="681483400" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.042296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28728" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;CropRow&quot;,&quot;foreign-physics&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="451545698" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.042329" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28729" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;carried&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1393898577" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.042362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28730" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;equipped&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1326968474" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.042067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28731" name="ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;stale-list&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingColorLookupCannotUseAnInvalidLowerRow(&quot;RipeCropRow&quot;,&quot;stale-list&quot;)" methodname="ExistingColorLookupCannotUseAnInvalidLowerRow" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="693344171" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.042331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28796" name="ExistingInjectedWorldRemainsResourceFreeAndKeepsItsFlatColorBackground" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ExistingInjectedWorldRemainsResourceFreeAndKeepsItsFlatColorBackground" methodname="ExistingInjectedWorldRemainsResourceFreeAndKeepsItsFlatColorBackground" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="2113639808" result="Passed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.003922" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28784" name="HiddenOrUnexploredGroundNeverReadsNewNativeState" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.103388" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28780" name="HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;water&quot;)" methodname="HiddenOrUnexploredGroundNeverReadsNewNativeState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1158060703" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:346
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28781" name="HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;road&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;road&quot;)" methodname="HiddenOrUnexploredGroundNeverReadsNewNativeState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="502728726" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:346
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28782" name="HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;field&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;field&quot;)" methodname="HiddenOrUnexploredGroundNeverReadsNewNativeState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="306956235" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:346
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28783" name="HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;prepared&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState(&quot;prepared&quot;)" methodname="HiddenOrUnexploredGroundNeverReadsNewNativeState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1889404684" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.HiddenOrUnexploredGroundNeverReadsNewNativeState (System.String kind) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:346
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28778" name="InvalidCropDoesNotKeepPreparedSoilWet" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.214980" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28773" name="InvalidCropDoesNotKeepPreparedSoilWet(&quot;part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet(&quot;part&quot;)" methodname="InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="756257067" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:317
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28774" name="InvalidCropDoesNotKeepPreparedSoilWet(&quot;render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet(&quot;render&quot;)" methodname="InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1049646232" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.025775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:317
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28775" name="InvalidCropDoesNotKeepPreparedSoilWet(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet(&quot;hidden&quot;)" methodname="InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="494647112" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.037768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:317
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28776" name="InvalidCropDoesNotKeepPreparedSoilWet(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet(&quot;physics&quot;)" methodname="InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="943800473" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.103551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:317
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28777" name="InvalidCropDoesNotKeepPreparedSoilWet(&quot;stage&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet(&quot;stage&quot;)" methodname="InvalidCropDoesNotKeepPreparedSoilWet" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="249428101" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023855" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidCropDoesNotKeepPreparedSoilWet (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:317
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28768" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.327546" total="14" passed="0" failed="14" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28754" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-render&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="471698258" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28755" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;hidden-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;hidden-render&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="906832763" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023755" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28756" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-physics&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1603690494" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28757" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;missing-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;missing-physics&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1747481467" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28758" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;takeable&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="522706961" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28759" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;solid&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="133128824" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28760" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;carried&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="372142746" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28761" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;equipped&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1607998328" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28762" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;visual-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;visual-id&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="216188723" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28763" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;visual-variant&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="128545075" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28764" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;glyph-variants&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1812770946" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28765" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;foreign-cell&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1796767702" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28766" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;stale-list&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;stale-list&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1253883952" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28767" name="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover(&quot;footprint&quot;)" methodname="InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1520021426" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.InvalidLowerRoadCannotSupplyNativeGroundEvenUnderAValidCover (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28785" name="ManagedGraphReplacementRejectsTheOldGroundAndRecoversByExactReference" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ManagedGraphReplacementRejectsTheOldGroundAndRecoversByExactReference" methodname="ManagedGraphReplacementRejectsTheOldGroundAndRecoversByExactReference" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1703301047" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.022484" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ManagedGraphReplacementRejectsTheOldGroundAndRecoversByExactReference () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:361
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28793" name="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.025677" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28790" name="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(0,0)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(0,0)" methodname="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="2070611896" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.002714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact (System.Int32 width, System.Int32 height) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:392
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28791" name="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(335,24)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(335,24)" methodname="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="579508992" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.002409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact (System.Int32 width, System.Int32 height) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:392
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28792" name="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(336,23)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact(336,23)" methodname="MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="368324875" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.002398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MissingOrMalformedAtlasLeavesBorrowedSelectorAndTextureIntact (System.Int32 width, System.Int32 height) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:392
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28747" name="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:03Z" duration="0.070854" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28744" name="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;oil&quot;)" methodname="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="583061150" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:02Z" duration="0.023080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad (System.String added) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28745" name="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;acid&quot;)" methodname="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1312762949" result="Failed" start-time="2026-10-24 03:12:02Z" end-time="2026-10-24 03:12:03Z" duration="0.023499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad (System.String added) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28746" name="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad(&quot;ice&quot;)" methodname="MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="736750372" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.023628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.MixedCenterNeverUsesCleanWaterArtOrFallsThroughToRoad (System.String added) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28779" name="OrdinaryPlantableGrassAndUnpreparedGrowingCropDoNotBecomePreparedBeds" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OrdinaryPlantableGrassAndUnpreparedGrowingCropDoNotBecomePreparedBeds" methodname="OrdinaryPlantableGrassAndUnpreparedGrowingCropDoNotBecomePreparedBeds" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1829581018" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OrdinaryPlantableGrassAndUnpreparedGrowingCropDoNotBecomePreparedBeds () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:333
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28789" name="OtherGraphsDoNotBorrowTheOpeningGroundFamily" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.070910" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28786" name="OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.11.9.0&quot;)" methodname="OtherGraphsDoNotBorrowTheOpeningGroundFamily" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="688347590" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28787" name="OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.11.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.11.10.1&quot;)" methodname="OtherGraphsDoNotBorrowTheOpeningGroundFamily" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1378633982" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.023551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28788" name="OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily(&quot;Overworld.12.10.0&quot;)" methodname="OtherGraphsDoNotBorrowTheOpeningGroundFamily" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="2074992102" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.022300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OtherGraphsDoNotBorrowTheOpeningGroundFamily (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28771" name="OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.094128" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28769" name="OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity(&quot;foreign-field&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity(&quot;foreign-field&quot;)" methodname="OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="151256743" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.035352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:279
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28770" name="OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity(&quot;foreign-soil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity(&quot;foreign-soil&quot;)" methodname="OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1840298725" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.057964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.OwnedFieldAndCultivationMarkersCannotBeBorrowedFromAnotherEntity (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:279
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28772" name="PreparedGrassKeepsItsAuthoredVariantsAndMoistureComesOnlyFromItsCurrentCrop" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.PreparedGrassKeepsItsAuthoredVariantsAndMoistureComesOnlyFromItsCurrentCrop" methodname="PreparedGrassKeepsItsAuthoredVariantsAndMoistureComesOnlyFromItsCurrentCrop" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1505934951" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.075159" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.PreparedGrassKeepsItsAuthoredVariantsAndMoistureComesOnlyFromItsCurrentCrop () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:292
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28733" name="PreparedHarvestedFieldTakesPriorityOverItsOldFieldTexture" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.PreparedHarvestedFieldTakesPriorityOverItsOldFieldTexture" methodname="PreparedHarvestedFieldTakesPriorityOverItsOldFieldTexture" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="24406500" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024199" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.PreparedHarvestedFieldTakesPriorityOverItsOldFieldTexture () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:95
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28753" name="RoadVariationUsesCoordinateParityWithoutChangingItsGeometry" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.RoadVariationUsesCoordinateParityWithoutChangingItsGeometry" methodname="RoadVariationUsesCoordinateParityWithoutChangingItsGeometry" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1671847826" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024475" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.RoadVariationUsesCoordinateParityWithoutChangingItsGeometry () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:241
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28734" name="UnpreparedGenericCropRetainsItsColorCueInsteadOfBorrowingUnderlyingRoadArt" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.UnpreparedGenericCropRetainsItsColorCueInsteadOfBorrowingUnderlyingRoadArt" methodname="UnpreparedGenericCropRetainsItsColorCueInsteadOfBorrowingUnderlyingRoadArt" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="328356224" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024218" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.UnpreparedGenericCropRetainsItsColorCueInsteadOfBorrowingUnderlyingRoadArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:109
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28795" name="WarmGroundResolutionAllocatesNothingAndDoesNotAdvanceState" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WarmGroundResolutionAllocatesNothingAndDoesNotAdvanceState" methodname="WarmGroundResolutionAllocatesNothingAndDoesNotAdvanceState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1010735030" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.024570" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WarmGroundResolutionAllocatesNothingAndDoesNotAdvanceState () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:423
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28748" name="WaterIsActualCellStateUnderTheForegroundAndNeverReconstructedFromPondCoordinates" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WaterIsActualCellStateUnderTheForegroundAndNeverReconstructedFromPondCoordinates" methodname="WaterIsActualCellStateUnderTheForegroundAndNeverReconstructedFromPondCoordinates" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="643941631" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.023500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WaterIsActualCellStateUnderTheForegroundAndNeverReconstructedFromPondCoordinates () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:209
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28736" name="WaterUsesAllSixteenDisclosedDryEdgeMasksWithoutChangingWorldState" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WaterUsesAllSixteenDisclosedDryEdgeMasksWithoutChangingWorldState" methodname="WaterUsesAllSixteenDisclosedDryEdgeMasksWithoutChangingWorldState" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="880293875" result="Failed" start-time="2026-10-24 03:12:03Z" end-time="2026-10-24 03:12:03Z" duration="0.023500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Opening ground companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:525
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests+CatalogFixture..ctor () [0x0007d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:550
+at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.WaterUsesAllSixteenDisclosedDryEdgeMasksWithoutChangingWorldState () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:153
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

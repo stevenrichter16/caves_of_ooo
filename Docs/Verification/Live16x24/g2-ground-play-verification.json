@@ -1,0 +1,165 @@
+{
+  "scope": "Bounded ordinary seed64 opening ground route, not complete graphics release",
+  "date": "2026-10-24",
+  "productionBase": "e6b6609f1",
+  "nativeTests": {
+    "focused": 71,
+    "regressionIncludingFocused": 563,
+    "failed": 0,
+    "skipped": 0
+  },
+  "actions": [
+    {
+      "label": "g2-ground-start",
+      "at": "2026-10-24T03:23:00.4537680Z",
+      "player": [
+        40,
+        12
+      ],
+      "tick": 10,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-start.png"
+    },
+    {
+      "label": "g2-ground-pond-approach",
+      "at": "2026-10-24T03:24:29.4269640Z",
+      "player": [
+        38,
+        7
+      ],
+      "tick": 80,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-pond-approach.png"
+    },
+    {
+      "label": "g2-ground-pond-frozen",
+      "at": "2026-10-24T03:25:18.7915780Z",
+      "player": [
+        38,
+        7
+      ],
+      "tick": 90,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-pond-frozen.png"
+    },
+    {
+      "label": "g2-ground-thaw-attempt",
+      "at": "2026-10-24T03:26:14.1179020Z",
+      "player": [
+        38,
+        7
+      ],
+      "tick": 90,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-thaw-attempt.png"
+    },
+    {
+      "label": "g2-ground-water-walk",
+      "at": "2026-10-24T03:30:17.3618260Z",
+      "player": [
+        36,
+        8
+      ],
+      "tick": 120,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-water-walk.png"
+    },
+    {
+      "label": "g2-ground-checkpoint-return",
+      "at": "2026-10-24T03:30:48.6192100Z",
+      "player": [
+        40,
+        12
+      ],
+      "tick": 10,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-checkpoint-return.png"
+    },
+    {
+      "label": "g2-ground-field-covered",
+      "at": "2026-10-24T03:31:51.3307940Z",
+      "player": [
+        46,
+        12
+      ],
+      "tick": 90,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-field-covered.png"
+    },
+    {
+      "label": "g2-ground-field-harvest-menu",
+      "at": "2026-10-24T03:33:24.1513080Z",
+      "player": [
+        45,
+        12
+      ],
+      "tick": 100,
+      "hp": 40,
+      "inputState": "WorldActionMenuOpen",
+      "capture": "Docs/Verification/Live16x24/g2-ground-field-harvest-menu.png"
+    },
+    {
+      "label": "g2-ground-field-harvested",
+      "at": "2026-10-24T03:33:45.2238370Z",
+      "player": [
+        45,
+        12
+      ],
+      "tick": 110,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-field-harvested.png"
+    },
+    {
+      "label": "g2-ground-field-prepare-menu",
+      "at": "2026-10-24T03:34:09.8299800Z",
+      "player": [
+        45,
+        12
+      ],
+      "tick": 110,
+      "hp": 40,
+      "inputState": "WorldActionMenuOpen",
+      "capture": "Docs/Verification/Live16x24/g2-ground-field-prepare-menu.png"
+    },
+    {
+      "label": "g2-ground-field-prepared",
+      "at": "2026-10-24T03:34:30.5517090Z",
+      "player": [
+        45,
+        12
+      ],
+      "tick": 120,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-field-prepared.png"
+    },
+    {
+      "label": "g2-ground-prepared-covered",
+      "at": "2026-10-24T03:35:24.6816540Z",
+      "player": [
+        46,
+        12
+      ],
+      "tick": 130,
+      "hp": 40,
+      "inputState": "Normal",
+      "capture": "Docs/Verification/Live16x24/g2-ground-prepared-covered.png"
+    }
+  ],
+  "bounds": [
+    "Private saves/seed64 only; no forced presentation",
+    "All actions ordinary keyboard; no simulation injection",
+    "Thaw attempt failed; later ice expiration is dry ground, not melt",
+    "Wet20 ordinary Play remains open",
+    "Wrapped editor timing is retained tail only; no speedup or physical Deck claim"
+  ],
+  "cleanup": "g2-ground-launch-cleanup.json"
+}

@@ -8,7 +8,9 @@ with a reversible Graphics choice and continuous projection during travel.
 See [renderer evidence](GRAPHICS-G1-RENDERER.md) and
 [launch evidence](GRAPHICS-G1-LAUNCH.md). G2 connected masonry is now integrated
 and accepted within its bounded ordinary keyboard route; see
-[wall evidence](GRAPHICS-G2-BOUNDARIES.md). Pond/road/soil scene finishing is next.
+[wall evidence](GRAPHICS-G2-BOUNDARIES.md). Pond/road/soil are also integrated
+with bounded ordinary Play acceptance in [ground evidence](GRAPHICS-G2-GROUND.md);
+wet-soil ordinary validation and full scene acceptance remain open.
 This is not complete regional artwork or a new Steam Deck build.
 
 ## Project priority and decision authority
@@ -398,3 +400,16 @@ to improve the pond/road/soil grouping, then close the active combat/action view
 and remaining opening coverage. Physical Deck/Vault and packaged gates stay
 pending. The native plot/works-product ordinary-use gaps and east/kitchen
 remain in G3. Keep this continuation active across sessions.
+
+
+### Latest G2 ground continuation
+
+Pond/road/soil family is integrated and bounded Play reviewed. Native71/71 plus
+563/563 overlapping regressions, source reproduction, actual freeze/expiry bank
+update, water/path walking and Harvest→Prepare support this packet. Wet20 is
+native-only; no successful melt or completed scene claimed. See
+[ground record](GRAPHICS-G2-GROUND.md) for exact failures, fixes, screenshots,
+wrapped timing limits and restored isolated session. Next work is active
+framing/motion/combat acceptance and G3's existing product-use debt, followed
+by east/kitchen and the full six-site journey. Preserve this family's accepted
+pixels unless a named defect appears.

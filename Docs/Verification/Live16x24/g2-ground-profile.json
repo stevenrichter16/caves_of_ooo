@@ -1,0 +1,71 @@
+{
+  "label": "g2-ground-profile",
+  "start": "2026-10-24T03:23:41.772879Z",
+  "end": "2026-10-24T03:35:25.672062Z",
+  "elapsedSeconds": 703.899183,
+  "frames": 566309,
+  "zone": "Overworld.11.10.0",
+  "player": [
+    46,
+    12
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 57342.721252441406,
+      "max": 36034708,
+      "p99": 109167
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1290084.0366973877,
+      "max": 841236250,
+      "p99": 5957417
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 39.82060241699219,
+      "max": 43,
+      "p99": 41
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 39.75066375732422,
+      "max": 42,
+      "p99": 41
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 10064.036605834961,
+      "max": 10909,
+      "p99": 10909
+    }
+  ],
+  "bounds": "Editor ordinary pond/field interactions and walking and idle/tool time. No controlled baseline, hardware Deck, standalone or isolated-renderer attribution. All recorders wrapped: statistics cover retained last131072 samples only, not all566309 session frames."
+}

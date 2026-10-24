@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.987821">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30677" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.987821" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37766" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30677" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.922683" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27315" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37767" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30677" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.731624" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37768" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30677" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.670960" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28720" name="FlatPixelOpeningGroundCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.456928" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28725" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.455217" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28721" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;Player&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1709723330" result="Failed" start-time="2026-10-24 03:05:18Z" end-time="2026-10-24 03:05:19Z" duration="0.316828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current lower field row must retain its dry substrate under an actor or loose item.
+  Expected: DrySoil
+  But was:  Ground
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved (System.String rowBlueprint, System.String coverBlueprint) [0x00170] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28722" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;CropRow&quot;,&quot;HealingTonic&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1965795998" result="Failed" start-time="2026-10-24 03:05:19Z" end-time="2026-10-24 03:05:19Z" duration="0.046014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current lower field row must retain its dry substrate under an actor or loose item.
+  Expected: DrySoil
+  But was:  Ground
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved (System.String rowBlueprint, System.String coverBlueprint) [0x00170] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28723" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;Player&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1893461521" result="Failed" start-time="2026-10-24 03:05:19Z" end-time="2026-10-24 03:05:19Z" duration="0.044233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current lower field row must retain its dry substrate under an actor or loose item.
+  Expected: DrySoil
+  But was:  Ground
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved (System.String rowBlueprint, System.String coverBlueprint) [0x00170] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28724" name="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved(&quot;RipeCropRow&quot;,&quot;HealingTonic&quot;)" methodname="ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved" classname="CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests" runstate="Runnable" seed="1702705158" result="Failed" start-time="2026-10-24 03:05:19Z" end-time="2026-10-24 03:05:19Z" duration="0.043791" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current lower field row must retain its dry substrate under an actor or loose item.
+  Expected: DrySoil
+  But was:  Ground
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelOpeningGroundCatalogTests.ActualSubmittedFieldSoilSurvivesARealForegroundCoverUntilTheRowIsRemoved (System.String rowBlueprint, System.String coverBlueprint) [0x00170] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningGroundCatalogTests.cs:51
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

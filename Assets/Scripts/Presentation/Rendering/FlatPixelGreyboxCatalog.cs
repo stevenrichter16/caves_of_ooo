@@ -58,7 +58,8 @@ namespace CavesOfOoo.Rendering
         private readonly FlatPixelOpeningArtCatalog _openingArt;
         private FlatPixelFallbackCatalog _glyphFallback;
         private FlatPixelBoundaryCatalog _boundaryArt;
-        private readonly bool _loadBoundaryResources;
+        private FlatPixelOpeningGroundCatalog _groundArt;
+        private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
         private sealed class SupplyObservation
@@ -89,7 +90,7 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.KeeperResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.PlotProductsResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksProductsResourcePath))
-        { _loadBoundaryResources = true; }
+        { _loadOptionalResources = true; }
 
         /// <summary>Injects a borrowed opening atlas. Null deliberately exercises
         /// the procedural fallback without consulting Resources.</summary>
@@ -538,9 +539,25 @@ namespace CavesOfOoo.Rendering
                         && crop.GrowthStage >= 0 && crop.GrowthStage <= (crop.HarvestAtMaturity ? 2 : 1))
                         return crop.MoistureTicks > 0 ? FlatPixelGreyboxGround.WetSoil : FlatPixelGreyboxGround.DrySoil;
                 }
-                var field = owner?.GetPart<FieldHarvestPart>();
-                if (field != null && field.ParentEntity == owner || owner?.BlueprintName == "CropRow"
-                    || CultivatedSoilPart.IsCultivated(zone, cell))
+                // A fixed field row also owns its substrate below an actor or
+                // dropped item. Selecting the foreground must not erase soil.
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var row = cell.Objects[i];
+                    var field = row?.GetPart<FieldHarvestPart>();
+                    var render = row?.GetPart<RenderPart>();
+                    var physics = row?.GetPart<PhysicsPart>();
+                    var footprint = row?.GetPart<SpatialFootprintPart>();
+                    if (row != null && (field != null && field.ParentEntity == row || row.BlueprintName == "CropRow")
+                        && CurrentOwnerCell(zone, cell, row)
+                        && (footprint == null || footprint.ParentEntity == row && zone.IsFootprintCurrent(row)
+                            && SpatialQuery.DistanceToCell(zone, row, cell.X, cell.Y) == 0)
+                        && render != null && render.ParentEntity == row && render.Visible
+                        && physics != null && physics.ParentEntity == row && !physics.Takeable && !physics.Solid
+                        && physics.InInventory == null && physics.Equipped == null)
+                        return FlatPixelGreyboxGround.DrySoil;
+                }
+                if (CultivatedSoilPart.IsCultivated(zone, cell))
                     return FlatPixelGreyboxGround.DrySoil;
             }
             // Roads and ordinary floor are ground geometry. No hidden crop/soil
@@ -674,6 +691,19 @@ namespace CavesOfOoo.Rendering
             var kind = local ? Classify(owner) : fallback.Kind;
             var ground = local ? GroundOf(zone, cell, owner, fallback.Remembered) : fallback.GroundKind;
             var groundColor = local ? GroundColor(ground) : fallback.GroundColor;
+            var groundTile = local ? _tiles[(int)FlatPixelGreyboxKind.Ground] : fallback.GroundTile;
+            if (local && !fallback.Remembered && ReferenceGladePlan.IsActive(zone))
+            {
+                if (_groundArt == null && _loadOptionalResources)
+                    _groundArt = new FlatPixelOpeningGroundCatalog(_glyphFallback);
+                if (_groundArt != null && _groundArt.TryResolve(zone, x, y, out var nativeGround, out var groundTint))
+                {
+                    groundTile = nativeGround;
+                    // These are opaque authored RGB pixels, not a white swatch
+                    // to multiply by the existing semantic background color.
+                    groundColor = groundTint;
+                }
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -694,7 +724,7 @@ namespace CavesOfOoo.Rendering
             }
             if (local && !fallback.Remembered && owner?.BlueprintName == "MarlbackPatchbearer")
                 ObserveSupply(zone, cell, owner, foreground, true);
-            result = new FlatPixelGreyboxCell(local ? _tiles[(int)FlatPixelGreyboxKind.Ground] : fallback.GroundTile,
+            result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
                 fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local);
             return true;
@@ -721,14 +751,14 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBoundaryCatalog BoundaryArtFor(Zone zone, Entity owner, bool remembered, out bool allowNativeFallback)
         {
             allowNativeFallback = true;
-            if (!_loadBoundaryResources && _boundaryArt == null
+            if (!_loadOptionalResources && _boundaryArt == null
                 || !ReferenceGladePlan.IsActive(zone) || !FlatPixelBoundaryCatalog.HasKnownRole(owner)) return null;
             // A missing optional texture permits old art for a valid owner.
             // Semantic rejection does not: old wall frames have weaker guards
             // and would otherwise conceal authored variants or invalid state.
             allowNativeFallback = FlatPixelBoundaryCatalog.IsEligible(owner, remembered);
             if (!allowNativeFallback) return null;
-            if (_boundaryArt == null && _loadBoundaryResources)
+            if (_boundaryArt == null && _loadOptionalResources)
             {
                 // Default construction alone opts into this optional group.
                 // Missing Resources are cached as an unavailable adapter, and
@@ -777,6 +807,8 @@ namespace CavesOfOoo.Rendering
             _openingArt.Dispose();
             _boundaryArt?.Dispose();
             _boundaryArt = null;
+            _groundArt?.Dispose();
+            _groundArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

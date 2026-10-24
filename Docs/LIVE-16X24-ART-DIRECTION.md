@@ -656,3 +656,34 @@ ordinary route. Preserve accepted walls/actors. Full opening coverage/motion,
 product ordinary-use gates, east/kitchen, complete six-site journey, packaged
 build and physical Deck remain unfinished. Continue the #1 graphics priority;
 this family is progress, not a finished graphical release.
+
+
+### G2 opening ground integrated — 2026-10-24 UTC
+
+[Ground continuation](GRAPHICS-G2-GROUND.md) records the actual capture→imagegen
+paintover/parts→editable native source→runtime→Play loop. Pond banks follow
+current disclosed dry neighbors; quiet roads and old/prepared soil use the
+existing background layer. Fixed-row soil now survives a covering player/item.
+No reaction, planting, crop or collision rule changed; approved actors/walls stay.
+
+The final71 focused and563 overlapping regression tests pass; two real runtime
+bugs have saved RED/GREEN (covered field and empty footprint anchor). Actual
+ordinary seed64 screenshots show New Game, road/pond walking, Rime Grip, ice
+expiry/new bank, F6 restore, finite Harvest→Prepare and player over frame19.
+See [opening](Verification/Live16x24/g2-ground-start.png) and
+[prepared field](Verification/Live16x24/g2-ground-field-prepared.png), with
+[gates/receipts](Verification/Live16x24/g2-ground-play-verification.json).
+Independent code and visual review found no remaining significant blocker in
+this family. Wet20 is native-tested only; Ember Spit thaw attempt failed, and
+ice expiry is not a melt claim. Current generic ice cue is not new native art.
+
+Wrapped editor profiling retains only the last131072samples, including idle:
+renderer max36.03471ms/main-thread max841.23625ms; no speedup or Deck claim.
+Stopped cleanup restores all owned state. Caffeinate remains active. An existing
+underfoot action menu targets Player while describing the crop; adjacent
+interaction works. This is documented for a later focused fix, not hidden.
+
+**Next:** G2 framing/motion/combat and remaining opening coverage, then close
+plot/works product ordinary gates and east/kitchen. Whole journey, packaged
+launch and physical Deck remain outstanding. Continue the completion plan;
+do not treat these accepted ground pixels as a finished graphics release.
