@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "artifact": "working-court.png",
+  "width": 48,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 3,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Opaque 255 throughout; grass background #032F23.",
+  "palette": {
+    "grass": "032F23",
+    "stone_olive": "344A40",
+    "stone_grey": "425548",
+    "worn_surface": "4A5B4D"
+  },
+  "source": "working-court.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_working_court.py",
+  "resource": "Sprites/Live16x24/working-court",
+  "concept": "ArtSource/Live16x24/concepts/working-court-v1.png",
+  "baselineCaptures": [
+    "Docs/Verification/Live16x24/working-landscape-64-kitchen-2x.png",
+    "Docs/Verification/Live16x24/working-landscape-65-kitchen-2x.png"
+  ],
+  "scope": "Original static ground-source art only. Exact StoneFloor/court-floor role with visible plantable grass joints. No full paving, Barren, road, active effect or animation. Runtime authority/variant routing and Unity/gameplay verification remain parent-owned.",
+  "sha256": "c0e65c7be0ab2eabeb6023df5dac774ac72266e42bb915b308b1770819d19f24",
+  "frames": [
+    {
+      "index": 0,
+      "id": "broad-pair",
+      "blueprint": "StoneFloor",
+      "role": "court-floor",
+      "variant": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "ground",
+      "description": "Two unequal broad worn stones with a wide open green joint and clipped corners.",
+      "stonePixels": 148,
+      "grassPixels": 236,
+      "palette": [
+        "032F23",
+        "344A40",
+        "425548",
+        "4A5B4D"
+      ],
+      "state": "Static coordinate variant; no semantic or animation difference."
+    },
+    {
+      "index": 1,
+      "id": "offset-pair",
+      "blueprint": "StoneFloor",
+      "role": "court-floor",
+      "variant": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "ground",
+      "description": "A longer left stone and shorter offset lower stone, with broad green margins.",
+      "stonePixels": 131,
+      "grassPixels": 253,
+      "palette": [
+        "032F23",
+        "344A40",
+        "425548",
+        "4A5B4D"
+      ],
+      "state": "Static coordinate variant; no semantic or animation difference."
+    },
+    {
+      "index": 2,
+      "id": "broken-three",
+      "blueprint": "StoneFloor",
+      "role": "court-floor",
+      "variant": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "layer": "ground",
+      "description": "One wide stone and two smaller broad pieces; grass remains connected around every piece.",
+      "stonePixels": 134,
+      "grassPixels": 250,
+      "palette": [
+        "032F23",
+        "344A40",
+        "425548",
+        "4A5B4D"
+      ],
+      "state": "Static coordinate variant; no semantic or animation difference."
+    }
+  ]
+}

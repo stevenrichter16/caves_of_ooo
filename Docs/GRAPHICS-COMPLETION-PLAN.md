@@ -649,3 +649,38 @@ mask result; improve place recognition with purposeful boundaries, not filler
 props. The larger scene design, G2 motion/defence, service/crop outcomes, complete
 six-site journey, package/device gates and regional kits remain open. No new
 build exists from this pass. Continue the hourly work; graphics is still priority1.
+
+
+## Latest continuation — working court integrated, 2026-10-24 19:14 UTC heartbeat
+
+[Working-court plan and evidence](GRAPHICS-G2-WORKING-COURT.md) closes the local
+kitchen framing slice:9real masonry owners and15 sparse stepping-stone owners
+join the unchanged services on fresh exact-address/non-Legacy Hedgerow layouts.
+The real capture→imagegen→part extraction→editable native art→integration loop
+produced three16x24 ground cells; approved18 art PNGs are unchanged. Grass joints
+remain plantable and original Grass is preserved. Barren paving was rejected
+because it would erase original vegetation during placement/load.
+
+272affected native Unity cases pass after recorded REDs and independent source
+reviews. Actual ordinary routes on seeds64/65 reached both court orientations,
+opened the pan menu and gathered Claspbean into2pulp+1seed. Seed64 entered the
+unoccupied cot; seed65 had a real solid Farmer there. Actual stone reader artwork
+and prose agree. F5/F6 preserved recorded owners byID and inventory on both;
+seed65 border exit/return preserved all31 remaining court packet owners. The
+first order-sensitive comparison is retained alongside its independent keyed
+correction. Two-seed1x/2x visual review accepts this bounded scene improvement.
+
+[Actual rotated court](Verification/Live16x24/working-court-64-kitchen-2x.png)
+and [actual seed65 court](Verification/Live16x24/working-court-65-kitchen-2x.png).
+Both editor sessions are stopped/restored and checkpoint saves preserved. The
+68.59second unwrapped editor profile measures idle/zoom/look/menu/tool overhead,
+not walking or Deck performance; max41draws, renderer mean0.05267ms/max45.63ms.
+No new build, physical device proof or full release acceptance is claimed.
+
+**Next:** close the visible incidental-actor native coverage gap, starting with
+this actual Farmer, after auditing existing approved actor routing. Also retain
+an existing multi-owner Look heading/reader discrepancy as a named UI follow-up;
+do not misreport Player-covered floor Examine as passed. Then continue G2
+motion/defence, paid meal/ready trays, full forge/Claspbean lifecycle, complete
+six-zone journey, package/device acceptance and regional kits. Preserve accepted
+court and landscape work. Graphics stays priority1 and the heartbeat continues.

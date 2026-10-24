@@ -1,0 +1,236 @@
+{
+  "review": "Independent keyed persistence review; no Unity or source mutation",
+  "reviewer": "/root/projection_cold_review",
+  "date": "2026-10-24",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/working-court-65-kitchen-entry.json",
+      "sha256": "3b1a833487b1881ad4c3c3a0c481c55e2dd30cd385a0b2d50fc2f8f718ae8e0a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/working-court-65-harvest.json",
+      "sha256": "7dfdb35b5500187b2102d0dad53b451a2707918235706f6e3c87578ae8295807"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/working-court-65-saved.json",
+      "sha256": "8905e92882720612cab515200ee5ee42de9a9dc58bef0e71ea22f632aee4a40f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/working-court-65-loaded.json",
+      "sha256": "6be8632c07950225695f1e8b31332920f9a2852748ee71a5f912d6f023d52e03"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/working-court-65-returned.json",
+      "sha256": "6359496f64ec5fad9759c717edfdb220353fe0a959c0435da95df1b164366b45"
+    }
+  ],
+  "originalOrderSensitiveReport": "Docs/Verification/Live16x24/working-court-65-persistence.json",
+  "savedLoaded": {
+    "leftCount": 191,
+    "rightCount": 191,
+    "uniqueIds": true,
+    "identicalIdSet": true,
+    "orderedArrayEqual": false,
+    "keyedRowsEqual": true,
+    "removedIds": [],
+    "addedIds": [],
+    "changedRows": []
+  },
+  "savedLoadedStateFieldsEqual": {
+    "seed": true,
+    "zone": true,
+    "tick": true,
+    "drams": true,
+    "flat": true,
+    "player": true,
+    "hp": true
+  },
+  "savedLoadedInventory": {
+    "leftCount": 8,
+    "rightCount": 8,
+    "orderedArrayEqual": true,
+    "keyedRowsEqual": true
+  },
+  "savedLoadedNonStateMetadataChanges": {
+    "label": [
+      "working-court-65-saved",
+      "working-court-65-loaded"
+    ],
+    "editorReportedScreenSize": [
+      [
+        1280,
+        800
+      ],
+      [
+        2321,
+        1139
+      ]
+    ]
+  },
+  "loadedReturned": {
+    "leftCount": 191,
+    "rightCount": 191,
+    "uniqueIds": true,
+    "identicalIdSet": true,
+    "orderedArrayEqual": false,
+    "keyedRowsEqual": false,
+    "removedIds": [],
+    "addedIds": [],
+    "changedRows": [
+      {
+        "id": "7167",
+        "blueprint": "CopperPipe",
+        "fields": {
+          "visible": {
+            "before": false,
+            "after": true
+          }
+        }
+      },
+      {
+        "id": "7168",
+        "blueprint": "CopperPipe",
+        "fields": {
+          "visible": {
+            "before": false,
+            "after": true
+          }
+        }
+      },
+      {
+        "id": "7169",
+        "blueprint": "Magpie",
+        "fields": {
+          "visible": {
+            "before": true,
+            "after": false
+          },
+          "x": {
+            "before": 54,
+            "after": 50
+          },
+          "y": {
+            "before": 4,
+            "after": 0
+          }
+        }
+      },
+      {
+        "id": "7170",
+        "blueprint": "MarlbackScrabbler",
+        "fields": {
+          "x": {
+            "before": 73,
+            "after": 77
+          }
+        }
+      }
+    ]
+  },
+  "loadedReturnedStateChanges": {
+    "tick": {
+      "before": 1310,
+      "after": 1530
+    },
+    "player": {
+      "before": [
+        50,
+        8
+      ],
+      "after": [
+        54,
+        8
+      ]
+    }
+  },
+  "loadedReturnedInventoryEqual": true,
+  "residentPacketReturn": {
+    "recordedOwners": 31,
+    "allRecordedFieldsEqual": true,
+    "roleCounts": {
+      "shelter": 9,
+      "oven": 1,
+      "court-floor": 15,
+      "pan": 1,
+      "resident": 1,
+      "escrow": 1,
+      "pickup": 1,
+      "chair": 1,
+      "cot": 1
+    }
+  },
+  "harvest": {
+    "removedOwnerIds": [
+      "7211"
+    ],
+    "removedRows": [
+      {
+        "id": "7211",
+        "blueprint": "ClaspbeanCrop",
+        "role": "kitchen-crop",
+        "x": 49,
+        "y": 8,
+        "visible": true,
+        "stage": 2,
+        "moisture": 0,
+        "composted": false,
+        "ticksPerStage": 20,
+        "ticksInStage": 0,
+        "growthWetTickRemainder": 0,
+        "contents": null,
+        "repair": null,
+        "kitchenState": null,
+        "healingSlot": null,
+        "hp": 0,
+        "reserveState": null
+      }
+    ],
+    "addedInventoryRows": [
+      {
+        "id": "7227",
+        "blueprint": "ClaspbeanPulp",
+        "count": 2,
+        "displayName": "claspbean pulp (x2)",
+        "brewForm": null,
+        "brewEffects": null,
+        "healing": ""
+      },
+      {
+        "id": "7229",
+        "blueprint": "ClaspbeanSeed",
+        "count": 1,
+        "displayName": "claspbean seed",
+        "brewForm": null,
+        "brewEffects": null,
+        "healing": null
+      }
+    ],
+    "removedCropStillAbsentAfterLoadAndReturn": true
+  },
+  "cot": {
+    "bedId": "7197",
+    "farmerId": "7139",
+    "cell": [
+      53,
+      6
+    ],
+    "recordedEntryFarmerCell": [
+      63,
+      18
+    ],
+    "sameCellSinceHarvest": true,
+    "rootReportedActualPhysicsSolid": {
+      "Farmer7139": true,
+      "Bed7197": false
+    },
+    "physicsProvenance": "Root reports its actual ordinary-Play readback. Physics.Solid is not a field in these saved owner JSON rows; independent keyed review verifies exact occupant identity and coordinates, not that missing field.",
+    "interpretation": "The observed cot obstruction is a living Farmer on the bed cell, not solid cot or stepping-stone geometry. No successful ordinary cot sleep is claimed."
+  },
+  "conclusion": "The savedLoaded owners=false flag is order-sensitive only. Every recorded owner row matches by unique ID after load. Return differences are bounded roaming/visibility changes; all 31 remaining resident packet owners match exactly, and harvest depletion plus all 8 inventory rows persist.",
+  "limits": [
+    "Only the fields present in these five JSON receipts were compared. This is not a full serialization or all-zone equivalence proof.",
+    "Grass substrate rows and actual Physics.Solid are absent from this receipt schema; their native tests/root readback remain separate evidence.",
+    "No paid meal, pan repair, cot sleep, complete crop growth, physical Steam Deck controls or package acceptance follows from this comparison.",
+    "Original receipt arrays and original order-sensitive persistence report are preserved unchanged."
+  ]
+}

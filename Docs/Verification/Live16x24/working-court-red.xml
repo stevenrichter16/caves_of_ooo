@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="39" result="Failed(Child)" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 19:30:46Z" end-time="2026-10-24 19:31:03Z" duration="16.8702706">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30938" result="Failed" site="Child" start-time="2026-10-24 19:30:46Z" end-time="2026-10-24 19:31:03Z" duration="16.870271" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38087" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30938" result="Failed" site="Child" start-time="2026-10-24 19:30:46Z" end-time="2026-10-24 19:31:03Z" duration="16.611005" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38088" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30938" result="Failed" site="Child" start-time="2026-10-24 19:30:46Z" end-time="2026-10-24 19:31:03Z" duration="16.477655" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38089" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30938" result="Failed" site="Child" start-time="2026-10-24 19:30:46Z" end-time="2026-10-24 19:31:03Z" duration="16.228807" total="39" passed="4" failed="35" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29127" name="FlatPixelWorkingCourtTests" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:48Z" duration="0.914859" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="29150" name="ExistingGroundAndHazardsOutrankStones" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.215483" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29145" name="ExistingGroundAndHazardsOutrankStones(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;water&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1871272712" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.073509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29146" name="ExistingGroundAndHazardsOutrankStones(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;oil&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="128138086" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.034750" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29147" name="ExistingGroundAndHazardsOutrankStones(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;crop&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1211441660" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.035155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29148" name="ExistingGroundAndHazardsOutrankStones(&quot;soil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;soil&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1180012259" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.034557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29149" name="ExistingGroundAndHazardsOutrankStones(&quot;road&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;road&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1161200708" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.034406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones (System.String reason) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29151" name="HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" methodname="HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1215714811" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.035106" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29144" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:48Z" duration="0.485373" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29133" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;removed&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1078035664" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.034843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29134" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;marker&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="746501495" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.033489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29135" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-render&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1418130463" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.033466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29136" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-physics&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1785307612" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.057828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29137" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;carried&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1626635881" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:47Z" duration="0.113432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29138" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="51540618" result="Failed" start-time="2026-10-24 19:30:47Z" end-time="2026-10-24 19:30:48Z" duration="0.035122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29139" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;takeable&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="58158215" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.035195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29140" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;barren&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="967097834" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29141" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;visual&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="987068988" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29142" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;duplicate&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="937311762" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29143" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;stale-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;stale-cell&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="920754129" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29152" name="MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" methodname="MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="584602345" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034078" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:106
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29128" name="RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" methodname="RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1204813531" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:53
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29132" name="StonesRemainGroundUnderTheActualCoveringOwner" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.106199" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29129" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;Player&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="162491877" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29130" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;HealingTonic&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="950845114" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.034392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29131" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;Chest&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="635976579" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:48Z" duration="0.033926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real court-floor has no native ground adapter yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.Create (UnityEngine.Texture2D texture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:37
+at CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorkingCourtTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24352" name="SpreadWorkingCourtTests" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:31:03Z" duration="14.821058" total="17" passed="4" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24372" name="ACounterfeitSolidCotCannotPassTheBedStandingContract" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ACounterfeitSolidCotCannotPassTheBedStandingContract" methodname="ACounterfeitSolidCotCannotPassTheBedStandingContract" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="680167630" result="Failed" start-time="2026-10-24 19:30:48Z" end-time="2026-10-24 19:30:49Z" duration="1.083251" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.ACounterfeitSolidCotCannotPassTheBedStandingContract () [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:209
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24356" name="ActualColdKitchenHasTruthfulFramingAndReachableServices" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 19:30:49Z" end-time="2026-10-24 19:30:52Z" duration="2.886985" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24353" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(64)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(64)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="86625229" result="Failed" start-time="2026-10-24 19:30:49Z" end-time="2026-10-24 19:30:50Z" duration="0.961194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A continuous back edge replaces the two isolated cold walls.
+  Expected: 9
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.AssertStamp (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:90
+at CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices (System.Int32 seed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:129
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24354" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(65)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(65)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="338096922" result="Failed" start-time="2026-10-24 19:30:50Z" end-time="2026-10-24 19:30:51Z" duration="0.967955" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A continuous back edge replaces the two isolated cold walls.
+  Expected: 9
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.AssertStamp (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:90
+at CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices (System.Int32 seed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:129
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24355" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(60)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(60)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="938708003" result="Failed" start-time="2026-10-24 19:30:51Z" end-time="2026-10-24 19:30:52Z" duration="0.954873" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A continuous back edge replaces the two isolated cold walls.
+  Expected: 9
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.AssertStamp (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:90
+at CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices (System.Int32 seed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:129
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24371" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 19:30:52Z" end-time="2026-10-24 19:30:53Z" duration="1.426032" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24369" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;revoke&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;revoke&quot;)" methodname="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="979456412" result="Failed" start-time="2026-10-24 19:30:52Z" end-time="2026-10-24 19:30:53Z" duration="0.760503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources (System.String fault) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24370" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;source-change&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;source-change&quot;)" methodname="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="147831335" result="Failed" start-time="2026-10-24 19:30:53Z" end-time="2026-10-24 19:30:53Z" duration="0.662088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources (System.String fault) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24362" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-24 19:30:53Z" end-time="2026-10-24 19:30:56Z" duration="3.017877" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24358" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;legacy&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1717142771" result="Passed" start-time="2026-10-24 19:30:53Z" end-time="2026-10-24 19:30:54Z" duration="0.769465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24359" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;unconnected&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;unconnected&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="600378962" result="Passed" start-time="2026-10-24 19:30:54Z" end-time="2026-10-24 19:30:55Z" duration="0.505437" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24360" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;outside&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;outside&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1627635401" result="Passed" start-time="2026-10-24 19:30:55Z" end-time="2026-10-24 19:30:55Z" duration="0.403737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24361" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;other-formation&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;other-formation&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1605511664" result="Passed" start-time="2026-10-24 19:30:55Z" end-time="2026-10-24 19:30:56Z" duration="1.335426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24368" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-24 19:30:56Z" end-time="2026-10-24 19:31:01Z" duration="4.267608" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24363" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;barren&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="299043660" result="Failed" start-time="2026-10-24 19:30:56Z" end-time="2026-10-24 19:30:57Z" duration="0.916048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24364" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;solid&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="240718119" result="Failed" start-time="2026-10-24 19:30:57Z" end-time="2026-10-24 19:30:58Z" duration="0.885664" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24365" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;takeable&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1695058550" result="Failed" start-time="2026-10-24 19:30:58Z" end-time="2026-10-24 19:30:59Z" duration="0.857116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24366" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;crop&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1949467004" result="Failed" start-time="2026-10-24 19:30:59Z" end-time="2026-10-24 19:31:00Z" duration="0.737684" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24367" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;pool&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1647928335" result="Failed" start-time="2026-10-24 19:31:00Z" end-time="2026-10-24 19:31:01Z" duration="0.861167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24357" name="OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" methodname="OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="580628492" result="Failed" start-time="2026-10-24 19:31:01Z" end-time="2026-10-24 19:31:01Z" duration="0.856797" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A continuous back edge replaces the two isolated cold walls.
+  Expected: 9
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.AssertStamp (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:90
+at CavesOfOoo.Tests.SpreadWorkingCourtTests.OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone () [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:149
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24373" name="VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" methodname="VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1082816139" result="Failed" start-time="2026-10-24 19:31:01Z" end-time="2026-10-24 19:31:03Z" duration="1.278740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A continuous back edge replaces the two isolated cold walls.
+  Expected: 9
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.AssertStamp (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:90
+at CavesOfOoo.Tests.SpreadWorkingCourtTests.VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:217
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

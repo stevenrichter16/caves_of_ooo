@@ -14,6 +14,11 @@ namespace CavesOfOoo.Core
         public const string ReserveBedKey = "ConnectedSpread.ReserveBed";
         const int MaxTrials = 256;
         static readonly (int x, int y) Arrival = (40, 12);
+        // Sparse real owners, fitted only in the fresh connected kitchen. These
+        // stones have plantable grassy joints; they are never Barren paving.
+        static readonly (int x, int y)[] CourtWalls = { (-3,-4),(-2,-4),(-1,-4),(0,-4),(1,-4),(2,-4),(-3,-3),(-3,-2),(-3,-1) };
+        static readonly (int x, int y)[] CourtStones = { (-1,-3),(0,-3),(1,-3),(2,-3),(-1,-2),(-1,-1),(0,-1),(1,-1),(1,0),(0,1),(1,1),(2,1),(3,1),(3,-1),(3,0) };
+        static readonly (int x, int y)[] CourtAccess = { (0,-3),(1,-3),(2,-3),(0,-1),(1,-1),(3,-2),(3,-1),(3,0),(1,0),(0,1) };
 
         /// <summary>Stage one passive resident and its small functional site against the exact
         /// terrain/attempt authority. The returned proof is transient; it never replays on load.</summary>
@@ -43,18 +48,22 @@ namespace CavesOfOoo.Core
             var added = new HashSet<Entity>();
             bool Sources() => Identity() && source() && original.Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
             bool Current() => authority() && Sources();
+            bool court = connected && !plot && zone.ZoneID == "Overworld.12.11.0"
+                && plan.Topology != SpreadExplorationTopology.Legacy && plan.Formation == Formation.Hedgerow;
             (string bp, string role, int x, int y)[] specs = plot
                 ? new[] { ("SpreadSeedKeeper", "resident", 0, 0), ("CandyCarrotCrop", "crop", -2, -1), ("CandyCarrotCrop", "crop", -1, -1),
                     ("EmberwheatCrop", "crop", -2, 1), ("EmberwheatCrop", "crop", -1, 1), ("Signpost", "sign", 2, 0) }
                 : new[] { ("SpreadWaysideCook", "resident", 0, 0), ("Oven", "oven", -2, 0), ("Bed", "cot", 2, 0),
                     ("Chair", "chair", 2, 1), ("StoneWall", "shelter", -2, -2), ("StoneWall", "shelter", -1, -2) };
             if (connected && !plot) specs[3] = ("Chair", "chair", 2, -1);
+            if (court) specs = specs.Take(4).Concat(CourtWalls.Select(p => ("StoneWall", "shelter", p.x, p.y))).ToArray();
             if (connected)
                 specs = specs.Concat(plot
                     ? new[] { ("MarlrootCrop", "reserve-crop", -2, -3), ("PitchpodCrop", "reserve-crop", -1, -3),
                         ("ConnectedReserveTray", "reserve-tray", 2, -2), ("Signpost", "reserve-sign", 1, -3) }
                     : new[] { ("ConnectedBatchPan", "pan", 0, -2), ("ConnectedKitchenEscrow", "escrow", 1, -2),
                         ("ConnectedKitchenPickup", "pickup", 2, -2), ("ClaspbeanCrop", "kitchen-crop", -2, 2) }).ToArray();
+            if (court) specs = specs.Concat(CourtStones.Select(p => ("StoneFloor", "court-floor", p.x, p.y))).ToArray();
             if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return Refuse("admission");
             var before = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
             var anchor = (x: SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-anchor") % 2 == 0 ? 22 : 58, y: 12);
@@ -68,8 +77,10 @@ namespace CavesOfOoo.Core
                     if (candidate.Any(p => Distance(p, Arrival) <= 6 || !before.Place(p.x, p.y))) continue;
                     if (connected && specs.Select((spec, i) => (spec, i)).Where(s => s.spec.role == "reserve-crop" || s.spec.role == "kitchen-crop")
                         .Any(s => PreparedGround(zone, candidate[s.i], plan) == null)) continue;
+                    if (court && specs.Select((spec, i) => (spec, i)).Any(s => s.spec.role == "court-floor"
+                        && !SteppingGround(zone, candidate[s.i]))) continue;
                     if (++trials > MaxTrials) return Refuse("admission");
-                    if (!Fits(zone, before, before, candidate, plot, at, turn, plan)) continue;
+                    if (!Fits(zone, before, before, candidate, plot, at, turn, plan, court ? specs : null)) continue;
                     positions = candidate; origin = at; rotation = turn; break;
                 }
                 if (positions != null) break;
@@ -90,7 +101,12 @@ namespace CavesOfOoo.Core
                     if (!Current()) return Refuse("admission");
                     stage="create:"+spec.bp;
                     var entity = factory.CreateEntity(spec.bp);
-                    if (!Fresh(entity, spec.bp) || !Current()) return Refuse("admission");
+                    if (!Fresh(entity, spec.bp) || !Current() || court && !CourtPayload(entity, spec.role)) return Refuse("admission");
+                    if (spec.role == "court-floor")
+                    {
+                        entity.GetPart<RenderPart>().DisplayName = "worn stepping stones";
+                        Describe(entity, "Worn stones make a firm stepping place beside the kitchen. Grass grows through the open joints; those joints remain plantable, not a prepared bed.");
+                    }
                     if (spec.role == "resident")
                     {
                         if (!Resident(entity, plot)) return Refuse("resident-payload");
@@ -126,12 +142,17 @@ namespace CavesOfOoo.Core
                     if (connected) entity.Properties["ConnectedSpread.Role"] = spec.role;
                     staged.Add(entity);
                 }
-                if (!UniqueGraph(zone, staged) || !Current()) return Refuse("staged-graph");
+                if (!UniqueGraph(zone, staged) || !Current()
+                    || court && staged.Where((entity, i) => !CourtPayload(entity, specs[i].role)).Any()) return Refuse("staged-graph");
                 stage="publication";
                 for (int i = 0; i < staged.Count; i++)
                 {
                     var entity = staged[i]; var at = positions[i];
                     if (!Current() || !placed.Values.All(proof => proof()) || !new SpreadWildernessSituationBuilder.Geometry(zone, added).Place(at.x, at.y)) return Refuse("admission");
+                    // Check after authority callbacks and before AddEntity: Barren
+                    // would delete original Grass before a receipt could reject it.
+                    if (court && (!CourtPayload(entity, specs[i].role)
+                        || specs[i].role == "court-floor" && !SteppingGround(zone, at))) return Refuse("admission");
                     if (!zone.AddEntity(entity, at.x, at.y)) return Refuse("admission");
                     added.Add(entity); placed.Add(entity, SpreadGenerationReceipt.CaptureFinalState(zone, new[] { entity }));
                     if (!Current() || !placed.Values.All(proof => proof())) return Refuse("admission");
@@ -191,7 +212,7 @@ namespace CavesOfOoo.Core
                 // this cold semantic contract also pins its initial members.
                 bool Final() => Current() && packetProof()
                     && (!connected || !plot || staged[0].GetPart<LocalGatheringClaimPart>()?.Permissions?.Count == 0) && Fits(zone,
-                    new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet)), before, positions, plot, origin, rotation, plan);
+                    new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet)), before, positions, plot, origin, rotation, plan, court ? specs : null);
                 if (!Final()) return Refuse("final-proof");
                 owners = packet; final = Final; success = true; return true;
             }
@@ -214,6 +235,37 @@ namespace CavesOfOoo.Core
                         if (placed.TryGetValue(entity, out var proof) && proof()) zone.RemoveEntity(entity);
                 }
             }
+        }
+
+        static bool CourtBlocks(string role) => role == "resident" || role == "oven" || role == "pan" || role == "shelter";
+        static bool CourtPayload(Entity owner, string role)
+        {
+            var physics = owner?.GetPart<PhysicsPart>();
+            if (owner == null || owner.HasTag("Barren") || physics == null || physics.ParentEntity != owner
+                || physics.Takeable || physics.InInventory != null || physics.Equipped != null) return false;
+            // The route proof may treat these services as walkable only when the
+            // actual authored payload agrees, including the occupied cot cell.
+            if (role != "resident" && (physics.Solid != CourtBlocks(role) || !CourtBlocks(role) && owner.HasTag("Solid"))) return false;
+            // Closure and source Parts can contradict walkability without setting
+            // Physics.Solid. An ordinary stone or walkable service is neither.
+            if (!CourtBlocks(role) && (owner.HasPart<DoorPart>() || owner.HasPart<SealedLibraryBarrierPart>()
+                || owner.HasPart<TileStateSourcePart>())) return false;
+            if (role != "court-floor") return true;
+            return owner.BlueprintName == "StoneFloor" && owner.HasTag("Terrain") && !owner.HasTag("Vegetation")
+                && !owner.HasTag("Plantable") && !owner.HasTag("Creature") && !owner.HasTag("Item") && !owner.HasTag("Wall")
+                && !owner.HasTag("Furniture") && !owner.HasPart<CropPart>() && !owner.HasPart<CultivatedSoilPart>()
+                && !owner.HasPart<FieldHarvestPart>() && !owner.HasPart<HarvestablePart>() && !owner.HasPart<RepairablePart>()
+                && !owner.HasPart<ContainerPart>() && !owner.HasPart<LiquidPoolPart>() && !owner.HasPart<GasPoolPart>()
+                && !owner.HasPart<TriggerOnStepPart>() && !owner.HasPart<StairsUpPart>() && !owner.HasPart<StairsDownPart>()
+                && !owner.HasPart<SpatialFootprintPart>();
+        }
+        static bool SteppingGround(Zone zone, (int x, int y) at)
+        {
+            var cell = zone.GetCell(at.x, at.y);
+            if (cell == null || cell.Objects.Count != 1 || BarrenGroundRules.IsBarren(cell)) return false;
+            var grass = cell.Objects[0];
+            return grass.BlueprintName == "Grass" && grass.HasTag("Terrain") && grass.HasTag("Plantable")
+                && !grass.HasPart<CultivatedSoilPart>() && DoorPart.IsBareGround(grass) && LocalGatheringClaims.Ground(grass, zone);
         }
 
         static bool Fresh(Entity e, string blueprint) => e != null && e.BlueprintName == blueprint && !string.IsNullOrEmpty(e.ID) && e.SpatialZone == null
@@ -279,9 +331,15 @@ namespace CavesOfOoo.Core
         }
         static bool Plantable(Zone zone, (int x, int y) p) => zone.GetCell(p.x, p.y) is Cell cell && !BarrenGroundRules.IsBarren(cell) && cell.Objects.Any(e => e.HasTag("Terrain") && e.HasTag("Plantable"));
         static bool Fits(Zone zone, SpreadWildernessSituationBuilder.Geometry geometry, SpreadWildernessSituationBuilder.Geometry before,
-            (int x, int y)[] positions, bool plot, (int x, int y) origin, int rotation, SpreadCompositionPlan plan)
+            (int x, int y)[] positions, bool plot, (int x, int y) origin, int rotation, SpreadCompositionPlan plan,
+            (string bp, string role, int x, int y)[] courtSpecs = null)
         {
-            if (positions.Any(p => Distance(p, Arrival) <= 6 || !geometry.Place(p.x, p.y)) || !geometry.PreservesAgainst(before, positions)) return false;
+            // Uniqueness includes the passable stones and services. Only the
+            // guarded new stamp uses its real obstruction roles; legacy stays literal.
+            if (positions.Distinct().Count() != positions.Length
+                || positions.Any(p => Distance(p, Arrival) <= 6 || !geometry.Place(p.x, p.y))) return false;
+            var obstructions = courtSpecs == null ? positions : positions.Where((p, i) => CourtBlocks(courtSpecs[i].role)).ToArray();
+            if (!geometry.PreservesAgainst(before, obstructions)) return false;
             // Keep all existing creatures outside the opening footprint. This is deliberately
             // conservative for a friendly site, not a promise that roaming threats stay away.
             if (zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.GetProperty(RoleKey) != "resident" && positions.Any(p => Distance(p, zone.GetEntityPosition(e)) <= 3))) return false;
@@ -291,13 +349,26 @@ namespace CavesOfOoo.Core
                 foreach (var offset in new[] { (0, -1), (0, 1) })
                 { var p = At(origin, offset, rotation); if (!geometry.Place(p.x, p.y) || !Plantable(zone, p)) return false; }
             }
-            var blocked = new HashSet<(int x, int y)>(positions); var reached = geometry.Flood(blocked, Arrival, int.MaxValue, null);
+            var blocked = new HashSet<(int x, int y)>(obstructions); var reached = geometry.Flood(blocked, Arrival, int.MaxValue, null);
             if (!reached[Arrival.x, Arrival.y]) return false;
             foreach (var p in new[] { (x: 0, y: plan.WestY), (x: Zone.Width - 1, y: plan.EastY), (x: plan.NorthX, y: 0), (x: plan.SouthX, y: Zone.Height - 1) })
                 if (before.BorderReach[p.x, p.y] && !reached[p.x, p.y]) return false;
+            if (courtSpecs != null)
+            {
+                foreach (var offset in CourtAccess)
+                { var p = At(origin, offset, rotation); if (!geometry.Walk(p.x, p.y, blocked) || !reached[p.x, p.y]) return false; }
+                for (int x = -2; x <= 3; x++)
+                { var p = At(origin, (x, -3), rotation); if (!geometry.Walk(p.x, p.y, blocked) || !reached[p.x, p.y]) return false; }
+            }
             for (int i = 0; i < positions.Length; i++)
             {
-                if (!plot && i >= 4) continue;
+                if (courtSpecs != null)
+                {
+                    string role = courtSpecs[i].role;
+                    if (role == "shelter" || role == "court-floor") continue;
+                    if (role == "cot" && !reached[positions[i].x, positions[i].y]) return false;
+                }
+                else if (!plot && i >= 4) continue;
                 var p = positions[i];
                 if (new[] { (p.x - 1, p.y), (p.x + 1, p.y), (p.x, p.y - 1), (p.x, p.y + 1) }.Count(n => geometry.Walk(n.Item1, n.Item2, blocked) && reached[n.Item1, n.Item2]) < 2) return false;
             }

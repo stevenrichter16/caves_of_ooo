@@ -60,6 +60,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBoundaryCatalog _boundaryArt;
         private FlatPixelOpeningGroundCatalog _groundArt;
         private FlatPixelEastKitchenCatalog _eastKitchenArt;
+        private FlatPixelWorkingCourtCatalog _workingCourtArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -707,6 +708,15 @@ namespace CavesOfOoo.Rendering
                     groundColor = groundTint;
                 }
             }
+            var court = local && !fallback.Remembered ? WorkingCourtArtFor(zone) : null;
+            // Opaque material belongs to the real lower floor, independently of
+            // the covering foreground. Higher-priority soil/hazards refuse it.
+            if (court != null && court.TryResolve(zone, x, y, out var courtTile, out var courtFloor))
+            {
+                groundTile = courtTile; groundColor = Color.white;
+                ground = FlatPixelGreyboxGround.StoneFloor;
+                if (owner == courtFloor) kind = FlatPixelGreyboxKind.Ground;
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -745,6 +755,9 @@ namespace CavesOfOoo.Rendering
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
+            var court = local ? WorkingCourtArtFor(zone) : null;
+            if (court != null && court.TryResolve(zone, x, y, out var courtTile, out var courtFloor) && courtFloor == subject)
+            { sprite = courtTile.sprite; return sprite != null; }
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolve(subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -754,6 +767,14 @@ namespace CavesOfOoo.Rendering
             if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
                 return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
             return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        private FlatPixelWorkingCourtCatalog WorkingCourtArtFor(Zone zone)
+        {
+            if (zone.ZoneID != "Overworld.12.11.0") return null;
+            if (_workingCourtArt == null && _loadOptionalResources)
+                _workingCourtArt = new FlatPixelWorkingCourtCatalog();
+            return _workingCourtArt;
         }
 
         private FlatPixelEastKitchenCatalog EastKitchenArtFor(Zone zone, Entity owner)
@@ -830,6 +851,8 @@ namespace CavesOfOoo.Rendering
             _groundArt = null;
             _eastKitchenArt?.Dispose();
             _eastKitchenArt = null;
+            _workingCourtArt?.Dispose();
+            _workingCourtArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

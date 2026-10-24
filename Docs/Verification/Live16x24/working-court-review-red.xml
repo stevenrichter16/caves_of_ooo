@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="49" result="Failed(Child)" total="49" passed="46" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 19:36:31Z" end-time="2026-10-24 19:37:00Z" duration="28.9074094">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30948" result="Failed" site="Child" start-time="2026-10-24 19:36:31Z" end-time="2026-10-24 19:37:00Z" duration="28.907409" total="49" passed="46" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38097" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30948" result="Failed" site="Child" start-time="2026-10-24 19:36:32Z" end-time="2026-10-24 19:37:00Z" duration="28.647842" total="49" passed="46" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38098" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30948" result="Failed" site="Child" start-time="2026-10-24 19:36:32Z" end-time="2026-10-24 19:37:00Z" duration="28.520677" total="49" passed="46" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38099" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30948" result="Failed" site="Child" start-time="2026-10-24 19:36:32Z" end-time="2026-10-24 19:37:00Z" duration="28.272495" total="49" passed="46" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29131" name="FlatPixelWorkingCourtTests" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-10-24 19:36:32Z" end-time="2026-10-24 19:36:34Z" duration="1.316618" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="29160" name="AllocatedTilesAndSpritesAreDisposedButBorrowedAtlasSurvives" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.AllocatedTilesAndSpritesAreDisposedButBorrowedAtlasSurvives" methodname="AllocatedTilesAndSpritesAreDisposedButBorrowedAtlasSurvives" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="2045832675" result="Passed" start-time="2026-10-24 19:36:32Z" end-time="2026-10-24 19:36:33Z" duration="0.082274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29158" name="ExistingGroundAndHazardsOutrankStones" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.304121" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29153" name="ExistingGroundAndHazardsOutrankStones(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;water&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="633765706" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.063305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29154" name="ExistingGroundAndHazardsOutrankStones(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;oil&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="366244585" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.121828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29155" name="ExistingGroundAndHazardsOutrankStones(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;crop&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1065559128" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.039776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29156" name="ExistingGroundAndHazardsOutrankStones(&quot;soil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;soil&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="2077653422" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.038909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29157" name="ExistingGroundAndHazardsOutrankStones(&quot;road&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.ExistingGroundAndHazardsOutrankStones(&quot;road&quot;)" methodname="ExistingGroundAndHazardsOutrankStones" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="452960357" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.037680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29159" name="HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" methodname="HiddenCellAndOtherGraphsCannotRevealTheLiveCourtMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1824827464" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.038823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29152" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:34Z" duration="0.646850" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29137" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;removed&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1863942626" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.038668" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29138" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;marker&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1589136865" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.036637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29139" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-render&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1319987140" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.036800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29140" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;foreign-physics&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1663721404" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.038347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29141" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;carried&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1659424463" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.036862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29142" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="751125410" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.036784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29143" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;takeable&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1898792711" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.037411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29144" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;barren&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="125395394" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.035917" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29145" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;visual&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="681878134" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.035607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29146" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;duplicate&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1058649428" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.034887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29147" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;stale-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;stale-cell&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="247196004" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.035447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29148" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;no-grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;no-grass&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1094133903" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.056960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29149" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;solid-tag&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="49191026" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.104540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29150" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;player-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;player-tag&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="358286090" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:33Z" duration="0.039216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29151" name="InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.InvalidOrAmbiguousFloorCannotSupplyTheMaterial(&quot;zero-stack&quot;)" methodname="InvalidOrAmbiguousFloorCannotSupplyTheMaterial" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="2112641644" result="Passed" start-time="2026-10-24 19:36:33Z" end-time="2026-10-24 19:36:34Z" duration="0.038083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29161" name="MalformedTextureIsUnavailableWithoutImplicitResourceLoading" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.MalformedTextureIsUnavailableWithoutImplicitResourceLoading" methodname="MalformedTextureIsUnavailableWithoutImplicitResourceLoading" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="338722982" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.037015" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29162" name="MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" methodname="MissingAtlasFallsBackAndDisposeKeepsBorrowedTexture" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="355291403" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.036790" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29132" name="RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" methodname="RealSparseStonesUseNativeGroundAndSharedExamineWithoutADot" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="833367113" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.037712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29136" name="StonesRemainGroundUnderTheActualCoveringOwner" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.126869" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29133" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;Player&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="965995054" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.040267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29134" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;HealingTonic&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="328096550" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.038308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29135" name="StonesRemainGroundUnderTheActualCoveringOwner(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests.StonesRemainGroundUnderTheActualCoveringOwner(&quot;Chest&quot;)" methodname="StonesRemainGroundUnderTheActualCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelWorkingCourtTests" runstate="Runnable" seed="1438287534" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.044837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24352" name="SpreadWorkingCourtTests" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:37:00Z" duration="26.479915" total="21" passed="18" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24376" name="ACounterfeitSolidCotCannotPassTheBedStandingContract" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ACounterfeitSolidCotCannotPassTheBedStandingContract" methodname="ACounterfeitSolidCotCannotPassTheBedStandingContract" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1922952199" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:34Z" duration="0.184634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24356" name="ActualColdKitchenHasTruthfulFramingAndReachableServices" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:42Z" duration="7.664062" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24353" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(64)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(64)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="713841519" result="Passed" start-time="2026-10-24 19:36:34Z" end-time="2026-10-24 19:36:36Z" duration="2.464278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24354" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(65)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(65)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="89641699" result="Passed" start-time="2026-10-24 19:36:36Z" end-time="2026-10-24 19:36:39Z" duration="2.483158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24355" name="ActualColdKitchenHasTruthfulFramingAndReachableServices(60)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.ActualColdKitchenHasTruthfulFramingAndReachableServices(60)" methodname="ActualColdKitchenHasTruthfulFramingAndReachableServices" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="2072603948" result="Passed" start-time="2026-10-24 19:36:39Z" end-time="2026-10-24 19:36:42Z" duration="2.713536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24375" name="AStagedFloorMutatedDuringPublicationCannotClearOriginalGrass" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.AStagedFloorMutatedDuringPublicationCannotClearOriginalGrass" methodname="AStagedFloorMutatedDuringPublicationCannotClearOriginalGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="784133220" result="Passed" start-time="2026-10-24 19:36:42Z" end-time="2026-10-24 19:36:43Z" duration="1.380388" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24374" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 19:36:43Z" end-time="2026-10-24 19:36:44Z" duration="1.046725" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24372" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;revoke&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;revoke&quot;)" methodname="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="296743315" result="Passed" start-time="2026-10-24 19:36:43Z" end-time="2026-10-24 19:36:44Z" duration="0.565769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24373" name="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;source-change&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources(&quot;source-change&quot;)" methodname="FloorCreationCallbackCannotCommitAgainstChangedAuthorityOrOriginalSources" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="867009646" result="Passed" start-time="2026-10-24 19:36:44Z" end-time="2026-10-24 19:36:44Z" duration="0.476812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24362" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-24 19:36:44Z" end-time="2026-10-24 19:36:46Z" duration="2.448990" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24358" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;legacy&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="297229219" result="Passed" start-time="2026-10-24 19:36:44Z" end-time="2026-10-24 19:36:45Z" duration="0.775291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24359" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;unconnected&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;unconnected&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1394573875" result="Passed" start-time="2026-10-24 19:36:45Z" end-time="2026-10-24 19:36:45Z" duration="0.493251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24360" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;outside&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;outside&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="174554488" result="Passed" start-time="2026-10-24 19:36:45Z" end-time="2026-10-24 19:36:46Z" duration="0.411349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24361" name="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;other-formation&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.LegacyAndUnselectedResidentStampsKeepTheirTwoWalls(&quot;other-formation&quot;)" methodname="LegacyAndUnselectedResidentStampsKeepTheirTwoWalls" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1228687155" result="Passed" start-time="2026-10-24 19:36:46Z" end-time="2026-10-24 19:36:46Z" duration="0.765958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24371" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-24 19:36:46Z" end-time="2026-10-24 19:36:55Z" duration="8.891417" total="8" passed="5" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24363" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;barren&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="486922245" result="Passed" start-time="2026-10-24 19:36:46Z" end-time="2026-10-24 19:36:47Z" duration="0.614825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24364" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;solid&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="806127082" result="Passed" start-time="2026-10-24 19:36:47Z" end-time="2026-10-24 19:36:48Z" duration="0.502354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24365" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;takeable&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1650955905" result="Passed" start-time="2026-10-24 19:36:48Z" end-time="2026-10-24 19:36:48Z" duration="0.579346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24366" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;crop&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="859700860" result="Passed" start-time="2026-10-24 19:36:48Z" end-time="2026-10-24 19:36:49Z" duration="0.479421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24367" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;pool&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="415335495" result="Passed" start-time="2026-10-24 19:36:49Z" end-time="2026-10-24 19:36:49Z" duration="0.590844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24368" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;closed-door&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;closed-door&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1242857604" result="Failed" start-time="2026-10-24 19:36:49Z" end-time="2026-10-24 19:36:51Z" duration="2.031063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24369" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;closed-barrier&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;closed-barrier&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="554287545" result="Failed" start-time="2026-10-24 19:36:51Z" end-time="2026-10-24 19:36:53Z" duration="2.105079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24370" name="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;tile-source&quot;)" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass(&quot;tile-source&quot;)" methodname="MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1393962901" result="Failed" start-time="2026-10-24 19:36:53Z" end-time="2026-10-24 19:36:55Z" duration="1.983929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWorkingCourtTests.MalformedCourtFloorRefusesBeforeItCanRemoveAnyGrass (System.String fault) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWorkingCourtTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24357" name="OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" methodname="OverlayRetainsExactGrassOwnersAndPublicationProofTracksEveryNewStone" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="943353024" result="Passed" start-time="2026-10-24 19:36:55Z" end-time="2026-10-24 19:36:57Z" duration="2.098901" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24377" name="VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" fullname="CavesOfOoo.Tests.SpreadWorkingCourtTests.VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" methodname="VisitedSavedCourtKeepsRemovedMasonryStonesAndFiniteServiceStateLiteral" classname="CavesOfOoo.Tests.SpreadWorkingCourtTests" runstate="Runnable" seed="1652086337" result="Passed" start-time="2026-10-24 19:36:57Z" end-time="2026-10-24 19:37:00Z" duration="2.761205" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
