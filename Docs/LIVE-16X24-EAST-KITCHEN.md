@@ -210,3 +210,12 @@ Claspbean growing/replanting and pulp/meal uses remain separate pending gates;
 this inventory lacked forge components and Emberwheat grain. G2 Player defence/
 motion, complete six-zone release, incidental/purchased art and remaining
 regions are unfinished. Continue the hourly graphics work; do not pause it.
+
+
+Post-push maintenance: `8d02f27fc53cb6ff2e8c534b299701c16ed1871a` is on
+origin/main and all143 owned file blobs were verified. The bounded read-only
+[storage audit](Verification/Live16x24/east-kitchen-storage-audit.md) found no
+safe worthwhile stale cache/build candidate:0bytes removed,2.82GiB free.
+The current delivered archive hash is unchanged; sources/saves/backups and
+active editor caches remain preserved. It does not contain today's graphics.
+Continue the scene-composition plan above without clearing useful caches.
