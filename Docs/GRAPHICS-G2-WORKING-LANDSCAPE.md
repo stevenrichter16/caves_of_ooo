@@ -248,3 +248,13 @@ truthful connected edges, actual capture→imagegen→native source→integratio
 not a detached new asset packet. Then close the six-site journey, G2 Player
 motion/defence, remaining service states and packaged/device gates. Regional
 kits follow the opening release. Keep the authorized heartbeat active.
+
+
+Post-push maintenance: source/evidence commit `9728a7c652609d0c706ad3f797af8a710491a08e`
+was verified on server main with all 95 owned blobs matching. The subsequent
+[storage audit](Verification/Live16x24/working-landscape-storage-audit.md)
+found no confirmed worthwhile stale cache or superseded build: **0 bytes removed**.
+Free space was 2.52 GiB at the recorded snapshot. Current delivered archive hash
+is unchanged; sources, saves, backups and useful active caches remain protected.
+That older package does not contain this pass. Unity is stopped/restored and
+usable. Continue the working-court framing and remaining release gates above.

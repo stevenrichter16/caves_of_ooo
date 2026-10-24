@@ -930,3 +930,13 @@ mask result; improve place recognition with purposeful boundaries, not filler
 props. The larger scene design, G2 motion/defence, service/crop outcomes, complete
 six-site journey, package/device gates and regional kits remain open. No new
 build exists from this pass. Continue the hourly work; graphics is still priority1.
+
+
+Post-push maintenance: source/evidence commit `9728a7c652609d0c706ad3f797af8a710491a08e`
+was verified on server main with all 95 owned blobs matching. The subsequent
+[storage audit](Verification/Live16x24/working-landscape-storage-audit.md)
+found no confirmed worthwhile stale cache or superseded build: **0 bytes removed**.
+Free space was 2.52 GiB at the recorded snapshot. Current delivered archive hash
+is unchanged; sources, saves, backups and useful active caches remain protected.
+That older package does not contain this pass. Unity is stopped/restored and
+usable. Continue the working-court framing and remaining release gates above.
