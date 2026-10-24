@@ -975,3 +975,21 @@ do not misreport Player-covered floor Examine as passed. Then continue G2
 motion/defence, paid meal/ready trays, full forge/Claspbean lifecycle, complete
 six-zone journey, package/device acceptance and regional kits. Preserve accepted
 court and landscape work. Graphics stays priority1 and the heartbeat continues.
+
+
+Post-push continuation: `679ae9e2b6fae1b46eff8430b9e9066fc15cb331` was verified
+on server main with all104owned blobs matching. The
+[storage audit](Verification/Live16x24/working-court-storage-audit.md) reclaimed
+**0bytes**: only the current delivered archive remains and current Unity caches
+are active. Free space was2.25GiB. All source/saves/checkpoints/current archive
+remain preserved; the older delivered package does not include these graphics.
+
+The [next actor audit and plan](GRAPHICS-G2-INCIDENTAL-ACTORS.md) distinguishes
+missing art from a missing connection: Farmer needs a distinct native frame;
+ReedbackGrazer can use the user's unchanged approved `03-ridge.png`, currently
+unconnected to live flat selectors. Magpie/Viper/Scrabbler/Cook already have
+native routes. Begin with source-checked RED, actual capture-based Farmer concept
+and native editable source, then narrow owner routing and ordinary move-away /
+examine evidence. Do not silently alias inherited identities or reset the court.
+The named Cindercaller gap and other release gates remain open. Keep scheduled
+work active; this checkpoint completes one visible slice, not the overhaul.
