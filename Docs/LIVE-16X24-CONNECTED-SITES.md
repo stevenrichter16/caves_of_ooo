@@ -1,10 +1,23 @@
 # Live 16×24 — connected sites
 
-**Status: PARTIALLY IMPLEMENTED, 2026-10-23.** The actual two-seed census is complete and the glade’s connected cellar is integrated in the opt-in presentation; its precise evidence and remaining acceptance gates are in [the cellar record](LIVE-16X24-CELLAR.md). The north connector/seed plot have tested greybox admission, ordinary travel and captured concept targets. Their first [native vegetation packet](LIVE-16X24-NORTH-VEGETATION.md) is integrated (four new frames, Bush/Reeds reuse,312 distinct Unity cases and actual entry/harvest/plot captures); the [nine-frame works/creatures packet](LIVE-16X24-NORTH-WORKS.md) also passed 755 selected native cases and ordinary harvest/batch brewing with matching native examine portraits. The [plot packet](LIVE-16X24-NORTH-PLOT.md) now integrates the approved keeper, crop stages, tray and reserve cords with860 distinct native passes and an actual arrival capture. Complete its ordinary crop/service acceptance after the computer lock, then products. East connector/kitchen remain unadmitted. See [north continuation](LIVE-16X24-NORTH-ROUTE.md). A release build still does not enable flat mode. [Live art direction](LIVE-16X24-ART-DIRECTION.md) owns overall implementation status and the required production pipeline.
+**Status: PARTIALLY IMPLEMENTED; current overview updated 2026-10-24.**
+Normal New Game/Continue now defaults to flat16×24 and ordinary travel retains
+that projection, including outside the four admitted native-art graphs; see
+[G1 launch](GRAPHICS-G1-LAUNCH.md) and [G1 renderer](GRAPHICS-G1-RENDERER.md).
+The glade, cellar, north connector and Nella's plot have integrated native kits
+with bounded ordinary acceptance. Plot rights/growth/harvest/revisit acceptance
+is recorded in [the plot record](LIVE-16X24-NORTH-PLOT.md); the newer
+[plot products](LIVE-16X24-PLOT-PRODUCTS.md) and
+[works products](LIVE-16X24-WORKS-PRODUCTS.md) still need ordinary acceptance.
+East connector/kitchen have no admitted regional native kit yet and therefore
+use global flat fallback. The complete six-site journey, packaged launch and
+physical Deck acceptance remain open. [Completion plan](GRAPHICS-COMPLETION-PLAN.md)
+and [coverage ledger](../ArtSource/Live16x24/release-coverage.json) own the current
+delivery order/status; dated checkpoints below remain historical evidence.
 
 **Current cellar acceptance:** nine native frames are imported, including dedicated solid masonry; native [714/714 cellar/opening tests](Verification/Live16x24/opening-cellar-green.xml) passed. The portrait color correction passed [9/9 GPU tests](Verification/Live16x24/opening-portrait-color-green.xml), the overlapping [348/348 regression](Verification/Live16x24/opening-portrait-color-regression.xml), and an [exact actual-popup palette comparison](Verification/Live16x24/cellar-native-portrait-palette-review.json). These are overlapping receipts, not a sum of unique tests.
 
-The second ordinary keyboard journey completed finite looting, dismantling and harvesting, return upstairs, cellar revisit and F5/F6 save/load. Crate contents stayed zero; the pallet and ripe crop stayed removed; inventory retained two clay, two timber, two pulp, one seed, Ditchkeepers' Footwork and Shattered Rime. After the guard reduced health from 40 to 28, the player used Calm through the actual hotbar/target controls and returned to glade `(28,19)`, then descended to cellar `(40,12)`. Saving there, moving to `(40,11)` and loading restored `(40,12)`, 28 HP, flat presentation, inventory and depletion. Receipts: [supplies](Verification/Live16x24/cellar-native-supplies-final.json), [return](Verification/Live16x24/cellar-native-return-up.json), [revisit](Verification/Live16x24/cellar-native-revisit.json), [moved after save](Verification/Live16x24/cellar-native-saved-away.json), [reload](Verification/Live16x24/cellar-native-reloaded.json). The [cellar record](LIVE-16X24-CELLAR.md) preserves the failed first return and full acceptance details. Watered growth, the four surface art packets, full six-site journey, mouse/controller, physical Deck performance and normal release activation remain separate work.
+The second ordinary keyboard journey completed finite looting, dismantling and harvesting, return upstairs, cellar revisit and F5/F6 save/load. Crate contents stayed zero; the pallet and ripe crop stayed removed; inventory retained two clay, two timber, two pulp, one seed, Ditchkeepers' Footwork and Shattered Rime. After the guard reduced health from 40 to 28, the player used Calm through the actual hotbar/target controls and returned to glade `(28,19)`, then descended to cellar `(40,12)`. Saving there, moving to `(40,11)` and loading restored `(40,12)`, 28 HP, flat presentation, inventory and depletion. Receipts: [supplies](Verification/Live16x24/cellar-native-supplies-final.json), [return](Verification/Live16x24/cellar-native-return-up.json), [revisit](Verification/Live16x24/cellar-native-revisit.json), [moved after save](Verification/Live16x24/cellar-native-saved-away.json), [reload](Verification/Live16x24/cellar-native-reloaded.json). The [cellar record](LIVE-16X24-CELLAR.md) preserves the failed first return and full acceptance details. Watered growth, east/kitchen native kits, newer product acceptance, the full six-site journey, mouse/controller, physical Deck performance and packaged release verification remain separate work.
 
 ## Goal and boundary
 
@@ -23,7 +36,7 @@ The smallest continuous envelope uses these **six exact addresses**:
 | `Overworld.12.10.0` | East connector | Existing tempering shelter. |
 | `Overworld.12.11.0` | Orven’s kitchen | Existing connected `WaysideKitchen` destination. |
 
-`Overworld.11.11.0`, the trapper yard, is deliberately outside this first envelope. The selected route to Orven goes east and then south. Other Spread chunks, towns, lairs and depths retain the prior presentation. This is not whole-biome coverage.
+`Overworld.11.11.0`, the trapper yard, is deliberately outside this first envelope. The selected route to Orven goes east and then south. Outside the admitted regional kits, the global flat presentation uses truthful glyph/family fallback; it does not silently restore the prior3D presentation. This is not whole-biome native artwork coverage.
 
 ## Source sweep and corrections
 
@@ -202,3 +215,28 @@ Placement varies materially: seed64's north yard includes the Patchbearer, two s
 Exact current managed11.9/11.8 graphs now admit to the opt-in rough catalog; east/kitchen remain excluded. Native RED95(25 expected failures)→GREEN95 plus117 unaffected consumer cases all pass. Actual ordinary glade→works→Nella travel, still examine, Calm, public/reserve terms, two gladroot seed purchase and full-screen trade return are captured at1280×800. No gameplay/owner generation or native north asset was added.
 
 Three built-in imagegen scene/parts references are saved with exact prompts, derived from those actual captures and approved art. They require native reconstruction; original keeper/other approved pixels stay authoritative. [North route](LIVE-16X24-NORTH-ROUTE.md) owns current receipts, source corrections, review and next production action; [contracts](LIVE-16X24-NORTH-CONTRACTS.md) and [parts/critique](../ArtSource/Live16x24/concepts/north-parts-plan.md) cover all38 measured placed identities and later outcomes. The vegetation and works/creature groups have subsequently landed; the [plot handoff](LIVE-16X24-NORTH-PLOT.md) now supersedes the works next-step pointer: plot runtime/native tests and ordinary crop/service/save/revisit acceptance are complete for the bounded seed64 visit; native direct-product art is next. All four surface destinations still lack complete native-art acceptance; this is not a whole-biome conversion.
+
+
+## Current east/kitchen preflight — 2026-10-24 UTC
+
+The [source/receipt audit](Verification/Live16x24/g3-east-kitchen-source-audit.md)
+records the next ordinary journey while Unity's post-restart modal blocks new
+captures. Historical detached seeds64/65 place both sites on Spread addresses
+without POIs; current live graph/POI validation still precedes native admission.
+G1 already retains flat projection there. The missing work is regional native
+coverage and truthful service states, not another presentation mode.
+
+For the eventual ordinary kitchen loop, preserve actual supplies: two fire
+clay, two raw emberwheat, one claspbean pulp and two drams. Orven's historical
+stock has only one raw grain, and repairing the well can exhaust the cellar's
+clay. Do not inject replacements or claim the batch succeeded without the
+inputs. The service uses120 world ticks; observe its physical escrow/pickup
+contents and real return, not a fixed number of waits. Its oven deliberately
+uses non-finite cooking and must not borrow the glade campfire's fuel states.
+
+The audit also inventories visible-route candidates outside the service itself
+(flowers, hedges, pen, industrial remnants, incidental residents and drops).
+Their historical positions are navigation hints, never rendering authority.
+No new native assets, admission changes or ordinary-play acceptance were made
+by this audit. First recover/capture the pending G2 action fix, then close the
+existing north product gates before expanding the east/kitchen kit.

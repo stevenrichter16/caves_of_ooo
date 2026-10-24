@@ -69,3 +69,14 @@ reclamation; Unity regenerates caches. Only about304MiB remained after restart,
 so substantial disk headroom is still needed. Do not remove unrelated personal
 files or source to hide this blocker. The after-capture gate remains open in
 [the action record](GRAPHICS-G2-ACTION-READABILITY.md).
+
+### Duplicate installer follow-up — 2026-10-24 04:42 UTC
+
+Removed only `/Users/steven/Library/Caches/UnityHub/update.zip` after confirming
+its221,483,562 bytes SHA256-match the retained complete
+`pending/UnityHubSetup-3.22.4-arm64.zip` and neither file had an open handle.
+[Exact receipt](Verification/Live16x24/g2-action-duplicate-cache-cleanup.json).
+Free space rose from275,427,328 to497,221,632 bytes at measurement time. No
+unique download or project source was removed. This remains insufficient
+headroom for a packaged build; do not repeatedly clear caches that must be
+regenerated for the same verification work.

@@ -215,3 +215,48 @@ motion/art/completion records, release coverage ledger and exact evidence.
 Scope divergence: the observation slice found two genuine feedback defects,
 so it now includes those fixes; no new sprites were warranted. Runtime fixes
 are ready for final appearance verification; the opening release is unfinished.
+
+
+## Recovery continuation — 2026-10-24 04:36 UTC
+
+The post-fix ordinary capture remains pending. A fresh editor readiness request
+still failed with an unanswered ping. Native UI now exposes only a Preferences
+window; closing that observed window did not reveal the pending startup
+decision. Do not answer an unread dialog or mark the source fix visually
+accepted. The earlier question asking for the dialog text remains pending.
+
+### Saved-source recovery plan and verification sweep
+
+A bounded read of the startup log found a separate, actionable configuration
+defect: Unity reported a parser failure for `ProjectSettings/TagManager.asset`
+(line39 in the original file). Source/history inspection found30 serialized
+layer slots, versus32 in the original project. Two historical edits removed
+slots; the existing named layers still occupy the intended indices.
+
+| Premise | Verified result | Plan correction |
+| --- | --- | --- |
+| Restart only needs more cache space | Startup also reports a saved TagManager parse failure | Correct the malformed layer shape without changing any named index |
+| Bare dash alone explains the parser message | Generic YAML permits it; native cause is unproven | Normalize serialization and restore32 slots; do not claim the dialog or native parser is fixed without a live check |
+| Clearing active Unity cache is a lasting fix | Burst/Bee regenerated after reopening | Avoid another cache/reimport cycle; remove only a verified redundant installer copy |
+
+Minimal implementation: write/run a source regression that fails on the
+current30-slot file, restore two empty slots and canonical empty-entry syntax,
+then run it green with30/31-slot and shifted-name counterexamples. Preserve
+sorting/rendering metadata and all named layer indices. Independent review
+checks the small config diff. This is a source-configuration gate, not a
+substitute for native Unity startup or the actual combat screenshots.
+
+A duplicate Unity Hub installer cache was removed only after SHA256 equality
+to the retained complete pending installer and a no-open-handle check. The
+[receipt](Verification/Live16x24/g2-action-duplicate-cache-cleanup.json) records
+221,483,562 logical bytes and free space rising from275,427,328 to497,221,632
+bytes at that instant. No project source/current build/unique evidence was
+removed. Disk headroom remains inadequate for a new build.
+
+**Source result:** restored32 layer slots, preserving every existing named index
+and sorting/rendering metadata. The dependency-free regression passed7/7 after
+the saved30-slot source failed its contract assertion; see [RED](Verification/Live16x24/g2-tagmanager-red.txt),
+[GREEN](Verification/Live16x24/g2-tagmanager-green.txt) and [comparison](Verification/Live16x24/g2-tagmanager-source-comparison.json).
+This does not establish native parsing or resolve the still-unread startup
+dialog. The combat runtime remains the previously verified253-case version;
+no new gameplay or art was added during recovery.

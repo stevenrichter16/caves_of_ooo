@@ -428,3 +428,14 @@ wrapped timing limits and restored isolated session. Next work is active
 framing/motion/combat acceptance and G3's existing product-use debt, followed
 by east/kitchen and the full six-site journey. Preserve this family's accepted
 pixels unless a named defect appears.
+
+
+Recovery follow-up at04:36 UTC found a historical30-slot layer table in saved
+TagManager source and restored32 slots without changing any named index. Seven
+standalone source checks pass; native startup and the post-fix combat capture
+remain unverified. A duplicate installer cache was removed with an identical
+complete copy retained; disk space remains tight. See the action record above.
+Independent [east/kitchen route audit](Verification/Live16x24/g3-east-kitchen-source-audit.md)
+now identifies exact current source constraints, historical seed landmarks and
+real service prerequisites for the next journey. It adds no art acceptance and
+does not change the current G2→north products→east/kitchen delivery order.
