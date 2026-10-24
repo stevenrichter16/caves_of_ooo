@@ -765,3 +765,36 @@ action acceptance, east/kitchen, six-site release and hardware are still open.
 Use the full capture/concept/extraction/native-art/integration loop when new
 art is needed; do not redraw accepted sprites without a named defect. Keep
 this continuation active. This is a verified slice, not graphics completion.
+
+## Latest continuation — plot product route accepted, 2026-10-24 15:00 UTC
+
+The existing native plot-product packet has now passed its **bounded ordinary
+keyboard route**, documented in [plot products](LIVE-16X24-PLOT-PRODUCTS.md).
+Twenty-four actual1280×800 captures show purchased sludge, finite compost,
+rain-fed growth, gladroot ground/carried readers and eating, Marlroot seed
+inspection/planting, clod preparation/FireClay reader, and resin brewing into
+a burning coating. [Native gladroot reader](Verification/Live16x24/plot-products-uses-gladroot-carried.png)
+and [brew reader](Verification/Live16x24/plot-products-uses-coating-reader.png)
+are real game images, not concepts. Independent review found no significant
+mismatch in the sampled native portraits. Approved art and runtime code did
+not change in this acceptance pass; no new native-test count is claimed.
+
+ActualF5/F6 preserves198 recorded owners and11 inventory rows, including
+`Coating`/`Burning:1`, at18,7/tick1550/36drams/40HP. This is equality of the
+recorded fields, not proof of every saved property or other zones. The
+[local checkpoint receipt](Verification/Live16x24/plot-products-uses-local-checkpoint.json)
+allows the next route to resume inside owned save isolation. Final cleanup
+confirms stopped Play, released isolation/view and restored save root;
+console0errors/2existing Metal warnings. No worthwhile further cache/build
+removal was found;0bytes removed, current delivered archive and source kept.
+
+**Next action:** resume that real checkpoint, travel south to north works,
+and finish finite forage/preparation/brewing and currency discovery with
+native visuals. The one observed brewed flask advances works-products to
+partial ordinary coverage; it does not accept the other six outputs. Then
+complete east connector/kitchen through the full playable capture→concept→
+parts→native-art→integration loop. Do not keep replaying the accepted basic
+plot route or redraw its sprites without a named defect. Carried MarlrootSeed
+remains unobserved (exact ground/planting accepted); purchased crop families,
+G2 scene/framing/Player defence, all-seed variants, packaged launch, physical
+Deck and the complete six-site release remain open. Continue the hourly work.

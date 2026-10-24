@@ -2,11 +2,13 @@
 
 ## Status and purpose
 
-**Current status,2026-10-24:** ordinary acceptance is partial. Actual Pitchpod
-harvest/pickup and carried resin Examine are verified; ground Examine,
-planting, clod preparation and other product loops remain open. See the
-[recovered ordinary continuation](#recovered-ordinary-continuation--2026-10-24)
-below. The Mac lock is no longer the current blocker.
+**Current status,2026-10-24:** the bounded basic plot-product route is accepted
+in ordinary keyboard Play. Harvest, pickup, exact product readers, acquired
+seed planting, rain-fed growth, compost, preparation, eating and one resin
+brew now have actual evidence. See the latest continuation below. This does
+not cover every ground/carried permutation, purchased crop family or the
+complete opening release. Carried MarlrootSeed remains unobserved; its exact
+ground portrait and normal planting are verified. The Mac lock is resolved.
 
 Initial implementation record,2026-10-23: native source, import, implementation and code review complete;
 ordinary-play acceptance pending because the Mac is locked.
@@ -291,3 +293,118 @@ return. Clean `plot-products-reader-replanted.png` shows the actual same-bed
 plant after reading. The two reader faults are closed within the linked
 native/ordinary gates. Remaining product coverage is in release-coverage;
 do not continue treating these three carried portraits as pending.
+
+
+## Ordinary remaining-use continuation — 2026-10-24 15:00 UTC
+
+Planned acceptance pass, not completed yet: resume the previous real F5 save
+in a new owned isolation root, use ordinary Continue, and retain the user's
+presentation setting. Checkpoint hashes are verified against the prior receipt;
+no grants, teleports, crop-state writes or injected turns. Acquire sludge through
+Nella's actual trade before watering the fresh Pitchpod bed, examine it, then
+use the crop's compost action. Continue remaining Marlroot seed/plant, gladroot
+produce/use and resin brew gates where their real prerequisites permit. Reuse
+accepted native source art; only a named observed defect warrants edits.
+
+Record exact input/visual evidence, independent native-size review and truthful
+coverage. Prior captures are not new acceptance. Cleanup audit currently finds
+only useful regenerated caches and the protected current build; no deletion is
+planned unless later inspection proves a genuinely stale candidate. Verify main
+again before any cleanup. Root owns Unity; delegated work is read-only.
+
+## Ordinary product uses and persistence — 2026-10-24 15:00 UTC continuation
+
+**Bounded route accepted; no new runtime or art changes.** This closes the
+original packet's reachable harvest/pickup/examine, planting and preparation
+gate, using the earlier reader replay plus this pass. The original concept,
+extraction, editable source and native atlas remain the accepted production
+pipeline inputs; they were not redrawn to manufacture another milestone.
+
+Root resumed the previous actual F5 checkpoint inside new owned save isolation
+through ordinary **C Continue**, with no saved presentation override or forced
+art mode. All subsequent changes came from real keyboard input. No grants,
+teleport, revealed fog, injected growth ticks or direct commands supplied the
+outcomes. [Source route audit](Verification/Live16x24/plot-products-uses-source-route.md)
+checked the current menus, stock and costs first. Coordinates describe this
+seed64 run, not a universal layout.
+
+| Ordinary action | Observed state and actual screenshot |
+| --- | --- |
+| Trade and read | Bought Nella's two sludge for6drams,42→36. [Carried sludge](Verification/Live16x24/plot-products-uses-sludge-carried.png) shows the native matte lump and compost explanation. |
+| Compost two fresh reserves | Each action consumes one sludge. Pitchpod24→18 and Marlroot26→20 wet units/stage; both remain dry at stage0 with zero progress. [First crop](Verification/Live16x24/plot-products-uses-pitchpod-composted.json), [both](Verification/Live16x24/plot-products-uses-both-composted.json). |
+| Rain, grow and harvest | Read the actual carried watering book, cast Conjure Rain and take ordinary waits. [Sprouting](Verification/Live16x24/plot-products-uses-sprouting.png) then [mature](Verification/Live16x24/plot-products-uses-mature.png) receipts show reserve stage1→2; public gladroots automatically leave four roots across two beds. |
+| Inspect and eat gladroot | [Exact ground](Verification/Live16x24/plot-products-uses-gladroot-ground.png) and [carried](Verification/Live16x24/plot-products-uses-gladroot-carried.png) native portraits match. Pickup2→eat1 leaves1; HP stays40/40. This proves consumption, not a healing gain. |
+| Harvest and replant marlroot | Harvest leaves two clods and one seed. [Exact ground seed](Verification/Live16x24/plot-products-uses-seed-ground.png) has its red notched portrait. Pickup and Plant consume that seed, creating a fresh dry, uncomposted stage0 crop at17,6. |
+| Prepare repair material | One of two clods becomes one FireClay. [Carried reader](Verification/Live16x24/plot-products-uses-fireclay-reader.png) shows its native clay silhouette and paginated repair uses. No repair was performed in this pass. |
+| Brew harvested resin | [Preview](Verification/Live16x24/plot-products-uses-resin-brew-preview.png) names burning coating. Normal Enter consumes1of2resin and creates1BrewedTonic. [Actual reader](Verification/Live16x24/plot-products-uses-coating-reader.png) displays the native flask and truthful burning/throwing text. Brewing stays at tick1540; no paid turn is claimed. |
+| Save and reload | Actual F5/F6 retains198 recorded owner rows,11 inventory rows, tick1550, player18,7,36drams and40HP. [Comparison](Verification/Live16x24/plot-products-uses-save-comparison.json) and [reloaded world](Verification/Live16x24/plot-products-uses-reloaded.png). The final rows explicitly preserve `Coating` / `Burning:1`. |
+
+The24 actual1280×800 EOF PNGs have paired observational JSON, listed with
+hashes in [capture index](Verification/Live16x24/plot-products-uses-index.json).
+The saved capture source documents what the receipts measure. World owners
+continued acting during the waits; an unrelated scrabbler killed a magpie.
+No claim is made that the entire world stayed fixed during farming.
+
+### Review, corrections and limits
+
+- 🔵 Independent review found no significant graphical mismatch. Six sampled
+  portraits exactly match all opaque native source pixels at their displayed
+  integer scale: sludge, ground MarlrootSeed, ground/carried gladroot,
+  FireClay and the brewed flask. See [review](Verification/Live16x24/plot-products-uses-independent-review.md).
+- 🔵 Counter-observations: compost supplies no water or immediate progress;
+  the first compost leaves the other crop's duration unchanged; replanting
+  creates a dry/uncomposted crop with default duration; single brewing leaves
+  one resin; eating at full health does not claim an HP increase. Reader
+  snapshots cost no observed turn. These are ordinary observations, not a
+  replacement for the existing native adversarial tests.
+- 🧪 An attempted carried MarlrootSeed reader selected **Plant** because its
+  `a` shortcut differs from the other items. The evidence is correctly named
+  `seed-planted`; no carried-seed portrait is claimed. The exact ground
+  reader and planting satisfy the bounded original route. Do not restart a
+  whole growing cycle solely to fill this optional duplicate view.
+- 🧪 The coating offers drink/throw. This pass accepts brewing, identity and
+  reading only, not drinking, throwing, damage, quenching or enemy use. That
+  one flask is partial evidence for the works-products packet, not its other
+  six outputs. No undocumented gameplay redesign was slipped into graphics.
+- 🔵 No code or art changed, so no new RED/GREEN or native-suite rerun is
+  claimed. Earlier packet and reader-fix results remain their own evidence.
+- 🔵 Final [cleanup](Verification/Live16x24/plot-products-uses-cleanup.json)
+  confirms stopped Play, released isolation, original save root and no
+  borrowed view or pending art. Preview scale restored to2× through UI.
+  [Console](Verification/Live16x24/plot-products-uses-console.json):0errors,
+  2existing Metal memoryless-depth warnings. A read-only scratch reflection
+  probe used a nonexistent scale property; it affected no project source.
+- 🔵 Fifteen imported metas had only trailing-whitespace rewrites; each was
+  compared linewise before restoring exact HEAD bytes. Unrelated local
+  AllotmentNotice PNGs remain untouched and separately archived in main.
+
+**Can verify:** named ordinary keyboard routes, actual screenshots/native
+portrait pixels, finite item/state changes and equality of recorded fields
+across this save/load. **Cannot verify:** every serialized field or exact
+object identity, every item/view permutation, controller/physical Deck,
+packaged launch, continuous animation/audio feel, performance or completed
+six-site/world graphics. No new image-generation or art-creation claim.
+
+### Preservation and next action
+
+A hash-verified local copy of this actual F5 save is retained at the location
+in [checkpoint receipt](Verification/Live16x24/plot-products-uses-local-checkpoint.json).
+It may be resumed only inside owned isolation. The game ends at the north
+plot18,7 with1resin,1burning coating,1FireClay,1clod,1gladroot; the new Marlroot
+is dry stage0 and the Pitchpod remains ripe. User saves were not changed.
+
+[Storage audit](Verification/Live16x24/plot-products-uses-storage-audit.md)
+found no worthwhile stale cache/build deletion: the seven old packages are
+already gone, active caches were freshly rebuilt, and the current delivered
+archive and all source/save backups are retained. **0bytes removed this
+pass.** Exact owned records and evidence are pushed and remotely verified
+before any future cleanup; no global Library wipe is planned.
+
+**Next:** proceed to the north works with this real checkpoint. Close finite
+forage→preparation→brew and coin discovery with native portraits, then the
+east connector/kitchen using the saved source audit and full playable art
+pipeline. Keep G2 scene/framing and defence/hurt coverage explicit. Purchased
+crop kits, all-seed variants, continuous motion, packaged delivery, physical
+Deck and the complete six-zone release remain open. Do not keep replaying
+this accepted basic plot loop or redraw its accepted assets without a named
+new defect. Continue the active hourly graphics work.

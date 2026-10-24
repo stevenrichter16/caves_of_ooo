@@ -250,3 +250,16 @@ goods through their existing source and preparation/brewing/coin mechanics.
 Capture only actual outcomes and exact-subject ground/carried Examine where
 appropriate. Do not add another unverified area or treat the north route,
 six-site journey, packaged build or physical Steam Deck as accepted.
+
+## First ordinary product evidence — 2026-10-24 15:00 UTC
+
+The real plot journey produced one burning coating from harvested Pitchpod
+resin through Crafting→Brew. [Actual carried reader](Verification/Live16x24/plot-products-uses-coating-reader.png)
+shows this packet's native stoppered flask, independently compared against
+its source pixels. The final F5/F6 receipts retain `BrewedTonic`, `Coating`,
+`Burning:1`. See [plot uses review](Verification/Live16x24/plot-products-uses-independent-review.md).
+This moves the works packet to **ordinary_partial** only. Its six other
+product identities, actual forage/preparation, coin discovery/conversion and
+application remain pending. No new art, runtime code or native suite rerun.
+The checkpoint in `plot-products-uses-local-checkpoint.json` can continue
+south to the existing works without replaying the accepted farming loop.

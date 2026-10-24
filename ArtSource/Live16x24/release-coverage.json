@@ -337,7 +337,7 @@
     },
     "plot_products": {
       "native_integration": "native_integrated_verified",
-      "ordinary_play": "ordinary_partial",
+      "ordinary_play": "ordinary_bounded_accepted",
       "owners": [
         "CandyCarrot",
         "CandyCarrotSeed",
@@ -365,21 +365,30 @@
         "Docs/Verification/Live16x24/plot-reader-replay-visual-review.md",
         "Docs/Verification/Live16x24/plot-products-reader-focus-after-harvest.png",
         "Docs/Verification/Live16x24/plot-products-reader-seed-carried.png",
-        "Docs/Verification/Live16x24/plot-products-reader-replanted.png"
+        "Docs/Verification/Live16x24/plot-products-reader-replanted.png",
+        "Docs/Verification/Live16x24/plot-products-uses-index.json",
+        "Docs/Verification/Live16x24/plot-products-uses-independent-review.md",
+        "Docs/Verification/Live16x24/plot-products-uses-save-comparison.json",
+        "Docs/Verification/Live16x24/plot-products-uses-cleanup.json"
       ],
-      "pending_gate": "Remaining individual product/use gates: MarlrootSeed portrait/planting, CandyCarrot pickup/read/use, InertSludge trade/read/use and resin brewing. FireClay output observed, its portrait not captured in this loop. No whole-packet, all-seed, packaged or physical Deck acceptance.",
+      "pending_gate": "Basic reachable plot route accepted. Not every world/carried permutation: carried MarlrootSeed remains unobserved (exact ground portrait and planting accepted). Purchased crop families, all-seed variants, item application/combat, whole G3, packaged and physical Deck remain open.",
       "accepted": [
         "Ordinary new-art Pitchpod harvest removes crop and yields2resin+1seed",
         "Pickup carries2resin+1seed; carried resin Examine shows native amber art",
         "Actual ground resin/clod shared-reader portraits match native source art; ordinary rain-fed seed planting and stage0\u21921\u21922 growth observed",
         "Marlroot harvest yields2clods+1seed; prepare consumes1clod into1FireClay; F5/F6 preserves197 recorded owners and10 inventory rows",
         "Post-fix ordinary seed readers: PitchpodSeed, EmberwheatSeed and CandyCarrotSeed native portraits, free reading and inventory return; live Look FOCUS refreshes after harvest",
-        "Post-fix inspected PitchpodSeed replanted normally in emptied bed; exact player cell retained"
+        "Post-fix inspected PitchpodSeed replanted normally in emptied bed; exact player cell retained",
+        "Ordinary Nella trade buys2sludge for6drams; native sludge reader and finite compost of two fresh dry reserves verified, with no water or immediate growth granted",
+        "Actual rain and ordinary wait turns mature both composted reserves; gladroot automatic output, exact ground/carried portraits and2-to-1 consumption at fullHP observed",
+        "Exact MarlrootSeed ground portrait and acquired-seed replanting verified; clod preparation and FireClay shared-reader portrait observed",
+        "Ordinary resin2-to-1 brew creates1burning coating; native flask portrait and Coating/Burning:1 identity persist throughF5/F6; no application or paid brew-turn claim",
+        "FinalF5/F6 preserves198 recorded owner rows and11 inventory rows, player18,7/tick1550/drams36/HP40; bounded fields only"
       ]
     },
     "works_products": {
       "native_integration": "native_integrated_verified",
-      "ordinary_play": "ordinary_pending",
+      "ordinary_play": "ordinary_partial",
       "owners": [
         "StoneburrSeed",
         "FrostLichen",
@@ -395,9 +404,11 @@
       "evidence_refs": [
         "Docs/LIVE-16X24-WORKS-PRODUCTS.md",
         "Docs/Verification/Live16x24/works-products-green.xml",
-        "Docs/Verification/Live16x24/works-products-regression.xml"
+        "Docs/Verification/Live16x24/works-products-regression.xml",
+        "Docs/Verification/Live16x24/plot-products-uses-coating-reader.png",
+        "Docs/Verification/Live16x24/plot-products-uses-reloaded.json"
       ],
-      "pending_gate": "Use ordinary forage/preparation/brewing/coin pickup and authorized examine with new sprites, after the pending plot-product gate.",
+      "pending_gate": "One BrewedTonic burning-coating frame accepted through ordinary plot resin brew and carried reader. Continue actual works forage/preparation and coin discovery/pickup; six other product identities and completed use paths remain pending.",
       "limits": "Explicit Food/unknown/foreign brew form retains fallback. Healing-only Food form loss is an existing upstream metadata gap, not solved here."
     },
     "opening_boundaries": {
@@ -531,10 +542,10 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "ordinary_plot_product_loop_and_reader_repairs",
-    "capture": "Docs/Verification/Live16x24/plot-products-reader-seed-carried.png",
-    "receipt": "Docs/LIVE-16X24-PLOT-READER-POLISH.md",
-    "route": "Fresh default-flat seed64 ordinary route, rights, ground harvest/read, pickup, carried seed read, planting, rain-fed growth and clod preparation; bounded save/reload comparison. Two observed UI defects repaired RED\u2192GREEN,184 distinct current native cases pass. Exact native portraits reviewed. Other product/use families, G2/G3 release, packaged and hardware gates remain open."
+    "kind": "ordinary_plot_product_route_bounded_accepted",
+    "capture": "Docs/Verification/Live16x24/plot-products-uses-gladroot-carried.png",
+    "receipt": "Docs/LIVE-16X24-PLOT-PRODUCTS.md",
+    "route": "Continued real isolated seed64 save; bought/read/composted sludge, rain-grown crops, gladroot pickup/read/eat, Marlroot seed read/plant, clod preparation/FireClay reader, resin brew/native flask andF5/F6.24actual captures, independent review, no runtime/art edits or new native-test claim. Works/east/kitchen and full release still open."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
@@ -547,7 +558,10 @@
       "Docs/Verification/Live16x24/g2-attribution-launch.json",
       "Docs/Verification/Live16x24/g2-attribution-launch-cleanup.json",
       "Docs/Verification/Live16x24/plot-reader-replay-cleanup.json",
-      "Docs/Verification/Live16x24/plot-reader-replay-console.json"
+      "Docs/Verification/Live16x24/plot-reader-replay-console.json",
+      "Docs/Verification/Live16x24/plot-products-uses-cleanup.json",
+      "Docs/Verification/Live16x24/plot-products-uses-console.json",
+      "Docs/Verification/Live16x24/plot-products-uses-storage-audit.md"
     ]
   }
 }
