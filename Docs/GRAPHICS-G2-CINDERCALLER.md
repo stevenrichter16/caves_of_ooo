@@ -278,3 +278,13 @@ editable native art/generator/manifest/prompt/concept/source checks; actual befo
 after screenshots, raw native evidence, bounded observations/reviews/profile;
 this plan, main completion plan, live handoff and release ledger. Gameplay,
 blueprints, admission and old presentation are unchanged.
+
+
+Post-push/storage: `c76654faa17c0162bb6390007951ff37b14a657f` was verified on
+origin/main with all59owned blobs matching. The independent
+[post-push audit](Verification/Live16x24/cindercaller-storage-audit.md) confirms
+source/saves/current archive and both unrelated local Notice variants preserved.
+About1.71GiB is free; no worthwhile confirmed stale cache/build candidate remains,
+so **0bytes were deleted**. The active Editor's useful caches are retained. The
+current delivered archive still predates this art. Continue the next bounded
+action-feedback slice; no whole-release or packaged acceptance is implied.
