@@ -1193,11 +1193,8 @@ namespace CavesOfOoo.Core
                     int displayedAmount = Math.Min(amount, hpBefore);
                     if (displayedAmount > 0)
                     {
-                        var targetCellForFx = zone.GetEntityCell(target);
-                        if (targetCellForFx != null)
-                            AsciiFxBus.EmitFloatingNumber(
-                                zone, targetCellForFx.X, targetCellForFx.Y,
-                                displayedAmount, "&R");
+                        AsciiFxBus.EmitFloatingNumber(zone, target, displayedAmount, "&R",
+                            allowOriginOnly: hpStat.BaseValue <= 0);
                     }
                 }
 

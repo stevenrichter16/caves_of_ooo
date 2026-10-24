@@ -68,11 +68,11 @@ namespace CavesOfOoo.Tests
         {
             var f = Create(compact);
             AsciiFxBus.EmitFloatingNumber(f.Zone, 20, 12, 37, "&R"); f.Renderer.Update(0);
-            Assert.AreEqual(2, f.Renderer.ActiveParticleCount);
-            Assert.AreSame(CP437TilesetGenerator.GetTile('3'), f.Tiles.GetTile(Fixture.At(20, 11)));
-            Assert.AreSame(CP437TilesetGenerator.GetTile('7'), f.Tiles.GetTile(Fixture.At(21, 11)));
+            Assert.AreEqual(1, f.Renderer.ActiveNumberCount); Assert.Zero(f.Renderer.ActiveParticleCount);
+            Assert.AreSame(CP437TilesetGenerator.GetUiTile('3'), f.Tiles.GetTile(Fixture.At(20, 11)));
+            Assert.AreSame(CP437TilesetGenerator.GetUiTile('7'), f.Tiles.GetTile(Fixture.At(21, 11)));
             AssertScale(f.Tiles, Fixture.At(20, 11), 1); AssertScale(f.Tiles, Fixture.At(21, 11), 1);
-            f.Renderer.Update(.16f);
+            f.Renderer.Update(.31f);
             Assert.IsFalse(f.Tiles.HasTile(Fixture.At(20, 11)));
             AssertScale(f.Tiles, Fixture.At(20, 10), 1); AssertScale(f.Tiles, Fixture.At(21, 10), 1);
         }

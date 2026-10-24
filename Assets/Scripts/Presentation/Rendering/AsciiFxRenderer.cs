@@ -64,7 +64,8 @@ namespace CavesOfOoo.Rendering
         public int ActiveProjectileCount => _projectiles.Count;
         public int ActiveBurstCount => _bursts.Count;
         public int ActiveParticleCount => _particles.Count;
-        public int ActiveEventTextCount => _eventTexts.Count;
+        public int ActiveEventTextCount => ReadoutCount(false);
+        public int ActiveNumberCount => ReadoutCount(true);
         public int ActiveAuraCount => _auras.Count;
         public int ActiveBeamCount => _beams.Count;
         public int ActiveChargeOrbitCount => _chargeOrbits.Count;
@@ -79,7 +80,7 @@ namespace CavesOfOoo.Rendering
             ClearAll();
         }
 
-        /// <param name="readoutDelta">Unscaled wall time for readable event words.
+        /// <param name="readoutDelta">Unscaled wall time for readable words and numbers.
         /// Standalone callers may omit it; coordinated playback supplies it separately.</param>
         public void Update(float deltaTime, float? readoutDelta = null)
         {
@@ -255,6 +256,7 @@ namespace CavesOfOoo.Rendering
                     break;
 
                 case AsciiFxRequestType.EventText:
+                case AsciiFxRequestType.FloatingNumber:
                     AcceptEventText(request);
                     break;
 
@@ -276,35 +278,65 @@ namespace CavesOfOoo.Rendering
 
         private void AcceptEventText(AsciiFxRequest request)
         {
+            bool numeric = request.Type == AsciiFxRequestType.FloatingNumber;
             if (_eventTexts.Count >= MaxEventTexts || string.IsNullOrWhiteSpace(request.Text)
                 || request.Text.Length > AsciiFxBus.MaxEventTextLength || !(request.Lifetime > 0f) || float.IsInfinity(request.Lifetime)
-                || !EventTextVisible(request.Anchor, request.X, request.Y)) return;
-            int usedLanes = 0;
-            for (int i = 0; i < _eventTexts.Count; i++)
-            {
-                var active = _eventTexts[i];
-                if (active.Anchor != request.Anchor) continue;
-                if (active.Text == request.Text) return; // Repeated cues never renew an old cue's life.
-                usedLanes |= 1 << active.Lane;
-            }
-            int lane = 0;
-            while (lane < EventTextLanes && (usedLanes & (1 << lane)) != 0) lane++;
-            if (lane == EventTextLanes) return;
+                || numeric && (request.Number <= 0 || !int.TryParse(request.Text,
+                    System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture,
+                    out int parsed) || parsed != request.Number)) return;
+            if (!numeric)
+                for (int i = 0; i < _eventTexts.Count; i++)
+                {
+                    var active = _eventTexts[i];
+                    // Distinct damage receipts never coalesce, even when both
+                    // have the same value and owner. Words retain their policy.
+                    if (!active.Numeric && active.Anchor == request.Anchor && active.Text == request.Text) return;
+                }
             var text = new EventTextFxInstance
             {
                 Anchor = request.Anchor, Text = request.Text, Color = request.ColorString,
-                OriginX = request.X, OriginY = request.Y, Lane = lane,
-                Duration = request.Lifetime, Remaining = request.Lifetime
+                OriginCell = request.OriginCell, OriginX = request.X, OriginY = request.Y, Lane = -1,
+                Numeric = numeric, Number = request.Number, AllowOriginOnly = numeric && request.AllowOriginOnly,
+                Duration = request.Lifetime, Remaining = request.Lifetime,
+                DelayRemaining = Math.Max(0f, request.Delay)
             };
-            UpdateEventTextPosition(ref text);
+            if (!EventTextVisible(text)) return;
             _eventTexts.Add(text);
+            LayoutEventTexts();
         }
 
-        private bool EventTextVisible(Entity anchor, int originX, int originY)
+        private int ReadoutCount(bool numeric)
         {
-            if (!AsciiFxBus.CanShowEventText(_currentZone, anchor)) return false;
-            var origin = _currentZone.GetCell(originX, originY);
-            return origin != null && origin.Explored && origin.IsVisible;
+            int count = 0;
+            for (int i = 0; i < _eventTexts.Count; i++)
+                if (_eventTexts[i].Numeric == numeric) count++;
+            return count;
+        }
+
+        private bool EventTextVisible(EventTextFxInstance text)
+        {
+            if (!AsciiFxBus.IsReadoutOriginVisible(_currentZone, text.OriginCell)) return false;
+            if (text.Anchor == null) return text.Numeric && text.AllowOriginOnly;
+            if (AsciiFxBus.CanShowEventText(_currentZone, text.Anchor)) return true;
+            // Only a receipt explicitly captured on a lethal hit can outlive
+            // exact-owner removal. It never follows a different entity by ID.
+            if (!text.Numeric || !text.AllowOriginOnly || text.Anchor.SpatialZone != null
+                || _currentZone.GetEntityCell(text.Anchor) != null
+                || !CombatSystem.IsDeathHandled(text.Anchor)
+                    && (text.Anchor.GetStat("Hitpoints") == null || text.Anchor.GetStat("Hitpoints").BaseValue > 0)) return false;
+            var physics = text.Anchor.GetPart<PhysicsPart>();
+            if (physics != null && (physics.ParentEntity != text.Anchor
+                || physics.InInventory != null || physics.Equipped != null)) return false;
+            var occupants = text.OriginCell.Occupants;
+            for (int i = 0; i < occupants.Count; i++)
+            {
+                var other = occupants[i];
+                if (other == text.Anchor || !AsciiFxBus.CanShowEventText(_currentZone, other)) continue;
+                if (!string.IsNullOrEmpty(text.Anchor.ID) && other.ID == text.Anchor.ID) return false;
+                if ((other.HasTag("Creature") || other.HasTag("Player")) && !CombatSystem.IsDeathHandled(other)
+                    && (other.GetStat("Hitpoints") == null || other.GetStatValue("Hitpoints") > 0)) return false;
+            }
+            return true;
         }
 
         private void UpdateEventTexts(float delta)
@@ -312,20 +344,25 @@ namespace CavesOfOoo.Rendering
             for (int i = _eventTexts.Count - 1; i >= 0; i--)
             {
                 var text = _eventTexts[i];
-                text.Remaining -= delta;
-                if (text.Remaining <= 0f || !EventTextVisible(text.Anchor, text.OriginX, text.OriginY))
+                float elapsed = delta;
+                if (text.DelayRemaining > 0f)
+                {
+                    float delayElapsed = Math.Min(elapsed, text.DelayRemaining);
+                    text.DelayRemaining -= delayElapsed;
+                    elapsed -= delayElapsed;
+                }
+                text.Remaining -= elapsed;
+                if (text.Remaining <= 0f || !EventTextVisible(text))
                     _eventTexts.RemoveAt(i);
                 else
-                {
-                    UpdateEventTextPosition(ref text);
                     _eventTexts[i] = text;
-                }
             }
+            LayoutEventTexts();
         }
 
         private void UpdateEventTextPosition(ref EventTextFxInstance text)
         {
-            var cell = _currentZone.GetEntityCell(text.Anchor);
+            var cell = text.Anchor == null ? text.OriginCell : _currentZone.GetEntityCell(text.Anchor) ?? text.OriginCell;
             text.StartX = Math.Max(0, Math.Min(Zone.Width - text.Text.Length, cell.X - (text.Text.Length - 1) / 2));
             // All messages follow the same owner but retain their original visibility gate.
             // A spare row per lane prevents differently aged words rising into one another.
@@ -336,12 +373,75 @@ namespace CavesOfOoo.Rendering
         private static int EventTextRow(EventTextFxInstance text)
             => text.BaseY - text.Lane * EventTextLaneStride - (text.Remaining <= text.Duration * .5f ? 1 : 0);
 
+        /// <summary>One bounded chronological reservation pass for words and
+        /// complete numbers. Existing lanes survive while valid; neither digits
+        /// nor labels move horizontally to borrow another actor's column.</summary>
+        private void LayoutEventTexts()
+        {
+            for (int i = 0; i < _eventTexts.Count; i++)
+            {
+                var text = _eventTexts[i];
+                text.Placed = false;
+                UpdateEventTextPosition(ref text);
+                _eventTexts[i] = text;
+            }
+            for (int i = 0; i < _eventTexts.Count;)
+            {
+                var text = _eventTexts[i];
+                if (text.DelayRemaining > 0f) { i++; continue; }
+                int previousLane = text.Lane;
+                bool placed = previousLane >= 0 && CanPlaceEventText(text, previousLane, i);
+                if (!placed)
+                    for (int lane = 0; lane < EventTextLanes; lane++)
+                        if (CanPlaceEventText(text, lane, i))
+                        { text.Lane = lane; placed = true; break; }
+                if (!placed)
+                {
+                    // The log keeps the outcome. Do not fragment a value or
+                    // invent a distant attachment when all nearby lanes fill.
+                    _eventTexts.RemoveAt(i);
+                    continue;
+                }
+                text.Placed = true;
+                _eventTexts[i++] = text;
+            }
+        }
+
+        private bool CanPlaceEventText(EventTextFxInstance text, int lane, int precedingCount)
+        {
+            text.Lane = lane;
+            int row = EventTextRow(text);
+            if (row < 0 || row >= Zone.Height) return false;
+            // A complete label must not erase a disclosed one-cell actor body.
+            // Only inspect its bounded candidate span, after the cell's fog
+            // gate; hidden actors must not influence otherwise identical layout.
+            for (int x = text.StartX; x < text.StartX + text.Text.Length; x++)
+            {
+                var cell = _currentZone.GetCell(x, row);
+                if (cell == null || !cell.Explored || !cell.IsVisible) continue;
+                var owner = cell.GetTopVisibleObject();
+                if (owner != null && (owner.HasTag("Creature") || owner.HasTag("Player"))
+                    && ReferenceEquals(_currentZone.GetEntityCell(owner), cell)
+                    && AsciiFxBus.CanShowEventText(_currentZone, owner)) return false;
+            }
+            for (int i = 0; i < precedingCount; i++)
+            {
+                var prior = _eventTexts[i];
+                if (!prior.Placed || prior.DelayRemaining > 0f) continue;
+                if (text.Anchor != null && ReferenceEquals(text.Anchor, prior.Anchor) && lane == prior.Lane) return false;
+                if (row == EventTextRow(prior) && text.StartX <= prior.StartX + prior.Text.Length
+                    && prior.StartX <= text.StartX + text.Text.Length) return false;
+            }
+            return true;
+        }
+
         private bool EventTextCovers(int x, int y)
         {
             for (int i = 0; i < _eventTexts.Count; i++)
             {
                 var text = _eventTexts[i];
-                if (y == EventTextRow(text) && x >= text.StartX && x < text.StartX + text.Text.Length) return true;
+                if (text.Placed && text.DelayRemaining <= 0f && y == EventTextRow(text)
+                    && x >= text.StartX && x < text.StartX + text.Text.Length) return true;
             }
             return false;
         }
@@ -351,6 +451,7 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < _eventTexts.Count; i++)
             {
                 var text = _eventTexts[i];
+                if (!text.Placed || text.DelayRemaining > 0f) continue;
                 int row = EventTextRow(text);
                 for (int j = 0; j < text.Text.Length; j++)
                     RenderGlyphAt(text.StartX + j, row, text.Text[j], text.Color, isReadout: true);
@@ -1225,9 +1326,11 @@ namespace CavesOfOoo.Rendering
         private struct EventTextFxInstance
         {
             public Entity Anchor;
+            public Cell OriginCell;
             public string Text, Color;
-            public int OriginX, OriginY, StartX, BaseY, Lane;
-            public float Duration, Remaining;
+            public int OriginX, OriginY, StartX, BaseY, Lane, Number;
+            public float Duration, Remaining, DelayRemaining;
+            public bool Numeric, AllowOriginOnly, Placed;
         }
 
         private class AuraEmitterInstance

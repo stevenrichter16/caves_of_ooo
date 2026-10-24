@@ -687,3 +687,35 @@ interaction works. This is documented for a later focused fix, not hidden.
 plot/works product ordinary gates and east/kitchen. Whole journey, packaged
 launch and physical Deck remain outstanding. Continue the completion plan;
 do not treat these accepted ground pixels as a finished graphics release.
+
+## Latest continuation — G2 action readability, 2026-10-24 UTC
+
+See [GRAPHICS-G2-ACTION-READABILITY.md](GRAPHICS-G2-ACTION-READABILITY.md) first.
+Six real walk frames and seventeen real combat frames now show both walk
+poses, Player attacks, NPC hurt/death fade and recovery using the unchanged
+approved art. Later exact-state receipts confirm Idle; idle artwork during a
+reaction tail alone is not proof of that transition. No new art was needed.
+
+Actual review found false12/62 from adjacent separate damage numbers, and
+`Stunned` crossed the Player while describing an enemy. Grouped numeric
+receipts and shared bounded readout lanes fix those verified causes; candidate
+rows avoid disclosed actor cells without querying hidden occupants. Native
+Unity253/253 passed including actual damage, resistance/overkill/traps, fog,
+same-ID replacement, finite death receipts, modes, pool reuse and warm zero
+allocation. Root confirmed two behavioral REDs first; independent review and
+six post-review hypotheses are recorded. This is CoO-original presentation.
+
+**Next action is the post-fix ordinary capture, still pending.** Disk-full
+blocked code execution and screenshot creation. The attempted isolated launch
+was stopped/restored; only generated caches and two superseded non-current
+Deck archives were removed (exact receipt in the action record). Source,
+editable art, current builds and saves remain intact. Reopened Unity is
+waiting in a native decision dialog which CUA cannot enumerate/read; root
+asked the user what it says. Do not blind-confirm the dialog or invent an
+after screenshot. About304MiB was free after cache regeneration; avoid large
+builds/downloads. Continue useful source/release work if still blocked.
+
+After the matched combat capture, resume G2 scene/framing/Player defence,
+then G3 plot/works product gates and the east/kitchen journey. Whole graphics
+release, packaged activation, physical Deck and regional coverage remain open.
+Keep the heartbeat active; this packet is not an arbitrary stopping point.

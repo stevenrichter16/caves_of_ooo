@@ -55,3 +55,20 @@ The isolated seed64 opening ran through fresh N, ordinary arrow movement, a play
 Root and independent visual review accepted the captured silhouettes and alignment. The targeted native cases establish two-frame timing, reaction bounds, fog removal and lifecycle contracts; those assertions do not prove handheld feel. No gameplay timing, spawn placement or equipment rules changed for capture.
 
 **Can verify:** native imported bindings, bottom-center projection, renderer ownership/static suppression, real gameplay hook contracts, bounded timing and lifecycle/fog counterchecks, legacy controls; actual keyboard movement/combat/menu return and captured walk-A/attack appearance. **Not yet accepted:** complete recorded reaction sequence, physical Deck/controller feel or performance, all-biome art or release activation. This remains opt-in development presentation.
+
+## Updated ordinary evidence — 2026-10-24
+
+The preceding opt-in description is historical: G1 now delivers ordinary flat
+launch/travel. [G2 action evidence](GRAPHICS-G2-ACTION-READABILITY.md) adds six
+upright EOF walk captures and seventeen genuine combat captures without
+changing this sheet. They show walk A/B, Scrabbler attack→hurt→idle artwork,
+Player bump-melee, Gleaner hurt and one NPC death fade. A separate later
+`g2-action-combat-idle.json` confirms full Idle states for Player/Gleaner/Dog.
+No Player hurt/parry/guard or continuous timing/Deck proof is claimed.
+
+Review preserved the actor pixels and instead identified numeric/status
+placement defects. Their runtime fix is native-tested253/253, but the matched
+post-fix ordinary capture was interrupted by disk-full and remains pending
+behind a Unity startup dialog inaccessible to current UI tools. See the action
+record for cleanup, limits and the exact next step. Do not replace the old
+misidentified hurt screenshot or claim samples establish continuous motion.

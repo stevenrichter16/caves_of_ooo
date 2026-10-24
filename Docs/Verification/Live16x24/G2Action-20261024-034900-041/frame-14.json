@@ -1,0 +1,116 @@
+{
+  "sequence": 14,
+  "frame": 380779,
+  "at": "2026-10-24T03:50:42.8583860Z",
+  "unscaledTime": 473.346161,
+  "deltaTime": 0.00136578793,
+  "zone": "Overworld.11.10.0",
+  "tick": 100,
+  "player": [
+    40,
+    19
+  ],
+  "hp": 40,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2091",
+      "blueprint": "PetDog",
+      "hp": 15,
+      "sprite": "Live16x24 PetDog walk B",
+      "atlas": "opening-motion",
+      "rect": [
+        80.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Walk",
+      "stateTime": 0.051279746,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        37,
+        17
+      ],
+      "world": [
+        38.0,
+        11.25
+      ],
+      "screen": [
+        430.0,
+        340.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2700",
+      "blueprint": "Player",
+      "hp": 40,
+      "sprite": "Live16x24 Player attack",
+      "atlas": "opening-motion",
+      "rect": [
+        32.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.051279746,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        40,
+        19
+      ],
+      "world": [
+        40.5,
+        7.5
+      ],
+      "screen": [
+        470.0,
+        280.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2074",
+      "blueprint": "MarlbackGleaner",
+      "hp": 11,
+      "sprite": "Live16x24 MarlbackGleaner hurt",
+      "atlas": "opening-motion",
+      "rect": [
+        240.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.051279746,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        39,
+        20
+      ],
+      "world": [
+        39.5,
+        6.0
+      ],
+      "screen": [
+        453.999969,
+        255.999985
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

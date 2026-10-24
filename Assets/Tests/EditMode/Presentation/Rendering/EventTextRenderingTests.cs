@@ -104,7 +104,8 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void ActiveReadoutsAreBoundedAcrossManyActors()
         {
-            for(int i=0;i<40;i++)AsciiFxBus.EmitEventText(zone,Actor(zone,i+1,15),"Guarded","&C");
+            // Spread complete words out so this proves the shared capacity limit, not collision rejection.
+            for(int i=0;i<40;i++)AsciiFxBus.EmitEventText(zone,Actor(zone,3+8*(i%10),6+6*(i/10)),"Guarded","&C");
             world.Update(0);Assert.AreEqual(32,ascii.ActiveEventTextCount);
             world.Update(1.2f);Assert.Zero(ascii.ActiveEventTextCount);
             Emit();world.Update(0);Assert.AreEqual(1,ascii.ActiveEventTextCount);

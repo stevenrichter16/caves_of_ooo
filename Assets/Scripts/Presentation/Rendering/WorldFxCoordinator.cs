@@ -342,7 +342,7 @@ namespace CavesOfOoo.Rendering
             }
             _nativePlaybacks.Clear();
         }
-        private static bool IsStateOrReadout(AsciiFxRequest r) => r.Type == AsciiFxRequestType.EventText || r.Type == AsciiFxRequestType.AuraStart ||
+        private static bool IsStateOrReadout(AsciiFxRequest r) => r.Type == AsciiFxRequestType.EventText || r.Type == AsciiFxRequestType.FloatingNumber || r.Type == AsciiFxRequestType.AuraStart ||
             r.Type == AsciiFxRequestType.AuraStop || (r.Type == AsciiFxRequestType.Particle && char.IsDigit(r.Glyph));
 
         public void CancelAll()

@@ -76,12 +76,12 @@ namespace CavesOfOoo.Tests
                 if (!native) fx.World.SetNativeSurface(null);
                 fx.World.Update(0, native, true);
                 AsciiFxBus.EmitFloatingNumber(f.Zone, 20, 12, 37, "&R"); fx.World.Update(0, native, true);
-                Assert.AreEqual(2, fx.Ascii.ActiveParticleCount); Assert.Zero(AsciiFxBus.PendingCount);
-                Assert.AreSame(CP437TilesetGenerator.GetTile('3'), fx.Tiles.GetTile(At(20, 11)));
-                Assert.AreSame(CP437TilesetGenerator.GetTile('7'), fx.Tiles.GetTile(At(21, 11)));
+                Assert.AreEqual(1, fx.Ascii.ActiveNumberCount); Assert.Zero(fx.Ascii.ActiveParticleCount); Assert.Zero(AsciiFxBus.PendingCount);
+                Assert.AreSame(CP437TilesetGenerator.GetUiTile('3'), fx.Tiles.GetTile(At(20, 11)));
+                Assert.AreSame(CP437TilesetGenerator.GetUiTile('7'), fx.Tiles.GetTile(At(21, 11)));
                 Assert.AreEqual(Matrix4x4.identity, fx.Tiles.GetTransformMatrix(At(20, 11))); Assert.False(fx.World.HasBlockingFx);
-                fx.World.Update(.16f, native, true); Assert.False(fx.Tiles.HasTile(At(20, 11)));
-                Assert.AreSame(CP437TilesetGenerator.GetTile('3'), fx.Tiles.GetTile(At(20, 10)));
+                fx.World.Update(.31f, native, true); Assert.False(fx.Tiles.HasTile(At(20, 11)));
+                Assert.AreSame(CP437TilesetGenerator.GetUiTile('3'), fx.Tiles.GetTile(At(20, 10)));
             }
         }
 

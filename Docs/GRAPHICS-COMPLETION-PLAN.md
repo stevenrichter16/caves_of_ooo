@@ -391,6 +391,21 @@ evidence. It is a path to completion, not a report that completion occurred.
 
 ## Current continuation — 2026-10-24 UTC
 
+Latest bounded action slice: [action readability](GRAPHICS-G2-ACTION-READABILITY.md).
+Ordinary16×24 walk A/B, Player melee, NPC hurt/death and later Idle recovery now
+have actual1280×800 frame receipts. Review found adjacent damage values merging
+into false12/62 and `Stunned` obscuring the Player. The scoped grouped-readout
+and disclosed-actor spacing fix passes253 native Unity tests, including the
+two behavioral REDs and six post-review hypothesis counters. Approved actor
+art is unchanged. **Post-fix ordinary visual acceptance is still pending:**
+disk-full interrupted the new capture. The isolated session was stopped and
+restored; generated caches and two obsolete non-current archives were removed
+with a receipt, preserving source/current builds/saves. Reopened Unity is in
+an unreadable native decision dialog; root asked the user for its message.
+Resolve this precise gate, repeat the matched encounter, then continue full
+G2 framing/Player defence and G3 product/east/kitchen work. Do not claim a
+finished opening, device acceptance or a post-fix screenshot from tests alone.
+
 G1 default launch/travel is accepted in bounded editor Play. G2's first family,
 [connected opening masonry](GRAPHICS-G2-BOUNDARIES.md), is now integrated:
 552 targeted native tests pass, actual normal-start/ruin/destruction/examine

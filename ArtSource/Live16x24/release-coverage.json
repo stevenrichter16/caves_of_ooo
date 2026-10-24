@@ -40,19 +40,21 @@
         "Menu return and owner-aligned native portraits",
         "Selected torch/gourd states and real tonic drop/pickup/examine",
         "Connected low/dark/mineral masonry, ordinary Stone examine, wall destruction/end-cap repaint, western passage and blocked low crossing",
-        "Native opening pond banks/road/field soil; ordinary freeze\u2192ice expiry updates bank, water traversal, covered field, finite Harvest\u2192Prepare and player over prepared soil"
+        "Native opening pond banks/road/field soil; ordinary freeze\u2192ice expiry updates bank, water traversal, covered field, finite Harvest\u2192Prepare and player over prepared soil",
+        "Ordinary native walk A/B, Player bump-melee, NPC hurt/death fade and later explicit Idle recovery; selective1280x800 EOF receipts"
       ],
       "open": [
         "Complete all services and item-use journey",
         "Wet-soil ordinary use, active framing/motion and complete scene acceptance",
-        "Complete recorded reaction sequence"
+        "Post-fix grouped damage/status placement ordinary capture; Player hurt/guard/parry and continuous motion/device feel"
       ],
       "refs": [
         "Docs/LIVE-16X24-ART-DIRECTION.md",
         "Docs/LIVE-16X24-MOTION.md",
         "Docs/LIVE-16X24-LOOSE-ITEMS.md",
         "Docs/GRAPHICS-G2-BOUNDARIES.md",
-        "Docs/GRAPHICS-G2-GROUND.md"
+        "Docs/GRAPHICS-G2-GROUND.md",
+        "Docs/GRAPHICS-G2-ACTION-READABILITY.md"
       ],
       "primary_packets": [
         "opening_static",
@@ -235,24 +237,30 @@
       ],
       "contract": "Two walk poses, one melee pose and one hurt pose plus accepted idle; canonical East, mirrored West, North/South retain last horizontal facing. Cast falls back to idle.",
       "accepted": [
-        "Captured Player walk A",
-        "Observed Scrabbler attack pose and West mirror",
-        "Movement/combat/menu return without duplicate static bodies"
+        "Recorded Player/Dog/Marlback walk A and B with native destination recovery",
+        "Real Scrabbler attack followed by hurt/idle artwork and separate death fade",
+        "Ordinary Player melee, Gleaner hurt and later Player/Gleaner/Dog enum Idle",
+        "No duplicate actor bodies or observed pose alignment defects in the bounded sequence"
       ],
       "not_accepted": [
-        "Complete recorded walk-B/hurt/retaliation sequence",
+        "Player hurt/guard/parry and continuous motion feel",
+        "Post-fix numeric/status readout appearance in ordinary combat",
         "Full directional sheets",
         "Native motion for other actors",
         "Physical Deck feel"
       ],
-      "receipt_warning": "native-motion-damage-reaction.png shows attack, not hurt; native-motion-melee.txt has no separate accepted melee PNG.",
+      "receipt_warning": "Older native-motion-damage-reaction.png shows attack, not hurt. New G2ActionWalk/03 and G2Action-20261024-034900-041/09 show genuine hurt; recovery-art tails can still have Attack/Hurt enums. g2-action-combat-idle.json separately confirms later Idle.",
       "manifest_refs": [
         "ArtSource/Live16x24/motion/manifest.json"
       ],
       "evidence_refs": [
         "Docs/LIVE-16X24-MOTION.md",
         "Docs/Verification/Live16x24/native-motion-player-step.png",
-        "Docs/Verification/Live16x24/native-motion-melee.txt"
+        "Docs/Verification/Live16x24/native-motion-melee.txt",
+        "Docs/GRAPHICS-G2-ACTION-READABILITY.md",
+        "Docs/Verification/Live16x24/G2ActionWalk/index.json",
+        "Docs/Verification/Live16x24/G2Action-20261024-034900-041/index.json",
+        "Docs/Verification/Live16x24/g2-action-combat-idle.json"
       ]
     },
     "opening_items_examine": {
@@ -493,9 +501,17 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "actual_opening_ground_keyboard_route_not_finished_opening",
-    "capture": "Docs/Verification/Live16x24/g2-ground-start.png",
-    "receipt": "Docs/Verification/Live16x24/g2-ground-play-verification.json",
-    "route": "Seed64 ordinary start/road/pond walk, freeze\u2192ice expiry/new bank, F6 restoration, covered field and finite Harvest\u2192Prepare. Wet20, full art journey and packaged/device gates remain incomplete."
+    "kind": "actual_ordinary_motion_and_combat_before_readout_fix",
+    "capture": "Docs/Verification/Live16x24/G2Action-20261024-034900-041/frame-09.png",
+    "receipt": "Docs/GRAPHICS-G2-ACTION-READABILITY.md",
+    "route": "Seed64 ordinary Down approach and southwest bumps: native walk A/B, attack, NPC hurt/death and recovery. Found merged damage values and status-over-player; code fix passes253 native tests. Post-fix Play aborted by disk-full, restored, editor now awaiting an unreadable startup dialog; no after-capture acceptance."
+  },
+  "current_environment_blocker": {
+    "status": "post_fix_play_pending",
+    "detail": "Disk-full stopped screenshot/code execution. Authorized cleanup removed332255110 bytes of generated Unity caches plus202272965 bytes in two superseded non-current archives, retaining source/current builds/saves. About304MiB remained and reopened Unity is in a native decision dialog inaccessible to current UI tools; user asked what it says. Native253/253 green preceded restart.",
+    "refs": [
+      "Docs/Verification/Live16x24/g2-action-disk-recovery.json",
+      "Docs/Verification/Live16x24/g2-action-fixed-aborted-launch-cleanup.json"
+    ]
   }
 }

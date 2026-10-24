@@ -163,24 +163,28 @@ namespace CavesOfOoo.Tests
         public void Step_EmitsFloatingDamageNumber()
         {
             var zone = new Zone("TestZone");
-            var plate = MakePlate(zone, 5, 5, damage: 8);
+            zone.GetCell(5, 5).IsVisible = zone.GetCell(5, 5).Explored = true;
+            MakePlate(zone, 5, 5, damage: 8);
             var stepper = MakeStepper(zone, 4, 5, hp: 50);
 
             AsciiFxBus.Clear();
-            MovementSystem.TryMove(stepper, zone, dx: 1, dy: 0);
-
+            Assert.True(MovementSystem.TryMove(stepper, zone, dx: 1, dy: 0));
             var requests = AsciiFxBus.Drain();
-            // Damage 8 = single-digit → 1 Particle for the floating number.
-            int particleCount = 0;
-            foreach (var r in requests)
-                if (r.Type == AsciiFxRequestType.Particle) particleCount++;
-
-            Assert.AreEqual(1, particleCount,
-                $"Stepping on the plate (damage=8, single-digit) must emit 1 " +
-                $"Particle for the floating damage number. Got {particleCount}. " +
-                $"If 0: ApplyDamage isn't being called by the plate (regression " +
-                $"in OnTrigger), or the floating-number emit was removed from " +
-                $"ApplyDamage.");
+            try
+            {
+                int numberCount = 0;
+                foreach (var request in requests)
+                {
+                    if (request.Type != AsciiFxRequestType.FloatingNumber) continue;
+                    numberCount++;
+                    Assert.AreEqual(8, request.Number);
+                    Assert.AreSame(stepper, request.Anchor);
+                    Assert.AreSame(zone.GetCell(5, 5), request.OriginCell);
+                }
+                Assert.AreEqual(1, numberCount, "The real plate hit must emit one complete damage receipt.");
+                Assert.AreEqual(42, stepper.GetStatValue("Hitpoints"));
+            }
+            finally { foreach (var request in requests) AsciiFxBus.Release(request); }
         }
 
         // ====================================================================

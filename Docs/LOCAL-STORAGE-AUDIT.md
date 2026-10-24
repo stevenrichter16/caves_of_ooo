@@ -53,3 +53,19 @@ After the user confirmed Unity was closed and the preservation commit `37f057319
 Filesystem free space rose from **2,624,671,744 to 13,022,351,360 bytes** immediately after cleanup. Unity subsequently reopened through Hub and regenerated the necessary cache for native testing; free space at documentation time is **8,950,112,256 bytes**. The prior candidates table is historical: Library, listed diagnostic outputs and partial chunks have now been cleared.
 
 Managed archive requested for the clean `exploration-release` worktree. Tool returned queued; its 3.4 GiB is **not counted as reclaimed**. Other worktrees and source snapshots remain preserved.
+
+
+## Graphics verification disk-full recovery — 2026-10-24
+
+Unity code execution and screenshot creation failed with disk-full during the
+post-fix G2 action capture. Restored/stopped the owned Play session, then cleared
+generated BurstCache/Bee and two superseded non-current October10 archives
+(performance97ad6347c and Qud-controls44d8484c8). Their recorded checksums matched
+and both source commits remain ancestors of main. All current builds, source,
+editable art, saves and archive audit/checksum files remain. Exact paths, hashes
+and logical byte counts: [recovery receipt](Verification/Live16x24/g2-action-disk-recovery.json).
+The534,528,075 logical bytes removed are not permanent physical free-space
+reclamation; Unity regenerates caches. Only about304MiB remained after restart,
+so substantial disk headroom is still needed. Do not remove unrelated personal
+files or source to hide this blocker. The after-capture gate remains open in
+[the action record](GRAPHICS-G2-ACTION-READABILITY.md).

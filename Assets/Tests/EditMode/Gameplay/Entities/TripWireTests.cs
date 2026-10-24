@@ -144,28 +144,34 @@ namespace CavesOfOoo.Tests
             // AND the victim at the far cell take damage; both should
             // emit floating numbers.
             var zone = new Zone("TestZone");
+            zone.GetCell(5, 5).IsVisible = zone.GetCell(5, 5).Explored = true;
+            zone.GetCell(7, 5).IsVisible = zone.GetCell(7, 5).Explored = true;
             MakeSegment(zone, 5, 5, "wire-A", damage: 10);
             MakeSegment(zone, 7, 5, "wire-A", damage: 10);
-
             var victim = MakeStepper(zone, 7, 5, hp: 50, id: "victim");
             var tripper = MakeStepper(zone, 4, 5, hp: 100, id: "tripper");
 
             AsciiFxBus.Clear();
-            MovementSystem.TryMove(tripper, zone, dx: 1, dy: 0);
-
+            Assert.True(MovementSystem.TryMove(tripper, zone, dx: 1, dy: 0));
             var requests = AsciiFxBus.Drain();
-            // Damage 10 = 2 digits per hit; 2 hits = 4 Particle requests
-            // total (one per digit per damaged actor).
-            int particleCount = 0;
-            foreach (var r in requests)
-                if (r.Type == AsciiFxRequestType.Particle) particleCount++;
-
-            Assert.AreEqual(4, particleCount,
-                $"Trip on a 2-segment wire with damage=10 (two digits) damaging " +
-                $"two occupants (tripper + victim) must emit 4 Particles total " +
-                $"(2 actors × 2 digits each). Got {particleCount}. " +
-                $"If 2: only one actor got a number — collateral damage at the " +
-                $"non-tripped segment is invisible (the original user complaint).");
+            try
+            {
+                var owners = new System.Collections.Generic.HashSet<Entity>();
+                int numberCount = 0;
+                foreach (var request in requests)
+                {
+                    if (request.Type != AsciiFxRequestType.FloatingNumber) continue;
+                    numberCount++;
+                    Assert.AreEqual(10, request.Number);
+                    Assert.True(owners.Add(request.Anchor), "Each hit occupant needs its own receipt, never a duplicate target.");
+                    Assert.AreSame(zone.GetEntityCell(request.Anchor), request.OriginCell);
+                }
+                Assert.AreEqual(2, numberCount, "Two actual hits each produce one complete ten-damage receipt.");
+                CollectionAssert.AreEquivalent(new[] { tripper, victim }, owners);
+                Assert.AreEqual(90, tripper.GetStatValue("Hitpoints"));
+                Assert.AreEqual(40, victim.GetStatValue("Hitpoints"));
+            }
+            finally { foreach (var request in requests) AsciiFxBus.Release(request); }
         }
 
         // ====================================================================

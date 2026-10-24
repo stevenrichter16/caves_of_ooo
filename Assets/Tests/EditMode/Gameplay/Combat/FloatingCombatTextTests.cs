@@ -66,6 +66,11 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(miss?MeleeStrikeOutcome.NaturalMiss:MeleeStrikeOutcome.Hit,result.Outcome);
             Assert.AreEqual(miss?0:9,result.ActualDamage);Assert.Zero(rng.DefenseDraws);
             Assert.AreEqual(miss,defender.HasEffect<EnGardeEffect>());Assert.IsEmpty(Events());
+            // Exercise the actual melee entry point as well: ApplyDamage owns
+            // one receipt; PerformSingleAttack must not emit a second copy.
+            var numbers=drained.Where(r=>r.Type==AsciiFxRequestType.FloatingNumber).ToArray();
+            Assert.AreEqual(miss?0:1,numbers.Length);
+            if(!miss){Assert.AreEqual(9,numbers[0].Number);Assert.AreSame(defender,numbers[0].Anchor);}
         }
         [TestCase(true)] [TestCase(false)]
         public void HiddenDefenseNeverEmitsAnEventWordButStillResolves(bool visible)
@@ -122,7 +127,7 @@ namespace CavesOfOoo.Tests
             var damage=new Damage(10);damage.AddAttribute("Fire");
             CombatSystem.ApplyDamage(defender,damage,attacker,fixture.Zone);
             Assert.AreEqual(1000,defender.GetStatValue("Hitpoints"));AssertLabel(label,color);
-            Assert.IsEmpty(drained.Where(r=>r.Type==AsciiFxRequestType.Particle&&char.IsDigit(r.Glyph)));
+            Assert.IsEmpty(drained.Where(r=>r.Type==AsciiFxRequestType.FloatingNumber));
         }
         [TestCase(true)] [TestCase(false)]
         public void PartialPreventionKeepsDamageDigitsWithoutClaimingFullResistance(bool resistance)
@@ -132,13 +137,17 @@ namespace CavesOfOoo.Tests
             var damage=new Damage(10);damage.AddAttribute("Fire");
             CombatSystem.ApplyDamage(defender,damage,attacker,fixture.Zone);
             Assert.AreEqual(995,defender.GetStatValue("Hitpoints"));Assert.IsEmpty(Events());
-            CollectionAssert.AreEqual(new[]{'5'},drained.Where(r=>r.Type==AsciiFxRequestType.Particle&&char.IsDigit(r.Glyph)).Select(r=>r.Glyph).ToArray());
+            var numbers=drained.Where(r=>r.Type==AsciiFxRequestType.FloatingNumber).ToArray();
+            Assert.AreEqual(1,numbers.Length);Assert.AreEqual(5,numbers[0].Number);
+            Assert.AreSame(defender,numbers[0].Anchor);
+            Assert.AreSame(fixture.Zone.GetEntityCell(defender),numbers[0].OriginCell);
         }
         [TestCase(0)] [TestCase(-1)]
         public void NonpositiveInputIsNotAResistedAttack(int amount)
         {
             CombatSystem.ApplyDamage(defender,new Damage(amount),attacker,fixture.Zone);
             Assert.AreEqual(1000,defender.GetStatValue("Hitpoints"));Assert.IsEmpty(Events());
+            Assert.IsEmpty(drained.Where(r=>r.Type==AsciiFxRequestType.FloatingNumber));
         }
     }
 }

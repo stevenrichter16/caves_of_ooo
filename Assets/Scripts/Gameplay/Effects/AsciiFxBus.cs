@@ -37,7 +37,8 @@ namespace CavesOfOoo.Core
         ChainArc = 7,
         ColumnRise = 8,
         Particle = 9,
-        EventText = 10
+        EventText = 10,
+        FloatingNumber = 11
     }
 
     public class AsciiFxRequest
@@ -66,6 +67,16 @@ namespace CavesOfOoo.Core
         public string ColorString;
         public float Lifetime;
         public float MoveInterval;
+        /// <summary>One complete positive damage receipt; Text is its invariant
+        /// decimal representation. Zero for nonnumeric requests.</summary>
+        public int Number;
+        /// <summary>Exact disclosed cell captured at emission, not a coordinate
+        /// permission that can transfer to a replacement cell or world.</summary>
+        public Cell OriginCell;
+        /// <summary>A visible lethal-at-emission receipt may briefly remain at
+        /// its origin after that exact owner is removed. Never grants authority
+        /// to follow a removed living owner or a replacement entity.</summary>
+        public bool AllowOriginOnly;
 
         /// <summary>
         /// Wipe all fields back to defaults. Called by
@@ -99,6 +110,9 @@ namespace CavesOfOoo.Core
             ColorString = null;
             Lifetime = 0f;
             MoveInterval = 0f;
+            Number = 0;
+            OriginCell = null;
+            AllowOriginOnly = false;
         }
     }
 
@@ -132,8 +146,8 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Pool ceiling — beyond this, Release drops requests on the
         /// floor and Rent allocates fresh. Bumped from 256 → 1024 in
-        /// the scaling-prep audit (S2): a 100-damage hit emits 3
-        /// floating-number requests, beams emit 1, chain arcs emit
+        /// the scaling-prep audit (S2). A damage hit now emits one
+        /// complete numeric receipt; beams emit 1, chain arcs emit
         /// hop-count, projectiles emit per-step trail. Sustained
         /// 5+ enemy combat with 50+ active FX easily blew past 256.
         /// </summary>
@@ -165,10 +179,10 @@ namespace CavesOfOoo.Core
         public static void Release(AsciiFxRequest request)
         {
             if (request == null) return;
+            // Queued/active presentation may be cancelled during a world change.
+            // Pooled requests must not retain that world's owners or origin cells.
+            request.Reset();
             if (Pool.Count >= MaxPoolSize) return;
-            // Don't reset here — Rent does it on retrieval. Skipping the
-            // reset on Release lets us drop the request on the floor with
-            // a single ref-decrement when the pool is full.
             Pool.Push(request);
         }
 
@@ -398,11 +412,25 @@ namespace CavesOfOoo.Core
         /// checked by the renderer: queued text must not outlive visibility.</summary>
         public static bool CanShowEventText(Zone zone, Entity anchor)
         {
-            if (zone == null || anchor == null || anchor.SpatialZone != zone
-                || anchor.GetPart<RenderPart>()?.Visible != true) return false;
+            if (zone == null || anchor == null || anchor.SpatialZone != zone) return false;
+            var render = anchor.GetPart<RenderPart>();
+            if (render == null || render.ParentEntity != anchor || !render.Visible) return false;
+            var physics = anchor.GetPart<PhysicsPart>();
+            if (physics != null && (physics.ParentEntity != anchor
+                || physics.InInventory != null || physics.Equipped != null)) return false;
             var cell = zone.GetEntityCell(anchor);
-            return cell != null && cell.ParentZone == zone && cell.Objects.Contains(anchor)
-                && cell.Explored && cell.IsVisible;
+            return IsReadoutOriginVisible(zone, cell) && cell.Objects.Contains(anchor);
+        }
+
+        internal static bool IsReadoutOriginVisible(Zone zone, Cell origin)
+        {
+            if (zone == null || origin == null || origin.ParentZone != zone
+                || !ReferenceEquals(zone.GetCell(origin.X, origin.Y), origin)
+                || !origin.Explored || !origin.IsVisible) return false;
+            var manager = WorldLocationContext.For(zone);
+            return manager == null || zone.ZoneID != null && manager.CachedZones != null
+                && manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                && ReferenceEquals(current, zone);
         }
 
         /// <summary>One brief presentation-only message at a visible owner. No
@@ -420,13 +448,15 @@ namespace CavesOfOoo.Core
             int count = 0;
             foreach (var pending in PendingRequests)
             {
-                if (pending.Type != AsciiFxRequestType.EventText) continue;
-                if (++count >= MaxPendingEventTexts || (pending.Zone == zone && pending.Anchor == anchor && pending.Text == text)) return;
+                if (pending.Type != AsciiFxRequestType.EventText && pending.Type != AsciiFxRequestType.FloatingNumber) continue;
+                if (++count >= MaxPendingEventTexts || (pending.Type == AsciiFxRequestType.EventText
+                    && pending.Zone == zone && pending.Anchor == anchor && pending.Text == text)) return;
             }
             var cell = zone.GetEntityCell(anchor);
             var req = Rent();
             req.Type = AsciiFxRequestType.EventText;
             req.Zone = zone; req.Anchor = anchor; req.X = cell.X; req.Y = cell.Y;
+            req.OriginCell = cell;
             req.Text = text;
             req.ColorString = colorString != null && colorString.Length == 2 && colorString[0] == '&'
                 && "kKrRgGbBcCmMwWyY".IndexOf(colorString[1]) >= 0 ? colorString : "&W";
@@ -434,28 +464,46 @@ namespace CavesOfOoo.Core
             PendingRequests.Enqueue(req);
         }
 
-        public static void EmitFloatingNumber(
-            Zone zone,
-            int x,
-            int y,
-            int number,
-            string colorString,
-            float delay = 0f)
+        /// <summary>One noncoalescing damage receipt at its real visible owner.
+        /// The lethal allowance is captured while that owner still belongs to
+        /// the disclosed cell, before HandleDeath removes it.</summary>
+        public static void EmitFloatingNumber(Zone zone, Entity anchor, int number,
+            string colorString, bool allowOriginOnly = false, float delay = 0f)
         {
-            if (zone == null || number <= 0)
-                return;
+            if (number <= 0 || !CanShowEventText(zone, anchor)) return;
+            var hp = anchor.GetStat("Hitpoints");
+            QueueFloatingNumber(zone, anchor, zone.GetEntityCell(anchor), number, colorString,
+                allowOriginOnly && hp != null && hp.BaseValue <= 0, delay);
+        }
 
-            string digits = number.ToString();
-            int startX = x - (digits.Length - 1) / 2;
+        /// <summary>Compatibility for standalone coordinate callers. Still one
+        /// whole number, authorized only by its exact visible captured origin.</summary>
+        public static void EmitFloatingNumber(Zone zone, int x, int y, int number,
+            string colorString, float delay = 0f)
+        {
+            var origin = zone?.GetCell(x, y);
+            if (number <= 0 || !IsReadoutOriginVisible(zone, origin)) return;
+            QueueFloatingNumber(zone, null, origin, number, colorString, true, delay);
+        }
 
-            for (int i = 0; i < digits.Length; i++)
-            {
-                int px = startX + i;
-                if (!zone.InBounds(px, y)) continue;
-
-                EmitParticle(zone, px, y - 1, digits[i], colorString,
-                    lifetime: 0.6f, dy: -1, moveInterval: 0.15f, delay: delay);
-            }
+        private static void QueueFloatingNumber(Zone zone, Entity anchor, Cell origin,
+            int number, string colorString, bool allowOriginOnly, float delay)
+        {
+            int count = 0;
+            foreach (var pending in PendingRequests)
+                if ((pending.Type == AsciiFxRequestType.EventText || pending.Type == AsciiFxRequestType.FloatingNumber)
+                    && ++count >= MaxPendingEventTexts) return;
+            var req = Rent();
+            req.Type = AsciiFxRequestType.FloatingNumber;
+            req.Zone = zone; req.Anchor = anchor; req.OriginCell = origin;
+            req.X = origin.X; req.Y = origin.Y;
+            req.Number = number;
+            req.Text = number.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            req.ColorString = colorString;
+            req.AllowOriginOnly = allowOriginOnly;
+            req.Lifetime = .6f;
+            req.Delay = float.IsNaN(delay) || float.IsInfinity(delay) ? 0f : System.Math.Max(0f, delay);
+            PendingRequests.Enqueue(req);
         }
 
         public static void StartAura(Zone zone, Entity anchor, AsciiFxTheme theme)
