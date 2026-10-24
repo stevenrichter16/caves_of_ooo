@@ -1,0 +1,81 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "label": "working-landscape-profile",
+        "start": "2026-10-24T18:43:07.921849Z",
+        "end": "2026-10-24T18:44:30.888607Z",
+        "elapsedSeconds": 82.966758,
+        "frames": 64479,
+        "zone": "Overworld.12.11.0",
+        "player": [
+          23,
+          17
+        ],
+        "hp": 39,
+        "rows": [
+          {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "valid": true,
+            "count": 64480,
+            "capacity": 131072,
+            "wrapped": false,
+            "unit": "TimeNanoseconds",
+            "mean": 60020.59147022333,
+            "max": 36473583,
+            "p99": 125209
+          },
+          {
+            "name": "Main Thread",
+            "valid": true,
+            "count": 64480,
+            "capacity": 131072,
+            "wrapped": false,
+            "unit": "TimeNanoseconds",
+            "mean": 1283114.5940756823,
+            "max": 888482500,
+            "p99": 2490708
+          },
+          {
+            "name": "Draw Calls Count",
+            "valid": true,
+            "count": 64480,
+            "capacity": 131072,
+            "wrapped": false,
+            "unit": "Count",
+            "mean": 40.406839330024816,
+            "max": 41,
+            "p99": 41
+          },
+          {
+            "name": "Batches Count",
+            "valid": true,
+            "count": 64480,
+            "capacity": 131072,
+            "wrapped": false,
+            "unit": "Count",
+            "mean": 39.94590570719603,
+            "max": 41,
+            "p99": 41
+          },
+          {
+            "name": "Triangles Count",
+            "valid": true,
+            "count": 64480,
+            "capacity": 131072,
+            "wrapped": false,
+            "unit": "Count",
+            "mean": 8868.449565756824,
+            "max": 9799,
+            "p99": 9799
+          }
+        ],
+        "bounds": "Editor ordinary walking plus idle/tool time; all-world/UI costs and live combat differ; not Deck or a controlled speedup benchmark."
+      },
+      "compiler": "codedom"
+    }
+  }
+}

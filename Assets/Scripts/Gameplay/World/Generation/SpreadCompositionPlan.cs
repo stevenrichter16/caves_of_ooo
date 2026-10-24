@@ -206,14 +206,20 @@ namespace CavesOfOoo.Core
         {
             if(!InBounds(x,y)||x<2||x>77||y<2||y>22||IsApproach(x,y)||IsLawn(x,y)||IsWater(x,y))return null;
             if(Landscape!=null)return LandscapeObjectAt(x,y);
-            foreach(var p in parcels)
+            for(int i=0;i<parcels.Length;i++)
             {
+                var p=parcels[i];
                 if(!p.Contains(x,y))continue;
                 if(Formation==Formation.Hedgerow&&p.Boundary(x,y))
                 {
                     // Two explicit wide opposing gates complement the work lane.
                     bool gate=x>=p.X+p.Width/2-1&&x<=p.X+p.Width/2+1;
-                    return gate?null:"Hedge";
+                    if(gate)return null;
+                    // Only this cold opening site breaks the old parcel edges.
+                    // Subtraction preserves every existing route/gate; loaded
+                    // graphs and unrelated Hedgerow parcels never use this mask.
+                    if(OpeningKitchen&&!KeepKitchenHedge(p,i,x,y))return null;
+                    return "Hedge";
                 }
                 if(Formation==Formation.FieldStrips)
                     return !p.Boundary(x,y)&&(x-p.X)%3!=0&&Roll(x,y,61)<(Condition=="after harvest"?62:94)?"CropRow":null;
@@ -238,6 +244,37 @@ namespace CavesOfOoo.Core
             if(shelter<1.6&&Roll(x,y,89)<14)return "Bush";
             return null;
         }
+        private bool OpeningKitchen=>Topology!=SpreadExplorationTopology.Legacy
+            &&ZoneID=="Overworld.12.11.0"&&Formation==Formation.Hedgerow;
+        private bool OpeningFlowerDrifts=>Topology!=SpreadExplorationTopology.Legacy
+            &&ZoneID=="Overworld.12.10.0"&&Formation==Formation.FlowerMeadow;
+        private bool KeepKitchenHedge(Parcel p,int index,int x,int y)
+        {
+            int u=x-p.X,v=y-p.Y,w=p.Width-1,h=p.Height-1;
+            if(mirrored)u=w-u;
+            // Distinct perimeter fragments, not five versions of the same L.
+            // They are subsets of the old boundary after all public openings.
+            switch(index)
+            {
+                case 0:return (v==0&&u<=w*4/5)||(u==0&&v<=h/2);
+                case 1:return v==h&&u>=2&&u<=w-1&&(u<w/3||u>w/3+3);
+                case 2:return (v==0&&u<=w/2)||(v==h&&u>=w*2/3);
+                case 3:return (u==w&&v>=1&&v<=h-1)||(v==0&&u>=2&&u<=4);
+                default:return (v==h&&u>=w/4)||(u==w&&v>=h*2/3);
+            }
+        }
+        private bool InOpeningFlowerDrift(int x,int y)
+        {
+            // Broad unequal bodies with a bite out of the larger one. These
+            // don't repeat a centerline across the world; real grass separates
+            // them and the existing approach/tree exclusions still take priority.
+            int shift=Hash(WorldX,WorldY,761)%5-2;
+            double upper=Math.Min(Ellipse(x,y,24+shift,6,16,4.8),Ellipse(x,y,38+shift,8,9,3.8));
+            double bite=Ellipse(x,y,30+shift,3,9,3.6);
+            double lower=Ellipse(x,y-.20*(x-56),56-shift,18,11,4.2);
+            double echo=Ellipse(x,y,67,5+Hash(WorldX,WorldY,769)%2,4,2.4);
+            return (upper<1&&bite>1)||lower<1||echo<1;
+        }
         private string LandscapeObjectAt(int x,int y)
         {
             if(Landscape=="overgrown crofts")
@@ -260,11 +297,18 @@ namespace CavesOfOoo.Core
             }
             else if(Landscape=="flower avenues")
             {
-                double wave=Math.Sin((x+Hash(WorldX,WorldY,719)%25)*.095)*1.8;
-                double band=Math.Min(Math.Abs(y-5-wave),Math.Min(Math.Abs(y-12-wave),Math.Abs(y-19-wave)));
                 if(Ellipse(x,y,12,10,3,2.3)<1||Ellipse(x,y,67,15,3,2.3)<1)
                     return Roll(x,y,727)<72?"Tree":"Bush";
-                if(x>5&&x<75&&band<1.65&&Roll(x,y,733)<70)return "CharmFlowers";
+                if(OpeningFlowerDrifts)
+                {
+                    if(InOpeningFlowerDrift(x,y)&&Roll(x,y,733)<70)return "CharmFlowers";
+                }
+                else
+                {
+                    double wave=Math.Sin((x+Hash(WorldX,WorldY,719)%25)*.095)*1.8;
+                    double band=Math.Min(Math.Abs(y-5-wave),Math.Min(Math.Abs(y-12-wave),Math.Abs(y-19-wave)));
+                    if(x>5&&x<75&&band<1.65&&Roll(x,y,733)<70)return "CharmFlowers";
+                }
             }
             else
             {
@@ -289,6 +333,8 @@ namespace CavesOfOoo.Core
         public string LandscapeContext(string blueprint)
         {
             if(blueprint!="Tree"&&blueprint!="Hedge"&&blueprint!="FlowerField"&&blueprint!="CharmFlowers")return null;
+            if(OpeningFlowerDrifts&&Landscape=="flower avenues")
+                return "Unequal drifts of blooms curl around open grass. Small stands of trees interrupt the flower banks; broad gaps lead toward the worked clearings.";
             switch(Landscape)
             {
                 case "overgrown crofts":return "The old crofts survive as broken hedge runs and crowded tree belts. Broad gaps lead around the surviving boundaries; trunks obstruct the shorter passages.";

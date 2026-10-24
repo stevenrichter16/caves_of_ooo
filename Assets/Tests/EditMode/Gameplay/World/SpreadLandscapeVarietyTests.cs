@@ -54,7 +54,7 @@ namespace CavesOfOoo.Tests
                 var z=new Zone(id);var b=new SpreadCompositionBuilder(64){Topology=SpreadExplorationTopology.OffsetLanes};Assert.True(b.BuildZone(z,scope.Factory,new Random(99)));
                 var trees=z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tree").ToArray();Assert.Greater(trees.Length,3);
                 Assert.True(trees.All(e=>e.GetPart<PhysicsPart>().Solid));
-                string cue=id==North?"croft":id==East?"avenue":"hollow";
+                string cue=id==North?"croft":id==East?"drift":"hollow";
                 Assert.True(z.GetReadOnlyEntities().Any(e=>e.GetPart<ExaminablePart>()?.Text.Contains(cue)==true));
                 Assert.False(z.GetReadOnlyEntities().Any(e=>e.HasPart<HarvestablePart>()||e.HasPart<FieldHarvestPart>()||e.HasTag("Creature")),"Terrain does not mint food or actors; later existing builders own those budgets.");
                 var snapshot=z.GetReadOnlyEntities().ToArray();Assert.False(b.BuildZone(z,scope.Factory,new Random(99)));CollectionAssert.AreEqual(snapshot,z.GetReadOnlyEntities());

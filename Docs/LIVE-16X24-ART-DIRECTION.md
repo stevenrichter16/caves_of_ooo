@@ -893,3 +893,40 @@ safe worthwhile stale cache/build candidate:0bytes removed,2.82GiB free.
 The current delivered archive hash is unchanged; sources/saves/backups and
 active editor caches remain preserved. It does not contain today's graphics.
 Continue the scene-composition plan above without clearing useful caches.
+
+
+## Latest continuation — working-landscape repetition reduced, 2026-10-24 18:12 UTC heartbeat
+
+Exact fresh east/kitchen layouts now use unequal flower drifts and surviving
+hedge fragments rather than repeated ribbons/rooms. Accepted sprites, shared
+routes, finite service owners and loaded graphs are unchanged. Actual captures
+fed two constrained imagegen concepts; no generated pixels were imported.
+The small cold-generation mask change also clears the sampled kitchen front.
+[Plan, scope and results](GRAPHICS-G2-WORKING-LANDSCAPE.md).
+
+Native15 focused RED(5 expected failures)→15 GREEN plus197 affected regression
+cases pass:212 distinct cases,0skip. Outside/Legacy hashes and real-owner/state
+counter-checks pass. Source and nine-image independent reviews found no P1/P2
+in this bounded change. Fresh ordinary keyboard routes on seeds64/65 visited
+glade/east/kitchen, opened real pan menus, gathered Claspbean, saved/reloaded,
+departed and revisited. Recorded137/169 owners match by ID and8/8 inventory rows
+match after load; harvested beds stay empty. Seed64 also exercised the actual
+forge picker after a real fight/Calm/tonic; no forging or fresh pan repair claim.
+
+[Actual seed64 kitchen at2×](Verification/Live16x24/working-landscape-64-kitchen-2x.png)
+and [seed65 at2×](Verification/Live16x24/working-landscape-65-kitchen-2x.png)
+show native pixels and real harvested soil. Temporary presentation zoom restored;
+physical Deck input remains untested. Both Play/save-isolation/view sessions are
+restored, checkpoints preserved. MCP initialization timeout/late TestRunner
+cleanup, known Metal depth messages and an Autosaved log misclassification are
+recorded without claiming a clean transition console. Unwrapped82.97second editor
+profile: renderer mean0.0600ms/p99 0.1252/max36.4736; main thread mean1.2831ms/
+p99 2.4907/max888.4825; max41draws. Not a benchmark or Deck performance proof.
+
+**Next: finish working-court framing using real owners and approaches.** Services
+are clearer but still loosely arranged on broad grass, and long hedges show a
+repeated bright mosaic at2×. Preserve the accepted sprite identities and new
+mask result; improve place recognition with purposeful boundaries, not filler
+props. The larger scene design, G2 motion/defence, service/crop outcomes, complete
+six-site journey, package/device gates and regional kits remain open. No new
+build exists from this pass. Continue the hourly work; graphics is still priority1.
