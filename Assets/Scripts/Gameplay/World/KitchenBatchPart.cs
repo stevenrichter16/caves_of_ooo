@@ -8,6 +8,8 @@ using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
+    public enum KitchenBatchPresentation { None, CoveredWorking, ReadyParcel }
+
     /// <summary>One optional kitchen commission on exact saved owners. Ingredients
     /// remain physical escrow until completion; time never creates another job.</summary>
     public sealed class KitchenBatchPart : Part
@@ -56,6 +58,136 @@ namespace CavesOfOoo.Core
         /// <summary>Removes the obsolete repair instruction only from the canonical repaired-pan prose.</summary>
         internal string ResolveDescription(string authoredText) => authoredText == BrokenPanDescription && HasRepairedPanReadout()
             ? RepairedPanDescription : authoredText;
+
+        /// <summary>Pure cues for a current disclosed pan or pickup. The caller
+        /// retains art admission/top-owner authority. This never reconciles a
+        /// job: covered means exact paid escrow, and ready means the commissioned
+        /// parcel is still physically on its board. The existing part index has
+        /// one lazy discovery pass; subsequent reads inspect only batch owners.</summary>
+        public static bool TryGetPresentation(Zone zone, Entity subject, out KitchenBatchPresentation presentation)
+        {
+            presentation = KitchenBatchPresentation.None;
+            if (zone?.ZoneID != KitchenZoneID || subject == null
+                || subject.BlueprintName != "ConnectedBatchPan" && subject.BlueprintName != "ConnectedKitchenPickup") return false;
+            var cell = zone.GetEntityCell(subject);
+            if (cell == null || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell
+                || !cell.Explored || !cell.IsVisible || !cell.Objects.Contains(subject) || subject.SpatialZone != zone) return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager != null && (!manager.CachedZones.TryGetValue(zone.ZoneID, out var current) || current != zone)) return false;
+            KitchenBatchPart found = null;
+            var owners = zone.GetReadOnlyEntitiesWithPart<KitchenBatchPart>();
+            for (int i = 0; i < owners.Count; i++)
+            {
+                var owner = owners[i]; var candidate = PresentationPart<KitchenBatchPart>(owner);
+                if (candidate == null || !candidate.Configured || candidate.StationID != owner.ID) continue;
+                if (found != null) return false;
+                found = candidate;
+            }
+            if (found == null || found.ZoneID != KitchenZoneID
+                || !found.PresentationFixedOwner(found.ParentEntity, zone, "ConnectedBatchPan", found.StationID, found.StationX, found.StationY)
+                || !found.PresentationFixedOwner(found.Pickup, zone, "ConnectedKitchenPickup", found.PickupID, found.PickupX, found.PickupY)
+                || found.StationID == found.PickupID) return false;
+            if (subject == found.ParentEntity && found.PresentationWorking(zone))
+                presentation = KitchenBatchPresentation.CoveredWorking;
+            else if (subject == found.Pickup && found.PresentationOutput(zone))
+                presentation = KitchenBatchPresentation.ReadyParcel;
+            return presentation != KitchenBatchPresentation.None;
+        }
+
+        static T PresentationPart<T>(Entity owner) where T : Part
+        {
+            if (owner == null) return null;
+            T found = null;
+            for (int i = 0; i < owner.Parts.Count; i++)
+                if (owner.Parts[i] is T part)
+                { if (found != null || part.ParentEntity != owner) return null; found = part; }
+            return found;
+        }
+        bool PresentationFixedOwner(Entity owner, Zone zone, string blueprint, string id, int x, int y)
+        {
+            if (owner == null || string.IsNullOrEmpty(id)) return false;
+            var cell = zone.GetEntityCell(owner);
+            return owner.ID == id && Ground(owner, zone, blueprint)
+                && cell != null && cell.X == x && cell.Y == y && zone.GetCell(x, y) == cell;
+        }
+        static bool PresentationLiveStructure(Entity owner)
+        {
+            var part = owner.GetPart<DestructiblePart>();
+            return part == null || part.ParentEntity == owner && !part.Gone && part.HP > 0;
+        }
+        // Same trimmed, ordinal comma-token semantics as Composition.Contains,
+        // without its Split/Trim allocations in repeated presentation reads.
+        internal static bool HasMasonryComposition(CompositionPart composition)
+        {
+            string raw = composition?.MaterialsRaw;
+            if (string.IsNullOrEmpty(raw)) return false;
+            int start = 0;
+            for (int end = 0; end <= raw.Length; end++)
+            {
+                if (end < raw.Length && raw[end] != ',') continue;
+                int left = start, right = end - 1;
+                while (left <= right && char.IsWhiteSpace(raw[left])) left++;
+                while (right >= left && char.IsWhiteSpace(raw[right])) right--;
+                if (right - left + 1 == 7 && string.CompareOrdinal(raw, left, "Masonry", 0, 7) == 0) return true;
+                start = end + 1;
+            }
+            return false;
+        }
+        bool PresentationWorking(Zone zone)
+        {
+            var repair = PresentationPart<RepairablePart>(ParentEntity);
+            var material = PresentationPart<CompositionPart>(ParentEntity);
+            var input = PresentationPart<ContainerPart>(Escrow); var pickup = PresentationPart<ContainerPart>(Pickup);
+            if (!ValidJob() || repair == null || !repair.Repaired || repair.PortableEquipment || repair.RecipeId != "clay-batch-pan"
+                || !HasMasonryComposition(material)
+                || Worker?.ID != WorkerID || string.IsNullOrEmpty(WorkerID) || !Ground(Worker, zone, "SpreadWaysideCook")
+                || zone.GetEntityCell(Worker) is not Cell workerCell || zone.GetCell(workerCell.X, workerCell.Y) != workerCell
+                || !PresentationFixedOwner(Escrow, zone, "ConnectedKitchenEscrow", EscrowID, EscrowX, EscrowY)
+                || StationID == WorkerID || StationID == EscrowID || WorkerID == EscrowID || WorkerID == PickupID || EscrowID == PickupID
+                || input == null || pickup == null || input == pickup || input.Contents == null || pickup.Contents == null
+                || input.Contents == pickup.Contents || !PresentationLiveStructure(ParentEntity)
+                || !PresentationLiveStructure(Escrow) || !PresentationLiveStructure(Pickup)
+                || Inputs == null || InputIDs == null || InputCounts == null || Inputs.Count < 2 || Inputs.Count > 3
+                || Inputs.Count != InputIDs.Count || Inputs.Count != InputCounts.Count || input.Contents.Count != Inputs.Count) return false;
+            int grain = 0, pulp = 0;
+            for (int i = 0; i < Inputs.Count; i++)
+            {
+                var item = Inputs[i];
+                if (!PresentationPortable(item) || item.ID != InputIDs[i] || Count(item) != InputCounts[i]
+                    || item.GetPart<PhysicsPart>().InInventory != Escrow) return false;
+                for (int j = 0; j < i; j++) if (Inputs[j] == item || InputIDs[j] == item.ID) return false;
+                int matches = 0;
+                for (int j = 0; j < input.Contents.Count; j++) if (input.Contents[j] == item) matches++;
+                if (matches != 1) return false;
+                if (item.BlueprintName == "Emberwheat") { if (InputCounts[i] > 2) return false; grain += InputCounts[i]; }
+                else if (item.BlueprintName == "ClaspbeanPulp") { if (InputCounts[i] != 1) return false; pulp++; }
+                else return false;
+            }
+            return grain == 2 && pulp == 1;
+        }
+        static bool PresentationPortable(Entity item)
+        {
+            if (!Portable(item) || PresentationPart<PhysicsPart>(item) == null) return false;
+            var stack = item.GetPart<StackerPart>(); var damage = item.GetPart<DestructiblePart>();
+            return (stack == null || PresentationPart<StackerPart>(item) == stack)
+                && (damage == null || PresentationPart<DestructiblePart>(item) == damage);
+        }
+        bool PresentationOutput(Zone zone)
+        {
+            var store = PresentationPart<ContainerPart>(Pickup);
+            if (Commissioner == null || string.IsNullOrEmpty(CommissionerID) || Output == null || string.IsNullOrEmpty(OutputID)
+                || store?.Contents == null || !PresentationPortable(Output) || Count(Output) != 1
+                || PresentationPart<FieldMealPart>(Output) == null || Output.GetPart<PhysicsPart>().InInventory != Pickup
+                || !OwnsCommissionedMeal(Commissioner, Output, zone)) return false;
+            int matches = 0;
+            for (int i = 0; i < store.Contents.Count; i++)
+            {
+                var item = store.Contents[i];
+                if (item != Output && item?.ID != OutputID) continue;
+                if (item != Output || ++matches != 1) return false;
+            }
+            return matches == 1;
+        }
 
         /// <summary>Called once by generation after the four real owners are placed.
         /// It binds a broken pan too; only starting work requires its repair.</summary>

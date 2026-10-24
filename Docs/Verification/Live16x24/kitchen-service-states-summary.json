@@ -1,0 +1,101 @@
+{
+  "kind": "ordinary_keyboard_service_cue_acceptance",
+  "seed": 65,
+  "zone": "Overworld.12.11.0",
+  "checks": {
+    "real_paid_escrow": true,
+    "working_reload_equal_recorded_fields": true,
+    "due_120_ticks": true,
+    "unique_ready_output": true,
+    "ready_output_survives_reload_and_two_steps": true,
+    "collected_actual_same_meal": true,
+    "collected_reload_equal_recorded_fields": true,
+    "flat_current_graph_all": true,
+    "submitted_idle": true,
+    "submitted_working": true,
+    "submitted_working-reloaded": true,
+    "submitted_ready": true,
+    "submitted_ready-reloaded": true,
+    "submitted_collected": true
+  },
+  "captures": [
+    {
+      "file": "kitchen-service-states-board-reader.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "2989c5038d7238e2c86acb8c1143cb1434b8f700d82bea12c02a38ab4ffeb23c"
+    },
+    {
+      "file": "kitchen-service-states-collected-reloaded.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "8fac9579bd3a45a3180f97cdabcad876d5df41ad29fc523e78febfbc4f91733c"
+    },
+    {
+      "file": "kitchen-service-states-collected.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "d3d5a7a5d725e1ae5d11e45e8d236c307caaac08a0d290cbe2b9b492acdb04a9"
+    },
+    {
+      "file": "kitchen-service-states-idle.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "9f25b76f778a952cfc9bfe53f464a1748afa33ed40b0daa2f9fb52a624b6a063"
+    },
+    {
+      "file": "kitchen-service-states-pickup.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "19b1ef1208ea12a8addc497a87189edf52d7d41b5f695f80a6dca16ddf5f1b92"
+    },
+    {
+      "file": "kitchen-service-states-ready-reader.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "7185eff43691b7e7b7de3a08d1c22f720e2c3324067fe68a087e7f9ed9fb3edb"
+    },
+    {
+      "file": "kitchen-service-states-ready-reloaded.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "ff4b71e57a990d7ecaa85d2e306f8a9775aee8d693c7573f271a877cda06b38f"
+    },
+    {
+      "file": "kitchen-service-states-ready.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "0efc7cf20ea5dfa192f29b78436d603850657836a2104ef48564c10e307fc13a"
+    },
+    {
+      "file": "kitchen-service-states-working-2x.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "0a7286ca1a8827376a094b80881f55f0f69a075183dd6baf0f10fdd97eec949f"
+    },
+    {
+      "file": "kitchen-service-states-working-reloaded.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "b3041f617151e3c06d87aa75d55487d146021d7f7a8ce298b52aa53a6d509f1f"
+    },
+    {
+      "file": "kitchen-service-states-working.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "07e8171f82b138013c0c6bf99ad534df6787c4ed21f95d6ca184eaa8cfc9c954"
+    }
+  ],
+  "nativeDistinct": {
+    "passed": 481,
+    "failed": 0,
+    "skipped": 5
+  },
+  "bounds": [
+    "Real keyboard resume of actually played repaired checkpoint; no gameplay grants, time setters or forced jobs.",
+    "Working and collected reload compare named recorded fields; Ready replay has two subsequent movement turns.",
+    "Working-2x temporarily changes view only; reload returns saved default1.2.",
+    "Portrait/window and tilemap evidence establish sampled rendering, not every state, packaged run or physical Steam Deck.",
+    "Five GC allocation tests explicitly skipped; separate quiet-frame tests pass."
+  ]
+}

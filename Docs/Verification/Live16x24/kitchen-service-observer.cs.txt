@@ -1,0 +1,194 @@
+// Read-only, one-shot observational receipt. Replace only this label per capture.
+// No screenshot is queued here: pair this JSON with root's ordinary capture.
+string label = "kitchen-service-job-current";
+string directory = System.IO.Path.GetFullPath("Docs/Verification/Live16x24");
+if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Receipt requires existing ordinary Play.");
+var renderer = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if (renderer == null || renderer.CurrentZone == null || renderer.PlayerEntity == null)
+    throw new System.InvalidOperationException("No current renderer/zone/player.");
+var zone = renderer.CurrentZone;
+var player = renderer.PlayerEntity;
+var manager = CavesOfOoo.Core.WorldLocationContext.For(zone);
+CavesOfOoo.Core.Zone managedZone = null;
+bool managerHasZone = manager != null && manager.CachedZones.TryGetValue(zone.ZoneID, out managedZone);
+var playerPack = player.GetPart<CavesOfOoo.Core.InventoryPart>();
+var panCandidates = new System.Collections.Generic.List<CavesOfOoo.Core.Entity>();
+foreach (var owner in zone.GetReadOnlyEntities())
+    if (owner != null && owner.BlueprintName == "ConnectedBatchPan" && owner.GetPart<CavesOfOoo.Core.KitchenBatchPart>() != null)
+        panCandidates.Add(owner);
+var pan = panCandidates.Count == 1 ? panCandidates[0] : null;
+var batch = pan == null ? null : pan.GetPart<CavesOfOoo.Core.KitchenBatchPart>();
+var cook = batch == null ? null : batch.Worker;
+var escrow = batch == null ? null : batch.Escrow;
+var pickup = batch == null ? null : batch.Pickup;
+var escrowPart = escrow == null ? null : escrow.GetPart<CavesOfOoo.Core.ContainerPart>();
+var pickupPart = pickup == null ? null : pickup.GetPart<CavesOfOoo.Core.ContainerPart>();
+
+System.Func<System.Collections.Generic.IEnumerable<CavesOfOoo.Core.Entity>, CavesOfOoo.Core.Entity, int> refs = (rows, target) => {
+    int n = 0; if (rows != null && target != null) foreach (var row in rows) if (object.ReferenceEquals(row, target)) n++;
+    return n;
+};
+System.Func<System.Collections.Generic.IEnumerable<CavesOfOoo.Core.Entity>, CavesOfOoo.Core.Entity, int> ids = (rows, target) => {
+    int n = 0; if (rows != null && target != null) foreach (var row in rows) if (row != null && row.ID == target.ID) n++;
+    return n;
+};
+System.Func<CavesOfOoo.Core.Entity, int?> drams = owner => {
+    if (owner == null) return null;
+    int amount; return owner.IntProperties.TryGetValue("Drams", out amount) ? amount : 0;
+};
+System.Func<CavesOfOoo.Core.Entity, object> location = owner => {
+    var cell = owner == null ? null : zone.GetEntityCell(owner);
+    return new {
+        x = cell == null ? (int?)null : cell.X, y = cell == null ? (int?)null : cell.Y,
+        indexedInCurrentZone = cell != null,
+        cellParentMatches = cell != null && object.ReferenceEquals(cell.ParentZone, zone),
+        canonicalCellMatches = cell != null && object.ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell),
+        cellObjectRefs = cell == null ? 0 : refs(cell.Objects, owner),
+        cellSameIds = cell == null ? 0 : ids(cell.Objects, owner),
+        visible = cell != null && cell.IsVisible, explored = cell != null && cell.Explored
+    };
+};
+System.Func<CavesOfOoo.Core.Entity, CavesOfOoo.Core.Entity, object> itemRow = (item, expectedCustodian) => {
+    if (item == null) return null;
+    var physical = item.GetPart<CavesOfOoo.Core.PhysicsPart>();
+    var stack = item.GetPart<CavesOfOoo.Core.StackerPart>();
+    var render = item.GetPart<CavesOfOoo.Core.RenderPart>();
+    var mealPart = item.GetPart<CavesOfOoo.Core.FieldMealPart>();
+    var indexedZones = new System.Collections.Generic.List<string>();
+    if (manager != null) {
+        foreach (var pair in manager.CachedZones)
+            if (pair.Value != null && pair.Value.GetEntityCell(item) != null) indexedZones.Add(pair.Key);
+    } else if (zone.GetEntityCell(item) != null) indexedZones.Add(zone.ZoneID);
+    string station, customer; int ordinal;
+    item.Properties.TryGetValue("KitchenBatch.Station", out station);
+    item.Properties.TryGetValue("KitchenBatch.Customer", out customer);
+    bool hasOrdinal = item.IntProperties.TryGetValue("KitchenBatch.Ordinal", out ordinal);
+    return new {
+        id = item.ID, blueprint = item.BlueprintName,
+        authoredDisplayName = render == null ? null : render.DisplayName,
+        count = stack == null ? 1 : stack.StackCount,
+        maxStack = stack == null ? (int?)null : stack.MaxStack,
+        stackOwned = stack == null ? (bool?)null : object.ReferenceEquals(stack.ParentEntity, item),
+        physicsPresent = physical != null,
+        physicsOwned = physical != null && object.ReferenceEquals(physical.ParentEntity, item),
+        takeable = physical != null && physical.Takeable, solid = physical != null && physical.Solid,
+        inInventoryId = physical == null || physical.InInventory == null ? null : physical.InInventory.ID,
+        expectedCustodianId = expectedCustodian == null ? null : expectedCustodian.ID,
+        custodyMatchesExpected = physical != null && expectedCustodian != null && object.ReferenceEquals(physical.InInventory, expectedCustodian),
+        equippedId = physical == null || physical.Equipped == null ? null : physical.Equipped.ID,
+        indexedZones = indexedZones,
+        currentZoneLocation = location(item),
+        playerPackRefs = refs(playerPack == null ? null : playerPack.Objects, item),
+        playerPackSameIds = ids(playerPack == null ? null : playerPack.Objects, item),
+        escrowRefs = refs(escrowPart == null ? null : escrowPart.Contents, item),
+        escrowSameIds = ids(escrowPart == null ? null : escrowPart.Contents, item),
+        pickupRefs = refs(pickupPart == null ? null : pickupPart.Contents, item),
+        pickupSameIds = ids(pickupPart == null ? null : pickupPart.Contents, item),
+        fieldMealOwned = mealPart != null && object.ReferenceEquals(mealPart.ParentEntity, item),
+        commissionStation = station, commissionCustomer = customer,
+        commissionOrdinal = hasOrdinal ? (int?)ordinal : null
+    };
+};
+System.Func<CavesOfOoo.Core.Entity, string, object> ownerRow = (owner, expectedId) => {
+    if (owner == null) return null;
+    var physical = owner.GetPart<CavesOfOoo.Core.PhysicsPart>();
+    var fault = owner.GetPart<CavesOfOoo.Core.RepairablePart>();
+    var hp = owner.GetStat("Hitpoints");
+    var render = owner.GetPart<CavesOfOoo.Core.RenderPart>();
+    var pack = owner.GetPart<CavesOfOoo.Core.InventoryPart>();
+    var brain = owner.GetPart<CavesOfOoo.Core.BrainPart>();
+    int lastRestock;
+    bool hasLastRestock = owner.IntProperties.TryGetValue("LastRestockTurn", out lastRestock);
+    return new {
+        id = owner.ID, blueprint = owner.BlueprintName, expectedId = expectedId, idMatches = owner.ID == expectedId,
+        authoredDisplayName = render == null ? null : render.DisplayName,
+        location = location(owner), drams = drams(owner),
+        hp = hp == null ? (int?)null : hp.Value, maxHp = hp == null ? (int?)null : hp.Max,
+        lastRestockTurn = hasLastRestock ? (int?)lastRestock : null,
+        physicsOwned = physical != null && object.ReferenceEquals(physical.ParentEntity, owner),
+        takeable = physical != null && physical.Takeable, solid = physical != null && physical.Solid,
+        inInventoryId = physical == null || physical.InInventory == null ? null : physical.InInventory.ID,
+        equippedId = physical == null || physical.Equipped == null ? null : physical.Equipped.ID,
+        packOwned = pack != null && object.ReferenceEquals(pack.ParentEntity, owner),
+        brainOwned = brain != null && object.ReferenceEquals(brain.ParentEntity, owner),
+        repairOwned = fault != null && object.ReferenceEquals(fault.ParentEntity, owner),
+        repaired = fault == null ? (bool?)null : fault.Repaired,
+        repairRecipe = fault == null ? null : fault.RecipeId
+    };
+};
+System.Func<CavesOfOoo.Core.Entity, CavesOfOoo.Core.ContainerPart, object> containerRow = (owner, container) => {
+    if (container == null) return null;
+    var rows = new System.Collections.Generic.List<object>();
+    if (container.Contents != null) foreach (var item in container.Contents) rows.Add(itemRow(item, owner));
+    return new {
+        ownerId = owner == null ? null : owner.ID,
+        partOwned = object.ReferenceEquals(container.ParentEntity, owner),
+        lockedField = container.Locked, effectiveLocked = container.IsLocked, maxItems = container.MaxItems,
+        contentsListNull = container.Contents == null, rowCount = container.Contents == null ? (int?)null : container.Contents.Count,
+        rows = rows
+    };
+};
+var inputRows = new System.Collections.Generic.List<object>();
+if (batch != null && batch.Inputs != null) for (int i = 0; i < batch.Inputs.Count; i++) {
+    var item = batch.Inputs[i];
+    var stack = item == null ? null : item.GetPart<CavesOfOoo.Core.StackerPart>();
+    int? actualCount = item == null ? (int?)null : stack == null ? 1 : stack.StackCount;
+    string expectedId = batch.InputIDs != null && i < batch.InputIDs.Count ? batch.InputIDs[i] : null;
+    int? expectedCount = batch.InputCounts != null && i < batch.InputCounts.Count ? (int?)batch.InputCounts[i] : null;
+    inputRows.Add(new { index = i, expectedId = expectedId, expectedCount = expectedCount,
+        idMatches = item != null && item.ID == expectedId,
+        countMatches = actualCount.HasValue && expectedCount.HasValue && actualCount.Value == expectedCount.Value,
+        item = itemRow(item, escrow) });
+}
+var carried = new System.Collections.Generic.List<object>();
+if (playerPack != null && playerPack.Objects != null) foreach (var item in playerPack.Objects) carried.Add(itemRow(item, player));
+var candidates = new System.Collections.Generic.List<object>();
+foreach (var owner in panCandidates) candidates.Add(new { id = owner.ID, location = location(owner) });
+var playerCell = zone.GetEntityCell(player);
+var panCell = pan == null ? null : zone.GetEntityCell(pan);
+var cookCell = cook == null ? null : zone.GetEntityCell(cook);
+object job = batch == null ? null : (object)new {
+    configured = batch.Configured, partOwned = object.ReferenceEquals(batch.ParentEntity, pan),
+    zoneId = batch.ZoneID, stationId = batch.StationID, workerId = batch.WorkerID,
+    escrowId = batch.EscrowID, pickupId = batch.PickupID,
+    state = batch.State, blockedReason = batch.BlockedReason,
+    ordinal = batch.JobOrdinal, startTick = batch.StartTick, dueTick = batch.DueTick,
+    dueMinusStart = (long)batch.DueTick - batch.StartTick,
+    remainingTicks = (long)batch.DueTick - CavesOfOoo.Core.WorldClock.CurrentTick,
+    stationFixedPosition = new[] { batch.StationX, batch.StationY },
+    escrowFixedPosition = new[] { batch.EscrowX, batch.EscrowY },
+    pickupFixedPosition = new[] { batch.PickupX, batch.PickupY },
+    commissionerId = batch.CommissionerID,
+    actualCommissionerId = batch.Commissioner == null ? null : batch.Commissioner.ID,
+    commissionerIsPlayer = object.ReferenceEquals(batch.Commissioner, player),
+    inputListLength = batch.Inputs == null ? (int?)null : batch.Inputs.Count,
+    inputIds = batch.InputIDs == null ? null : batch.InputIDs.ToArray(),
+    inputCounts = batch.InputCounts == null ? null : batch.InputCounts.ToArray(),
+    inputs = inputRows, outputId = batch.OutputID,
+    outputIdMatches = batch.Output != null && batch.Output.ID == batch.OutputID,
+    output = itemRow(batch.Output, pickup)
+};
+var receipt = new {
+    schema = 1, label = label, observedUtc = System.DateTime.UtcNow.ToString("O"), observational = true,
+    status = panCandidates.Count == 1 ? "single_current_pan_observed" : "no_unique_pan_in_current_zone",
+    seed = manager == null ? (int?)null : manager.WorldSeed, zone = zone.ZoneID,
+    tick = CavesOfOoo.Core.WorldClock.CurrentTick, flat = renderer.FlatPixelModeActive,
+    managerPresent = manager != null, managerHasZone = managerHasZone,
+    currentGraphMatches = managerHasZone && object.ReferenceEquals(managedZone, zone),
+    player = ownerRow(player, player.ID), pan = ownerRow(pan, batch == null ? null : batch.StationID),
+    cook = ownerRow(cook, batch == null ? null : batch.WorkerID),
+    escrowOwner = ownerRow(escrow, batch == null ? null : batch.EscrowID),
+    pickupOwner = ownerRow(pickup, batch == null ? null : batch.PickupID),
+    playerPanChebyshevDistance = playerCell == null || panCell == null ? (int?)null : System.Math.Max(System.Math.Abs(playerCell.X-panCell.X),System.Math.Abs(playerCell.Y-panCell.Y)),
+    cookPanChebyshevDistance = cookCell == null || panCell == null ? (int?)null : System.Math.Max(System.Math.Abs(cookCell.X-panCell.X),System.Math.Abs(cookCell.Y-panCell.Y)),
+    panCandidates = candidates, job = job, escrow = containerRow(escrow, escrowPart), pickup = containerRow(pickup, pickupPart), inventory = carried,
+    limitations = "Public fields/read-only accessors only; no private SpatialZone read. indexedZones records current cached-zone indexes, not a claimed internal SpatialZone=null. No gameplay events, reconciliation, mutations or screenshot queued. Authored names are raw Render fields, not projected UI titles."
+};
+string outputPath = System.IO.Path.Combine(directory, label + ".json");
+if (!System.IO.Directory.Exists(directory)) throw new System.InvalidOperationException("Receipt directory does not exist.");
+if (System.IO.File.Exists(outputPath)) throw new System.InvalidOperationException("Receipt already exists: choose a new label; historical evidence is never overwritten.");
+System.IO.File.WriteAllText(outputPath, Newtonsoft.Json.JsonConvert.SerializeObject(receipt, Newtonsoft.Json.Formatting.Indented));
+return new { path = outputPath, label = label, zone = zone.ZoneID, tick = CavesOfOoo.Core.WorldClock.CurrentTick,
+    state = batch == null ? null : batch.State, playerDrams = drams(player), cookDrams = drams(cook),
+    panCount = panCandidates.Count, inputRows = inputRows.Count,
+    pickupRows = pickupPart == null || pickupPart.Contents == null ? (int?)null : pickupPart.Contents.Count };

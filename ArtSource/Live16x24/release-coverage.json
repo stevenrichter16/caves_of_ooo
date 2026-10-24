@@ -514,7 +514,7 @@
         "Docs/Verification/Live16x24/east-kitchen-integration-visual-review.md"
       ],
       "not_accepted": [
-        "All service/job/output states",
+        "All service/job/output variants beyond the bounded paid kitchen batch accepted in kitchen_service",
         "Complete crop lifecycle",
         "All incidental owners/regions",
         "Full scene composition, package or physical Deck"
@@ -536,6 +536,25 @@
         "Docs/Verification/Live16x24/incidental-actors-visual-review.md"
       ],
       "limits": "Two exact static identities inside existing six local graph admissions. Farmer move-away bed repaint is native-tested only. Not all actors, states, seed variants, animations, package or physical Deck acceptance."
+    },
+    "kitchen_service": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "owners": [
+        "ConnectedBatchPan",
+        "ConnectedKitchenPickup"
+      ],
+      "contract": "Exact paid current-job cloth and physically owned commissioned parcel; optional2frame native atlas. No gameplay or base-art changes.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/kitchen-service/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/GRAPHICS-G3-KITCHEN-SERVICE.md",
+        "Docs/Verification/Live16x24/kitchen-service-play-summary.json",
+        "Docs/Verification/Live16x24/kitchen-service-states-summary.json",
+        "Docs/Verification/Live16x24/kitchen-service-states-visual-review.md"
+      ],
+      "limits": "481 distinct native passes;5 unsupported allocation-counter skips. Ordinary input repair/paid batch/pickup/reload/consumption and sampled state-art accepted. No full crop/forge/motion/journey/package/physical Deck acceptance."
     }
   },
   "rough_or_unclassified_coverage": {
@@ -604,8 +623,8 @@
     }
   ],
   "next_acceptance_order": [
-    "G3_ordinary_paid_kitchen_batch_and_meal_capture_then_authoritative_feedback",
-    "G2_remaining_scene_identities_motion_defence_and_G3_crop_forge_lifecycle",
+    "G2_remaining_scene_identities_and_action_feedback",
+    "G3_remaining_crop_forge_lifecycle",
     "G3_complete_six_zone_journey",
     "packaged_native_launch_and_device_gate",
     "remaining_regional_kits"
@@ -629,14 +648,14 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "incidental_actor_bounded_acceptance",
-    "capture": "Docs/Verification/Live16x24/incidental-actors-65-farmer-2x.png",
-    "receipt": "Docs/GRAPHICS-G2-INCIDENTAL-ACTORS.md",
-    "route": "Actual seed65 Farmer world/examine and seed64 Grazer world/examine/real gate-opening escape step; bounded F5/F6 checks.588 distinct final native cases pass; full G2/journey/package/device remain open."
+    "kind": "paid_kitchen_service_bounded_acceptance",
+    "capture": "Docs/Verification/Live16x24/kitchen-service-states-board-reader.png",
+    "receipt": "Docs/GRAPHICS-G3-KITCHEN-SERVICE.md",
+    "route": "Actual seed65 grain/clay/repair/commission/meal consumption; replay validates Working/Ready/collected cues and reload.481 distinct native passes,5 allocation-counter skips. Full G2/G3/journey/package/device remain open."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
-    "detail": "Editor usable and restored after two incidental-actor Play audits.588 distinct final native cases pass; native console0errors and2known Metal depth warnings. Autosaved connector misclassification retained. No new packaged build; source/user saves/current delivered archive preserved.",
+    "detail": "Editor usable and restored after paid kitchen and new service-state Play audits.481 distinct final native passes,5 unsupported allocation skips; final console0errors/2known Metal depth warnings. No new package. Source/user saves/current delivered archive preserved.",
     "refs": [
       "Docs/Verification/Live16x24/recovery-cleanup-20261024.json",
       "Docs/Verification/Live16x24/recovery-native-layer-read.json",
@@ -662,7 +681,8 @@
       "Docs/Verification/Live16x24/incidental-actors-65-cleanup.json",
       "Docs/Verification/Live16x24/incidental-actors-64-cleanup.json",
       "Docs/Verification/Live16x24/incidental-actors-console.json",
-      "Docs/Verification/Live16x24/incidental-actors-storage-audit.md"
+      "Docs/Verification/Live16x24/incidental-actors-storage-audit.md",
+      "Docs/Verification/Live16x24/kitchen-service-states-cleanup.json"
     ]
   }
 }

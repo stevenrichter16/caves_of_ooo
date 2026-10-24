@@ -1,0 +1,15 @@
+var r=UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if(r==null || r.CurrentZone==null || !r.FlatPixelModeActive)throw new System.InvalidOperationException("Live flat renderer required.");
+var z=r.CurrentZone;
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+var env=typeof(CavesOfOoo.Rendering.ZoneRenderer).GetField("_envSpriteRenderer",flags).GetValue(r);
+var map=(UnityEngine.Tilemaps.Tilemap)env.GetType().GetField("_overlayTilemap",flags).GetValue(env);
+var rows=new System.Collections.Generic.List<object>();
+foreach(var owner in z.GetReadOnlyEntities()) {
+ if(owner.BlueprintName!="ConnectedBatchPan" && owner.BlueprintName!="ConnectedKitchenPickup" && owner.BlueprintName!="ConnectedKitchenEscrow")continue;
+ var at=z.GetEntityCell(owner);var tile=map.GetTile<UnityEngine.Tilemaps.Tile>(new UnityEngine.Vector3Int(at.X,CavesOfOoo.Core.Zone.Height-1-at.Y,0));var sprite=tile==null?null:tile.sprite;
+ rows.Add(new{owner=owner.ID,blueprint=owner.BlueprintName,x=at.X,y=at.Y,visible=at.IsVisible,texture=sprite==null?null:sprite.texture.name,rect=sprite==null?null:new[]{sprite.rect.x,sprite.rect.y,sprite.rect.width,sprite.rect.height},ppu=sprite==null?0:sprite.pixelsPerUnit,job=owner.GetPart<CavesOfOoo.Core.KitchenBatchPart>()?.State});
+}
+string label="kitchen-service-states-tiles-current";
+var result=new{at=System.DateTime.UtcNow.ToString("O"),label,zone=z.ZoneID,tick=CavesOfOoo.Core.WorldClock.CurrentTick,rows,observational=true};
+System.IO.File.WriteAllText(System.IO.Path.GetFullPath("Docs/Verification/Live16x24/"+label+".json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented));return result;

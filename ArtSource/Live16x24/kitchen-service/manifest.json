@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "width": 32,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 2,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary 0/255.",
+  "source": "kitchen-service.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_kitchen_service.py",
+  "resource": "Sprites/Live16x24/kitchen-service",
+  "sha256": "0d307429eb432ebe9828af9cff2c048d818bb2856b82a56b891dcd3ac4b324e7",
+  "frames": [
+    {
+      "index": 0,
+      "id": "covered-working-pan",
+      "blueprint": "ConnectedBatchPan",
+      "state": "Working",
+      "baseSourceFrame": 5,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "palette": [
+        "765337",
+        "96A462",
+        "A97542",
+        "B5A47E",
+        "C39565"
+      ],
+      "overlayPixels": 58,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "mealSourceFrame": null,
+      "mealTranslation": null
+    },
+    {
+      "index": 1,
+      "id": "ready-meal-board",
+      "blueprint": "ConnectedKitchenPickup",
+      "state": "Ready",
+      "baseSourceFrame": 7,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "palette": [
+        "5F4830",
+        "94713D",
+        "B5A47E",
+        "BCA576",
+        "E4D0A0"
+      ],
+      "overlayPixels": 52,
+      "footprintCells": [
+        1,
+        1
+      ],
+      "mealSourceFrame": 13,
+      "mealTranslation": [
+        0,
+        -3
+      ]
+    }
+  ],
+  "scope": "Static current-service cues only. Pure state/paid-input/output-custody validation, current owner/graph/fog and fallback remain runtime-owned; no heat, Cook activity, stock ownership or pickup-permission promise."
+}

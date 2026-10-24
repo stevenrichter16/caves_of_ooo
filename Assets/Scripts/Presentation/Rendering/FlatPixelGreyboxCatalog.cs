@@ -80,6 +80,9 @@ namespace CavesOfOoo.Rendering
         private Dictionary<int, Entity> _nextReserveBeds = new Dictionary<int, Entity>();
         private readonly Dictionary<Entity, SupplyObservation> _supplyOwners = new Dictionary<Entity, SupplyObservation>();
         private readonly List<Entity> _releaseSupplyOwners = new List<Entity>();
+        private Zone _serviceZone;
+        private readonly Dictionary<Entity, SupplyObservation> _serviceOwners = new Dictionary<Entity, SupplyObservation>();
+        private readonly List<Entity> _releaseServiceOwners = new List<Entity>();
 
         public FlatPixelGreyboxCatalog() : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
             Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
@@ -239,6 +242,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed || !IsAdmitted(zone) || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) { ClearObservedOwners(); return; }
             ReconcileReserveBeds(zone, dirty);
+            ReconcileServiceOwners(zone, dirty);
             if (zone != _observedZone) { ClearSupplyOwners(); return; }
             _releaseSupplyOwners.Clear();
             foreach (var pair in _supplyOwners)
@@ -278,6 +282,7 @@ namespace CavesOfOoo.Rendering
         internal void ClearObservedOwners()
         {
             ClearSupplyOwners();
+            ClearServiceOwners();
             _reserveZone = null; _reserveOwners = null; _reserveMembership = -1;
             _reserveBeds.Clear(); _nextReserveBeds.Clear();
         }
@@ -288,6 +293,51 @@ namespace CavesOfOoo.Rendering
             _releaseSupplyOwners.Clear();
             _observedZone = null;
         }
+
+        private static bool ServiceSubject(Entity owner) => owner?.BlueprintName == "ConnectedBatchPan"
+            || owner?.BlueprintName == "ConnectedKitchenPickup";
+
+        private void ObserveService(Zone zone, Cell cell, Entity owner, Tile tile)
+        {
+            if (!ServiceSubject(owner) || !CurrentOwnerCell(zone, cell, owner)) return;
+            if (_serviceZone != zone) { ClearServiceOwners(); _serviceZone = zone; }
+            if (!_serviceOwners.TryGetValue(owner, out var observation))
+            { observation = new SupplyObservation(); _serviceOwners.Add(owner, observation); }
+            observation.Cell = cell; observation.Tile = tile; observation.Covered = false;
+        }
+
+        // Only previously painted exact service owners are observed. Disclosure
+        // and top-owner selection precede any job/contents query. Covered records
+        // remain suppressed so a quiet uncover can restore the current frame.
+        private void ReconcileServiceOwners(Zone zone, Action<int, int, string> dirty)
+        {
+            if (_serviceZone != zone) { ClearServiceOwners(); return; }
+            _releaseServiceOwners.Clear();
+            foreach (var pair in _serviceOwners)
+            {
+                var owner = pair.Key; var previous = pair.Value; var cell = zone.GetEntityCell(owner);
+                if (!ServiceSubject(owner) || !CurrentOwnerCell(zone, cell, owner) || !cell.Explored || !cell.IsVisible)
+                {
+                    dirty(previous.Cell.X, previous.Cell.Y, "flat kitchen ownership");
+                    _releaseServiceOwners.Add(owner); continue;
+                }
+                bool covered = !TryResolveFallback(zone, cell.X, cell.Y, out var selected) || selected.Owner != owner;
+                Tile tile = null;
+                if (!covered && (_eastKitchenArt == null || !_eastKitchenArt.TryResolvePresentation(zone, owner, out tile)))
+                    tile = selected.ForegroundTile;
+                if (previous.Cell != cell || previous.Covered != covered || previous.Tile != tile)
+                {
+                    dirty(previous.Cell.X, previous.Cell.Y, "flat kitchen state");
+                    if (previous.Cell != cell) dirty(cell.X, cell.Y, "flat kitchen state");
+                    previous.Cell = cell; previous.Tile = tile; previous.Covered = covered;
+                }
+            }
+            for (int i = 0; i < _releaseServiceOwners.Count; i++) _serviceOwners.Remove(_releaseServiceOwners[i]);
+            _releaseServiceOwners.Clear();
+        }
+
+        private void ClearServiceOwners()
+        { _serviceZone = null; _serviceOwners.Clear(); _releaseServiceOwners.Clear(); }
 
         private IReadOnlyList<Entity> ReserveOwners(Zone zone)
         {
@@ -726,7 +776,8 @@ namespace CavesOfOoo.Rendering
             bool boundaryNative = boundaries != null
                 && boundaries.TryResolve(zone, x, y, out art, out boundaryTint);
             var eastern = local ? EastKitchenArtFor(zone, owner) : null;
-            bool eastNative = eastern != null && eastern.TryResolve(owner, out art);
+            bool eastNative = eastern != null && (fallback.Remembered
+                ? eastern.TryResolve(owner, out art) : eastern.TryResolvePresentation(zone, owner, out art));
             var incidental = local ? IncidentalActorArtFor(owner) : null;
             bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
             bool native = boundaryNative || eastNative || incidentalNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -742,6 +793,8 @@ namespace CavesOfOoo.Rendering
             }
             if (local && !fallback.Remembered && owner?.BlueprintName == "MarlbackPatchbearer")
                 ObserveSupply(zone, cell, owner, foreground, true);
+            if (local && !fallback.Remembered && ServiceSubject(owner))
+                ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
                 fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local);
@@ -765,7 +818,7 @@ namespace CavesOfOoo.Rendering
             if (incidental != null && incidental.TryResolve(subject, out var actorTile))
             { sprite = actorTile.sprite; return sprite != null; }
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
-            if (eastern != null && eastern.TryResolve(subject, out var easternTile))
+            if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
             if ((local || FlatPixelActorMotionCatalog.IsPortableActor(subject)) && _openingArt.TryResolve(subject, x, y, out var tile))
             { sprite = tile.sprite; return sprite != null; }

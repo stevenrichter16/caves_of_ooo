@@ -1,0 +1,31 @@
+{
+  "kind": "ordinary_keyboard_service_acceptance",
+  "seed": 65,
+  "checks": {
+    "repair_consumed_two_actual_clay": true,
+    "payment_two_drams": true,
+    "actual_recipe_escrow": true,
+    "due_120_ordinary_ticks": true,
+    "one_commissioned_ready_output": true,
+    "same_meal_carried_after_reload": true,
+    "one_consumed_without_replacement": true,
+    "current_flat_graph_at_each_receipt": true,
+    "full_hp_consumption_only": true
+  },
+  "action_record": "kitchen-service-play-record.md",
+  "raw_receipts": [
+    "kitchen-service-65-job-before-repair.json",
+    "kitchen-service-65-job-before-start.json",
+    "kitchen-service-65-job-working.json",
+    "kitchen-service-65-job-ready.json",
+    "kitchen-service-65-job-collected-reloaded.json",
+    "kitchen-service-65-job-eaten.json"
+  ],
+  "limitations": [
+    "Initial failed east-grain attempt/death retained; second route uses actual glade grain and cellar clay.",
+    "Full HP consumption establishes no measured healing or bleed removal.",
+    "Existing neutral service world art is not visual proof of job state; paired reader and custody receipts establish it.",
+    "This predates new kitchen-state integration; no new runtime tests are claimed by this summary.",
+    "Editor keyboard, not packaged or physical Steam Deck."
+  ]
+}

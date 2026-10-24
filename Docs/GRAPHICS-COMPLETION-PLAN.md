@@ -742,3 +742,33 @@ blobs matching. The [storage audit](Verification/Live16x24/incidental-actors-sto
 removed nothing (0bytes recovered); useful caches and the current archive are
 preserved. Free space was2.19GiB. Continue the source-checked kitchen
 service route next; full release and updated package remain open.
+
+
+## Latest continuation — kitchen service visibly integrated, 2026-10-24 22:10 UTC
+
+[Kitchen service](GRAPHICS-G3-KITCHEN-SERVICE.md) now has ordinary input evidence
+from glade grain/cellar clay through repair, paid batch, pickup, reload and meal
+consumption. The subsequent capture→imagegen→editable16×24→real-integration pass
+adds a covered paid pan and the actual commissioned parcel on its board. Approved
+base art is unchanged. The new cues survive Working/Ready reloads and disappear
+on real collection; [actual ready-board Examine](Verification/Live16x24/kitchen-service-states-board-reader.png)
+and [Working world](Verification/Live16x24/kitchen-service-states-working-2x.png)
+are gameplay captures, not concepts. Eleven final captures, exact submitted-tile
+receipts and independent visual review accept this bounded service sequence.
+
+Native evidence:481 distinct passing cases,0failures,5explicit unavailable-GC
+measurement skips. A known-allocation calibration prevented a false zero-GC
+claim; a source-reviewed matcher removes the identified repeated Split path.
+Separate quiet-frame tests pass.85.12s Editor profile is unwrapped but includes
+save/load/tool overhead; max renderer29.699ms/MainThread959.029ms are disclosed,
+not converted into physical Deck FPS or improvement claims.
+
+Play is stopped; owned save/view/seed/preferences restored. Final console has
+0errors and2existing Metal depth warnings. Current delivered October11 archive
+is preserved and still predates these graphics. **No new package was built.**
+
+Next: remaining visible Player identity/action feedback and scene defects;
+then incomplete crop/forge states and the literal complete six-zone journey,
+followed by packaged/device gates. Global fallback is not dedicated all-world
+art. G2/G3 and the overall graphics release remain open. Continue this priority;
+do not stop the heartbeat because this one service slice passed.

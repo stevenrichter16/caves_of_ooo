@@ -1,9 +1,13 @@
 # G3 — ordinary paid kitchen service
 
-2026-10-24. **Status: source/capture audit and next acceptance plan only.** No
-runtime, art, saved graph, or gameplay state changed in this packet; no Unity
-tests or Play were run by its authors. Root still owns the current ordinary
-actor acceptance session. Keep the accepted working court and approved sprites.
+2026-10-24. **Current status: bounded ordinary service and native state-art
+acceptance complete.** The historical audit below is retained. Root completed
+the real ingredient→repair→paid batch→pickup→reload→consumption route, then
+replayed the new cloth/parcel art through ordinary controls. Final selected
+Unity evidence:481 distinct passes,0 failures,5 unsupported-allocation skips.
+This closes one G3 service slice; the full graphics release remains open.
+
+## Historical starting plan
 
 The next useful delivery is a real paid batch from ingredients to a collected,
 readable meal. Existing neutral tray art is sufficient to exercise this gate.
@@ -199,3 +203,248 @@ audit. The review supports exercising it before expanding presentation.
 
 Files changed in this audit: this new plan only. Root chooses the next ordinary
 session after the current incidental-actor milestone is closed.
+
+## 2026-10-24 continuation — bounded service cue TDD plan
+
+**Status: tests authored; native RED pending.** This append records a new
+presentation slice without rewriting the historical source-only route above.
+Root has now reported an ordinary repaired pan and paid Working commission:
+player50→48 drams, Cook100→102, actual escrow2 Emberwheat+1 ClaspbeanPulp,
+due5230. Ready/pickup/use proof remains the parent's separate live acceptance
+until its receipts are recorded. This author has not operated Unity.
+
+The new optional resource is `Sprites/Live16x24/kitchen-service.png`,32×24:
+frame0 covered paid pan, frame1 pickup board with this job's actual parcel.
+Both preserve their approved existing bases. All18 existing furniture/product
+frames and the approved Cook remain unchanged. No flame, staff activity,
+stock fullness or access-permission cue is implied. Existing pan5/board7 remain
+neutral fallback for absent optional art or absent valid job state.
+
+The source sweep is `/tmp/coo-kitchen-visual-projection-audit.md`, independently
+reviewed for predicates/index semantics by
+`/root/projection_cold_review/look_focus_draft_review`. Corrections before code:
+
+| Premise | Required correction |
+| --- | --- |
+| `State` or any tray meal establishes the visual claim | Working needs exact configured owners, valid paid-job records and physical recipe escrow; Ready needs actual unique Output custody plus station/customer/ordinal provenance. |
+| Existing InputsCurrent alone proves an exact recorded recipe | Duplicate recorded references/IDs can repeat one real row while omitting another. The pure visual query must prove a distinct2–3-row bijection and exact2grain+1pulp totals. |
+| Bound can be shared by every state cue | Bound requires the Cook still grounded; a completed commissioned parcel survives Cook removal. Ready uses the remaining current station/pickup relationship, output custody and historical provenance without requiring current staff. |
+| Calling existing helpers on every frame is allocation-free | RecipeContents creates a HashSet, LiveStructure an array, and OutputStored a capturing LINQ predicate. Use bounded loops for the pure presentation query; leave transaction behavior unchanged. |
+| Adding a TryResolve overload is automatically compatible | Existing tests reflect the original name without parameter selection. Keep `TryResolve(Entity,out Tile)` neutral and use a distinct `TryResolvePresentation(Zone,Entity,out Tile)` entry point. |
+| A take always dirties the board immediately | A partial TakeFromContainer can leave its centered popup open before turn reconciliation. Actual parcel removal must retire the submitted cue even while State still says Ready. |
+
+Planned minimum runtime changes, only after native RED:
+
+- `KitchenBatchPart`: one pure documented presentation query with None,
+  CoveredWorking and ReadyParcel. No reconciliation, ticking, factory calls,
+  currency or save mutations. Find the unique authority through the existing
+  zone part index, with current reference/cell/owned-part rechecks. Its first
+  query lazily seeds the index with one scan; warmed queries do not world-scan.
+- `FlatPixelEastKitchenCatalog`: third independently optional borrowed texture,
+  cached2-frame tiles/sprites, distinct zone-aware entry point. Old two-texture
+  construction deliberately passes null and never loads the new resource.
+  Preserve render/physical/foreign-reskin guards and independent disposal.
+- `FlatPixelGreyboxCatalog`: use the new entry point for current visible world
+  owners and authorized portraits. Memory takes the old neutral semantic path,
+  never live job contents. Extend existing observed-owner reconciliation only
+  for painted exact pan/pickup owners: current cell/FOV/top-owner before stock,
+  suppressed coverage without stock reads, bounded old/new cell invalidation,
+  quiet no-op stability, lifecycle clear and no portrait registration. Reuse
+  the existing pre-dirty-decision renderer call; no new renderer, world scan,
+  inventory event framework or gameplay timing change.
+
+New fixture: `CavesOfOoo.Tests.FlatPixelKitchenServiceTests`. Its positives use
+actual factory owners, real Configure/TryStart/completion/transfer and submitted
+Tilemap frames, with no manually assigned Working/Ready positive. Tests cover
+119-versus120 and blocked capacity; exact payment/escrow; partial transfer before
+reconciliation; Cook removal after Ready; false State/unrelated meal; malformed
+input/output provenance and custody; actual portrait purity; current graph/cell,
+fog/coverage/removal; cached borrowed optional resources and old-constructor
+compatibility; warmed observation allocation. The first RED must be the fresh
+nonzero native run, not source inspection or stale test discovery.
+
+Use existing FlatPixelEastKitchenTests and ConnectedKitchen family fixtures as
+regression controls, plus relevant observer and examine groups. Actual resource
+binding and later world screenshots are separate from synthetic/lifecycle proof.
+No gameplay, native test, full-G3, GPU-performance or hardware acceptance is
+claimed by this tests-first appendix.
+
+### Service cue implementation checkpoint (before native GREEN)
+
+Root's fresh `kitchen-service-red.xml` recorded25 cases:2 passed,23 failed,
+zero skips, establishing neutral old artwork versus the required real job cues
+and the missing independent third-texture constructor. The frozen first
+implementation touches only KitchenBatchPart, FlatPixelEastKitchenCatalog and
+FlatPixelGreyboxCatalog. It leaves transactions, timing, inputs, currency,
+reconciliation, generation and the existing renderer call order unchanged.
+
+The new pure query checks disclosed current subject/canonical cells before job
+records, uses the maintained batch-part index, validates a distinct escrow
+bijection, and separates Ready output custody from Cook availability. The
+catalog keeps the old semantic API and old injection resource-free. The shared
+world/examine route uses optional state art; the existing observed-owner pass
+refreshes painted pan/pickup signatures with covered/hidden retirement and
+bounded old/new-cell dirtiness. This is not a new simulation or renderer.
+
+The original25 tests remain intact apart from an additional two parameterized
+missing-pickup/missing-escrow recovery counters added during source review.
+Those two are post-implementation counters, not separate behavioral RED evidence.
+The27-case native GREEN and independent settled-source review are pending.
+The initial RED reaches state-art assertions before the deeper transfer cadence
+assertions; do not describe it as an independently isolated stale-transfer RED.
+
+### Native diagnosis and material-matching correction
+
+Root's first27-case run passed26. The one failed assertion incorrectly expected
+the pan as top artwork after cancellation: gameplay correctly returns the
+remaining grain onto that cell. The corrected fixture asserts actual grain
+foreground and the exact lower pan's neutral portrait; rendering priority was
+not changed. Independent source review also found CompositionPart.Contains
+uses Split, now repeatedly reached by the observed pan.
+
+The strengthened31-case native run passed30 and failed its retained4096-byte
+allocation calibration: GC.GetAllocatedBytesForCurrentThread returned0 for that
+real allocation. Earlier reported zero-byte measurements therefore provide
+**no allocation evidence on this Unity runtime**. The counter and four dependent
+Working/Ready selector/observer measurements now explicitly Ignore on unsupported
+runtimes rather than silently passing. Other service behavior tests remain active.
+
+The scoped source correction walks comma-delimited material tokens without
+Split/Trim allocation and preserves exact ordinal matching after whitespace
+trim. It is shared only by the two presentation call sites; the gameplay
+CompositionPart.Contains implementation is unchanged. Ten controls were saved
+first for ASCII/Unicode whitespace, comma gaps, substring/case/null rejection
+and actual state/world images. They characterize unchanged semantics, not an
+independently failing behavioral RED. The final41-case native run is pending;
+this runtime is expected to report five explicit unsupported-counter skips.
+A source-level allocation finding can be closed by this bounded implementation
+review; measured zero-GC/frame or broader performance still cannot be claimed.
+
+Independent final source review by
+`/root/projection_cold_review/look_focus_draft_review` closed the Split finding:
+the matcher preserves trimmed, case-sensitive comma-token semantics without
+per-call arrays, substrings, delegates or collections; both presentation paths
+use it, and gameplay matching is unchanged. No additional material source
+finding remained. This is source review, not measured zero allocation or live
+cue acceptance. Supplemental review: `/tmp/coo-kitchen-service-runtime-review.md`.
+
+### Final native source checks and independent quiet-frame coverage
+
+Root's41-case service run passed36, failed0 and explicitly skipped5 unsupported
+allocation measurements. Its21-group regression then passed479 of484, failed0,
+with those same5 skips (22:00:43–22:01:11Z). These counts overlap; do not add them
+as disjoint tests. Neither run proves zero allocations.
+
+A review found the skipped observer measurement also bundled its no-repaint
+assertion. Two separate Working/Ready cases now retain that behavior check
+independently: both actual painted owners remain observed through20 real renderer
+LateUpdate calls, dirty sets stay empty, FullPasses and CellsResolved do not
+increase, and clock/state/submitted frames remain unchanged. They do not call
+or depend on the allocation API. This is a coverage strengthening, not a newly
+observed production defect; no runtime was changed. Root's focused43-case rerun
+and ordinary visual replay remain pending.
+
+
+## Final integration and acceptance — 2026-10-24 22:10 UTC
+
+The pre-art route is [recorded with actual controls and receipts](Verification/Live16x24/kitchen-service-play-record.md):
+glade grain, cellar clay, two-clay repair, two-dram commission,120ticks,
+actual parcel pickup, F5/F6 and full-HP consumption. The first grain attempt
+ended in a recoverable death; it is retained, not hidden. The second route
+used no gameplay grants or debug transport. [Nine derived checks](Verification/Live16x24/kitchen-service-play-summary.json)
+and [independent evidence review](Verification/Live16x24/kitchen-service-acceptance-review.md)
+accept those bounded mechanics. Full-HP eating proves consumption, not healing.
+
+### Production pipeline and extracted parts
+
+Greybox/composition/controls reuse the accepted real working court. The actual
+pre-art Working capture and approved kitchen contact were sent to built-in
+imagegen; [exact prompt/concept](../ArtSource/Live16x24/kitchen-service/README.md)
+are preserved. Generated soft pixels are reference only. Two parts were
+reconstructed as exact native editable pixels: cloth on the approved repaired
+pan (58 changed pixels), and the approved wrapped meal translated3pixels up on
+the neutral pickup board (52 overlay pixels). No heat, activity glow, inventory
+fullness or access-permission icon is invented. The32×24 Point atlas uses two
+16×24 frames and one optional borrowed resource. Existing24 source/asset files
+are hash-preserved; editable Blender, cells, generator, manifest and source
+verification accompany the production PNG/meta.
+
+World and exact-subject Examine share the pure current-owner/custody query.
+Observed visible pan/board cells repaint only on signature changes. Arbitrary
+job strings/food, forged records, current-graph replacement and hidden owners
+do not authorize cues. Completed output survives Cook death; partial take
+removes the cue before the next transaction reconciliation. Gameplay timing,
+recipes, payment, save and world generation implementations are unchanged.
+
+### Tests and review
+
+Behavioral RED25:2pass/23fail. First GREEN27:26pass/1fixture-assumption failure;
+actual returned grain legitimately covers a cancelled pan, and the test now
+checks foreground ownership plus exact lower-pan portrait. Follow-up31:
+30pass/1counter calibration failure. Unity reports0 even for a retained4096byte
+allocation, so five dependent measurements now explicitly skip. Independent
+source review found Split/Trim in the new repeated material path; a shared
+presentation-only token matcher preserves original Contains semantics without
+changing gameplay. Ten token characterizations pass. Two independent quiet
+frame checks exercise actual submission without the unavailable GC API.
+
+Final focused43:38pass/0fail/5skip. Regression484:479pass/0fail/5skip,
+36 passed cases overlap, yielding **481 distinct passes and5 skips**. See
+[kitchen-service-quiet-final-summary](Verification/Live16x24/kitchen-service-quiet-final-summary.json),
+[regression](Verification/Live16x24/kitchen-service-regression-summary.json),
+[source review](Verification/Live16x24/kitchen-service-runtime-review.md) and
+[derived acceptance](Verification/Live16x24/kitchen-service-states-summary.json).
+No raw aggregate count is presented as a full-suite pass.
+
+### Actual new-art replay
+
+[Replay record](Verification/Live16x24/kitchen-service-states-play-record.md)
+contains the exact route/actions and bounds. Eleven actual1280×800 captures
+include [Working2×](Verification/Live16x24/kitchen-service-states-working-2x.png),
+[Ready](Verification/Live16x24/kitchen-service-states-ready.png),
+[board portrait](Verification/Live16x24/kitchen-service-states-board-reader.png),
+[collected](Verification/Live16x24/kitchen-service-states-collected.png), and
+[settled collected reload](Verification/Live16x24/kitchen-service-states-collected-reloaded.png).
+Working and collected same-tick recorded-field equality survives F5/F6; Ready
+retains its exact output across reload and two subsequent movement turns.
+[Independent visual review](Verification/Live16x24/kitchen-service-states-visual-review.md)
+accepts the bounded cloth/parcel/portrait/removal sequence. Root cross-checked
+its source and exact individual capture claims before acceptance.
+
+### Performance and honesty bounds
+
+[85.12s native profile](Verification/Live16x24/kitchen-service-states-profile.json)
+records64360 samples, none wrapped. Renderer mean0.095ms,p990.175ms,max29.699ms;
+MainThread mean1.319ms,p992.217ms,max959.029ms. Window includes commission,
+save/reload,11waits and UI/tool capture overhead; no isolated speedup or Deck
+FPS claim. DrawCalls max43,Batches max42. No zero-allocation measurement is
+claimed; corrected matcher is source-reviewed, and stable-frame behavior is
+native-tested independently.
+
+Can verify: real selected controls, named owner/recipe/currency/custody fields,
+submitted16×24 textures, sampled screenshots/portraits, native negative gates,
+and restored isolation. Cannot verify here: every serialization field, all
+seeds/regions, complete motion/audio feel, hardware controller ergonomics,
+packaged launch/performance or full six-zone release.
+
+### Self-review and next action
+
+- 🟡 Closed: false Ready/Working authority, stale partial-transfer visuals and
+  repeated Split allocation are covered by implementation and explicit counters.
+- 🔵 Corrected: cancellation foreground test, unsupported-GC calibration and
+  historical source-only status. The five skips remain visible.
+- 🧪 Existing FieldMeal prose says throwing remains available while Handling
+  says it cannot be thrown. Recorded in the pre-art review; separate item-text
+  repair, not a graphics-release blocker and not silently changed here.
+- ⚪ This is CoO-original presentation, not a Qud implementation parity claim.
+  Old3D and approved base assets remain reversible. No current build replaced.
+
+Next: prioritize remaining visible Player/actor identity and action feedback,
+then close crop/forge and the literal six-site journey before packaged/hardware
+release checks. Do not keep adding disconnected prop sheets. Keep this workflow
+active across sessions and update the bounded coverage ledger from real evidence.
+
+Files: three runtime classes above; new FlatPixelKitchenServiceTests+meta;
+optional kitchen-service.png+meta; editable ArtSource/Live16x24/kitchen-service;
+Tools/Live16x24/build_kitchen_service.py; this living doc/completion plan/coverage;
+pre-art and final real-Play/source/native/profile evidence under Verification.

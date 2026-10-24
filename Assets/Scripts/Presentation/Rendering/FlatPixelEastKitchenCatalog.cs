@@ -7,25 +7,33 @@ using Object = UnityEngine.Object;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>Optional eastern service art. This semantic catalog owns cached
-    /// frames, borrows both textures, and never grants world/examine authority or
-    /// advances services. Neutral furniture promises no stock, heat or access.</summary>
+    /// frames, borrows optional textures, and never grants world/examine authority
+    /// or advances services. Neutral furniture promises no stock, heat or access.</summary>
     public sealed class FlatPixelEastKitchenCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/east-kitchen";
         public const string CookResourcePath = "Sprites/Live16x24/east-kitchen-cook";
+        public const string ServiceResourcePath = "Sprites/Live16x24/kitchen-service";
         private const int Width = 16, Height = 24, Frames = 18;
-        private readonly Tile[] _tiles, _cookTiles;
+        private readonly Tile[] _tiles, _cookTiles, _serviceTiles;
         private bool _disposed;
 
         public FlatPixelEastKitchenCatalog()
-            : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(CookResourcePath)) { }
+            : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(CookResourcePath),
+                Resources.Load<Texture2D>(ServiceResourcePath)) { }
 
         /// <summary>Each optional borrowed group is independent. Missing or
         /// malformed injection stays unavailable and never loads Resources.</summary>
         public FlatPixelEastKitchenCatalog(Texture2D borrowedAtlas, Texture2D borrowedCook)
+            : this(borrowedAtlas, borrowedCook, null) { }
+
+        /// <summary>The third optional group is independently borrowed. Earlier
+        /// injected constructors deliberately retain neutral service artwork.</summary>
+        public FlatPixelEastKitchenCatalog(Texture2D borrowedAtlas, Texture2D borrowedCook, Texture2D borrowedService)
         {
             _tiles = Build(borrowedAtlas, Frames, "East kitchen");
             _cookTiles = Build(borrowedCook, 1, "Approved wayside cook");
+            _serviceTiles = Build(borrowedService, 2, "Kitchen commission");
         }
 
         internal static bool HasKnownRole(Entity owner)
@@ -44,6 +52,15 @@ namespace CavesOfOoo.Rendering
         /// a current disclosed owner; portrait callers retain document/custody
         /// checks. Mutable inventory, mood, heat and job strings are not cues.</summary>
         public bool TryResolve(Entity owner, out Tile tile)
+            => Resolve(owner, null, out tile);
+
+        /// <summary>Current disclosed service state may replace neutral art.
+        /// Job truth comes from the pure batch query; this never reconciles it.
+        /// World top-owner and portrait authorization remain the caller's job.</summary>
+        public bool TryResolvePresentation(Zone zone, Entity owner, out Tile tile)
+            => Resolve(owner, zone, out tile);
+
+        private bool Resolve(Entity owner, Zone zone, out Tile tile)
         {
             tile = null;
             if (_disposed || !HasKnownRole(owner) || owner.HasTag("Player")) return false;
@@ -71,6 +88,13 @@ namespace CavesOfOoo.Rendering
             }
             if (owner.HasTag("Creature")) return false;
             int frame = Frame(owner, physics);
+            if (frame >= 0 && _serviceTiles != null && zone != null
+                && (frame == 5 || frame == 7)
+                && KitchenBatchPart.TryGetPresentation(zone, owner, out var state))
+            {
+                tile = _serviceTiles[state == KitchenBatchPresentation.CoveredWorking ? 0 : 1];
+                return true;
+            }
             tile = frame >= 0 && _tiles != null ? _tiles[frame] : null;
             return tile != null;
         }
@@ -91,7 +115,7 @@ namespace CavesOfOoo.Rendering
                     var composition = Unique<CompositionPart>(owner);
                     return physics.Solid && Owned<KitchenBatchPart>(owner) != null
                         && repair != null && !repair.PortableEquipment && repair.RecipeId == "clay-batch-pan"
-                        && composition != null && composition.Contains("Masonry") ? repair.Repaired ? 5 : 4 : -1;
+                        && KitchenBatchPart.HasMasonryComposition(composition) ? repair.Repaired ? 5 : 4 : -1;
                 case "ConnectedKitchenEscrow": return !physics.Solid && Owned<ContainerPart>(owner) != null ? 6 : -1;
                 case "ConnectedKitchenPickup": return !physics.Solid && Owned<ContainerPart>(owner) != null ? 7 : -1;
                 case "ClaspbeanCrop":
@@ -163,7 +187,7 @@ namespace CavesOfOoo.Rendering
         }
         public void Dispose()
         {
-            if (_disposed) return; _disposed = true; DestroyFrames(_tiles); DestroyFrames(_cookTiles);
+            if (_disposed) return; _disposed = true; DestroyFrames(_tiles); DestroyFrames(_cookTiles); DestroyFrames(_serviceTiles);
         }
         private static void DestroyFrames(Tile[] tiles)
         {

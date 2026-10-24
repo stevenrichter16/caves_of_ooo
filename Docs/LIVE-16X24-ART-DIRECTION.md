@@ -1033,3 +1033,23 @@ blobs matching. The [storage audit](Verification/Live16x24/incidental-actors-sto
 removed nothing (0bytes recovered); useful caches and the current archive are
 preserved. Free space was2.19GiB. Continue the source-checked kitchen
 service route next; full release and updated package remain open.
+
+### Current continuation — paid kitchen state cues, 2026-10-24 22:10 UTC
+
+The [paid kitchen slice](GRAPHICS-G3-KITCHEN-SERVICE.md) is now bounded-accepted:
+actual glade grain/cellar clay, repair, payment, completion, pickup, reload and
+consumption preceded the new art. Actual Working capture→imagegen→two editable
+native16×24 frames→real world/Examine integration→ordinary replay is complete.
+The pan gains a cloth only for the actual paid ingredients; the board gains its
+actual commissioned parcel and clears on collection. Original bases remain
+unchanged. Eleven new-art screenshots and exact job/submitted-tile observations
+are [indexed here](Verification/Live16x24/kitchen-service-states-summary.json).
+
+481 distinct native cases pass;5allocation tests explicitly skip after a known
+allocation demonstrated this runtime's counter is unavailable. Independent quiet
+frame tests and source review still cover the renderer's stable path.85.12s
+Editor profile includes save/load/tool overhead and is not Deck performance.
+Both owned Play sessions are restored; no current build replaced. Complete G2,
+remaining crop/forge states, the literal six-site journey and packaged/device
+release remain open. Continue from the current completion plan/coverage ledger;
+prioritize visible identity/action gaps over disconnected extra prop sheets.

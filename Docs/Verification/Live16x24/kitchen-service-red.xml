@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 21:47:16Z" end-time="2026-10-24 21:47:18Z" duration="2.3147537">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31012" result="Failed" site="Child" start-time="2026-10-24 21:47:16Z" end-time="2026-10-24 21:47:18Z" duration="2.314754" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38173" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31012" result="Failed" site="Child" start-time="2026-10-24 21:47:16Z" end-time="2026-10-24 21:47:18Z" duration="2.256572" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38174" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31012" result="Failed" site="Child" start-time="2026-10-24 21:47:16Z" end-time="2026-10-24 21:47:18Z" duration="2.076291" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38175" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31012" result="Failed" site="Child" start-time="2026-10-24 21:47:16Z" end-time="2026-10-24 21:47:18Z" duration="2.017014" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28403" name="FlatPixelKitchenServiceTests" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:18Z" duration="1.835669" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28420" name="ActualCurrentPortraitAndWorldAgreeAndRepeatedReadsArePure" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualCurrentPortraitAndWorldAgreeAndRepeatedReadsArePure" methodname="ActualCurrentPortraitAndWorldAgreeAndRepeatedReadsArePure" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1170250399" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.265241" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualCurrentPortraitAndWorldAgreeAndRepeatedReadsArePure () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:161
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28404" name="ActualPaidStartAndCompletionRepaintSubmittedPanAndBoard" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualPaidStartAndCompletionRepaintSubmittedPanAndBoard" methodname="ActualPaidStartAndCompletionRepaintSubmittedPanAndBoard" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="637026545" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.076304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualPaidStartAndCompletionRepaintSubmittedPanAndBoard () [0x000b9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:53
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28432" name="ActualResourceHasTwoNativeFullFramesAndDefaultBinding" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualResourceHasTwoNativeFullFramesAndDefaultBinding" methodname="ActualResourceHasTwoNativeFullFramesAndDefaultBinding" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1987419099" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.147652" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ActualResourceHasTwoNativeFullFramesAndDefaultBinding () [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:284
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28409" name="ArbitraryJobStringsAndMealsNeverAuthorizeTheTwoCues" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ArbitraryJobStringsAndMealsNeverAuthorizeTheTwoCues" methodname="ArbitraryJobStringsAndMealsNeverAuthorizeTheTwoCues" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="49256929" result="Passed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.063302" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28408" name="CompletedParcelSurvivesActualCookDeathButDisappearsOnTransfer" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.CompletedParcelSurvivesActualCookDeathButDisappearsOnTransfer" methodname="CompletedParcelSurvivesActualCookDeathButDisappearsOnTransfer" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="47584779" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.055445" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.CompletedParcelSurvivesActualCookDeathButDisappearsOnTransfer () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:104
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28421" name="HiddenAndCoveredOwnersCannotLeaveAStaleParcelWhenTheyReappear" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.HiddenAndCoveredOwnersCannotLeaveAStaleParcelWhenTheyReappear" methodname="HiddenAndCoveredOwnersCannotLeaveAStaleParcelWhenTheyReappear" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1649460372" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.056620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.HiddenAndCoveredOwnersCannotLeaveAStaleParcelWhenTheyReappear () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:180
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28431" name="MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.008049" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28429" name="MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback(False)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback(False)" methodname="MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1668437270" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.000633" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback (System.Boolean malformed) [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:267
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28430" name="MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback(True)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback(True)" methodname="MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1249023223" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.000117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.MissingOrMalformedServiceAtlasRetainsNeutralPeerWithoutResourceFallback (System.Boolean malformed) [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:267
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28425" name="ObservedOwnerLossRetiresCueAndCannotAttachToSameId" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.161922" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28422" name="ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;removed&quot;)" methodname="ObservedOwnerLossRetiresCueAndCannotAttachToSameId" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1367687605" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.054172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:195
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28423" name="ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;replaced-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;replaced-cell&quot;)" methodname="ObservedOwnerLossRetiresCueAndCannotAttachToSameId" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="851032203" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.053310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:195
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28424" name="ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;replaced-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId(&quot;replaced-graph&quot;)" methodname="ObservedOwnerLossRetiresCueAndCannotAttachToSameId" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="393886144" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.053586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ObservedOwnerLossRetiresCueAndCannotAttachToSameId (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:195
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28427" name="OptionalThirdTextureIsCachedIndependentAndBorrowed" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.OptionalThirdTextureIsCachedIndependentAndBorrowed" methodname="OptionalThirdTextureIsCachedIndependentAndBorrowed" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1712006433" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.000480" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Optional service art requires an isolated third borrowed group.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.OptionalThirdTextureIsCachedIndependentAndBorrowed () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:229
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28428" name="OriginalTwoTextureInjectionStaysNeutralEvenWhenDefaultResourceExists" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.OriginalTwoTextureInjectionStaysNeutralEvenWhenDefaultResourceExists" methodname="OriginalTwoTextureInjectionStaysNeutralEvenWhenDefaultResourceExists" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1291410586" result="Passed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.062224" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="28406" name="PartialCommandTakeRetiresReadyTileBeforeAReconcileOrTurn" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.PartialCommandTakeRetiresReadyTileBeforeAReconcileOrTurn" methodname="PartialCommandTakeRetiresReadyTileBeforeAReconcileOrTurn" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1926191997" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:17Z" duration="0.053498" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.PartialCommandTakeRetiresReadyTileBeforeAReconcileOrTurn () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:75
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28405" name="PickupCapacityDelaysTheRealJobWithoutInventingAReadyParcel" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.PickupCapacityDelaysTheRealJobWithoutInventingAReadyParcel" methodname="PickupCapacityDelaysTheRealJobWithoutInventingAReadyParcel" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1842418160" result="Failed" start-time="2026-10-24 21:47:17Z" end-time="2026-10-24 21:47:18Z" duration="0.053028" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.PickupCapacityDelaysTheRealJobWithoutInventingAReadyParcel () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:64
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28419" name="ReadyRequiresExactOutputCustodyAndProvenance" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.271722" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28414" name="ReadyRequiresExactOutputCustodyAndProvenance(&quot;output-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance(&quot;output-id&quot;)" methodname="ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1212403870" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.054844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28415" name="ReadyRequiresExactOutputCustodyAndProvenance(&quot;provenance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance(&quot;provenance&quot;)" methodname="ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="698712866" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.053053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28416" name="ReadyRequiresExactOutputCustodyAndProvenance(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance(&quot;duplicate-id&quot;)" methodname="ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1792437465" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.052610" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28417" name="ReadyRequiresExactOutputCustodyAndProvenance(&quot;foreign-fieldmeal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance(&quot;foreign-fieldmeal&quot;)" methodname="ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1311651837" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.052937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28418" name="ReadyRequiresExactOutputCustodyAndProvenance(&quot;foreign-container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance(&quot;foreign-container&quot;)" methodname="ReadyRequiresExactOutputCustodyAndProvenance" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1728126860" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.052088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.ReadyRequiresExactOutputCustodyAndProvenance (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28407" name="RemovingACommittedIngredientQuietlyRetiresCoveredPanAndCancellationDoesNotRestoreIt" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.RemovingACommittedIngredientQuietlyRetiresCoveredPanAndCancellationDoesNotRestoreIt" methodname="RemovingACommittedIngredientQuietlyRetiresCoveredPanAndCancellationDoesNotRestoreIt" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1021804908" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.051562" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.RemovingACommittedIngredientQuietlyRetiresCoveredPanAndCancellationDoesNotRestoreIt () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:92
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28426" name="UnchangedWarmObserverHasNoManagedAllocationsOrRepaints" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.UnchangedWarmObserverHasNoManagedAllocationsOrRepaints" methodname="UnchangedWarmObserverHasNoManagedAllocationsOrRepaints" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="1832861042" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.108521" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.UnchangedWarmObserverHasNoManagedAllocationsOrRepaints () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:211
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28413" name="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.394005" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28410" name="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;duplicate-record&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;duplicate-record&quot;)" methodname="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="795227866" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.126779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery (System.String fault) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28411" name="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;record-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;record-count&quot;)" methodname="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="5506836" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.121305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery (System.String fault) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:126
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28412" name="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;foreign-container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery(&quot;foreign-container&quot;)" methodname="WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery" classname="CavesOfOoo.Tests.FlatPixelKitchenServiceTests" runstate="Runnable" seed="918234398" result="Failed" start-time="2026-10-24 21:47:18Z" end-time="2026-10-24 21:47:18Z" duration="0.138331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The submitted world image must reflect this actual job.
+  Expected: same as <kitchen-service (UnityEngine.Texture2D)>
+  But was:  <east-kitchen (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 frame) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:32
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.StateFrame (CavesOfOoo.Tests.FlatPixelKitchenServiceTests+Fixture f, CavesOfOoo.Core.Entity owner, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:36
+at CavesOfOoo.Tests.FlatPixelKitchenServiceTests.WorkingRequiresExactDistinctEscrowRecordsAndQuietRecovery (System.String fault) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenServiceTests.cs:126
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
