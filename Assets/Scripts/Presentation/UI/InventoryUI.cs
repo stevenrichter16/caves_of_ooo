@@ -1412,6 +1412,7 @@ namespace CavesOfOoo.Rendering
                     _itemActionPopup = null;
                     Render();
                     return;
+                case "Examine":
                 case "examine_tonic":
                 case "examine_item":
                     // AnnouncementUI owns the description over the open inventory.
@@ -1424,20 +1425,35 @@ namespace CavesOfOoo.Rendering
                             "That item is no longer in your inventory.");
                         return;
                     }
-                    string itemText = BuildItemExaminePopupText(item);
-                    if (string.IsNullOrEmpty(itemText))
+                    // The ordinary Examinable action also opens the shared reader,
+                    // even when this item has no specialized mechanics formatter.
+                    // Build that snapshot once: its plain text is the accessible
+                    // fallback, without invoking description callbacks a second time.
+                    bool ordinaryExamine = action.Command == "Examine";
+                    var ordinaryDescription = ordinaryExamine ? item.GetPart<ExaminablePart>() : null;
+                    if (ordinaryExamine && (ordinaryDescription == null || ordinaryDescription.ParentEntity != item))
+                    {
+                        RejectItemExamine(item, "invalid-examine-snapshot",
+                            "That item's details are no longer available.");
+                        return;
+                    }
+                    string itemText = ordinaryExamine ? null : BuildItemExaminePopupText(item);
+                    if (!ordinaryExamine && string.IsNullOrEmpty(itemText))
                     {
                         RejectItemExamine(item, "no-supported-details",
                             "That item's details are no longer available.");
                         return;
                     }
                     var itemDocument = ExamineDocumentBuilder.BuildInventory(item, PlayerEntity);
-                    if (itemDocument == null)
+                    if (itemDocument == null || (ordinaryExamine
+                        && (!ReferenceEquals(ordinaryDescription, item.GetPart<ExaminablePart>())
+                            || ordinaryDescription.ParentEntity != item)))
                     {
                         RejectItemExamine(item, "invalid-examine-snapshot",
                             "That item's details are no longer available.");
                         return;
                     }
+                    if (ordinaryExamine) itemText = itemDocument.ToPlainText();
                     MessageLog.AddPresentedAnnouncement(itemText, itemDocument);
                     Diag.Record("event", "ItemExamined", actor: PlayerEntity, target: item,
                         payload: new { blueprint = item.BlueprintName });

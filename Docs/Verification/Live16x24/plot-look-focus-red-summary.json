@@ -1,0 +1,59 @@
+{
+  "start-time": "2026-10-24 14:31:52Z",
+  "end-time": "2026-10-24 14:31:54Z",
+  "total": "15",
+  "passed": "3",
+  "failed": "12",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.CanonicalCellReplacementInvalidatesOldSnapshotWithoutCursorMovement",
+      "message": "  Expected: same as <Cell(11,10) [0 objects]>\n  But was:  <Cell(11,10) [2 objects]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(\"cell\")",
+      "message": "  Expected: not same as <CavesOfOoo.Core.LookSnapshot>\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(\"full\")",
+      "message": "  Expected: not same as <CavesOfOoo.Core.LookSnapshot>\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(\"unrelated\")",
+      "message": "  Expected: not same as <CavesOfOoo.Core.LookSnapshot>\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.FullRedrawRefreshUsesNewFovRatherThanPreviousVisibility",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.FullscreenPauseDefersQueryAndResumeRefreshesTheSameLookCell",
+      "message": "  Expected: not same as <CavesOfOoo.Core.LookSnapshot>\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(False)",
+      "message": "  Do not query hidden live cell contents into FOCUS.\n  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(True)",
+      "message": "  Do not query hidden live cell contents into FOCUS.\n  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus(False)",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus(True)",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot(False)",
+      "message": "  Expected: not same as <CavesOfOoo.Core.LookSnapshot>\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LookFocusRefreshTests.SameIdZoneReplacementRejectsReboundOldCursorAndSnapshot",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.LookSnapshot>\n"
+    }
+  ]
+}

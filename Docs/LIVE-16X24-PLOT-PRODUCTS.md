@@ -223,3 +223,71 @@ output. Continue the remaining product families where ordinary play provides
 them, then the works forage/preparation/brew/coin route. Preserve approved art
 and current evidence. Packaged activation, physical Deck, active frame timing,
 east/kitchen and the complete six-site journey remain separate open gates.
+
+
+### Ordinary product-loop continuation plan — 2026-10-24 13:54 UTC
+
+Next slice closes the already authored packet's remaining reachable uses.
+Reuse the accepted plot composition, concept, extraction and native resources;
+no new asset or gameplay change is planned. Start a fresh save-isolated ordinary
+seed64 game, travel using controls, buy reserve rights, read the actual carried
+watering grimoire, harvest/examine/pick up Pitchpod output, plant an acquired
+seed on eligible soil, water/grow/harvest Marlroot, prepare its clod and inspect
+FireClay. Capture actual states and source portraits. Recheck normal save/load
+and return from menus for these new products. Record failed actions and exact
+remaining output coverage instead of calling the whole group accepted. Root
+owns Unity; independent source audit verifies input/menu prerequisites.
+
+This is integration acceptance of existing tested code. If ordinary Play
+exposes a significant defect, save its source sweep and run a behavioral RED
+before changing production. No test re-run/count or new artwork is implied by
+this plan. No supplied items, teleport, forced crop ticks or reveal shortcuts.
+
+
+### Ordinary growing / product loop — 2026-10-24
+
+Fresh normal seed64 launch, absent saved presentation key and no forced art
+mode. Real keyboard travel reached the plot; paid reserve rights cost8drams
+(50→42). Read the carried WateringGrimoire to learn ConjureRain. Harvested the
+ripe Pitchpod at18,6, examined an exact ground resin owner and picked up2resin
+plus1seed. Planted that acquired seed in its emptied prepared bed. No granted
+items, teleport, crop-state injection or forced simulation ticks were used.
+
+Two normal casts of ConjureRain with ordinary wait/movement turns showed
+actual stage0→1→2 growth of the new Pitchpod and existing Marlroot. The
+`plot-products-loop-sprout` and `-ripe` receipts record the stages/moisture.
+Harvested Marlroot at17,6 into2clods+1seed, opened an exact ground clod Examine
+portrait, picked up the products, then prepared one clod into1FireClay.
+Remaining clod1, seed1 and FireClay1 appear in the `-prepared` receipt. The
+FireClay portrait itself was not captured in that sequence.
+
+F5 save / F6 reload preserved every recorded observation after sorting only
+the complete owner rows:197owners and10inventory rows, tick1610, player18,7,
+40HP,42drams, reserve Granted and replanted Pitchpod stage2/moisture12. See
+[canonical comparison](Verification/Live16x24/plot-products-loop-save-reload-comparison.json).
+This is bounded observation equivalence; runtime IDs, growth counters, binary
+save fields, other zones and nested container details were not recorded.
+
+Evidence labels: `-resin-ground` and `-clod-ground` are genuine shared reader
+portraits. `-seed-carried` records a **failed** inventory Examine presentation
+(log only); it does not accept the portrait. `-planted` shows the pause menu
+after successful planting, so its receipt supports consumption/new crop but
+it is not a clean world composition capture. The stale right-side FOCUS after
+harvest is another observed defect. Both are repaired and rechecked under
+[LIVE-16X24-PLOT-READER-POLISH.md](LIVE-16X24-PLOT-READER-POLISH.md); preserve
+these original failed screenshots unchanged.
+
+The loop's cleanup receipt confirms Play stopped, no pending art/isolation,
+no borrowed view and saveRoot null. Native PNGs are1280×800; the capture JSON's
+editorReportedScreenSize is an editor field, not image dimensions or Deck
+evidence. These captures do not finish the whole eight-product packet:
+CandyCarrot/EmberwheatSeed/MarlrootSeed/InertSludge identity-use coverage, resin
+brewing, purchased crop families and works products retain explicit debt.
+
+
+Post-fix replay additionally accepts carried PitchpodSeed, EmberwheatSeed and
+CandyCarrotSeed (gladroot) portraits with free reading and correct inventory
+return. Clean `plot-products-reader-replanted.png` shows the actual same-bed
+plant after reading. The two reader faults are closed within the linked
+native/ordinary gates. Remaining product coverage is in release-coverage;
+do not continue treating these three carried portraits as pending.

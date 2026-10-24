@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 14:31:52Z" end-time="2026-10-24 14:31:54Z" duration="1.5757476">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="30835" result="Failed" site="Child" start-time="2026-10-24 14:31:52Z" end-time="2026-10-24 14:31:54Z" duration="1.575748" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="37958" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="30835" result="Failed" site="Child" start-time="2026-10-24 14:31:52Z" end-time="2026-10-24 14:31:54Z" duration="1.490185" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="37959" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30835" result="Failed" site="Child" start-time="2026-10-24 14:31:52Z" end-time="2026-10-24 14:31:54Z" duration="1.412006" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="37960" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30835" result="Failed" site="Child" start-time="2026-10-24 14:31:52Z" end-time="2026-10-24 14:31:54Z" duration="1.246808" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29707" name="LookFocusRefreshTests" fullname="CavesOfOoo.Tests.LookFocusRefreshTests" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:54Z" duration="0.977721" total="15" passed="3" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29720" name="CanonicalCellReplacementInvalidatesOldSnapshotWithoutCursorMovement" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.CanonicalCellReplacementInvalidatesOldSnapshotWithoutCursorMovement" methodname="CanonicalCellReplacementInvalidatesOldSnapshotWithoutCursorMovement" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="11774142" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.116750" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Cell(11,10) [0 objects]>
+  But was:  <Cell(11,10) [2 objects]>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.CanonicalCellReplacementInvalidatesOldSnapshotWithoutCursorMovement () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:160
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29714" name="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.174401" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29711" name="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;cell&quot;)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;cell&quot;)" methodname="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1294738371" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.052220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <CavesOfOoo.Core.LookSnapshot>
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader (System.String dirty) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29712" name="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;full&quot;)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;full&quot;)" methodname="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1907186375" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.066152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <CavesOfOoo.Core.LookSnapshot>
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader (System.String dirty) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29713" name="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;unrelated&quot;)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader(&quot;unrelated&quot;)" methodname="DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="233857670" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.053768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <CavesOfOoo.Core.LookSnapshot>
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.DirtyScopeRefreshesOnlyRelevantFocusAndSubmittedHeader (System.String dirty) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29718" name="FullRedrawRefreshUsesNewFovRatherThanPreviousVisibility" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.FullRedrawRefreshUsesNewFovRatherThanPreviousVisibility" methodname="FullRedrawRefreshUsesNewFovRatherThanPreviousVisibility" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1227827940" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.054973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.FullRedrawRefreshUsesNewFovRatherThanPreviousVisibility () [0x00086] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:122
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29724" name="FullscreenPauseDefersQueryAndResumeRefreshesTheSameLookCell" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.FullscreenPauseDefersQueryAndResumeRefreshesTheSameLookCell" methodname="FullscreenPauseDefersQueryAndResumeRefreshesTheSameLookCell" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="920370352" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.056759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not same as <CavesOfOoo.Core.LookSnapshot>
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.FullscreenPauseDefersQueryAndResumeRefreshesTheSameLookCell () [0x00074] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:194
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29717" name="HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.105669" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29715" name="HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(False)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(False)" methodname="HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1215057859" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.051447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not query hidden live cell contents into FOCUS.
+  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure (System.Boolean unexplored) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29716" name="HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(True)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure(True)" methodname="HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1048242730" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.051501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Do not query hidden live cell contents into FOCUS.
+  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.HiddenOrUnexploredFocusIsClearedAndRebuiltOnlyAfterDisclosure (System.Boolean unexplored) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:100
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29723" name="InactiveOrOtherModeCursorCannotKeepLookFocus" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.100861" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29721" name="InactiveOrOtherModeCursorCannotKeepLookFocus(False)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus(False)" methodname="InactiveOrOtherModeCursorCannotKeepLookFocus" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="799667466" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.049464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus (System.Boolean otherMode) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29722" name="InactiveOrOtherModeCursorCannotKeepLookFocus(True)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus(True)" methodname="InactiveOrOtherModeCursorCannotKeepLookFocus" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="403313456" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.049507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.InactiveOrOtherModeCursorCannotKeepLookFocus (System.Boolean otherMode) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:176
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29726" name="LegacyExplicitSnapshotWithoutWorldCursorStillRenders" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.LegacyExplicitSnapshotWithoutWorldCursorStillRenders" methodname="LegacyExplicitSnapshotWithoutWorldCursorStillRenders" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1985430748" result="Passed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.057391" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29725" name="QuietFramesKeepSnapshotIdentityAndDoNotAdvanceSimulation" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.QuietFramesKeepSnapshotIdentityAndDoNotAdvanceSimulation" methodname="QuietFramesKeepSnapshotIdentityAndDoNotAdvanceSimulation" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1903124785" result="Passed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:53Z" duration="0.049596" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29710" name="RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:54Z" duration="0.202812" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29708" name="RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot(False)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot(False)" methodname="RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="303308791" result="Failed" start-time="2026-10-24 14:31:53Z" end-time="2026-10-24 14:31:54Z" duration="0.105166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <CavesOfOoo.Core.LookSnapshot>
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot (System.Boolean refuse) [0x00258] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=5 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="29709" name="RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot(True)" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot(True)" methodname="RealHarvestReplacesRemovedCropFocusAndRefusalDoesNot" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="244106748" result="Passed" start-time="2026-10-24 14:31:54Z" end-time="2026-10-24 14:31:54Z" duration="0.095369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=5 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="29719" name="SameIdZoneReplacementRejectsReboundOldCursorAndSnapshot" fullname="CavesOfOoo.Tests.LookFocusRefreshTests.SameIdZoneReplacementRejectsReboundOldCursorAndSnapshot" methodname="SameIdZoneReplacementRejectsReboundOldCursorAndSnapshot" classname="CavesOfOoo.Tests.LookFocusRefreshTests" runstate="Runnable" seed="1994833644" result="Failed" start-time="2026-10-24 14:31:54Z" end-time="2026-10-24 14:31:54Z" duration="0.053085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.LookSnapshot>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LookFocusRefreshTests.SameIdZoneReplacementRejectsReboundOldCursorAndSnapshot () [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/LookFocusRefreshTests.cs:145
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

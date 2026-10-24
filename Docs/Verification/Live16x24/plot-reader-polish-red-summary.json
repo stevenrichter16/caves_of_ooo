@@ -1,0 +1,71 @@
+{
+  "start-time": "2026-10-24 14:30:34Z",
+  "end-time": "2026-10-24 14:30:38Z",
+  "total": "42",
+  "passed": "27",
+  "failed": "15",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OrdinaryExamineOpensTheSharedSubjectReaderWithoutSpecializedMechanics(\"PitchpodSeed\",\"Plant it while standing on an empty prepared bed.\")",
+      "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OrdinaryExamineOpensTheSharedSubjectReaderWithoutSpecializedMechanics(\"EmberwheatSeed\",\"Plant it in soft ground.\")",
+      "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OrdinaryExamineOpensTheSharedSubjectReaderWithoutSpecializedMechanics(\"GoldCoin\",\"A small gold coin with a worn rim.\")",
+      "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRejectsProviderRemovalOrReplacementDuringItsSingleSnapshot(False)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRejectsProviderRemovalOrReplacementDuringItsSingleSnapshot(True)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(\"removed-item\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(\"empty-stack\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(\"foreign-custody\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(\"missing-examinable\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(\"foreign-examinable\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OwnerRemovedDuringDescriptionCannotFallBackToAStaleSuccessfulAnnouncement(\"PitchpodSeed\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.StalePartOwnershipCannotBypassStructuredValidationThroughLegacyText(\"PitchpodSeed\",\"render\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.StalePartOwnershipCannotBypassStructuredValidationThroughLegacyText(\"PitchpodSeed\",\"physics\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.UnchangedOwnerPublishesOneStructuredSnapshotWithoutSpendingTheItem(\"PitchpodSeed\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.UnchangedOwnerPublishesOneStructuredSnapshotWithoutSpendingTheItem(\"GoldCoin\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

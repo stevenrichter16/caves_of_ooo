@@ -135,6 +135,43 @@ namespace CavesOfOoo.Tests
                 { Category = "event", Kind = "ItemExamineRejected" }).Count, Is.Zero);
         }
 
+        [TestCase("PitchpodSeed", "Plant it while standing on an empty prepared bed.")]
+        [TestCase("EmberwheatSeed", "Plant it in soft ground.")]
+        [TestCase("GoldCoin", "A small gold coin with a worn rim.")]
+        public void OrdinaryExamineOpensTheSharedSubjectReaderWithoutSpecializedMechanics(
+            string blueprint, string authoredDetail)
+        {
+            var item = Carry(blueprint, 2);
+            Assert.False(MaterialUseDescription.TryDescribe(player, item, factory, out _));
+            Assert.False(TonicExamineService.TryDescribe(item, out _));
+            Assert.False(ItemExamineService.TryDescribeDetails(item, out _),
+                "This actual item must exercise the ordinary event action, not an existing specialized route.");
+            var before = new Snapshot(this);
+            int action = OpenExamine(item, requireSingle: true);
+            Assert.AreEqual("Examine", (string)Get(Actions()[action], "Command"));
+            var commands = Actions().Cast<object>().Select(a => (string)Get(a, "Command")).ToArray();
+            Assert.That(commands, Does.Contain("drop"));
+            if (item.HasPart<SeedPart>()) Assert.That(commands, Does.Contain("PlantSeed"));
+            Call(inventoryUI, "ExecuteItemAction", action);
+            string text = OpenQueuedAnnouncement();
+            StringAssert.Contains(authoredDetail, text);
+            var document = announcement.Document;
+            Assert.NotNull(document);
+            Assert.AreEqual("EXAMINE", document.Kind);
+            Assert.AreEqual(item.BlueprintName, document.BlueprintName);
+            Assert.AreSame(item, typeof(AnnouncementDocument).GetProperty("Subject", Fields).GetValue(document));
+            Assert.AreSame(player, typeof(AnnouncementDocument).GetProperty("SubjectViewer", Fields).GetValue(document));
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+            Assert.AreEqual(document.ToPlainText(), text,
+                "Ordinary inspection reuses the one validated snapshot for both reader and accessible fallback.");
+            Assert.False((bool)Get(inventoryUI, "_pendingEverydayTurn"));
+            CloseAnnouncement();
+            before.AssertUnchanged(this);
+            Assert.IsNull(Get(inventoryUI, "_itemActionPopup"));
+            Assert.AreEqual(1, DiagQuery.Count(new DiagQuery.Filter
+                { Category = "event", Kind = "ItemExamined", Actor = player.ID, Target = item.ID }).Count);
+        }
+
         [Test]
         public void PopupRetainsAuthoredFlavorAndEnhancementAlongsideMechanics()
         {

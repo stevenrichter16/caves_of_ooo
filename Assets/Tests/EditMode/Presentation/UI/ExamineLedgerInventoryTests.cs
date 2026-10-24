@@ -70,6 +70,8 @@ namespace CavesOfOoo.Tests
         [TestCase("Dagger")]
         [TestCase("HealingTonic")]
         [TestCase("FireClay")]
+        [TestCase("PitchpodSeed")]
+        [TestCase("GoldCoin")]
         public void UnchangedOwnerPublishesOneStructuredSnapshotWithoutSpendingTheItem(string blueprint)
         {
             var item = Carry(blueprint);
@@ -101,6 +103,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Dagger")]
         [TestCase("HealingTonic")]
         [TestCase("FireClay")]
+        [TestCase("PitchpodSeed")]
         public void OwnerRemovedDuringDescriptionCannotFallBackToAStaleSuccessfulAnnouncement(string blueprint)
         {
             var item = Carry(blueprint);
@@ -124,6 +127,8 @@ namespace CavesOfOoo.Tests
         [TestCase("HealingTonic", "physics")]
         [TestCase("FireClay", "render")]
         [TestCase("FireClay", "physics")]
+        [TestCase("PitchpodSeed", "render")]
+        [TestCase("PitchpodSeed", "physics")]
         public void StalePartOwnershipCannotBypassStructuredValidationThroughLegacyText(string blueprint, string part)
         {
             var item = Carry(blueprint);
@@ -136,7 +141,57 @@ namespace CavesOfOoo.Tests
             AssertRejected(item, blueprint, popup);
         }
 
-        void AssertRejected(Entity item, string blueprint, object popup)
+        [TestCase("removed-item")]
+        [TestCase("empty-stack")]
+        [TestCase("foreign-custody")]
+        [TestCase("missing-examinable")]
+        [TestCase("foreign-examinable")]
+        public void OrdinaryExamineRevalidatesTheCapturedItemAndProviderBeforeReading(string fault)
+        {
+            var item = Carry("PitchpodSeed");
+            int action = OpenExamine(item);
+            object popup = Field(ui, "_itemActionPopup");
+            var description = item.GetPart<ExaminablePart>();
+            var custodian = new Entity { ID = "other-reader-owner" };
+            if (fault == "removed-item") Assert.True(Inventory.RemoveObject(item));
+            if (fault == "empty-stack") item.GetPart<StackerPart>().StackCount = 0;
+            if (fault == "foreign-custody") item.GetPart<PhysicsPart>().InInventory = custodian;
+            if (fault == "missing-examinable") Assert.True(item.RemovePart(description));
+            if (fault == "foreign-examinable") description.ParentEntity = custodian;
+            int expectedCount = item.GetPart<StackerPart>().StackCount;
+            Assert.DoesNotThrow(() => Execute(action));
+            AssertRejected(item, item.BlueprintName, popup, expectedCount);
+            Assert.AreEqual(fault != "removed-item", Inventory.Contains(item));
+            if (fault == "foreign-custody") Assert.AreSame(custodian, item.GetPart<PhysicsPart>().InInventory);
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void OrdinaryExamineRejectsProviderRemovalOrReplacementDuringItsSingleSnapshot(bool replace)
+        {
+            var item = Carry("PitchpodSeed");
+            int action = OpenExamine(item);
+            object popup = Field(ui, "_itemActionPopup");
+            var original = item.GetPart<ExaminablePart>();
+            var replacement = new ExaminablePart { Text = "A replacement description must not authorize stale prose." };
+            var callback = new DescriptionCallback
+            {
+                Callback = () =>
+                {
+                    Assert.True(item.RemovePart(original));
+                    if (replace) item.AddPart(replacement);
+                }
+            };
+            item.AddPart(callback);
+            Assert.DoesNotThrow(() => Execute(action),
+                "Losing the description provider must be a visible refusal, not a log-only success or callback exception.");
+            Assert.AreEqual(1, callback.Calls,
+                "Generic inspection creates one structured snapshot; it does not rerun a legacy description provider.");
+            Assert.AreSame(replace ? replacement : null, item.GetPart<ExaminablePart>());
+            AssertRejected(item, item.BlueprintName, popup);
+        }
+
+        void AssertRejected(Entity item, string blueprint, object popup, int expectedCount = 1)
         {
             Assert.False(MessageLog.HasPendingAnnouncement, "Rejected metadata cannot silently become a plain-text popup.");
             Assert.AreEqual(0, Records(Success(blueprint), item));
@@ -145,7 +200,7 @@ namespace CavesOfOoo.Tests
             Assert.IsNotEmpty((string)Field(ui, "_actionStatus"));
             Assert.True(ui.IsOpen);
             Assert.False((bool)Field(ui, "_pendingEverydayTurn"));
-            Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
+            Assert.AreEqual(expectedCount, item.GetPart<StackerPart>().StackCount);
         }
 
         Entity Carry(string blueprint)
@@ -162,7 +217,8 @@ namespace CavesOfOoo.Tests
             Assert.True(ui.ReopenItemActionPopupFor(item));
             var actions = (IList)Field(Field(ui, "_itemActionPopup"), "Actions");
             string command = item.BlueprintName == "FireClay" ? "examine_material"
-                : item.BlueprintName == "HealingTonic" ? "examine_tonic" : "examine_item";
+                : item.BlueprintName == "HealingTonic" ? "examine_tonic"
+                : ItemExamineService.TryDescribeDetails(item, out _) ? "examine_item" : "Examine";
             for (int i = 0; i < actions.Count; i++)
                 if ((string)Field(actions[i], "Command") == command) return i;
             Assert.Fail("Expected actual inventory action: " + command);

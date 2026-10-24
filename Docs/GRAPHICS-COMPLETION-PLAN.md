@@ -465,3 +465,39 @@ Independent [east/kitchen route audit](Verification/Live16x24/g3-east-kitchen-so
 now identifies exact current source constraints, historical seed landmarks and
 real service prerequisites for the next journey. It adds no art acceptance and
 does not change the current G2→north products→east/kitchen delivery order.
+
+
+## Latest continuation — ordinary plot loop and reader polish, 2026-10-24
+
+The plot product packet now has actual keyboard ground resin/clod portraits,
+acquired-seed planting, rain-fed stage0→1→2 growth, Marlroot harvest and finite
+clod→FireClay preparation. F5/F6 preserves all197 recorded owners and10
+inventory rows after canonical owner sorting; this is bounded observation
+evidence, not proof of every serialized field or other zones.
+
+Ordinary Play found and repaired two presentation faults: harvest left the
+right-side FOCUS naming the removed crop, and ordinary carried seed Examine
+only logged text despite existing native portrait art. Current source has
+**184 distinct native passes** (57focused +127regression), zero skipped,
+after behavioral RED. A second real route confirms immediate FOCUS update,
+exact native seed portraits, free reading/return and replanting. Approved
+sprite bytes remain unchanged. See
+[plot reader record](LIVE-16X24-PLOT-READER-POLISH.md),
+[actual seed reader](Verification/Live16x24/plot-products-reader-seed-carried.png),
+[harvest focus](Verification/Live16x24/plot-products-reader-focus-after-harvest.png)
+and [independent visual review](Verification/Live16x24/plot-reader-replay-visual-review.md).
+
+Current Play/view/save isolation are restored; console0errors/2existing Metal
+warnings. The previous locked-machine and cleanup blockers are resolved; no
+new packaged build or physical Deck proof is implied. An optional local F5
+checkpoint and its hashes are named in
+[checkpoint receipt](Verification/Live16x24/plot-reader-replay-local-checkpoint.json);
+it came from actual input and may be resumed only inside owned save isolation.
+
+**Next:** finish remaining individual product uses/portraits recorded in
+release-coverage, then the existing works forage/preparation/brew/coin loop.
+The complete eight-product group, purchased crops, remaining opening scene/
+action acceptance, east/kitchen, six-site release and hardware are still open.
+Use the full capture/concept/extraction/native-art/integration loop when new
+art is needed; do not redraw accepted sprites without a named defect. Keep
+this continuation active. This is a verified slice, not graphics completion.

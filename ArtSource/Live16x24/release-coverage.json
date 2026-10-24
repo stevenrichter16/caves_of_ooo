@@ -138,10 +138,12 @@
         "Approved Keeper 3 exact portrait",
         "Paid rights, rain-fed public/reserve growth and both reserve harvests",
         "Persistent ground cords after removal, trade return, save/load and border revisit",
-        "New plot-product art: real Pitchpod harvest,2resin+1seed pickup and carried resin Examine after8dram reserve rights"
+        "New plot-product art: real Pitchpod harvest,2resin+1seed pickup and carried resin Examine after8dram reserve rights",
+        "New product art: exact ground resin/clod portraits, actual replant/rain-fed growth, finite clod preparation and bounded F5/F6 observation match",
+        "Generic carried seed reader and current harvest FOCUS verified through normal keyboard replay"
       ],
       "open": [
-        "Remaining plot-product ground Examine/planting/clod preparation and other product families",
+        "Remaining individual product/use gates listed in plot_products; the whole eight-product packet is not yet accepted",
         "Purchased additional crop families and secondary products",
         "Seed 65 visual visit",
         "Physical mouse/controller acceptance"
@@ -149,7 +151,8 @@
       "refs": [
         "Docs/LIVE-16X24-NORTH-PLOT.md",
         "Docs/Verification/Live16x24/north-plot-play-verification.json",
-        "Docs/Verification/Live16x24/north-plot-returned.png"
+        "Docs/Verification/Live16x24/north-plot-returned.png",
+        "Docs/LIVE-16X24-PLOT-READER-POLISH.md"
       ],
       "primary_packets": [
         "north_vegetation",
@@ -355,12 +358,23 @@
         "Docs/Verification/Live16x24/plot-products-arrival.png",
         "Docs/Verification/Live16x24/plot-products-pitchpod-harvest.png",
         "Docs/Verification/Live16x24/plot-products-resin-ground-examine.png",
-        "Docs/Verification/Live16x24/plot-products-resin-carried-examine.png"
+        "Docs/Verification/Live16x24/plot-products-resin-carried-examine.png",
+        "Docs/LIVE-16X24-PLOT-READER-POLISH.md",
+        "Docs/Verification/Live16x24/plot-products-loop-save-reload-comparison.json",
+        "Docs/Verification/Live16x24/plot-products-loop-visual-review.md",
+        "Docs/Verification/Live16x24/plot-reader-replay-visual-review.md",
+        "Docs/Verification/Live16x24/plot-products-reader-focus-after-harvest.png",
+        "Docs/Verification/Live16x24/plot-products-reader-seed-carried.png",
+        "Docs/Verification/Live16x24/plot-products-reader-replanted.png"
       ],
-      "pending_gate": "Actual ground Examine, seed planting, clod preparation and other authored products/use loops with new sprites. The ground-examine-named PNG is a pickup list, not portrait acceptance.",
+      "pending_gate": "Remaining individual product/use gates: MarlrootSeed portrait/planting, CandyCarrot pickup/read/use, InertSludge trade/read/use and resin brewing. FireClay output observed, its portrait not captured in this loop. No whole-packet, all-seed, packaged or physical Deck acceptance.",
       "accepted": [
         "Ordinary new-art Pitchpod harvest removes crop and yields2resin+1seed",
-        "Pickup carries2resin+1seed; carried resin Examine shows native amber art"
+        "Pickup carries2resin+1seed; carried resin Examine shows native amber art",
+        "Actual ground resin/clod shared-reader portraits match native source art; ordinary rain-fed seed planting and stage0\u21921\u21922 growth observed",
+        "Marlroot harvest yields2clods+1seed; prepare consumes1clod into1FireClay; F5/F6 preserves197 recorded owners and10 inventory rows",
+        "Post-fix ordinary seed readers: PitchpodSeed, EmberwheatSeed and CandyCarrotSeed native portraits, free reading and inventory return; live Look FOCUS refreshes after harvest",
+        "Post-fix inspected PitchpodSeed replanted normally in emptied bed; exact player cell retained"
       ]
     },
     "works_products": {
@@ -517,21 +531,23 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "recovered_ordinary_combat_after_attribution_fix_and_partial_plot_products",
-    "capture": "Docs/Verification/Live16x24/G2Action-20261024-134107-270/frame-12.png",
-    "receipt": "Docs/GRAPHICS-G2-ACTION-READABILITY.md",
-    "route": "Recovered ordinary flat seed64 launch, approach and bumps; new combat rolls differ, so exact Bleeding geometry is nativeRED/GREEN evidence only.272 current native cases pass.41new EOF frames show separate damage, Shaken byDog and Playerclear. Earlier northbound2zone route reaches actual Pitchpod harvest/pickup/carried Examine. No fullG2/G3, packaged or hardware completion."
+    "kind": "ordinary_plot_product_loop_and_reader_repairs",
+    "capture": "Docs/Verification/Live16x24/plot-products-reader-seed-carried.png",
+    "receipt": "Docs/LIVE-16X24-PLOT-READER-POLISH.md",
+    "route": "Fresh default-flat seed64 ordinary route, rights, ground harvest/read, pickup, carried seed read, planting, rain-fed growth and clod preparation; bounded save/reload comparison. Two observed UI defects repaired RED\u2192GREEN,184 distinct current native cases pass. Exact native portraits reviewed. Other product/use families, G2/G3 release, packaged and hardware gates remain open."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
-    "detail": "SampleScene launches, compiles and runs ordinary input. Source variants pushed before selective1,253,801,016logical-byte cleanup; current build/source/saves retained. Native TagManager read32correctlayers. Current owned Play/view/save isolation restored. Old6000.3.4f1 package-verifier warning remains documented; patched6.3 editor pending. No new packaged build or editor download. Console0errors/2memoryless-depth warnings.",
+    "detail": "Editor remains usable; latest ordinary replay and cleanup restored stopped Play, save root and view. Console0errors/2Metal memoryless-depth warnings. Patched6.3 editor remains an environment follow-up. No new packaged build or editor download; source/current build retained.",
     "refs": [
       "Docs/Verification/Live16x24/recovery-cleanup-20261024.json",
       "Docs/Verification/Live16x24/recovery-native-layer-read.json",
       "Docs/Verification/Live16x24/recovery-package-signature-audit.md",
       "Docs/Verification/Live16x24/recovery-console.json",
       "Docs/Verification/Live16x24/g2-attribution-launch.json",
-      "Docs/Verification/Live16x24/g2-attribution-launch-cleanup.json"
+      "Docs/Verification/Live16x24/g2-attribution-launch-cleanup.json",
+      "Docs/Verification/Live16x24/plot-reader-replay-cleanup.json",
+      "Docs/Verification/Live16x24/plot-reader-replay-console.json"
     ]
   }
 }

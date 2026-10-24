@@ -1,0 +1,173 @@
+{
+  "review": "Independent read-only comparison of two gameplay observation receipts; no runtime mutation or Unity access",
+  "createdUtc": "2026-10-24T14:33:12.058463+00:00",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/plot-products-loop-saved.json",
+      "bytes": 50103,
+      "sha256": "88c13bf6417611b48cf70021b1424b6175672f3221a9dc6fae2528105516d9f9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/plot-products-loop-reloaded.json",
+      "bytes": 50106,
+      "sha256": "9d6dd31d3ca316d5f7dc13dd0daec5de1e9031afe8a0145e1e6ca7f2022513de"
+    }
+  ],
+  "canonicalization": {
+    "ignoredMetadata": [
+      "label"
+    ],
+    "sortedCollections": [
+      "owners"
+    ],
+    "sortRule": "Sort complete owner rows by compact JSON with sorted keys, preserving duplicate multiplicity. No owner fields omitted. Inventory order left unchanged."
+  },
+  "canonicalPayloadEqual": true,
+  "canonicalSha256": {
+    "saved": "7f313682b37fd94a4d26799527e553c32cad659b350b9484b31ec008b8c85c40",
+    "reloaded": "7f313682b37fd94a4d26799527e553c32cad659b350b9484b31ec008b8c85c40"
+  },
+  "topLevelValuesEqual": {
+    "seed": true,
+    "tick": true,
+    "drams": true,
+    "zone": true,
+    "flat": true,
+    "player": true,
+    "hp": true,
+    "editorReportedScreenSize": true,
+    "observational": true
+  },
+  "owners": {
+    "beforeCount": 197,
+    "afterCount": 197,
+    "exactSequenceEqual": false,
+    "exactMultisetEqual": true,
+    "comparedFields": [
+      "blueprint",
+      "role",
+      "x",
+      "y",
+      "visible",
+      "stage",
+      "moisture",
+      "contents",
+      "healingSlot",
+      "hp",
+      "reserveState"
+    ],
+    "sequenceDifferences": 194
+  },
+  "inventory": {
+    "beforeRows": 10,
+    "afterRows": 10,
+    "exactSequenceEqual": true,
+    "rows": [
+      {
+        "blueprint": "Dagger",
+        "count": 1
+      },
+      {
+        "blueprint": "HealingTonic",
+        "count": 2
+      },
+      {
+        "blueprint": "DriedMeat",
+        "count": 2
+      },
+      {
+        "blueprint": "WateringGrimoire",
+        "count": 1
+      },
+      {
+        "blueprint": "CandyCarrotSeed",
+        "count": 4
+      },
+      {
+        "blueprint": "EmberwheatSeed",
+        "count": 2
+      },
+      {
+        "blueprint": "PitchpodResin",
+        "count": 2
+      },
+      {
+        "blueprint": "MarlrootSeed",
+        "count": 1
+      },
+      {
+        "blueprint": "MarlrootClod",
+        "count": 1
+      },
+      {
+        "blueprint": "FireClay",
+        "count": 1
+      }
+    ]
+  },
+  "focusedEvidence": {
+    "seed": 64,
+    "zone": "Overworld.11.8.0",
+    "tick": 1610,
+    "playerCell": [
+      18,
+      7
+    ],
+    "playerHp": 40,
+    "drams": 42,
+    "flatMode": true,
+    "matureReplantedPitchpod": [
+      {
+        "blueprint": "PitchpodCrop",
+        "role": null,
+        "x": 18,
+        "y": 6,
+        "visible": true,
+        "stage": 2,
+        "moisture": 12,
+        "contents": null,
+        "healingSlot": null,
+        "hp": 0,
+        "reserveState": null
+      }
+    ],
+    "seedKeeper": [
+      {
+        "blueprint": "SpreadSeedKeeper",
+        "role": "resident",
+        "x": 19,
+        "y": 9,
+        "visible": true,
+        "stage": -1,
+        "moisture": -1,
+        "contents": null,
+        "healingSlot": null,
+        "hp": 20,
+        "reserveState": "Granted"
+      }
+    ],
+    "reserveTray": [
+      {
+        "blueprint": "ConnectedReserveTray",
+        "role": "reserve-tray",
+        "x": 21,
+        "y": 7,
+        "visible": true,
+        "stage": -1,
+        "moisture": -1,
+        "contents": 0,
+        "healingSlot": null,
+        "hp": 0,
+        "reserveState": null
+      }
+    ]
+  },
+  "limits": [
+    "These are observation JSONs, not binary save files. No claim of byte-identical saves, stable runtime entity IDs, all serialized parts, or other zones.",
+    "Owner multiplicity and all recorded fields compare exactly, but the receipt lacks per-owner IDs and crop elapsed-growth counters; identity and unrecorded state are not proved.",
+    "Container contents fields record counts only; comparison does not prove nested item details.",
+    "The files declare observational true. This review compares their contents; capture provenance and input delivery are separate root-owned evidence.",
+    "The recorded editorReportedScreenSize is 2321x1139. It is not proof of screenshot PNG dimensions, Steam Deck display, packaged execution or performance.",
+    "The only observed differences are the label and owner enumeration order. Sorting is an equivalence of recorded observations, not proof that gameplay entity order is irrelevant."
+  ]
+}

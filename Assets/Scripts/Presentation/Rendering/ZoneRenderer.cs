@@ -951,6 +951,12 @@ namespace CavesOfOoo.Rendering
                     _nativeGeometryFullDirty = true;
                 }
 
+                // Retain this trigger before the world pass consumes its dirty set.
+                // The actual query follows FOV recomputation and visible-world painting.
+                bool refreshLookAfterWorldPaint = _worldCursorState != null
+                    && (_fullDirty || _dirtyCells.Contains(EncodeCellKey(
+                        _worldCursorState.X, _worldCursorState.Y)));
+
                 if (CurrentZone != null)
                 {
                     if (_fullDirty)
@@ -995,6 +1001,7 @@ namespace CavesOfOoo.Rendering
 
                 RefreshWorldAffordance();
                 RefreshCombatIntent();
+                RefreshLookSnapshotAfterWorldPaint(refreshLookAfterWorldPaint);
                 RenderSidebar(cam);
                 RenderHotbar();
 
@@ -1748,6 +1755,38 @@ namespace CavesOfOoo.Rendering
             _worldCursorState = null;
             _cursorPlayer = null;
             _worldCursorRenderer?.Clear();
+        }
+
+        private void RefreshLookSnapshotAfterWorldPaint(bool relevantWorldChange)
+        {
+            // Explicit standalone snapshots remain supported by their existing callers.
+            // An attached world cursor, however, must still own this exact Look context.
+            if (_worldCursorState == null)
+                return;
+
+            if (!_worldCursorState.Active || _worldCursorState.Mode != WorldCursorMode.Look
+                || CurrentZone == null || !ReferenceEquals(_worldCursorState.Zone, CurrentZone)
+                || PlayerEntity == null || !ReferenceEquals(_cursorPlayer, PlayerEntity))
+            {
+                if (_currentLookSnapshot != null) ClearLookSnapshot();
+                return;
+            }
+
+            int x = _worldCursorState.X, y = _worldCursorState.Y;
+            Cell cell = CurrentZone.GetCell(x, y);
+            // LookQueryService reads live contents; never call it through stale FOV
+            // or a replaced cell/zone merely because the previous snapshot was visible.
+            if (cell == null || !ReferenceEquals(cell.ParentZone, CurrentZone)
+                || !cell.Explored || !cell.IsVisible)
+            {
+                if (_currentLookSnapshot != null) ClearLookSnapshot();
+                return;
+            }
+
+            if (relevantWorldChange || _currentLookSnapshot == null
+                || !ReferenceEquals(_currentLookSnapshot.Cell, cell)
+                || _currentLookSnapshot.X != x || _currentLookSnapshot.Y != y)
+                SetLookSnapshot(LookQueryService.BuildSnapshot(PlayerEntity, CurrentZone, x, y));
         }
 
         public void SetLookSnapshot(LookSnapshot snapshot)

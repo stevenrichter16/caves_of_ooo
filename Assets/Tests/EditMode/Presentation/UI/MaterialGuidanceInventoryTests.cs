@@ -273,9 +273,16 @@ namespace CavesOfOoo.Tests
             }
             else
             {
-                Assert.That(MessageLog.HasPendingAnnouncement, Is.False,
-                    "unrelated ordinary items must not route to repair guidance");
-                Assert.That(MessageLog.GetLast().ToLowerInvariant(), Does.Contain(item.GetDisplayName().ToLowerInvariant()));
+                // Ordinary Examine now shares the subject reader. Its presence
+                // must not be mistaken for material-specific repair guidance.
+                string text = OpenQueuedAnnouncement();
+                StringAssert.Contains("Pale crystals leave a dry dust wherever they rest.", text);
+                Assert.AreEqual(item.BlueprintName, announcement.Document.BlueprintName);
+                StringAssert.DoesNotContain("well", text.ToLowerInvariant());
+                StringAssert.DoesNotContain("oven", text.ToLowerInvariant());
+                Assert.AreEqual(0, DiagQuery.Count(new DiagQuery.Filter
+                    { Category = "event", Kind = "MaterialExamined", Actor = player.ID, Target = item.ID }).Count);
+                CloseAnnouncement();
             }
             before.AssertUnchanged(this);
         }
