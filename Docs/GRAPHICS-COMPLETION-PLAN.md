@@ -1108,3 +1108,37 @@ bands and Nella's working beds competing with decorative brown fragments.
 Reassess fresh captures before changing accepted art; use the required imagegen/
 part extraction/native production loop for any warranted art change. Ordinary
 Riposte/periodic Player-Hurt/Frozen proc remain opportunistic gaps, not RNG hunts.
+
+
+## Latest continuation — northern field composition and earned use, 2026-10-25 03:37UTC
+
+[Fresh-origin journey](GRAPHICS-G3-FRESH-OPENING-ACCEPTANCE.md) now reaches glade,
+cellar and northern works through ordinary inputs. The fresh north frame named a
+specific defect: repeated bright hedge rectangles overwhelmed its field. Following
+the actual capture→imagegen→part extraction loop, the
+[north composition pass](GRAPHICS-G3-NORTH-COMPOSITION.md) reuses accepted native
+Hedge/Grass art and subtracts selected boundaries only in fresh nonLegacy exact
+north Fallow plans. Original pocket repair runs first; no RNG draw, per-frame
+work, other planned terrain cell, hidden knowledge or saved graph is changed.
+
+Native RED22 had5expected composition failures; GREEN138/138,0fail/skip.
+A60-plan comparison verifies15exact-scope Hedge→null-only changes and45unchanged
+outside/Legacy cases. Independent source and actual screenshot reviews found no
+significant defect. Seed64 matched entry is less repetitive with retained cover;
+the existing placement system legitimately moves the works to22,17. Real combat
+forced a retreat and consumed two carried tonics before an ordinary Lunge kill.
+Normal harvest of both finite sources, reagent selection and brewing produced
+frozen-and-stoneskin coating6974. F5→glade autosave→F6 latest-load→ordinary return
+preserved32HP, exact inventory and spent sources. See north-composition-play-summary
+and actual fresh-opening-north PNGs. This is bounded acceptance, not full-scene
+or six-site completion. No new native sprite or benchmark is claimed.
+
+Owned cleanup restored normal scene/preferences/view/save root at03:37UTC,
+console0errors/2existing warnings. Current Mac/Linux packages predate this change.
+Continue the earned checkpoint at `/tmp/coo-fresh-opening-after-north/`
+(character20cb263ebed24a8380168954e23981ca; tick2260/23,17north). It contains the
+real coating, one remaining Stoneburr/FrostLichen each,2FireClay,32HP,50drams;
+no healing tonics remain. Next: Nella's legitimate8dram access, crop/watering,
+east forge and kitchen, with a seed65 ordinary visual counter-pass. Reassess
+Nella's actual working-row hierarchy before changing art. Remaining feedback,
+regional kits and physical Deck gates remain open. Preserve all prior checkpoints.

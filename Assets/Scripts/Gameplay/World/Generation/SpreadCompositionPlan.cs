@@ -19,6 +19,9 @@ namespace CavesOfOoo.Core
         private readonly bool[,] approach=new bool[Zone.Width,Zone.Height];
         private readonly Parcel[] parcels;
         private readonly bool mirrored;
+        // Activated only after the original connectivity repair, so subtracting
+        // northern hedge fragments cannot change existing lanes or other planned terrain cells.
+        private readonly bool northernFragments;
         public int ParcelCount => parcels.Length;
         public Parcel GetParcel(int index) => parcels[index];
         public readonly struct Parcel
@@ -96,6 +99,8 @@ namespace CavesOfOoo.Core
                 BuildExplorationRoutes(topology);
             }
             ConnectOpenPockets();
+            northernFragments=topology!=SpreadExplorationTopology.Legacy
+                &&id=="Overworld.11.9.0"&&Landscape=="overgrown crofts";
         }
         private Parcel[] CreateExplorationParcels(SpreadExplorationTopology topology)
         {
@@ -279,12 +284,14 @@ namespace CavesOfOoo.Core
         {
             if(Landscape=="overgrown crofts")
             {
-                foreach(var p in parcels)
+                for(int i=0;i<parcels.Length;i++)
                 {
+                    var p=parcels[i];
                     if(!p.Contains(x,y))continue;
                     // Long surviving hedge runs with broad collapsed gaps, and
                     // a coherent belt of trees at one end of each former plot.
-                    if(p.Boundary(x,y))return Roll(x/4,y/2,701)<76?"Hedge":null;
+                    if(p.Boundary(x,y))return Roll(x/4,y/2,701)<76
+                        &&(!northernFragments||KeepNorthernHedge(p,i,x,y))?"Hedge":null;
                     // Surviving work paths thread the regrowth. These are bare
                     // ground, not reserved approach lanes, so native actors can
                     // use both sides of tree cover without adding any owners.
@@ -324,6 +331,22 @@ namespace CavesOfOoo.Core
             double px=mirrored?79-x:x;
             if((Ellipse(px,y,8,19,9,3)<1||Ellipse(px,y,71,5,8,3)<1)&&Roll(x,y,751)<27)return "Bush";
             return null;
+        }
+        private bool KeepNorthernHedge(Parcel p,int index,int x,int y)
+        {
+            int u=x-p.X,v=y-p.Y,w=p.Width-1,h=p.Height-1;
+            if(mirrored)u=w-u;
+            // A substantial tree-side bracket, opposed remnants and a broken
+            // working-field edge. Existing gaps/rolls always take precedence.
+            switch(index)
+            {
+                case 0:return v==0||u==0||(v==h&&u<=w/4);
+                case 1:return (v==0&&u<=w*3/5)||(v==h&&u>=w*2/5)||u==w;
+                case 2:return (v==0&&(u<=w*2/5||u>=w*3/5))
+                    ||(v==h&&u>=w/5&&u<=w*3/5)||u==0;
+                case 3:return v==h||u==0||(v==0&&u<=w/5);
+                default:return (v==0&&u>=w/4)||(v==h&&u<=w/2)||u==w;
+            }
         }
         private static double Ellipse(double x,double y,double cx,double cy,double rx,double ry)
             =>(x-cx)*(x-cx)/(rx*rx)+(y-cy)*(y-cy)/(ry*ry);

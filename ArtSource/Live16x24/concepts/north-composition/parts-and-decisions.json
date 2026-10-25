@@ -1,0 +1,43 @@
+{
+  "input": "Docs/Verification/Live16x24/fresh-opening-north-before-entry.png",
+  "tool": "built-in image_gen",
+  "output": "ArtSource/Live16x24/concepts/north-composition/concept.png",
+  "accepted": [
+    "Shorter unequal hedge fragments replace parallel paired ribbons",
+    "Existing ground joins already open routes",
+    "Actual still/forage/wall cluster remains the useful destination"
+  ],
+  "rejected": [
+    "Over-cleared fields",
+    "Soft ground shading and HUD changes",
+    "Any generated pixels as runtime art"
+  ],
+  "native_parts": [
+    {
+      "owner": "Hedge",
+      "cell": [
+        16,
+        24
+      ],
+      "change": "Subset of original cold-generated whole cells only",
+      "sprite": "unchanged existing approved art",
+      "state": "existing collision, visibility, damage and removal"
+    },
+    {
+      "owner": "Grass",
+      "cell": [
+        16,
+        24
+      ],
+      "change": "Existing underlying owner exposed where no hedge generated",
+      "sprite": "unchanged"
+    },
+    {
+      "owner": "AlchemyStill, StoneburrPatch, FrostLichenPatch, MendleafPlant, AlchemyShelf, StoneWall, MarlbackPatchbearer",
+      "change": "No asset/content changes; verify downstream native placement/service access"
+    }
+  ],
+  "reference": "ART-REFERENCE-LIBRARY.md R01: established quiet ground and grouped useful silhouettes, reference only; no external pixels imported",
+  "editable_source": "Assets/Scripts/Gameplay/World/Generation/SpreadCompositionPlan.cs",
+  "scope": "Exact north Fallow nonLegacy plans; post-connectivity subtraction, saved graphs remain literal"
+}
