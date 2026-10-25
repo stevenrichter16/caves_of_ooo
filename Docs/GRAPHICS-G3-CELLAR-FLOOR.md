@@ -1,6 +1,6 @@
 # Cellar floor: quiet material beneath the working store
 
-Status: native source and test draft prepared,2026-10-25. Not integrated or accepted. The
+Status: native implementation and bounded ordinary Play accepted,2026-10-25. The
 preceding Nella slice is accepted and preserved on main at`d313eac64`.
 
 ## Why this follows Nella
@@ -143,7 +143,7 @@ Regression groups:`FlatPixelCellarScopeTests`,
 `GleanersCellarBuilderTests`. Independent source review confirmed these seams
 and corrected the canonical-variant and same-owner cultivated-bed premises.
 
-## Current handoff and storage limit
+## Historical pre-implementation handoff and storage limit
 
 Only this plan, exact concept prompt/output and critique exist. No floor runtime,
 asset import, native test or new floor gameplay acceptance has happened. Unity is
@@ -188,3 +188,130 @@ includes11directories,28player graph metadata files plus2AOT hash files.
 identities/no handles/current-package hashes, then reclaim only those stale
 intermediates and measure actual free-space gain. Preserve Editor graphs,
 ScriptAssemblies, import/shader caches, JIT, dependencies, sources and saves.
+
+
+## Recovery and native implementation,11:11UTC
+
+After source/evidence preservation at`f516e6d999412a9f547b5a1b8f999344193b4c35`
+(134 owned files verified on main), closed-editor cleanup removed only the committed
+3,552-file stale player-intermediate set:11directories,28Bee metadata files and
+2AOT hashes. Observed available-space gain was357,728,256bytes (341.2MiB),
+versus500,940,800allocatedbytes. Source, editable assets, dependencies, useful
+Editor/import/JIT caches, saves/backups and current packages remain intact.
+Independent review rehashed current packages and normal saves with no change.
+Exact receipt:`Verification/Live16x24/cellar-floor-stale-player-cache-cleanup.json`.
+Unity reopened; a modal package-error notice blocked the bridge until dismissed
+without changing package/security settings. Native compilation then succeeded.
+
+The promoted34-case fixture failed34/34 for missing adapter/resource. Six explicit
+negative ownership cases expanded it to40; after explicit import/compile this also
+failed40/40 before production. One intervening run still used the34-case assembly
+and is retained as stale compiled evidence, not an expanded RED claim. The atlas
+and optional catalog are now imported; first native GREEN passes40/40. The
+companion caches four tiles/sprites, chooses75% unmarked coordinate buckets,
+yields to live competing ground/state, and never changes simulation or foreground.
+Older injected constructors remain resource-free; missing art keeps the old swatch.
+
+Independent runtime review found an anchored malformed second Floor could be
+skipped before ambiguity detection. A dedicated regression is being added before
+its correction. Full regression, actual matched capture/route and final review
+remain pending. No new cellar gameplay or package/Deck acceptance is claimed here.
+
+
+## Final native and ordinary-play acceptance,11:36UTC
+
+The anchored malformed duplicate was reproduced in a native42-case run (41pass,
+1fail) before correction. Anchor ownership is now checked before interpreting a
+Floor; a malformed second Floor declines the material in either enumeration
+order while an actually moved old entry remains ignorable. Final native sweep:
+**290distinct passes,0failures,0skips**, including all42new floor cases and the six
+planned regression groups. See`cellar-floor-final-native-green.xml` and summary
+under`Docs/Verification/Live16x24`. This is Unity EditMode, not the portable runner.
+
+Actual ordinary keyboard routes, using SampleScene/GameBootstrap and isolated
+saves with no teleport, forced presentation mode, grants or staged terrain:
+
+- Seed64 fresh Warden: normal glade approach and stairs, entry40,12 at tick240,
+ 40HP. Actual entry matches the earlier baseline position, tick and visible
+ owners.119native floors plus one existing soil swatch;83blank/36marked frames.
+ Walls/fog hue differs from the earlier run, so this is not an isolated lighting
+ regression comparison. Existing lighting remains out of this material change.
+- En Garde and bump combat defeat a scrabbler with ordinary drops, leaving30HP.
+ Walk to the store, inspect the sootroot bed, harvest3seeds/no produce from its
+ naturally spent stage3 crop, and dismantle the pallet for2SalvagedTimber.
+ Prepared soil remains brown under the player and seeds. Do not call this a ripe
+ produce harvest: the crop aged while ordinary turns elapsed.
+- Look/Examine the adjacent Floor through the normal cell selector; it remains
+ Terrain. F5/F6 preserves complete captured floor records, inventory, HP and
+ tick. Return to the surface and descend again; all120shared entry/revisit
+ floor records retain owner IDs, texture, rect and soil flags.
+- Seed65 fresh Warden: the worn crossing wall requires the open adjacent route,
+ then ordinary stairs lead to the opposite lower cellar branch. Entry40,12,
+ tick260,40HP has125native floors (87blank/38marked) and unchanged soil67,14.
+ Walk down and east to47,19,tick400,40HP.39native floors remain legible around
+ the nearby FallenBeam at48,19. This is bounded branch traversal, not a second
+ complete lifecycle. Save the earned checkpoint before stopping.
+
+Independent art/gameplay review found no defect requiring another art revision.
+See`cellar-floor-gameplay-review.md`; all captures are actual1280×800 Unity output,
+not composited concepts. Main capture:`cellar-floor-64-entry.png`; lifecycle,
+reader, return and alternate branch have paired JSON receipts under the same prefix.
+
+Active world with Unity unpaused and no overlay was observed stationary for
+29.076seconds. Environment rendering counters (frames, full/incremental passes,
+cells, tile writes and measured ticks) stayed identical, with12cached floor tiles
+across the observed catalog instances and11,712atlas bytes. No extra redraw or
+resource growth in that interval is supported. The earlier23.27second sample was
+behind the Pause overlay and is not active-world evidence. Neither is a frame-rate
+benchmark or physical Deck performance result.
+
+### Self-review and scope
+
+- 🟡 Fixed before commit: duplicate malformed anchored Floor ambiguity; genuine
+ RED then GREEN. Negative eligibility/precedence/disclosure cases remain paired
+ with matching positive controls. Independent final source review found no
+ remaining significant issue.
+- 🔵 No code changes to simulation, generation, collision, FOV, drops, growth,
+ foreground art or accepted sprites. The optional companion affects background
+ only in the exact current visible admitted cellar. Missing resource and old
+ injected constructors retain fallback. Native Floor reader is unchanged.
+- 🧪 Kept explicit: wet/ice/oil producer-driven redraw is native-tested, not
+ replicated with consumables during these ordinary routes. Controller feel,
+ packaged binaries, physical Deck and whole-opening/region art remain unaccepted.
+- ⚪ Source draft records the original34cases; actual Assets fixture owns the
+ final42. Prior stale-assembly run is retained and clearly excluded from expanded
+ RED evidence. Independent review reports no need to increase visual contrast.
+
+Scope divergence: the planned frame family is retained. The actual harvest gate
+observed a spent seed harvest rather than a ripe produce harvest; prepared-soil
+persistence is proven, produce lifecycle remains earlier separately scoped evidence.
+The second seed accepts its opposite passage only. No unrelated art or gameplay
+expansion is included.
+
+### Files and restoration
+
+-`FlatPixelCellarFloorCatalog.cs` plus fresh.meta: optional four-frame cached
+ material, strict lower-owner/visibility/state selection and borrowed-resource lifetime.
+-`FlatPixelGreyboxCatalog.cs`: lazy normal-world background integration and disposal.
+-`FlatPixelCellarFloorTests.cs` plus fresh.meta:42native positive/countercases,
+ including submitted producer-driven Tilemap repaint and movement.
+-`Assets/Resources/Sprites/Live16x24/cellar-floor.png` plus fresh.meta:
+ exact byte-matching native atlas, Point/Clamp/no mipmaps/no compression.
+-Editable source/exporter were already preserved at`f516e6d99`; current doc,
+ ledger, raw verification, screenshots and review travel with implementation.
+
+Unity is out of Play in clean SampleScene. Audit seed/build/view/save overrides
+are restored. Free Aspect automatically displays1x after the1280×800 audit;
+no persisted scene/camera setting was altered. LastGameID is again
+`eac9a734ed804db5b3c222015048356e`; all four normal save/backup hashes and current
+Linux archive hash are unchanged (`cellar-floor-preservation.json`). Console
+counts show0errors and2Metal memoryless-depth capture warnings, not gameplay
+exceptions. Earned audit checkpoints are preserved under`/tmp/coo-cellar-floor-*`.
+
+At final inspection about425MiB remains free. Do not trigger a fresh package build
+or wipe useful Editor/import caches. The earlier exact cleanup already recovered
+341.2MiB only after verified remote preservation. No additional stale set is
+confirmed. Next bounded visible gap: replace the Warden's three identical generic
+hotbar diamonds with clear exact ability icons, starting from actual gameplay and
+without changing skill mechanics; preserve accepted world art. The full opening
+release and regional coverage remain open.

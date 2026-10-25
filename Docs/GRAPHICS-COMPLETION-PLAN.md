@@ -1405,3 +1405,31 @@ integration. The clean owned Unity Editor is normally closed. Exact older
 player-build intermediates (477.7MiB allocation) are audited separately from
 useful editor/import/JIT caches; preserve/push this owned work before any guarded
 reclamation. See[the cellar plan](GRAPHICS-G3-CELLAR-FLOOR.md).
+
+
+## Continuation — cellar floor accepted,2026-10-25 11:36UTC
+
+The quiet native cellar floor is now implemented and boundedly accepted. See
+`Docs/GRAPHICS-G3-CELLAR-FLOOR.md` and independent
+`Docs/Verification/Live16x24/cellar-floor-gameplay-review.md`. Four editable16×24
+frames resolve only actual visible ordinary Floor owners; prepared beds, crops,
+coatings, pools, gas and memory retain their current priority. Foreground,
+geometry and simulation are unchanged. Independent review's malformed duplicate
+Floor finding was reproduced RED and fixed. Native Unity sweep290/290 passes,
+0skips. Actual fresh seed64 entry→combat→spent seed harvest→pallet dismantle→
+Examine→F5/F6→glade→cellar return preserves recorded floor/soil state; seed65
+opposite lower passage is separately captured.All gameplay captures are1280×800. No package/Deck or complete-opening claim.
+
+29.076seconds active stationary world produced no additional environment redraw
+or resource growth. This is bounded counter evidence, not FPS. Normal saves,
+backups and current Linux archive rehashed unchanged; ordinary editor preferences
+and isolation restored. Before integration, source/evidence was pushed to main at
+`f516e6d99`, then the closed Editor's exact stale player-only intermediates were
+removed:341.2MiB actual recovery. Active caches/current builds were preserved;
+about425MiB remains after testing, so no new package build or routine Library wipe.
+
+Next: Warden En Garde/Lunge/Follow Through share generic diamond hotbar icons in
+actual gameplay. Audit exact icon path; use the actual frame→imagegen→native
+editable icon→real integration/test/play loop. Do not reopen accepted Nella,
+kitchen or cellar art without a named defect. Whole opening and regional art
+remain the priority; ongoing heartbeat continues.

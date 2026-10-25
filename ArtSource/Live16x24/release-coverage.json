@@ -94,7 +94,8 @@
         "Ordinary descent and return",
         "Finite crate loot, pallet dismantle and ripe sootroot harvest",
         "Revisit and F5/F6 preservation of depleted state",
-        "Corrected native portrait palette"
+        "Corrected native portrait palette",
+        "Quiet4frame native floor under real lower owners; soil survives spent seed harvest, pallet clearing and ordinary save/revisit. Seed65opposite branch composition accepted;290native passes."
       ],
       "open": [
         "Watered sootroot growth in ordinary Play",
@@ -104,12 +105,14 @@
         "Docs/LIVE-16X24-CELLAR.md",
         "Docs/Verification/Live16x24/cellar-native-harvest.png",
         "Docs/Verification/Live16x24/cellar-native-reloaded.png",
-        "Docs/GRAPHICS-G3-SIXSITE-JOURNEY.md"
+        "Docs/GRAPHICS-G3-SIXSITE-JOURNEY.md",
+        "Docs/GRAPHICS-G3-CELLAR-FLOOR.md"
       ],
       "primary_packets": [
         "cellar",
         "opening_motion",
-        "opening_items_examine"
+        "opening_items_examine",
+        "cellar_floor"
       ],
       "flat_projection": "global_requested_flat_mode"
     },
@@ -634,6 +637,23 @@
         "Docs/GRAPHICS-G3-FORGE-CROP-JOURNEY.md"
       ],
       "limits": "391 historical distinct native passes incl37focused; ordinary ground/equipped/readers/save/reload/cellarroundtrip and one real frost quench now accepted. No held overlay or fake glow. Component forging, actualFrozen proc, full combat/journey/package/Deck remain pending."
+    },
+    "cellar_floor": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "owners": [
+        "Exact visible current ordinary Floor in admitted gleaners cellar"
+      ],
+      "contract": "4native16x24 cached background frames,75percent unmarked coordinate buckets; no foreground/collision/simulation/memory changes. Competing soil/crops/fields/liquid/gas/tile-state win.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/cellar-floor/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/GRAPHICS-G3-CELLAR-FLOOR.md",
+        "Docs/Verification/Live16x24/cellar-floor-final-native-green.xml",
+        "Docs/Verification/Live16x24/cellar-floor-gameplay-review.md"
+      ],
+      "limits": "290native passes incl42new; seed64 bounded lifecycle/reload/revisit and65opposite passage. Active-idle counter stability only; no FPS/package/Deck/whole-opening acceptance."
     }
   },
   "rough_or_unclassified_coverage": {
@@ -740,16 +760,16 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "nella_bounded_field_frontage_two_seed_ordinary_play_accepted",
-    "capture": "Docs/Verification/Live16x24/nella-composition-64-final-accepted-frontage.png",
-    "counter_capture": "Docs/Verification/Live16x24/nella-composition-65-final-paid-frontage.png",
-    "receipt": "Docs/GRAPHICS-G3-NELLA-COMPOSITION.md",
-    "route": "Seed64 cold Continue with actual lifecycle and return; seed65 fresh New Game northward approach/payment. Full opening art, latest packages, physical Deck and remaining regional kits stay open."
+    "kind": "cellar_floor_two_seed_bounded_ordinary_play_accepted",
+    "capture": "Docs/Verification/Live16x24/cellar-floor-64-entry.png",
+    "counter_capture": "Docs/Verification/Live16x24/cellar-floor-65-lower-passage.png",
+    "receipt": "Docs/GRAPHICS-G3-CELLAR-FLOOR.md",
+    "route": "Seed64 ordinary entry/combat/spent seed harvest/pallet/Look/save-load/surface-return;65opposite branch entry/traversal.290native passes. Full opening, packages and physical Deck remain open."
   },
   "current_environment_blocker": {
-    "detail": "About328MiB free at10:46UTC. Owned Editor now normally closed after clean idle preflight. New exact older player-only intermediate cache candidates total500940800allocated bytes; not deleted yet. Source floor artwork and34-case draft remain outsideAssets. Preserve/push new owned work before guarded reclamation; active editor/import/JIT caches, source, saves, dependencies and current builds remain protected.",
-    "native_verified": "Nella158/158 passed,0skipped; actual64 lifecycle and65 approach/payment independently reviewed. Earlier inventory245distinct passes remain separately scoped.",
-    "status": "limited_storage_headroom_after_verified_stale_clone_reclamation",
+    "detail": "Closed-editor stale player-only intermediates removed after verified source/evidence push f516e6d99;341.2MiB actual recovery. Editor/native tests/ordinary Play working. About425MiB available after verification. No further stale set confirmed; preserve useful caches, sources, saves/backups and current packages. Avoid a fresh large build.",
+    "native_verified": "Cellar290distinct native passes incl42new floor cases,0skips; two-seed bounded ordinary Play independently reviewed. Earlier Nella158 and inventory245 distinct passes remain separately scoped.",
+    "status": "editor_recovered_limited_storage_headroom",
     "refs": [
       "Docs/Verification/Live16x24/recovery-cleanup-20261024.json",
       "Docs/Verification/Live16x24/recovery-native-layer-read.json",
@@ -798,7 +818,13 @@
       "Docs/Verification/Live16x24/nella-composition-final-restored.json",
       "Docs/Verification/Live16x24/nella-composition-save-preservation.json",
       "Docs/Verification/Live16x24/nella-composition-storage-cleanup.json",
-      "Docs/Verification/Live16x24/nella-composition-small-cache-cleanup.json"
+      "Docs/Verification/Live16x24/nella-composition-small-cache-cleanup.json",
+      "Docs/Verification/Live16x24/cellar-floor-stale-player-cache-cleanup.json",
+      "Docs/Verification/Live16x24/cellar-floor-final-native-green-summary.json",
+      "Docs/Verification/Live16x24/cellar-floor-gameplay-review.md",
+      "Docs/Verification/Live16x24/cellar-floor-active-idle-after.json",
+      "Docs/Verification/Live16x24/cellar-floor-final-restored.json",
+      "Docs/Verification/Live16x24/cellar-floor-preservation.json"
     ]
   },
   "packaged_delivery": {
@@ -814,11 +840,9 @@
     ]
   },
   "next_scoped_work": {
-    "id": "cellar_floor_material",
-    "status": "native_source_and_uncompiled_test_draft_only",
-    "plan": "Docs/GRAPHICS-G3-CELLAR-FLOOR.md",
-    "baseline": "Docs/Verification/Live16x24/fresh-opening-cellar-entry.png",
-    "concept_prompt": "ArtSource/Live16x24/concepts/cellar-floor-prompt.md",
-    "next": "Preserve exact source/evidence, reclaim verified stale player-only caches with Editor closed, then promote34-case draft for native RED before integration. No floor runtime or gameplay acceptance yet."
+    "id": "warden_hotbar_icons",
+    "status": "exact_path_audit_pending_concept_and_native_red",
+    "baseline": "Docs/Verification/Live16x24/cellar-floor-64-entry.png",
+    "next": "Audit the three generic Warden hotbar diamonds; real screenshot reinterpretation, editable native icons, exact owner mapping, tests and ordinary world/keyboard verification. No skill behavior changes; keep prior accepted art stable."
   }
 }

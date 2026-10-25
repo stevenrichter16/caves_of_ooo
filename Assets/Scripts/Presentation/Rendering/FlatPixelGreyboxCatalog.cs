@@ -61,6 +61,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelOpeningGroundCatalog _groundArt;
         private FlatPixelEastKitchenCatalog _eastKitchenArt;
         private FlatPixelWorkingCourtCatalog _workingCourtArt;
+        private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
@@ -766,6 +767,12 @@ namespace CavesOfOoo.Rendering
                     groundColor = groundTint;
                 }
             }
+            var cellarFloor = local && !fallback.Remembered && ground == FlatPixelGreyboxGround.StoneFloor
+                ? CellarFloorArtFor(zone) : null;
+            if (cellarFloor != null && cellarFloor.TryResolve(zone, x, y, out var floorTile, out _))
+            {
+                groundTile = floorTile; groundColor = Color.white;
+            }
             var court = local && !fallback.Remembered ? WorkingCourtArtFor(zone) : null;
             // Opaque material belongs to the real lower floor, independently of
             // the covering foreground. Higher-priority soil/hazards refuse it.
@@ -851,6 +858,14 @@ namespace CavesOfOoo.Rendering
             return _workingCourtArt;
         }
 
+        private FlatPixelCellarFloorCatalog CellarFloorArtFor(Zone zone)
+        {
+            if (zone.ZoneID != GleanersCellarBuilder.ZoneID) return null;
+            if (_cellarFloorArt == null && _loadOptionalResources)
+                _cellarFloorArt = new FlatPixelCellarFloorCatalog();
+            return _cellarFloorArt;
+        }
+
         private FlatPixelEastKitchenCatalog EastKitchenArtFor(Zone zone, Entity owner)
         {
             // This companion remains local even when portable actor art travels.
@@ -927,6 +942,8 @@ namespace CavesOfOoo.Rendering
             _eastKitchenArt = null;
             _workingCourtArt?.Dispose();
             _workingCourtArt = null;
+            _cellarFloorArt?.Dispose();
+            _cellarFloorArt = null;
             _incidentalActorArt?.Dispose();
             _incidentalActorArt = null;
             _glyphFallback?.Dispose();

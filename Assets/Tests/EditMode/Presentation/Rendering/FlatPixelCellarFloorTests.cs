@@ -1,0 +1,469 @@
+// Native cellar-floor acceptance fixture. Initial run must establish RED before implementation.
+// Proposed API: FlatPixelCellarFloorCatalog(Texture2D borrowedAtlas),
+// bool TryResolve(Zone, int, int, out Tile, out Entity floor), IDisposable.
+// Proposed Greybox injection field: _cellarFloorArt. Default resource: cellar-floor.
+// No hash/frequency algorithm is prescribed. Art acceptance still requires actual Play.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class FlatPixelCellarFloorTests
+    {
+        const string Cellar = GleanersCellarBuilder.ZoneID;
+        const string Resource = "Sprites/Live16x24/cellar-floor";
+        const string Variants = "...,.'`";
+        const int X = 40, Y = 12;
+        const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        const BindingFlags S = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        static readonly Color Stone = new Color32(24, 44, 41, 255);
+        delegate bool FloorQuery(Zone zone, int x, int y, out Tile tile, out Entity floor);
+
+        [Test]
+        public void FactoryFloorKeepsCanonicalVariantsAndCachedGeometryWithoutChangingItsOwner()
+        {
+            using (var f = new Fixture())
+            {
+                var floor = f.Place("Floor"); var render = floor.GetPart<RenderPart>();
+                Assert.AreEqual(Variants, render.GlyphVariants); Assert.IsNull(floor.GetProperty(GleanersCellarBuilder.RoleKey));
+                var version = f.Zone.EntityVersion; var savedState = f.Zone.TileState.ToSaveString();
+                var first = f.Native(); Assert.AreSame(floor, first.Owner); Assert.IsNull(first.ForegroundTile);
+                Assert.False(first.BlocksMovement); Assert.AreEqual(FlatPixelGreyboxGround.StoneFloor, first.GroundKind);
+                for (int i = 0; i < 20; i++) Assert.AreSame(first.GroundTile, f.Native().GroundTile);
+                Assert.AreEqual(version, f.Zone.EntityVersion); Assert.AreEqual(savedState, f.Zone.TileState.ToSaveString());
+                Assert.AreEqual(Variants, render.GlyphVariants);
+                Assert.AreEqual(FilterMode.Bilinear, f.Atlas.filterMode, "Borrowed texture is not reconfigured by the catalog.");
+                Assert.AreEqual(TextureWrapMode.Repeat, f.Atlas.wrapMode);
+            }
+        }
+
+        [TestCase("Player")] [TestCase("StairsUp")] [TestCase("FallenBeam")] [TestCase("HealingTonic")]
+        public void LowerFloorMaterialDoesNotReplaceTheActualForegroundOrCollision(string blueprint)
+        {
+            using (var f = new Fixture())
+            using (var original = new FlatPixelGreyboxCatalog(null))
+            {
+                f.Place("Floor"); var bare = f.Native(); var cover = f.Place(blueprint);
+                cover.GetPart<RenderPart>().RenderLayer = 100;
+                Assert.True(original.TryResolvePresentation(f.Zone, X, Y, out var control));
+                var native = f.Native(); Assert.AreSame(bare.GroundTile, native.GroundTile);
+                Assert.AreSame(cover, native.Owner); Assert.AreSame(control.Owner, native.Owner);
+                Assert.AreEqual(control.BlocksMovement, native.BlocksMovement);
+                Assert.NotNull(native.ForegroundTile); Assert.AreNotSame(f.Atlas, native.ForegroundTile.sprite.texture);
+                Assert.AreEqual(control.ForegroundTile.sprite.rect, native.ForegroundTile.sprite.rect);
+                Assert.AreEqual(control.ForegroundColor, native.ForegroundColor);
+                Assert.True(f.Catalog.TryGetPresentationSubjectSprite(f.Zone, cover, X, Y, out var portrait, out _));
+                Assert.AreNotSame(f.Atlas, portrait.texture, "A covering subject cannot borrow lower-floor portrait art.");
+            }
+        }
+
+        [Test]
+        public void ExplicitVisualOverridesDeclineAndRestoringTheCanonicalFloorRecovers()
+        {
+            using (var f = new Fixture())
+            {
+                var floor = f.Place("Floor"); var r = floor.GetPart<RenderPart>(); f.Native();
+                r.VisualID = "authored-other-floor"; f.Refused(); r.VisualID = ""; f.Native();
+                r.VisualVariant = "authored-other-material"; f.Refused(); r.VisualVariant = ""; f.Native();
+                r.GlyphVariants = "~~"; f.Refused(); r.GlyphVariants = Variants; f.Native();
+            }
+        }
+
+        [TestCase("foreign-render")] [TestCase("foreign-physics")] [TestCase("carried")]
+        [TestCase("takeable")] [TestCase("duplicate-floor")] [TestCase("foreign-footprint")]
+        [TestCase("equipped")] [TestCase("solid")] [TestCase("hidden-render")]
+        [TestCase("invalid-stack")] [TestCase("foreign-stack")] [TestCase("multicell-footprint")]
+        public void InvalidLowerOwnerCannotBorrowMaterialAndExactRepairRecovers(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                var floor = f.Place("Floor"); var r = floor.GetPart<RenderPart>(); var p = floor.GetPart<PhysicsPart>();
+                var foreign = new Entity(); Entity duplicate = null; SpatialFootprintPart footprint = null; StackerPart stack = null;
+                f.Native();
+                if (fault == "foreign-render") r.ParentEntity = foreign;
+                if (fault == "foreign-physics") p.ParentEntity = foreign;
+                if (fault == "carried") p.InInventory = foreign;
+                if (fault == "takeable") p.Takeable = true;
+                if (fault == "equipped") p.Equipped = foreign;
+                if (fault == "solid") p.Solid = true;
+                if (fault == "hidden-render") r.Visible = false;
+                if (fault == "invalid-stack" || fault == "foreign-stack")
+                { stack = new StackerPart { StackCount = fault == "invalid-stack" ? 0 : 1 }; floor.AddPart(stack); if (fault == "foreign-stack") stack.ParentEntity = foreign; }
+                if (fault == "duplicate-floor") duplicate = f.Place("Floor");
+                if (fault == "foreign-footprint" || fault == "multicell-footprint")
+                { footprint = new SpatialFootprintPart { CellsRaw = fault == "multicell-footprint" ? "0,0;1,0" : "0,0" }; floor.AddPart(footprint); if (fault == "foreign-footprint") footprint.ParentEntity = foreign; }
+                f.Refused();
+                r.ParentEntity = floor; r.Visible = true; p.ParentEntity = floor; p.InInventory = null; p.Equipped = null; p.Takeable = p.Solid = false;
+                if (stack != null) { stack.ParentEntity = floor; floor.RemovePart(stack); }
+                if (duplicate != null) Assert.True(f.Zone.RemoveEntity(duplicate));
+                if (footprint != null) { footprint.ParentEntity = floor; floor.RemovePart(footprint); }
+                f.Native();
+            }
+        }
+
+        [TestCase("foreign")] [TestCase("stale")]
+        public void AnAnchoredMalformedSecondFloorCannotHideBehindAValidFloor(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); f.Native();
+                var duplicate = f.Place("Floor");
+                var footprint = new SpatialFootprintPart { CellsRaw = fault == "stale" ? "0,0;1,0" : "0,0" };
+                duplicate.AddPart(footprint);
+                if (fault == "foreign") footprint.ParentEntity = new Entity();
+                Assert.AreSame(f.Zone.GetCell(X, Y), f.Zone.GetEntityCell(duplicate), "Still anchored here, unlike a stale old-cell entry.");
+                f.Refused();
+                f.Zone.GetCell(X, Y).Objects.Reverse(); f.Refused();
+                footprint.ParentEntity = duplicate; duplicate.RemovePart(footprint);
+                Assert.True(f.Zone.RemoveEntity(duplicate)); f.Native();
+            }
+        }
+
+        [Test]
+        public void AStaleOldCellEntryDoesNotKeepTheMovedFloorAndAReplacementOwnerDoesNotChangeItsVariant()
+        {
+            using (var f = new Fixture())
+            {
+                var floor = f.Place("Floor"); var first = f.Native().GroundTile; var cell = f.Zone.GetCell(X, Y);
+                Assert.True(f.Zone.AddEntity(floor, X + 1, Y)); cell.Objects.Add(floor);
+                f.Refused(); cell.Objects.Remove(floor);
+                var replacement = f.Place("Floor"); Assert.AreNotEqual(floor.ID, replacement.ID);
+                Assert.AreSame(first, f.Native().GroundTile, "Material variation belongs to coordinates, not allocation ID.");
+            }
+        }
+
+        [TestCase(64)] [TestCase(65)]
+        public void GeneratedSootrootUsesItsActualFloorAsSoilBeforeAndAfterRealHarvest(int seed)
+        {
+            using (var f = new Fixture(buildCellar: true, seed: seed))
+            {
+                f.Native(); // Genuine generated landing Floor, below the genuine stairs.
+                var ripe = f.Zone.GetReadOnlyEntities().Single(e => e.GetProperty(GleanersCellarBuilder.RoleKey) == "sootroot-ripe");
+                var at = f.Zone.GetEntityPosition(ripe); var cell = f.Zone.GetCell(at.x, at.y);
+                var floor = cell.Objects.Single(e => e.BlueprintName == "Floor");
+                var marker = floor.GetPart<CultivatedSoilPart>(); Assert.NotNull(marker); Assert.AreSame(floor, marker.ParentEntity);
+                var crop = ripe.GetPart<CropPart>(); Assert.AreEqual(2, crop.GrowthStage);
+                f.Refused(at.x, at.y); Assert.AreEqual(FlatPixelGreyboxGround.DrySoil, f.Resolve(at.x, at.y).GroundKind);
+                crop.Water(3); f.Refused(at.x, at.y);
+                Assert.AreEqual(FlatPixelGreyboxGround.WetSoil, f.Resolve(at.x, at.y).GroundKind);
+                Assert.AreEqual(3, crop.MoistureTicks); Assert.AreEqual(2, crop.GrowthStage, "Art reads must not advance the crop.");
+                var actor = f.Place("Player", at.x - 1, at.y); actor.GetPart<InventoryPart>().MaxWeight = 1000;
+                var result = InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(ripe, "HarvestCultivatedCrop"), actor, f.Zone);
+                Assert.True(result.Success, result.ErrorMessage); Assert.IsNull(f.Zone.GetEntityCell(ripe));
+                Assert.AreSame(floor, f.Zone.GetCell(at.x, at.y).Objects.Single(e => e.BlueprintName == "Floor"));
+                Assert.AreEqual(2, cell.Objects.Where(e => e.BlueprintName == "SootrootPulp").Sum(Units));
+                Assert.AreEqual(1, cell.Objects.Where(e => e.BlueprintName == "SootrootSeed").Sum(Units));
+                f.Refused(at.x, at.y); Assert.AreEqual(FlatPixelGreyboxGround.DrySoil, f.Resolve(at.x, at.y).GroundKind);
+                floor.RemovePart(marker); f.Native(at.x, at.y);
+            }
+        }
+
+        [TestCase("crop")] [TestCase("field")] [TestCase("liquid")] [TestCase("gas")]
+        public void CompetingCurrentGroundStateWinsAndRemovingItRestoresStone(string reason)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); f.Native();
+                Entity other;
+                if (reason == "crop") other = f.Place("SootrootCrop");
+                else if (reason == "field") other = f.Place("RipeCropRow");
+                else
+                {
+                    other = f.Place("Signpost");
+                    if (reason == "liquid") other.AddPart(new LiquidPoolPart { LiquidId = "water", Volume = 1 });
+                    else other.AddPart(new GasPoolPart { GasId = "poison-vapor", Density = 1 });
+                }
+                f.Refused(); Assert.True(f.Zone.RemoveEntity(other)); f.Native();
+            }
+        }
+
+        [Test]
+        public void NonemptyNonWaterTileStateAlsoDeclinesWithoutWritingOrHidingTheState()
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); f.Native();
+                f.Zone.TileState.WriteResidue(X, Y, "grit", 3);
+                string before = f.Zone.TileState.ToSaveString(); f.Refused();
+                Assert.AreEqual(before, f.Zone.TileState.ToSaveString());
+                Assert.True(f.Zone.TileState.RemoveResidue(X, Y, "grit")); f.Native();
+                f.Zone.TileState.AddHeat(X, Y, 1); before = f.Zone.TileState.ToSaveString(); f.Refused();
+                Assert.AreEqual(before, f.Zone.TileState.ToSaveString());
+            }
+        }
+
+        [TestCase("hidden")] [TestCase("unexplored")] [TestCase("replaced-cell")]
+        [TestCase("replaced-graph")] [TestCase("poi")]
+        public void NativeMaterialRequiresCurrentDisclosedCellarAuthorityAndRecovers(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); f.Native(); var cell = f.Zone.GetCell(X, Y);
+                if (fault == "hidden") cell.IsVisible = false;
+                if (fault == "unexplored") cell.Explored = false;
+                if (fault == "replaced-cell")
+                { var next = new Cell(X, Y, f.Zone) { Explored = true, IsVisible = true }; next.Objects.AddRange(cell.Objects); f.Zone.Cells[X, Y] = next; }
+                if (fault == "replaced-graph") f.Manager.CachedZones[Cellar] = new Zone(Cellar);
+                if (fault == "poi") f.Manager.WorldMap.SetPOI(11, 10, new PointOfInterest(POIType.Village, "floor counter"));
+                f.Refused();
+                if (fault == "hidden")
+                {
+                    var memory = f.Resolve(); Assert.True(memory.Remembered);
+                    Assert.That(memory.GroundColor.r, Is.EqualTo(Stone.r * .35f).Within(.00001f));
+                    f.Zone.TileState.WriteCoating(X, Y, "water", 4);
+                    Assert.AreEqual(memory.GroundColor, f.Resolve().GroundColor, "Hidden live coating must not change remembered ground.");
+                    f.Zone.TileState.RemoveCoating(X, Y, "water");
+                }
+                f.Zone.Cells[X, Y] = cell; cell.IsVisible = cell.Explored = true;
+                f.Manager.CachedZones[Cellar] = f.Zone; f.Manager.WorldMap.SetPOI(11, 10, null); f.Native();
+            }
+        }
+
+        [Test]
+        public void OtherAdmittedSurfacesAndOtherDepthsDoNotBorrowTheCellarMaterial()
+        {
+            foreach (string id in new[] { ReferenceGladePlan.ZoneID, "Overworld.11.8.0", "Overworld.12.11.0", "Overworld.11.10.2" })
+                using (var f = new Fixture(id)) { f.Place("Floor"); f.Refused(); }
+        }
+
+        [TestCase("water")] [TestCase("oil")] [TestCase("ice")]
+        public void ActualCoatingHooksRepaintSubmittedFloorUnderAnUnchangedActorWithoutFullRedraw(string coating)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); var player = f.Place("Player"); player.GetPart<RenderPart>().RenderLayer = 100;
+                f.StartPainting(); var original = f.SubmittedNative(); var foreground = f.ForegroundAt(X, Y);
+                Assert.NotNull(foreground); long full = EnvironmentSpriteRenderer.Perf.FullPasses; f.Quiet();
+                f.Zone.TileState.WriteCoating(X, Y, coating, 3);
+                Assert.True(f.Dirty.Contains(Y * Zone.Width + X), "Actual producer hook, not manual MarkDirty.");
+                f.Frame(); f.Quiet(); Assert.AreNotSame(f.Atlas, f.Background.GetTile<Tile>(f.At(X, Y)).sprite.texture);
+                Assert.AreSame(player, f.Resolve().Owner); Assert.AreSame(foreground, f.ForegroundAt(X, Y));
+                if (coating != "water") Assert.NotNull(f.Hazards.GetTile(f.At(X, Y)), "Oil/ice retain the actual hazard mark above art.");
+                else
+                {
+                    Assert.AreEqual(FlatPixelGreyboxGround.Water, f.Resolve().GroundKind);
+                    f.Zone.TileState.WriteCoating(X, Y, "oil", 3); f.Frame();
+                    Assert.NotNull(f.Hazards.GetTile(f.At(X, Y)), "Mixed water/oil is not silently represented by water background alone.");
+                    Assert.True(f.Zone.TileState.RemoveCoating(X, Y, "oil")); f.Frame();
+                }
+                Assert.True(f.Zone.TileState.RemoveCoating(X, Y, coating));
+                Assert.True(f.Dirty.Contains(Y * Zone.Width + X)); f.Frame(); f.Quiet();
+                Assert.AreSame(original, f.SubmittedNative()); Assert.AreSame(foreground, f.ForegroundAt(X, Y));
+                Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+                long count = EnvironmentSpriteRenderer.Perf.CellsResolved; f.Frame(); f.Quiet();
+                Assert.AreEqual(count, EnvironmentSpriteRenderer.Perf.CellsResolved, "Quiet floor frames do not add polling or redraws.");
+            }
+        }
+
+        [Test]
+        public void ActualWalkingRestoresOldFloorAndKeepsNewFloorBelowTheMovedPlayer()
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); f.Place("Floor", X + 1, Y); var player = f.Place("Player");
+                f.StartPainting(); var oldTile = f.SubmittedNative(); var nextTile = f.SubmittedNative(X + 1, Y); f.Quiet();
+                Assert.True(MovementSystem.TryMoveTo(player, f.Zone, X + 1, Y));
+                Assert.True(f.Dirty.Contains(Y * Zone.Width + X)); Assert.True(f.Dirty.Contains(Y * Zone.Width + X + 1));
+                // Player movement deliberately invalidates global FOV; only the
+                // coating tests above require incremental repaint without a full pass.
+                Assert.True((bool)Read(f.Renderer, "_fullDirty"));
+                f.Frame(); f.Quiet(); Assert.AreSame(oldTile, f.SubmittedNative()); Assert.AreSame(nextTile, f.SubmittedNative(X + 1, Y));
+                Assert.IsNull(f.ForegroundAt(X, Y)); Assert.NotNull(f.ForegroundAt(X + 1, Y));
+                Assert.AreSame(player, f.Resolve(X + 1, Y).Owner);
+            }
+        }
+
+        [Test]
+        public void DefaultResourceHasTheNativeContractWhileOldInjectedConstructorsRemainResourceFree()
+        {
+            using (var f = new Fixture(inject: false))
+            using (var defaults = new FlatPixelGreyboxCatalog())
+            {
+                f.Place("Floor"); var resource = Resources.Load<Texture2D>(Resource);
+                Assert.NotNull(resource, "Genuine absent-resource gate: no synthetic substitution for the default path.");
+                Assert.AreEqual(64, resource.width); Assert.AreEqual(24, resource.height);
+                Assert.AreEqual(FilterMode.Point, resource.filterMode); Assert.AreEqual(TextureWrapMode.Clamp, resource.wrapMode);
+                Assert.AreEqual(1, resource.mipmapCount);
+                Assert.True(defaults.TryResolvePresentation(f.Zone, X, Y, out var native)); Expect(native.GroundTile, resource);
+                Assert.AreEqual(Color.white, native.GroundColor); Assert.AreNotSame(resource, f.Resolve().GroundTile.sprite.texture);
+                Assert.AreEqual(Stone, f.Resolve().GroundColor);
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void MissingOrWrongSizedBorrowedAtlasKeepsExistingFloorAndDoesNotLoadResources(bool malformed)
+        {
+            Texture2D bad = malformed ? new Texture2D(63, 24) : null;
+            try
+            {
+                using (var f = new Fixture(inject: false))
+                {
+                    f.Place("Floor"); f.Inject(bad); f.Refused();
+                    Assert.AreEqual(Stone, f.Resolve().GroundColor); Assert.IsNull(f.Resolve().ForegroundTile);
+                }
+                if (malformed) Assert.True(bad != null, "Adapter must not destroy its borrowed source.");
+            }
+            finally { if (bad != null) Object.DestroyImmediate(bad); }
+        }
+
+        [Test]
+        public void DisposalReleasesOnlyGeneratedTilesAndSpritesAndIsIdempotent()
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Floor"); var tile = f.Native().GroundTile; var sprite = tile.sprite;
+                f.Catalog.Dispose(); f.Catalog.Dispose();
+                Assert.True(tile == null); Assert.True(sprite == null); Assert.True(f.Atlas != null);
+                Assert.False(f.Query(f.Zone, X, Y, out _, out _));
+                Assert.False(f.Catalog.TryResolvePresentation(f.Zone, X, Y, out _));
+            }
+        }
+
+        static int Units(Entity e) => e.GetPart<StackerPart>()?.StackCount ?? 1;
+        static void Expect(Tile tile, Texture2D atlas)
+        {
+            Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(atlas, tile.sprite.texture);
+            var rect = tile.sprite.rect; Assert.AreEqual(new Vector2(16, 24), rect.size); Assert.AreEqual(0, rect.y);
+            CollectionAssert.Contains(new[] { 0f, 16f, 32f, 48f }, rect.x);
+            Assert.AreEqual(16, tile.sprite.pixelsPerUnit); Assert.AreEqual(new Vector2(8, 12), tile.sprite.pivot);
+            Assert.AreEqual(TileFlags.None, tile.flags); Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
+        }
+        static object Read(object target, string name) => target.GetType().GetField(name, I).GetValue(target);
+        static void Write(object target, string name, object value)
+        { var field = target.GetType().GetField(name, I); Assert.NotNull(field, "Required adapter seam: " + name); field.SetValue(target, value); }
+
+        // Reuses the proven Nella ground fixture's inactive renderer and exact
+        // global/provenance restoration. No constructor calls gameplay time or UI.
+        sealed class Fixture : IDisposable
+        {
+            readonly HotbarSaveFixture globals;
+            readonly TurnManager oldTurns = TurnManager.Active;
+            readonly Zone oldActive = SettlementRuntime.ActiveZone;
+            readonly Action<int, int, string> oldCell = ZoneRenderHooks.CellDirtyCallback;
+            readonly Action<string> oldFull = ZoneRenderHooks.FullDirtyCallback;
+            readonly FieldInfo bound = typeof(ZoneTileStateSystem).GetField("_boundRenderZone", S);
+            readonly object oldBound; readonly Zone priorBound; readonly Action<int, int> oldChanged; readonly Action oldSight;
+            readonly Dictionary<PropertyInfo, object> hooks = typeof(EntityVisualHooks).GetProperties(S).Where(p => p.CanRead && p.CanWrite).ToDictionary(p => p, p => p.GetValue(null));
+            readonly Dictionary<FieldInfo, object> perf = typeof(EnvironmentSpriteRenderer.Perf).GetFields(BindingFlags.Public | BindingFlags.Static).ToDictionary(p => p, p => p.GetValue(null));
+            readonly List<MessageLog.Entry> messages = MessageLog.GetAllEntries();
+            readonly List<string> announcements = MessageLog.GetPendingAnnouncementsSnapshot();
+            readonly int flash = MessageLog.FlashStamp, serial = MessageLog.NextSerialValue;
+            readonly long revision = MessageLog.Revision, generation = MessageLog.HistoryGeneration;
+            readonly object origins = typeof(MessageLog).GetField("AnnouncementOrigins", S).GetValue(null);
+            readonly Array oldOrigins;
+            readonly Action<string> oldMessage = MessageLog.OnMessage; readonly Func<int> oldTick = MessageLog.TickProvider;
+            GameObject root;
+            public readonly EntityFactory Factory;
+            public readonly OverworldZoneManager Manager;
+            public readonly Zone Zone;
+            public readonly Texture2D Atlas;
+            public readonly FlatPixelGreyboxCatalog Catalog;
+            public IDisposable Adapter;
+            public FloorQuery Query;
+            public ZoneRenderer Renderer;
+            public Tilemap Background, Hazards, Overlay;
+            public HashSet<int> Dirty => (HashSet<int>)Read(Renderer, "_dirtyCells");
+
+            public Fixture(string id = Cellar, bool inject = true, bool buildCellar = false, int seed = 64)
+            {
+                oldOrigins = (Array)origins.GetType().GetMethod("ToArray").Invoke(origins, null);
+                oldBound = bound.GetValue(null);
+                if (oldBound is WeakReference<Zone> weak && weak.TryGetTarget(out var old))
+                { priorBound = old; oldChanged = old.TileState.OnCellChanged; oldSight = old.TileState.OnSightChanged; }
+                try
+                {
+                    globals = new HotbarSaveFixture(false, false); EntityVisualHooks.Reset();
+                    MessageLog.OnMessage = null; MessageLog.TickProvider = null;
+                    typeof(TurnManager).GetProperty("Active", S).SetValue(null, null);
+                    Factory = DensityReferenceGladeTests.Factory(); SeedPart.Factory = CropSystem.Factory = Factory;
+                    Manager = OverworldZoneManager.CreateDetached(Factory, seed, true); Zone = new Zone(id);
+                    Manager.WorldMap.Tiles[11, 10] = BiomeType.Spread; Manager.WorldMap.SetPOI(11, 10, null);
+                    Manager.SetActiveZone(Zone); SettlementRuntime.ActiveZone = Zone;
+                    if (buildCellar) Assert.True(new GleanersCellarBuilder(seed, true).BuildZone(Zone, Factory, new System.Random(8)));
+                    for (int x = 0; x < CavesOfOoo.Core.Zone.Width; x++) for (int y = 0; y < CavesOfOoo.Core.Zone.Height; y++)
+                        Zone.GetCell(x, y).IsVisible = Zone.GetCell(x, y).Explored = true;
+                    Atlas = new Texture2D(64, 24) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Repeat };
+                    Catalog = new FlatPixelGreyboxCatalog(null); if (inject) Inject(Atlas);
+                }
+                catch { Dispose(); throw; }
+            }
+            public void Inject(Texture2D texture)
+            {
+                Assert.IsNull(Adapter, "One owned companion per fixture.");
+                var type = typeof(ZoneRenderer).Assembly.GetType("CavesOfOoo.Rendering.FlatPixelCellarFloorCatalog");
+                Assert.NotNull(type, "Missing cellar Floor material adapter (expected initial behavioral/API RED).");
+                var ctor = type.GetConstructor(new[] { typeof(Texture2D) }); Assert.NotNull(ctor);
+                Adapter = (IDisposable)ctor.Invoke(new object[] { texture });
+                var method = type.GetMethod("TryResolve", I, null, new[] { typeof(Zone), typeof(int), typeof(int), typeof(Tile).MakeByRefType(), typeof(Entity).MakeByRefType() }, null);
+                Assert.NotNull(method, "Proposed exact-cell/lower-owner query signature.");
+                Query = (FloorQuery)Delegate.CreateDelegate(typeof(FloorQuery), Adapter, method);
+                Write(Catalog, "_cellarFloorArt", Adapter);
+            }
+            public Entity Place(string blueprint, int x = X, int y = Y)
+            { var owner = Factory.CreateEntity(blueprint); Assert.NotNull(owner); Assert.True(Zone.AddEntity(owner, x, y)); return owner; }
+            public FlatPixelGreyboxCell Resolve(int x = X, int y = Y)
+            { Assert.True(Catalog.TryResolvePresentation(Zone, x, y, out var value)); return value; }
+            public FlatPixelGreyboxCell Native(int x = X, int y = Y)
+            {
+                Assert.True(Query(Zone, x, y, out var tile, out var floor), "Direct companion must accept the real lower Floor.");
+                Assert.AreEqual("Floor", floor.BlueprintName); Assert.AreSame(Zone.GetCell(x, y), Zone.GetEntityCell(floor)); Expect(tile, Atlas);
+                var world = Resolve(x, y); Assert.AreSame(tile, world.GroundTile); Assert.AreEqual(Color.white, world.GroundColor); return world;
+            }
+            public void Refused(int x = X, int y = Y)
+            {
+                Assert.False(Query(Zone, x, y, out _, out _));
+                if (Catalog.TryResolvePresentation(Zone, x, y, out var value)) Assert.AreNotSame(Atlas, value.GroundTile.sprite.texture);
+            }
+            public void StartPainting()
+            {
+                root = new GameObject("Cellar floor draft native fixture", typeof(Grid)); root.SetActive(false);
+                var main = Map("Main", 0); Background = Map("Background", -1); Hazards = Map("Hazards", 4);
+                var camera = new GameObject("Owned camera", typeof(Camera)); camera.transform.SetParent(root.transform, false); camera.GetComponent<Camera>().orthographic = true;
+                Renderer = main.gameObject.AddComponent<ZoneRenderer>(); Write(Renderer, "_tilemap", main); Write(Renderer, "_bgTilemap", Background);
+                Write(Renderer, "_tileStateTilemap", Hazards); Write(Renderer, "_mainCamera", camera.GetComponent<Camera>());
+                var env = root.AddComponent<EnvironmentSpriteRenderer>(); env.Init(root.transform, main, Background); Write(env, "_flatPixelGreybox", Catalog);
+                Overlay = (Tilemap)Read(env, "_overlayTilemap");
+                Write(Renderer, "_envSpriteRenderer", env); Write(Renderer, "_flatPixelModeEnabled", true);
+                ZoneRenderHooks.CellDirtyCallback = Renderer.MarkCellDirty; ZoneRenderHooks.FullDirtyCallback = Renderer.MarkDirty;
+                Renderer.SetZone(Zone); Frame(); Assert.True(Renderer.FlatPixelModeActive); Quiet();
+            }
+            Tilemap Map(string name, int order)
+            { var go = new GameObject(name, typeof(Tilemap), typeof(TilemapRenderer)); go.transform.SetParent(root.transform, false); go.GetComponent<TilemapRenderer>().sortingOrder = order; return go.GetComponent<Tilemap>(); }
+            public Vector3Int At(int x, int y) => new Vector3Int(x, CavesOfOoo.Core.Zone.Height - 1 - y, 0);
+            public Tile ForegroundAt(int x, int y) => Overlay.GetTile<Tile>(At(x, y));
+            public Tile SubmittedNative(int x = X, int y = Y)
+            { var tile = Background.GetTile<Tile>(At(x, y)); Expect(tile, Atlas); Assert.AreEqual(Color.white, Background.GetColor(At(x, y))); return tile; }
+            public void Frame()
+            { try { typeof(ZoneRenderer).GetMethod("LateUpdate", I).Invoke(Renderer, null); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
+            public void Quiet() { Assert.False((bool)Read(Renderer, "_fullDirty")); Assert.Zero(Dirty.Count); }
+            public void Dispose()
+            {
+                try { if (root != null) Object.DestroyImmediate(root); Catalog?.Dispose(); Adapter?.Dispose(); if (Atlas != null) Object.DestroyImmediate(Atlas); }
+                finally
+                {
+                    globals?.Dispose(); typeof(TurnManager).GetProperty("Active", S).SetValue(null, oldTurns); SettlementRuntime.ActiveZone = oldActive;
+                    ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull;
+                    foreach (var hook in hooks) hook.Key.SetValue(null, hook.Value); bound.SetValue(null, oldBound);
+                    if (priorBound != null) { priorBound.TileState.OnCellChanged = oldChanged; priorBound.TileState.OnSightChanged = oldSight; }
+                    foreach (var entry in perf) entry.Key.SetValue(null, entry.Value);
+                    MessageLog.Restore(messages, announcements, flash, serial);
+                    origins.GetType().GetMethod("Clear").Invoke(origins, null);
+                    foreach (object origin in oldOrigins) origins.GetType().GetMethod("Enqueue").Invoke(origins, new[] { origin });
+                    typeof(MessageLog).GetProperty("Revision", S).SetValue(null, revision);
+                    typeof(MessageLog).GetProperty("HistoryGeneration", S).SetValue(null, generation);
+                    MessageLog.OnMessage = oldMessage; MessageLog.TickProvider = oldTick;
+                }
+            }
+        }
+    }
+}
