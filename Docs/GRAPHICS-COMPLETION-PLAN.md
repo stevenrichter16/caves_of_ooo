@@ -1359,9 +1359,28 @@ the six whole scenes together, choose the most visible inconsistency and continu
 the playable capture/concept/native integration cycle. Do not reopen this accepted
 bounded layout solely to manufacture another iteration.
 
-Storage is again constrained (~235MiB available before preservation). First push
-these exact owned changes, then revalidate the four closed stale-clone database
-files listed in `/tmp/coo-nella-stale-db-manifest.json`. Preserve active main caches,
-all source/editable assets, saves/backups, dependencies and current builds. Record
-actual recovered space after deletion; no cleanup has been performed yet in this
-composition slice.
+Storage follow-through at10:28UTC: verified all118 owned files and commit
+`d313eac64` on origin/main before deleting four closed, regenerable database files
+from the inactive verification clone's Library: ArtifactDB, ArtifactDB-lock,
+SourceAssetDB and SourceAssetDB-lock. Observed available-space gain was
+158,928,896bytes (151.6MiB), not the216,727,552byte allocation sum. The exact
+[receipt](Verification/Live16x24/nella-composition-storage-cleanup.json) records
+both values. Source, editable assets, saves/backups, dependencies, active main
+caches and current builds remain intact. A bounded independent follow-up found
+no safe target above500MiB; disk remains constrained at roughly340MiB. Do not
+start a large build or erase useful active caches to force one. Smaller inactive
+clone compiled/search caches remain candidates for the next guarded inspection.
+
+
+## Next scene cycle — cellar floor, 2026-10-25 10:41 UTC
+
+Six actual scene captures were reviewed together. The next bounded task is
+[the cellar floor](GRAPHICS-G3-CELLAR-FLOOR.md): a quiet sparse stone material
+beneath the existing walls/actors, preserving prepared sootroot beds, hazards
+and fog. The real entry capture drove a built-in imagegen concept; its resized
+HUD, altered lettering/actors and lighting are rejected. Only sparse broken
+seams inform native authoring. Exact owner/state, RED/counter, submitted-Tilemap
+and ordinary-return gates are recorded. No floor runtime/art import or new
+gameplay acceptance is claimed yet. Existing Nella and inventory remain frozen.
+Storage is still constrained; use the guarded stale-cache process, preserve
+current packages and avoid heavy builds. Whole-opening/Deck/regional gates stay open.

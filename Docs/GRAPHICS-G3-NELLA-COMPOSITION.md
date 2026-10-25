@@ -317,3 +317,16 @@ six whole scenes as one visual journey against the existing reference direction,
 prioritize the largest visible inconsistency, and run the same actual-capture→
 concept→owner/state→native implementation→ordinary Play loop. Continue the
 regional work after the defined opening gates; do not declare the graphics done.
+
+
+### Remote preservation and storage follow-through,10:28UTC
+
+Commit `d313eac64` and all118 exact owned files were verified against origin/main.
+Only then were four inactive clone Library database files removed after exact
+path/type/identity and no-open-handle checks. Actual available-space gain:
+158,928,896bytes (151.6MiB). See
+[cleanup receipt](Verification/Live16x24/nella-composition-storage-cleanup.json).
+Active main caches, all source/editable art, saves/backups, dependencies and
+current builds were preserved. Follow-up inspection found no safe target over
+500MiB; approximately340MiB remained. This is a storage receipt, not a new runtime
+change, test result, package update or whole-opening acceptance.
